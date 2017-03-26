@@ -48,11 +48,6 @@ if ( $questions_hot->have_posts()||$questions_all->have_posts() ) {
                         <?php
                         //                    if ( $questions_hot->have_posts() ) {
                         while ($questions_hot->have_posts()) {
-<<<<<<< HEAD
-                            //print_r(get_categories());
-=======
-                            print_r(get_categories());
->>>>>>> fc7a8223da6c0c39db187df99f7b6414d608e49a
                             $questions_hot->the_post();
                             if (dwqa_question_answers_count() == 0) {
                                 require 'qa_unanswered.php';
