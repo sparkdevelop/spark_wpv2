@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
-      <module fileurl="file://$PROJECT_DIR$/.idea/wordpress.iml" filepath="$PROJECT_DIR$/.idea/wordpress.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/.idea/spark_wp.iml" filepath="$PROJECT_DIR$/.idea/spark_wp.iml" />
->>>>>>> fc7a8223da6c0c39db187df99f7b6414d608e49a
+      <module fileurl="file://$PROJECT_DIR$/.idea/spark_wpv2.iml" filepath="$PROJECT_DIR$/.idea/spark_wpv2.iml" />
     </modules>
   </component>
 </project>
