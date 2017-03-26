@@ -1,0 +1,91 @@
+/*
+Theme Name: sparkUI
+Theme URI: http://www.cherie.com
+Description: a theme just for sparkspace
+Author URI: http://www.cherie.com/
+Version: 1.0
+Tags: responsive, sparkspace, bootstrap
+License: Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+License URI: http://creativecommons.org/licenses/by-sa/3.0/
+
+This theme was built using the example Bootstrap theme "WP bootstrap" found on the Bootstrap web site hhttps://www.oschina.net/question/133179_76091
+*/
+@import url('bootstrap/css/bootstrap.min.css');
+/*整体风格*/
+
+a,a:hover{color:gray;}
+
+/* 导航栏*/
+.navbar-brand{height: 70px;padding-right: 20%;}
+.navbar{margin-bottom: 0px;}
+.navbar-nav > li > a{  padding-top: 25px;padding-bottom: 25px}
+.navbar-default{background-color: transparent;border-color:transparent;}
+.navbar-default .navbar-nav > .active >a,
+.navbar-default .navbar-nav > .active >a:hover,
+.navbar-default .navbar-nav > .active >a:focus{color: #fe642d;background-color: transparent; }
+.navbar-form{margin-top: 20px}
+.navbar-text{margin-top: 25px;margin-right: 20px;}
+.btn-default{border-color:transparent;}
+.btn-default:hover,.btn-default:focus{background-color: transparent;border-color: transparent;}
+
+/*导航栏头像*/
+.header_avatar {float: right;margin-top: 20px;margin-right: 20px;}
+
+/*下拉菜单*/
+.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover,
+.open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover
+{background-color: transparent;  border-color: transparent;}
+.btn:active,
+.btn.active{
+    -webkit-box-shadow: inset 0 0 0 0 rgba(0,0,0,0);
+}
+.btn-group.open .dropdown-toggle{
+    box-shadow: inset 0 0 0 0 rgba(0,0,0,0);
+}
+.dropdown-menu{min-width: 150px;left: -40px}
+
+/*侧边栏按钮*/
+.sidebar_button{
+    height:48px;
+    background-color:#fe642d;
+    -moz-box-shadow: 5px 5px 5px #ffe9e1; /* 老的 Firefox */
+    box-shadow: 5px 5px 5px #ffe9e1;
+    text-align:center;
+    color:white;
+    font-size: large;
+    padding-top: 12px;
+    margin-left: 14px;
+}
+/*侧边栏列表*/
+.sidebar_list{margin-left: 14px;}
+.sidebar_list_header{height: 42px;}
+.sidebar_list_header p{font-size: large;display:inline-block;margin-top: 5%;font-weight: bold;}
+.sidebar_divline{height: 2px;background-color: lightgray;}
+
+/*标签*/
+.label {color: #fe642d;margin-top: 3px; white-space:normal;}
+.label-default{background-color: #ffe9e1;display: inline-block;margin-right: 4px;margin-bottom: 10px;}
+.badge{background-color: transparent;  color:lightgray;}
+#temp{background-color: transparent;}
+#temp a{color: #fe642d;}
+
+/*助教团*/
+.list-group-item{border-color: transparent; padding-left: 0px;margin-bottom: -12px;padding: 10px 0px;}
+
+/*雷锋榜和好问榜*/
+.nav > li >a:hover{background-color: transparent;}
+.nav-pills{background-color: transparent;font-size: medium;color: #0f0f0f;}
+.nav-pills.active{color: #fe642d}
+.nav-pills > li.active >a,.nav-pills > li.active >a:focus,
+.nav-pills > li.active >a:hover {color: #fe642d;  background-color: transparent;}
+.divline{height: 1px;background-color: lightgray;margin-top: 10px;}
+
+.ask_count{margin-left: 0px;}
+
+#hot {padding-top: 40px;}
+#all {padding-top: 40px;}
+#unresolve {padding-top: 40px;}
+#webhot {padding-top: 40px;}
+#weball {padding-top: 40px;}
+#webunresolve {padding-top: 40px;}
+h4{margin-bottom: 0px}
