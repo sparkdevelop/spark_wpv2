@@ -16,7 +16,11 @@ foreach ( $answer_ids as $answer_id ){   //剥除外层数组
 }
 $tol_votes=array_sum($votes);   //总的赞数
 $pos=array_search(max($votes),$votes);  //赞数最多的位置,用于定位最佳回答的作者
+<<<<<<< HEAD
 $best_ans_author=$ans_author_id[$pos];  //赞数最多的答案作者ID
+=======
+$best_ans_author=$ans_author_id[$pos];   //赞数最多的答案作者ID
+>>>>>>> fc7a8223da6c0c39db187df99f7b6414d608e49a
 $best_ans_id=$ans_id[$pos];         //赞数最多的答案ID
 ?>
 

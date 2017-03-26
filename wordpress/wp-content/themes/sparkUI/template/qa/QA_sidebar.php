@@ -1,10 +1,14 @@
 <!--提问按钮ok-->
+<<<<<<< HEAD
 
 <?php
 global $wpdb;
 $page_ask_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'ask'");
 $ask_page_ID="?page_id=".$page_ask_id;
 ?>
+=======
+<?php $ask_page_ID="?page_id=96"; ?>
+>>>>>>> fc7a8223da6c0c39db187df99f7b6414d608e49a
 
 <div class="sidebar_button" style="margin-top: 20px">
     <a href="<?php echo site_url().$ask_page_ID;?>" style="color: white">我要提问</a>
