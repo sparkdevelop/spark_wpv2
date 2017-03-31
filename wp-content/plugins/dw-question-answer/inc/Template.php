@@ -210,7 +210,7 @@ function dwqa_answer_comment_callback( $comment, $args, $depth ) {
 	global $post;
 
 	if ( get_user_by( 'id', $comment->user_id ) ) {
-		dwqa_load_template( 'content', 'comment' );
+		dwqa_load_template( 'Spark-content', 'comment' );
 	}
 }
 
@@ -732,7 +732,7 @@ function dwqa_has_sidebar_template() {
 add_action( 'dwqa_after_single_question_content', 'dwqa_load_answers' );
 function dwqa_load_answers() {
 	global $dwqa;
-	$dwqa->template->load_template( 'answers' );
+	$dwqa->template->load_template( 'Spark-answers' );
 }
 
 class DWQA_Template {
@@ -820,7 +820,8 @@ class DWQA_Template {
 			remove_filter( 'comments_open', array( $this, 'close_default_comment' ) );
 
 			echo '<div class="dwqa-container" >';
-			$this->load_template( 'single', 'question' );
+			$this->load_template( 'Spark-single', 'question' );
+			$this->load_template('Spark-single','sidebar');
 			echo '</div>';
 
 			$content = ob_get_contents();

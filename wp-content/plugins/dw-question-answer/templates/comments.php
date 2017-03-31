@@ -8,12 +8,12 @@
 ?>
 
 <?php if ( comments_open() ) : ?>
-<div class="dwqa-comments">
+<div class="dwqa-comments" id="Spark_comments" style="margin-left: 20px; ">
 	<?php do_action( 'dwqa_before_comments' ) ?>
-	<div class="dwqa-comments-list">
+	<div class="dwqa-comments-list" style="padding-left: 20px">
 		<?php do_action( 'dwqa_before_comments_list' ); ?>
 		<?php if ( have_comments() ) : ?>
-		<?php wp_list_comments( array( 'callback' => 'dwqa_question_comment_callback' ) ); ?>
+		<?php wp_list_comments(array( 'callback' => 'dwqa_answer_comment_callback' ));  ?>
 		<?php endif; ?>
 		<?php do_action( 'dqwa_after_comments_list' ); ?>
 	</div>
@@ -27,4 +27,4 @@
 	<?php endif; ?>
 	<?php do_action( 'dwqa_after_comments' ); ?>
 </div>
-<?php endif; ?>
+<?php endif;?>

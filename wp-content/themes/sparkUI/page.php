@@ -11,45 +11,50 @@ global $wpdb;
 $page_qa_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'qa'");
 $page_project_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'project'");
 $page_ask_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'ask'");
+$page_test_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'test'");
 ?>
 
 <?php get_header(); ?>
 <div class="container" style="margin-top: 10px">
     <div class="row" style="width: 100%">
-        <div class="col-md-8 col-sm-8 col-xs-8">
+
             <!--引入动态模板-->
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-
+                ?>
+                <?php
                 if(is_home() || is_front_page()) { //首页显示“首页侧栏”
                     echo "首页内容";
                 }
                 elseif ( is_page('wiki') ) {//显示wiki侧栏”
+                    echo '<div class="col-md-8 col-sm-8 col-xs-8">';
                     echo "wiki内容";
+                    echo '</div>';
                 }
                 elseif ( is_page($page_qa_id) ) {//显示问答侧栏 参数为pageID 如何自动获取??
                     require "template/qa/QA_content.php";
+                    //require "test.php";
+                    //require "template/qa/QA-content-test.php";
                 }
                 elseif (is_page($page_project_id)){
+                    echo '<div class="col-md-8 col-sm-8 col-xs-8">';
                     echo "项目内容";
+                    echo '</div>';
                 }
                 elseif (is_page($page_ask_id)){
                     require "template/qa/QA_ask.php";
                 }
+                elseif (is_page($page_test_id)){
+                    require "template/qa/test.php";
+                }
                 else{
                     the_content();
                 }
-
                 endwhile;
                 ?>
             <?php else: ?>
                 <p><?php _e('Sorry, this page does not exist.'); ?></p>
-
             <?php endif; ?>
+            <?php get_sidebar();?>
             </div>
-
-        <div class="col-md-4 col-sm-4 col-xs-4 right">
-            <?php get_sidebar(); ?>
-        </div>
-    </div>
 </div>
 <?php get_footer(); ?>

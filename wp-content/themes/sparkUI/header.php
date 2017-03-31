@@ -36,9 +36,11 @@
                     <div class="clearfix visible-xs"></div>
 
                     <div class="col-md-6 col-sm-6 col-xs-6" style="ma">
-                        <form class="navbar-form " role="search" style="float: right;padding-left: 0px;padding-right: 0px">
+                        <form class="navbar-form " role="search" method="get" action="<?php echo admin_url();?>/edit.php" style="float: right;padding-left: 0px;padding-right: 0px">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search">
+                                <input type="text" name='s' value="请输入要搜索的问题" onfocus="javascript:if(this.value=='请输入要搜索的问题')this.value=''" class="form-control" placeholder="Search">
+                                <input type="hidden" name="post_type" value="dwqa-question" class="form-control" placeholder="Search">
+                                <input type="hidden" name="post_status" value="all">
                                 <button type="submit" class="btn btn-default btn-sm" style="float: right">
                                     <span class="glyphicon glyphicon-search"></span>
                                 </button>

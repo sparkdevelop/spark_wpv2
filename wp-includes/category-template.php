@@ -690,7 +690,7 @@ function wp_tag_cloud( $args = '' ) {
 	$tags = get_terms( $args['taxonomy'], array_merge( $args, array( 'orderby' => 'count', 'order' => 'DESC' ) ) ); // Always query top tags
 
 	if ( empty( $tags ) || is_wp_error( $tags ) )
-		return;
+		return ;
 
 	foreach ( $tags as $key => $tag ) {
 		if ( 'edit' == $args['link'] )

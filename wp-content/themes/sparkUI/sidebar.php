@@ -15,7 +15,9 @@ if(is_home() || is_front_page()) { //首页显示“首页侧栏”
 }
 
 if ( is_page('wiki') ) {//显示wiki侧栏”
+    echo '<div class="col-md-4 col-sm-4 col-xs-4 right">';
     echo "wiki边栏";
+    echo '</div>';
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_wikisidebar')){
     }
 }
@@ -23,6 +25,7 @@ if ( is_page('wiki') ) {//显示wiki侧栏”
 if ( is_page($page_qa_id) ) {//显示问答侧栏 参数为pageID 如何自动获取??
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_qasidebar')){
     }
+    //require "test.php";
     require "template/qa/QA_sidebar.php";
 }
 if ( is_page($page_ask_id) ) {//显示问题详情页
@@ -31,7 +34,9 @@ if ( is_page($page_ask_id) ) {//显示问题详情页
     require "template/qa/QA_ask_sidebar.php";
 }
 if (is_page($page_project_id)){
+    echo '<div class="col-md-4 col-sm-4 col-xs-4 right">';
     echo "项目边栏";
+    echo '</div>';
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_projectsidebar')){
     }
 }

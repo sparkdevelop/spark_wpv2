@@ -28,8 +28,8 @@ $best_post_content=$post_content[$pos];
     <div style="display: inline-block;vertical-align: top;width: 84%;margin-left: 15px">
 <!--        获取提问者名字、提问时间-->
         <div style="color:gray">
-            <a href="<?php get_the_author_link()?>"><?php echo get_the_author();?></a>
-            <span style="margin-left: 20px"><?php echo date('n月j日',get_the_time('U'));?>  </span>&nbsp;&nbsp;
+            <a href="<?php get_the_author_link();?>"><?php echo get_the_author();?></a>
+            <span style="margin-left: 20px"><?php echo date('n月j日 G:i',get_the_time('U'));?>  </span>&nbsp;&nbsp;
 <!--            -->
             <span>提问</span>
         </div>
@@ -44,7 +44,7 @@ $best_post_content=$post_content[$pos];
             <div style="color:gray">
 <!--                --><?php //$user_id = get_post_field( 'post_author', get_the_ID() ) ? get_post_field( 'post_author', get_the_ID() ) : 0;?>
                 <a href="<?php echo dwqa_get_author_link($best_ans_author);?>"><?php echo get_userdata($best_ans_author)->display_name;?></a>
-                <span style="margin-left: 20px"><?php echo human_time_diff(get_the_time('U',$best_ans_id))."前";?> </span>&nbsp;&nbsp;
+                <span style="margin-left: 20px"><?php echo human_time_diff( get_post_time( 'U', true ) )."前";//human_time_diff(get_the_time('U',$best_ans_id))."前";?> </span>&nbsp;&nbsp;
                 <span>回答</span>
             </div>
 <!--            答案内容 逻辑有待完善-->
@@ -60,8 +60,6 @@ $best_post_content=$post_content[$pos];
 //                    //echo get_post(dwqa_get_the_best_answer())->post_content;
 //                    echo $best_post_content;
 //                }
-
-
                // echo get_post(dwqa_get_the_best_answer())->post_content; ?>
             </div>
 

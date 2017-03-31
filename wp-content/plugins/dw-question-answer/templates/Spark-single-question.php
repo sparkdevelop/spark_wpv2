@@ -7,12 +7,13 @@
  */
 // global $wp_query; print_r( $wp_query );
 ?>
+<div class="col-md-8 col-sm-8 col-xs-8">
 <div class="dwqa-single-question">
     <?php if ( have_posts() ) : ?>
-        <?php do_action( 'dwqa_before_single_question' ) ?>
+        <?php //do_action( 'dwqa_before_single_question' ) ?>
         <?php while ( have_posts() ) : the_post(); ?>
             <?php if ( !dwqa_is_edit() ) : ?>
-                <?php dwqa_load_template( 'content', 'single-question' ) ?>
+                <?php dwqa_load_template( 'Spark-content', 'single-question' ) ?>
             <?php else : ?>
                 <?php dwqa_load_template( 'content', 'edit' ) ?>
             <?php endif; ?>
@@ -20,3 +21,6 @@
         <?php do_action( 'dwqa_after_single_question' ) ?>
     <?php endif; ?>
 </div>
+</div>
+
+

@@ -1,7 +1,4 @@
-<?php
-/*还没被回答的问题。
-* */
-?>
+
 <li class="list-group-item" style="padding: 15px 0px">
     <div style="display: inline-block;vertical-align: top;margin-top: 0px">
         <?php echo get_avatar(get_the_author_ID(),30,'');?>

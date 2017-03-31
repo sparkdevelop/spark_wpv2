@@ -28,7 +28,7 @@ $best_ans_id=$ans_id[$pos];         //赞数最多的答案ID
     <div style="display: inline-block;vertical-align: top;width: 84%;margin-left: 15px">
         <div style="color:gray">
             <a href="<?php get_the_author_link()?>"><?php echo get_the_author();?></a>
-            <span style="margin-left: 20px"><?php echo date('n月j日',get_the_time('U'));?>  </span>&nbsp;&nbsp;
+            <span style="margin-left: 20px"><?php echo date('n月j日 G:i',get_the_time('U'));?>  </span>&nbsp;&nbsp;
             <span>提问</span>
         </div>
 
