@@ -8,11 +8,7 @@
 ?>
 <div class="footer" style="height:160px;background-color: #fafafa">
     <div style="height:2px;background-color: #fe642d"></div>
-<<<<<<< HEAD
     <div style="height:4px;background-color: #ffe9e1"></div>
-=======
-    <div style="height:3px;background-color: #ffe9e1"></div>
->>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
     <div class="col-md-3 col-sm-3 col-xs-3">
         <img src="./img/logo.png" style="vertical-align:middle;padding:15px 10px 10px 40px;display: inline-block;float: right">
     </div>
