@@ -20,22 +20,15 @@
 
 // ** MySQL 设置 - 具体信息来自您正在使用的主机 ** //
 /** WordPress数据库的名称 */
-<<<<<<< HEAD
 define('WP_CACHE', true); //Added by WP-Cache Manager
 define( 'WPCACHEHOME', 'E:\xampp\htdocs\spark_wpv2\wp-content\plugins\wp-super-cache/' ); //Added by WP-Cache Manager
-=======
->>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
 define('DB_NAME', 'spark_wp');
 
 /** MySQL数据库用户名 */
 define('DB_USER', 'root');
 
 /** MySQL数据库密码 */
-<<<<<<< HEAD
-define('DB_PASSWORD', '19950715');
-=======
-define('DB_PASSWORD', 'spark123456');
->>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
+define('DB_PASSWORD', '');
 
 /** MySQL主机 */
 define('DB_HOST', 'localhost');
