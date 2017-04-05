@@ -25,17 +25,26 @@ $page_test_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 't
                 if(is_home() || is_front_page()) { //首页显示“首页侧栏”
                     echo "首页内容";
                 }
+<<<<<<< HEAD
 //                elseif ( is_page('wiki') ) {//显示wiki侧栏”
 //                    echo '<div class="col-md-9 col-sm-9 col-xs-9" id="col9">';
 //                    echo "wiki内容";
 //                    echo '</div>';
 
 //                }
+=======
+                elseif ( is_page('wiki') ) {//显示wiki侧栏”
+                    echo '<div class="col-md-8 col-sm-8 col-xs-8">';
+                    echo "wiki内容";
+                    echo '</div>';
+                }
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
                 elseif ( is_page($page_qa_id) ) {//显示问答侧栏 参数为pageID 如何自动获取??
                     require "template/qa/QA_content.php";
                     //require "test.php";
                     //require "template/qa/QA-content-test.php";
                 }
+<<<<<<< HEAD
                 elseif (is_page($page_ask_id)){
                     require "template/qa/QA_ask.php";
                 }
@@ -45,6 +54,16 @@ $page_test_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 't
                     echo '</div>';
                 }
 
+=======
+                elseif (is_page($page_project_id)){
+                    echo '<div class="col-md-8 col-sm-8 col-xs-8">';
+                    echo "项目内容";
+                    echo '</div>';
+                }
+                elseif (is_page($page_ask_id)){
+                    require "template/qa/QA_ask.php";
+                }
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
                 elseif (is_page($page_test_id)){
                     require "template/qa/test.php";
                 }

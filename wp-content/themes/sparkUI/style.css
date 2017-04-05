@@ -10,6 +10,7 @@ License URI: http://creativecommons.org/licenses/by-sa/3.0/
 
 This theme was built using the example Bootstrap theme "WP bootstrap" found on the Bootstrap web site hhttps://www.oschina.net/question/133179_76091
 */
+<<<<<<< HEAD
 
 
 @import url('bootstrap/css/bootstrap.min.css');
@@ -160,22 +161,59 @@ body{
 }
 
 /*个人下拉菜单*/
+=======
+@import url('bootstrap/css/bootstrap.min.css');
+/*整体风格*/
+
+a,a:hover{color:gray;}
+
+/* 导航栏*/
+.navbar-brand{height: 70px;padding-right: 20%;}
+.navbar{margin-bottom: 0px;}
+.navbar-nav > li > a{  padding-top: 25px;padding-bottom: 25px}
+.navbar-default{background-color: transparent;border-color:transparent;}
+.navbar-default .navbar-nav > .active >a,
+.navbar-default .navbar-nav > .active >a:hover,
+.navbar-default .navbar-nav > .active >a:focus{color: #fe642d;background-color: transparent; }
+.navbar-form{margin-top: 20px}
+.navbar-text{margin-top: 25px;margin-right: 20px;}
+.btn-default{border-color:transparent;}
+.btn-default:hover,.btn-default:focus{background-color: transparent;border-color: transparent;}
+
+/*导航栏头像*/
+.header_avatar {float: right;margin-top: 20px;margin-right: 20px;}
+
+/*下拉菜单*/
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
 .btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover,
 .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover
 {background-color: transparent;  border-color: transparent;outline: none}
 
+<<<<<<< HEAD
 .btn:active, .btn.active{
+=======
+.btn:active,
+.btn.active{
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
     -webkit-box-shadow: inset 0 0 0 0 rgba(0,0,0,0);
 }
 .btn-group.open .dropdown-toggle{
     box-shadow: inset 0 0 0 0 rgba(0,0,0,0);
 }
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
 .dropdown-menu{min-width: 150px;left: -40px}
 
 /*侧边栏按钮*/
 .sidebar_button{
     height:48px;
     background-color:#fe642d;
+<<<<<<< HEAD
     -moz-box-shadow: 5px 5px 5px #ffd8cc; /* 老的 Firefox */
     box-shadow: 5px 5px 5px #ffd8cc;
     text-align:center;
@@ -348,6 +386,32 @@ body{
     margin-left: 15px
 }
 
+=======
+    -moz-box-shadow: 5px 5px 5px #ffe9e1; /* 老的 Firefox */
+    box-shadow: 5px 5px 5px #ffe9e1;
+    text-align:center;
+    color:white;
+    font-size: large;
+    padding-top: 12px;
+    margin-left: 14px;
+}
+/*侧边栏列表*/
+.sidebar_list{margin-left: 14px;}
+.sidebar_list_header{height: 42px;}
+.sidebar_list_header p{font-size: large;display:inline-block;margin-top: 5%;font-weight: bold;}
+.sidebar_divline{height: 2px;background-color: lightgray;}
+
+/*标签*/
+.label {color: #fe642d;margin-top: 3px; white-space:normal;}
+.label-default{background-color: #ffe9e1;display: inline-block;margin-right: 4px;margin-bottom: 10px;}
+.badge{background-color: transparent;  color:lightgray;}
+#temp{background-color: transparent;}
+#temp a{ color: #fe642d;}
+#temp_questions { background-color: #ffe9e1;}
+#temp_questions a{color: #fe642d;}
+.label[href]:focus,
+.label[href]:hover{background-color: transparent}
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
 
 /*助教团*/
 .list-group-item{border-color: transparent; padding-left: 0px;margin-bottom: -12px;padding: 10px 0px;}
@@ -360,6 +424,11 @@ body{
 .nav-pills > li.active >a:hover {color: #fe642d;  background-color: transparent;}
 .divline{height: 1px;background-color: lightgray;margin-top: 10px;}
 
+<<<<<<< HEAD
+=======
+.ask_count{margin-left: 0px;}
+
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
 #hot {padding-top: 40px;}
 #all {padding-top: 40px;}
 #unresolve {padding-top: 40px;}
@@ -368,6 +437,7 @@ body{
 #webunresolve {padding-top: 40px;}
 h4{margin-bottom: 0px;}
 #comment_display{ margin-bottom: 0px;}
+<<<<<<< HEAD
 
 /*几种按钮*/
 .btn-green{
@@ -458,3 +528,5 @@ h4{margin-bottom: 0px;}
 
 
 
+=======
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56

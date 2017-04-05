@@ -4,16 +4,26 @@
 ?>
 <li class="list-group-item" style="padding: 15px 0px">
     <div style="display: inline-block;vertical-align: top;margin-top: 0px">
+<<<<<<< HEAD
         <?php echo get_avatar(get_the_author_ID(),45,'');?>
     </div>
     <div class="qa_show">
         <div class="qa_time">
             <a href="<?php get_the_author_link();?>" class="author_link"><?php echo get_the_author();?></a>
             <span><?php echo date('n月j日 G:i',get_the_time('U'));?>  </span>&nbsp;&nbsp;
+=======
+        <?php echo get_avatar(get_the_author_ID(),30,'');?>
+    </div>
+    <div style="display: inline-block;vertical-align: top;width: 84%;margin-left: 15px">
+        <div style="color:gray">
+            <a href="<?php get_the_author_link();?>"><?php echo get_the_author();?></a>
+            <span style="margin-left: 20px"><?php echo date('n月j日 G:i',get_the_time('U'));?>  </span>&nbsp;&nbsp;
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
             <span>提问</span>
         </div>
         <!--//标题-->
 
+<<<<<<< HEAD
         <div class="qa_title">
             <a class="ask_topic" href="<?php echo get_permalink();?>"><?php echo get_the_title();?></a>
         </div>
@@ -27,6 +37,21 @@
 
             <span class="qa_count" >回答<?php echo dwqa_question_answers_count();?></span>&nbsp;&nbsp;
             <span class="qa_count">浏览<?php echo dwqa_question_views_count();?></span>&nbsp;&nbsp;
+=======
+        <div style="margin-top:10px;">
+            <a class="ask_topic" href="<?php echo get_permalink();?>" style="font-size: medium;font-weight: bold"><?php echo get_the_title();?></a>
+        </div>
+        <!--撰写答案-->
+        <div style="color:gray;margin-top:10px;">
+            <a href="<?php echo get_permalink();?>">
+                <button class="btn btn-default" style="padding-left: 0px">
+                    <img src="<?php bloginfo("template_url")?>/img/answer_button.png">
+                </button>
+            </a>
+
+            <span class="ask_count" style="margin-left: 0px">回答<?php echo dwqa_question_answers_count();?></span>&nbsp;&nbsp;
+            <span class="scan_count" style="margin-left: 0px">浏览<?php echo dwqa_question_views_count();?></span>&nbsp;&nbsp;
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
             <div style="word-wrap: break-word; word-break: keep-all;display: inline-block">
                 <h4>
                     <?php

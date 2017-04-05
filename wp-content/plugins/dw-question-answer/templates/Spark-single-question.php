@@ -7,7 +7,11 @@
  */
 // global $wp_query; print_r( $wp_query );
 ?>
+<<<<<<< HEAD
 <div class="col-md-9 col-sm-9 col-xs-9" style="padding-left: 0;padding-right: 0;">
+=======
+<div class="col-md-8 col-sm-8 col-xs-8">
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
 <div class="dwqa-single-question">
     <?php if ( have_posts() ) : ?>
         <?php //do_action( 'dwqa_before_single_question' ) ?>

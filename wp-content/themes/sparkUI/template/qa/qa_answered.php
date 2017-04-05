@@ -23,6 +23,7 @@ $best_post_content=$post_content[$pos];
 <li class="list-group-item" style="padding: 15px 0px">
 <!--    获取提问者头像-->
     <div style="display: inline-block;vertical-align: top;margin-top: 0px">
+<<<<<<< HEAD
         <?php echo get_avatar(get_the_author_ID(),45,'');?>
     </div>
     <div class="qa_show">
@@ -30,17 +31,32 @@ $best_post_content=$post_content[$pos];
         <div class="qa_time">
             <a href="<?php get_the_author_link();?>" class="author_link"><?php echo get_the_author();?></a>
             <span><?php echo date('n月j日 G:i',get_the_time('U'));?>  </span>&nbsp;&nbsp;
+=======
+        <?php echo get_avatar(get_the_author_ID(),30,'');?>
+    </div>
+    <div style="display: inline-block;vertical-align: top;width: 84%;margin-left: 15px">
+<!--        获取提问者名字、提问时间-->
+        <div style="color:gray">
+            <a href="<?php get_the_author_link();?>"><?php echo get_the_author();?></a>
+            <span style="margin-left: 20px"><?php echo date('n月j日 G:i',get_the_time('U'));?>  </span>&nbsp;&nbsp;
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
 <!--            -->
             <span>提问</span>
         </div>
 <!--        获取问题的标题-->
+<<<<<<< HEAD
         <div class="qa_title">
             <a class="ask_topic" href="<?php echo get_permalink();?>"><?php echo get_the_title();?></a>
+=======
+        <div style="margin-top:10px;">
+            <a class="ask_topic" href="<?php echo get_permalink();?>" style="font-size: medium;font-weight: bold"><?php echo get_the_title();?></a>
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
         </div>
 
 <!--        答案展示-->
         <div style="color:gray;margin-top:10px;">
 <!--            获取回答者信息(名字、时间)-->
+<<<<<<< HEAD
             <div class="qa_time">
 <!--                --><?php //$user_id = get_post_field( 'post_author', get_the_ID() ) ? get_post_field( 'post_author', get_the_ID() ) : 0;?>
                 <a href="<?php echo dwqa_get_author_link($best_ans_author);?>" class="author_link"><?php echo get_userdata($best_ans_author)->display_name;?></a>
@@ -49,6 +65,16 @@ $best_post_content=$post_content[$pos];
             </div>
 <!--            答案内容 逻辑有待完善-->
             <div class="qa_best_answer">
+=======
+            <div style="color:gray">
+<!--                --><?php //$user_id = get_post_field( 'post_author', get_the_ID() ) ? get_post_field( 'post_author', get_the_ID() ) : 0;?>
+                <a href="<?php echo dwqa_get_author_link($best_ans_author);?>"><?php echo get_userdata($best_ans_author)->display_name;?></a>
+                <span style="margin-left: 20px"><?php echo human_time_diff( get_post_time( 'U', true ) )."前";//human_time_diff(get_the_time('U',$best_ans_id))."前";?> </span>&nbsp;&nbsp;
+                <span>回答</span>
+            </div>
+<!--            答案内容 逻辑有待完善-->
+            <div style="color: gray;margin-top: 10px">
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
                 <?php
                 echo $best_post_content;
 //                if($votes[$pos]==0){
@@ -63,9 +89,15 @@ $best_post_content=$post_content[$pos];
                // echo get_post(dwqa_get_the_best_answer())->post_content; ?>
             </div>
 
+<<<<<<< HEAD
             <span class="qa_count">赞同<?php echo dwqa_vote_count($best_ans_id);?></span>&nbsp;&nbsp;
             <span class="qa_count" >回答<?php echo dwqa_question_answers_count();?></span>&nbsp;&nbsp;
             <span class="qa_count" >浏览<?php echo dwqa_question_views_count();?></span>&nbsp;&nbsp;
+=======
+            <span class="ask_count">赞同<?php echo dwqa_vote_count($best_ans_id);?></span>&nbsp;&nbsp;
+            <span class="ask_count" style="margin-left: 20px">回答<?php echo dwqa_question_answers_count();?></span>&nbsp;&nbsp;
+            <span class="scan_count" style="margin-left: 20px">浏览<?php echo dwqa_question_views_count();?></span>&nbsp;&nbsp;
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
             <div style="word-wrap: break-word; word-break: keep-all;display: inline-block;">
                 <h4>
                     <?php

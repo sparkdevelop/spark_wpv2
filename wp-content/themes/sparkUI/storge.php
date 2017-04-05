@@ -1,6 +1,10 @@
 <div class="container" style="margin-top: 10px">
     <div class="row" style="width: 100%">
+<<<<<<< HEAD
         <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
+=======
+        <div class="col-md-8 col-sm-8 col-xs-8">
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
             <div style="height: 38px">
                 <!--                左标签页-->
                 <ul id="leftTab" class="nav nav-pills" style="float: left">
@@ -121,7 +125,11 @@
                                         <span>回答</span>
                                     </div>
                                     <div style="color: gray;margin-left: 20px">
+<<<<<<< HEAD
                                         <span class="label label-default" id="btn-solved">已采纳</span>content
+=======
+                                        <span class="label label-default">已采纳</span>content
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
                                     </div>
                                     <span class="like_count" style="margin-left: 20px">赞同5</span>&nbsp;&nbsp;
                                     <span class="ans_count" style="margin-left: 20px">回答4</span>&nbsp;&nbsp;
@@ -142,7 +150,11 @@
             </div>
         </div><!--md8-->
 
+<<<<<<< HEAD
         <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
+=======
+        <div class="col-md-4 col-sm-4 col-xs-4 right">
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
             <!--提问按钮-->
             <div class="ask_button" onclick="ask()">
                 <p>我要提问</p>

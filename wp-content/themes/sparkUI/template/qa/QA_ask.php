@@ -3,13 +3,22 @@
 本页面是我要提问页面的content
  */
 ?>
+<<<<<<< HEAD
 <div class="col-md-9 col-sm-9 col-xs-9"  id="col9">
 <h4 class="ask_topic">提 问</h4>
+=======
+<div class="col-md-8 col-sm-8 col-xs-8">
+<h4 style="margin-left: 20px">提 问</h4>
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
 <?php
 //    echo do_shortcode("[dwqa-submit-question-form]");
 //?>
 <style>
+<<<<<<< HEAD
     #Spark_question_submit_form{margin-bottom: 30px}
+=======
+    #Spark_question_submit_form{margin-left: 20px;margin-bottom: 20px}
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
 </style>
 <form method="post" class="dwqa-content-edit-form" id="Spark_question_submit_form">
 <!--    标题栏-->
@@ -75,7 +84,11 @@
     <?php wp_nonce_field( '_dwqa_submit_question' ) ?>
     <?php dwqa_load_template( 'captcha', 'form' ); ?>
     <?php do_action('dwqa_before_question_submit_button'); ?>
+<<<<<<< HEAD
     <input type="submit" name="dwqa-question-submit" value="<?php _e( '提交问题', 'dwqa' ) ?>" class="btn-green">
     <input type="submit" name="dwqa-question-submit" value="<?php _e( '取消', 'dwqa' ) ?>" class="btn-grey" style="float: right;">
+=======
+    <input type="submit" name="dwqa-question-submit" value="<?php _e( 'Submit', 'dwqa' ) ?>" >
+>>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
 </form>
 </div>
