@@ -15,11 +15,7 @@ if(is_home() || is_front_page()) { //首页显示“首页侧栏”
 }
 
 if ( is_page('wiki') ) {//显示wiki侧栏”
-<<<<<<< HEAD
     echo '<div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">';
-=======
-    echo '<div class="col-md-4 col-sm-4 col-xs-4 right">';
->>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
     echo "wiki边栏";
     echo '</div>';
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_wikisidebar')){
@@ -38,11 +34,7 @@ if ( is_page($page_ask_id) ) {//显示问题详情页
     require "template/qa/QA_ask_sidebar.php";
 }
 if (is_page($page_project_id)){
-<<<<<<< HEAD
     echo '<div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">';
-=======
-    echo '<div class="col-md-4 col-sm-4 col-xs-4 right">';
->>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
     echo "项目边栏";
     echo '</div>';
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_projectsidebar')){
@@ -50,8 +42,3 @@ if (is_page($page_project_id)){
 }
 
 ?>
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
