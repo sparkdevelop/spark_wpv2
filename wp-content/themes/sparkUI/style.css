@@ -11,6 +11,7 @@ License URI: http://creativecommons.org/licenses/by-sa/3.0/
 This theme was built using the example Bootstrap theme "WP bootstrap" found on the Bootstrap web site hhttps://www.oschina.net/question/133179_76091
 */
 
+
 @import url('bootstrap/css/bootstrap.min.css');
 /*整体风格*/
 
@@ -347,6 +348,7 @@ body{
     margin-left: 15px
 }
 
+
 /*助教团*/
 .list-group-item{border-color: transparent; padding-left: 0px;margin-bottom: -12px;padding: 10px 0px;}
 
@@ -358,11 +360,6 @@ body{
 .nav-pills > li.active >a:hover {color: #fe642d;  background-color: transparent;}
 .divline{height: 1px;background-color: lightgray;margin-top: 10px;}
 
-<<<<<<< HEAD
-=======
-.ask_count{margin-left: 0px;}
-
->>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
 #hot {padding-top: 40px;}
 #all {padding-top: 40px;}
 #unresolve {padding-top: 40px;}
@@ -371,7 +368,6 @@ body{
 #webunresolve {padding-top: 40px;}
 h4{margin-bottom: 0px;}
 #comment_display{ margin-bottom: 0px;}
-<<<<<<< HEAD
 
 /*几种按钮*/
 .btn-green{
