@@ -1,9 +1,5 @@
 .dwqa-container {
-<<<<<<< HEAD
 	box-sizing: border-box;
-=======
-	box-shadow: border-box
->>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
 	-webkit-box-sizing: border-box;
 }
 
@@ -234,11 +230,7 @@
 	padding: 20px 0 20px 70px;
 	position: relative;
 	border-top: 1px solid #ddd;
-<<<<<<< HEAD
 	/*min-height: 220px;*/
-=======
-	min-height: 220px;
->>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
 }
 
 .dwqa-answer-item .dwqa-answer-meta a {
