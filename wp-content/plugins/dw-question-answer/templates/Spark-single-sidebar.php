@@ -129,26 +129,16 @@ wp_reset_postdata();
 </style>
 
 
-<<<<<<< HEAD
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
-=======
-<div class="col-md-4 col-sm-4 col-xs-4 right">
->>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
     <?php $ask_page_ID="?page_id=96"; ?>
 
     <div class="sidebar_button" style="margin-top: 20px">
         <a href="<?php echo site_url().$ask_page_ID;?>" style="color: white">我要提问</a>
     </div>
 
-<<<<<<< HEAD
     <div class="tags">
         <div class="sidebar_list_header">
             <p>相似标签</p>
-=======
-    <div class="tags" style="margin-left: 14px">
-        <div style="height: 42px">
-            <p style="font-size: large;display:inline-block;margin-top: 5%;font-weight: bold">相似标签</p>
->>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
             <button id="buttonForAllTags" class="btn btn-default" onclick="show_all_tags()" style="">全部标签</button>
         </div>
         <!--分割线-->
@@ -180,15 +170,9 @@ wp_reset_postdata();
     $instance = wp_parse_args( $instance, array('number' => 3,) );
     $post_type = get_post_type();
     if ( is_single() && ( $post_type == 'dwqa-question' || $post_type == 'dwqa-answer' ) ) {?>
-<<<<<<< HEAD
         <div class="related_questions">
             <div class="sidebar_list_header">
                 <p>相似问题</p>
-=======
-        <div class="related_questions" style="margin-left: 14px">
-            <div style="height: 42px">
-                <p style="font-size: large;display:inline-block;margin-top: 5%;font-weight: bold">相似问题</p>
->>>>>>> 0736b4fcc462d013e0d3eb82e8bbadfb98202f56
             </div>
             <!--分割线-->
             <div style="height: 2px;background-color: lightgray"></div>
