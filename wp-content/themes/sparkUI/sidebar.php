@@ -16,7 +16,10 @@ if(is_home() || is_front_page()) { //首页显示“首页侧栏”
 }
 
 if ( is_page('wiki') ) {//显示wiki侧栏”
-    require "template/wiki/wiki_sidebar.php";
+    echo '<div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">';
+    echo "wiki边栏";
+    echo '</div>';
+
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_wikisidebar')){
     }
 }
@@ -33,7 +36,7 @@ if ( is_page($page_ask_id) ) {//显示问题详情页
     require "template/qa/QA_ask_sidebar.php";
 }
 if (is_page($page_project_id)){
-    echo '<div class="col-md-4 col-sm-4 col-xs-4 right">';
+    echo '<div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">';
     echo "项目边栏";
     echo '</div>';
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_projectsidebar')){
@@ -45,5 +48,3 @@ if (is_search()){
     require "template/qa/QA_search_sidebar.php";
 }
 ?>
-
-

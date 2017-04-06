@@ -10,73 +10,344 @@ License URI: http://creativecommons.org/licenses/by-sa/3.0/
 
 This theme was built using the example Bootstrap theme "WP bootstrap" found on the Bootstrap web site hhttps://www.oschina.net/question/133179_76091
 */
+
+
 @import url('bootstrap/css/bootstrap.min.css');
 /*整体风格*/
 
-a,a:hover{color:gray;}
+*:active,*:visited{
+    outline:0 !important;
+}
 
-/* 导航栏*/
-.navbar-brand{height: 70px;padding-right: 20%;}
-.navbar{margin-bottom: 0px;}
-.navbar-nav > li > a{  padding-top: 25px;padding-bottom: 25px}
-.navbar-default{background-color: transparent;border-color:transparent;}
-.navbar-default .navbar-nav > .active >a,
-.navbar-default .navbar-nav > .active >a:hover,
-.navbar-default .navbar-nav > .active >a:focus{color: #fe642d;background-color: transparent; }
-.navbar-form{margin-top: 20px}
-.navbar-text{margin-top: 25px;margin-right: 20px;}
-.btn-default{border-color:transparent;}
-.btn-default:hover,.btn-default:focus{background-color: transparent;border-color: transparent;}
+body{
+    font-family: "PingFang SC","微软雅黑","Microsoft YaHei",Helvetica,"Helvetica Neue",Tahoma,Arial,sans-serif;
+}
+/*a,a:hover{color:#1a2026;}*/
 
-/*导航栏头像*/
-.header_avatar {float: right;margin-top: 20px;margin-right: 20px;}
+.container .container-fluid{
+    padding: 0;
+}
 
-/*下拉菜单*/
+#col9{ padding-left: 0;padding-right: 0;}
+#col3{ padding-right: 0;padding-left: 20px;}
+
+/* 导航栏 logo和菜单*/
+.navbar{
+    margin-bottom: 0;
+}
+.navbar-header{
+    height: 70px;
+    line-height: 70px;
+}
+.navbar-default .navbar-nav>li>a{
+    color: #333;
+    font-weight: bold;
+}
+.navbar-default .navbar-text{
+    color: #333;
+}
+.navbar-default{
+    background-color: #fff;
+    border:none;
+}
+.navbar-nav>li {
+    position: relative;
+    height: 70px;
+    line-height: 70px;
+}
+.navbar-nav>li:before{
+    position: absolute;
+    top:0;
+    left:50%;
+    width: 0;
+    height: 3px;
+    content:"";
+    background-color: #fc6a33;
+    transition: all ease-out .2s;
+    -ms-transition: all ease-out .2s;
+    -moz-transition: all ease-out .2s;
+    -webkit-transition: all ease-out .2s;
+    -o-transition: all ease-out .2s;
+}
+.navbar-nav>li.current_page_item>a{
+    color: #fc6a33 !important;
+}
+.navbar-nav>li.current_page_item:before{
+    left:0;
+    width:100%;
+}
+
+.navbar-nav>li:hover::before{
+    left:0;
+    width:100%;
+}
+
+.navbar-nav>li>a{
+    display: block;
+    padding: 0 20px;
+    height:70px;
+    line-height: 70px;
+    color: #333;
+    font-size: 16px;
+}
+
+/* 导航栏 登录注册头像*/
+.navbar-text{
+    margin: 0px;
+    float: right;
+    font-size: 16px;
+    line-height: 70px;
+    padding-left: 20px;
+}
+.btn-group{
+    float: right;
+    position: absolute;
+    right:0px;
+    top:50%;
+    width:30px;
+    height:30px;
+    margin-left: -15px;
+    margin-top: -15px;
+}
+#user-portrait {
+    aria-expanded: true;
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+    vertical-align: middle;
+    margin: 0;
+    border-radius: 5px;
+}
+
+/* 导航栏 搜索框*/
+.form-group{
+    width:100%;
+}
+.navbar-form{
+    float: right;
+    padding: 0;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    width:100%;
+    height:40px;
+    margin:15px 0 0 0;
+}
+#search-content{
+    border:none;
+    height: 38px;
+    width: 84%;
+    box-shadow: none;
+}
+#search-btn{
+    float: right;
+    border:none;
+    width:40px;
+    height:38px;
+    padding: 0px;
+    font-size: 22px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 22px;
+    color: #ccc;
+}
+#search-btn:active{
+    border: 0;
+    outline:0;
+}
+#search-btn:visited{
+    border: 0;
+    outline:0;
+}
+
+/*个人下拉菜单*/
 .btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover,
 .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover
 {background-color: transparent;  border-color: transparent;outline: none}
 
-.btn:active,
-.btn.active{
+.btn:active, .btn.active{
     -webkit-box-shadow: inset 0 0 0 0 rgba(0,0,0,0);
 }
 .btn-group.open .dropdown-toggle{
     box-shadow: inset 0 0 0 0 rgba(0,0,0,0);
 }
-
-
-
-
 .dropdown-menu{min-width: 150px;left: -40px}
 
 /*侧边栏按钮*/
 .sidebar_button{
     height:48px;
     background-color:#fe642d;
-    -moz-box-shadow: 5px 5px 5px #ffe9e1; /* 老的 Firefox */
-    box-shadow: 5px 5px 5px #ffe9e1;
+    -moz-box-shadow: 5px 5px 5px #ffd8cc; /* 老的 Firefox */
+    box-shadow: 5px 5px 5px #ffd8cc;
     text-align:center;
-    color:white;
     font-size: large;
-    padding-top: 12px;
-    margin-left: 14px;
+    margin: 10px 0px 15px 0px;
+    border-radius: 5px;
 }
+.sidebar_button:hover{
+    box-shadow: none;
+}
+
+.sidebar_button>a{
+    display: block;
+    height: 100%;
+    line-height: 48px;
+    width: 100%;
+    color: white;
+}
+.sidebar_button>a:hover{
+    text-decoration: none;
+}
+
 /*侧边栏列表*/
-.sidebar_list{margin-left: 14px;}
 .sidebar_list_header{height: 42px;}
-.sidebar_list_header p{font-size: large;display:inline-block;margin-top: 5%;font-weight: bold;}
+.sidebar_list_header p{font-size: 18px;display:inline-block;margin-top: 5%;font-weight: bold;}
 .sidebar_divline{height: 2px;background-color: lightgray;}
+.list-group-item{
+    background-color: transparent;
+}
+
+/*侧边栏雷锋榜、好问榜等日、周、加入等字体样式*/
+#sidebar_list_choose{
+    float: right;
+}
+#sidebar_list_choose a{
+    width: 20px;
+    margin-top: 5px;
+    color: #5e5e5e;
+}
+#sidebar_list_choose li.active a{
+    color: #fe642d;
+}
+#sidebar_list_link{
+    color: #5e5e5e;
+    float: right;
+    margin-top: 6%;
+}
+#sidebar_list_link:hover{
+    color: #fe642d;
+    text-decoration: none;
+    cursor: pointer;
+}
 
 /*标签*/
-.label {color: #fe642d;margin-top: 3px; white-space:normal;}
-.label-default{background-color: #ffe9e1;display: inline-block;margin-right: 4px;margin-bottom: 10px;}
-.badge{background-color: transparent;  color:lightgray;}
+.label {color: #fe642d;margin-top: 3px; white-space:normal;font-weight: 600;}
+.label-default{font-size:13px;background-color: #ffe9e1; border: 1px solid transparent; border-radius:5px;display: inline-block;margin-right: 4px;margin-bottom: 10px;}
+.badge{background-color: transparent;  color:#959595;font-size: 13px;}
 #temp{background-color: transparent;}
-#temp a{ color: #fe642d;}
+#temp a{ color: #fe642d; }
 #temp_questions { background-color: #ffe9e1;}
 #temp_questions a{color: #fe642d;}
 .label[href]:focus,
-.label[href]:hover{background-color: transparent}
+.label[href]:hover{background-color: transparent; }
+.label-default[href]:focus, .label-default[href]:hover{
+    background-color: transparent;
+    border:1px solid #fe642d;
+    border-radius: 5px;}
+
+/*左侧内容展示分类*/
+#leftTab{
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+}
+#leftTab a{
+    color: #1a2026;
+}
+#leftTab li.active a{
+    color: #fe642d;
+}
+#rightTab{
+    float: right;
+    height:42px;
+    font-size: 14px;
+}
+#rightTab a{
+    color: #5e5e5e;
+    padding: 15px;
+}
+#rightTab li.active a{
+    color: #fe642d;
+}
+
+/*撰写答案按钮*/
+#btn-answer{
+    width: 80px;
+    border-radius: 5px;
+    color: #fe642d;
+    border-color: #fe642d;
+    margin-right: 30px;
+    font-size: 14px;
+}
+#btn-answer:hover{
+    color: #fff;
+    background-color: #fe642d;
+    border-color: #fe642d;
+}
+
+/*问题排列样式*/
+/*问题排列作者信息*/
+.author_link{
+    color: #5e5e5e;
+    font-weight: bolder;
+    margin-right: 20px;
+}
+
+.author_link:hover{
+    color: #000;
+    text-decoration: none;
+}
+
+/*回答浏览字样式,一行样式*/
+.qa_count{
+    margin-right: 10px;
+    color: #5e5e5e;
+}
+.qa_info{
+    color:#333;
+    margin:15px 0 10px 0;
+}
+/*问答标题样式*/
+.ask_topic{
+    font-size: 18px;
+    color: #1a2026;
+    font-weight: bold;
+}
+.ask_topic:hover{
+    color: #000;
+    text-decoration: none;
+    font-weight: bolder;
+}
+.qa_title{
+    margin:3px 0 15px 0;
+}
+
+/*已采纳按钮*/
+#btn-solved{
+    background-color: #1fbba6;
+    color: #fff;
+    margin:0;
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+/*回答时间信息*/
+.qa_time span{
+    color: #a6a6a6;
+}
+
+/*问答首页最好答案展示*/
+.qa_best_answer{
+    color: #262626;
+    margin-top: 10px;
+}
+/*问答首页问题展示div*/
+.qa_show{
+    display: inline-block;
+    vertical-align: top;
+    width: 92%;
+    margin-left: 15px
+}
+
 
 /*助教团*/
 .list-group-item{border-color: transparent; padding-left: 0px;margin-bottom: -12px;padding: 10px 0px;}
@@ -89,11 +360,7 @@ a,a:hover{color:gray;}
 .nav-pills > li.active >a:hover {color: #fe642d;  background-color: transparent;}
 .divline{height: 1px;background-color: lightgray;margin-top: 10px;}
 
-.ask_count{margin-left: 0px;}
 
-#questionhot {padding-top: 40px;}
-#questionall {padding-top: 40px;}
-#questionunresolve {padding-top: 40px;}
 #hot {padding-top: 40px;}
 #all {padding-top: 40px;}
 #unresolve {padding-top: 40px;}
@@ -103,3 +370,86 @@ a,a:hover{color:gray;}
 
 h4{margin-bottom: 0px;}
 #comment_display{ margin-bottom: 0px;}
+
+/*几种按钮*/
+.btn-green{
+    width: 120px;
+    height: 45px;
+    background-color: #1fbba6;
+    color: #fff;
+    border:1px solid transparent;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 30px;
+}
+.btn-grey{
+    width: 120px;
+    height: 45px;
+    background-color: #f0f0f0;
+    color: #333;
+    border:1px solid #e5e5e5;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 30px;
+}
+
+/*.list-group-item{*/
+    /*background-color: #fafafa;*/
+
+/*}*/
+
+.question_title{
+    height:35px;
+}
+.question_title>h4{
+    float: left;
+}
+.dwqa-question-status{
+    margin-top: 5px;
+}
+
+/*问题状态下拉框*/
+#dwqa-question-status{
+    height:30px;
+    cursor: pointer;
+}
+#dwqa-question-status option{
+    height:35px;
+}
+#dwqa-question-status option:hover{
+    background-color: #fe642d;
+}
+.dropdown-menu{
+    padding:0;
+}
+.dropdown-menu>li{
+    line-height: 35px;
+    /*text-align: center;*/
+}
+.dropdown-menu>li>a{
+    padding-top:0;
+    padding-bottom:0;
+    padding-left: 25px;
+    line-height: inherit;
+}
+.dropdown-menu>li>a:active{
+    color:#fe642d;
+    outline:0;
+}
+.glyphicon {
+    margin-right: 10px;
+}
+
+
+.answer-comment>button:hover{
+    background-color: transparent;
+}
+
+.dwqa-btn-primary{
+    width: 120px;
+    height: 45px;
+    background-color: #1fbba6;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+}

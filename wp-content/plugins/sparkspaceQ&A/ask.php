@@ -11,7 +11,7 @@ include "./template/navbar.php";
 ?>
 <div class="container" style="margin-top: 10px">
     <div class="row" style="width: 100%">
-        <div class="col-md-8 col-sm-8 col-xs-8 left">
+        <div class="col-md-9 col-sm-9 col-xs-9 left" id="col9">
             <h4 class="qTitle">
                 求教使用AT查看或更改BT参数的代码!!!!
             </h4>
@@ -32,7 +32,7 @@ include "./template/navbar.php";
 
 
         </div><!--col8-->
-        <div class="col-md-4 col-sm-4 col-xs-4 right">
+        <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
             <!--提问按钮-->
             <a class="btn btn-default" href="ask.php">
                 <img src="img/question.png" class="img-responsive center-block">

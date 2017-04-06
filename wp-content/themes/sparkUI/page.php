@@ -29,13 +29,18 @@ $page_search_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 
                 elseif ( is_page('wiki') ) {//显示wiki侧栏”
                     require "template/wiki/wiki_content.php";
                 }
+
                 elseif ( is_page($page_qa_id) ) {//显示问答侧栏 参数为pageID 如何自动获取??
                     require "template/qa/QA_content.php";
                     //require "test.php";
                     //require "template/qa/QA-content-test.php";
                 }
+
+                elseif (is_page($page_ask_id)){
+                    require "template/qa/QA_ask.php";
+                }
                 elseif (is_page($page_project_id)){
-                    echo '<div class="col-md-8 col-sm-8 col-xs-8">';
+                    echo '<div class="col-md-9 col-sm-9 col-xs-9" id="col9">';
                     echo "项目内容";
                     echo '</div>';
                 }

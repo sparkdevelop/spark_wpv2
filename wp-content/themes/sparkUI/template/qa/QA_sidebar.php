@@ -45,15 +45,15 @@ foreach($tags as $key => $temp){
 </style>
 <!--=======================================================-->
 
-<div class="col-md-4 col-sm-4 col-xs-4 right">
-    <div class="sidebar_button" style="margin-top: 20px">
+<div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
+    <div class="sidebar_button">
         <a href="<?php echo site_url().$ask_page_ID;?>" style="color: white">我要提问</a>
     </div>
     <!--热门标签-->
     <div class="sidebar_list">
         <div class="sidebar_list_header">
-            <p style="font-size: large;display:inline-block;margin-top: 5%;font-weight: bold">热门标签</p>
-            <button id="buttonForAllTags" class="btn btn-default" onclick="show_all_tags()" style="">全部标签</button>
+            <p>热门标签</p>
+            <a id="sidebar_list_link" onclick="show_all_tags()">全部标签</a>
         </div>
         <!--                分割线-->
         <div class="sidebar_divline"></div>
@@ -83,8 +83,8 @@ foreach($tags as $key => $temp){
 
 <div class="sidebar_list">
     <div class="sidebar_list_header">
-        <p style="font-size: large;display:inline-block;margin-top: 5%;font-weight: bold">助教团</p>
-        <a href="#" style="color:gray;float: right;display: inline-block;margin-top: 5%">加入</a>
+        <p>助教团</p>
+        <a href="#" id="sidebar_list_link">加入</a>
     </div>
     <!--分割线-->
     <div class="sidebar_divline"></div>
@@ -95,7 +95,7 @@ foreach($tags as $key => $temp){
                 <img src="<?php bloginfo("template_url")?>/img/avatar.png" style="margin-top: -15px">
             </div>
             <div style="display: inline-block; vertical-align: baseline">
-                <a href="personal.php">如影随风</a>
+                <a href="personal.php" class="author_link">如影随风</a>
                 <p>北邮信通院大四学长</p>
             </div>
         </li>
@@ -104,7 +104,7 @@ foreach($tags as $key => $temp){
                 <img src="<?php bloginfo("template_url")?>/img/avatar.png" style="margin-top: -15px">
             </div>
             <div style="display: inline-block; vertical-align: baseline">
-                <a href="personal.php">如影随风</a>
+                <a href="personal.php" class="author_link">如影随风</a>
                 <p>北邮信通院大四学长</p>
             </div>
         </li>
@@ -113,7 +113,7 @@ foreach($tags as $key => $temp){
                 <img src="<?php bloginfo("template_url")?>/img/avatar.png" style="margin-top: -15px">
             </div>
             <div style="display: inline-block; vertical-align: baseline">
-                <a href="personal.php">如影随风</a>
+                <a href="personal.php" class="author_link">如影随风</a>
                 <p>北邮信通院大四学长</p>
             </div>
         </li>
@@ -122,7 +122,7 @@ foreach($tags as $key => $temp){
                 <img src="<?php bloginfo("template_url")?>/img/avatar.png" style="margin-top: -15px">
             </div>
             <div style="display: inline-block; vertical-align: baseline">
-                <a href="personal.php">如影随风</a>
+                <a href="personal.php" class="author_link">如影随风</a>
                 <p>北邮信通院大四学长</p>
             </div>
         </li>
@@ -131,7 +131,7 @@ foreach($tags as $key => $temp){
                 <img src="<?php bloginfo("template_url")?>/img/avatar.png" style="margin-top: -15px">
             </div>
             <div style="display: inline-block; vertical-align: baseline">
-                <a href="personal.php">如影随风</a>
+                <a href="personal.php" class="author_link">如影随风</a>
                 <p>北邮信通院大四学长</p>
             </div>
         </li>
@@ -143,9 +143,9 @@ foreach($tags as $key => $temp){
         <div class="sidebar_list_header">
             <p>雷锋榜</p>
             <!--列表头-->
-            <ul id="helperTab" class="nav nav-pills" style="float: right">
-                <li class="active"><a href="#helperday" data-toggle="tab" style="width: 20px;margin-top: 5px;">日</a></li>
-                <li><a href="#helpermonth" data-toggle="tab" style="width: 20px;margin-top: 5px;">周</a></li>
+            <ul id="sidebar_list_choose" class="nav nav-pills">
+                <li class="active"><a href="#helperday" data-toggle="tab">日</a></li>
+                <li><a href="#helpermonth" data-toggle="tab">周</a></li>
             </ul>
         </div>
         <!--分割线 下面的是列表-->
@@ -164,8 +164,8 @@ foreach($tags as $key => $temp){
                         <li class="list-group-item">
                         <img src="<?php bloginfo("template_url")?>/img/n<?php echo $i+1;?>.png" style="display: inline-block;margin-right: 10px;">
                         <?php echo get_avatar($answer_most[$i]['post_author'],20,'');?>
-                        <a href="<?php echo dwqa_get_author_link($answer_most[$i]['post_author']);?>" style="display:inline-block;"><?php echo get_userdata($answer_most[$i]['post_author'])->display_name;?></a>
-                            <p style="display: inline-block;float: right"><?php echo $answer_most[$i]['answer_count'];?>答</p>
+                        <a href="<?php echo dwqa_get_author_link($answer_most[$i]['post_author']);?>" class="author_link"><?php echo get_userdata($answer_most[$i]['post_author'])->display_name;?></a>
+                            <p style="display: inline-block;float: right"><?php echo $answer_most[$i]['answer_count'];?> 答</p>
                         </li>
                         <?php
                     }
@@ -184,10 +184,10 @@ foreach($tags as $key => $temp){
                         <li class="list-group-item">
                             <img src="<?php bloginfo("template_url")?>/img/n<?php echo $i+1;?>.png" style="display: inline-block;margin-right: 10px;"/>
                             <?php echo get_avatar($answer_most_this_week[$i]['post_author'],20,'');?>
-                            <a href="<?php echo dwqa_get_author_link($answer_most_this_week[$i]['post_author']);?>" style="display:inline-block;">
+                            <a href="<?php echo dwqa_get_author_link($answer_most_this_week[$i]['post_author']);?>" class="author_link">
                                 <?php echo get_userdata($answer_most_this_week[$i]['post_author'])->display_name;?>
                             </a>
-                            <p style="display: inline-block;float: right"><?php echo $answer_most_this_week[$i]['answer_count'];?>答
+                            <p style="display: inline-block;float: right"><?php echo $answer_most_this_week[$i]['answer_count'];?> 答
                             </p>
                         </li>
                     <?php } ?>
@@ -201,9 +201,9 @@ foreach($tags as $key => $temp){
         <div class="sidebar_list_header">
             <p>好问榜</p>
             <!--列表头-->
-            <ul id="askerTab" class="nav nav-pills" style="float: right">
-                <li><a href="#askerday" data-toggle="tab" style="width: 20px;margin-top: 5px;">日</a></li>
-                <li class="active"><a href="#askermonth" data-toggle="tab" style="width: 20px;margin-top: 5px;">周</a></li>
+            <ul id="sidebar_list_choose" class="nav nav-pills">
+                <li><a href="#askerday" data-toggle="tab">日</a></li>
+                <li class="active"><a href="#askermonth" data-toggle="tab">周</a></li>
             </ul>
         </div>
         <!--分割线-->
@@ -223,8 +223,8 @@ foreach($tags as $key => $temp){
                         <li class="list-group-item">
                             <img src="<?php bloginfo("template_url")?>/img/n<?php echo $i+1;?>.png" style="display: inline-block;margin-right: 10px;">
                             <?php echo get_avatar($ask_most[$i]['post_author'],20,'');?>
-                            <a href="<?php echo dwqa_get_author_link($ask_most[$i]['post_author']);?>" style="display:inline-block;"><?php echo get_userdata($answer_most[$i]['post_author'])->display_name;?></a>
-                            <p style="display: inline-block;float: right"><?php echo $ask_most[$i]['ask_count'];?>问</p>
+                            <a href="<?php echo dwqa_get_author_link($ask_most[$i]['post_author']);?>" class="author_link"><?php echo get_userdata($answer_most[$i]['post_author'])->display_name;?></a>
+                            <p style="display: inline-block;float: right"><?php echo $ask_most[$i]['ask_count'];?> 问</p>
                         </li>
                         <?php
                     }
@@ -243,10 +243,10 @@ foreach($tags as $key => $temp){
                         <li class="list-group-item">
                             <img src="<?php bloginfo("template_url")?>/img/n<?php echo $i+1;?>.png" style="display: inline-block;margin-right: 10px;"/>
                             <?php echo get_avatar($ask_most_this_week[$i]['post_author'],20,'');?>
-                            <a href="<?php echo dwqa_get_author_link($ask_most_this_week[$i]['post_author']);?>" style="display:inline-block;">
+                            <a href="<?php echo dwqa_get_author_link($ask_most_this_week[$i]['post_author']);?>" class="author_link">
                                 <?php echo get_userdata($ask_most_this_week[$i]['post_author'])->display_name;?>
                             </a>
-                            <p style="display: inline-block;float: right"><?php echo $ask_most_this_week[$i]['ask_count'];?>问
+                            <p style="display: inline-block;float: right"><?php echo $ask_most_this_week[$i]['ask_count'];?> 问
                             </p>
                         </li>
                     <?php } ?>

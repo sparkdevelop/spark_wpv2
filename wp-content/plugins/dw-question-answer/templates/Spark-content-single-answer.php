@@ -11,22 +11,22 @@ global $wpdb;
 
 ?>
 <!--本段注释放开以后可以收起回复框,但下面留白原因未知-->
-<!--<script>-->
-<!--    var flag=false;-->
-<!--    function answer_reply($ans_id){-->
-<!--        var temp = document.getElementById('reply_window_'+$ans_id);-->
-<!--        var temp_2 = document.getElementById('Spark_comments');-->
-<!--        if(flag){-->
-<!--            temp.style.display="block";-->
-<!--            temp_2.style.display ="block";-->
-<!--        }-->
-<!--        else{-->
-<!--            temp.style.display="none";-->
-<!--            temp_2.style.display ="none";-->
-<!--        }-->
-<!--        flag=!flag;-->
-<!--    }-->
-<!--</script>-->
+<script>
+    var flag=false;
+    function answer_reply($ans_id){
+        var temp = document.getElementById('reply_window_'+$ans_id);
+        var temp_2 = document.getElementById('Spark_comments');
+        if(flag){
+            temp.style.display="block";
+            temp_2.style.display ="block";
+        }
+        else{
+            temp.style.display="none";
+            temp_2.style.display ="none";
+        }
+        flag=!flag;
+    }
+</script>
 <div class="<?php echo dwqa_post_class() ?>" style="padding: 15px 0px">
 
     <?php $user_id = get_post_field( 'post_author', get_the_ID() ) ? get_post_field( 'post_author', get_the_ID() ) : 0;

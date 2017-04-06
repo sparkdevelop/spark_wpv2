@@ -3,7 +3,7 @@ global $page;  //保存当前的页码数
 $page=0;
 ?>
 <!--//本页面是问答页面的content-->
-<div class="col-md-8 col-sm-8 col-xs-8">
+<div class="col-md-9 col-sm-9 col-xs-9" id="col9">
 <!--    <script>-->
 <!--        function turn_next_page($page) {-->
 <!--            $page=$page+1;-->
@@ -332,8 +332,3 @@ $page=0;
     wp_reset_query();
     ?>
 </div>
-
-
-
-
-

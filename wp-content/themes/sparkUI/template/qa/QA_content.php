@@ -1,6 +1,9 @@
+<style>
+
+</style>
 
 <!--//本页面是问答页面的content-->
-<div class="col-md-8 col-sm-8 col-xs-8">
+<div class="col-md-9 col-sm-9 col-xs-9" id="col9">
     <?php
     //==============处理翻页 未完成======================
     //add_action('Spark_after_question_list','Spark_question_paginate_link');
@@ -182,20 +185,12 @@ $web_count = $questions_web_all->post_count;?>
 
     <?php
     if ($questions_question_all->have_posts()){
-    //    ||$questions_web_hot->have_posts()||$questions_web_all->have_posts()) {
-
-//if ($questions_hareware_hot->have_posts()||$questions_hareware_all->have_posts()
-//    ||$questions_web_hot->have_posts()||$questions_web_all->have_posts()) {
     ?>
-<style>
-    #questionhot {padding-top: 40px;}
-    #questionall {padding-top: 40px;}
-    #questionunresolve {padding-top: 40px;}
-</style>
-    <ul id="leftTab" class="nav nav-pills" style="float: left;height: 42px;">
-        <li><a href="#question_all" data-toggle="tab">所有问题</a></li>
-        <li class="active"><a href="#OShardware" data-toggle="tab" style="margin-left: -16px">开源硬件</a></li>
-        <li><a href="#web" data-toggle="tab" style="margin-left: -16px">web学习</a></li>
+    <ul id="leftTab" class="nav nav-pills">
+        <li class="active">
+            <a href="#OShardware" data-toggle="tab">开源硬件</a>
+        </li>
+        <li><a href="#web" data-toggle="tab">web学习</a></li>
     </ul>
 
     <div id="leftTabContent" class="tab-content">
@@ -268,7 +263,7 @@ $web_count = $questions_web_all->post_count;?>
             </div>
         </div>
         <div class="tab-pane fade in active" id="OShardware">
-            <ul id="rightTab" class="nav nav-pills" style="float: right;height: 42px;">
+            <ul id="rightTab" class="nav nav-pills">
                 <li><a href="#hot" data-toggle="tab">热门</a></li>
                 <li class="active"><a href="#all" data-toggle="tab">所有</a></li>
                 <li><a href="#unresolve" data-toggle="tab">未解决</a></li>
@@ -335,7 +330,7 @@ $web_count = $questions_web_all->post_count;?>
             </div>
         </div>
         <div class="tab-pane fade" id="web">
-            <ul id="rightTab" class="nav nav-pills" style="float: right;height: 42px;">
+            <ul id="rightTab" class="nav nav-pills">
                 <li><a href="#webhot" data-toggle="tab">热门</a></li>
                 <li class="active"><a href="#weball" data-toggle="tab">所有</a></li>
                 <li><a href="#webunresolve" data-toggle="tab">未解决</a></li>
@@ -410,8 +405,3 @@ wp_reset_query();
 wp_reset_postdata();
 ?>
 </div>
-
-
-
-
-

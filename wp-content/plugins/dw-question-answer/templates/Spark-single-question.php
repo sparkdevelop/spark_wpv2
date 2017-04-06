@@ -7,7 +7,7 @@
  */
 // global $wp_query; print_r( $wp_query );
 ?>
-<div class="col-md-8 col-sm-8 col-xs-8">
+<div class="col-md-9 col-sm-9 col-xs-9" style="padding-left: 0;padding-right: 0;">
 <div class="dwqa-single-question">
     <?php if ( have_posts() ) : ?>
         <?php //do_action( 'dwqa_before_single_question' ) ?>

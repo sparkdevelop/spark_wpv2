@@ -1,5 +1,5 @@
 .dwqa-container {
-	box-shadow: border-box
+	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 }
 
@@ -230,7 +230,7 @@
 	padding: 20px 0 20px 70px;
 	position: relative;
 	border-top: 1px solid #ddd;
-	min-height: 220px;
+	/*min-height: 220px;*/
 }
 
 .dwqa-answer-item .dwqa-answer-meta a {

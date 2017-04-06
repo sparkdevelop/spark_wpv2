@@ -23,7 +23,7 @@ global $wpdb;
 </script>
 <div class="container" style="margin-top: 10px">
 	<div class="row" style="width: 100%">
-		<div class="col-md-8 col-sm-8 col-xs-8">
+		<div class="col-md-9 col-sm-9 col-xs-9" id="col9">
 <!--			问题部分-->
 			<div class="dwqa-question-item" style="padding: 0px 0px;">
 				<!--问题标题-->
@@ -59,7 +59,8 @@ global $wpdb;
 	</div>
 				<!--提问人信息-->
 				<div>
-		<span style="color: gray">提问人:&nbsp;<a href="<?php get_the_author_link();?>"><?php echo get_the_author();?></a></span>
+
+		<span style="color: gray">提问人:&nbsp;<a href="<?php get_the_author_link();?>" class="author_link"><?php echo get_the_author();?></a></span>
 		<span style="color: gray;margin-left: 5px"><?php echo date('n月j日 G:i',get_the_time('U'));?></span>
 		<span class="scan_count" style="margin-left: 0px;float:right; ">浏览<?php echo dwqa_question_views_count();?></span>
 		<span class="ask_count" style="margin-right: 20px;float: right;">回答<?php echo dwqa_question_answers_count();?></span>
@@ -166,7 +167,7 @@ global $wpdb;
 			</div>
 			<?php comments_template(); ?>
 		</div>
-		<div class="col-md-4 col-sm-4 col-xs-4 right">
+		<div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
 				<?php $ask_page_ID="?page_id=96"; ?>
 
 				<div class="sidebar_button" style="margin-top: 20px">

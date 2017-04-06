@@ -1,10 +1,10 @@
 <?php
 //本页面是我要提问的侧边栏
 ?>
-<div class="col-md-4 col-sm-4 col-xs-4 right">
-<div class="ask_rules" style="margin-left: 14px">
-    <div style="height: 42px">
-        <p style="font-size: large;display:inline-block;margin-top: 5%;font-weight: bold">提问规则</p>
+<div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
+<div class="ask_rules">
+    <div class="sidebar_list_header">
+        <p>提问规则</p>
     </div>
     <!--分割线-->
     <div style="height: 2px;background-color: lightgray"></div>
