@@ -1,7 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: zhangxue
- * Date: 17/4/1
- * Time: 上午10:54
- */
+?>
+<div class="col-md-8 col-sm-8 col-xs-8">
+    wiki内容
+</div>

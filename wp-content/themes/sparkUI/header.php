@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
 <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <link href="<?php bloginfo('stylesheet_url');?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); filemtime( get_stylesheet_directory() . '/style.css'); ?>"
+          type="text/css" media="screen, projection"/>
 <!--    <script type="text/javascript" src="--><?php //echo get_template_directory_uri(); ?><!--/js/jquery.js"></script>-->
 <!--    <script src="http://cdn.static.runoob.com/libs/jquery/3.1.1/jquery.js"></script>-->
     <script src="<?php bloginfo('template_url');?>/bootstrap/jquery-3.2.0.min.js"</script>
@@ -36,7 +37,7 @@
                     <div class="clearfix visible-xs"></div>
 
                     <div class="col-md-6 col-sm-6 col-xs-6" style="ma">
-                        <form class="navbar-form " role="search" method="get" action="<?php echo admin_url();?>/edit.php" style="float: right;padding-left: 0px;padding-right: 0px">
+                        <form class="navbar-form " role="search" method="get" action="<?php echo home_url('/');?>" style="float: right;padding-left: 0px;padding-right: 0px">
                             <div class="form-group">
                                 <input type="text" name='s' value="请输入要搜索的问题" onfocus="javascript:if(this.value=='请输入要搜索的问题')this.value=''" class="form-control" placeholder="Search">
                                 <input type="hidden" name="post_type" value="dwqa-question" class="form-control" placeholder="Search">

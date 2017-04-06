@@ -152,27 +152,121 @@ $args_web_all = array(
         ),
     )
 );
-
+$args_question_all = array(
+        'posts_per_page'    => $instance['number'],
+        'order'             => 'DESC',
+        //'orderby'           => 'meta_value_num',
+        'meta_key'          => '_dwqa_views',
+        'post_type'         => 'dwqa-question',
+        'nopaging'          => 'true',
+);
+$args_question_hot = array(
+        'posts_per_page'    => $instance['number'],
+        'order'             => 'DESC',
+        'orderby'           => 'meta_value_num',
+        'meta_key'          => '_dwqa_views',
+        'post_type'         => 'dwqa-question',
+        'nopaging'          => 'true',
+    );
+    //============================================
 $questions_hareware_hot = new WP_Query( $args_hardware_hot );
 $questions_hareware_all = new WP_Query( $args_hardware_all );
 $questions_web_hot = new WP_Query( $args_web_hot );
 $questions_web_all = new WP_Query( $args_web_all );
+$questions_question_hot = new WP_Query( $args_question_hot );
+$questions_question_all = new WP_Query( $args_question_all );
+
+    //===========================================
 $hardware_count=$questions_hareware_all->post_count;
 $web_count = $questions_web_all->post_count;?>
 
     <?php
-if ( $questions_hareware_hot->have_posts()||$questions_hareware_all->have_posts()
-    ||$questions_web_hot->have_posts()||$questions_web_all->have_posts()) {
-    ?>
+    if ($questions_question_all->have_posts()){
+    //    ||$questions_web_hot->have_posts()||$questions_web_all->have_posts()) {
 
+//if ($questions_hareware_hot->have_posts()||$questions_hareware_all->have_posts()
+//    ||$questions_web_hot->have_posts()||$questions_web_all->have_posts()) {
+    ?>
+<style>
+    #questionhot {padding-top: 40px;}
+    #questionall {padding-top: 40px;}
+    #questionunresolve {padding-top: 40px;}
+</style>
     <ul id="leftTab" class="nav nav-pills" style="float: left;height: 42px;">
-        <li class="active">
-            <a href="#OShardware" data-toggle="tab">开源硬件</a>
-        </li>
+        <li><a href="#question_all" data-toggle="tab">所有问题</a></li>
+        <li class="active"><a href="#OShardware" data-toggle="tab" style="margin-left: -16px">开源硬件</a></li>
         <li><a href="#web" data-toggle="tab" style="margin-left: -16px">web学习</a></li>
     </ul>
 
     <div id="leftTabContent" class="tab-content">
+        <div class="tab-pane fade" id="question_all">
+            <ul id="rightTab" class="nav nav-pills" style="float: right;height: 42px;">
+                <li><a href="#questionhot" data-toggle="tab">热门</a></li>
+                <li class="active"><a href="#questionall" data-toggle="tab">所有</a></li>
+                <li><a href="#questionunresolve" data-toggle="tab">未解决</a></li>
+            </ul>
+            <div id="rightTabContent" class="tab-content">
+                <div class="tab-pane fade" id="questionhot">
+                    <div style="height: 2px;background-color: lightgray"></div>
+
+                    <ul class="list-group">
+                        <?php
+                        while ($questions_question_hot->have_posts()) {
+                            $questions_question_hot->the_post();
+                            if (dwqa_question_answers_count() != 0) {
+                                if (get_post_meta(get_the_ID(), '_dwqa_status', true) == 'open'||get_post_meta(get_the_ID(), '_dwqa_status', true) == 'answered') {
+                                    require 'qa_answered.php';
+                                } elseif (get_post_meta(get_the_ID(), '_dwqa_status', true) == 'resolved' || get_post_meta(get_the_ID(), '_dwqa_status', true) == 'close') {
+                                    require 'qa_resolved.php';
+                                } else {
+                                    echo "Oops,there is something wrong";
+                                }
+                            }
+                            else {
+                                require 'qa_unanswered.php';
+                            }
+                        }
+                        ?>
+                    </ul>
+                </div>
+                <div class="tab-pane fade in active" id="questionall">
+                    <div style="height: 2px;background-color: lightgray"></div>
+                    <ul class="list-group">
+                        <?php
+                        while ($questions_question_all->have_posts()) {
+                            $questions_question_all->the_post();
+                            if (dwqa_question_answers_count() != 0) {
+                                if (get_post_meta(get_the_ID(), '_dwqa_status', true) == 'open'||get_post_meta(get_the_ID(), '_dwqa_status', true) == 'answered') {
+                                    require 'qa_answered.php';
+                                } elseif (get_post_meta(get_the_ID(), '_dwqa_status', true) == 'resolved' || get_post_meta(get_the_ID(), '_dwqa_status', true) == 'close') {
+                                    require 'qa_resolved.php';
+                                } else {
+                                    echo "Oops,there is something wrong";
+                                }
+                            }
+                            else {
+                                require 'qa_unanswered.php';
+                            }
+                        }
+                        ?>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="questionunresolve">
+                    <div style="height: 2px;background-color: lightgray"></div>
+                    <ul class="list-group">
+                        <?php
+                        while ($questions_question_all->have_posts()) {
+                            $questions_question_all->the_post();
+                            if (dwqa_question_answers_count() != 0) {
+                            }else{
+                                require 'qa_unanswered.php';
+                            }
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="tab-pane fade in active" id="OShardware">
             <ul id="rightTab" class="nav nav-pills" style="float: right;height: 42px;">
                 <li><a href="#hot" data-toggle="tab">热门</a></li>

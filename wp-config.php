@@ -20,13 +20,14 @@
 
 // ** MySQL 设置 - 具体信息来自您正在使用的主机 ** //
 /** WordPress数据库的名称 */
-define('DB_NAME', 'spark_wp');
-
+define('DB_NAME', 'wordpress');
+//define('DB_NAME', 'spark_wp');
 /** MySQL数据库用户名 */
 define('DB_USER', 'root');
 
 /** MySQL数据库密码 */
-define('DB_PASSWORD', 'spark123456');
+define('DB_PASSWORD', 'zx1101');
+//define('DB_PASSWORD', 'spark123456');
 
 /** MySQL主机 */
 define('DB_HOST', 'localhost');

@@ -5,19 +5,18 @@
 ?>
 <div class="col-md-8 col-sm-8 col-xs-8">
 <h4 style="margin-left: 20px">提 问</h4>
-<?php
-//    echo do_shortcode("[dwqa-submit-question-form]");
-//?>
+    <?php //echo do_shortcode("[dwqa-submit-question-form]"); ?>
 <style>
     #Spark_question_submit_form{margin-left: 20px;margin-bottom: 20px}
 </style>
-<form method="post" class="dwqa-content-edit-form" id="Spark_question_submit_form">
+
+<form method="post" class="dwqa-content-edit-form" id="Spark_question_submit_form" onsubmit="SubmitCheck();">
 <!--    标题栏-->
     <p class="dwqa-search">
-<!--        改成非search框 input框样式改-->
-<!--        <label for="question_title">--><?php //_e( 'Title', 'dwqa' ) ?><!--</label>-->
-        <?php $title = isset( $_POST['question-title'] ) ? sanitize_title( $_POST['question-title'] ) : ''; ?>
-        <input type="text" style="margin-top: 20px;" data-nonce="<?php echo wp_create_nonce( '_dwqa_filter_nonce' ) ?>" id="question-title" name="question-title" value="<?php echo $title ?>" tabindex="1">
+        <?php
+            $title = isset($_POST['question-title'] ) ? sanitize_title( $_POST['question-title'] ) : ''; ?>
+        <input type="text" style="margin-top: 20px;" data-nonce="<?php echo wp_create_nonce( '_dwqa_filter_nonce' ) ?>"
+               id="question-title" name="question-title" value="<?php echo $title ?>" tabindex="1" _moz_abspos=""  onkeydown="if(event.keyCode==13) return false;"/>
     </p>
     <?php $content = isset( $_POST['question-content'] ) ? sanitize_text_field( $_POST['question-content'] ) : ''; //如果没有内容应该跳出警告?>
     <p><?php dwqa_init_tinymce_editor( array( 'content' => $content, 'textarea_name' => 'question-content', 'id' => 'question-content' ) ) ?></p>
@@ -35,13 +34,12 @@
     <?php endif; ?>
 <!--    分类部分-->
     <p>
-<!--        <label for="question-category">--><?php //_e( 'Category', 'dwqa' ) ?><!--</label>-->
         <label for="question-category">选择问题分类</label>
 <!--            <select></select>-->
 
         <?php
         wp_dropdown_categories( array(
-            'show_option_all'=>__( 'Select question category', 'dwqa' ),
+            //'show_option_all'=>__( 'Select question category', 'dwqa' ),
             'name'          => 'question-category',
             'id'            => 'question-category',
             'taxonomy'      => 'dwqa-question_category',
@@ -55,10 +53,33 @@
         ?>
     </p>
 <!--    tag部分-->
+<!--    --><?php
+//    global $wpdb;
+//    $tag_id = array();
+//    $tag_name = array();//存储每个链接的名字;
+//    //==============获取所有tag信息===============
+//    $tag = get_terms( 'dwqa-question_tag', array_merge( array( 'orderby' => 'count', 'order' => 'DESC' )));
+//    ?>
     <p>
         <label for="question-tag"><?php _e( 'Tag', 'dwqa' ) ?></label>
-        <?php $tags = isset( $_POST['question-tag'] ) ? sanitize_text_field( $_POST['question-tag'] ) : ''; ?>
         <input type="text" class="" name="question-tag" value="<?php echo $tags ?>" >
+        <?php $tags = isset( $_POST['question_tag'] ) ? sanitize_text_field( $_POST['question_tag'] ) : ''; ?>
+
+
+<!--        --><?php
+//        echo '<div>';
+//            foreach($tag as $key => $temp){
+//                $tag_id[]=$temp->term_id;
+//                $tag_name[]=$temp->name;?>
+<!--                <input type="checkbox" name="question-tag" value="--><?//=$tag_name[$key]?><!--"/>-->
+<!--                    <span class="label label-default">--><?//=$tag_name[$key]?><!--</span>-->
+<!--            --><?php //}
+//        echo '</div>';
+////        ?>
+<!--        修改value-->
+
+
+
     </p>
     <?php if ( dwqa_current_user_can( 'post_question' ) && !is_user_logged_in() ) : ?>
         <p>
@@ -75,6 +96,56 @@
     <?php wp_nonce_field( '_dwqa_submit_question' ) ?>
     <?php dwqa_load_template( 'captcha', 'form' ); ?>
     <?php do_action('dwqa_before_question_submit_button'); ?>
-    <input type="submit" name="dwqa-question-submit" value="<?php _e( 'Submit', 'dwqa' ) ?>" >
+    <input type="submit" name="dwqa-question-submit"  value="<?php _e( 'Submit', 'dwqa' ) ?>" onclick="//tags();">
 </form>
 </div>
+<script>
+    function SubmitCheck() {
+        var question_title = document.getElementById('question-title');
+        var question_content = document.getElementById('question-content');
+        var question_category = document.getElementById('question-category');
+        var question_tags = document.getElementsByName('question-tag');
+
+        if(question_title==""){
+            alert("问题标题不能为空");
+            return false;
+
+        }else{
+            if(question_content==""){
+                alert("问题内容不能为空");
+                return false;
+            }else{
+                if(question_category=="" ||question_category=='Questions'){
+                    alert("分类不能为空");
+                    return false;
+                }else{
+                    if(question_tags =="" ||question_tags==false){
+                        alert("tag不能为空");
+                        return false;
+                    }
+                }
+            }
+
+        }
+
+    }
+    var question_tag;
+    function tags() {
+        obj = document.getElementsByName("question-tag");
+        check_val = [];
+        for(k in obj){
+            if(obj[k].checked)
+                check_val.push(obj[k].value);
+        }
+        var str = JSON.stringify(check_val);
+        //alert(str);
+        return str;
+    }
+    $.ajax({
+        type:"post",
+        data:{
+            question_tag=tags()
+        },
+        success:function(data){
+        }});
+</script>

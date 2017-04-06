@@ -6,6 +6,7 @@ global $wpdb;
 $page_qa_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'qa'");
 $page_project_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'project'");
 $page_ask_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'ask'");
+$page_search_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'search'");
 ?>
 <!--sidebar.php-->
 <?php
@@ -15,9 +16,7 @@ if(is_home() || is_front_page()) { //首页显示“首页侧栏”
 }
 
 if ( is_page('wiki') ) {//显示wiki侧栏”
-    echo '<div class="col-md-4 col-sm-4 col-xs-4 right">';
-    echo "wiki边栏";
-    echo '</div>';
+    require "template/wiki/wiki_sidebar.php";
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_wikisidebar')){
     }
 }
@@ -40,7 +39,11 @@ if (is_page($page_project_id)){
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_projectsidebar')){
     }
 }
-
+if (is_search()){
+    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_qa_search_sidebar')){
+    }
+    require "template/qa/QA_search_sidebar.php";
+}
 ?>
 
 

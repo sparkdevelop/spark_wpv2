@@ -1,5 +1,5 @@
 <?php
 ?>
-<div class="col-md-8 col-sm-8 col-xs-8">
-    wiki内容
+<div class="col-md-4 col-sm-4 col-xs-4 right">
+     wiki边栏
 </div>

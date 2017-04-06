@@ -26,19 +26,13 @@ $tag_name = array();//存储每个链接的名字;
 $link = array(); // 存储每个标签的链接;
 $tag_count = array();
 //==============获取所有tag的id信息===============
-    //$sql_1="SELECT term_id FROM $wpdb->term_taxonomy WHERE taxonomy='dwqa-question_tag'";
-    //$tag_id_result=$wpdb->get_results($sql_1);
     $tags = get_terms( 'dwqa-question_tag', array_merge( array( 'orderby' => 'count', 'order' => 'DESC' )));
 //=============================
 foreach($tags as $key => $temp){
     $tag_id[]=$temp->term_id;
+    $tag_name[]=$temp->name;
     $tag_count[]=$temp->count;
     array_push($link,get_term_link(intval($tag_id[$key]), 'dwqa-question_tag'));
-}
-for($i=0;$i<count($tag_id);$i++){
-    $sql ="SELECT name FROM $wpdb->terms WHERE term_id=".$tag_id[$i];
-    $tag_name_result=$wpdb->get_results($sql,'ARRAY_A');
-    array_push($tag_name,$tag_name_result[0]['name']);
 }
 
 //为相似问题做准备

@@ -91,11 +91,15 @@ a,a:hover{color:gray;}
 
 .ask_count{margin-left: 0px;}
 
+#questionhot {padding-top: 40px;}
+#questionall {padding-top: 40px;}
+#questionunresolve {padding-top: 40px;}
 #hot {padding-top: 40px;}
 #all {padding-top: 40px;}
 #unresolve {padding-top: 40px;}
 #webhot {padding-top: 40px;}
 #weball {padding-top: 40px;}
 #webunresolve {padding-top: 40px;}
+
 h4{margin-bottom: 0px;}
 #comment_display{ margin-bottom: 0px;}

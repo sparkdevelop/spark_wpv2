@@ -20,7 +20,7 @@
         <!--撰写答案-->
         <div style="color:gray;margin-top:10px;">
             <a href="<?php echo get_permalink();?>">
-                <button class="btn btn-default" style="padding-left: 0px">
+                <button class="btn btn-default" style="padding-left: 0px;outline: none;">
                     <img src="<?php bloginfo("template_url")?>/img/answer_button.png">
                 </button>
             </a>

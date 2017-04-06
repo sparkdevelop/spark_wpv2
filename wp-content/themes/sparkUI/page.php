@@ -12,6 +12,7 @@ $page_qa_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'qa'
 $page_project_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'project'");
 $page_ask_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'ask'");
 $page_test_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'test'");
+$page_search_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'search'");
 ?>
 
 <?php get_header(); ?>
@@ -26,9 +27,7 @@ $page_test_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 't
                     echo "首页内容";
                 }
                 elseif ( is_page('wiki') ) {//显示wiki侧栏”
-                    echo '<div class="col-md-8 col-sm-8 col-xs-8">';
-                    echo "wiki内容";
-                    echo '</div>';
+                    require "template/wiki/wiki_content.php";
                 }
                 elseif ( is_page($page_qa_id) ) {//显示问答侧栏 参数为pageID 如何自动获取??
                     require "template/qa/QA_content.php";
@@ -43,8 +42,11 @@ $page_test_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 't
                 elseif (is_page($page_ask_id)){
                     require "template/qa/QA_ask.php";
                 }
-                elseif (is_page($page_test_id)){
-                    require "template/qa/test.php";
+//                elseif (is_page($page_test_id)){
+//                    require "template/qa/test.php";
+//                }
+                elseif (is_search()){
+                    require "template/qa/QA_search.php";
                 }
                 else{
                     the_content();

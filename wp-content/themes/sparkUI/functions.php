@@ -46,6 +46,10 @@ if ( function_exists('register_sidebar') ) {
         'name'          => 'project_sidebar',
         'id'            => 'widget_projectsidebar',
     ));
+    register_sidebar(array(
+        'name'          => 'search_sidebar',
+        'id'            => 'widget_searchsidebar',
+    ));
 }
 //取消注册sidebar
 //if(function_exists('unregister_sidebar')){
@@ -134,6 +138,5 @@ function dwqa_user_most_ask( $number = 10, $from = false, $to = false ) {
     }
     return $users;
 }
-
 
 ?>
