@@ -50,6 +50,14 @@ if ( function_exists('register_sidebar') ) {
         'name'          => 'search_sidebar',
         'id'            => 'widget_searchsidebar',
     ));
+    register_sidebar(array(
+        'name'          => 'tags_sidebar',
+        'id'            => 'widget_tagssidebar',
+    ));
+    register_sidebar(array(
+        'name'          => 'personal_sidebar',
+        'id'            => 'widget_personalsidebar',
+    ));
 }
 //取消注册sidebar
 //if(function_exists('unregister_sidebar')){
@@ -138,5 +146,37 @@ function dwqa_user_most_ask( $number = 10, $from = false, $to = false ) {
     }
     return $users;
 }
+function get_ask_page(){
+    global $wpdb;
+    $page_ask_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'ask'");
+    $ask_page_ID="?page_id=".$page_ask_id;
+    return $ask_page_ID;
+}
+function get_personal_page(){
+    global $wpdb;
+    $page_personal_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'personal'");
+    $personal_page_ID="?page_id=".$page_personal_id;
+    return $personal_page_ID;
+}
+function get_hot_tags(){
+    global $wpdb;
+    $tag_id = array();
+    $tag_name = array();//存储每个链接的名字;
+    $link = array(); // 存储每个标签的链接;
+    $tag_count = array();
+//==============获取所有tag的id信息===============
+    $tags = get_terms( 'dwqa-question_tag', array_merge( array( 'orderby' => 'count', 'order' => 'DESC' )));
+//=============================
+    foreach($tags as $key => $temp){
+        $tag_id[]=$temp->term_id;
+        $tag_count[]=$temp->count;
+        $tag_name[]=$temp->name;
+        array_push($link,get_term_link(intval($tag_id[$key]), 'dwqa-question_tag'));
+    }
+}
 
+function selected_unanswered(){
+
+}
+add_filter('Spark_unanswered',array($this,'select_unanswered'),10)
 ?>

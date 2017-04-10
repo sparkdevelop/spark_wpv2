@@ -1,5 +1,5 @@
 <?php
 ?>
-<div class="col-md-4 col-sm-4 col-xs-4 right">
+<div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
      wiki边栏
 </div>

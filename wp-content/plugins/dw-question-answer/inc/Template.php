@@ -15,6 +15,7 @@ function dwqa_breadcrumb() {
 		$tax_name = 'dwqa-question_tag' == get_query_var( 'taxonomy' ) ? __( 'Tag', 'dwqa' ) : __( 'Category', 'dwqa' );
 	} else {
 		$term = wp_get_post_terms( get_the_ID(), 'dwqa-question_category' );
+		//$term = wp_get_post_terms( get_the_ID(), 'dwqa-question_tag' );
 		if ( $term ) {
 			$term = $term[0];
 			$tax_name = __( 'Category', 'dwqa' );
@@ -729,6 +730,9 @@ function dwqa_has_sidebar_template() {
 	return;
 }
 
+
+
+
 add_action( 'dwqa_after_single_question_content', 'dwqa_load_answers' );
 function dwqa_load_answers() {
 	global $dwqa;
@@ -810,10 +814,8 @@ class DWQA_Template {
 		if ( isset( $dwqa_options['pages']['archive-question'] ) ) {
 			$page_template = get_post_meta( $dwqa_options['pages']['archive-question'], '_wp_page_template', true );
 		}
-
 		$page_template = isset( $page_template ) && !empty( $page_template ) ? $page_template : 'page.php';
 		$this->page_template = $page_template;
-
 		if ( is_singular( 'dwqa-question' ) ) {
 			ob_start();
 
@@ -821,7 +823,8 @@ class DWQA_Template {
 
 			echo '<div class="dwqa-container" >';
 			$this->load_template( 'Spark-single', 'question' );
-			$this->load_template('Spark-single','sidebar');
+			dwqa_has_sidebar_template();
+			//$this->load_template('Spark-single','sidebar');
 			echo '</div>';
 
 			$content = ob_get_contents();
@@ -850,8 +853,9 @@ class DWQA_Template {
 			add_filter( 'body_class', array( $this, 'page_template_body_class' ) );
 			return dwqa_get_template( $page_template );
 		}
-		if ( is_tax( 'dwqa-question_category' ) || is_tax( 'dwqa-question_tag' ) || is_post_type_archive( 'dwqa-question' ) || is_post_type_archive( 'dwqa-answer' ) || isset( $wp_query->query_vars['dwqa-question_tag'] ) || isset( $wp_query->query_vars['dwqa-question_category'] ) ) {
 
+		if ( is_tax( 'dwqa-question_category' ) || is_tax( 'dwqa-question_tag' ) || is_post_type_archive( 'dwqa-question' ) || is_post_type_archive( 'dwqa-answer' ) || isset( $wp_query->query_vars['dwqa-question_tag'] ) || isset( $wp_query->query_vars['dwqa-question_category'] ) ) {
+			$dwqa_options = get_option( 'dwqa_options' );
 			$post_id = isset( $dwqa_options['pages']['archive-question'] ) ? $dwqa_options['pages']['archive-question'] : 0;
 			if ( $post_id ) {
 				$page = get_page( $post_id );

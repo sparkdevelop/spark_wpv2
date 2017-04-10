@@ -6,7 +6,9 @@ global $wpdb;
 $page_qa_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'qa'");
 $page_project_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'project'");
 $page_ask_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'ask'");
+$page_ask_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'personal'");
 $page_search_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'search'");
+$page_personal_id = get_personal_page();
 ?>
 <!--sidebar.php-->
 <?php
@@ -31,9 +33,14 @@ if ( is_page($page_qa_id) ) {//显示问答侧栏 参数为pageID 如何自动�
     require "template/qa/QA_sidebar.php";
 }
 if ( is_page($page_ask_id) ) {//显示问题详情页
-    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_qa_ask_sidebar')){
+    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_qa_asksidebar')){
     }
     require "template/qa/QA_ask_sidebar.php";
+}
+if ( is_page($page_personal_id) ) {//显示问题详情页
+    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_personalsidebar')){
+    }
+    require "template/personal_sidebar.php";
 }
 if (is_page($page_project_id)){
     echo '<div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">';
@@ -43,8 +50,13 @@ if (is_page($page_project_id)){
     }
 }
 if (is_search()){
-    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_qa_search_sidebar')){
+    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_searchsidebar')){
     }
     require "template/qa/QA_search_sidebar.php";
+}
+if (is_tag()){
+    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_tagssidebar')){
+    }
+    //require "template/qa/QA_tags_sidebar.php";
 }
 ?>

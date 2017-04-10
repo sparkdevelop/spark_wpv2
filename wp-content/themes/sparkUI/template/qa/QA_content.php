@@ -187,6 +187,7 @@ $web_count = $questions_web_all->post_count;?>
     if ($questions_question_all->have_posts()){
     ?>
     <ul id="leftTab" class="nav nav-pills">
+        <li><a href="#question_all" data-toggle="tab">所有问题</a></li>
         <li class="active">
             <a href="#OShardware" data-toggle="tab">开源硬件</a>
         </li>

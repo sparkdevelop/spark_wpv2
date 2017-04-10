@@ -23,7 +23,7 @@ $best_post_content=$post_content[$pos];
 <li class="list-group-item" style="padding: 15px 0px">
 <!--    获取提问者头像-->
     <div style="display: inline-block;vertical-align: top;margin-top: 0px">
-        <?php echo get_avatar(get_the_author_ID(),45,'');?>
+        <?php echo get_avatar(get_the_author_ID(),48,'');?>
     </div>
     <div class="qa_show">
 <!--        获取提问者名字、提问时间-->
@@ -49,18 +49,7 @@ $best_post_content=$post_content[$pos];
             </div>
 <!--            答案内容 逻辑有待完善-->
             <div class="qa_best_answer">
-                <?php
-                echo $best_post_content;
-//                if($votes[$pos]==0){
-//
-//                    //echo get_post(dwqa_get_latest_answer())->post_content;
-//                    echo $best_post_content;
-//                }
-//                else{
-//                    //echo get_post(dwqa_get_the_best_answer())->post_content;
-//                    echo $best_post_content;
-//                }
-               // echo get_post(dwqa_get_the_best_answer())->post_content; ?>
+                <?php echo mb_strimwidth($best_post_content, 0, 100,"...");?>
             </div>
 
             <span class="qa_count">赞同<?php echo dwqa_vote_count($best_ans_id);?></span>&nbsp;&nbsp;

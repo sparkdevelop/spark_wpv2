@@ -6,6 +6,7 @@
  * @since DW Question & Answer 1.4.3
  */
 // global $wp_query; print_r( $wp_query );
+
 ?>
 <div class="dwqa-single-question">
     <?php if ( have_posts() ) : ?>
@@ -19,4 +20,5 @@
         <?php endwhile; ?>
         <?php do_action( 'dwqa_after_single_question' ) ?>
     <?php endif; ?>
+    <?php dwqa_has_sidebar_template();?>
 </div>

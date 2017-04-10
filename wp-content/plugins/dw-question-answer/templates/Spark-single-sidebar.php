@@ -26,7 +26,7 @@ $tag_name = array();//存储每个链接的名字;
 $link = array(); // 存储每个标签的链接;
 $tag_count = array();
 //==============获取所有tag的id信息===============
-    $tags = get_terms( 'dwqa-question_tag', array_merge( array( 'orderby' => 'count', 'order' => 'DESC' )));
+$tags = get_terms( 'dwqa-question_tag', array_merge( array( 'orderby' => 'count', 'order' => 'DESC' )));
 //=============================
 foreach($tags as $key => $temp){
     $tag_id[]=$temp->term_id;
@@ -121,8 +121,6 @@ wp_reset_postdata();
     .label-default[href]:hover{background-color: transparent;outline: none;color: #fe642d}
     #buttonForAllTags{  outline: none;border:0px;color:gray;float: right;display: inline-block;margin-top: 20px;padding: 0 12px}
 </style>
-
-
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
     <?php $ask_page_ID="?page_id=96"; ?>
 

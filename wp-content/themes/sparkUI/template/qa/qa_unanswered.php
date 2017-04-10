@@ -4,7 +4,7 @@
 ?>
 <li class="list-group-item" style="padding: 15px 0px">
     <div style="display: inline-block;vertical-align: top;margin-top: 0px">
-        <?php echo get_avatar(get_the_author_ID(),45,'');?>
+        <?php echo get_avatar(get_the_author_ID(),48,'');?>
     </div>
     <div class="qa_show">
         <div class="qa_time">
@@ -20,7 +20,6 @@
         <!--撰写答案-->
         <div class="qa_info">
             <a href="<?php echo get_permalink();?>">
-
                 <button class="btn btn-default" id="btn-answer">
                     撰写答案
                 </button>

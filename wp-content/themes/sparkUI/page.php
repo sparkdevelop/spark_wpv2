@@ -8,9 +8,12 @@
  */
 
 global $wpdb;
+global  $wp_query;
 $page_qa_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'qa'");
+$page_wiki_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'wiki'");
 $page_project_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'project'");
 $page_ask_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'ask'");
+$page_personal_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'personal'");
 $page_test_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'test'");
 $page_search_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'search'");
 ?>
@@ -18,26 +21,24 @@ $page_search_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 
 <?php get_header(); ?>
 <div class="container" style="margin-top: 10px">
     <div class="row" style="width: 100%">
-
-            <!--引入动态模板-->
+           <!--引入动态模板-->
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
                 ?>
                 <?php
-                if(is_home() || is_front_page()) { //首页显示“首页侧栏”
+                if(is_home() || is_front_page()) { //首页显示“首页内容”
                     echo "首页内容";
                 }
-                elseif ( is_page('wiki') ) {//显示wiki侧栏”
+                elseif ( is_page($page_wiki_id) ) {//显示wiki内容”
                     require "template/wiki/wiki_content.php";
                 }
-
-                elseif ( is_page($page_qa_id) ) {//显示问答侧栏 参数为pageID 如何自动获取??
+                elseif ( is_page($page_qa_id) ) {//显示问答内容 参数为pageID 如何自动获取??
                     require "template/qa/QA_content.php";
-                    //require "test.php";
-                    //require "template/qa/QA-content-test.php";
                 }
-
                 elseif (is_page($page_ask_id)){
                     require "template/qa/QA_ask.php";
+                }
+                elseif (is_page($page_personal_id)){
+                    require "template/personal.php";
                 }
                 elseif (is_page($page_project_id)){
                     echo '<div class="col-md-9 col-sm-9 col-xs-9" id="col9">';
@@ -46,12 +47,6 @@ $page_search_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 
                 }
                 elseif (is_page($page_ask_id)){
                     require "template/qa/QA_ask.php";
-                }
-//                elseif (is_page($page_test_id)){
-//                    require "template/qa/test.php";
-//                }
-                elseif (is_search()){
-                    require "template/qa/QA_search.php";
                 }
                 else{
                     the_content();
@@ -62,6 +57,6 @@ $page_search_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 
                 <p><?php _e('Sorry, this page does not exist.'); ?></p>
             <?php endif; ?>
             <?php get_sidebar();?>
-            </div>
+    </div>
 </div>
 <?php get_footer(); ?>

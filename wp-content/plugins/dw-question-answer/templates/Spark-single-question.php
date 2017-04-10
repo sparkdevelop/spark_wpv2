@@ -5,7 +5,6 @@
  * @package DW Question & Answer
  * @since DW Question & Answer 1.4.3
  */
-// global $wp_query; print_r( $wp_query );
 ?>
 <div class="col-md-9 col-sm-9 col-xs-9" style="padding-left: 0;padding-right: 0;">
 <div class="dwqa-single-question">

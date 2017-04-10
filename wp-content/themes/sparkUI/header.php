@@ -37,8 +37,9 @@
                         <!--登录注册用户头像-->
                         <?php
                         if(is_user_logged_in()){
-                            $current_user = wp_get_current_user(); ?>
-
+                            $current_user = wp_get_current_user();
+                            $person_address=get_personal_page();
+                            ?>
                             <div class="btn-group" >
                                 <button type="button" id="user-portrait" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                        <?php echo get_avatar($current_user->ID,30,'');?>
@@ -50,7 +51,7 @@
                                         <a role="menuitem" tabindex="-1" href="<?php echo admin_url();?>"><span class="glyphicon glyphicon-home"></span> 后台管理</a>
                                     </li>
                                     <li role="presentation" style="height:35px;">
-                                        <a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-user"></span> 个人主页</a>
+                                        <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address;?>"><span class="glyphicon glyphicon-user"></span>个人主页</a>
                                     </li>
                                     <li role="presentation" style="height:35px;">
                                         <a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-cog"></span> 设置</a>
@@ -67,12 +68,12 @@
                             <a class="navbar-text" href="<?php echo site_url(); ?>/wp-login.php?action=register">注册</a>
                         <?php } ?>
                     </div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-6" style="ma">
+                    <div class="clearfix visible-xs"></div>
+                    <div class="col-md-3 col-sm-3 col-xs-3" style="ma">
                         <form class="navbar-form " role="search" method="get" action="<?php echo home_url('/');?>" style="float: right;padding-left: 0px;padding-right: 0px">
                            <div class="form-group">
-                                <input type="text" id="search-content" name='s' value="请输入要搜索的问题" onfocus="javascript:if(this.value=='请输入要搜索的问题')this.value=''" class="form-control" placeholder="Search">
-                                <input type="hidden" name="post_type" value="dwqa-question" class="form-control" placeholder="Search">
+                               <input type="text" id="search-content" name='s' value="请输入要搜索的问题" onfocus="javascript:if(this.value=='请输入要搜索的问题')this.value=''" class="form-control" placeholder="Search">
+<!--                                <input type="hidden" name="post_type" value="dwqa-question" class="form-control" placeholder="Search">-->
                                 <input type="hidden" name="post_status" value="all">
                                 <button type="submit" class="btn btn-default btn-sm" id="search-btn">
                                     <span class="glyphicon glyphicon-search"></span>

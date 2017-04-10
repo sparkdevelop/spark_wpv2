@@ -17,13 +17,12 @@ foreach ( $answer_ids as $answer_id ){   //剥除外层数组
 $tol_votes=array_sum($votes);   //总的赞数
 $pos=array_search(max($votes),$votes);  //赞数最多的位置,用于定位最佳回答的作者
 $best_ans_author=$ans_author_id[$pos];  //赞数最多的答案作者ID
-$best_ans_author=$ans_author_id[$pos];   //赞数最多的答案作者ID
 $best_ans_id=$ans_id[$pos];         //赞数最多的答案ID
 ?>
 
 <li class="list-group-item" style="padding: 15px 0px">
     <div style="display: inline-block;vertical-align: top;margin-top: 0px">
-        <?php echo get_avatar(get_the_author_ID(),45,'');?>
+        <?php echo get_avatar(get_the_author_ID(),48,'');?>
     </div>
     <div class="qa_show">
         <div class="qa_time">
@@ -45,7 +44,7 @@ $best_ans_id=$ans_id[$pos];         //赞数最多的答案ID
             </div>
             <div class="qa_best_answer">
                 <span class="label label-default" id="btn-solved">已采纳</span>
-                <?php echo get_post(dwqa_get_the_best_answer())->post_content;?>
+                <?php echo mb_strimwidth(get_post(dwqa_get_the_best_answer())->post_content, 0, 100,"...");?>
             </div>
 
             <span class="qa_count">赞同<?php echo dwqa_vote_count($best_ans_id);?></span>&nbsp;&nbsp;

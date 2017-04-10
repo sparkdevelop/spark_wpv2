@@ -367,6 +367,12 @@ body{
 #webhot {padding-top: 40px;}
 #weball {padding-top: 40px;}
 #webunresolve {padding-top: 40px;}
+#questionhot {padding-top: 40px;}
+#questionall {padding-top: 40px;}
+#questionunresolve {padding-top: 40px;}
+#wiki_search {padding-top: 40px;}
+#qa_search {padding-top: 40px;}
+#project_search {padding-top: 40px;}
 
 h4{margin-bottom: 0px;}
 #comment_display{ margin-bottom: 0px;}

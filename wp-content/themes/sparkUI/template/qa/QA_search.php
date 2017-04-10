@@ -1,82 +1,74 @@
-<?php require_once (site_url().'/wp-content/themes/sparkUI/header.php')?>
 <?php
     $search_word=$_GET['s'];
-    $post_type = $_GET['post_type'];
     $post_status=$_GET['post_status'];
 ?>
-        <div class="col-md-8 col-sm-8 col-xs-8">
-            hahahahhahhaah
-            <?php echo $post_status;?>
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-4 right">
-            <div class="sidebar_list">
-                <div class="sidebar_list_header">
-                    <p>大家都在搜</p>
-                    <!--列表头-->
-                    <ul id="askerTab" class="nav nav-pills" style="float: right">
-                        <li><a href="#searchday" data-toggle="tab" style="width: 20px;margin-top: 5px;">日</a></li>
-                        <li class="active"><a href="#searchweek" data-toggle="tab" style="width: 20px;margin-top: 5px;">周</a></li>
-                    </ul>
-                </div>
-                <!--分割线-->
-                <div class="sidebar_divline"></div><!--下面的是列表
+<?php if (have_posts()) : ?>
+    <ul id="leftTab" class="nav nav-pills">
+        <li><a href="#wiki_search" data-toggle="tab">wiki</a></li>
+        <li class="active">
+            <a href="#qa_search" data-toggle="tab">问答</a>
+        </li>
+        <li><a href="#project_search" data-toggle="tab">项目</a></li>
+    </ul>
+    <p style="float:right;margin-top: 15px;margin-bottom: 0px"><span style="color:#fe642d"><?=$search_word;?></span>的搜索结果</p>
 
-        <!--列表内容 需要填写的都用php提取出来就行-->
-                <div id="askerTabContent" class="tab-content">
-                    <div class="tab-pane fade" id="searchday">
-                        <ul class="list-group">
+    <div id="leftTabContent" class="tab-content">
+        <div class="tab-pane fade" id="wiki_search">
+            <div style="height: 2px;background-color: lightgray"></div>
+            <ul class="list-group">
+                <?php
+                    while (have_posts()) : the_post();
+                        if(get_post()->post_type=="wiki"){?>
+                            <a href="<?php the_permalink();?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
+                                <?php the_title();?>
+                            </a>
+                            <?php echo get_post()->post_type;?>
+                        <?php } ?>
+                    <?php endwhile; ?>
+            </ul>
+        </div>
+        <div class="tab-pane fade in active" id="qa_search">
+        <div style="height: 2px;background-color: lightgray"></div>
+            <ul class="list-group">
+                <?php
+                    while (have_posts()) : the_post();
+                        if(get_post()->post_type=="dwqa-question"){?>
                             <?php
-                            $from_day=strtotime("-1 day")+8*3600;
-                            $ask_most =array();
-                            $ask_most=dwqa_user_most_ask(10,$from_day);
-                            $ask_most_author_id = $ask_most[0]['post_author'];
-                            for($i=0;$i<10;$i++){
-                                ?>
-                                <li class="list-group-item">
-                                    <img src="<?php bloginfo("template_url")?>/img/n<?php echo $i+1;?>.png" style="display: inline-block;margin-right: 10px;">
-                                    <?php echo get_avatar($ask_most[$i]['post_author'],20,'');?>
-                                    <a href="<?php echo dwqa_get_author_link($ask_most[$i]['post_author']);?>" style="display:inline-block;"><?php echo get_userdata($answer_most[$i]['post_author'])->display_name;?></a>
-                                    <p style="display: inline-block;float: right"><?php echo $ask_most[$i]['ask_count'];?>问</p>
-                                </li>
-                                <?php
+                            if (dwqa_question_answers_count() != 0) {
+                                    if (get_post_meta(get_the_ID(), '_dwqa_status', true) == 'open'||get_post_meta(get_the_ID(), '_dwqa_status', true) == 'answered') {
+                                    require 'qa_search_answered.php';
+                                    } elseif (get_post_meta(get_the_ID(), '_dwqa_status', true) == 'resolved' || get_post_meta(get_the_ID(), '_dwqa_status', true) == 'close') {
+                                    require 'qa_search_resolved.php';
+                                    } else {
+                                    echo "Oops,there is something wrong";
+                                    }
+                                }
+                            else {
+                            require 'qa_search_unanswered.php';
                             }
                             ?>
-                        </ul>
-                    </div>
-                    <div class="tab-pane fade in active" id="searchweek">
-                        <ul class="list-group">
-                            <?php
-                            $from_week=strtotime("-1 week")+8*3600;
-                            $ask_most_this_week = array();
-                            $ask_most_this_week = dwqa_user_most_ask(10,$from_week);
-                            //$answer_most_this_week_author_id = $answer_most_this_week[0]['post_author'];
-                            for($i=0;$i<10;$i++){
-                                ?>
-                                <li class="list-group-item">
-                                    <img src="<?php bloginfo("template_url")?>/img/n<?php echo $i+1;?>.png" style="display: inline-block;margin-right: 10px;"/>
-                                    <?php echo get_avatar($ask_most_this_week[$i]['post_author'],20,'');?>
-                                    <a href="<?php echo dwqa_get_author_link($ask_most_this_week[$i]['post_author']);?>" style="display:inline-block;">
-                                        <?php echo get_userdata($ask_most_this_week[$i]['post_author'])->display_name;?>
-                                    </a>
-                                    <p style="display: inline-block;float: right"><?php echo $ask_most_this_week[$i]['ask_count'];?>次
-                                    </p>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                    </div>
-                </div>
-            </div><!--asker-->
+                        <?php } ?>
+                    <?php endwhile; ?>
+            </ul>
         </div>
+        <div class="tab-pane fade" id="project_search">
+        <div style="height: 2px;background-color: lightgray"></div>
+            <ul class="list-group">
+                <?php
+                    while (have_posts()) : the_post();
+                        if(get_post()->post_type=="dwqa-question"){?>
+                        <a href="<?php the_permalink();?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
+                            <?php the_title();?>
+                        </a>
+                        <?php echo get_post()->post_type;?>
+                        <?php } ?>
+                <?php endwhile; ?>
+            </ul>
+        </div>
+    </div>
+    <?php else: ?>
+    <p><?php _e('未找到搜索结果'); ?></p>
+<?php endif; ?>
 
 
-<?php //$posts=query_posts($query_string .'&posts_per_page=20'); ?>
-<?php //if (have_posts()) : ?>
-<!--<h2>Search Results</h2>-->
-<?php //while (have_posts()) : the_post(); ?>
-<!--<article class="searchlist clearfix">-->
-<!--    <a href="--><?php //the_permalink() ?><!--" rel="bookmark" title="Permanent Link to < ?php the_title_attribute(); ?>">< ?php the_title(); ?></a>-->
-<!--    <br/>Posted in --><?php //the_category(', ') ?><!-- on --><?php //the_time('l jS F, Y - g:ia') ?>
-<!--</article>-->
-<?php //endwhile; ?>
-<?php //endif; ?>
 
