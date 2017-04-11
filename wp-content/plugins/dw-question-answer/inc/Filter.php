@@ -15,7 +15,8 @@ class DWQA_Filter {
 		$query = array(
 			'post_type' => 'dwqa-question',
 			'posts_per_page' => $posts_per_page,
-			'orderby'	=> 'modified'
+            'orderby'	=> 'date'   //
+			//'orderby'	=> 'modified'
 		);
 		$page_text = dwqa_is_front_page() ? 'page' : 'paged';
 		$paged = get_query_var( $page_text );
@@ -66,6 +67,14 @@ class DWQA_Filter {
 				$query['meta_key'] = '_dwqa_votes';
 				$query['orderby'] = 'meta_value_num';
 				break;
+
+            case 'date':
+                $query = array(
+                    'post_type' => 'dwqa-question',
+                    'posts_per_page' => $posts_per_page,
+                    'orderby'	=> 'date'
+                );
+                break;
 		}
 
 		// filter by status
@@ -91,13 +100,20 @@ class DWQA_Filter {
 				   'compare' => 'IN',
 				);
 				break;
-			case 'unanswered':
-				$query['meta_query'][] = array(
-				   'key' => '_dwqa_status',
-				   'value' => array( 'open', 'pending' ),
-				   'compare' => 'IN',
-				);
-				break;
+            case 'unanswered':
+                $query['meta_query'][] = array(
+                    'key' => '_dwqa_answers_count',
+                    'value' => 0,
+                    'compare' => 'IN',
+                );
+                break;
+//			case 'unanswered':
+//				$query['meta_query'][] = array(
+//				   'key' => '_dwqa_status',
+//				   'value' => array( 'open', 'pending' ),
+//				   'compare' => 'IN',
+//				);
+//				break;
 			case 'subscribes':
 				if ( $user ) {
 					$query['meta_query'][] = array(

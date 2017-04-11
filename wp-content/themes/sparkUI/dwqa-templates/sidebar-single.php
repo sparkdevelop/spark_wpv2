@@ -91,7 +91,7 @@ function Spark_related_question( $question_id = false, $number = 5, $echo = true
                         <a href="<?php echo get_permalink()?>" class="question-title">
                             <?php echo get_the_title();?>
                         </a>
-                        <span style="float:right"><?php the_author_posts_link()?></span>
+<!--                        <span style="float:right">--><?php //the_author_posts_link()?><!--</span>-->
                     </li>
                 <?php }?>
             </ul>
