@@ -28,7 +28,6 @@ if ( is_page('wiki') ) {//显示wiki侧栏”
 if ( is_page($page_qa_id) ) {//显示问答侧栏 参数为pageID 如何自动获取??
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_qasidebar')){
     }
-    //require "test.php";
     require "template/qa/QA_sidebar.php";
 }
 if ( is_page($page_ask_id) ) {//显示问题详情页

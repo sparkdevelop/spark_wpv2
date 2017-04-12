@@ -45,9 +45,6 @@ $page_search_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 
                     echo "项目内容";
                     echo '</div>';
                 }
-                elseif (is_page($page_ask_id)){
-                    require "template/qa/QA_ask.php";
-                }
                 else{
                     the_content();
                 }

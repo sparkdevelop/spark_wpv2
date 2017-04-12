@@ -730,9 +730,6 @@ function dwqa_has_sidebar_template() {
 	return;
 }
 
-
-
-
 add_action( 'dwqa_after_single_question_content', 'dwqa_load_answers' );
 function dwqa_load_answers() {
 	global $dwqa;
