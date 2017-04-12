@@ -25,18 +25,18 @@ foreach($tags as $key => $temp){
 ?>
 <!--script for 切换nav-pills active状态和show_all_tags函数-->
 <script>
-	window.onload=function(){
-		var ul=document.getElementById("rightTab");
-		var li=ul.getElementsByTagName("li");
-		for(i=0;i<li.length;i++){
-			li[i].onclick=function(){
-				for(j=0;j<li.length;j++){
-					li[j].className=""
-				}
-				this.className="active";
-			}
-		}
-	};
+//	window.onload=function(){
+//		var ul=document.getElementById("rightTab");
+//		var li=ul.getElementsByTagName("li");
+//		for(i=0;i<li.length;i++){
+//			li[i].onclick=function(){
+//				for(j=0;j<li.length;j++){
+//					li[j].className=""
+//				}
+//				this.className="active";
+//			}
+//		}
+//	};
 	flag=false;
 	function show_all_tags() {
 		var $all_tags=document.getElementById('all_tags');
@@ -51,8 +51,6 @@ foreach($tags as $key => $temp){
 		flag=!flag;
 	}
 </script>
-
-
 
 <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
 	<div class="dwqa-questions-archive">

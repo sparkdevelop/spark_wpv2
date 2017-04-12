@@ -5,6 +5,7 @@
  * @package DW Question & Answer
  * @since DW Question & Answer 1.4.3
  */
+
 ?>
 <?php //do_action( 'dwqa_before_single_question_content' );
 global $wpdb;

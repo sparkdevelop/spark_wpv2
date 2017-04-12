@@ -1,20 +1,36 @@
+<?php $current_user = wp_get_current_user();
+      $user_description = get_user_meta($current_user->ID,'description',true);
+
+?>
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
-    <div class="ask_rules">
-        <div class="sidebar_list_header">
-            <p>提问规则</p>
-        </div>
-        <!--分割线-->
-        <div style="height: 2px;background-color: lightgray"></div>
-        <ul class="list-group">
-            <li class="list-group-item">
-                <p>1.提问前,先搜索下相关问题,也许已经被解决了!</p>
-            </li>
-            <li class="list-group-item">
-                <p>2.尽量详细地描述问题,这样有助于别人给你清晰的答案</p>
-            </li>
-            <li class="list-group-item">
-                <p>3.禁止发布广告和垃圾信息</p>
-            </li>
-        </ul>
+    <div id="user-profile" style="padding: 40px 0px;margin-top: 10px;text-align: center;">
+        <?php echo get_avatar($current_user->ID,100);?>
+        <p style="font-size: large;margin-top: 10px"><?php echo $current_user->data->display_name;?></p>
+        <p style="margin-top: 10px;color: gray"><?php echo $user_description;?></p>
     </div>
+    <div style="height: 1px;background-color: lightgray;"></div>
+    <ul id="personal_nav" class="nav nav-pills nav-stacked">
+        <li id="notification">
+            <img src="<?php bloginfo("template_url")?>/img/notification.png">
+            <span>
+                <a href="<?php echo esc_url(add_query_arg(array('tab'=>'notification')))?>">消息提醒</a>
+            </span>
+        </li>
+        <li id="wiki">
+            <img src="<?php bloginfo("template_url")?>/img/wiki.png">
+            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'wiki')))?>">我的wiki</a></span>
+        </li>
+        <li class="active" id="qa">
+            <img src="<?php bloginfo("template_url")?>/img/qa.png">
+            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'qa')))?>">我的问答</a></span>
+        </li>
+        <li id="project">
+            <img src="<?php bloginfo("template_url")?>/img/project.png">
+            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'project')))?>">我的项目</a></span>
+        </li>
+        <li id="profile">
+            <img src="<?php bloginfo("template_url")?>/img/profile.png">
+            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'profile')))?>">个人资料</a></span>
+        </li>
+    </ul>
 </div>

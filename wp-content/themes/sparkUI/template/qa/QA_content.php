@@ -2,7 +2,7 @@
 <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
 <?php
 $args_question_all = array(
-        'post_type'         => 'dwqa-question',
+        'post_type'  => 'dwqa-question',
 );
 $questions_question_all = new WP_Query( $args_question_all );
 ?>
