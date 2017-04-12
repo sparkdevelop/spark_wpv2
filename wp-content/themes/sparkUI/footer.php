@@ -8,9 +8,15 @@ $qa_page_ID = "?page_id=55";
 $project_page_ID = "?page_id=62";
 
 ?>
+<style>
+    .list-group li a,p {color: #333;}
+    .list-group li a:hover{text-decoration: none;  color: #fe642d;}
+    /*.list-group li p{color: #333;}*/
+</style>
+
 <div class="footer" style="height:200px;background-color: #fafafa">
     <div style="height:2px;background-color: #fe642d"></div>
-    <div style="height:3px;background-color: #ffe9e1"></div>
+    <div style="height:4px;background-color: #ffe9e1"></div>
 
     <div class="container">
         <div class="row">
@@ -40,17 +46,18 @@ $project_page_ID = "?page_id=62";
                     <p style="font-size: medium;font-weight: bold;color: #fe642d;margin-top: 15px">联系我们</p>
                     <ul class="list-group">
                         <li class="list-group-item" style="background-color: #fafafa"><p
-                                    style="margin-bottom: 5px;color: gray">sparkspace@163.com</p></li>
+                                    style="margin-bottom: 5px;">sparkspace@163.com</p></li>
                         <li class="list-group-item" style="background-color: #fafafa"><p
-                                    style="margin-bottom: 5px;color: gray">2038448066</p></li>
+                                    style="margin-bottom: 5px;">QQ：2038448066</p></li>
                     </ul>
                 </div>
                 <div class="clearfix visible-xs"></div>
                 <div class="col-md-2 col-sm-2 col-xs-2" style="padding-top:20px;">
                     <p style="font-size: medium;font-weight: bold;color: #fe642d;margin-top: 15px">友情链接</p>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="https://www.microduino.cn/">microduino官网</a></li>
+                        <li class="list-group-item"><a href="https://www.microduino.cn/">Microduino官网</a></li>
                         <li class="list-group-item"><a href="https://cn.wordpress.org/">Wordpress</a></li>
+                        <li class="list-group-item"><a href="http://www.ourspark.space/library/Home/Index/share.html">器材借还</a></li>
                     </ul>
                 </div>
                 <div class="clearfix visible-xs"></div>
