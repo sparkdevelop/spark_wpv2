@@ -7,6 +7,7 @@
           type="text/css" media="screen, projection"/>
 <!--    <script type="text/javascript" src="--><?php //echo get_template_directory_uri(); ?><!--/js/jquery.js"></script>-->
 <!--    <script src="http://cdn.static.runoob.com/libs/jquery/3.1.1/jquery.js"></script>-->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <script src="<?php bloginfo('template_url');?>/bootstrap/jquery-3.2.0.min.js"</script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.js"></script>
     <meta charset="UTF-8">
