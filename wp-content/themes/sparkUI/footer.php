@@ -1,13 +1,3 @@
-<?php
-global $wiki_page_ID;
-global $qa_page_ID;
-global $project_page_ID;
-global $ask_page_ID;
-$wiki_page_ID = "?page_id=46";
-$qa_page_ID = "?page_id=55";
-$project_page_ID = "?page_id=62";
-
-?>
 <style>
     .list-group li a,p {color: #333;}
     .list-group li a:hover{text-decoration: none;  color: #fe642d;}
@@ -30,15 +20,9 @@ $project_page_ID = "?page_id=62";
                 <div class="col-md-1 col-sm-1 col-xs-1" style="text-align: left;padding-top:20px;margin-right: 5%;">
                     <p style="font-size: medium;font-weight: bold;color: #fe642d;margin-top: 15px">导航</p>
                     <ul class="list-group">
-                        <li class="list-group-item" style="background-color: #fafafa"><a
-                                    href="<?php echo site_url() . $wiki_page_ID; ?>" style="margin-bottom: 5px">wiki</a>
-                        </li>
-                        <li class="list-group-item" style="background-color: #fafafa"><a
-                                    href="<?php echo site_url() . $qa_page_ID; ?>" style="margin-bottom: 5px">问答</a>
-                        </li>
-                        <li class="list-group-item" style="background-color: #fafafa"><a
-                                    href="<?php echo site_url() . $project_page_ID; ?>"
-                                    style="margin-bottom: 5px">项目</a></li>
+                        <li class="list-group-item" style="background-color: #fafafa"><a href="<?php echo site_url() . get_page_address('wiki');?>" style="margin-bottom: 5px">wiki</a></li>
+                        <li class="list-group-item" style="background-color: #fafafa"><a href="<?php echo site_url() . get_page_address('qa');?>" style="margin-bottom: 5px">问答</a></li>
+                        <li class="list-group-item" style="background-color: #fafafa"><a href="<?php echo site_url() . get_page_address('project');?>" style="margin-bottom: 5px">项目</a></li>
                     </ul>
                 </div>
                 <div class="clearfix visible-xs"></div>

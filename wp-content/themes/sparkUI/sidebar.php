@@ -2,12 +2,12 @@
 /**
  * sidebar共同的样式
  */
-global $wpdb;
-$page_qa_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'qa'");
-$page_project_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'project'");
-$page_ask_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'ask'");
-$page_personal_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'personal'");
-$page_search_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'search'");
+$page_wiki_id = get_page_id('wiki');
+$page_qa_id = get_page_id('qa');
+$page_project_id =get_page_id('project');
+$page_ask_id = get_page_id('ask');
+$page_personal_id = get_page_id('personal');
+$page_search_id = get_page_id('search');
 ?>
 <!--sidebar.php-->
 <?php
@@ -16,7 +16,7 @@ if(is_home() || is_front_page()) { //首页显示“首页侧栏”
     }
 }
 
-if ( is_page('wiki') ) {//显示wiki侧栏”
+if ( is_page($page_wiki_id) ) {//显示wiki侧栏”
     echo '<div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">';
     echo "wiki边栏";
     echo '</div>';

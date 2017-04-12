@@ -5,9 +5,6 @@
  * @package DW Question & Answer
  * @since DW Question & Answer 1.4.3
  */
-
-$ask_page_ID=get_ask_page();
-global $wpdb;
 $tag_id = array();
 $tag_name = array();//存储每个链接的名字;
 $link = array(); // 存储每个标签的链接;
@@ -25,18 +22,6 @@ foreach($tags as $key => $temp){
 ?>
 <!--script for 切换nav-pills active状态和show_all_tags函数-->
 <script>
-    //	window.onload=function(){
-    //		var ul=document.getElementById("rightTab");
-    //		var li=ul.getElementsByTagName("li");
-    //		for(i=0;i<li.length;i++){
-    //			li[i].onclick=function(){
-    //				for(j=0;j<li.length;j++){
-    //					li[j].className=""
-    //				}
-    //				this.className="active";
-    //			}
-    //		}
-    //	};
     flag=false;
     function show_all_tags() {
         var $all_tags=document.getElementById('all_tags');
@@ -50,6 +35,18 @@ foreach($tags as $key => $temp){
         }
         flag=!flag;
     }
+    //	window.onload=function(){
+    //		var ul=document.getElementById("rightTab");
+    //		var li=ul.getElementsByTagName("li");
+    //		for(i=0;i<li.length;i++){
+    //			li[i].onclick=function(){
+    //				for(j=0;j<li.length;j++){
+    //					li[j].className=""
+    //				}
+    //				this.className="active";
+    //			}
+    //		}
+    //	};
 </script>
 
 <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
@@ -120,7 +117,7 @@ foreach($tags as $key => $temp){
 </style>
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
     <div class="sidebar_button">
-        <a href="<?php echo site_url().$ask_page_ID;?>" style="color: white">我要提问</a>
+        <a href="<?php echo site_url().get_page_address('ask');?>" style="color: white">我要提问</a>
     </div>
     <!--热门标签-->
     <div class="sidebar_list">

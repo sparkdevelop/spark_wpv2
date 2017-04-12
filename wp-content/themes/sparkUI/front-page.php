@@ -33,6 +33,9 @@
     .front-icon{
         width:85%;
     }
+    .col-md-4 .col-sm-4 .col-xs-4{
+        display: inline-block;
+    }
 </style>
 
 <?php get_header(); ?>
@@ -49,19 +52,19 @@
 <div class="container" style="padding: 50px 0; text-align: center;">
     <div class="col-md-4 col-sm-4 col-xs-4">
         <div><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/wiki_icon.png"/></div>
-        <a class="features-title" src=""><h1>wiki</h1></a>
+        <a class="features-title" href="<?php echo site_url() . get_page_address('wiki');?>"><h1>wiki</h1></a>
         <p class="features-sec">“ 学习 ”</p>
         <p>知识共享：创客教育、自学资源、创新创业...<br/>协同创作：人人可免费浏览、编辑、创建wiki</p>
     </div>
     <div class="col-md-4 col-sm-4 col-xs-4">
         <div><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/qa_icon.png"/></div>
-        <a class="features-title" src=""><h1>问答</h1></a>
+        <a class="features-title" href="<?php echo site_url() . get_page_address('qa');?>"><h1>问答</h1></a>
         <p class="features-sec">“ 解惑 ”</p>
         <p>专注高校硬件学习和web学习领域问答<br/>直系学长学姐和同届大神为你答疑解惑</p>
     </div>
     <div class="col-md-4 col-sm-4 col-xs-4">
         <div><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/project_icon.png"/></div>
-        <a class="features-title" src=""><h1>项目</h1></a>
+        <a class="features-title" href="<?php echo site_url() . get_page_address('project');?>"><h1>项目</h1></a>
         <p class="features-sec">“ 致用 ”</p>
         <p>看优秀的开源项目，激发灵感，学习借鉴<br/>记录分享你的项目，让学习成长留下痕迹</p>
     </div>

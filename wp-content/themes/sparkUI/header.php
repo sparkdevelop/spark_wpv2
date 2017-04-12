@@ -39,7 +39,7 @@
                         <?php
                         if(is_user_logged_in()){
                             $current_user = wp_get_current_user();
-                            $person_address=get_personal_page();
+                            $person_address=get_page_address('personal');
                             ?>
                             <div class="btn-group" >
                                 <button type="button" id="user-portrait" class="btn btn-default dropdown-toggle" data-toggle="dropdown">

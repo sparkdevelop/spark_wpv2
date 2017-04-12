@@ -7,15 +7,11 @@
  *
  */
 
-global $wpdb;
-global  $wp_query;
-$page_qa_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'qa'");
-$page_wiki_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'wiki'");
-$page_project_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'project'");
-$page_ask_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'ask'");
-$page_personal_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'personal'");
-$page_test_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'test'");
-$page_search_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'search'");
+$page_wiki_id = get_page_id('wiki');
+$page_qa_id = get_page_id('qa');
+$page_project_id =get_page_id('project');
+$page_ask_id = get_page_id('ask');
+$page_personal_id = get_page_id('personal');
 ?>
 
 <?php get_header(); ?>

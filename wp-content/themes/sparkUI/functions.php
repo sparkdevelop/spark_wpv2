@@ -146,18 +146,7 @@ function dwqa_user_most_ask( $number = 10, $from = false, $to = false ) {
     }
     return $users;
 }
-function get_ask_page(){
-    global $wpdb;
-    $page_ask_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'ask'");
-    $ask_page_ID="?page_id=".$page_ask_id;
-    return $ask_page_ID;
-}
-function get_personal_page(){
-    global $wpdb;
-    $page_personal_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'personal'");
-    $personal_page_ID="?page_id=".$page_personal_id;
-    return $personal_page_ID;
-}
+
 function get_hot_tags(){
     global $wpdb;
     $tag_id = array();
@@ -193,6 +182,19 @@ function curPageURL()
         $pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
     }
     return $pageURL;
+}
+
+function get_page_id($page_name){
+    global $wpdb;
+    $page_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '$page_name'");
+    return $page_id;
+}
+
+function get_page_address($page_name){
+    global $wpdb;
+    $page_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '$page_name'");
+    $page_address="?page_id=".$page_id;
+    return $page_address;
 }
 
 

@@ -3,8 +3,7 @@
 <?php
 //本页面是问答页面的侧边栏。
 global $wpdb;
-$page_ask_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = 'ask'");
-$ask_page_ID="?page_id=".$page_ask_id;
+$ask_page_ID=get_page_address('ask');
 
 //为全部标签做准备。
 global $wpdb;
