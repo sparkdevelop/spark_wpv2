@@ -74,7 +74,8 @@
                 <div class="divline"></div>
             </li>
         <?php
-        } elseif (get_post_meta(get_the_ID(), '_dwqa_status', true) == 'resolved' || get_post_meta(get_the_ID(), '_dwqa_status', true) == 'close') {?>
+        }
+        elseif (get_post_meta(get_the_ID(), '_dwqa_status', true) == 'resolved' || get_post_meta(get_the_ID(), '_dwqa_status', true) == 'close') {?>
             <li class="list-group-item" style="padding: 15px 0px">
         <div style="display: inline-block;vertical-align: top;margin-top: 0px">
             <?php echo get_avatar(get_the_author_ID(),48,'');?>

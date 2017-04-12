@@ -44,7 +44,7 @@ $paginate = paginate_links($args);
 ?>
     <ul id="myqaTab" class="nav nav-pills">
         <?php
-        $current_url = home_url(add_query_arg(array()));
+        $current_url = curPageURL();
         $url_array=parse_url($current_url);
         $query_parse=explode("&",$url_array['query']);
         if(array_search("filter=my-answers",$query_parse)){?>

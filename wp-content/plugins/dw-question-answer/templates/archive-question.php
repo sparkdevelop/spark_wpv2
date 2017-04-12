@@ -73,7 +73,7 @@ foreach($tags as $key => $temp){
 		<div style="display: inline-block;float: right;height: 42px;">
 			<ul id="rightTab" class="nav nav-pills">
 				<?php
-				$current_url = home_url(add_query_arg(array()));
+				$current_url = curPageURL();
 				$url_array=parse_url($current_url);
 				$query_parse=explode("&",$url_array['query']);
 				if(array_search("sort=views",$query_parse)||array_search("filter=all",$query_parse)){?>
