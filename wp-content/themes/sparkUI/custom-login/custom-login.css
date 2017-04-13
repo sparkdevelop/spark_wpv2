@@ -1,0 +1,63 @@
+/*更改背景*/
+body.login{
+    background:url(img/bg.jpg) 0 0 no-repeat;
+}
+
+/*更改logo图片*/
+.login h1 a {
+    background:url(img/logo-login.png) no-repeat;
+    width:200px;
+    height: 60px;
+}
+
+.login form{
+    padding: 30px 25px;
+}
+
+/*登录按钮*/
+.wp-core-ui .button.button-large {
+    height: 40px;
+    padding: 0 12px 0;
+    width: 270px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.wp-core-ui .button-primary{
+    background-color: #fe642d;
+    border: none;
+    box-shadow: 3px 3px 3px #ffd8cc;
+    text-shadow: none;
+}
+
+.wp-core-ui .button-primary:hover,.wp-core-ui .button-primary:focus,.wp-core-ui .button-primary:active{
+    background-color: #f7632d;
+    border:none;
+    box-shadow: none;
+}
+
+/*填用户名密码邮件的框*/
+input[type=text]:focus,input[type=password]:focus,input[type=email]:focus{
+    border-color: #fe642d;
+    box-shadow: 0 0 2px #fe642d;
+}
+
+/*记住登录信息前小勾框*/
+input[type=checkbox]:focus{
+    border-color:#fe642d;
+    box-shadow: 0 0 2px #fe642d;
+}
+
+input[type=checkbox]:checked:before{
+    color: #fe642d;
+}
+
+/*表单底下注册忘记密码返回火花空间*/
+.login #backtoblog a:hover, .login #nav a:hover, .login h1 a:hover,.login #backtoblog a:focus, .login #nav a:focus, .login h1 a:focus{
+    color: #fe642d;
+}
+a:focus{
+    box-shadow: 0 0 0 1px #fe642d,0 0 2px 1px #e55b29;
+}
+
