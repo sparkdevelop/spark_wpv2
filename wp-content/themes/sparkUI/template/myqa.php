@@ -42,7 +42,7 @@ $args = array(
 );
 $paginate = paginate_links($args);
 ?>
-    <ul id="myqaTab" class="nav nav-pills">
+    <ul id="personalTab" class="nav nav-pills">
         <?php
         $current_url = curPageURL();
         $url_array=parse_url($current_url);

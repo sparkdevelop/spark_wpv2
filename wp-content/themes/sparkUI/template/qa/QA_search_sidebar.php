@@ -55,7 +55,7 @@ array_multisort($arr_sort_week['repeat_count'],SORT_DESC,$rows_week);
         <div class="sidebar_list_header">
             <p>大家都在搜</p>
             <!--列表头-->
-            <ul id="askerTab" class="nav nav-pills" style="float: right">
+            <ul id="sidebar_list_choose" class="nav nav-pills" style="float: right">
                 <li><a href="#searchday" data-toggle="tab" style="width: 20px;margin-top: 5px;">日</a></li>
                 <li class="active"><a href="#searchweek" data-toggle="tab" style="width: 20px;margin-top: 5px;">周</a></li>
             </ul>

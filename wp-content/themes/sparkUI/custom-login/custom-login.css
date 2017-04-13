@@ -61,3 +61,7 @@ a:focus{
     box-shadow: 0 0 0 1px #fe642d,0 0 2px 1px #e55b29;
 }
 
+.login .message{
+    display: none;
+}
+
