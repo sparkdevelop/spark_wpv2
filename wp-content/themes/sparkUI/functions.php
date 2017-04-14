@@ -262,4 +262,71 @@ add_filter('login_headertitle','custom_headertitle');
 //        echo '</div>';
 //    }
 //}
+//项目浏览统计
+function getProjectViews($postID){
+    $count_key = 'project_views'; //自定义域
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+        return "0";
+    }
+    return $count.'';
+}
+function setProjectViews($postID) {
+    $count_key = 'project_views'; //自定义域
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        $count = 0;
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+    }else{
+        $count++;
+        update_post_meta($postID, $count_key, $count);
+    }
+}
+//给投稿者上传文件的权限
+if ( current_user_can('contributor') && !current_user_can('upload_files') )
+    add_action('init', 'allow_contributor_uploads');
+
+function allow_contributor_uploads() {
+    $contributor = get_role('contributor');
+    $contributor->add_cap('upload_files');
+}
+/*剥夺投稿者上传文件的权限
+if ( current_user_can('contributor') && current_user_can('upload_files') )
+    add_action('admin_init', 'allow_contributor_uploads');
+
+function allow_contributor_uploads() {
+    $contributor = get_role('contributor');
+    $contributor->remove_cap('upload_files');
+}
+*/
+/**
+ * WordPress 媒体库只显示用户自己上传的文件
+ * https://www.wpdaxue.com/view-user-own-media-only.html
+ */
+//在文章编辑页面的[添加媒体]只显示用户自己上传的文件
+function my_upload_media( $wp_query_obj ) {
+    global $current_user, $pagenow;
+    if( !is_a( $current_user, 'WP_User') )
+        return;
+    if( 'admin-ajax.php' != $pagenow || $_REQUEST['action'] != 'query-attachments' )
+        return;
+    if( !current_user_can( 'manage_options' ) && !current_user_can('manage_media_library') )
+        $wp_query_obj->set('author', $current_user->ID );
+    return;
+}
+add_action('pre_get_posts','my_upload_media');
+
+//除管理员外，在[媒体库]只显示用户上传的文件
+function my_media_library( $wp_query ) {
+    if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/wp-admin/upload.php' ) !== false ) {
+        if ( !current_user_can( 'manage_options' ) && !current_user_can( 'manage_media_library' ) ) {
+            global $current_user;
+            $wp_query->set( 'author', $current_user->id );
+        }
+    }
+}
+add_filter('parse_query', 'my_media_library' );
 ?>

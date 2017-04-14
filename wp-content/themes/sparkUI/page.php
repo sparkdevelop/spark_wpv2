@@ -37,9 +37,7 @@ $page_personal_id = get_page_id('personal');
                     require "template/personal.php";
                 }
                 elseif (is_page($page_project_id)){
-                    echo '<div class="col-md-9 col-sm-9 col-xs-9" id="col9">';
-                    echo "项目内容";
-                    echo '</div>';
+                    require "template/project/project_content.php";
                 }
                 else{
                     the_content();
