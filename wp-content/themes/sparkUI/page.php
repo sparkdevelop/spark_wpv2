@@ -12,6 +12,7 @@ $page_qa_id = get_page_id('qa');
 $page_project_id =get_page_id('project');
 $page_ask_id = get_page_id('ask');
 $page_personal_id = get_page_id('personal');
+$profile = get_page_id('profile');
 ?>
 
 <?php get_header(); ?>
@@ -35,6 +36,9 @@ $page_personal_id = get_page_id('personal');
                 }
                 elseif (is_page($page_personal_id)){
                     require "template/personal.php";
+                }
+                elseif (is_page($profile)){
+                    require "template/profile_process.php";
                 }
                 elseif (is_page($page_project_id)){
                     echo '<div class="col-md-9 col-sm-9 col-xs-9" id="col9">';

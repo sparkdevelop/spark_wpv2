@@ -197,40 +197,69 @@ function get_page_address($page_name){
     return $page_address;
 }
 
+function get_dwqa_cat_ID($cat_name){
+    global $wpdb;
+    $cat_id = $wpdb->get_var("SELECT term_id FROM $wpdb->terms WHERE name = '$cat_name'");
+    return $cat_id;
+}
+//function loadCustomTemplate($template) {
+//    global $wp_query;
+//    if(!file_exists($template))return;
+//    $wp_query->is_page = true;
+//    $wp_query->is_single = false;
+//    $wp_query->is_home = false;
+//    $wp_query->comments = false;
+//    // if we have a 404 status
+//    if ($wp_query->is_404) {
+//        // set status of 404 to false
+//        unset($wp_query->query["error"]);
+//        $wp_query->query_vars["error"]="";
+//        $wp_query->is_404=false;
+//    }
+//    // change the header to 200 OK
+//    header("HTTP/1.1 200 OK");
+//    //load our template
+//    include($template);
+//    exit;
+//}
+//
+//function templateRedirect() {
+//    $basename = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
+//    loadCustomTemplate(TEMPLATEPATH.'/template/'."/$basename.php");
+//}
+//
+//add_action('template_redirect', 'templateRedirect');
 
 //暂时无用
 //function Spark_question_paginate_link() {
 //    global $wp_query, $dwqa_general_settings;
 //
-//    $archive_question_url = get_permalink( $dwqa_general_settings['pages']['archive-question'] );
+//    $archive_question_url = curPageURL();
 //    $page_text = dwqa_is_front_page() ? 'page' : 'paged';
 //    $page = get_query_var( $page_text ) ? get_query_var( $page_text ) : 1;
 //
-//    $tag = get_query_var( 'dwqa-question_tag' ) ? get_query_var( 'dwqa-question_tag' ) : false;
-//    $cat = get_query_var( 'dwqa-question_category' ) ? get_query_var( 'dwqa-question_category' ) : false;
+//   // $tag = get_query_var( 'dwqa-question_tag' ) ? get_query_var( 'dwqa-question_tag' ) : false;
+//    //$cat = get_query_var( 'dwqa-question_category' ) ? get_query_var( 'dwqa-question_category' ) : false;
 //
-//    $url = $cat
-//        ? get_term_link( $cat, get_query_var( 'taxonomy' ) )
-//        : ( $tag ? get_term_link( $tag, get_query_var( 'taxonomy' ) ) : $archive_question_url );
+////    $url = $cat
+////        ? get_term_link( $cat, get_query_var( 'taxonomy' ) )
+////        : ( $tag ? get_term_link( $tag, get_query_var( 'taxonomy' ) ) : $archive_question_url );
 //
 //    $args = array(
-//        'base' => add_query_arg( $page_text, '%#%', $url ),
+//        'base' => add_query_arg( $page_text, '%#%', $archive_question_url ),
 //        'format' => '',
 //        'current' => $page,
-//        'total' => $wp_query->dwqa_questions->max_num_pages
+//        'show_all' => True,
+//        //'total' => $wp_query->dwqa_questions->max_num_pages
 //    );
 //
 //    $paginate = paginate_links( $args );
-//    $paginate = str_replace( 'page-number', 'dwqa-page-number', $paginate );
-//    $paginate = str_replace( 'current', 'dwqa-current', $paginate );
-//    $paginate = str_replace( 'next', 'dwqa-next', $paginate );
-//    $paginate = str_replace( 'prev ', 'dwqa-prev ', $paginate );
-//    $paginate = str_replace( 'dots', 'dwqa-dots', $paginate );
+//    //$paginate = str_replace( 'page-number', 'dwqa-page-number', $paginate );
+//    //$paginate = str_replace( 'current', 'dwqa-current', $paginate );
+//    //$paginate = str_replace( 'next', 'dwqa-next', $paginate );
+//    //$paginate = str_replace( 'prev ', 'dwqa-prev ', $paginate );
+//    //$paginate = str_replace( 'dots', 'dwqa-dots', $paginate );
 //
-//    if ( $wp_query->dwqa_questions->max_num_pages > 1 ) {
-//        echo '<div class="dwqa-pagination">';
-//        echo $paginate;
-//        echo '</div>';
-//    }
+//    return $paginate;
 //}
 ?>
