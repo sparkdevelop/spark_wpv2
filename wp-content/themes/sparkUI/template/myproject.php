@@ -4,12 +4,8 @@ wp_enqueue_script('fep-script');
 wp_enqueue_media();
 
 $current_user = wp_get_current_user();
-$status = isset($_GET['fep_type']) ? $_GET['fep_type'] : 'publish';
-$paged = isset($_GET['fep_page']) ? $_GET['fep_page'] : 1;
-$per_page = (isset($fep_misc['posts_per_page']) && is_numeric($fep_misc['posts_per_page'])) ? $fep_misc['posts_per_page'] : 10;//每页显示文章数
 $author_posts = new WP_Query(array('posts_per_page' => -1, 'paged' => $paged, 'orderby' => 'DESC', 'author' => $current_user->ID, 'post_status' => $status,'cat'=>13,14,17 ));
-$old_exist = ($paged * $per_page) < $author_posts->found_posts;
-$new_exist = $paged > 1;
+
 ?>
 
 <style type="text/css">
@@ -56,7 +52,16 @@ $new_exist = $paged > 1;
             <li style="list-style-type: none;">
                 <div class="col-md-4 col-sm-4 col-xs-4">
                     <div class="thumbnail" style="height: 270px">
-                        <span class="fa fa-trash-o fa-lg" id="close-icon"></span> <!--删除文章-->
+                        <span class="fa fa-trash-o fa-lg" id="close-icon">
+                             <?php
+                             $url = get_bloginfo('url');
+                             if (current_user_can('edit_post', $post->ID)){
+                                 echo '<a class="delete-post" href="';
+                                 echo wp_nonce_url("$url/wp-admin/post.php?action=delete&post=$id", 'delete-post_' . $post->ID);
+                                 echo '">删除</a>';
+                             }
+                             ?>
+                        </span> <!--删除文章-->
                         <?php
                         if ( has_post_thumbnail() ) { ?>
                             <?php the_post_thumbnail(array(220,150)); ?> <?php } else {?>
