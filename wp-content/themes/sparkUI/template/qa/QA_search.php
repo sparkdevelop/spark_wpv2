@@ -13,7 +13,7 @@ $page = get_query_var( $page_text ) ? get_query_var( $page_text ) : 1;
      $posts=query_posts($query_string);
     }
     elseif($post_type=='project'){  //根据自身情况更改
-        $query_string= $query_string.'&posts_per_page=5'.'&post_type='.$post_type;
+        $query_string= $query_string.'&posts_per_page=5';
         $posts=query_posts($query_string);
     }
     else{
