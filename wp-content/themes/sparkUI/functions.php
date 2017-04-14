@@ -334,10 +334,8 @@ function allow_contributor_uploads() {
     $contributor->remove_cap('upload_files');
 }
 */
-/**
- * WordPress 媒体库只显示用户自己上传的文件
- * https://www.wpdaxue.com/view-user-own-media-only.html
- */
+
+
 //在文章编辑页面的[添加媒体]只显示用户自己上传的文件
 function my_upload_media( $wp_query_obj ) {
     global $current_user, $pagenow;

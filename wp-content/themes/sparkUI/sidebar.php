@@ -24,7 +24,7 @@ if ( is_page($page_qa_id) ) {//显示问答侧栏 参数为pageID 如何自动�
     }
     require "template/qa/QA_sidebar.php";
 }
-if (is_page(20)){
+if (is_page('项目')){
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_projectsidebar')){
     }
     require "template/project/project_sidebar.php";
