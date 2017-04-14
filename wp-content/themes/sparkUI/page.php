@@ -47,6 +47,12 @@ $profile = get_page_id('profile');
                 elseif (is_page(20)){
                     require "template/project/project_content.php";
                 }
+                elseif (is_page(266)){
+                    require "template/project/submission-form.php";
+                }
+                elseif (is_page(199)){
+                    require "template/project/project_edit.php";
+                }
                 elseif (is_page($page_ask_id)){
                     require "template/qa/QA_ask.php";
                 }

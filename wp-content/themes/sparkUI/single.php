@@ -7,17 +7,12 @@
  */
  get_header(); ?>
 <?php
-//wp_enqueue_style('fep-style');
+
 wp_enqueue_script('fep-script');
 wp_enqueue_media();
 
 $current_user = wp_get_current_user();
-$status = isset($_GET['fep_type']) ? $_GET['fep_type'] : 'publish';
-$paged = isset($_GET['fep_page']) ? $_GET['fep_page'] : 1;
-$per_page = (isset($fep_misc['posts_per_page']) && is_numeric($fep_misc['posts_per_page'])) ? $fep_misc['posts_per_page'] : 10;//每页显示文章数
 $author_posts = new WP_Query(array('posts_per_page' => $per_page, 'paged' => $paged, 'orderby' => 'DESC', 'author' => $current_user->ID, 'post_status' => $status,'cat'=>13,14,17 ));
-$old_exist = ($paged * $per_page) < $author_posts->found_posts;
-$new_exist = $paged > 1;
 $postid = get_the_ID();
 
 ?>
@@ -61,20 +56,7 @@ $postid = get_the_ID();
                 <div class="sidebar_button" style="margin-top: 20px;margin-right: 15px;margin-left: -2px">
                     <a href="?fep_action=edit&fep_id=<?= $postid; ?><?= (isset($_SERVER['QUERY_STRING']) ? '&' . $_SERVER['QUERY_STRING'] : '') ?>&page_id=199" style="color: white" >编辑项目</a>
                 </div><br><br>
-                <!--项目目录-->
-                <!--<table class="table table-bordered" style="width: 200px;margin-left: 5px">
-                    <tbody>
-                        <tr>
-                            <td style="padding-left: 20px"><b>目录</b></td>
-                        </tr>
-                        <tr>
-                            <td style="padding-left: 20px">目标</td>
-                        </tr>
-                        <tr>
-                            <td style="padding-left: 20px">原理</td>
-                        </tr>
-                    </tbody>
-                </table>-->
+
 
                 <style type="text/css">
                     .create_wiki_btn {
@@ -146,22 +128,7 @@ $postid = get_the_ID();
         </div>
     </div>
 
-<?php
-global $wpdb;
-$post_id = get_the_ID();
-$term_names = $wpdb->get_results("select t.`name` from ($wpdb->term_taxonomy tt left join $wpdb->term_relationships tr on tt.term_taxonomy_id=tr.term_taxonomy_id) left join $wpdb->terms t on t.term_id=tt.term_id where tr.object_id=".$post_id." and tt.taxonomy=\"wiki_cats\"");
-$wiki_categorys = array();
-foreach($term_names as $term_name) {
-    $wiki_categorys[] = $term_name->name;
-}
-$term_all_names = $wpdb->get_results("select t.`name`, t.`term_id` from $wpdb->terms t left join $wpdb->term_taxonomy tt on tt.term_id = t.term_id where tt.taxonomy = \"wiki_cats\";");
-$wiki_all_categorys = array();
-foreach($term_all_names as $wiki_all_name) {
-    $wiki_all_categorys[$wiki_all_name->term_id] = $wiki_all_name->name;
-}
-$_SESSION['wiki_categories'] = $wiki_categorys;
-$_SESSION['wiki_all_categories'] = $wiki_all_categorys;
-?>
+
 
 <?php get_footer(); ?>
 

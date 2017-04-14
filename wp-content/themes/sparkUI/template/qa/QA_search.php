@@ -12,8 +12,8 @@ $page = get_query_var( $page_text ) ? get_query_var( $page_text ) : 1;
      $query_string = $query_string.'&posts_per_page=5'.'&post_type='.$post_type;
      $posts=query_posts($query_string);
     }
-    elseif($post_type=='project'){  //根据自身情况更改
-        $query_string= $query_string.'&posts_per_page=5';
+    elseif($post_type=='post'){  //根据自身情况更改
+        $query_string= $query_string.'&posts_per_page=-1'.'&post_type='.$post_type;
         $posts=query_posts($query_string);
     }
     else{
@@ -37,17 +37,17 @@ $paginate = paginate_links($args);
     if(array_search("post_type=wiki",$query_parse)){?>
         <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'wiki' ) ) )?>">wiki</a></li>
         <li><a href="<?php echo remove_query_arg( array('post_type') ) ?>">问答</a></li>
-        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'project'  ) ) )?>">项目</a></li>
+        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post'  ) ) )?>">项目</a></li>
     <?php }
     elseif(array_search("post_type=project",$query_parse)){?>
         <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'wiki' ) ) )?>">wiki</a></li>
         <li><a href="<?php echo remove_query_arg( array('post_type') ) ?>">问答</a></li>
-        <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'project'  ) ) )?>">项目</a></li>
+        <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post'  ) ) )?>">项目</a></li>
     <?php }
     else{ ?>
         <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'wiki' ) ) )?>">wiki</a></li>
         <li  class="active"><a href="<?php echo remove_query_arg( array('post_type') )?>">问答</a></li>
-        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'project'  ) ) )?>">项目</a></li>
+        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post'  ) ) )?>">项目</a></li>
     <?php } ?>
 </ul>
 <div class="dwqa-questions-list">
@@ -56,10 +56,10 @@ $paginate = paginate_links($args);
             <?php if ( get_post_status() == 'publish' || ( get_post_status() == 'private' && dwqa_current_user_can( 'edit_question', get_the_ID() ) ) ) : ?>
                 <?php if ($post_type=='dwqa-question'){?>
                     <?php dwqa_load_template( 'Spark-qa-search', 'archive' ) ?>
-                <?php }elseif($post_type=='wiki'){ ?>
-                    <?php dwqa_load_template( 'Spark-wiki-search', 'archive' ) ?>
-                <?php } else{ ?>
+                <?php }elseif($post_type=='post'){ ?>
                     <?php dwqa_load_template( 'Spark-project-search', 'archive' ) ?>
+                <?php } else{ ?>
+                    <?php dwqa_load_template( 'Spark-wiki-search', 'archive' ) ?>
                 <?php } ?>
 
             <?php endif; ?>
