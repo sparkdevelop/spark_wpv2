@@ -186,7 +186,7 @@ function curPageURL()
 
 function get_page_id($page_name){
     global $wpdb;
-    $page_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '$page_name'");
+    $page_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '$page_name' AND post_status = 'publish' ");
     return $page_id;
 }
 

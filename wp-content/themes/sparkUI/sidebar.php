@@ -30,6 +30,11 @@ if ( is_page($page_qa_id) ) {//显示问答侧栏 参数为pageID 如何自动�
     }
     require "template/qa/QA_sidebar.php";
 }
+if (is_page(62)){
+    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_projectsidebar')){
+    }
+    require "template/project/project_sidebar.php";
+}
 if ( is_page($page_ask_id) ) {//显示问题详情页
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_qa_asksidebar')){
     }
@@ -40,13 +45,7 @@ if ( is_page($page_personal_id) ) {//显示问题详情页
     }
     require "template/personal_sidebar.php";
 }
-if (is_page($page_project_id)){
-    echo '<div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">';
-    echo "项目边栏";
-    echo '</div>';
-    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_projectsidebar')){
-    }
-}
+
 if (is_search()){
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_searchsidebar')){
     }

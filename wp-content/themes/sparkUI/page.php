@@ -10,6 +10,7 @@
 $page_wiki_id = get_page_id('wiki');
 $page_qa_id = get_page_id('qa');
 $page_project_id =get_page_id('project');
+
 $page_ask_id = get_page_id('ask');
 $page_personal_id = get_page_id('personal');
 $profile = get_page_id('profile');
@@ -31,6 +32,9 @@ $profile = get_page_id('profile');
                 elseif ( is_page($page_qa_id) ) {//显示问答内容 参数为pageID 如何自动获取??
                     require "template/qa/QA_content.php";
                 }
+                elseif (is_page(62)){
+                    require "template/project/project_content.php";
+                }
                 elseif (is_page($page_ask_id)){
                     require "template/qa/QA_ask.php";
                 }
@@ -39,9 +43,6 @@ $profile = get_page_id('profile');
                 }
                 elseif (is_page($profile)){
                     require "template/profile_process.php";
-                }
-                elseif (is_page($page_project_id)){
-                    require "template/project/project_content.php";
                 }
                 else{
                     the_content();
