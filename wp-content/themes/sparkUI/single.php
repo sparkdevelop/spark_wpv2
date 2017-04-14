@@ -146,6 +146,22 @@ $postid = get_the_ID();
         </div>
     </div>
 
+<?php
+global $wpdb;
+$post_id = get_the_ID();
+$term_names = $wpdb->get_results("select t.`name` from ($wpdb->term_taxonomy tt left join $wpdb->term_relationships tr on tt.term_taxonomy_id=tr.term_taxonomy_id) left join $wpdb->terms t on t.term_id=tt.term_id where tr.object_id=".$post_id." and tt.taxonomy=\"wiki_cats\"");
+$wiki_categorys = array();
+foreach($term_names as $term_name) {
+    $wiki_categorys[] = $term_name->name;
+}
+$term_all_names = $wpdb->get_results("select t.`name`, t.`term_id` from $wpdb->terms t left join $wpdb->term_taxonomy tt on tt.term_id = t.term_id where tt.taxonomy = \"wiki_cats\";");
+$wiki_all_categorys = array();
+foreach($term_all_names as $wiki_all_name) {
+    $wiki_all_categorys[$wiki_all_name->term_id] = $wiki_all_name->name;
+}
+$_SESSION['wiki_categories'] = $wiki_categorys;
+$_SESSION['wiki_all_categories'] = $wiki_all_categorys;
+?>
 
 <?php get_footer(); ?>
 

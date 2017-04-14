@@ -26,13 +26,25 @@ $profile = get_page_id('profile');
                 if(is_home() || is_front_page()) { //首页显示“首页内容”
                     echo "首页内容";
                 }
-                elseif ( is_page($page_wiki_id) ) {//显示wiki内容”
-                    require "template/wiki/wiki_content.php";
+                elseif (is_page("wiki")) {
+                    require "template/wiki/wiki_index.php";
+                }
+                elseif (is_page("编辑wiki")) {
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/wiki/wiki_edit.php";
+                }
+                elseif (is_page("创建wiki")) {
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/wiki/wiki_create.php";
                 }
                 elseif ( is_page($page_qa_id) ) {//显示问答内容 参数为pageID 如何自动获取??
                     require "template/qa/QA_content.php";
                 }
-                elseif (is_page(62)){
+                elseif (is_page(20)){
                     require "template/project/project_content.php";
                 }
                 elseif (is_page($page_ask_id)){
@@ -52,7 +64,7 @@ $profile = get_page_id('profile');
             <?php else: ?>
                 <p><?php _e('Sorry, this page does not exist.'); ?></p>
             <?php endif; ?>
-            <?php get_sidebar();?>
+            <?php get_sidebar(); ?>
     </div>
 </div>
 <?php get_footer(); ?>
