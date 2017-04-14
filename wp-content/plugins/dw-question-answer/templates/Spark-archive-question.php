@@ -51,16 +51,16 @@ foreach($tags as $key => $temp){
 
 <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
     <div class="dwqa-questions-archive">
-        <div style="display:inline-block;margin-bottom: 20px">
+        <div  class="archive-nav">
             <?php
             $term = get_query_var( 'dwqa-question_category' ) ?
                 get_query_var( 'dwqa-question_category' ) : ( get_query_var( 'dwqa-question_tag' ) ?
                     get_query_var( 'dwqa-question_tag' ) : false );
             $term = get_term_by( 'slug', $term, get_query_var( 'taxonomy' ) );
             if('dwqa-question_tag' == get_query_var( 'taxonomy' )){?>
-            <h4>问答标签:
+            <h4>问答标签：
                 <?php }elseif('dwqa-question_category' == get_query_var( 'taxonomy' )){ ?>
-                <h4>问答分类:
+                <h4>问答分类：
                     <?php } else{?>
                     <h4>所有问题
                         <?php }?>

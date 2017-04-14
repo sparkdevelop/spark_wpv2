@@ -197,6 +197,7 @@ function get_page_address($page_name){
     return $page_address;
 }
 
+
 function get_dwqa_cat_ID($cat_name){
     global $wpdb;
     $cat_id = $wpdb->get_var("SELECT term_id FROM $wpdb->terms WHERE name = '$cat_name'");
@@ -229,6 +230,37 @@ function get_dwqa_cat_ID($cat_name){
 //}
 //
 //add_action('template_redirect', 'templateRedirect');
+
+//增加登录注册页自定义样式表
+function custom_login() {
+    echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('template_directory') . '/custom-login/custom-login.css" />';
+}
+add_action('login_head', 'custom_login');
+
+//更改logo的url，默认指向wordpress.org
+function custom_headerurl( $url ) {
+    return get_bloginfo( 'url' );
+}
+add_filter( 'login_headerurl', 'custom_headerurl' );
+
+//更改logo的title，默认是“Powered by WordPress”(基于WordPress)
+function custom_headertitle ( $title ) {
+    return __( '欢迎来到火花空间' );
+}
+add_filter('login_headertitle','custom_headertitle');
+
+//在登陆表单中添加信息
+//function custom_login_message() {
+//    echo '<p style="text-align:center">' . __('欢迎来到火花空间，登陆后可编辑wiki');
+//}
+//add_action('login_form', 'custom_login_message');
+
+//添加自定义HTML，例如增加版权信息
+//function custom_html() {
+//    echo '<p class="copyright">&copy; ' . get_bloginfo(url);
+//}
+//add_action('login_footer', 'custom_html');
+
 
 //暂时无用
 //function Spark_question_paginate_link() {

@@ -70,7 +70,7 @@
                         <?php } ?>
                     </div>
                     <div class="clearfix visible-xs"></div>
-                    <div class="col-md-3 col-sm-3 col-xs-3" style="ma">
+                    <div class="col-md-3 col-sm-3 col-xs-3" id="col3">
                         <form class="navbar-form " role="search" method="get" action="<?php echo home_url('/');//get_permalink() ?>" style="float: right;padding-left: 0px;padding-right: 0px">
                            <div class="form-group">
                                <input type="text" id="search-content" name='s' value="请输入要搜索的问题" onfocus="javascript:if(this.value=='请输入要搜索的问题')this.value=''" class="form-control" placeholder="Search">

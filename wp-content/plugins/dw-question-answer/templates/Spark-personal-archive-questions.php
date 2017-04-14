@@ -8,7 +8,7 @@ if($qa_filter=='my-answers') {
             <a class="ask_topic" href="<?php echo get_permalink($Qpost_id);?>"><?php echo get_the_title($Qpost_id);?></a>
         </div>
         <div>
-            <p>我的回答</p>
+            <p>我的回答：</p>
             <div class="qa_best_answer">
                 <?php echo mb_strimwidth(get_the_content(), 0, 100,"...");?>
             </div>
@@ -26,7 +26,7 @@ if($qa_filter=='my-answers') {
                     ?>
                 </h4>
             </div>
-            <div class="qa_show" style="display: inline-block;width: 60%;">
+            <div class="qa_show" style="display: inline-block;width: 60%;padding-top:2px;">
                 <!--        获取提问者名字、提问时间-->
                 <div class="qa_time">
                     <span><?php echo date('n月j日 G:i',get_the_time('U'));?>  </span>&nbsp;&nbsp;
@@ -55,7 +55,7 @@ else{ ?>
                     ?>
                 </h4>
             </div>
-            <div class="qa_show" style="display: inline-block;width: 60%;">
+            <div class="qa_show" style="display: inline-block;width: 60%;padding-top: 2px;">
                 <!--        获取提问者名字、提问时间-->
                 <div class="qa_time">
                     <span><?php echo date('n月j日 G:i',get_the_time('U'));?>  </span>&nbsp;&nbsp;
