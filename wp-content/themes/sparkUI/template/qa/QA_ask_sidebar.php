@@ -18,6 +18,12 @@
         <li class="list-group-item">
             <p>3.禁止发布广告和垃圾信息</p>
         </li>
+        <li class="list-group-item">
+            <p>4.为了使你的代码更加清晰,推荐使用以下代码:</p>
+            <li class="list-group-item"><p>[php]这里写你的代码[/php]</p></li>
+            <li class="list-group-item"><p>[code lang="js"]这里写你的代码[/code]</p></li>
+            <li class="list-group-item"><p>[sourcecode language="plain"]这里写你的代码[/sourcecode]</p></li>
+        </li>
     </ul>
 </div>
     </div>

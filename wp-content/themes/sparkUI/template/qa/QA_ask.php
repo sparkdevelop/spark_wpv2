@@ -12,7 +12,7 @@
     #Spark_question_submit_form{margin-bottom: 30px}
 </style>
 
-<form method="post" class="dwqa-content-edit-form" id="Spark_question_submit_form" onsubmit="SubmitCheck();">
+<form method="post" class="dwqa-content-edit-form" id="Spark_question_submit_form" onsubmit="return SubmitCheck();">
 <!--    标题栏-->
     <p class="dwqa-search">
         <?php
@@ -40,6 +40,7 @@
 <!--            <select></select>-->
 
         <?php
+        $Question_cat_ID = get_dwqa_cat_ID('Questions');
         wp_dropdown_categories( array(
             //'show_option_all'=>__( 'Select question category', 'dwqa' ),
             'name'          => 'question-category',
@@ -48,8 +49,10 @@
             //'show_option_none' => __( 'Select question category', 'dwqa' ),
             'show_option_none' => '',
             'hide_empty'    => 0,
+            'show_count'    =>true,
             'child of'      => 2,
-            'quicktags'     => array( 'buttons' => 'strong,em,link,block,del,ins,img,ul,ol,li,code,spell,close' ),
+            'exclude'       =>$Question_cat_ID,
+           // 'quicktags'     => array( 'buttons' => 'strong,em,link,block,del,ins,img,ul,ol,li,code,spell,close' ),
             'selected'      => isset( $_POST['question-category'] ) ? sanitize_text_field( $_POST['question-category'] ) : false,
         ) );
         ?>
@@ -133,7 +136,6 @@
         }
 
     }
-    var question_tag;
     function tags() {
         obj = document.getElementsByName("question-tag");
         check_val = [];
@@ -145,11 +147,12 @@
         //alert(str);
         return str;
     }
+    var question_tag;
     $.ajax({
         type:"post",
         data:{
-            question_tag=tags()
+            question_tag=tags();
         },
         success:function(data){
-        }});
+        }})
 </script>

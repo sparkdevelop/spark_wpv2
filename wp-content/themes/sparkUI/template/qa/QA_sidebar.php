@@ -45,9 +45,17 @@ foreach($tags as $key => $temp){
 <!--=======================================================-->
 
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
-    <div class="sidebar_button">
-        <a href="<?php echo site_url().$ask_page_ID;?>" style="color: white">我要提问</a>
-    </div>
+
+    <?php if(is_user_logged_in()){ ?>
+        <div class="sidebar_button">
+            <a href="<?php echo site_url().$ask_page_ID;?>" style="color: white">我要提问</a>
+        </div>
+    <?php }else{ ?>
+        <div class="sidebar_button">
+            <a href="<?php echo wp_login_url( get_permalink() ); ?>" style="color: white">我要提问</a>
+        </div>
+    <?php } ?>
+
     <!--热门标签-->
     <div class="sidebar_list">
         <div class="sidebar_list_header">

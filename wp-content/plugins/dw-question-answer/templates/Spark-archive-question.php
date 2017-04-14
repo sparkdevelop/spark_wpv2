@@ -76,15 +76,15 @@ foreach($tags as $key => $temp){
                 if(array_search("sort=views",$query_parse)||array_search("filter=all",$query_parse)){?>
                     <li  class="active"><a href="<?php echo esc_url(add_query_arg( array( 'sort' => 'views','filter'=>'all' ) ) )?>">热门</a></li>
                     <li><a href="<?php echo remove_query_arg(array('sort','filter')) ?>">所有</a></li>
-                    <li><a href="<?php echo esc_url( add_query_arg( array( 'filter' => 'unanswered','sort'=>'date' ) ) ) ?>">未解决</a></li>
+                    <li><a href="<?php echo esc_url( add_query_arg( array('filter' => 'unanswered') ) ) ?>">未解决</a></li>
                 <?php }elseif (array_search("filter=unanswered",$query_parse)||array_search("sort=date",$query_parse)){?>
-                    <li><a href="<?php echo esc_url(add_query_arg( array( 'sort' => 'views' ) ) )?>">热门</a></li>
+                    <li><a href="<?php echo esc_url(add_query_arg( array( 'sort' => 'views','filter'=>'all' ) ) )?>">热门</a></li>
                     <li><a href="<?php echo remove_query_arg(array('sort','filter')) ?>">所有</a></li>
-                    <li class="active"><a href="<?php echo esc_url( add_query_arg( array( 'filter' => 'unanswered' ) ) ) ?>">未解决</a></li>
+                    <li class="active"><a href="<?php echo esc_url( add_query_arg( array( 'filter' => 'unanswered') ) ) ?>" >未解决</a></li>
                 <?php } else{ ?>
                     <li><a href="<?php echo esc_url(add_query_arg( array( 'sort' => 'views' ) ) )?>">热门</a></li>
                     <li class="active"><a href="<?php echo remove_query_arg(array('sort','filter')) ?>">所有</a></li>
-                    <li><a href="<?php echo esc_url( add_query_arg( array( 'filter' => 'unanswered' ) ) ) ?>">未解决</a></li>
+                    <li><a href="<?php echo esc_url( add_query_arg( array( 'filter' => 'unanswered'))) ?>">未解决</a></li>
                 <?php } ?>
             </ul>
         </div>

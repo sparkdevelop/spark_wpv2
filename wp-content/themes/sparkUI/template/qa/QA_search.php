@@ -54,7 +54,14 @@ $paginate = paginate_links($args);
     <?php if ( have_posts() ) : ?>
         <?php while (have_posts()):the_post();?>
             <?php if ( get_post_status() == 'publish' || ( get_post_status() == 'private' && dwqa_current_user_can( 'edit_question', get_the_ID() ) ) ) : ?>
-                <?php dwqa_load_template( 'Spark-search', 'archive' ) ?>
+                <?php if ($post_type=='dwqa-question'){?>
+                    <?php dwqa_load_template( 'Spark-qa-search', 'archive' ) ?>
+                <?php }elseif($post_type=='wiki'){ ?>
+                    <?php dwqa_load_template( 'Spark-wiki-search', 'archive' ) ?>
+                <?php } else{ ?>
+                    <?php dwqa_load_template( 'Spark-project-search', 'archive' ) ?>
+                <?php } ?>
+
             <?php endif; ?>
         <?php endwhile; ?>
     <?php else : ?>
