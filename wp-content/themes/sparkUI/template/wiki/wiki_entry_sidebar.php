@@ -1,27 +1,69 @@
 <style type="text/css">
-    .create_wiki_btn {
-        margin-bottom: 30px;
+    .wiki-handle {
+        margin-bottom: 10px;
+        padding-left: 16px;
     }
-    .mulu a{
+    .edit-wiki{
+        width:45%;
+        height: 48px;
+        background-color: #fe642d;
+        -moz-box-shadow: 5px 5px 5px #ffd8cc;
+        box-shadow: 5px 5px 5px #ffd8cc;
+        text-align: center;
+        font-size: large;
+        margin: 10px 15px 15px 0px;
+        border-radius: 5px;
+        float: left;
+    }
+    .edit-wiki:hover{
+        box-shadow: none;
+    }
+    .edit-wiki>a,.edit-wiki>a:hover{
         display: block;
-        border: #9ea7af 1px solid;
-        height: 50px;
-        padding-left: 30px;
+        height: 100%;
+        line-height: 48px;
+        width: 100%;
+        color: white;
+        text-decoration: none;
     }
-    .mulu .mulu_item{
+    .create-wiki{
+        width:45%;
+        height: 48px;
+        -moz-box-shadow: 3px 3px 3px #ffe8e0;
+        box-shadow: 5px 5px 5px #ffe8e0;
+        text-align: center;
+        font-size: large;
+        margin: 10px 0px 15px 0px;
+        border:1px solid #fe642d;
+        border-radius: 5px;
+        float: left;
+    }
+    .create-wiki:hover{
+        box-shadow: none;
+    }
+    .create-wiki>a,.create-wiki>a:hover{
         display: block;
-        border: #9ea7af 1px solid;
-        height: 50px;
-        padding-left: 50px;
+        height: 100%;
+        line-height: 48px;
+        width: 100%;
+        color: #fe642d;
+        text-decoration: none;
     }
+
     .wiki_entry_info {
-        border: #9ea7af 1px solid;
-        padding: 20px 30px;
+        /*border:  1px solid #eee;*/
+        border-top:1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding: 20px 20px 10px 20px;
+    }
+    .wiki_entry_info p{
+        color: #333;
+        font-size: 14px;
     }
     .wiki_entry_score {
-        border: #9ea7af 1px solid;
-        margin-top: 20px;
-        padding: 20px 30px;
+        border: 1px solid #eee;
+        margin-top: 30px;
+        padding: 20px 20px 10px 20px;
     }
 </style>
 <?php
@@ -44,23 +86,23 @@
     $_SESSION["entry_mulu"] = $entry_titles;
 ?>
 <div class="wiki_sidebar_wrap">
-    <div class="row create_wiki_btn">
-        <div class="col-md-5"><a href="http://localhost/spark_wpv2/?page_id=60&post_id=<?php echo $post->ID ?>"><button type="button" class="btn" style="width: 100%">编辑 wiki</button></a></div>
-        <div class="col-md-offset-2 col-md-5"><a href="http://localhost/spark_wpv2/?page_id=58"><button type="button" class="btn" style="width: 100%">创建 wiki</button></a></div>
+    <div class="row wiki-handle">
+        <div class="edit-wiki"><a href="http://localhost/spark_wpv2/?page_id=60&post_id=<?php echo $post->ID ?>">编辑 wiki</a></div>
+        <div class="create-wiki"><a href="http://localhost/spark_wpv2/?page_id=58">创建 wiki</a></div>
     </div>
-    <div class="list-group mulu">
-        <a href="#" class="list-group-item">
-            <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-            目录
-        </a>
-        <?php
-            for($i=0; $i<count($entry_titles); $i++) {
-                ?>
-                <a href="#" class="list-group-item mulu_item"><?php echo $entry_titles[$i]; ?></a>
-                <?php
-            }
-        ?>
-    </div>
+<!--    <div class="list-group mulu">-->
+<!--        <a href="#" class="list-group-item">-->
+<!--            <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>-->
+<!--            目录-->
+<!--        </a>-->
+<!--        --><?php
+//            for($i=0; $i<count($entry_titles); $i++) {
+//                ?>
+<!--                <a href="#" class="list-group-item mulu_item">--><?php //echo $entry_titles[$i]; ?><!--</a>-->
+<!--                --><?php
+//            }
+//        ?>
+<!--    </div>-->
     <?php
         global $post;
         $admin_url=admin_url('admin-ajax.php');
@@ -108,12 +150,11 @@
         <p id="tags_show"></p>
     </div>
 
-    <div class="wiki_entry_score">
-        <p>学到好多: 有20人评分</p>
-    </div>
-    <br><br>
-    <div class="wiki_entry_share">
-        <p>QQ     WECHAT     WEIBO</p>
-    </div>
+<!--    <div class="wiki_entry_score">-->
+<!--        <p>学到好多: 有20人评分</p>-->
+<!--    </div>-->
+<!--    <div class="wiki_entry_share">-->
+<!--        <p>QQ     WECHAT     WEIBO</p>-->
+<!--    </div>-->
 </div>
 

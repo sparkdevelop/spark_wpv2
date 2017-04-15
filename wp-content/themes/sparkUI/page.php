@@ -17,7 +17,7 @@ $profile = get_page_id('profile');
 ?>
 
 <?php get_header(); ?>
-<div class="container" style="margin-top: 10px">
+<div class="container" style="margin-top: 10px;margin-bottom: 30px;">
     <div class="row" style="width: 100%">
            <!--引入动态模板-->
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
@@ -44,14 +44,8 @@ $profile = get_page_id('profile');
                 elseif ( is_page($page_qa_id) ) {//显示问答内容 参数为pageID 如何自动获取??
                     require "template/qa/QA_content.php";
                 }
-                elseif (is_page('项目')){
+                elseif (is_page(20)){
                     require "template/project/project_content.php";
-                }
-                elseif (is_page('发布项目')){
-                    require "template/project/submission-form.php";
-                }
-                elseif (is_page('My Posts')){
-                    require "template/project/project_edit.php";
                 }
                 elseif (is_page($page_ask_id)){
                     require "template/qa/QA_ask.php";

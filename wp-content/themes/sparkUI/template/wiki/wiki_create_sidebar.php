@@ -1,29 +1,4 @@
 <style type="text/css">
-    .mulu a{
-        display: block;
-        border: #9ea7af 1px solid;
-        height: 50px;
-        padding-left: 30px;
-    }
-    .mulu .mulu_item{
-        display: block;
-        border: #9ea7af 1px solid;
-        height: 50px;
-        padding-left: 50px;
-    }
-    .wiki_tags_input{
-        width: 100%;
-    }
-    .create_wiki_btn {
-        margin-top: 30px;
-    }
-    .wiki_cloud_entry {
-        display: inline-block;
-        margin-right: 20px;
-    }
-    .wiki_cloud_entry_selected {
-        background: #da4f49;
-    }
 
 </style>
 <?php
@@ -111,9 +86,10 @@ $admin_url=admin_url('admin-ajax.php');
         });
     });
 </script>
+<div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
 <div class="wiki_sidebar_wrap">
-    <p><b>wiki分类</b></p>
     <div class="list-group mulu">
+        <p class="wiki_sidebar_title">wiki分类</p>
         <?php
         foreach($_SESSION['wiki_all_categories'] as $category_term_id => $category_name) {
             ?>
@@ -124,12 +100,13 @@ $admin_url=admin_url('admin-ajax.php');
     </div>
 
     <div class="wiki_tags">
-        <b>wiki标签</b><br>
+        <p class="wiki_sidebar_title">wiki标签</p>
         <input type="text" class="wiki_tags_input" placeholder="多个标签用分号隔开"><br>
         <div id="wiki_hot_tags"></div>
     </div>
 
     <div class="create_wiki_btn">
-        <button type="button" class="btn update_wiki" style="width: 100%">发布 wiki</button>
+        <a class="update_wiki">发布 wiki</a>
     </div>
+</div>
 </div>
