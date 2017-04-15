@@ -22,7 +22,7 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
             <div class="tab-pane fade in active" id="recent"><!--最新-->
                 <div style="height: 2px;background-color: lightgray"></div><br>
                  <ul class="list-group">
-                     <?php $project_all_new = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' date','order' =>'DESC',  'post_status' => $status,'cat'=>13,14,17 ));?>
+                     <?php $project_all_new = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' date','order' =>'DESC',  'post_status' => $status,'cat'=>12,13 ));?>
                      <?php while ($project_all_new->have_posts()) : $project_all_new->the_post(); ?>
                         <li style="list-style-type: none;">
 
@@ -35,9 +35,10 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
                                     <?php } ?>
                                     <div style="height: 1px;background-color: lightgray"></div>
                                     <div class="caption">
-                                        <div style="height: 50px;font-size: 20px;color: black;">
-                                            <b><a href="<?php the_permalink(); ?>" style="color: black"><?php the_title(); ?></a></b></div>
-                                        <div style="display: inline;">
+                                        <div class="project-title">
+                                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                        </div>
+                                        <div>
                                             <span class="fa fa-user-o pull-left" style="font-size: 12px;color: gray">&nbsp;<?php the_author(); ?></span><span class="fa fa-bookmark-o pull-right" style="font-size: 12px;color: gray"> <?php the_category(', ') ?></span>
                                         </div><br>
                                         <div style="display: inline;">
@@ -62,14 +63,14 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
                     <ul class="list-group">
 
                         <li style="list-style-type: none;">
-                            <?php $project_all_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' project_views','order' =>'ASC',  'post_status' => $status,'cat'=>13,14,17 ));?>
+                            <?php $project_all_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' project_views','order' =>'ASC',  'post_status' => $status,'cat'=>12,13 ));?>
                             <?php while ($project_all_hot->have_posts()) : $project_all_hot->the_post(); ?>
                             <div class="col-md-4 col-sm-4 col-xs-4">
-                                <div class="thumbnail">
+                                <div class="thumbnail" style="height: 270px">
                                     <?php
                                     if ( has_post_thumbnail() ) { ?>
-                                        <?php the_post_thumbnail('medium'); ?> <?php } else {?>
-                                        <img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" />
+                                        <?php the_post_thumbnail(array(220,150)); ?> <?php } else {?>
+                                        <img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" height="150" />
                                     <?php } ?>
                                     <div class="caption">
                                         <h3><b><a href="<?php the_permalink(); ?>" style="color: black"><?php the_title(); ?></a></b></h3>
@@ -103,14 +104,14 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
                 <div style="height: 2px;background-color: lightgray"></div><br>
                     <ul class="list-group">
                         <li style="list-style-type: none;">
-                            <?php $project_hardware_new = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' date','order' =>'DESC',  'post_status' => $status,'cat'=>14 ));?>
+                            <?php $project_hardware_new = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' date','order' =>'DESC',  'post_status' => $status,'cat'=>12 ));?>
                             <?php while ($project_hardware_new ->have_posts()) : $project_hardware_new->the_post(); ?>
                             <div class="col-md-4 col-sm-4 col-xs-4">
-                                 <div class="thumbnail">
+                                 <div class="thumbnail" style="height: 270px">
                                      <?php
                                      if ( has_post_thumbnail() ) { ?>
-                                         <?php the_post_thumbnail('medium'); ?> <?php } else {?>
-                                         <img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" />
+                                         <?php the_post_thumbnail(array(220,150)); ?> <?php } else {?>
+                                         <img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" height="150" />
                                      <?php } ?>
                                      <div class="caption">
                                          <h3><b><a href="<?php the_permalink(); ?>" style="color: black"><?php the_title(); ?></a></b></h3>
@@ -132,14 +133,14 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
                 <div style="height: 2px;background-color: lightgray"></div><br>
                     <ul class="list-group">
                         <li style="list-style-type: none;">
-                            <?php $project_hardware_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' project_views','order' =>'ASC',  'post_status' => $status,'cat'=>14 ));?>
+                            <?php $project_hardware_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' project_views','order' =>'ASC',  'post_status' => $status,'cat'=>12 ));?>
                             <?php while ($project_hardware_hot ->have_posts()) : $project_hardware_hot->the_post(); ?>
                             <div class="col-md-4 col-sm-4 col-xs-4">
-                                 <div class="thumbnail">
+                                 <div class="thumbnail" style="height: 270px">
                                      <?php
                                      if ( has_post_thumbnail() ) { ?>
-                                         <?php the_post_thumbnail('medium'); ?> <?php } else {?>
-                                         <img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" />
+                                         <?php the_post_thumbnail(array(220,150)); ?> <?php } else {?>
+                                         <img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" height="150" />
                                      <?php } ?>
                                      <div class="caption">
                                          <h3><b><a href="<?php the_permalink(); ?>" style="color: black"><?php the_title(); ?></a></b></h3>
@@ -170,14 +171,14 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
                 <div style="height: 2px;background-color: lightgray"></div><br>
                     <ul class="list-group">
                         <li style="list-style-type: none;">
-                            <?php $project_web_new = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' date','order' =>'DESC',  'post_status' => $status,'cat'=>12 ));?>
+                            <?php $project_web_new = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' date','order' =>'DESC',  'post_status' => $status,'cat'=>13 ));?>
                             <?php while ($project_web_new  ->have_posts()) : $project_web_new ->the_post(); ?>
                             <div class="col-md-4 col-sm-4 col-xs-4">
-                                 <div class="thumbnail">
+                                 <div class="thumbnail" style="height: 270px">
                                      <?php
                                      if ( has_post_thumbnail() ) { ?>
-                                         <?php the_post_thumbnail('medium'); ?> <?php } else {?>
-                                         <img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" />
+                                         <?php the_post_thumbnail(array(220,150)); ?> <?php } else {?>
+                                         <img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" height="150" />
                                      <?php } ?>
                                      <div class="caption">
                                          <h3><b><a href="<?php the_permalink(); ?>" style="color: black"><?php the_title(); ?></a></b></h3>
@@ -199,14 +200,14 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
                 <div style="height: 2px;background-color: lightgray"></div><br>
                     <ul class="list-group">
                         <li style="list-style-type: none;">
-                            <?php $project_web_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' project_views','order' =>'ASC',  'post_status' => $status,'cat'=>12 ));?>
+                            <?php $project_web_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' project_views','order' =>'ASC',  'post_status' => $status,'cat'=>13 ));?>
                             <?php while ($project_web_hot  ->have_posts()) : $project_web_hot ->the_post(); ?>
                             <div class="col-md-4 col-sm-4 col-xs-4">
-                                 <div class="thumbnail">
+                                 <div class="thumbnail" style="height: 270px">
                                      <?php
                                      if ( has_post_thumbnail() ) { ?>
-                                         <?php the_post_thumbnail('medium'); ?> <?php } else {?>
-                                         <img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" />
+                                         <?php the_post_thumbnail(array(220,150)); ?> <?php } else {?>
+                                         <img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png"  height="150"/>
                                      <?php } ?>
                                      <div class="caption">
                                          <h3><b><a href="<?php the_permalink(); ?>" style="color: black"><?php the_title(); ?></a></b></h3>

@@ -58,7 +58,7 @@ if (isset($_GET['fep_id']) && isset($_GET['fep_action']) && $_GET['fep_action'] 
                 <input type="hidden" id="fep-featured-image-id" value="<?php echo (!empty($featured_img)) ? $featured_img : '-1'; ?>"/>
             </div>
         <label for="fep-category"><?php _e('分类', 'frontend-publishing'); ?></label>
-        <?php wp_dropdown_categories(array('id' => 'fep-category', 'hide_empty' => 0, 'name' => 'post_category', 'orderby' => 'name','child_of' =>13 ,'selected' => $post['category'], 'hierarchical' => true,/* 'show_option_none' => __('None', 'frontend-publishing')*/)); ?>
+        <?php wp_dropdown_categories(array('id' => 'fep-category', 'hide_empty' => 0, 'name' => 'post_category', 'orderby' => 'name','child_of' =>11 ,'selected' => $post['category'], 'hierarchical' => true,/* 'show_option_none' => __('None', 'frontend-publishing')*/)); ?>
         <label for="fep-tags"><?php _e('标签', 'frontend-publishing'); ?></label>
         <input type="text" name="post_tags" id="fep-tags" value="<?php echo ($post) ? $post['tags'] : ''; ?>" placeholder="多个标签用英文逗号（,）隔开">
         <input type="hidden" name="post_id" id="fep-post-id" value="<?php echo $post_id ?>"><br><br>

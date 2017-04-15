@@ -186,7 +186,8 @@ function curPageURL()
 
 function get_page_id($page_name){
     global $wpdb;
-    $page_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '$page_name' AND post_status =  'publish' ");
+
+    $page_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '$page_name' AND post_status = 'publish' ");
     return $page_id;
 }
 
@@ -334,10 +335,8 @@ function allow_contributor_uploads() {
     $contributor->remove_cap('upload_files');
 }
 */
-/**
- * WordPress 媒体库只显示用户自己上传的文件
- * https://www.wpdaxue.com/view-user-own-media-only.html
- */
+
+
 //在文章编辑页面的[添加媒体]只显示用户自己上传的文件
 function my_upload_media( $wp_query_obj ) {
     global $current_user, $pagenow;
@@ -361,4 +360,448 @@ function my_media_library( $wp_query ) {
     }
 }
 add_filter('parse_query', 'my_media_library' );
+/**
+ * create by chenli
+ * 处理wiki编辑更新的ajax请求
+ */
+
+function update_wiki_entry(){
+    date_default_timezone_set('Asia/Shanghai');
+    global $wpdb;
+    $post_id = $_POST['post_id'];
+    $entry_title = $_POST['entry_title'];
+    $entry_content = stripslashes($_POST['entry_content']);
+    $wiki_categories = $_POST['wiki_categories'];
+    $wiki_tags = $_POST['wiki_tags'];
+    $current_user = wp_get_current_user();
+    $post_author = $current_user->ID;
+    $post_date = date("Y-m-d H:i:s");
+    $post_date_gmt = $post_date;
+    $post_excerpt = "";
+    $post_status = "inherit";
+    $comment_status = "closed";
+    $ping_status = "closed";
+    $post_password = "";
+    $post_name = $post_id . "-revision-v1";
+    $to_ping = "";
+    $pinged = "";
+    $post_modified = $post_date;
+    $post_modified_gmt = $post_date;
+    $post_content_filtered = "";
+    $post_parent = $post_id;
+    //更新guid
+    $guid = "";
+    $menu_order = 0;
+    $post_type = "revision";
+    $post_mime_type = "";
+    $comment_count = 0;
+    $wiki_new_entry = array(
+        'ID' => 0,
+        'post_author' => $post_author,
+        'post_date' => $post_date,
+        'post_date_gmt' => $post_date_gmt,
+        'post_title' => $entry_title,
+        'post_content' => $entry_content,
+        'post_excerpt' => $post_excerpt,
+        'post_status' => $post_status,
+        'comment_status' => $comment_status,
+        'ping_status' => $ping_status,
+        'post_password' => $post_password,
+        'post_name' => urlencode($post_name),
+        'to_ping' => $to_ping,
+        'pinged' => $pinged,
+        'post_modified' => $post_modified,
+        'post_modified_gmt' => $post_modified_gmt,
+        'post_content_filtered' => $post_content_filtered,
+        'post_parent' => $post_parent,
+        'guid' => $guid,
+        'menu_order' => $menu_order,
+        'post_type' => $post_type,
+        'post_mime_type' => $post_mime_type,
+        'comment_count' => $comment_count
+    );
+    /*
+    $update_wiki_entry = "insert into $wpdb->posts values (null, ".$post_author." ,".$post_date." ,".$post_date_gmt." ,".
+    $post_excerpt.$post_status.",".$comment_status.",".$ping_status.",".$post_password.",".$post_name.",".$to_ping.",".$pinged.",".$post_modified.
+    ",".$post_modified_gmt.",".$post_content_filtered.",".$post_parent.",".$guid.",".$menu_order.",".$post_type.",".
+    $post_mime_type.",".$comment_count;
+    */
+
+    $wpdb->insert($wpdb->posts, $wiki_new_entry);
+    $wpdb->update($wpdb->posts, array(
+        "post_content" => $entry_content,
+        "post_modified" => $post_modified,
+        "post_modified_gmt" => $post_modified_gmt
+    ),array(
+        ID => $post_id
+    ));
+
+    //处理分类
+    $term_names_result = $wpdb->get_results("select tt.term_id, tt.term_taxonomy_id, tt.count from $wpdb->term_taxonomy tt left join $wpdb->term_relationships tr on tr.term_taxonomy_id=tt.term_taxonomy_id where tt.taxonomy=\"wiki_cats\" and tr.object_id=".$post_id);
+    foreach ($term_names_result as $item) {
+        $tt_term_id = $item->term_id;
+        $tt_term_taxonomy_id = $item->term_taxonomy_id;
+        $count = $item->count;
+        if(!in_array($tt_term_id, $wiki_categories)){
+            $wpdb->query("delete from $wpdb->term_relationships where term_taxonomy_id=".$tt_term_taxonomy_id);
+            $wpdb->update($wpdb->term_taxonomy, array(
+                "count" => --$count
+            ),array(
+                term_taxonomy_id => $tt_term_taxonomy_id
+            ));
+        }
+
+    }
+    foreach($wiki_categories as $wiki_category) {
+        $is_continue = false;
+        $if_has_category = $wpdb->get_results("select count(*) as has_category from $wpdb->term_taxonomy tt left join $wpdb->term_relationships tr on tt.term_taxonomy_id=tr.term_taxonomy_id where tr.object_id=".$post_id." and tt.term_id=".$wiki_category);
+        foreach($if_has_category as $item) {
+            if($item->has_category != 0) {
+                $is_continue = true;
+            }
+        }
+        if($is_continue) {
+            continue;
+        }
+        $term_taxonomy_result = $wpdb->get_results("select * from $wpdb->term_taxonomy where term_id=".$wiki_category);
+        foreach($term_taxonomy_result as $term_taxonomy_item) {
+            $count = $term_taxonomy_item->count;
+            $term_taxonomy_id = $term_taxonomy_item->term_taxonomy_id;
+            $wpdb->update($wpdb->term_taxonomy, array(
+                "count" => ++$count
+            ),array(
+                term_id => $wiki_category
+            ));
+            $wpdb->insert($wpdb->term_relationships, array(
+                "object_id" => $post_id,
+                "term_taxonomy_id" => $term_taxonomy_id,
+                "term_order" => 0
+            ));
+        }
+    }
+
+    //处理tag
+    $term_names_result = $wpdb->get_results("select t.`name`, tt.term_taxonomy_id, tt.count from ($wpdb->term_taxonomy tt left join $wpdb->term_relationships tr on tt.term_taxonomy_id=tr.term_taxonomy_id) left join $wpdb->terms t on t.term_id=tt.term_id where tr.object_id=".$post_id." and tt.taxonomy=\"wiki_tags\"");
+    foreach ($term_names_result as $item) {
+        $term_name = $item->name;
+        $tt_term_taxonomy_id = $item->term_taxonomy_id;
+        $count = $item->count;
+        if(!in_array($term_name, $wiki_tags)){
+            $wpdb->query("delete from $wpdb->term_relationships where term_taxonomy_id=".$tt_term_taxonomy_id);
+            $wpdb->update($wpdb->term_taxonomy, array(
+                "count" => --$count
+            ),array(
+                term_taxonomy_id => $tt_term_taxonomy_id
+            ));
+        }
+
+    }
+    foreach($wiki_tags as $wiki_tag) {
+        $is_continue = false;
+        $if_has_tag = $wpdb->get_results("select count(*) as has_tag from ($wpdb->term_taxonomy tt left join $wpdb->term_relationships tr on tt.term_taxonomy_id=tr.term_taxonomy_id) left join $wpdb->terms t on t.term_id=tt.term_id where tr.object_id=".$post_id." and t.`name`=\"".$wiki_tag."\" and tt.taxonomy=\"wiki_tags\"");
+        foreach($if_has_tag as $item) {
+            if($item->has_tag != 0) {
+                $is_continue = true;
+            }
+        }
+        if($is_continue) {
+            continue;
+        }
+        $if_tag_exist = $wpdb->get_results("select count(*) as tag_nums, t.term_id from $wpdb->terms t left join $wpdb->term_taxonomy tt on t.term_id = tt.term_id where tt.taxonomy=\"wiki_tags\" and t.name = "."\"".$wiki_tag."\"");
+        foreach($if_tag_exist as $if_tag_exist_item) {
+            if($if_tag_exist_item->tag_nums > 0) {
+                $term_taxonomy_result = $wpdb->get_results("select * from $wpdb->term_taxonomy where term_id=".$if_tag_exist_item->term_id);
+                foreach($term_taxonomy_result as $term_taxonomy_item) {
+                    $count = $term_taxonomy_item->count;
+                    $term_taxonomy_id = $term_taxonomy_item->term_taxonomy_id;
+                    $wpdb->update($wpdb->term_taxonomy, array(
+                        "count" => ++$count
+                    ),array(
+                        term_id => $if_tag_exist_item->term_id
+                    ));
+                }
+                $wpdb->insert($wpdb->term_relationships,array(
+                    "object_id" => $post_id,
+                    "term_taxonomy_id" => $term_taxonomy_id,
+                    "term_order" => 0
+                ));
+            } else {
+                $wpdb->query("insert into $wpdb->terms values (0, "."\"".$wiki_tag."\", \"".$wiki_tag."\", 0)");
+                $last_insert = $wpdb->insert_id;
+                $wpdb->query("insert into $wpdb->term_taxonomy values (0, ".$last_insert.", \"wiki_tags\", \"wiki_tags\", 0, 1)");
+                $last_insert_t_t_id = $wpdb->insert_id;
+                $wpdb->insert($wpdb->term_relationships, array(
+                    "object_id" => $post_id,
+                    "term_taxonomy_id" => $last_insert_t_t_id,
+                    "term_order" => 0
+                ));
+            }
+        }
+    }
+
+    echo json_encode("success!");
+    die();
+}
+add_action('wp_ajax_update_wiki_entry', 'update_wiki_entry');
+add_action('wp_ajax_nopriv_update_wiki_entry', 'update_wiki_entry');
+
+/**
+ * create by chenli
+ * 用户创建新的wiki词条
+ */
+function create_wiki_entry() {
+    date_default_timezone_set('Asia/Shanghai');
+    global $wpdb;
+    $entry_title = $_POST['entry_title'];
+    $entry_content = stripslashes($_POST['entry_content']);
+    $wiki_categories = $_POST['wiki_categories'];
+    $wiki_tags = $_POST['wiki_tags'];
+    $current_user = wp_get_current_user();
+    $post_author = $current_user->ID;
+    $post_date = date("Y-m-d H:i:s");
+    $post_date_gmt = $post_date;
+    $post_excerpt = "";
+    $post_status1 = "publish";
+    $post_status2 = "inherit";
+    $comment_status1 = "open";
+    $comment_status2 = "closed";
+    $ping_status = "closed";
+    $post_password = "";
+    //$post_name = $post_id . "-revision-v1";
+    $same_title_entrys = $wpdb->get_results("select count(*) as nums from $wpdb->posts where post_title=\"".$entry_title."\" and post_status=\"publish\"");
+    $nums = 0;
+    foreach($same_title_entrys as $item) {
+        $nums = $item->nums;
+    }
+    $post_name = $entry_title;
+    if($nums > 0) {
+        $nums++;
+        $post_name = $post_name."-".$nums;
+    }
+    $to_ping = "";
+    $pinged = "";
+    $post_modified = $post_date;
+    $post_modified_gmt = $post_date;
+    $post_content_filtered = "";
+    //$post_parent = $post_id;
+    $post_parent = 0;
+    //更新guid
+    $guid = "";
+    $menu_order = 0;
+    //$post_type = "revision";
+    $post_type = "yada_wiki";
+    $post_mime_type = "";
+    $comment_count = 0;
+
+    $wiki_new_entry1 = array(
+        'ID' => 0,
+        'post_author' => $post_author,
+        'post_date' => $post_date,
+        'post_date_gmt' => $post_date_gmt,
+        'post_title' => $entry_title,
+        'post_content' => $entry_content,
+        'post_excerpt' => $post_excerpt,
+        'post_status' => $post_status1,
+        'comment_status' => $comment_status1,
+        'ping_status' => $ping_status,
+        'post_password' => $post_password,
+        'post_name' => urlencode($post_name),
+        'to_ping' => $to_ping,
+        'pinged' => $pinged,
+        'post_modified' => $post_modified,
+        'post_modified_gmt' => $post_modified_gmt,
+        'post_content_filtered' => $post_content_filtered,
+        'post_parent' => $post_parent,
+        'guid' => $guid,
+        'menu_order' => $menu_order,
+        'post_type' => $post_type,
+        'post_mime_type' => $post_mime_type,
+        'comment_count' => $comment_count
+    );
+
+    $wpdb->insert($wpdb->posts, $wiki_new_entry1);
+    $last_insert = $wpdb->get_results("select ID from $wpdb->posts where post_title=\"".$entry_title."\" and post_status=\"publish\" and post_name=\"".$post_name."\"");
+    $last_insert_ID = 0;
+    foreach($last_insert as $item) {
+        $last_insert_ID = $item->ID;
+    }
+    $wiki_new_entry2 = array(
+        'ID' => 0,
+        'post_author' => $post_author,
+        'post_date' => $post_date,
+        'post_date_gmt' => $post_date_gmt,
+        'post_title' => $entry_title,
+        'post_content' => $entry_content,
+        'post_excerpt' => $post_excerpt,
+        'post_status' => $post_status2,
+        'comment_status' => $comment_status2,
+        'ping_status' => $ping_status,
+        'post_password' => $post_password,
+        'post_name' => urlencode($last_insert_ID."-revision-v1"),
+        'to_ping' => $to_ping,
+        'pinged' => $pinged,
+        'post_modified' => $post_modified,
+        'post_modified_gmt' => $post_modified_gmt,
+        'post_content_filtered' => $post_content_filtered,
+        'post_parent' => $last_insert_ID,
+        'guid' => $guid,
+        'menu_order' => $menu_order,
+        'post_type' => "revision",
+        'post_mime_type' => $post_mime_type,
+        'comment_count' => $comment_count
+    );
+    $wpdb->insert($wpdb->posts, $wiki_new_entry2);
+
+    //处理分类
+    foreach($wiki_categories as $wiki_category) {
+        $term_taxonomy_result = $wpdb->get_results("select * from $wpdb->term_taxonomy where term_id=".$wiki_category);
+        foreach($term_taxonomy_result as $term_taxonomy_item) {
+            $count = $term_taxonomy_item->count;
+            $term_taxonomy_id = $term_taxonomy_item->term_taxonomy_id;
+            $wpdb->update($wpdb->term_taxonomy, array(
+                "count" => ++$count
+            ),array(
+                term_id => $wiki_category
+            ));
+            $wpdb->insert($wpdb->term_relationships, array(
+                "object_id" => $last_insert_ID,
+                "term_taxonomy_id" => $term_taxonomy_id,
+                "term_order" => 0
+            ));
+        }
+    }
+
+    //处理tag
+    foreach($wiki_tags as $wiki_tag) {
+        $if_tag_exist = $wpdb->get_results("select count(*) as tag_nums, t.term_id from $wpdb->terms t left join $wpdb->term_taxonomy tt on t.term_id = tt.term_id where tt.taxonomy=\"wiki_tags\" and t.name = "."\"".$wiki_tag."\"");
+        foreach($if_tag_exist as $if_tag_exist_item) {
+            if($if_tag_exist_item->tag_nums > 0) {
+                $term_taxonomy_result = $wpdb->get_results("select * from $wpdb->term_taxonomy where term_id=".$if_tag_exist_item->term_id);
+                foreach($term_taxonomy_result as $term_taxonomy_item) {
+                    $count = $term_taxonomy_item->count;
+                    $term_taxonomy_id = $term_taxonomy_item->term_taxonomy_id;
+                    $wpdb->update($wpdb->term_taxonomy, array(
+                        "count" => ++$count
+                    ),array(
+                        term_id => $if_tag_exist_item->term_id
+                    ));
+                }
+                $wpdb->insert($wpdb->term_relationships,array(
+                    "object_id" => $last_insert_ID,
+                    "term_taxonomy_id" => $term_taxonomy_id,
+                    "term_order" => 0
+                ));
+            } else {
+                $wpdb->query("insert into $wpdb->terms values (0, "."\"".$wiki_tag."\", \"".$wiki_tag."\", 0)");
+                $last_insert = $wpdb->insert_id;
+                $wpdb->query("insert into $wpdb->term_taxonomy values (0, ".$last_insert.", \"wiki_tags\", \"wiki_tags\", 0, 1)");
+                $last_insert_t_t_id = $wpdb->insert_id;
+                $wpdb->insert($wpdb->term_relationships, array(
+                    "object_id" => $last_insert_ID,
+                    "term_taxonomy_id" => $last_insert_t_t_id,
+                    "term_order" => 0
+                ));
+            }
+        }
+    }
+
+    echo json_encode($post_name);
+    die();
+
+}
+add_action('wp_ajax_create_wiki_entry', 'create_wiki_entry');
+add_action('wp_ajax_nopriv_create_wiki_entry', 'create_wiki_entry');
+
+function get_post_info() {
+    global $wpdb;
+    $post_id = $_POST['post_id'];
+    $edit_authors_result = $wpdb->get_results("select count(distinct post_author) as edit_authors from $wpdb->posts where post_parent = ".$post_id);
+    $revisions_result = $wpdb->get_results("select count(*) as revisions from $wpdb->posts where post_parent = ".$post_id);
+    $post_modified_result = $wpdb->get_results("select post_modified from $wpdb->posts where post_parent=".$post_id." order by post_modified desc limit 1");
+    $edit_author_nums = 0;
+    $revision_nums = 0;
+    $post_modified_date = strtotime (date("y-m-d h:i:s"));
+    $current_date = strtotime (date("y-m-d h:i:s"));
+    foreach($edit_authors_result as $edit_authors) {
+        $edit_author_nums = $edit_authors->edit_authors;
+    }
+    foreach($revisions_result as $revisions) {
+        $revision_nums = $revisions->revisions;
+    }
+    foreach ($post_modified_result as $post_modified) {
+        $post_modified_date = strtotime($post_modified->post_modified);
+    }
+    $time = ceil(($current_date-$post_modified_date)/86400);
+    $categorys_result = $wpdb->get_results("select t.`name` from ($wpdb->term_taxonomy tt left join $wpdb->term_relationships tr on tt.term_taxonomy_id=tr.term_taxonomy_id) left join $wpdb->terms t on t.term_id=tt.term_id where tr.object_id=".$post_id." and tt.taxonomy=\"wiki_cats\"");
+    $tags_result = $wpdb->get_results("select t.`name` from ($wpdb->term_taxonomy tt left join $wpdb->term_relationships tr on tt.term_taxonomy_id=tr.term_taxonomy_id) left join $wpdb->terms t on t.term_id=tt.term_id where tr.object_id=".$post_id." and tt.taxonomy=\"wiki_tags\"");
+    $categorys = array();
+    $tags = array();
+    foreach ($categorys_result as $item) {
+        $categorys[] = $item->name;
+    }
+    foreach ($tags_result as $item) {
+        $tags[] = $item->name;
+    }
+
+    //处理浏览次数
+    $watch_count = 0;
+    $if_has_watched = $wpdb->get_results("select meta_value, meta_id from $wpdb->postmeta where meta_key=\"count\" and post_id=".$post_id);
+    $is_watched = false;
+    $watch_nums = 0;
+    $meta_id = 0;
+    foreach ($if_has_watched as $item) {
+        $watch_nums = $item->meta_value;
+        if(!empty($watch_nums)) {
+            $is_watched = true;
+            $meta_id = $item->meta_id;
+        }
+    }
+    if($is_watched) {
+        $wpdb->update($wpdb->postmeta, array(
+            "meta_value" => ++$watch_nums
+        ),array(
+            meta_id => $meta_id
+        ));
+
+        $watch_count = $watch_nums;
+    } else {
+        $wpdb->insert($wpdb->postmeta, array(
+            "meta_id" => 0,
+            "post_id" => $post_id,
+            "meta_key" => "count",
+            "meta_value" => 1
+        ));
+        $watch_count = 1;
+    }
+
+    $data = array(
+        "edit_author_nums" => $edit_author_nums,
+        "revision_nums" => $revision_nums,
+        "time" => $time,
+        "categories" => $categorys,
+        "tags" => $tags,
+        "watch_count" => $watch_count
+    );
+    echo json_encode($data);
+    die();
+}
+add_action('wp_ajax_get_post_info', 'get_post_info');
+add_action('wp_ajax_nopriv_get_post_info', 'get_post_info');
+
+function get_wiki_hot_tags() {
+    global $wpdb;
+    $hot_tags_nums = 20;
+    $hot_tags = array();
+    $hot_tags_result = $wpdb->get_results("select t.`name` from $wpdb->terms t left join $wpdb->term_taxonomy tt on t.term_id=tt.term_id where tt.taxonomy=\"wiki_tags\" order by tt.count desc limit ".$hot_tags_nums);
+    foreach($hot_tags_result as $item) {
+        $hot_tags[] = $item->name;
+    }
+    $data = array(
+        "hot_tags" => $hot_tags
+    );
+    echo json_encode($data);
+    die();
+}
+add_action('wp_ajax_get_wiki_hot_tags', 'get_wiki_hot_tags');
+add_action('wp_ajax_nopriv_get_wiki_hot_tags', 'get_wiki_hot_tags');
 ?>

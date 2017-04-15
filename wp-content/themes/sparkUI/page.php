@@ -15,7 +15,7 @@ $page_personal_id = get_page_id('personal');
 ?>
 
 <?php get_header(); ?>
-<div class="container" style="margin-top: 10px">
+<div class="container" style="margin-top: 10px;margin-bottom: 30px;">
     <div class="row" style="width: 100%">
            <!--引入动态模板-->
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
@@ -24,13 +24,25 @@ $page_personal_id = get_page_id('personal');
                 if(is_home() || is_front_page()) { //首页显示“首页内容”
                     echo "首页内容";
                 }
-                if ( is_page($page_wiki_id) ) {//显示wiki内容”
-                    require "template/wiki/wiki_content.php";
+                elseif (is_page("wiki")) {
+                    require "template/wiki/wiki_index.php";
+                }
+                elseif (is_page("编辑wiki")) {
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/wiki/wiki_edit.php";
+                }
+                elseif (is_page("创建wiki")) {
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/wiki/wiki_create.php";
                 }
                 elseif ( is_page($page_qa_id) ) {//显示问答内容 参数为pageID 如何自动获取??
                     require "template/qa/QA_content.php";
                 }
-                elseif (is_page($page_project_id)){
+                elseif (is_page(20)){
                     require "template/project/project_content.php";
                 }
                 elseif (is_page($page_ask_id)){
@@ -48,7 +60,7 @@ $page_personal_id = get_page_id('personal');
             <?php else: ?>
                 <p><?php _e('Sorry, this page does not exist.'); ?></p>
             <?php endif; ?>
-            <?php get_sidebar();?>
+            <?php get_sidebar(); ?>
     </div>
 </div>
 <?php get_footer(); ?>

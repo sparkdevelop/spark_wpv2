@@ -35,11 +35,11 @@ $tag_count = array();
 </style>
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
 <div class="sidebar_button" style="margin-top: 20px">
-    <a href="http://localhost/wordpress/?page_id=266;" target="_blank" style="color: white">发布项目</a>
-</div>
-<div class="sidebar_button" style="margin-top: 20px">
-    <a href="http://localhost/wordpress/?page_id=199;" style="color: white">我的项目</a>
+    <a href="http://localhost/spark_wpv2/?page_id=32;" target="_blank" style="color: white">发布项目</a>
 </div><br>
+<!--<div class="sidebar_button" style="margin-top: 20px">
+    <a href="http://localhost/wordpress/?page_id=199;" style="color: white">我的项目</a>
+</div><br>-->
 
 <!--推荐项目-->
 <div class="sidebar_list">
@@ -53,7 +53,7 @@ $tag_count = array();
     <ul class="list-group">
         <li class="list-group-item">
             <div style="display: inline-block; vertical-align: baseline;">
-                <p ><b><a href="<?php the_permalink(230); ?>">项目模板</a></b></p><!--传浏览量-->
+                <p ><b><a href="<?php the_permalink(230); ?>">智能平衡车</a></b></p><!--传浏览量-->
             </div>
         </li>
         <li class="list-group-item">

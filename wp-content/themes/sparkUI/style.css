@@ -192,14 +192,12 @@ body{
     box-shadow: none;
 }
 
-.sidebar_button>a{
+.sidebar_button>a,.sidebar_button>a:hover{
     display: block;
     height: 100%;
     line-height: 48px;
     width: 100%;
     color: white;
-}
-.sidebar_button>a:hover{
     text-decoration: none;
 }
 
@@ -368,6 +366,11 @@ body{
 
 #hot {padding-top: 40px;}
 #all {padding-top: 40px;}
+#recent {padding-top: 40px;}
+#hot_2 {padding-top: 40px;}
+#hot_3 {padding-top: 40px;}
+#recent_2 {padding-top: 40px;}
+#recent_3 {padding-top: 40px;}
 #unresolve {padding-top: 40px;}
 #webhot {padding-top: 40px;}
 #weball {padding-top: 40px;}
@@ -529,4 +532,106 @@ h4{margin-bottom: 0px;}
     color: #fe642d;
 }
 
+/*项目主页样式调整*/
+.project-title{
+    color: #333;
+    font-size:16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.thumbnail .caption{
+    padding:20px 10px;
+}
 
+/*wiki公共样式*/
+.create_wiki_btn{
+    height:48px;
+    background-color:#fe642d;
+    -moz-box-shadow: 5px 5px 5px #ffd8cc; /* 老的 Firefox */
+    box-shadow: 5px 5px 5px #ffd8cc;
+    text-align:center;
+    font-size: large;
+    margin: 10px 0px 15px 0px;
+    border-radius: 5px;
+}
+.create_wiki_btn:hover{
+    box-shadow: none;
+    cursor: pointer;
+}
+.create_wiki_btn>a,.create_wiki_btn>a:hover{
+    display: block;
+    height: 100%;
+    line-height: 48px;
+    width: 100%;
+    color: white;
+    text-decoration: none;
+}
+.wiki_sidebar_title{
+    font-size: 16px;
+    font-color:#333;
+    font-weight: bold;
+}
+/*目录样式*/
+.mulu a{
+    display: block;
+    border: 1px solid #dcdcdc;
+    height: 40px;
+    padding-left: 10px;
+}
+/*分类样式*/
+.mulu .mulu_item{
+    display: block;
+    border: 1px solid #dcdcdc;
+    height: 40px;
+    padding-left: 10px;
+    margin-bottom: -1px;
+}
+#wiki_entry_categories{
+    margin-bottom: -1px;
+}
+
+/*标签样式*/
+.wiki_tags_input{
+    height:40px;
+    width: 100%;
+    border:1px solid #dcdcdc;
+    border-radius: 5px;
+    padding-left:10px;
+}
+#wiki_hot_tags{
+    margin-top:10px;
+}
+.wiki_cloud_entry{
+    font-size: 13px;
+    font-weight: bold;
+    color: #fe642d;
+    background-color: #ffe9e1;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    padding:5px 15px;
+}
+.wiki_cloud_entry:hover{
+    background-color: #fe642d;
+    color: #fff;
+    cursor: pointer;
+}
+.wiki_cloud_entry_selected{
+    background-color: #fe642d;
+    color: #fff;
+}
+.wiki_entry_title{
+    width: 100%;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    margin:5px 0 25px 0;
+    border: none;
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 10px;
+}
+.wiki_entry_title:focus{
+    outline:none;
+}
