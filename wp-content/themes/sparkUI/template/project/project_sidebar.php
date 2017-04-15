@@ -44,8 +44,8 @@ $tag_count = array();
 <!--推荐项目-->
 <div class="sidebar_list">
     <div class="sidebar_list_header">
-        <p style="font-size: large;display:inline-block;margin-top: 5%;font-weight: bold">推荐项目</p>
-        <a href="" style="color:gray;float: right;display: inline-block;margin-top: 5%">更多</a>
+        <p>推荐项目</p>
+        <a id="sidebar_list_link" href="">更多</a>
     </div>
     <!--分割线-->
     <div class="sidebar_divline"></div>
@@ -82,8 +82,8 @@ $tag_count = array();
 <!--热门标签-->
 <div class="sidebar_list">
     <div class="sidebar_list_header">
-        <p style="font-size: large;display:inline-block;margin-top: 5%;font-weight: bold">热门标签</p>
-        <a style="color:gray;float: right;display: inline-block;margin-top: 5%" onclick="show_all_tags()">全部标签</a>
+        <p>热门标签</p>
+        <a id="sidebar_list_link" onclick="show_all_tags()">全部标签</a>
     </div>
     <!--                分割线-->
     <div class="sidebar_divline"></div>

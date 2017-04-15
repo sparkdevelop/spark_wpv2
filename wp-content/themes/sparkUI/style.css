@@ -533,15 +533,43 @@ h4{margin-bottom: 0px;}
 }
 
 /*项目主页样式调整*/
-.project-title{
-    color: #333;
-    font-size:16px;
-    font-weight: bold;
-    margin-bottom: 20px;
+.thumbnail{
+    height:270px;
+    border:none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #ebebeb;
+    padding:0;
 }
 .thumbnail .caption{
     padding:20px 10px;
 }
+.project-title{
+    color: #262626;
+    font-size:16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.project-info{
+    color:#4d4d4d;
+    font-size: 12px;
+}
+
+/*项目详情页*/
+.sidebar-grey-frame{
+    /*border:1px solid #eee;*/
+    border-top:1px solid #eee;
+    border-bottom: 1px solid #eee ;
+    padding:20px 20px 10px 20px;
+    font-size: 14px;
+    color: #333;
+}
+.sidebar-grey-frame p{
+    display: inline-block;
+}
+.sidebar-grey-frame a{
+    color: #fe642d;
+}
+
 
 /*wiki公共样式*/
 .create_wiki_btn{

@@ -14,7 +14,7 @@ get_header(); ?>
         <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
             <!--引入动态模板-->
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post();?>
-                <h1><?php the_title(); ?></h1>
+                <h2><b><?php the_title(); ?></b></h2>
                 <hr>
                 <?php the_content(); ?>
                 <?php comments_template(); ?>
