@@ -107,42 +107,28 @@ $tag_count = array();
             </h4>
         </div>
     </div>
-</div>
-    <!--<div style="word-wrap: break-word; word-break: keep-all;">
-        <h4>
-            <a class="label label-default">
-                舵机<span class="badge">(40)</span>
-            </a>
-            <a class="label label-default">
-                编译<span class="badge">(36)</span>
-            </a>
-            <a class="label label-default">
-                上传<span class="badge">(30)</span>
-            </a>
-            <a class="label label-default">
-                Mwatch<span class="badge">(20)</span>
-            </a>
-            <a class="label label-default">
-                OLED<span class="badge">(18)</span>
-            </a>
-            <a class="label label-default">
-                Wifi<span class="badge">(15)</span>
-            </a>
-            <a class="label label-default">
-                Wifi气象站<span class="badge">(10)</span>
-            </a>
-            <a class="label label-default">
-                蓝牙<span class="badge">(10)</span>
-            </a>
-            <a class="label label-default">
-                触摸<span class="badge">(8)</span>
-            </a>
-            <a class="label label-default">
-                声音<span class="badge">(5)</span>
-            </a>
-        </h4>
+    <div id="hot_tags" style="word-wrap: break-word; word-break: keep-all;">
+
+        <?php $args = array(
+            'smallest'                  => 15,
+            'largest'                   => 15,
+            'unit'                      => 'pt',
+            'number'                    => 20,
+            'format'                    => 'flat',
+            'separator'                 => "\n",
+            'orderby'                   => 'count',
+            'order'                     => 'DESC',
+            'exclude'                   => null,
+            'include'                   => null,
+            'topic_count_text_callback' => default_topic_count_text,
+            'link'                      => 'view',
+            'taxonomy'                  => 'post_tag',
+            'echo'                      => true,
+            'child_of'                   => null
+        ); ?>
+        <?php wp_tag_cloud( $args ); ?>
     </div>
-</div>-->
+</div>
 
 
 
