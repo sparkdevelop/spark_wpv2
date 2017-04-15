@@ -12,7 +12,6 @@ $page_qa_id = get_page_id('qa');
 $page_project_id =get_page_id('project');
 $page_ask_id = get_page_id('ask');
 $page_personal_id = get_page_id('personal');
-$profile = get_page_id('profile');
 ?>
 
 <?php get_header(); ?>
@@ -25,23 +24,21 @@ $profile = get_page_id('profile');
                 if(is_home() || is_front_page()) { //首页显示“首页内容”
                     echo "首页内容";
                 }
-                elseif ( is_page($page_wiki_id) ) {//显示wiki内容”
+                if ( is_page($page_wiki_id) ) {//显示wiki内容”
                     require "template/wiki/wiki_content.php";
                 }
                 elseif ( is_page($page_qa_id) ) {//显示问答内容 参数为pageID 如何自动获取??
                     require "template/qa/QA_content.php";
                 }
+                elseif (is_page($page_project_id)){
+                    require "template/project/project_content.php";
+                }
                 elseif (is_page($page_ask_id)){
+                    //require admin_url()."QA_ask.php";
                     require "template/qa/QA_ask.php";
                 }
                 elseif (is_page($page_personal_id)){
                     require "template/personal.php";
-                }
-                elseif (is_page($profile)){
-                    require "template/profile_process.php";
-                }
-                elseif (is_page($page_project_id)){
-                    require "template/project/project_content.php";
                 }
                 else{
                     the_content();

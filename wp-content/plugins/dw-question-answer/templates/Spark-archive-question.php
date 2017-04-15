@@ -73,11 +73,11 @@ foreach($tags as $key => $temp){
                 $current_url = curPageURL();
                 $url_array=parse_url($current_url);
                 $query_parse=explode("&",$url_array['query']);
-                if(array_search("sort=views",$query_parse)||array_search("filter=all",$query_parse)){?>
+                if(array_search("sort=views",$query_parse)){?>
                     <li  class="active"><a href="<?php echo esc_url(add_query_arg( array( 'sort' => 'views','filter'=>'all' ) ) )?>">热门</a></li>
                     <li><a href="<?php echo remove_query_arg(array('sort','filter')) ?>">所有</a></li>
                     <li><a href="<?php echo esc_url( add_query_arg( array('filter' => 'unanswered') ) ) ?>">未解决</a></li>
-                <?php }elseif (array_search("filter=unanswered",$query_parse)||array_search("sort=date",$query_parse)){?>
+                <?php }elseif (array_search("filter=unanswered",$query_parse)){?>
                     <li><a href="<?php echo esc_url(add_query_arg( array( 'sort' => 'views','filter'=>'all' ) ) )?>">热门</a></li>
                     <li><a href="<?php echo remove_query_arg(array('sort','filter')) ?>">所有</a></li>
                     <li class="active"><a href="<?php echo esc_url( add_query_arg( array( 'filter' => 'unanswered') ) ) ?>" >未解决</a></li>
@@ -116,9 +116,15 @@ foreach($tags as $key => $temp){
     #buttonForAllTags{  outline: none;border:0px;color:gray;float: right;display: inline-block;margin-top: 20px;padding: 0 12px}
 </style>
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
-    <div class="sidebar_button">
-        <a href="<?php echo site_url().get_page_address('ask');?>" style="color: white">我要提问</a>
-    </div>
+    <?php if(is_user_logged_in()){ ?>
+        <div class="sidebar_button">
+            <a href="<?php echo site_url().get_page_address('ask');?>" style="color: white">我要提问</a>
+        </div>
+    <?php }else{ ?>
+        <div class="sidebar_button">
+            <a href="<?php echo wp_login_url( get_permalink() ); ?>" style="color: white">我要提问</a>
+        </div>
+    <?php } ?>
     <!--热门标签-->
     <div class="sidebar_list">
         <div class="sidebar_list_header">

@@ -2,6 +2,8 @@
 /*
 本页面是我要提问页面的content
  */
+global $post;
+//require_once( admin_url(). 'admin.php' );
 ?>
 <div class="col-md-9 col-sm-9 col-xs-9"  id="col9">
 <h4 class="ask_topic">提 问</h4>
@@ -20,6 +22,13 @@
         <input type="text" style="margin-top: 20px;" data-nonce="<?php echo wp_create_nonce( '_dwqa_filter_nonce' ) ?>"
                id="question-title" name="question-title" value="<?php echo $title ?>" tabindex="1" _moz_abspos=""  onkeydown="if(event.keyCode==13) return false;"/>
     </p>
+
+    <?php
+    $post_type_object = get_post_type_object( 'dwqa-question' );
+    //print_r($post_type_object);
+    ?>
+
+
     <?php $content = isset( $_POST['question-content'] ) ? sanitize_text_field( $_POST['question-content'] ) : ''; //如果没有内容应该跳出警告?>
     <p><?php dwqa_init_tinymce_editor( array( 'content' => $content, 'textarea_name' => 'question-content', 'id' => 'question-content' ) ) ?></p>
     <?php global $dwqa_general_settings; ?>
@@ -35,6 +44,9 @@
         </p>
     <?php endif; ?>
 <!--    分类部分-->
+    <?php //post_categories_meta_box();
+
+    //do_meta_box('dwqa-question','side',$post)?>
     <p>
         <label for="question-category">选择问题分类</label>
 <!--            <select></select>-->
@@ -103,56 +115,52 @@
     <?php do_action('dwqa_before_question_submit_button'); ?>
 
     <input type="submit" name="dwqa-question-submit" value="<?php _e( '提交问题', 'dwqa' ) ?>" class="btn-green">
-    <input type="submit" name="dwqa-question-submit" value="<?php _e( '取消', 'dwqa' ) ?>" class="btn-grey" style="float: right;">
+    <input type="button" id="cancel" onclick="Cancel()" name="dwqa-question-submit" value="<?php _e( '取消', 'dwqa' ) ?>" class="btn-grey" style="float: right;" />
 </form>
 </div>
-<script>
+<script language="javascript">
+    function Cancel(){
+        var url = '<?=site_url().get_page_address('qa')?>';
+        location.href= url ;
+    }
+
     function SubmitCheck() {
         var question_title = document.getElementById('question-title');
         var question_content = document.getElementById('question-content');
         var question_category = document.getElementById('question-category');
         var question_tags = document.getElementsByName('question-tag');
 
-        if(question_title==""){
+        if(question_title.length==0){
             alert("问题标题不能为空");
-            return false;
-
-        }else{
-            if(question_content==""){
-                alert("问题内容不能为空");
-                return false;
-            }else{
-                if(question_category=="" ||question_category=='Questions'){
-                    alert("分类不能为空");
-                    return false;
-                }else{
-                    if(question_tags =="" ||question_tags==false){
-                        alert("tag不能为空");
-                        return false;
-                    }
-                }
-            }
-
-        }
-
+            return false;}
+        if(question_content.length==0){
+            alert("问题内容不能为空");
+            return false;}
+        if(question_category.length==0){
+            alert("分类不能为空");
+            return false;}
+        if(question_tags.length==0||question_tags==false){
+            alert("tag不能为空");
+            return false;}
     }
-    function tags() {
-        obj = document.getElementsByName("question-tag");
-        check_val = [];
-        for(k in obj){
-            if(obj[k].checked)
-                check_val.push(obj[k].value);
-        }
-        var str = JSON.stringify(check_val);
-        //alert(str);
-        return str;
-    }
-    var question_tag;
-    $.ajax({
-        type:"post",
-        data:{
-            question_tag=tags();
-        },
-        success:function(data){
-        }})
+
+//    function tags() {
+//        obj = document.getElementsByName("question-tag");
+//        check_val = [];
+//        for(k in obj){
+//            if(obj[k].checked)
+//                check_val.push(obj[k].value);
+//        }
+//        var str = JSON.stringify(check_val);
+//        //alert(str);
+//        return str;
+//    }
+//    var question_tag;
+//    $.ajax({
+//        type:"post",
+//        data:{
+//            question_tag=tags();
+//        },
+//        success:function(data){
+//        }})
 </script>

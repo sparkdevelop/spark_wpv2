@@ -36,7 +36,7 @@ function Spark_answer_paginate_link(){
 ?>
 <div class="dwqa-answers">
     <?php if ( dwqa_current_user_can( 'post_answer' ) && !dwqa_is_closed( get_the_ID() ) ) : ?>
-        <?php dwqa_load_template( 'answer', 'submit-form' ) ?>
+        <?php dwqa_load_template( 'Spark-answer', 'submit-form' ) ?>
     <?php endif; ?>
     <?php do_action( 'dwqa_before_answers');?>
     <div class="divline"></div>

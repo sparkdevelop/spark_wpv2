@@ -105,13 +105,13 @@ function Spark_related_question( $question_id = false, $number = 5, $echo = true
     flag=false;
     function show_all_tags() {
         var $all_tags=document.getElementById('all_tags');
-        var $related_tags = document.getElementById('related_tags');
+        var $hot_tags = document.getElementById('hot_tags');
         if(flag){
             $all_tags.style.display ="block";
-            $related_tags.style.display="none";
+            $hot_tags.style.display="none";
         }else{
             $all_tags.style.display="none";
-            $related_tags.style.display="block";
+            $hot_tags.style.display="block";
         }
         flag=!flag;
     }
@@ -123,29 +123,29 @@ function Spark_related_question( $question_id = false, $number = 5, $echo = true
 </style>
 
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
-    <?php $ask_page_ID="?page_id=96"; ?>
 
     <div class="sidebar_button" style="margin-top: 20px">
-        <a href="<?php echo site_url().$ask_page_ID;?>" style="color: white">我要提问</a>
+        <a href="<?php echo site_url().get_page_address('ask');?>" style="color: white">我要提问</a>
     </div>
-
-    <div class="tags">
+<!--热门标签-->
+    <div class="sidebar_list">
         <div class="sidebar_list_header">
-            <p>相似标签</p>
-            <button id="buttonForAllTags" class="btn btn-default" onclick="show_all_tags()" style="">全部标签</button>
+            <p>热门标签</p>
+            <a id="sidebar_list_link" onclick="show_all_tags()">全部标签</a>
         </div>
-        <!--分割线-->
-        <div style="height: 2px;background-color: lightgray"></div>
-        <div id="related_tags" style="display:block;word-wrap: break-word; word-break: keep-all;">
+        <!--                分割线-->
+        <div class="sidebar_divline"></div>
+
+
+        <div id="hot_tags" style="word-wrap: break-word; word-break: keep-all;">
             <h4>
                 <?php
                 for($i=0;$i<9;$i++){?>
-                    <a class="label label-default">
-                        舵机<span class="badge">(40)</span>
-                    </a>
+                    <a class="label label-default" href="<?=$link[$i]?>"><?=$tag_name[$i]?><span class="badge">(<?=$tag_count[$i]?>)</span></a>
                 <?php  } ?>
             </h4>
         </div>
+
         <div id="all_tags" style="display: none;word-wrap: break-word; word-break: keep-all;">
             <h4>
                 <?php
@@ -156,6 +156,39 @@ function Spark_related_question( $question_id = false, $number = 5, $echo = true
             </h4>
         </div>
     </div>
+
+
+
+
+
+<!--注释中为相似标签-->
+<!--    <div class="related_tags">-->
+<!--        <div class="sidebar_list_header">-->
+<!--            <p>相似标签</p>-->
+<!--            <button id="buttonForAllTags" class="btn btn-default" onclick="show_all_tags()" style="">全部标签</button>-->
+<!--        </div>-->
+<!--        <!--分割线-->
+<!--        <div style="height: 2px;background-color: lightgray"></div>-->
+<!--        <div id="related_tags" style="display:block;word-wrap: break-word; word-break: keep-all;">-->
+<!--            <h4>-->
+<!--                --><?php
+//                for($i=0;$i<9;$i++){?>
+<!--                    <a class="label label-default">-->
+<!--                        舵机<span class="badge">(40)</span>-->
+<!--                    </a>-->
+<!--                --><?php // } ?>
+<!--            </h4>-->
+<!--        </div>-->
+<!--        <div id="all_tags" style="display: none;word-wrap: break-word; word-break: keep-all;">-->
+<!--            <h4>-->
+<!--                --><?php
+//                foreach ($tag_name as $key =>$i){?>
+<!--                    <a class="label label-default" href="--><?//=$link[$key]?><!--">--><?//=$i?><!--<span class="badge">(--><?//=$tag_count[$key]?><!--)</span></a>-->
+<!--                --><?php //}
+//                ?>
+<!--            </h4>-->
+<!--        </div>-->
+<!--    </div>-->
     <!--    相似问题-->
     <?php
     $instance = wp_parse_args( $instance, array('number' => 3,) );
@@ -173,3 +206,4 @@ function Spark_related_question( $question_id = false, $number = 5, $echo = true
     }
     ?>
 </div>
+

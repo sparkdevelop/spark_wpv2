@@ -17,15 +17,13 @@ global $wpdb;
     function answer_reply($ans_id){
         var temp = document.getElementById('reply_window_'+$ans_id);
         var temp_2 = document.getElementById('Spark_comments');
-        if(flag){
+        if(temp.style.display=="block"){
+            temp.style.display="none";
+            temp_2.style.display ="none";
+        }else{
             temp.style.display="block";
             temp_2.style.display ="block";
         }
-        else{
-            temp.style.display="none";
-            temp_2.style.display ="none";
-        }
-        flag=!flag;
     }
 </script>
 <div class="<?php echo dwqa_post_class() ?>" style="padding: 15px 0px">

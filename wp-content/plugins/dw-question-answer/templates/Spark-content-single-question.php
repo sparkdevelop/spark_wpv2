@@ -15,7 +15,6 @@
         <?php if ( dwqa_current_user_can( 'edit_question', get_the_ID() ) ) : ?>
             <?php if ( dwqa_is_enable_status() ) : ?>
                 <span class="dwqa-question-status" style="float:right;">
-<!--					--><?php //_e( '问题状态', 'dwqa' ) ?>
 					<?php _e( '', 'dwqa' ) ?>
                     <select id="dwqa-question-status" data-nonce="<?php echo wp_create_nonce( '_dwqa_update_privacy_nonce' ) ?>" data-post="<?php the_ID(); ?>">
 						<optgroup label="<?php _e( 'Status', 'dwqa' ); ?>">

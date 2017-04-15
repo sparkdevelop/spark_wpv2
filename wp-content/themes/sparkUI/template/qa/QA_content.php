@@ -16,9 +16,9 @@ $questions_question_all = new WP_Query( $args_question_all );
     <div id="leftTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="allquestions">
                 <ul id="rightTab" class="nav nav-pills" style="margin-top: -42px">
-                    <li><a href="<?php echo esc_url(add_query_arg( array( 'post_type'=>'dwqa-question','sort' => 'views' ),site_url().'/') )?>">热门</a></li>
-                    <li class="active"><a href="<?php echo esc_url(add_query_arg(array('post_type'=>'dwqa-question','filter'=>'all'),site_url().'/' ))?>">所有</a></li>
-                    <li><a href="<?php echo esc_url( add_query_arg( array('post_type'=>'dwqa-question', 'filter' => 'unanswered' ) ) ) ?>">未解决</a></li>
+                    <li><a href="<?php echo esc_url(add_query_arg( array( 'post_type'=>'dwqa-question','sort' => 'views' ,'filter' => 'all'),site_url().'/') )?>">热门</a></li>
+                    <li class="active"><a href="<?php echo esc_url(add_query_arg(array('post_type'=>'dwqa-question','sort'=>'date' ,'filter' => 'all'),site_url().'/' ))?>">所有</a></li>
+                    <li><a href="<?php echo esc_url( add_query_arg( array('post_type'=>'dwqa-question', 'sort'=>'date','filter' => 'unanswered' ) ) ) ?>">未解决</a></li>
                 </ul>
                 <div class="dwqa-questions-list" style="margin-top: 42px">
                     <?php if ( $questions_question_all->have_posts() ) : ?>
@@ -34,9 +34,9 @@ $questions_question_all = new WP_Query( $args_question_all );
             </div>
             <div class="tab-pane fade" id="OShardware">
             <ul id="rightTab" class="nav nav-pills" style="margin-top: -42px">
-                <li><a href="<?php echo esc_url(add_query_arg( array( 'dwqa-question_category'=>'hardware','sort' => 'views'),site_url().'/') )?>">热门</a></li>
-                <li class="active"><a href="<?php echo remove_query_arg(array('sort','filter')) ?>">所有</a></li>
-                <li><a href="<?php echo esc_url( add_query_arg( array( 'dwqa-question_category'=>'hardware','filter' => 'unanswered'),site_url().'/') )?>">未解决</a></li>
+                <li><a href="<?php echo esc_url(add_query_arg( array( 'dwqa-question_category'=>'hardware','sort' => 'views','filter' => 'all'),site_url().'/') )?>">热门</a></li>
+                <li class="active"><a href="<?php echo esc_url(add_query_arg(array('dwqa-question_category'=>'hardware','sort'=>'date' ,'filter' => 'all'),site_url().'/' ))?>">所有</a></li>
+                <li><a href="<?php echo esc_url( add_query_arg( array( 'dwqa-question_category'=>'hardware','sort'=>'date','filter' => 'unanswered'),site_url().'/') )?>">未解决</a></li>
             </ul>
             <div class="dwqa-questions-list" style="margin-top: 42px">
                 <?php if ( $questions_question_all->have_posts() ) : ?>
@@ -52,9 +52,9 @@ $questions_question_all = new WP_Query( $args_question_all );
         </div>
             <div class="tab-pane fade" id="Spweb">
                 <ul id="rightTab" class="nav nav-pills" style="margin-top: -42px">
-                    <li><a href="<?php echo esc_url(add_query_arg( array( 'dwqa-question_category'=>'web','sort' => 'views'),site_url().'/') )?>">热门</a></li>
-                    <li class="active"><a href="<?php echo remove_query_arg(array('sort','filter')) ?>">所有</a></li>
-                    <li><a href="<?php echo esc_url( add_query_arg( array( 'dwqa-question_category'=>'web','filter' => 'unanswered'),site_url().'/') )?>">未解决</a></li>
+                    <li><a href="<?php echo esc_url(add_query_arg( array( 'dwqa-question_category'=>'web','sort' => 'views','filter' => 'all'),site_url().'/') )?>">热门</a></li>
+                    <li class="active"><a href="<?php echo esc_url(add_query_arg(array('dwqa-question_category'=>'web','sort'=>'date' ,'filter' => 'all'),site_url().'/' ))?>">所有</a></li>
+                    <li><a href="<?php echo esc_url( add_query_arg( array( 'dwqa-question_category'=>'web','sort' => 'date','filter' => 'unanswered'),site_url().'/') )?>">未解决</a></li>
                 </ul>
                 <div class="dwqa-questions-list" style="margin-top: 42px">
                     <?php if ( $questions_question_all->have_posts() ) : ?>
