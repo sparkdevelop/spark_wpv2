@@ -64,7 +64,7 @@
     </div>
     <div class="col-md-4 col-sm-4 col-xs-4">
         <div><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/project_icon.png"/></div>
-        <a class="features-title" href="<?php echo site_url() . get_page_address('project');?>"><h1>项目</h1></a>
+        <a class="features-title" href="<?php echo get_the_permalink( get_page_by_title( '项目' )); ?>"><h1>项目</h1></a>
         <p class="features-sec">“ 致用 ”</p>
         <p>看优秀的开源项目，激发灵感，学习借鉴<br/>记录分享你的项目，让学习成长留下痕迹</p>
     </div>

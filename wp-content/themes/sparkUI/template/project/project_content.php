@@ -2,12 +2,15 @@
 如果你希望在主循环外另外生成循环，应该新建独立的WP_Query对象，用这些对象生成循环。
 在主循环外的循环上使用query_posts会导致主循环运行偏差，并可能在页面上显示出你不希望看到的内容。
 query_posts函数会改写并取代页面的主查询。为谨慎起见，请不要将query_posts用作其它用途。 -->
-<?php $project_all_new = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' date','order' =>'DESC',  'post_status' => $status,'cat'=>12,13 ));?>
-<?php $project_all_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => 'meta_value_num','meta_key' => 'project_views','order' =>'DESC',  'post_status' => $status,'cat'=>12,13 ));?>
-<?php $project_hardware_new = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' date','order' =>'DESC',  'post_status' => $status,'cat'=>12 ));?>
-<?php $project_hardware_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => 'meta_value_num','meta_key' => 'project_views','order' =>'DESC',  'post_status' => $status,'cat'=>12 ));?>
-<?php $project_web_new = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' date','order' =>'DESC',  'post_status' => $status,'cat'=>13 ));?>
-<?php $project_web_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => 'meta_value_num','meta_key' => 'project_views','order' =>'DESC',  'post_status' => $status,'cat'=>13 ));?>
+<?php
+ $project_all_new = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' date','order' =>'DESC',  'post_status' => $status,'category_name'=>'project' ));
+ $project_all_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => 'meta_value_num','meta_key' => 'project_views','order' =>'DESC',  'post_status' => $status,'category_name'=>'project' ));
+ $project_hardware_new = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' date','order' =>'DESC',  'post_status' => $status,'category_name'=>'harware' ));
+ $project_hardware_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => 'meta_value_num','meta_key' => 'project_views','order' =>'DESC',  'post_status' => $status,'category_name'=>'harware' ));
+ $project_web_new = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' date','order' =>'DESC',  'post_status' => $status,'category_name'=>'web'));
+ $project_web_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => 'meta_value_num','meta_key' => 'project_views','order' =>'DESC',  'post_status' => $status,'category_name'=>'web'  ));
+ $paged=get_query_var('paged')
+ ?>
 <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
 <ul id="leftTab" class="nav nav-pills" style="float: left;height: 42px;">
         <li class="active"><a href="#project_all" data-toggle="tab">所有</a></li>
@@ -27,16 +30,22 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
                 <div style="height: 2px;background-color: lightgray"></div><br>
                  <ul class="list-group">
                      <?php while ($project_all_new->have_posts()) : $project_all_new->the_post(); ?>
-                         <?php include(TEMPLATEPATH .'/template/project/project_single.php'); ?>
+                         <?php include(TEMPLATEPATH .'/template/project/project_simple.php'); ?>
                      <?php endwhile; ?>
+                     <div class="pagenavi">
+                         <?php //project_custom_pagenavi($project_all_new);?>
+                     </div>
                  </ul>
             </div>
             <div class="tab-pane fade" id="hot"><!--热门-->
                 <div style="height: 2px;background-color: lightgray"></div><br>
                     <ul class="list-group">
                         <?php while ($project_all_hot->have_posts()) : $project_all_hot->the_post(); ?>
-                            <?php include(TEMPLATEPATH .'/template/project/project_single.php'); ?>
+                            <?php include(TEMPLATEPATH .'/template/project/project_simple.php'); ?>
                         <?php endwhile; ?>
+                        <div class="pagenavi">
+                            <?php// project_custom_pagenavi( $project_all_hot);?>
+                        </div>
                     </ul>
             </div>
         </div>
@@ -52,16 +61,22 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
                 <div style="height: 2px;background-color: lightgray"></div><br>
                     <ul class="list-group">
                         <?php while ($project_hardware_new ->have_posts()) : $project_hardware_new->the_post(); ?>
-                            <?php include(TEMPLATEPATH .'/template/project/project_single.php'); ?>
+                            <?php include(TEMPLATEPATH .'/template/project/project_simple.php'); ?>
                         <?php endwhile; ?>
+                        <div class="pagenavi">
+                            <?php//  project_custom_pagenavi( $project_hardware_new);?>
+                        </div>
                     </ul>        
             </div>
             <div class="tab-pane fade" id="hot_2"><!--硬件热门-->
                 <div style="height: 2px;background-color: lightgray"></div><br>
                     <ul class="list-group">
                         <?php while ($project_hardware_hot ->have_posts()) : $project_hardware_hot->the_post(); ?>
-                            <?php include(TEMPLATEPATH .'/template/project/project_single.php'); ?>
+                            <?php include(TEMPLATEPATH .'/template/project/project_simple.php'); ?>
                         <?php endwhile; ?>
+                        <div class="pagenavi">
+                            <?php // project_custom_pagenavi( $project_hardware_hot);?>
+                        </div>
                     </ul>        
             </div>
         </div>
@@ -77,16 +92,22 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
                 <div style="height: 2px;background-color: lightgray"></div><br>
                     <ul class="list-group">
                         <?php while ($project_web_new  ->have_posts()) : $project_web_new ->the_post(); ?>
-                            <?php include(TEMPLATEPATH .'/template/project/project_single.php'); ?>
+                            <?php include(TEMPLATEPATH .'/template/project/project_simple.php'); ?>
                         <?php endwhile; ?>
+                        <div class="pagenavi">
+                            <?php  //project_custom_pagenavi( $project_web_new);?>
+                        </div>
                     </ul>        
             </div>
             <div class="tab-pane fade" id="hot_3"><!--web热门-->
                 <div style="height: 2px;background-color: lightgray"></div><br>
                     <ul class="list-group">
                         <?php while ($project_web_hot  ->have_posts()) : $project_web_hot ->the_post(); ?>
-                            <?php include(TEMPLATEPATH .'/template/project/project_single.php'); ?>
+                            <?php include(TEMPLATEPATH .'/template/project/project_simple.php'); ?>
                         <?php endwhile; ?>
+                        <div class="pagenavi">
+                            <?php // project_custom_pagenavi($project_web_hot);?>
+                        </div>
                     </ul>        
             </div>
         </div>

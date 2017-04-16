@@ -663,3 +663,31 @@ h4{margin-bottom: 0px;}
 .wiki_entry_title:focus{
     outline:none;
 }
+
+/*分页*/
+.pagenavi{
+    overflow:hidden;
+    width:100%;
+    text-align:center;
+}
+.pagenavi a{
+    height:36px;
+    border:1px solid #DDD;
+    -webkit-border-radius:12px;
+    -moz-border-radius:12px;
+    border-radius:12px;
+    color:#888;
+    text-decoration:none;
+    line-height:36px;
+    margin:2px;
+    padding:3px 8px;
+}
+.pagenavi a:hover,.page_navi a.current{
+    border:1px solid #FFBB76;color:#FF7200;
+    font-weight:bolder;
+}
+/*项目标签*/
+#article-tag { clear: both; border: 1px dotted  #ccc; padding: 5px; margin-bottom: 5px; }
+#article-tag,
+#article-cnt #article-tag a { text-decoration: none; color:  #ccc; }
+#article-cnt #article-tag a:hover { text-decoration: underline; }

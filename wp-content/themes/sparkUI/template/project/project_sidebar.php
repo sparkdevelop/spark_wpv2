@@ -83,30 +83,30 @@ $tag_count = array();
 <div class="sidebar_list">
     <div class="sidebar_list_header">
         <p>热门标签</p>
-        <a id="sidebar_list_link" onclick="show_all_tags()">全部标签</a>
+        <!--<a id="sidebar_list_link" onclick="show_all_tags()">全部标签</a>-->
     </div>
     <!--                分割线-->
     <div class="sidebar_divline"></div>
     <!--                标签群   固定个数?  如何生成热门标签 将输入的东西换成--><?//php?><!--传入的数据-->
-    <div id="hot_tags" style="word-wrap: break-word; word-break: keep-all;">
+    <!--<div id="hot_tags" style="word-wrap: break-word; word-break: keep-all;">
             <h4>
                 <?php
-                for($i=0;$i<9;$i++){?>
-                    <a class="label label-default" href="<?=$link[$i]?>"><?=$tag_name[$i]?><span class="badge">(<?=$tag_count[$i]?>)</span></a>
-                <?php  } ?>
+/*                for($i=0;$i<9;$i++){*/?>
+                    <a class="label label-default" href="<?/*=$link[$i]*/?>"><?/*=$tag_name[$i]*/?><span class="badge">(<?/*=$tag_count[$i]*/?>)</span></a>
+                <?php /* } */?>
             </h4>
         </div>
 
         <div id="all_tags" style="display: none;word-wrap: break-word; word-break: keep-all;">
             <h4>
                 <?php
-                foreach ($tag_name as $key =>$i){?>
-                    <a class="label label-default" href="<?=$link[$key]?>"><?=$i?><span class="badge">(<?=$tag_count[$key]?>)</span></a>
-                <?php }
-                ?>
+/*                foreach ($tag_name as $key =>$i){*/?>
+                    <a class="label label-default" href="<?/*=$link[$key]*/?>"><?/*=$i*/?><span class="badge">(<?/*=$tag_count[$key]*/?>)</span></a>
+                <?php /*}
+                */?>
             </h4>
         </div>
-    </div>
+    </div>-->
     <div id="hot_tags" style="word-wrap: break-word; word-break: keep-all;">
 
         <?php $args = array(
@@ -115,12 +115,12 @@ $tag_count = array();
             'unit'                      => 'pt',
             'number'                    => 20,
             'format'                    => 'flat',
-            'separator'                 => "\n",
+            'separator'                 => "&nbsp",
             'orderby'                   => 'count',
             'order'                     => 'DESC',
             'exclude'                   => null,
             'include'                   => null,
-            'topic_count_text_callback' => default_topic_count_text,
+            'topic_count_text_callback' => 'default_topic_count_text',
             'link'                      => 'view',
             'taxonomy'                  => 'post_tag',
             'echo'                      => true,

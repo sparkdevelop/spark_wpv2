@@ -19,6 +19,9 @@ get_header(); ?>
                           <?php include(TEMPLATEPATH .'/template/project/project_single.php'); ?>
                           <!-- 文章end -->
                       <?php endwhile;endif; ?>
+                          <div class="pagenavi">
+                              <?php  project_custom_pagenavi(4);?>
+                          </div>
                       </ul>
                 </div>
             </div>

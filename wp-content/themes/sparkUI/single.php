@@ -53,10 +53,16 @@ $postid = get_the_ID();
 
 
                 <!--判断用户是否为项目发布者，若是，则显示编辑按钮-->
-                <?php $postid = get_the_ID(); ?>
-                <div class="sidebar_button" style="margin-top: 20px;">
-                    <a href="?fep_action=edit&fep_id=<?= $postid; ?><?= (isset($_SERVER['QUERY_STRING']) ? '&' . $_SERVER['QUERY_STRING'] : '') ?>&page_id=199" style="color: white" >编辑项目</a>
-                </div><br><br>
+                <?php global $current_user;
+                get_currentuserinfo();
+                $current_user->user_login  ;
+                ?>
+                <?php if($current_user->user_login  == get_the_author()) {
+                    require 'template/project/project_edit_button.php';
+                }else {
+                    require 'template/project/project_release_button.php';
+                }
+                ?>
 
 
                 <style type="text/css">
