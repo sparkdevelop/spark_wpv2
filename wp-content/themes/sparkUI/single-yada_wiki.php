@@ -11,10 +11,10 @@ get_header(); ?>
 
 <div class="container" style="margin-top: 10px">
     <div class="row" style="width: 100%">
-        <div class="col-md-8 col-sm-8 col-xs-8">
+        <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
             <!--引入动态模板-->
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post();?>
-                <h1><?php the_title(); ?></h1>
+                <h2><b><?php the_title(); ?></b></h2>
                 <hr>
                 <?php the_content(); ?>
                 <?php comments_template(); ?>
@@ -25,7 +25,7 @@ get_header(); ?>
             <?php endif; ?>
 
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-4 right">
+        <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
             <?php get_sidebar(); ?>
         </div>
     </div>

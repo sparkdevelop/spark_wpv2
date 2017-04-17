@@ -42,7 +42,7 @@ $page_personal_id = get_page_id('personal');
                 elseif ( is_page($page_qa_id) ) {//显示问答内容 参数为pageID 如何自动获取??
                     require "template/qa/QA_content.php";
                 }
-                elseif (is_page($page_project_id)){
+                elseif (is_page('项目')){
                     require "template/project/project_content.php";
                 }
                 elseif (is_page($page_ask_id)) {
@@ -52,7 +52,13 @@ $page_personal_id = get_page_id('personal');
                         <script>
                             location.href = "<?= wp_login_url( get_permalink())?>";
                         </script>
-                <?php    }
+                <?php   }
+                }
+                elseif (is_page('发布项目')){
+                    require "template/project/submission-form.php";
+                }
+                elseif (is_page('My Posts')){
+                    require "template/project/project_edit.php";
                 }
                 elseif (is_page($page_personal_id)){
                     require "template/personal.php";

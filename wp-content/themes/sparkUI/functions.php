@@ -102,7 +102,8 @@ function colorCloudCallback($matches) {
     return "<a $text>";
 }
 add_filter('wp_tag_cloud', 'colorCloud', 1);
-//显示标签数量
+
+//标签tag所包含的文章数量
 function Tagno($text) {
     $text = preg_replace_callback('|<a (.+?)</a>|i', 'tagnoCallback', $text);
     return $text;
@@ -110,8 +111,8 @@ function Tagno($text) {
 function tagnoCallback($matches) {
     $text=$matches[1];
     preg_match('|title=(.+?)style|i',$text ,$a);
-    preg_match("/[0-9]/",$a[1],$a);
-    return "<a ".$text ."<span class='badge'>(".$a[0].")</span>";
+    preg_match("/[0-9]+/",$a[0],$b);
+    return "<a ".$text ."<span>[".$b[0]."]</span></a>";
 }
 add_filter('wp_tag_cloud', 'Tagno', 1);
 
@@ -806,48 +807,49 @@ add_action('wp_ajax_get_wiki_hot_tags', 'get_wiki_hot_tags');
 add_action('wp_ajax_nopriv_get_wiki_hot_tags', 'get_wiki_hot_tags');
 
 
-
-
-//加编辑器按钮
-function add_editor_buttons($buttons) {
-
-    $buttons[] = 'fontselect';
-
-    $buttons[] = 'fontsizeselect';
-
-    $buttons[] = 'cleanup';
-
-    $buttons[] = 'styleselect';
-
-    $buttons[] = 'hr';
-
-    $buttons[] = 'del';
-
-    $buttons[] = 'sub';
-
-    $buttons[] = 'sup';
-
-    $buttons[] = 'copy';
-
-    $buttons[] = 'paste';
-
-    $buttons[] = 'cut';
-
-    $buttons[] = 'undo';
-
-    $buttons[] = 'image';
-
-    $buttons[] = 'anchor';
-
-    $buttons[] = 'backcolor';
-
-    $buttons[] = 'wp_page';
-
-    $buttons[] = 'charmap';
-
-    return $buttons;
-
+//项目分类和标签分页
+function project_custom_pagenavi($range = 4 ) {
+    global $paged,$wp_query;
+    if ( !$max_page ) {
+        $max_page = $wp_query->max_num_pages;
+    }
+    if( $max_page >1 ) {
+        echo "<div class='fenye'>";
+        if( !$paged ){
+            $paged = 1;
+        }
+        if( $paged != 1 ) {
+            echo "<a href='".get_pagenum_link(1) ."' class='extend' title='跳转到首页'>首页</a>";
+        }
+        previous_posts_link('上一页');
+        if ( $max_page >$range ) {
+            if( $paged <$range ) {
+                for( $i = 1; $i <= ($range +1); $i++ ) {
+                    echo "<a href='".get_pagenum_link($i) ."'";
+                    if($i==$paged) echo " class='current'";echo ">$i</a>";
+                }
+            }elseif($paged >= ($max_page -ceil(($range/2)))){
+                for($i = $max_page -$range;$i <= $max_page;$i++){
+                    echo "<a href='".get_pagenum_link($i) ."'";
+                    if($i==$paged)echo " class='current'";echo ">$i</a>";
+                }
+            }elseif($paged >= $range &&$paged <($max_page -ceil(($range/2)))){
+                for($i = ($paged -ceil($range/2));$i <= ($paged +ceil(($range/2)));$i++){
+                    echo "<a href='".get_pagenum_link($i) ."'";if($i==$paged) echo " class='current'";echo ">$i</a>";
+                }
+            }
+        }else{
+            for($i = 1;$i <= $max_page;$i++){
+                echo "<a href='".get_pagenum_link($i) ."'";
+                if($i==$paged)echo " class='current'";echo ">$i</a>";
+            }
+        }
+        next_posts_link('下一页');
+        if($paged != $max_page){
+            echo "<a href='".get_pagenum_link($max_page) ."' class='extend' title='跳转到最后一页'>尾页</a>";
+        }
+        echo '<span>['.$paged.']/['.$max_page.']页</span>';
+        echo "</div>\n";
+    }
 }
-
-add_filter("mce_buttons_3", "add_editor_buttons")
 ?>
