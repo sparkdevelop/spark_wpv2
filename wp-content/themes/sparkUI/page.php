@@ -47,10 +47,10 @@ $page_personal_id = get_page_id('personal');
                 }
 
                 elseif (is_page('发布项目')){
-                    require "template/project/submission-form.php";
+                    the_content();
                 }
                 elseif (is_page('My Posts')){
-                    require "template/project/project_edit.php";
+                    the_content();
                 }
                 elseif (is_page($page_ask_id)){
                     //require admin_url()."QA_ask.php";
