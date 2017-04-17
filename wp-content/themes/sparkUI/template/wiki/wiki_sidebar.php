@@ -17,7 +17,7 @@
         font-size: 16px;
     }
 </style>
-<div class="col-md-3 col-sm-3 col-xs-3" right id="col3">
+<div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
 <div class="wiki_sidebar_wrap">
     <div class="sidebar_button"><a href="http://localhost/spark_wpv2/?page_id=58">创建 wiki</a></div>
     <div class="list-group mulu">

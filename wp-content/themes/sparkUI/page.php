@@ -45,16 +45,20 @@ $page_personal_id = get_page_id('personal');
                 elseif (is_page('项目')){
                     require "template/project/project_content.php";
                 }
-
+                elseif (is_page($page_ask_id)) {
+                    if (is_user_logged_in()) {
+                        require "template/qa/QA_ask.php";
+                    } else {?>
+                        <script>
+                            location.href = "<?= wp_login_url( get_permalink())?>";
+                        </script>
+                <?php   }
+                }
                 elseif (is_page('发布项目')){
                     the_content();
                 }
                 elseif (is_page('My Posts')){
                     the_content();
-                }
-                elseif (is_page($page_ask_id)){
-                    //require admin_url()."QA_ask.php";
-                    require "template/qa/QA_ask.php";
                 }
                 elseif (is_page($page_personal_id)){
                     require "template/personal.php";

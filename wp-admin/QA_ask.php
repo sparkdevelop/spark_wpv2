@@ -2,8 +2,6 @@
 /*
 本页面是我要提问页面的content
  */
-global $post;
-require_once('wp-admin/admin.php' );
 ?>
 <div class="col-md-9 col-sm-9 col-xs-9"  id="col9">
     <h4 class="ask_topic">提 问</h4>
@@ -23,15 +21,8 @@ require_once('wp-admin/admin.php' );
                    id="question-title" name="question-title" value="<?php echo $title ?>" tabindex="1" _moz_abspos=""  onkeydown="if(event.keyCode==13) return false;"/>
         </p>
 
-        <?php
-        $post_type_object = get_post_type_object( 'dwqa-question' );
-        print_r($post_type_object);
-        post_tags_meta_box()
-        ?>
-
-
         <?php $content = isset( $_POST['question-content'] ) ? sanitize_text_field( $_POST['question-content'] ) : ''; //如果没有内容应该跳出警告?>
-        <p><?php dwqa_init_tinymce_editor( array( 'content' => $content, 'textarea_name' => 'question-content', 'id' => 'question-content' ) ) ?></p>
+        <p><?php //dwqa_init_tinymce_editor( array( 'content' => $content, 'textarea_name' => 'question-content', 'id' => 'question-content' ) ) ?></p>
         <?php global $dwqa_general_settings; ?>
         <?php if ( isset( $dwqa_general_settings['enable-private-question'] ) && $dwqa_general_settings['enable-private-question'] ) : ?>
             <p>
@@ -45,15 +36,13 @@ require_once('wp-admin/admin.php' );
             </p>
         <?php endif; ?>
         <!--    分类部分-->
-        <?php //post_categories_meta_box();
-
-        do_meta_box('dwqa-question','side',$post)?>
         <p>
             <label for="question-category">选择问题分类</label>
             <!--            <select></select>-->
 
             <?php
             $Question_cat_ID = get_dwqa_cat_ID('Questions');
+            echo "tags";
             wp_dropdown_categories( array(
                 //'show_option_all'=>__( 'Select question category', 'dwqa' ),
                 'name'          => 'question-category',
@@ -71,32 +60,30 @@ require_once('wp-admin/admin.php' );
             ?>
         </p>
         <!--    tag部分-->
-        <!--    --><?php
-        //    global $wpdb;
-        //    $tag_id = array();
-        //    $tag_name = array();//存储每个链接的名字;
-        //    //==============获取所有tag信息===============
-        //    $tag = get_terms( 'dwqa-question_tag', array_merge( array( 'orderby' => 'count', 'order' => 'DESC' )));
-        //    ?>
+            <?php
+            global $wpdb;
+            $tag_id = array();
+            $tag_name = array();//存储每个标签的名字;
+
+            //==============获取所有tag信息===============
+            $tag = get_terms( 'dwqa-question_tag', array_merge( array( 'orderby' => 'count', 'order' => 'DESC' )));
+            ?>
         <p>
             <label for="question-tag"><?php _e( 'Tag', 'dwqa' ) ?></label>
             <input type="text" class="" name="question-tag" value="<?php echo $tags ?>" >
             <?php $tags = isset( $_POST['question_tag'] ) ? sanitize_text_field( $_POST['question_tag'] ) : ''; ?>
 
-
-            <!--        --><?php
-            //        echo '<div>';
-            //            foreach($tag as $key => $temp){
-            //                $tag_id[]=$temp->term_id;
-            //                $tag_name[]=$temp->name;?>
-            <!--                <input type="checkbox" name="question-tag" value="--><?//=$tag_name[$key]?><!--"/>-->
-            <!--                    <span class="label label-default">--><?//=$tag_name[$key]?><!--</span>-->
-            <!--            --><?php //}
-            //        echo '</div>';
-            ////        ?>
+            <?php
+            echo '<div>';
+            foreach($tag as $key => $temp){
+                $tag_id[]=$temp->term_id;
+                $tag_name[]=$temp->name;?>
+                <input type="checkbox" name="question-tag" value="<?=$tag_name[$key]?>"/>
+                <span class="label label-default"><?=$tag_name[$key]?></span>
+            <?php }
+            echo '</div>';
+            ?>
             <!--        修改value-->
-
-
 
         </p>
         <?php if ( dwqa_current_user_can( 'post_question' ) && !is_user_logged_in() ) : ?>
@@ -119,6 +106,15 @@ require_once('wp-admin/admin.php' );
         <input type="button" id="cancel" onclick="Cancel()" name="dwqa-question-submit" value="<?php _e( '取消', 'dwqa' ) ?>" class="btn-grey" style="float: right;" />
     </form>
 </div>
+<!--<script charset="utf-8" src="--><?php //bloginfo('url');?><!--/ueditor/editor_config.js"></script>-->
+<!--<script charset="utf-8" src="--><?php //bloginfo('url');?><!--/ueditor/editor_all.js"></script>-->
+<!--<link rel="stylesheet" type="text/css" href="--><?php //bloginfo('url');?><!--/ueditor/themes/default/ueditor.css"/>-->
+<!--<!--style给定宽度可以影响编辑器的最终宽度-->-->
+<!--<textarea name="info_content" id="info_content" style="width:520px;float:left;font-size:12px;"></textarea>-->
+<!--<script type="text/javascript">-->
+<!--    var editor_a = new baidu.editor.ui.Editor();-->
+<!--    editor_a.render('info_content');-->
+<!--</script>-->
 <script language="javascript">
     function Cancel(){
         var url = '<?=site_url().get_page_address('qa')?>';

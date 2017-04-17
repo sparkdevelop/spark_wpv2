@@ -806,6 +806,7 @@ function get_wiki_hot_tags() {
 add_action('wp_ajax_get_wiki_hot_tags', 'get_wiki_hot_tags');
 add_action('wp_ajax_nopriv_get_wiki_hot_tags', 'get_wiki_hot_tags');
 
+
 //项目分类和标签分页
 function project_custom_pagenavi($range = 4 ) {
     global $paged,$wp_query;
@@ -851,5 +852,4 @@ function project_custom_pagenavi($range = 4 ) {
         echo "</div>\n";
     }
 }
-
 ?>

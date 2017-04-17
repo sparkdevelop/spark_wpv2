@@ -23,6 +23,7 @@ class DWQA_Editor {
 	public function tinymce_addbuttons() {
 		if ( get_user_option( 'rich_editing' ) == 'true' && ! is_admin() ) {
 			add_filter( 'mce_external_plugins', array( $this, 'add_custom_tinymce_plugin' ) );
+        //    add_filter( 'mce_external_plugins', '' );
 			add_filter( 'mce_buttons', array( $this, 'register_custom_button' ) );
 		}
 	}
@@ -36,6 +37,7 @@ class DWQA_Editor {
 		global $dwqa_options;
 		if ( is_singular( 'dwqa-question' ) || ( $dwqa_options['pages']['submit-question'] && is_page( $dwqa_options['pages']['submit-question'] ) ) ) {
 			$plugin_array['dwqaCodeEmbed'] = DWQA_URI . 'assets/js/code-edit-button.js';
+            //$plugin_array['dwqaCodeEmbed'] = '../wp-ueditor2/ueditor/ueditor.all.js';
 		}
 		return $plugin_array;
 	}
@@ -58,11 +60,12 @@ class DWQA_Editor {
 			'textarea_rows' => $rows,
 			'tinymce' => array(
 					'toolbar1' => $toolbar1,
-					'toolbar2'   => '',
+					'toolbar2' => '',
 					'content_css' => $dwqa_tinymce_css
 			),
 			'quicktags'     => true,
 		) );
+
 	}
 
 	public function toolbar_buttons() {

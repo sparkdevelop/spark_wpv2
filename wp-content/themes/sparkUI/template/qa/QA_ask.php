@@ -23,12 +23,6 @@ global $post;
                id="question-title" name="question-title" value="<?php echo $title ?>" tabindex="1" _moz_abspos=""  onkeydown="if(event.keyCode==13) return false;"/>
     </p>
 
-    <?php
-    $post_type_object = get_post_type_object( 'dwqa-question' );
-    //print_r($post_type_object);
-    ?>
-
-
     <?php $content = isset( $_POST['question-content'] ) ? sanitize_text_field( $_POST['question-content'] ) : ''; //如果没有内容应该跳出警告?>
     <p><?php dwqa_init_tinymce_editor( array( 'content' => $content, 'textarea_name' => 'question-content', 'id' => 'question-content' ) ) ?></p>
     <?php global $dwqa_general_settings; ?>
@@ -44,9 +38,6 @@ global $post;
         </p>
     <?php endif; ?>
 <!--    分类部分-->
-    <?php //post_categories_meta_box();
-
-    //do_meta_box('dwqa-question','side',$post)?>
     <p>
         <label for="question-category">选择问题分类</label>
 <!--            <select></select>-->
@@ -70,33 +61,53 @@ global $post;
         ?>
     </p>
 <!--    tag部分-->
-<!--    --><?php
-//    global $wpdb;
-//    $tag_id = array();
-//    $tag_name = array();//存储每个链接的名字;
-//    //==============获取所有tag信息===============
-//    $tag = get_terms( 'dwqa-question_tag', array_merge( array( 'orderby' => 'count', 'order' => 'DESC' )));
-//    ?>
+    <?php
+    global $wpdb;
+    $tag_id = array();
+    $tag_name = array();//存储每个链接的名字;
+    //==============获取所有tag信息===============
+    $tag = get_terms( 'dwqa-question_tag', array_merge( array( 'orderby' => 'count', 'order' => 'DESC' )));
+    ?>
     <p>
         <label for="question-tag"><?php _e( 'Tag', 'dwqa' ) ?></label>
-        <input type="text" class="" name="question-tag" value="<?php echo $tags ?>" >
+        <input type="text" class="" name="question-tag" id="Spark_question-tag" value="" onchange="checkTagNum(this.value)" placeholder="标签之间用逗号隔开">
+        <p>常用标签:</p>
         <?php $tags = isset( $_POST['question_tag'] ) ? sanitize_text_field( $_POST['question_tag'] ) : ''; ?>
-
-
-<!--        --><?php
-//        echo '<div>';
-//            foreach($tag as $key => $temp){
-//                $tag_id[]=$temp->term_id;
-//                $tag_name[]=$temp->name;?>
-<!--                <input type="checkbox" name="question-tag" value="--><?//=$tag_name[$key]?><!--"/>-->
-<!--                    <span class="label label-default">--><?//=$tag_name[$key]?><!--</span>-->
-<!--            --><?php //}
-//        echo '</div>';
-////        ?>
-<!--        修改value-->
-
-
-
+        <?php
+        echo '<div>';
+            for($i=0;$i<10;$i++){?>
+                <input type="button" name="add-question-tag" class="btn btn-default"
+                       style="background-color:#ffe9e1;color:#fe642d;border: 0px;outline: none"
+                       id="addTag_<?=$i?>" value="<?=$tag[$i]->name?>"
+                       onclick="addTag_<?=$tag[$i]->name?>(this.value)"/>
+                <script>
+                    function addTag_<?=$tag[$i]->name?>(value) {
+                        var tag = document.getElementById('Spark_question-tag');
+                        var alertTag = document.getElementById("alertTag");
+                        var addTag = document.getElementById("addTag_<?=$i?>");
+                        if(tag.value.length==0||tag.value.split(",").length<=3){
+                            var split_value = tag.value.split(",");
+                            for(i=1;i<split_value.length;i++){
+                                if(split_value[i-1]==value){
+                                    alertTag.innerHTML="<p style='color:red;margin-top:20px;margin-left: 20px'>不能输入相同的标签</p>";
+                                    var flag = false;
+                                }
+                            }
+                            if(flag!=false){
+                                tag.value = tag.value+value+",";
+                                addTag.style.backgroundColor="transparent";
+                                addTag.style.background = "url('<?php bloginfo("template_url")?>/img/OK.png') no-repeat scroll right center transparent";
+                            }
+                        }else{
+                            checkTagNum(tag.value);
+                            //alertTag.innerHTML="<p style='color:red;margin-top:20px;margin-left: 20px'>最多添加3个标签</p>"
+                        }
+                    }
+                </script>
+           <? }
+        echo '</div>';
+        ?>
+        <span id="alertTag"></span>
     </p>
     <?php if ( dwqa_current_user_can( 'post_question' ) && !is_user_logged_in() ) : ?>
         <p>
@@ -129,9 +140,11 @@ global $post;
         var question_content = document.getElementById('question-content');
         var question_category = document.getElementById('question-category');
         var question_tags = document.getElementsByName('question-tag');
+        var alert = document.getElementById("alert");
 
         if(question_title.length==0){
-            alert("问题标题不能为空");
+            alert("问题内容不能为空");
+            //alert.innerHTML="<p style='color:red;margin-top:20px;margin-left: 20px'>问题标题不能为空</p>";
             return false;}
         if(question_content.length==0){
             alert("问题内容不能为空");
@@ -144,23 +157,10 @@ global $post;
             return false;}
     }
 
-//    function tags() {
-//        obj = document.getElementsByName("question-tag");
-//        check_val = [];
-//        for(k in obj){
-//            if(obj[k].checked)
-//                check_val.push(obj[k].value);
-//        }
-//        var str = JSON.stringify(check_val);
-//        //alert(str);
-//        return str;
-//    }
-//    var question_tag;
-//    $.ajax({
-//        type:"post",
-//        data:{
-//            question_tag=tags();
-//        },
-//        success:function(data){
-//        }})
+    function checkTagNum(value) {
+        if(value.split(",").length>3){
+            var alertTag = document.getElementById("alertTag");
+            alertTag.innerHTML="<p style='color:red;margin:20px 20px'>最多添加3个标签</p>"
+        }
+    }
 </script>
