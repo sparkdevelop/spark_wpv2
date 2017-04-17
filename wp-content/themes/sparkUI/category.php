@@ -20,7 +20,7 @@ get_header(); ?>
                           <!-- 文章end -->
                       <?php endwhile;endif; ?>
                           <div class="pagenavi">
-                              <?php  project_custom_pagenavi(4);?>
+                              <?php  project_custom_pagenavi('',4);?>
                           </div>
                       </ul>
                 </div>

@@ -13,7 +13,7 @@ wp_enqueue_script('fep-script');
 wp_enqueue_media();
 
 $current_user = wp_get_current_user();
-$author_posts = new WP_Query(array('posts_per_page' => $per_page, 'paged' => $paged, 'orderby' => 'DESC', 'author' => $current_user->ID, 'post_status' => $status,'cat'=>13,14,17 ));
+$author_posts = new WP_Query(array('posts_per_page' => $per_page, 'paged' => $paged, 'orderby' => 'DESC', 'author' => $current_user->ID, 'post_status' => $status,'category_name'=>'project'));
 $postid = get_the_ID();
 
 ?>
