@@ -808,7 +808,7 @@ add_action('wp_ajax_nopriv_get_wiki_hot_tags', 'get_wiki_hot_tags');
 
 
 //项目分类和标签分页
-function project_custom_pagenavi($range = 4 ) {
+function project_custom_pagenavi($custom_query,$range = 4 ) {
     global $paged,$wp_query;
     if ( !$max_page ) {
         $max_page = $wp_query->max_num_pages;
