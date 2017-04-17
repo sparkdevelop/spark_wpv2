@@ -19,10 +19,10 @@
             <p>3.禁止发布广告和垃圾信息</p>
         </li>
         <li class="list-group-item">
-            <p>4.为了使你的代码更加清晰,推荐使用以下代码:</p>
-            <li class="list-group-item"><p>[php]这里写你的代码[/php]</p></li>
+            <p>4.为了使你的代码更加清晰,推荐<font style="bold;color: #fe642d">文本编辑框</font>使用以下代码:</p>
             <li class="list-group-item"><p>[code lang="js"]这里写你的代码[/code]</p></li>
-            <li class="list-group-item"><p>[sourcecode language="plain"]这里写你的代码[/sourcecode]</p></li>
+            <li class="list-group-item"><p>支持的常用语言类型有:</p></li>
+        <p style="margin-left: 20px">cpp(C,C++)<br>java<br>js<br>php<br>xml(html)<br>plain<br>python<br>ruby<br>vb<br>sql<br></p>
         </li>
     </ul>
 </div>

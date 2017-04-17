@@ -804,4 +804,50 @@ function get_wiki_hot_tags() {
 }
 add_action('wp_ajax_get_wiki_hot_tags', 'get_wiki_hot_tags');
 add_action('wp_ajax_nopriv_get_wiki_hot_tags', 'get_wiki_hot_tags');
+
+
+
+
+//加编辑器按钮
+function add_editor_buttons($buttons) {
+
+    $buttons[] = 'fontselect';
+
+    $buttons[] = 'fontsizeselect';
+
+    $buttons[] = 'cleanup';
+
+    $buttons[] = 'styleselect';
+
+    $buttons[] = 'hr';
+
+    $buttons[] = 'del';
+
+    $buttons[] = 'sub';
+
+    $buttons[] = 'sup';
+
+    $buttons[] = 'copy';
+
+    $buttons[] = 'paste';
+
+    $buttons[] = 'cut';
+
+    $buttons[] = 'undo';
+
+    $buttons[] = 'image';
+
+    $buttons[] = 'anchor';
+
+    $buttons[] = 'backcolor';
+
+    $buttons[] = 'wp_page';
+
+    $buttons[] = 'charmap';
+
+    return $buttons;
+
+}
+
+add_filter("mce_buttons_3", "add_editor_buttons")
 ?>
