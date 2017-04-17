@@ -205,6 +205,32 @@ function get_dwqa_cat_ID($cat_name){
     $cat_id = $wpdb->get_var("SELECT term_id FROM $wpdb->terms WHERE name = '$cat_name'");
     return $cat_id;
 }
+
+function checkPass(){
+    global $wpdb;
+    $current_user = wp_get_current_user();
+    $password = isset($_POST["oldpassword"]) ? $_POST["oldpassword"] :'';
+    $sql = "SELECT user_pass FROM $wpdb->users WHERE ID=".$current_user->ID;
+    $user_pass = $wpdb->get_var($sql);
+    $data = wp_check_password($password,$user_pass);
+    if($data){
+        $url=get_template_directory_uri()."/img/OK.png";
+        //$response = '<img src='.$url.'>';
+        $response =true;
+        //$response = "good";
+    }else{
+        $url=get_template_directory_uri()."/img/ERROR.png";
+        //$response = '<img src='.$url.'>';
+        $response =false;
+    }
+    echo $response;
+    exit;
+}
+add_action('wp_ajax_checkPass', 'checkPass');
+add_action('wp_ajax_nopriv_checkPass', 'checkPass');
+
+
+
 //function loadCustomTemplate($template) {
 //    global $wp_query;
 //    if(!file_exists($template))return;

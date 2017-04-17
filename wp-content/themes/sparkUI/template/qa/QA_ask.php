@@ -3,13 +3,10 @@
 本页面是我要提问页面的content
  */
 global $post;
-//require_once( admin_url(). 'admin.php' );
 ?>
 <div class="col-md-9 col-sm-9 col-xs-9"  id="col9">
 <h4 class="ask_topic">提 问</h4>
-<?php
-//    echo do_shortcode("[dwqa-submit-question-form]");
-//?>
+
 <style>
     #Spark_question_submit_form{margin-bottom: 30px}
 </style>
@@ -61,6 +58,7 @@ global $post;
         ?>
     </p>
 <!--    tag部分-->
+
     <?php
     global $wpdb;
     $tag_id = array();
@@ -70,14 +68,17 @@ global $post;
     ?>
     <p>
         <label for="question-tag"><?php _e( 'Tag', 'dwqa' ) ?></label>
-        <input type="text" class="" name="question-tag" id="Spark_question-tag" value="" onchange="checkTagNum(this.value)" placeholder="标签之间用逗号隔开">
-        <p>常用标签:</p>
+        <input type="text" class="" name="question-tag"
+               id="Spark_question-tag" value=""
+               onkeyup="checkTagNum(this.value)" placeholder="标签之间用逗号隔开">
+<!--                style="display: none">-->
+        <h5>常用标签:</h5>
         <?php $tags = isset( $_POST['question_tag'] ) ? sanitize_text_field( $_POST['question_tag'] ) : ''; ?>
         <?php
         echo '<div>';
             for($i=0;$i<10;$i++){?>
                 <input type="button" name="add-question-tag" class="btn btn-default"
-                       style="background-color:#ffe9e1;color:#fe642d;border: 0px;outline: none"
+                       style="background-color:#ffe9e1;border-color:transparent;color:#fe642d;outline: none"
                        id="addTag_<?=$i?>" value="<?=$tag[$i]->name?>"
                        onclick="addTag_<?=$tag[$i]->name?>(this.value)"/>
                 <script>
@@ -85,47 +86,65 @@ global $post;
                         var tag = document.getElementById('Spark_question-tag');
                         var alertTag = document.getElementById("alertTag");
                         var addTag = document.getElementById("addTag_<?=$i?>");
-                        if(tag.value.length==0||tag.value.split(",").length<=3){
-                            var split_value = tag.value.split(",");
-                            for(i=1;i<split_value.length;i++){
-                                if(split_value[i-1]==value){
-                                    alertTag.innerHTML="<p style='color:red;margin-top:20px;margin-left: 20px'>不能输入相同的标签</p>";
-                                    var flag = false;
+
+                        if(judgeRepeatTag(value)==false){ //如果是相同的点击,不在计数里判断
+                            tag.value=tag.value.replace(value+',',''); //去掉当前的重复值
+                            addTag.style.border="1px solid"; //若取消选择,style。恢复未选择状态
+                            addTag.style.borderColor="transparent";
+                            addTag.style.background="";
+                            addTag.style.backgroundColor="#ffe9e1";
+                            addTag.style.color="#fe642d";
+                            tag.disabled = false; //可以继续输入。
+                        }
+                        else{ //若是添加新标签
+                            if(tag.value.length==0||tag.value.split(",").length<=3){
+                                    tag.disabled = false; //可以继续输入
+                                    tag.value = tag.value+value+","; //添加标签
+                                    addTag.style.border="1px solid";
+                                    addTag.style.borderColor="#fe642d";
+                                    addTag.style.color="white";
+                                    addTag.style.background = "url('<?php bloginfo("template_url")?>/img/check.png') no-repeat scroll top right #fe642d";
+                            }
+                            else{
+                                    checkTagNum(tag.value);
                                 }
                             }
-                            if(flag!=false){
-                                tag.value = tag.value+value+",";
-                                addTag.style.backgroundColor="transparent";
-                                addTag.style.background = "url('<?php bloginfo("template_url")?>/img/OK.png') no-repeat scroll right center transparent";
-                            }
-                        }else{
-                            checkTagNum(tag.value);
-                            //alertTag.innerHTML="<p style='color:red;margin-top:20px;margin-left: 20px'>最多添加3个标签</p>"
                         }
+                    function judgeRepeatTag(value) {
+                        var tag = document.getElementById('Spark_question-tag');
+                        var split_value = tag.value.split(",");
+                        var flag = true;
+                        for(i=1;i<=split_value.length;i++){
+                            if(split_value[i-1]==value){
+                                 flag = false;
+                            }
+                        }
+                        return flag;
                     }
                 </script>
            <? }
         echo '</div>';
         ?>
         <span id="alertTag"></span>
+        <span><input type="button" class="btn btn-default" id="deleteTag" onclick="deleteTags()" style="display: none" value="删除标签"/></span>
     </p>
     <?php if ( dwqa_current_user_can( 'post_question' ) && !is_user_logged_in() ) : ?>
         <p>
             <label for="_dwqa_anonymous_email"><?php _e( 'Your Email', 'dwqa' ) ?></label>
             <?php $email = isset( $_POST['_dwqa_anonymous_email'] ) ? sanitize_email( $_POST['_dwqa_anonymous_email'] ) : ''; ?>
-            <input type="email" class="" name="_dwqa_anonymous_email" value="<?php echo $email ?>" >
+            <input type="email" class="" name="_dwqa_anonymous_email" value="<?php echo $email ?>" />
         </p>
         <p>
-            <label for="_dwqa_anonymous_name"><?php _e( 'Your Name', 'dwqa' ) ?></label>
+            <label for="_dwqa_anonymous_name"><?php _e( 'Your Name', 'dwqa' );?></label>
             <?php $name = isset( $_POST['_dwqa_anonymous_name'] ) ? sanitize_text_field( $_POST['_dwqa_anonymous_name'] ) : ''; ?>
-            <input type="text" class="" name="_dwqa_anonymous_name" value="<?php echo $name ?>" >
+            <input type="text" class="" name="_dwqa_anonymous_name" value="<?php echo $name ?>" />
         </p>
     <?php endif; ?>
-    <?php wp_nonce_field( '_dwqa_submit_question' ) ?>
+    <?php wp_nonce_field( '_dwqa_submit_question' ) ;?>
     <?php dwqa_load_template( 'captcha', 'form' ); ?>
     <?php do_action('dwqa_before_question_submit_button'); ?>
 
-    <input type="submit" name="dwqa-question-submit" value="<?php _e( '提交问题', 'dwqa' ) ?>" class="btn-green">
+    <input type="submit" name="dwqa-question-submit" value="<?php _e( '提交问题', 'dwqa' ) ?>" class="btn-green"/>
     <input type="button" id="cancel" onclick="Cancel()" name="dwqa-question-submit" value="<?php _e( '取消', 'dwqa' ) ?>" class="btn-grey" style="float: right;" />
 </form>
 </div>
@@ -142,25 +161,48 @@ global $post;
         var question_tags = document.getElementsByName('question-tag');
         var alert = document.getElementById("alert");
 
-        if(question_title.length==0){
+        if(question_title.value.length==0){
             alert("问题内容不能为空");
             //alert.innerHTML="<p style='color:red;margin-top:20px;margin-left: 20px'>问题标题不能为空</p>";
             return false;}
-        if(question_content.length==0){
+        if(question_content.value.length==0){
             alert("问题内容不能为空");
             return false;}
-        if(question_category.length==0){
+        if(question_category.value.length==0){
             alert("分类不能为空");
             return false;}
-        if(question_tags.length==0||question_tags==false){
+        if(question_tags.value.length==0||question_tags==false){
             alert("tag不能为空");
             return false;}
     }
 
     function checkTagNum(value) {
+        var tag = document.getElementById('Spark_question-tag');
+        var alertTag = document.getElementById("alertTag");
+        var deleteTag = document.getElementById("deleteTag");
+
         if(value.split(",").length>3){
-            var alertTag = document.getElementById("alertTag");
-            alertTag.innerHTML="<p style='color:red;margin:20px 20px'>最多添加3个标签</p>"
+            tag.disabled = true;
+            alertTag.innerHTML="<p style='color:red;margin:20px 20px'>最多添加3个标签</p>";
+            deleteTag.style.display = "block";
+        } else{
+            tag.disabled = false;
+            alertTag.innerHTML = "";
+            deleteTag.style.display = "none";
         }
+    }
+
+    function deleteTags() {
+        for(var i=0;i<10;i++){
+            var addTag= document.getElementById('addTag_'+i);
+            addTag.style.border="1px solid"; //若取消选择,style。恢复未选择状态
+            addTag.style.borderColor="transparent";
+            addTag.style.background="";
+            addTag.style.backgroundColor="#ffe9e1";
+            addTag.style.color="#fe642d";
+        }
+        var tag = document.getElementById('Spark_question-tag');
+        tag.value = "";
+        tag.disabled = false;
     }
 </script>

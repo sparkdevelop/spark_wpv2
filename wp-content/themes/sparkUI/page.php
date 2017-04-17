@@ -61,7 +61,13 @@ $page_personal_id = get_page_id('personal');
                     require "template/project/project_edit.php";
                 }
                 elseif (is_page($page_personal_id)){
-                    require "template/personal.php";
+                    if (is_user_logged_in()) {
+                        require "template/personal.php";
+                    } else { ?>
+                    <script>
+                        location.href = "<?= wp_login_url( get_permalink())?>";
+                    </script>
+                <?php  }
                 }
                 else{
                     the_content();
