@@ -32,17 +32,17 @@ function fep_post_has_errors($content)
     $stripped_bio = strip_tags($content['about_the_author']);
     $stripped_content = strip_tags($content['post_content']);
 
-    if (!empty($content['post_title']) && str_word_count($content['post_title']) < $min_words_title)
+    if (!empty($content['post_title']) && mb_strlen($content['post_title']) < $min_words_title)
         $error_string .= sprintf($format, $fep_messages['title_short_error']);
-    if (!empty($content['post_title']) && str_word_count($content['post_title']) > $max_words_title)
+    if (!empty($content['post_title']) && mb_strlen($content['post_title']) > $max_words_title)
         $error_string .= sprintf($format, $fep_messages['title_long_error']);
-    if (!empty($content['post_content']) && str_word_count($stripped_content) < $min_words_content)
+    if (!empty($content['post_content']) && mb_strlen($stripped_content) < $min_words_content)
         $error_string .= sprintf($format, $fep_messages['article_short_error']);
-    if (str_word_count($stripped_content) > $max_words_content)
+    if (mb_strlen($stripped_content) > $max_words_content)
         $error_string .= sprintf($format, $fep_messages['article_long_error']);
-    if (!empty($content['about_the_author']) && $stripped_bio != -1 && str_word_count($stripped_bio) < $min_words_bio)
+    if (!empty($content['about_the_author']) && $stripped_bio != -1 && mb_strlen($stripped_bio) < $min_words_bio)
         $error_string .= sprintf($format, $fep_messages['bio_short_error']);
-    if ($stripped_bio != -1 && str_word_count($stripped_bio) > $max_words_bio)
+    if ($stripped_bio != -1 && mb_strlen($stripped_bio) > $max_words_bio)
         $error_string .= sprintf($format, $fep_messages['bio_long_error']);
     if (substr_count($content['post_content'], '</a>') > $max_links)
         $error_string .= sprintf($format, $fep_messages['too_many_article_links_error']);
@@ -55,12 +55,11 @@ function fep_post_has_errors($content)
     if ($thumb_required == 'true' && $content['featured_img'] == -1)
         $error_string .= sprintf($format, $fep_messages['featured_image_error']);
 
-    if (str_word_count($error_string) < 2)
+    if (mb_strlen($error_string) < 2)
         return false;
     else
         return $error_string;
 }
-
 /**
  * Ajax function for fetching a featured image
  *

@@ -6,8 +6,8 @@ get_header(); ?>
 <div class="container" style="margin-top: 10px">
     <div class="row" style="width: 100%">
         <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
-            <ul id="leftTab" class="nav nav-pills" style="height: 42px">
-                <li class="active" style="margin-left: 16px"> <p>标签：<?php the_tags("", ",",''); ?> </p></li>
+            <ul id="leftTab" class="nav nav-pills" style="height: 42px;margin-top: 10px">
+                <li class="active" style="margin-left: 16px"> <p>标签：<?php the_tags("", " , " ,""); ?> </p></li>
             </ul>
 
             <div id="rightTabContent" class="tab-content" >
@@ -16,7 +16,7 @@ get_header(); ?>
                     <ul class="list-group">
                         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
                             <!-- 文章 -->
-                            <?php include(TEMPLATEPATH .'/template/project/project_single.php'); ?>
+                            <?php include(TEMPLATEPATH .'/template/project/project_simple.php'); ?>
                             <!-- 文章end -->
                         <?php endwhile;endif; ?>
                         <div class="pagenavi">

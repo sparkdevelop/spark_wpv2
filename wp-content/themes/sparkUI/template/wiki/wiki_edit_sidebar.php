@@ -14,11 +14,11 @@ $admin_url=admin_url('admin-ajax.php');
 <script type="text/javascript">
 
     function update_wiki_entry() {
-        //var entry_content = $(document.getElementById('wiki_content_editor_ifr').contentWindow.document.body).html();
-        var entry_content = $("#wiki_content_editor").val();
+        entry_content = $(document.getElementById('wiki_content_editor_ifr').contentWindow.document.body).html();
+        //var entry_content = $("#wiki_content_editor").val();
         var entry_title = "<?php echo $_SESSION['post_title']; ?>";
         if(entry_title == null || $.trim(entry_title) == "") {
-            alert("词条标题或内容不能为空!");
+            alert("词条标题不能为空!");
             return;
         }
         var wiki_categories = new Array();
@@ -28,7 +28,7 @@ $admin_url=admin_url('admin-ajax.php');
         var wiki_tags_input = $(".wiki_tags_input").val();
         var wiki_tags = new Array();
         if(wiki_tags_input != null && wiki_tags_input != "") {
-            wiki_tags = wiki_tags_input.split(";");
+            wiki_tags = wiki_tags_input.split(",");
         }
         for(var i=0; i<wiki_tags.length; i++) {
             wiki_tags[i] = $.trim(wiki_tags[i]);
@@ -52,7 +52,14 @@ $admin_url=admin_url('admin-ajax.php');
             data: update_content,
             dataType: "json",
             success: function(data){
-                window.location.href = "/spark_wpv2/?yada_wiki=" + "<?php echo $_SESSION['post_name']; ?>";
+                var post_name = "<?php echo $_SESSION['post_name']; ?>";
+                //window.location.href = "/spark_wpv2/?yada_wiki=" + post_name;
+                var form = document.createElement('form');
+                form.action = "/spark_wpv2/?yada_wiki=" + post_name;
+                form.target = '_blank';
+                form.method = 'POST';
+                document.body.appendChild(form);
+                form.submit();
             },
             error: function() {
                 alert("wiki发布失败!");
@@ -126,7 +133,7 @@ $admin_url=admin_url('admin-ajax.php');
         <?php
         foreach($_SESSION['wiki_all_categories'] as $category_term_id => $category_name) {
             ?>
-            <a href="#" class="list-group-item mulu_item"><input name="wiki_category" type="checkbox" value="<?php echo $category_term_id; ?>">&nbsp;&nbsp;&nbsp;<?php echo $category_name; ?></a>
+            <a href="#" class="list-group-item mulu_item"><input name="wiki_category" type="checkbox" <?php if(in_array($category_name, $_SESSION['wiki_categories'])) echo "checked=\"checked\" "; ?>value="<?php echo $category_term_id; ?>">&nbsp;&nbsp;&nbsp;<?php echo $category_name; ?></a>
             <?php
         }
         ?>
@@ -134,7 +141,7 @@ $admin_url=admin_url('admin-ajax.php');
 
     <div class="wiki_tags">
         <p class="wiki_sidebar_title">选择wiki标签</p>
-        <input type="text" class="wiki_tags_input" placeholder="多个标签用分号隔开"><br>
+        <input type="text" class="wiki_tags_input" value="<?php for($i=0;$i<count($_SESSION['wiki_tags']);$i++){echo $_SESSION['wiki_tags'][$i];if($i<count($_SESSION['wiki_tags'])-1){echo ",";}} ?>" placeholder="多个标签用分号隔开"><br>
         <div id="wiki_hot_tags"></div>
     </div>
 

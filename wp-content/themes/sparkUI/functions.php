@@ -99,7 +99,7 @@ function colorCloudCallback($matches) {
     $color= 'fe642d';
     $pattern = '/style=(\'|\")(.*)(\'|\")/i';
     $text = preg_replace($pattern, "style=\"color:#{$color};$2;\"", $text);
-    return "<a $text>";
+    return "<a class='label label-default' $text>";
 }
 add_filter('wp_tag_cloud', 'colorCloud', 1);
 

@@ -14,7 +14,7 @@ wp_enqueue_media();
 
 $current_user = wp_get_current_user();
 $author_posts = new WP_Query(array('posts_per_page' => $per_page, 'paged' => $paged, 'orderby' => 'DESC', 'author' => $current_user->ID, 'post_status' => $status,'category_name'=>'project'));
-$postid = get_the_ID();
+$post_id = get_the_ID();
 
 ?>
     <div class="container" style="margin-top: 10px">
@@ -24,7 +24,7 @@ $postid = get_the_ID();
                 <?php if ( have_posts() ) : while ( have_posts() ) : the_post();?>
                 <!--    文章内容-->
                  <h2><b><?php the_title(); ?></b></h2><hr>
-                <?php the_content(); ?>
+                <?php the_content(); ?><hr>
                 <?php comments_template(); ?>
                 <?php endwhile;?>
                 <?php else: ?>
@@ -116,7 +116,7 @@ $postid = get_the_ID();
 //                        ?>
 <!--                    </div>-->
 <!--                </div>-->
-                <div class="sidebar-grey-frame">
+                <div class="sidebar-grey-frame" style="margin-top: 30px">
                     <p>发布者：</p>
                     <span id="" ><?php the_author(); ?></span><br>
                     <p>分类：</p>
@@ -126,7 +126,7 @@ $postid = get_the_ID();
                     <p>更新：</p>
                     <span id="" ><?php the_modified_time('Y年n月j日 h:m:s'); ?></span><br>
                     <p>浏览：</p>
-                    <span id=""><?php setProjectViews(get_the_ID()); ?><?php echo getProjectViews(get_the_ID()); ?></span><br>
+                    <span id=""><?php setProjectViews(get_the_ID()); ?><?php echo getProjectViews(get_the_ID()); ?> 次</span><br>
                     <p>评论：</p>
                     <span><?php comments_popup_link('0 条', '1 条', '% 条', '', '评论已关闭'); ?></span><br>
                 </div><br>
