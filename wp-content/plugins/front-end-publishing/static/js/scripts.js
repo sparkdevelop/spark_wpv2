@@ -94,7 +94,7 @@ jQuery(document).ready(function ($) {
     });
 
     // Delete a post
-    $("td.post-delete a").click(function (event) {
+    $(".post-delete a").click(function (event) {
         var id = $(this).siblings('.post-id').first().val(),
             nonce = $('#fepnonce_delete').val(),
             loading_image = $(this).siblings('.fep-loading-img').first(),
@@ -165,11 +165,11 @@ jQuery(document).ready(function ($) {
             message_box.removeClass('success').addClass('warning').html('').show().append(errors);
             return;
         }
-        if(($.trim($('#fep-post-title').val()).length)<2){
+        if(($.trim($('#fep-post-title').val()).length)<1){
             alert("标题太短了");
             return;
         }
-        if(($.trim($('#fep-post-title').val()).length)>20){
+        if(($.trim($('#fep-post-title').val()).length)>28){
             alert("标题太长了");
             return;
         }

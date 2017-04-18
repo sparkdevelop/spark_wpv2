@@ -29,10 +29,11 @@ $tag_count = array();
     }
 </script>
 <style>
-    .label-default[href]:focus,
-    .label-default[href]:hover{background-color: transparent;outline: none;color: #fe642d}
+    .label-default [href]:focus,
+    .label-default [href]:hover{background-color: transparent;outline: none;color: #fe642d}
     #buttonForAllTags{  outline: none;border:0px;color:gray;float: right;display: inline-block;margin-top: 20px;padding: 0 12px}
 </style>
+
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
 <div class="sidebar_button" style="margin-top: 20px">
     <a href="http://localhost/spark_wpv2/?page_id=32;" target="_blank" style="color: white">发布项目</a>
@@ -45,35 +46,41 @@ $tag_count = array();
 <div class="sidebar_list">
     <div class="sidebar_list_header">
         <p>推荐项目</p>
-        <a id="sidebar_list_link" href="">更多</a>
+       <!-- <a id="sidebar_list_link" href="">更多</a> -->
     </div>
     <!--分割线-->
     <div class="sidebar_divline"></div>
     <!--推荐列表-->
-    <ul class="list-group">
+    <ul class="list-group" style="margin-top: 10px">
         <li class="list-group-item">
             <div style="display: inline-block; vertical-align: baseline;">
-                <p ><b><a href="<?php the_permalink(230); ?>">智能平衡车</a></b></p><!--传浏览量-->
+                <span class="fa fa-star pull-left" style="color: red"
+                <p><a href="<?php the_permalink(258); ?>">&nbsp;&nbsp;小学期创新课开放项目</a></p></span>
+                <!--传浏览量-->
             </div>
         </li>
         <li class="list-group-item">
             <div style="display: inline-block; vertical-align: baseline">
-                <p><b><a href="<?php the_permalink(315); ?>">圣诞老人</a></b></p>
+                <span class="fa fa-star pull-left" style="color: red"
+                <p><a href="<?php the_permalink(265); ?>">&nbsp;&nbsp;2016年导论课线上创新作品展</a></p></span>
             </div>
         </li>
         <li class="list-group-item">
             <div style="display: inline-block; vertical-align: baseline">
-                <p><b><a href="<?php the_permalink(392); ?>">俄罗斯方块</a></b></p>
+                <span class="fa fa-star pull-left" style="color: red"
+                <p><a href="<?php the_permalink(271); ?>">&nbsp;&nbsp;2016年导论课创新作品汇报展</a></p></span>
             </div>
         </li>
         <li class="list-group-item">
             <div style="display: inline-block; vertical-align: baseline">
-                <p><b><a href="<?php the_permalink(230); ?>">2048经典游戏</a></b></p>
+                <span class="fa fa-star pull-left" style="color: red"
+                <p><a href="<?php the_permalink(248); ?>">&nbsp;&nbsp;猫·车 —— 一种新型的逗猫方式</a></p></span>
             </div>
         </li>
         <li class="list-group-item">
             <div style="display: inline-block; vertical-align: baseline">
-                <p><b><a href="">弹幕派</a></b></p>
+                <span class="fa fa-star pull-left" style="color: red"
+                <p><a href="<?php the_permalink(5); ?>">&nbsp;&nbsp;手语翻译手套</a></p></span>
             </div>
         </li>    
     </ul>
@@ -107,13 +114,13 @@ $tag_count = array();
             </h4>
         </div>
     </div>-->
-    <div id="hot_tags" style="word-wrap: break-word; word-break: keep-all;">
 
+    <div id="article-tag" style="margin-top: 10px">
         <?php $args = array(
-            'smallest'                  => 15,
-            'largest'                   => 15,
+            'smallest'                  => 10,
+            'largest'                   => 10,
             'unit'                      => 'pt',
-            'number'                    => 20,
+            'number'                    => 12,
             'format'                    => 'flat',
             'separator'                 => "&nbsp",
             'orderby'                   => 'count',
@@ -128,6 +135,7 @@ $tag_count = array();
         ); ?>
         <?php wp_tag_cloud( $args ); ?>
     </div>
+
 </div>
 
 

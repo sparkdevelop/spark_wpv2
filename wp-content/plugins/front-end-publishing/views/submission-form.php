@@ -35,7 +35,7 @@ if (isset($_GET['fep_id']) && isset($_GET['fep_action']) && $_GET['fep_action'] 
 <div id="fep-new-post">
     <div id="fep-message" class="warning"></div>
     <form id="fep-submission-form">
-        <div id="" class="col-md-8 col-sm-8 col-xs-8">
+        <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
         <label for="fep-post-title"><?php _e('标题', 'frontend-publishing'); ?></label>
         <input type="text" name="post_title"  id="fep-post-title" value="<?php echo ($post) ? $post['title'] : ''; ?>">
         <label for="fep-post-content"><?php _e('內容', 'frontend-publishing'); ?></label>
@@ -51,7 +51,7 @@ if (isset($_GET['fep_id']) && isset($_GET['fep_action']) && $_GET['fep_action'] 
             <input type="hidden" name="about_the_author" id="fep-about" value="-1">
         <?php endif; ?>
         </div>
-        <div id="" class="col-md-4 col-sm-4 col-xs-4 right">
+        <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
             <div id="fep-featured-image" style="width: 300px;height: 150px">
                 <div id="fep-featured-image-container"><?php echo $featured_img_html; ?></div>
                 <a id="fep-featured-image-link" href="#"><?php _e('选择封面图片', 'frontend-publishing'); ?></a>

@@ -22,7 +22,7 @@ $wiki_post = get_post($post_id);
 <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
     <div id="fep-new-post">
         <div id="ffff">
-            <label id="edit-title" for="wiki_content_editor"><?php echo $wiki_post->post_title ?></label>
+            <label id="edit-title" for="wiki_content_editor" style="font-size:30px;font-weight: bold;"><?php echo $wiki_post->post_title ?></label>
             <?php
             wp_editor($wiki_post->post_content, 'wiki_content_editor', $settings = array('textarea_name' => 'post_content', 'textarea_rows' => 150));
             ?>

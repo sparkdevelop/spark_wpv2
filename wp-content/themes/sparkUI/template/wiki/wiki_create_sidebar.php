@@ -7,8 +7,9 @@ $admin_url=admin_url('admin-ajax.php');
 <script type="text/javascript">
 
     function create_wiki_entry() {
+        entry_content = $(document.getElementById('wiki_content_editor_ifr').contentWindow.document.body).html();
         //var entry_content = $(document.getElementById('wiki_content_editor_ifr').contentWindow.document.body).html();
-        var entry_content = $("#wiki_content_editor").val();
+        //var entry_content = $("#wiki_content_editor").val();
         var entry_title = $(".wiki_entry_title").val();
         if(entry_title == null || $.trim(entry_title) == "") {
             alert("词条标题不能为空!");
@@ -21,7 +22,7 @@ $admin_url=admin_url('admin-ajax.php');
         var wiki_tags_input = $(".wiki_tags_input").val();
         var wiki_tags = new Array();
         if(wiki_tags_input != null && wiki_tags_input != "") {
-            wiki_tags = wiki_tags_input.split(";");
+            wiki_tags = wiki_tags_input.split(",");
         }
         for(var i=0; i<wiki_tags.length; i++) {
             wiki_tags[i] = $.trim(wiki_tags[i]);
@@ -43,17 +44,15 @@ $admin_url=admin_url('admin-ajax.php');
             url: "<?php echo $admin_url;?>",
             data: create_content,
             dataType: "json",
-            beforeSend: function() {
-                //$(document.getElementById('wiki_content_editor_ifr').contentWindow.document.body).html("");
-                var entry_content = $("#wiki_content_editor").val("");
-                $(".wiki_entry_title").val("");
-                $('input:checkbox').each(function () {
-                    $(this).attr('checked',false);
-                });
-                var wiki_tags_input = $(".wiki_tags_input").val("");
-            },
             success: function(data){
-                window.location.href = "/spark_wpv2/?yada_wiki=" + data;
+                //window.location.href = "/spark_wpv2/?yada_wiki=" + data;
+                //window.open("/spark_wpv2/?yada_wiki=" + data, '_self');
+                var form = document.createElement('form');
+                form.action = "/spark_wpv2/?yada_wiki=" + data;
+                form.target = '_blank';
+                form.method = 'POST';
+                document.body.appendChild(form);
+                form.submit();
             },
             error: function() {
                 alert("wiki发布失败!");
