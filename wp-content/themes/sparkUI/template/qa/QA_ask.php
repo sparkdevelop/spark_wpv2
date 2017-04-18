@@ -19,9 +19,16 @@ global $post;
         <input type="text" style="margin-top: 20px;" data-nonce="<?php echo wp_create_nonce( '_dwqa_filter_nonce' ) ?>"
                id="question-title" name="question-title" value="<?php echo $title ?>" tabindex="1" _moz_abspos=""  onkeydown="if(event.keyCode==13) return false;"/>
     </p>
+    <span id="title_none"></span>
 
+<!--    内容提交-->
     <?php $content = isset( $_POST['question-content'] ) ? sanitize_text_field( $_POST['question-content'] ) : ''; //如果没有内容应该跳出警告?>
-    <p><?php dwqa_init_tinymce_editor( array( 'content' => $content, 'textarea_name' => 'question-content', 'id' => 'question-content' ) ) ?></p>
+
+    <p>
+        <?php dwqa_init_tinymce_editor( array( 'content' => $content, 'textarea_name' => 'question-content', 'id' => 'question-content' ) ) ?>
+    </p>
+
+<!--    选择可见-->
     <?php global $dwqa_general_settings; ?>
     <?php if ( isset( $dwqa_general_settings['enable-private-question'] ) && $dwqa_general_settings['enable-private-question'] ) : ?>
         <p>
@@ -34,11 +41,10 @@ global $post;
             </select>
         </p>
     <?php endif; ?>
+
 <!--    分类部分-->
     <p>
         <label for="question-category">选择问题分类</label>
-<!--            <select></select>-->
-
         <?php
         $Question_cat_ID = get_dwqa_cat_ID('Questions');
         wp_dropdown_categories( array(
@@ -57,6 +63,8 @@ global $post;
         ) );
         ?>
     </p>
+    <span id="category_none"></span>
+
 <!--    tag部分-->
 
     <?php
@@ -71,7 +79,6 @@ global $post;
         <input type="text" class="" name="question-tag"
                id="Spark_question-tag" value=""
                onkeyup="checkTagNum(this.value)" placeholder="标签之间用逗号隔开">
-<!--                style="display: none">-->
         <h5>常用标签:</h5>
         <?php $tags = isset( $_POST['question_tag'] ) ? sanitize_text_field( $_POST['question_tag'] ) : ''; ?>
         <?php
@@ -94,16 +101,17 @@ global $post;
                             addTag.style.background="";
                             addTag.style.backgroundColor="#ffe9e1";
                             addTag.style.color="#fe642d";
-                            tag.disabled = false; //可以继续输入。
+                            tag.readOnly = false; //可以继续输入。
                         }
                         else{ //若是添加新标签
                             if(tag.value.length==0||tag.value.split(",").length<=3){
-                                    tag.disabled = false; //可以继续输入
+                                    tag.readOnly = false; //可以继续输入
                                     tag.value = tag.value+value+","; //添加标签
                                     addTag.style.border="1px solid";
                                     addTag.style.borderColor="#fe642d";
                                     addTag.style.color="white";
                                     addTag.style.background = "url('<?php bloginfo("template_url")?>/img/check.png') no-repeat scroll top right #fe642d";
+                                    checkTagNum(tag.value);
                             }
                             else{
                                     checkTagNum(tag.value);
@@ -156,24 +164,14 @@ global $post;
 
     function SubmitCheck() {
         var question_title = document.getElementById('question-title');
-        var question_content = document.getElementById('question-content');
-        var question_category = document.getElementById('question-category');
-        var question_tags = document.getElementsByName('question-tag');
-        var alert = document.getElementById("alert");
+        var title_none = document.getElementById("title_none");
 
         if(question_title.value.length==0){
-            alert("问题内容不能为空");
-            //alert.innerHTML="<p style='color:red;margin-top:20px;margin-left: 20px'>问题标题不能为空</p>";
-            return false;}
-        if(question_content.value.length==0){
-            alert("问题内容不能为空");
-            return false;}
-        if(question_category.value.length==0){
-            alert("分类不能为空");
-            return false;}
-        if(question_tags.value.length==0||question_tags==false){
-            alert("tag不能为空");
-            return false;}
+            title_none.innerHTML="<p style='color:red;margin-top:20px;margin-left: 20px'>问题标题不能为空</p>";
+            return false;
+        } else{
+            return true;
+        }
     }
 
     function checkTagNum(value) {
@@ -182,11 +180,11 @@ global $post;
         var deleteTag = document.getElementById("deleteTag");
 
         if(value.split(",").length>3){
-            tag.disabled = true;
+            tag.readOnly = true;
             alertTag.innerHTML="<p style='color:red;margin:20px 20px'>最多添加3个标签</p>";
             deleteTag.style.display = "block";
         } else{
-            tag.disabled = false;
+            tag.readOnly = false;
             alertTag.innerHTML = "";
             deleteTag.style.display = "none";
         }

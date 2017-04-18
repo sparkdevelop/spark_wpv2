@@ -18,9 +18,13 @@ foreach($tags as $key => $temp){
     $tag_name[]=$temp->name;
     array_push($link,get_term_link(intval($tag_id[$key]), 'dwqa-question_tag'));
 }
+//处理置顶问题
+
+
+
 //=============显示标签名==============
 ?>
-<!--script for 切换nav-pills active状态和show_all_tags函数-->
+<!--script for show_all_tags函数-->
 <script>
     flag=false;
     function show_all_tags() {
@@ -74,22 +78,21 @@ foreach($tags as $key => $temp){
                 $url_array=parse_url($current_url);
                 $query_parse=explode("&",$url_array['query']);
                 if(array_search("sort=views",$query_parse)){?>
-                    <li  class="active"><a href="<?php echo esc_url(add_query_arg( array( 'sort' => 'views','filter'=>'all' ) ) )?>">热门</a></li>
-                    <li><a href="<?php echo remove_query_arg(array('sort','filter')) ?>">所有</a></li>
-                    <li><a href="<?php echo esc_url( add_query_arg( array('filter' => 'unanswered') ) ) ?>">未解决</a></li>
+                    <li  class="active"><a href="<?php echo esc_url(add_query_arg( array( 'sort' => 'views','filter'=>'all','paged'=>'1') ) )?>">热门</a></li>
+                    <li><a href="<?php echo remove_query_arg(array('sort','filter','paged')) ?>">所有</a></li>
+                    <li><a href="<?php echo esc_url( add_query_arg( array('sort'=>'date','filter' => 'unanswered','paged'=>'1') ) ) ?>">未解决</a></li>
                 <?php }elseif (array_search("filter=unanswered",$query_parse)){?>
-                    <li><a href="<?php echo esc_url(add_query_arg( array( 'sort' => 'views','filter'=>'all' ) ) )?>">热门</a></li>
-                    <li><a href="<?php echo remove_query_arg(array('sort','filter')) ?>">所有</a></li>
-                    <li class="active"><a href="<?php echo esc_url( add_query_arg( array( 'filter' => 'unanswered') ) ) ?>" >未解决</a></li>
+                    <li><a href="<?php echo esc_url(add_query_arg( array( 'sort' => 'views','filter'=>'all' ,'paged'=>'1') ) )?>">热门</a></li>
+                    <li><a href="<?php echo remove_query_arg(array('sort','filter','paged')) ?>">所有</a></li>
+                    <li class="active"><a href="<?php echo esc_url( add_query_arg( array( 'sort' => 'date','filter' => 'unanswered','paged'=>'1') ) ) ?>" >未解决</a></li>
                 <?php } else{ ?>
-                    <li><a href="<?php echo esc_url(add_query_arg( array( 'sort' => 'views' ) ) )?>">热门</a></li>
-                    <li class="active"><a href="<?php echo remove_query_arg(array('sort','filter')) ?>">所有</a></li>
-                    <li><a href="<?php echo esc_url( add_query_arg( array( 'filter' => 'unanswered'))) ?>">未解决</a></li>
+                    <li><a href="<?php echo esc_url(add_query_arg( array( 'sort' => 'views', 'paged'=>'1') ) )?>">热门</a></li>
+                    <li class="active"><a href="<?php echo remove_query_arg(array('sort','filter','paged')) ?>">所有</a></li>
+                    <li><a href="<?php echo esc_url( add_query_arg( array( 'sort' => 'date','filter' => 'unanswered','paged'=>'1'))) ?>">未解决</a></li>
                 <?php } ?>
             </ul>
         </div>
 
-        <?php //do_action( 'dwqa_before_questions_archive' ) ?>
         <div class="dwqa-questions-list">
             <?php do_action( 'dwqa_before_questions_list' ) ?>
             <?php if ( dwqa_has_question() ) : ?>
@@ -106,7 +109,6 @@ foreach($tags as $key => $temp){
         <div class="dwqa-questions-footer"  style="text-align: center;margin-bottom: 20px;margin-top: 10px">
             <?php dwqa_question_paginate_link() ?>
         </div>
-
         <?php do_action( 'dwqa_after_questions_archive' ); ?>
     </div>
 </div>
