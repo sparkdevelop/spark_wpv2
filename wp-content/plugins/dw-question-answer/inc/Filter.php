@@ -69,9 +69,11 @@ class DWQA_Filter {
 				break;
 
             case 'date':
-                $query['post_type'] = 'dwqa-question';
-                $query['posts_per_page'] = $posts_per_page;
-                $query['orderby'] = 'date';
+                $query = array(
+                    'post_type' => 'dwqa-question',
+                    'posts_per_page' => $posts_per_page,
+                    'orderby'	=> 'date'
+                );
                 break;
 		}
 
@@ -102,7 +104,7 @@ class DWQA_Filter {
                 $query['meta_query'][] = array(
                     'key' => '_dwqa_answers_count',
                     'value' => 0,
-                    'compare' => '=',
+                    'compare' => 'IN',
                 );
                 break;
 //			case 'unanswered':
