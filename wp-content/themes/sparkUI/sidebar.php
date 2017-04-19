@@ -53,7 +53,7 @@ if ( is_page($page_personal_id) ) {//显示问题详情页
 if (is_search()){
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_searchsidebar')){
     }
-    require "template/qa/QA_search_sidebar.php";
+    require "template/search_sidebar.php";
 }
 if (is_tag()){
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_tagssidebar')){

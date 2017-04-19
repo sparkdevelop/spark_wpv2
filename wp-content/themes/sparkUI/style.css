@@ -140,11 +140,11 @@ body{
 #search-content{
     border:none;
     height: 38px;
-    width: 84%;
+    width: 68%;
     box-shadow: none;
 }
 #search-btn{
-    float: right;
+    /*float: right;*/
     border:none;
     width:40px;
     height:38px;
@@ -691,3 +691,10 @@ h4{margin-bottom: 0px;}
 #article-tag {clear: both; padding: 5px; margin-bottom: 5px;}
 #article-cnt #article-tag a { text-decoration: none; color:  #ccc; }
 #article-cnt #article-tag a:hover {  }
+
+
+#search_select{
+    margin-right: 2px;
+    margin-top: 2px;
+    float: right;
+}

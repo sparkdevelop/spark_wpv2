@@ -1,19 +1,20 @@
 <?php
 $search_word=$_GET['s'];
 $post_status=$_GET['post_status'];
-$post_type= isset($_GET['post_type'])&&!empty($_GET['post_type'])?sanitize_text_field($_GET['post_type']): "dwqa-question";
+$post_type= isset($_GET['post_type'])&&!empty($_GET['post_type'])?sanitize_text_field($_GET['post_type']): "post";
 $posts_per_page= isset($_GET['posts_per_page'])&&!empty($_GET['posts_per_page']) ? $_GET['posts_per_page']: 10;
 $current_url= curPageURL();//设当前页面为archive页面
+
 //翻页所需参数
 $page_text = dwqa_is_front_page() ? 'page' : 'paged';
 $page = get_query_var( $page_text ) ? get_query_var( $page_text ) : 1;
 
-    if($post_type=='wiki'){    //根据自身情况更改
-     $query_string = $query_string.'&posts_per_page=5'.'&post_type='.$post_type;
+    if($post_type=='yada_wiki'){    //根据自身情况更改
+     $query_string = $query_string.'&posts_per_page=5'.'&post_type=yada_wiki';
      $posts=query_posts($query_string);
     }
-    elseif($post_type=='post'){  //根据自身情况更改
-        $query_string= $query_string.'&posts_per_page=-1'.'&post_type='.$post_type;
+    elseif($post_type=='dwqa-question'){  //根据自身情况更改
+        $query_string= $query_string.'&posts_per_page=-1'.'&post_type=dwqa-question';
         $posts=query_posts($query_string);
     }
     else{
@@ -31,21 +32,20 @@ $paginate = paginate_links($args);
 ?>
 <ul id="searchTab" class="nav nav-pills">
     <?php
-    $current_url = home_url(add_query_arg(array()));
     $url_array=parse_url($current_url);
     $query_parse=explode("&",$url_array['query']);
-    if(array_search("post_type=wiki",$query_parse)){?>
-        <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'wiki' ) ) )?>">wiki</a></li>
-        <li><a href="<?php echo remove_query_arg( array('post_type') ) ?>">问答</a></li>
+    if(array_search("post_type=yada_wiki",$query_parse)){?>
+        <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki' ) ) )?>">wiki</a></li>
+        <li><a href="<?php echo remove_query_arg( array('post_type') )?>">问答</a></li>
         <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post'  ) ) )?>">项目</a></li>
     <?php }
-    elseif(array_search("post_type=project",$query_parse)){?>
-        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'wiki' ) ) )?>">wiki</a></li>
-        <li><a href="<?php echo remove_query_arg( array('post_type') ) ?>">问答</a></li>
+    elseif(array_search("post_type=post",$query_parse)){?>
+        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki' ) ) )?>">wiki</a></li>
+        <li><a href="<?php echo remove_query_arg( array('post_type') )?>">问答</a></li>
         <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post'  ) ) )?>">项目</a></li>
     <?php }
     else{ ?>
-        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'wiki' ) ) )?>">wiki</a></li>
+        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki' ) ) )?>">wiki</a></li>
         <li  class="active"><a href="<?php echo remove_query_arg( array('post_type') )?>">问答</a></li>
         <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post'  ) ) )?>">项目</a></li>
     <?php } ?>
@@ -54,12 +54,12 @@ $paginate = paginate_links($args);
     <?php if ( have_posts() ) : ?>
         <?php while (have_posts()):the_post();?>
             <?php if ( get_post_status() == 'publish' || ( get_post_status() == 'private' && dwqa_current_user_can( 'edit_question', get_the_ID() ) ) ) : ?>
-                <?php if ($post_type=='dwqa-question'){?>
-                    <?php dwqa_load_template( 'Spark-qa-search', 'archive' ) ?>
+                <?php if ($post_type=='yada_wiki'){?>
+                    <?php dwqa_load_template( 'Spark-wiki-search', 'archive' ) ?>
                 <?php }elseif($post_type=='post'){ ?>
                     <?php dwqa_load_template( 'Spark-project-search', 'archive' ) ?>
                 <?php } else{ ?>
-                    <?php dwqa_load_template( 'Spark-wiki-search', 'archive' ) ?>
+                    <?php dwqa_load_template( 'Spark-qa-search', 'archive' ) ?>
                 <?php } ?>
 
             <?php endif; ?>
