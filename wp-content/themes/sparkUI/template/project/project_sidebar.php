@@ -35,12 +35,10 @@ $tag_count = array();
 </style>
 
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
-<div class="sidebar_button" style="margin-top: 20px">
-    <a href="http://localhost/spark_wpv2/?page_id=32;" target="_blank" style="color: white">发布项目</a>
-</div><br>
-<!--<div class="sidebar_button" style="margin-top: 20px">
-    <a href="http://localhost/wordpress/?page_id=199;" style="color: white">我的项目</a>
-</div><br>-->
+    <?php require "project_release_button.php"?>
+    <!--<div class="sidebar_button" style="margin-top: 20px">
+        <a href="http://localhost/wordpress/?page_id=199;" style="color: white">我的项目</a>
+    </div><br>-->
 
 <!--推荐项目-->
 <div class="sidebar_list">

@@ -3,6 +3,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="renderer" content="webkit">
 <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); filemtime( get_stylesheet_directory() . '/style.css'); ?>"
           type="text/css" media="screen, projection"/>
@@ -57,7 +59,7 @@
                                         <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address;?>"><span class="glyphicon glyphicon-user"></span>个人主页</a>
                                     </li>
                                     <li role="presentation" style="height:35px;">
-                                        <a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-cog"></span> 设置</a>
+                                        <a role="menuitem" tabindex="-1" href=""><span class="glyphicon glyphicon-cog"></span> 设置</a>
                                     </li>
                                     <li role="presentation" style="height:35px;">
                                         <a role="menuitem" tabindex="-1" href="<?php echo site_url();?>/wp-login.php?loggedout=true"><span class="glyphicon glyphicon-log-in"></span> 退出</a>

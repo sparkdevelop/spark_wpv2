@@ -87,8 +87,8 @@
 ?>
 <div class="wiki_sidebar_wrap">
     <div class="row wiki-handle">
-        <div class="edit-wiki"><a href="http://localhost/spark_wpv2/?page_id=60&post_id=<?php echo $post->ID ?>">编辑 wiki</a></div>
-        <div class="create-wiki"><a href="http://localhost/spark_wpv2/?page_id=58">创建 wiki</a></div>
+        <div class="edit-wiki"><a href="/spark_wpv2/?page_id=60&post_id=<?php echo $post->ID ?>">编辑 wiki</a></div>
+        <div class="create-wiki"><a href="/spark_wpv2/?page_id=58">创建 wiki</a></div>
     </div>
 <!--    <div class="list-group mulu">-->
 <!--        <a href="#" class="list-group-item">-->

@@ -7,7 +7,7 @@ $current_user = wp_get_current_user();
 $status = isset($_GET['fep_type']) ? $_GET['fep_type'] : 'publish';
 $paged = isset($_GET['fep_page']) ? $_GET['fep_page'] : 1;
 $per_page = (isset($fep_misc['posts_per_page']) && is_numeric($fep_misc['posts_per_page'])) ? $fep_misc['posts_per_page'] : 10;//每页显示文章数
-$author_posts = new WP_Query(array('posts_per_page' => -1, 'paged' => $paged, 'orderby' => 'DESC', 'author' => $current_user->ID, 'post_status' => $status,'cat'=>13,14,17 ));
+$author_posts = new WP_Query(array('posts_per_page' => -1, 'paged' => $paged, 'orderby' => 'DESC', 'author' => $current_user->ID, 'post_status' => $status,'category_name'=>'project' ));
 $old_exist = ($paged * $per_page) < $author_posts->found_posts;
 $new_exist = $paged > 1;
 ?>

@@ -7,7 +7,7 @@
         padding-bottom: 20px;
         padding-left: 20px;
     }
-    .wiki_category_item:hover{
+    .wiki_category_item:hover,.wiki_category_item:focus{
         background: #f5f5f5;
         border-radius: 5px;
     }
@@ -46,7 +46,7 @@
                             <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-02.png" class="wiki-index-icon">
                         </div>
                         <div class="col-md-9">
-                            <a class="wiki-index-title" href=" http://localhost/spark_wpv2/?yada_wiki=导论实验课">导论实验课</a>
+                            <a class="wiki-index-title" href="http://112.74.62.56/spark_wpv2/?yada_wiki=导论实验课">导论实验课</a>
                             <div class="wiki-index-info">
                                 <span>入门</span><span> · </span><span>100次学习</span>
                             </div>
@@ -60,7 +60,7 @@
                             <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-03.png" class="wiki-index-icon">
                         </div>
                         <div class="col-md-9">
-                            <a class="wiki-index-title" href="">中国5G联创进校园</a>
+                            <a class="wiki-index-title" href="http://112.74.62.56/spark_wpv2/?yada_wiki=中国5g联创进校园">中国5G联创进校园</a>
                             <div class="wiki-index-info">
                                 <span>基础</span><span> · </span><span>100次学习</span>
                             </div>
@@ -74,7 +74,7 @@
                             <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-04.png" class="wiki-index-icon">
                         </div>
                         <div class="col-md-9">
-                            <a class="wiki-index-title" href="">开放平台</a>
+                            <a class="wiki-index-title" href="http://112.74.62.56/spark_wpv2/?yada_wiki=开放平台">开放平台</a>
                             <div class="wiki-index-info">
                                 <span>API</span><span> · </span><span>100次学习</span>
                             </div>
@@ -93,7 +93,7 @@
                             <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-05.png" class="wiki-index-icon">
                         </div>
                         <div class="col-md-9">
-                            <a class="wiki-index-title" href="">优秀学习网站</a>
+                            <a class="wiki-index-title" href="http://112.74.62.56/spark_wpv2/?yada_wiki=优秀学习网站">优秀学习网站</a>
                             <div class="wiki-index-info">
                                 <span>推荐</span><span> · </span><span>100次学习</span>
                             </div>
@@ -106,7 +106,7 @@
                             <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-06.png" class="wiki-index-icon">
                         </div>
                         <div class="col-md-9">
-                            <a class="wiki-index-title" href="">Arduino语法</a>
+                            <a class="wiki-index-title" href="http://112.74.62.56/spark_wpv2/?yada_wiki=arduino语法">Arduino语法</a>
                             <div class="wiki-index-info">
                                 <span>基础</span><span> · </span><span>100次学习</span>
                             </div>
@@ -119,7 +119,7 @@
                             <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-07.png" class="wiki-index-icon">
                         </div>
                         <div class="col-md-9">
-                            <a class="wiki-index-title" href="">Web学习</a>
+                            <a class="wiki-index-title" href="http://112.74.62.56/spark_wpv2/?yada_wiki=web学习">Web学习</a>
                             <div class="wiki-index-info">
                                 <span>入门</span><span> · </span><span>100次学习</span>
                             </div>
@@ -137,7 +137,7 @@
                             <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-08.png" class="wiki-index-icon">
                         </div>
                         <div class="col-md-9">
-                            <a class="wiki-index-title" href="">互联网创业课</a>
+                            <a class="wiki-index-title" href="http://112.74.62.56/spark_wpv2/?yada_wiki=互联网创业课-2">互联网创业课</a>
                             <div class="wiki-index-info">
                                 <span>创业</span><span> · </span><span>100次学习</span>
                             </div>
@@ -150,7 +150,7 @@
                             <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-09.png" class="wiki-index-icon">
                         </div>
                         <div class="col-md-9">
-                            <a class="wiki-index-title" href="">创新方法</a>
+                            <a class="wiki-index-title" href="http://112.74.62.56/spark_wpv2/?yada_wiki=创新方法">创新方法</a>
                             <div class="wiki-index-info">
                                 <span>创新</span><span> · </span><span>100次学习</span>
                             </div>
@@ -163,7 +163,7 @@
                             <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-10.png" class="wiki-index-icon">
                         </div>
                         <div class="col-md-9">
-                            <a class="wiki-index-title" href="">设计思维</a>
+                            <a class="wiki-index-title" href="http://112.74.62.56/spark_wpv2/?yada_wiki=设计思维">设计思维</a>
                             <div class="wiki-index-info">
                                 <span>设计</span><span> · </span><span>100次学习</span>
                             </div>
@@ -181,7 +181,7 @@
                             <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-11.png" class="wiki-index-icon">
                         </div>
                         <div class="col-md-9">
-                            <a class="wiki-index-title" href="">C/C++程序设计</a>
+                            <a class="wiki-index-title" href="http://112.74.62.56/spark_wpv2/?yada_wiki=cc程序设计">C/C++程序设计</a>
                             <div class="wiki-index-info">
                                 <span>课程</span><span> · </span><span>100次学习</span>
                             </div>
@@ -194,7 +194,7 @@
                             <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-12.png" class="wiki-index-icon"">
                         </div>
                         <div class="col-md-9">
-                            <a class="wiki-index-title" href="">计算机基础原理</a>
+                            <a class="wiki-index-title" href="http://112.74.62.56/spark_wpv2/?yada_wiki=计算机基础原理">计算机基础原理</a>
                             <div class="wiki-index-info">
                                 <span>课程</span><span> · </span><span>100次学习</span>
                             </div>
@@ -207,7 +207,7 @@
                             <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-13.png" class="wiki-index-icon">
                         </div>
                         <div class="col-md-9">
-                            <a class="wiki-index-title" href="">电子电路基础课</a>
+                            <a class="wiki-index-title" href="http://112.74.62.56/spark_wpv2/?yada_wiki=电子电路基础课">电子电路基础课</a>
                             <div class="wiki-index-info">
                                 <span>课程</span><span> · </span><span>100次学习</span>
                             </div>
@@ -220,7 +220,7 @@
                             <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-14.png" class="wiki-index-icon">
                         </div>
                         <div class="col-md-9">
-                            <a class="wiki-index-title" href="">数字信号处理</a>
+                            <a class="wiki-index-title" href="http://112.74.62.56/spark_wpv2/?yada_wiki=数字信号处理">数字信号处理</a>
                             <div class="wiki-index-info">
                                 <span>课程</span><span> · </span><span>100次学习</span>
                             </div>
@@ -233,7 +233,7 @@
                             <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-15.png" class="wiki-index-icon">
                         </div>
                         <div class="col-md-9">
-                            <a class="wiki-index-title" href="">信息论课</a>
+                            <a class="wiki-index-title" href="http://112.74.62.56/spark_wpv2/?yada_wiki=信息论课  ">信息论课</a>
                             <div class="wiki-index-info">
                                 <span>课程</span><span> · </span><span>100次学习</span>
                             </div>

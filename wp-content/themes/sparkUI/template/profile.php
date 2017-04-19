@@ -121,7 +121,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <input type="submit" class="btn btn-default" value="保存修改">
+                <input type="submit" class="btn btn-default" id="save-btn" value="保存修改">
             </div>
         </div>
     </form>
@@ -167,7 +167,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
 <!--        提交按钮-->
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <input type="submit" class="btn btn-default" value="保存修改">
+                <input type="submit" class="btn btn-default" id="save-btn" value="保存修改">
             </div>
         </div>
     </form>

@@ -299,7 +299,7 @@ function fep_settings_validation($input)
 
 function fep_add_meta_boxes()
 {
-    add_meta_box("fep_post_restrictions_metabox", __('项目内容限制', 'frontend-publishing'), "fep_metaboxes_callback", "fep_metaboxes", 'advanced', 'default', array('settings_section' => 'fep_restrictions_section'));
+//    add_meta_box("fep_post_restrictions_metabox", __('项目内容限制', 'frontend-publishing'), "fep_metaboxes_callback", "fep_metaboxes", 'advanced', 'default', array('settings_section' => 'fep_restrictions_section'));
     add_meta_box("fep_role_settings_metabox", __('权限控制', 'frontend-publishing'), "fep_metaboxes_callback", "fep_metaboxes", 'advanced', 'default', array('settings_section' => 'fep_role_section'));
     add_meta_box("fep_misc_metabox", __('其他设置', 'frontend-publishing'), "fep_metaboxes_callback", "fep_metaboxes", 'advanced', 'default', array('settings_section' => 'fep_misc_section'));
 }

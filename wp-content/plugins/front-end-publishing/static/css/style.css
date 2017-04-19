@@ -11,7 +11,7 @@
 #fep-new-post #fep-category,
 #fep-new-post #fep-about {
 	clear: both;
-	margin: 20px 0;
+	margin: 10px 0 20px 0;
 	padding: 10px;
 	background: #fff;
 	border: 1px solid #DDDDDD;
@@ -29,7 +29,7 @@
 #fep-new-post #fep-tags,
 #fep-new-post #fep-category {
 	box-sizing: border-box;
-	width: 400px;
+	width: 100%;
 }
 
 #fep-new-post #fep-about {
@@ -48,7 +48,7 @@
 	background: none repeat scroll 0 0 #ececec;
 	border: 1px solid #e1e1e1;
 	display: table;
-	margin: 20px 0;
+	margin: 10px 0 30px 0;
 	padding: 20px;
 	text-align: center;
 }
@@ -65,31 +65,32 @@ img.fep-loading-img {
 
 button#fep-submit-post,
 button#fep-submit-post:active,
+button#fep-submit-post:hover,
+button#fep-submit-post:focus{
+	width: 46%;
+	height: 48px;
+	background-color: #fe642d;
+	-moz-box-shadow: 5px 5px 5px #ffd8cc;
+	box-shadow: 5px 5px 5px #ffd8cc;
+	font-size: large;
+	margin: 0px 15px 15px 0px;
+	border-radius: 5px;
+	border: none;
+	float: left;
+	color: #fff;
+	outline: none;
+}
+
+/*button#fep-submit-post {*/
+	/*background: #4785CC;*/
+/*}*/
+
 button#fep-submit-post:hover {
-	border-color: #306EB5;
-	border-style: solid;
-	border-width: 1px 1px 3px;
 	box-shadow: none;
-	color: #FFFFFF;
-	font-weight: bold;
-	padding: 10px 20px;
-	border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-}
-
-button#fep-submit-post {
-	background: #4785CC;
-}
-
-button#fep-submit-post:hover {
-	background: #5391D8;
 }
 
 button#fep-submit-post:active {
-	padding-top: 12px;
-	padding-bottom: 8px;
-	background: #306EB5;
+	box-shadow: none;
 }
 
 button#fep-submit-post.passive-btn,

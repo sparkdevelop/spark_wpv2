@@ -32,16 +32,17 @@ if (isset($_GET['fep_id']) && isset($_GET['fep_action']) && $_GET['fep_action'] 
     <div id="no-js"
          class="warning"><?php _e('This form needs JavaScript to function properly. Please turn on JavaScript and try again!', 'frontend-publishing'); ?></div>
 </noscript>
+
 <div id="fep-new-post">
     <div id="fep-message" class="warning"></div>
     <form id="fep-submission-form">
         <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
-        <label for="fep-post-title"><?php _e('标题', 'frontend-publishing'); ?></label>
-        <input type="text" name="post_title"  id="fep-post-title" value="<?php echo ($post) ? $post['title'] : ''; ?>">
-        <label for="fep-post-content"><?php _e('內容', 'frontend-publishing'); ?></label>
+<!--        <label for="fep-post-title">--><?php //_e('标题', 'frontend-publishing'); ?><!--</label>-->
+        <input type="text" name="post_title" placeholder="输入项目名称" id="fep-post-title" value="<?php echo ($post) ? $post['title'] : ''; ?>" style="width: 100%;font-size: 30px;font-weight: bold;color: #333;margin: 0px 0 25px 0;border: none;border-bottom: 1px solid #dcdcdc;box-shadow: none;">
+<!--        <label for="fep-post-content">--><?php //_e('內容', 'frontend-publishing'); ?><!--</label>-->
         <?php
         $enable_media = (isset($fep_roles['enable_media']) && $fep_roles['enable_media']) ? current_user_can($fep_roles['enable_media']) : 1;
-        wp_editor($post['content'], 'fep-post-content', $settings = array('textarea_name' => 'post_content', 'textarea_rows' => 20, 'media_buttons' => $enable_media));
+        wp_editor($post['content'], 'fep-post-content', $settings = array('textarea_name' => 'post_content', 'textarea_rows' => 100, 'media_buttons' => $enable_media));
         wp_nonce_field('fepnonce_action', 'fepnonce');
         ?>
         <?php if (!$fep_misc['disable_author_bio']): ?>
@@ -52,18 +53,17 @@ if (isset($_GET['fep_id']) && isset($_GET['fep_action']) && $_GET['fep_action'] 
         <?php endif; ?>
         </div>
         <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
-            <div id="fep-featured-image" style="width: 300px;height: 150px">
+            <div id="fep-featured-image" style="width: 100%;height: 150px">
                 <div id="fep-featured-image-container"><?php echo $featured_img_html; ?></div>
                 <a id="fep-featured-image-link" href="#"><?php _e('选择封面图片', 'frontend-publishing'); ?></a>
                 <input type="hidden" id="fep-featured-image-id" value="<?php echo (!empty($featured_img)) ? $featured_img : '-1'; ?>"/>
             </div>
         <label for="fep-category"><?php _e('分类', 'frontend-publishing'); ?></label>
-        <?php wp_dropdown_categories(array('id' => 'fep-category', 'hide_empty' => 0, 'name' => 'post_category', 'orderby' => 'name','child_of' =>11 ,'selected' => $post['category'], 'hierarchical' => true,/* 'show_option_none' => __('None', 'frontend-publishing')*/)); ?>
+        <?php wp_dropdown_categories(array('id' => 'fep-category', 'hide_empty' => 0, 'name' => 'post_category', 'orderby' => 'name','child_of' =>6 ,'selected' => $post['category'], 'hierarchical' => true,/* 'show_option_none' => __('None', 'frontend-publishing')*/)); ?>
         <label for="fep-tags"><?php _e('标签', 'frontend-publishing'); ?></label>
         <input type="text" name="post_tags" id="fep-tags" value="<?php echo ($post) ? $post['tags'] : ''; ?>" placeholder="多个标签用英文逗号（,）隔开">
         <input type="hidden" name="post_id" id="fep-post-id" value="<?php echo $post_id ?>"><br><br>
-        <button type="button" id="fep-submit-post" class="active-btn"><?php _e('发布', 'frontend-publishing'); ?></button>
-         <span style="display:inline-block;width: 30px"></span><button type="button" id="close" style="height: 42px;width: 70px">取消</button>
+        <button type="button" id="fep-submit-post" class="active-btn"><?php _e('发布', 'frontend-publishing'); ?></button>&nbsp;<button type="button" id="close" class="close_btn">取消</button>
         <img class="fep-loading-img" src="<?php echo plugins_url('static/img/ajax-loading.gif', dirname(__FILE__)); ?>"/>
         </div>
     </form>

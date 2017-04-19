@@ -25,7 +25,7 @@ $post_id = get_the_ID();
                 <!--    文章内容-->
                  <h2><b><?php the_title(); ?></b></h2><hr>
                 <?php the_content(); ?><hr>
-                <?php comments_template(); ?>
+                <?php //comments_template(); ?>
                 <?php endwhile;?>
                 <?php else: ?>
                 <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
@@ -134,8 +134,6 @@ $post_id = get_the_ID();
             <?php //get_sidebar();?>
         </div>
     </div>
-
-
 
 <?php get_footer(); ?>
 

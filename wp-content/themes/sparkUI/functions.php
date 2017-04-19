@@ -579,7 +579,7 @@ add_action('wp_ajax_nopriv_update_wiki_entry', 'update_wiki_entry');
 function create_wiki_entry() {
     date_default_timezone_set('Asia/Shanghai');
     global $wpdb;
-    $entry_title = $_POST['entry_title'];
+    $entry_title = stripslashes($_POST['entry_title']);
     $entry_content = stripslashes($_POST['entry_content']);
     $wiki_categories = $_POST['wiki_categories'];
     $wiki_tags = $_POST['wiki_tags'];
@@ -600,7 +600,7 @@ function create_wiki_entry() {
     foreach($same_title_entrys as $item) {
         $nums = $item->nums;
     }
-    $post_name = $entry_title;
+    $post_name = time();
     if($nums > 0) {
         $nums++;
         $post_name = $post_name."-".$nums;
@@ -878,4 +878,30 @@ function project_custom_pagenavi($custom_query,$range = 4 ) {
         echo "</div>\n";
     }
 }
+// 项目模板挂载函数到正确的钩子
+function my_add_mce_button() {
+    // 检查用户权限
+    if ( !current_user_can( 'edit_posts' ) && !current_user_can( 'edit_pages' ) ) {
+        return;
+    }
+    // 检查是否启用可视化编辑
+    if ( 'true' == get_user_option( 'rich_editing' ) ) {
+        add_filter( 'mce_external_plugins', 'my_add_tinymce_plugin' );
+        add_filter( 'mce_buttons', 'my_register_mce_button' );
+    }
+}
+add_action('init', 'my_add_mce_button');
+
+// 声明项目模板的脚本
+function my_add_tinymce_plugin( $plugin_array ) {
+    $plugin_array['my_mce_button'] = get_template_directory_uri() .'/template/project/mce-button.js';
+    return $plugin_array;
+}
+
+// 在编辑器上注册项目模板按钮
+function my_register_mce_button( $buttons ) {
+    array_push( $buttons, 'my_mce_button' );
+    return $buttons;
+}
+
 ?>

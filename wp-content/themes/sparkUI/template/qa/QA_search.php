@@ -8,7 +8,7 @@ $current_url= curPageURL();//设当前页面为archive页面
 $page_text = dwqa_is_front_page() ? 'page' : 'paged';
 $page = get_query_var( $page_text ) ? get_query_var( $page_text ) : 1;
 
-    if($post_type=='wiki'){    //根据自身情况更改
+    if($post_type=='yada_wiki'){    //根据自身情况更改
      $query_string = $query_string.'&posts_per_page=5'.'&post_type='.$post_type;
      $posts=query_posts($query_string);
     }
@@ -29,23 +29,24 @@ $args = array(
 $paginate = paginate_links($args);
 
 ?>
+
 <ul id="searchTab" class="nav nav-pills">
     <?php
     $current_url = home_url(add_query_arg(array()));
     $url_array=parse_url($current_url);
     $query_parse=explode("&",$url_array['query']);
-    if(array_search("post_type=wiki",$query_parse)){?>
-        <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'wiki' ) ) )?>">wiki</a></li>
+    if(array_search("post_type=yada_wiki",$query_parse)){?>
+        <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki' ) ) )?>">wiki</a></li>
         <li><a href="<?php echo remove_query_arg( array('post_type') ) ?>">问答</a></li>
         <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post'  ) ) )?>">项目</a></li>
     <?php }
     elseif(array_search("post_type=project",$query_parse)){?>
-        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'wiki' ) ) )?>">wiki</a></li>
+        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki' ) ) )?>">wiki</a></li>
         <li><a href="<?php echo remove_query_arg( array('post_type') ) ?>">问答</a></li>
         <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post'  ) ) )?>">项目</a></li>
     <?php }
     else{ ?>
-        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'wiki' ) ) )?>">wiki</a></li>
+        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki' ) ) )?>">wiki</a></li>
         <li  class="active"><a href="<?php echo remove_query_arg( array('post_type') )?>">问答</a></li>
         <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post'  ) ) )?>">项目</a></li>
     <?php } ?>

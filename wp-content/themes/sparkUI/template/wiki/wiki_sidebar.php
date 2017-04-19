@@ -19,7 +19,7 @@
 </style>
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
 <div class="wiki_sidebar_wrap">
-    <div class="sidebar_button"><a href="http://localhost/spark_wpv2/?page_id=58">创建 wiki</a></div>
+    <div class="sidebar_button"><a href="/spark_wpv2/?page_id=58">创建 wiki</a></div>
     <div class="list-group mulu">
         <a href="#" class="list-group-item" style="margin-bottom: -1px;margin-top: 30px;">
             <i class="fa fa-bars" aria-hidden="true" style="color:#b3b3b3;margin-right: 10px;"></i>

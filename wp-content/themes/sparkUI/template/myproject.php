@@ -22,9 +22,9 @@ $author_posts = new WP_Query(array('posts_per_page' => -1, 'paged' => $paged, 'o
     $(".thumbnail").mouseover(function () {
         //$(this).addClass("border");
         //显示删除叉
-        $(this).find("#close-icon").css("display", "block");
+        $(this).getElementById("close-icon").css("display", "block");
     });
-    $(".thumbnail").mouseout(function () {
+    $(".thumbnail").mouseleave(function () {
         //$(this).removeClass("border");
         //隐藏删除叉
         $(this).find("#close-icon").css("display", "none");
@@ -33,16 +33,20 @@ $author_posts = new WP_Query(array('posts_per_page' => -1, 'paged' => $paged, 'o
 </script>
 
 <ul id="leftTab" class="nav nav-pills" style="height: 42px">
-    <li class="active" style="margin-left: 16px"><a href="#my-publish" >我发布的</a></li>
+    <?php if (!$author_posts->have_posts()): ?>
+        <p style="margin-left: 30px;font-size: 15px"><?php _e('还没有发布过项目.', 'frontend-publishing'); ?></p>
+    <?php else: ?>
+        <p style="margin-left: 30px;font-size: 15px"><?php printf(__('我已发布 %s 个项目.', 'frontend-publishing'), $author_posts->found_posts); ?></p>
+    <?php endif; ?>
 </ul>
 
 <div id="rightTabContent" class="tab-content" >
     <div class="tab-pane fade in active" id="my-publish" style="padding-top: 40px;">
         <div style="height: 1px;background-color: lightgray;"></div><br>
         <?php if (!$author_posts->have_posts()): ?>
-            <?php _e('还没有发布过项目.', 'frontend-publishing'); ?>
+            <p style="margin-left: 30px;font-size: 15px"><?php _e('还没有发布过项目.', 'frontend-publishing'); ?></p>
         <?php else: ?>
-            <p style="margin-left: 10px;font-size: 15px"><?php printf(__('我已发布 %s 个项目.', 'frontend-publishing'), $author_posts->found_posts); ?></p>
+            <p style="margin-left: 30px;font-size: 15px"><?php printf(__('我已发布 %s 个项目.', 'frontend-publishing'), $author_posts->found_posts); ?></p>
         <?php endif; ?>
         <ul class="list-group">
             <?php
@@ -51,12 +55,12 @@ $author_posts = new WP_Query(array('posts_per_page' => -1, 'paged' => $paged, 'o
             ?>
             <li style="list-style-type: none;">
                 <div class="col-md-4 col-sm-4 col-xs-4">
-                    <div class="thumbnail" style="height: 270px">
+                    <div class="thumbnail">
                         <span class="fa fa-trash-o fa-lg" id="close-icon">
                              <?php
                              $url = get_bloginfo('url');
                              if (current_user_can('edit_post', $post->ID)){
-                                 echo '<a class="delete-post" href="';
+                                 echo '<a class="post-delete" style="font-size:15px" onclick="confirm(\'确认删除吗？\')" href="';
                                  echo wp_nonce_url("$url/wp-admin/post.php?action=delete&post=$id", 'delete-post_' . $post->ID);
                                  echo '">删除</a>';
                              }
@@ -64,20 +68,15 @@ $author_posts = new WP_Query(array('posts_per_page' => -1, 'paged' => $paged, 'o
                         </span> <!--删除文章-->
                         <?php
                         if ( has_post_thumbnail() ) { ?>
-                            <?php the_post_thumbnail(array(220,150)); ?> <?php } else {?>
-                            <img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" height="150"/>
+                            <a href="<?php the_permalink(); ?>" target="_blank"><?php the_post_thumbnail(array(220,150)); ?></a> <?php } else {?>
+                            <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" height="150"/></a>
                         <?php } ?>
                         <div style="height: 1px;background-color: lightgray"></div>
                         <div class="caption">
-                            <div style="height: 50px;font-size: 20px;color: black;">
-                                <b><a href="<?php the_permalink(); ?>" style="color: black"><?php the_title(); ?></a></b></div>
-                            <div style="display: inline;">
-                                <span class="fa fa-user-o pull-left" style="font-size: 12px;color: gray">&nbsp;<?php the_author(); ?></span><span class="fa fa-bookmark-o pull-right" style="font-size: 12px;color: gray"> <?php the_category(', ') ?></span>
-                            </div><br>
-                            <div style="display: inline;">
-                                <span class="fa fa-clock-o pull-left" style="font-size: 12px;color: gray"> <?php the_time('Y年n月j日') ?> </span><span class="fa fa-comments-o pull-right" style="font-size: 12px;color: gray"> <?php comments_popup_link('0 条', '1 条', '% 条', '', '评论已关闭'); ?></span><span class="fa fa-eye pull-right" style="font-size: 12px;color: gray"> <?php echo getProjectViews(get_the_ID()); ?></span>
-                                <br>
-
+                                <div class="project-title"><a href="<?php the_permalink(); ?>" target="_blank"><?php the_title(); ?></a></div>
+                            <div>
+                                <span class="fa fa-user-o pull-left" style="font-size: 12px;color: gray">&nbsp;<?php the_author(); ?></span><span class="fa fa-bookmark-o pull-right" style="font-size: 12px;color: gray"> <?php the_category(', ') ?></span><br>
+                                <span class="fa fa-clock-o pull-left" style="font-size: 12px;color: gray"> <?php the_time('Y年n月j日') ?> </span><span class="fa fa-comments-o pull-right" style="font-size: 12px;color: gray"> <?php comments_popup_link('0 条', '1 条', '% 条', '', '评论已关闭'); ?></span><span class="fa fa-eye pull-right" style="font-size: 12px;color: gray"> <?php echo getProjectViews(get_the_ID()); ?></span><br>
                             </div>
                         </div>
                     </div>

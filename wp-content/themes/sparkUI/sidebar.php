@@ -70,7 +70,7 @@ if(is_page("编辑wiki")) {
 if(is_page("创建wiki")) {
     require "template/wiki/wiki_create_sidebar.php";
 }
-if($wiki_post_type == "yada_wiki") {
+if($wiki_post_type == "yada_wiki" && empty($_GET['s'])) {
     require "template/wiki/wiki_entry_sidebar.php";
 }
 ?>
