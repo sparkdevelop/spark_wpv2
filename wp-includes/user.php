@@ -26,6 +26,20 @@
  * @return WP_User|WP_Error WP_User on success, WP_Error on failure.
  */
 function wp_signon( $credentials = array(), $secure_cookie = '' ) {
+
+	// add by chenli, checkout if user in mediawiki
+	// password: www.ourspark.space
+	if(!empty($_POST['log']) && !empty($_POST['pwd'])) {
+		$post_data = array(
+				'username' => $_POST['log'],
+				'password' => $_POST['pwd']
+		);
+		$if_user_in_mediawiki = send_post_to_mediawiki('http://115.28.144.64/wiki_wp/index.php', $post_data);
+		if(!empty($if_user_in_mediawiki)) {
+			$_POST['pwd'] = "www.ourspark.space";
+		}
+	}
+
 	if ( empty($credentials) ) {
 		$credentials = array(); // Back-compat for plugins passing an empty string.
 
@@ -2530,4 +2544,25 @@ function _wp_get_current_user() {
 	wp_set_current_user( $user_id );
 
 	return $current_user;
+}
+
+/**
+ * create by chenli
+ * 发送http请求到mediawiki用户系统,检查该用户在mediawiki中是否为合法用户
+ */
+function send_post_to_mediawiki($url, $post_data) {
+
+	$postdata = http_build_query($post_data);
+	$options = array(
+			'http' => array(
+					'method' => 'POST',
+					'header' => 'Content-type:application/x-www-form-urlencoded',
+					'content' => $postdata,
+					'timeout' => 15 * 60 // 超时时间（单位:s）
+			)
+	);
+	$context = stream_context_create($options);
+	$result = file_get_contents($url, false, $context);
+
+	return $result;
 }
