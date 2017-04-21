@@ -140,7 +140,7 @@ body{
 #search-content{
     border:none;
     height: 38px;
-    width: 68%;
+    width: 65%;
     box-shadow: none;
 }
 #search-btn{
@@ -871,6 +871,3 @@ box-shadow: none;
     color:#333;
     font-weight: bold;
 }
-
-
->>>>>>> shuai
