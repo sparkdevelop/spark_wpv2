@@ -21,16 +21,21 @@
 // ** MySQL 设置 - 具体信息来自您正在使用的主机 ** //
 /** WordPress数据库的名称 */
 
-//define('DB_NAME', 'wordpress');
-define('DB_NAME', 'spark_wp');
+define('DB_NAME', 'wordpress');
+//define('DB_NAME', 'spark_wp');
 //define('WP_CACHE', true); //Added by WP-Cache Manager
 
 /** MySQL数据库用户名 */
 define('DB_USER', 'root');
 
 /** MySQL数据库密码 */
+<<<<<<< HEAD
 //define('DB_PASSWORD', 'zx1101');
 define('DB_PASSWORD', 'spark123456');
+=======
+define('DB_PASSWORD', 'zx1101');
+//define('DB_PASSWORD', '19950715');
+>>>>>>> fb5ab5f0878d4403887e4aa9a0e2c0869d9a0df1
 
 
 /** MySQL主机 */
