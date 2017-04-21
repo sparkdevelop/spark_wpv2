@@ -48,7 +48,7 @@ class DWQA_Editor {
 				'textarea_name' => 'custom-content',
 				'rows'          => 5,
 				'wpautop'       => false,
-				'media_buttons' => false,
+				'media_buttons' => true,
 		) ) );
 
 		$dwqa_tinymce_css = apply_filters( 'dwqa_editor_style', DWQA_URI . 'templates/assets/css/editor-style.css' );
