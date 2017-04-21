@@ -16,13 +16,13 @@
         </div>
         <div style="display: inline-block;vertical-align: top;">
             <div style="color:gray">
-                <a href="<?php echo dwqa_get_author_link( $comment->user_id );?>" style="margin-left: 20px;font-weight:bold;font-size: initial">
+                <a href="<?php echo dwqa_get_author_link( $comment->user_id );?>" class="ask-author" style="margin-left: 20px;font-weight:bold;font-size: initial">
                     <?php echo get_comment_author() ?></a>&nbsp;
 <!--                <span>回复</span>&nbsp;-->
 <!--                <a href="#" style="font-weight:bold;font-size: initial">莫里哀</a>-->
                 <p class="answer_date" style="margin-left: 20px;margin-top: 10px"><?php echo  human_time_diff( get_comment_time( 'U', true ) );?>前回复</p>
             </div>
-            <div style="color: gray;margin-left: 20px;margin-top: 20px">
+            <div style="color: gray;margin-left: 20px;margin-top: 20px;font-size: 16px;">
                 <?php comment_text(); ?>
             </div>
 <!--            <span class="scan_count" style="display:block;margin-left: 20px;margin-top: 10px"><a href="#">回复</a></span>-->

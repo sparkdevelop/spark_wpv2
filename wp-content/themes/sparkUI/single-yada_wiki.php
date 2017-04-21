@@ -17,6 +17,7 @@ get_header(); ?>
                 <h2><b><?php the_title(); ?></b></h2>
                 <hr>
                 <?php the_content(); ?>
+                <hr>
                 <?php comments_template(); ?>
             <?php endwhile;?>
             <?php else: ?>

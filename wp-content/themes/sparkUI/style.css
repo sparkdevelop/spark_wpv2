@@ -727,3 +727,127 @@ box-shadow: none;
     border:1px solid #fe642d;
     outline: none;
 }
+#wiki_list{
+    margin-left: 10px;
+    margin-top:20px;
+}
+#wiki_list>p>a{
+    color: #262626;
+    font-size: 16px;
+    font-weight: bold;
+    height: 48px;
+}
+#wiki_list>p>a:hover{
+    color: #fe642d;
+    text-decoration: none;
+}
+#wiki_list hr{
+    border-top:1px solid lightgrey;
+}
+
+#personalTab:hover{
+    cursor: pointer;
+}
+
+
+
+
+/*wiki项目评论框*/
+.comment-list {
+    list-style: none;
+    padding:0;
+}
+.comment-author cite{
+    margin-left: 20px;
+    font-style: normal;
+    font-weight: bold;
+}
+.comment-author span{
+    display: none;
+}
+.commentmetadata{
+    margin-left:50px;
+    margin-top: 5px;
+}
+.commentmetadata a{
+    color:#969696;
+    font-size:12px;
+}
+.comment-body p{
+    margin-left: 50px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 16px;
+
+}
+.reply{
+    text-align: right;
+    margin-bottom: 5px;
+    margin-top: -5px;
+    margin-right: 10px;
+}
+.children{
+    list-style: none;
+    background-color: #f9f9f9;
+    margin-left: 50px;
+    padding:0px 0px 3px 20px;
+}
+#submit{
+    width: 120px;
+    height: 45px;
+    background-color: #1fbba6;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+
+}
+.comment-form-comment>label{
+    display: none;
+}
+#reply-title{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.logged-in-as{
+    display: none;
+}
+.comments-title{
+    font-size: 14px;
+    font-weight: bold;
+}
+.comment.depth-1{
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+}
+.depth-2{
+    padding-top: 15px;
+    border-bottom:1px solid #ddd;
+}
+.depth-2:last-child {
+
+    border-bottom: none;
+}
+.depth-3{
+    padding-top: 15px;
+    border-top:1px solid #ddd;
+}
+
+
+/*问答页面评论*/
+.ask_date{
+    font-size: 12px;
+    color:#969696;
+}
+.answer_date{
+    fongt-size:12px;
+    color:#969696;
+}
+.ask-author{
+    font-size: 15px;
+    color:#333;
+    font-weight: bold;
+}
+
+

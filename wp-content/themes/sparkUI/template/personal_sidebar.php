@@ -2,6 +2,37 @@
       $user_description = get_user_meta($current_user->ID,'description',true);
 
 ?>
+
+<?php
+$admin_url=admin_url('admin-ajax.php');
+?>
+<!--<script type="text/javascript">
+
+    function get_notice() {
+        var get_contents = {
+            action: "get_notice",
+        };
+        $.ajax({
+            type: "POST",
+            url: "<?php /*echo $admin_url;*/?>",
+            data: get_contents,
+            dataType: "json",
+            beforeSend: function () {
+            },
+            success: function(data){
+                alert(data.new_comments.length);
+            },
+            error: function() {
+                alert("消息提醒 获取失败!");
+            }
+        });
+    }
+
+    $(function(){
+        get_notice();
+    });
+</script>-->
+
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
     <div id="user-profile">
         <?php echo get_avatar($current_user->ID,100);?>
