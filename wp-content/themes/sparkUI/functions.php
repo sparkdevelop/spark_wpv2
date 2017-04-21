@@ -927,18 +927,18 @@ function ludou_sanitize_user ($username, $raw_username, $strict) {
 
 add_filter ('sanitize_user', 'ludou_sanitize_user', 10, 3);
 
-// 用户注册成功后自动登录，并跳转到指定页面
-function auto_login_new_user( $user_id ) {
-    wp_set_current_user($user_id);
-    wp_set_auth_cookie($user_id);
-
-    // 这里设置的是跳转到首页，要换成其他页面
-
-    // 如 wp_redirect( 'http://www.baidu.com' );
-    wp_redirect(  get_bloginfo( 'url' ) );
-    exit;
-}
-add_action( 'user_register', 'auto_login_new_user' );
+//// 用户注册成功后自动登录，并跳转到指定页面
+//function auto_login_new_user( $user_id ) {
+//    wp_set_current_user($user_id);
+//    wp_set_auth_cookie($user_id);
+//
+//    // 这里设置的是跳转到首页，要换成其他页面
+//
+//    // 如 wp_redirect( 'http://www.baidu.com' );
+//    wp_redirect(  get_bloginfo( 'url' ) );
+//    exit;
+//}
+//add_action( 'user_register', 'auto_login_new_user' );
 
 function get_user_related_wiki() {
     $wikis = array();
