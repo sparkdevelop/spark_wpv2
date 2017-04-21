@@ -904,4 +904,140 @@ function my_register_mce_button( $buttons ) {
     return $buttons;
 }
 
+//支持中文注册和登陆
+function ludou_sanitize_user ($username, $raw_username, $strict) {
+    $username = wp_strip_all_tags( $raw_username );
+    $username = remove_accents( $username );
+    // Kill octets
+    $username = preg_replace( '|%([a-fA-F0-9][a-fA-F0-9])|', '', $username );
+    $username = preg_replace( '/&.+?;/', '', $username ); // Kill entities
+
+    // 网上很多教程都是直接将$strict赋值false，
+    // 这样会绕过字符串检查，留下隐患
+    if ($strict) {
+        $username = preg_replace ('|[^a-z\p{Han}0-9 _.\-@]|iu', '', $username);
+    }
+
+    $username = trim( $username );
+    // Consolidate contiguous whitespace
+    $username = preg_replace( '|\s+|', ' ', $username );
+
+    return $username;
+}
+
+add_filter ('sanitize_user', 'ludou_sanitize_user', 10, 3);
+
+//// 用户注册成功后自动登录，并跳转到指定页面
+//function auto_login_new_user( $user_id ) {
+//    wp_set_current_user($user_id);
+//    wp_set_auth_cookie($user_id);
+//
+//    // 这里设置的是跳转到首页，要换成其他页面
+//
+//    // 如 wp_redirect( 'http://www.baidu.com' );
+//    wp_redirect(  get_bloginfo( 'url' ) );
+//    exit;
+//}
+//add_action( 'user_register', 'auto_login_new_user' );
+
+function get_user_related_wiki() {
+    $wikis = array();
+    $post_status = $_POST['get_wiki_type'];
+    $current_user = wp_get_current_user();
+    $post_author = $current_user->ID;
+    global $wpdb;
+    if($post_status == "publish") {
+        $publish_wikis_result = $wpdb->get_results("select * from $wpdb->posts where post_author=".$post_author." and post_status=\"publish\" and post_type=\"yada_wiki\"");
+        foreach ($publish_wikis_result as $item) {
+            $wikis[] = $item;
+        }
+    } else {
+        $all_wikis_ids = array();
+        $published_wikis = $wpdb->get_results("select ID from $wpdb->posts where post_status=\"publish\" and post_type=\"yada_wiki\"");
+        foreach ($published_wikis as $item) {
+            $all_wikis_ids[] = $item->ID;
+        }
+        $inherit_ids = array();
+        $inherit_wikis_result = $wpdb->get_results("select * from $wpdb->posts where post_author=".$post_author." and post_status=\"inherit\" group by post_parent");
+        foreach ($inherit_wikis_result as $item) {
+            $parent_id = $item->post_parent;
+            if(in_array($parent_id, $all_wikis_ids)) {
+                $inherit_ids[] = $parent_id;
+            }
+        }
+        if(count($inherit_ids)>0) {
+            $inherit_ids_str = "";
+            for($i=0;$i<count($inherit_ids);$i++) {
+                if($i == 0) {
+                    $inherit_ids_str = "(".$inherit_ids[$i].",";
+                    continue;
+                }
+                if($i == count($inherit_ids)-1){
+                    $inherit_ids_str = $inherit_ids_str.$inherit_ids[$i].")";
+                    continue;
+                }
+                $inherit_ids_str = $inherit_ids_str.$inherit_ids[$i].",";
+            }
+            if(count($inherit_ids) == 1) {
+                $inherit_ids_str = "(".$inherit_ids[0].")";
+            }
+            $final_wikis_result = $wpdb->get_results("select * from $wpdb->posts where `ID` in ".$inherit_ids_str);
+            foreach ($final_wikis_result as $item) {
+                $wikis[] = $item;
+            }
+        }
+    }
+    $data = array(
+        "wikis" => $wikis
+    );
+    echo json_encode($data);
+    die();
+
+}
+add_action('wp_ajax_get_user_related_wiki', 'get_user_related_wiki');
+add_action('wp_ajax_nopriv_get_user_related_wiki', 'get_user_related_wiki');
+
+function get_notice() {
+    global $wpdb;
+    $all_post_ids = array();
+    $new_comments = array();
+    $current_user = wp_get_current_user();
+    //$all_post_id_result = $wpdb->get_results("select ID from $wpdb->posts where post_author =".$current_user);
+    $all_post_id_result = $wpdb->get_results("select * from $wpdb->posts where post_author=" . get_current_user());
+
+    foreach ($all_post_id_result as $item) {
+        $all_post_ids[] = $item->ID;
+    }
+    if(count($all_post_ids)>0) {
+
+        $inherit_ids_str = "";
+        for($i=0;$i<count($all_post_ids);$i++) {
+            if($i == 0) {
+                $inherit_ids_str = "(".$all_post_ids[$i].",";
+                continue;
+            }
+            if($i == count($all_post_ids)-1){
+                $inherit_ids_str = $inherit_ids_str.$all_post_ids[$i].")";
+                continue;
+            }
+            $inherit_ids_str = $inherit_ids_str.$all_post_ids[$i].",";
+        }
+        if(count($all_post_ids) == 1) {
+            $inherit_ids_str = "(".$all_post_ids[0].")";
+        }
+        $new_comments_result = $wpdb->get_results("select * from $wpdb->comments where comment_post_ID in ".$inherit_ids_str." and user_id !=".$current_user." and if_new_comment = 0");
+        foreach ($new_comments_result as $item) {
+            $new_comments[] = $item;
+        }
+
+    }
+    $data = array(
+        "new_comments" => $new_comments
+    );
+    echo json_encode($data);
+    die();
+
+}
+add_action('wp_ajax_get_notice', 'get_notice');
+add_action('wp_ajax_nopriv_get_notice', 'get_notice');
 ?>

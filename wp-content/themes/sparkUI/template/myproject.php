@@ -14,6 +14,11 @@ $author_posts = new WP_Query(array('posts_per_page' => -1, 'paged' => $paged, 'o
         display: block;
         top: 6px;
         right: 20px;
+        color: lightgrey;
+    }
+    #close-icon:hover{
+        color: #fe642d;
+        cursor: pointer;
     }
 </style>
 
@@ -30,24 +35,23 @@ $author_posts = new WP_Query(array('posts_per_page' => -1, 'paged' => $paged, 'o
         $(this).find("#close-icon").css("display", "none");
 
     });
+    function delete_confirm() {
+        
+    }
 </script>
 
 <ul id="leftTab" class="nav nav-pills" style="height: 42px">
     <?php if (!$author_posts->have_posts()): ?>
-        <p style="margin-left: 30px;font-size: 15px"><?php _e('还没有发布过项目.', 'frontend-publishing'); ?></p>
+        <p style="margin-left: 30px;margin-top:10px;font-size: 15px"><?php _e('还没有发布过项目.', 'frontend-publishing'); ?></p>
     <?php else: ?>
-        <p style="margin-left: 30px;font-size: 15px"><?php printf(__('我已发布 %s 个项目.', 'frontend-publishing'), $author_posts->found_posts); ?></p>
+        <li class="active"><a ><?php printf(__('已发布项目（%s） ', 'frontend-publishing'), $author_posts->found_posts); ?></a></li>
     <?php endif; ?>
 </ul>
 
 <div id="rightTabContent" class="tab-content" >
     <div class="tab-pane fade in active" id="my-publish" style="padding-top: 40px;">
         <div style="height: 1px;background-color: lightgray;"></div><br>
-        <?php if (!$author_posts->have_posts()): ?>
-            <p style="margin-left: 30px;font-size: 15px"><?php _e('还没有发布过项目.', 'frontend-publishing'); ?></p>
-        <?php else: ?>
-            <p style="margin-left: 30px;font-size: 15px"><?php printf(__('我已发布 %s 个项目.', 'frontend-publishing'), $author_posts->found_posts); ?></p>
-        <?php endif; ?>
+
         <ul class="list-group">
             <?php
             while ($author_posts->have_posts()) : $author_posts->the_post();
@@ -56,13 +60,13 @@ $author_posts = new WP_Query(array('posts_per_page' => -1, 'paged' => $paged, 'o
             <li style="list-style-type: none;">
                 <div class="col-md-4 col-sm-4 col-xs-4">
                     <div class="thumbnail">
-                        <span class="fa fa-trash-o fa-lg" id="close-icon">
+                        <span >
                              <?php
                              $url = get_bloginfo('url');
                              if (current_user_can('edit_post', $post->ID)){
-                                 echo '<a class="post-delete" style="font-size:15px" onclick="confirm(\'确认删除吗？\')" href="';
+                                 echo '<a class="fa fa-trash-o fa-lg" id="close-icon" class="post-delete" style="font-size:15px" onclick="return confirm(\'确认删除吗？\')" href="';
                                  echo wp_nonce_url("$url/wp-admin/post.php?action=delete&post=$id", 'delete-post_' . $post->ID);
-                                 echo '">删除</a>';
+                                 echo '"></a>';
                              }
                              ?>
                         </span> <!--删除文章-->

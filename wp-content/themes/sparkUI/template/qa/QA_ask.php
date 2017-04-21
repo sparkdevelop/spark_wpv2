@@ -11,64 +11,7 @@ global $post;
     #Spark_question_submit_form{margin-bottom: 30px;}
 </style>
 
-    <script language="javascript">
-        function Cancel(){
-            var url = '<?=site_url().get_page_address('qa')?>';
-            location.href= url ;
-        }
 
-        function SubmitCheck() {
-            var question_title = document.getElementById('question-title');
-            var question_content = document.getElementById('question-content');
-            var question_category = document.getElementById('question-category');
-            var question_tags = document.getElementsByName('question-tag');
-            var alert = document.getElementById("alert");
-
-            if(question_title.value.length==0){
-                alert("问题内容不能为空");
-                //alert.innerHTML="<p style='color:red;margin-top:20px;margin-left: 20px'>问题标题不能为空</p>";
-                return false;}
-            if(question_content.value.length==0){
-                alert("问题内容不能为空");
-                return false;}
-            if(question_category.value.length==0){
-                alert("分类不能为空");
-                return false;}
-            if(question_tags.value.length==0||question_tags==false){
-                alert("tag不能为空");
-                return false;}
-        };
-
-        function checkTagNum(value) {
-            var tag = document.getElementById('Spark_question-tag');
-            var alertTag = document.getElementById("alertTag");
-            var deleteTag = document.getElementById("deleteTag");
-
-            if(value.split(",").length>3){
-                tag.disabled = true;
-                alertTag.innerHTML="<p style='color:red;margin:20px 20px'>最多添加3个标签</p>";
-                deleteTag.style.display = "block";
-            } else{
-                tag.disabled = false;
-                alertTag.innerHTML = "";
-                deleteTag.style.display = "none";
-            }
-        };
-
-        function deleteTags() {
-            for (var i = 0; i < 10; i++) {
-                var addTag = document.getElementById('addTag_' + i);
-                addTag.style.border = "1px solid"; //若取消选择,style。恢复未选择状态
-                addTag.style.borderColor = "transparent";
-                addTag.style.background = "";
-                addTag.style.backgroundColor = "#ffe9e1";
-                addTag.style.color = "#fe642d";
-            }
-            var tag = document.getElementById('Spark_question-tag');
-            tag.value = "";
-            tag.disabled = false;
-        };
-    </script>
 <form method="post" class="dwqa-content-edit-form" id="Spark_question_submit_form" onsubmit="return SubmitCheck();">
 <!--    标题栏-->
     <p class="dwqa-search">
@@ -76,10 +19,14 @@ global $post;
             $title = isset($_POST['question-title'] ) ? sanitize_title( $_POST['question-title'] ) : ''; ?>
         <input type="text" style="margin-top: 20px;" data-nonce="<?php echo wp_create_nonce( '_dwqa_filter_nonce' ) ?>"
                id="question-title" name="question-title" value="<?php echo $title ?>" tabindex="1" _moz_abspos=""  onkeydown="if(event.keyCode==13) return false;"/>
+        <span id="title_none"></span>
     </p>
 
     <?php $content = isset( $_POST['question-content'] ) ? sanitize_text_field( $_POST['question-content'] ) : ''; //如果没有内容应该跳出警告?>
-    <p><?php dwqa_init_tinymce_editor( array( 'content' => $content, 'textarea_name' => 'question-content', 'id' => 'question-content' ) ) ?></p>
+    <p>
+        <?php dwqa_init_tinymce_editor( array( 'content' => $content, 'textarea_name' => 'question-content', 'id' => 'question-content' ) ) ?>
+    </p>
+
     <?php global $dwqa_general_settings; ?>
     <?php if ( isset( $dwqa_general_settings['enable-private-question'] ) && $dwqa_general_settings['enable-private-question'] ) : ?>
         <p>
@@ -95,7 +42,6 @@ global $post;
 <!--    分类部分-->
     <p>
         <label for="question-category">选择问题分类</label>
-<!--            <select></select>-->
 
         <?php
         $Question_cat_ID = get_dwqa_cat_ID('Questions');
@@ -115,6 +61,7 @@ global $post;
         ) );
         ?>
     </p>
+    <span id="category_none"></span>
 <!--    tag部分-->
 
     <?php
@@ -129,7 +76,6 @@ global $post;
         <input type="text" class="" name="question-tag"
                id="Spark_question-tag" value=""
                onkeyup="checkTagNum(this.value)" placeholder="标签之间用逗号隔开">
-<!--                style="display: none">-->
         <h5>常用标签:</h5>
         <?php $tags = isset( $_POST['question_tag'] ) ? sanitize_text_field( $_POST['question_tag'] ) : ''; ?>
         <?php
@@ -152,16 +98,17 @@ global $post;
                             addTag.style.background="";
                             addTag.style.backgroundColor="#ffe9e1";
                             addTag.style.color="#fe642d";
-                            tag.disabled = false; //可以继续输入。
+                            tag.readOnly = false; //可以继续输入。
                         }
                         else{ //若是添加新标签
                             if(tag.value.length==0||tag.value.split(",").length<=3){
-                                    tag.disabled = false; //可以继续输入
+                                    tag.readOnly = false; //可以继续输入
                                     tag.value = tag.value+value+","; //添加标签
                                     addTag.style.border="1px solid";
                                     addTag.style.borderColor="#fe642d";
                                     addTag.style.color="white";
                                     addTag.style.background = "url('<?php bloginfo("template_url")?>/img/check.png') no-repeat scroll top right #fe642d";
+                                    checkTagNum(tag.value);
                             }
                             else{
                                     checkTagNum(tag.value);
@@ -206,3 +153,52 @@ global $post;
     <input type="button" id="cancel" onclick="Cancel()" name="dwqa-question-submit" value="<?php _e( '取消', 'dwqa' ) ?>" class="btn-grey" style="float: right;" />
 </form>
 </div>
+
+<script language="javascript">
+    function Cancel(){
+        var url = '<?=site_url().get_page_address('qa')?>';
+        location.href= url ;
+    }
+
+    function SubmitCheck() {
+        var question_title = document.getElementById('question-title');
+        var title_none = document.getElementById("title_none");
+
+        if(question_title.value.length==0){
+            title_none.innerHTML="<p style='color:red;margin-top:20px;margin-left: 20px'>问题标题不能为空</p>";
+                return false;
+            } else{
+                return true;
+            }
+    }
+
+    function checkTagNum(value) {
+        var tag = document.getElementById('Spark_question-tag');
+        var alertTag = document.getElementById("alertTag");
+        var deleteTag = document.getElementById("deleteTag");
+
+        if(value.split(",").length>3){
+            tag.readOnly = true;
+            alertTag.innerHTML="<p style='color:red;margin:20px 20px'>最多添加3个标签</p>";
+            deleteTag.style.display = "block";
+        } else{
+            tag.readOnly = false;
+            alertTag.innerHTML = "";
+            deleteTag.style.display = "none";
+        }
+    };
+
+    function deleteTags() {
+        for (var i = 0; i < 10; i++) {
+            var addTag = document.getElementById('addTag_' + i);
+            addTag.style.border = "1px solid"; //若取消选择,style。恢复未选择状态
+            addTag.style.borderColor = "transparent";
+            addTag.style.background = "";
+            addTag.style.backgroundColor = "#ffe9e1";
+            addTag.style.color = "#fe642d";
+        }
+        var tag = document.getElementById('Spark_question-tag');
+        tag.value = "";
+        tag.readOnly = false;
+    }
+</script>
