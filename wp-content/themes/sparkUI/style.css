@@ -140,11 +140,11 @@ body{
 #search-content{
     border:none;
     height: 38px;
-    width: 84%;
+    width: 68%;
     box-shadow: none;
 }
 #search-btn{
-    float: right;
+    /*float: right;*/
     border:none;
     width:40px;
     height:38px;
@@ -726,4 +726,29 @@ box-shadow: none;
     color: #fff;
     border:1px solid #fe642d;
     outline: none;
+}
+#search_select{
+    margin-right: 2px;
+    /*margin-top: 2px;*/
+    float: right;
+    border:none ;
+    border-left: 1px solid #ccc;
+    box-shadow: none;
+    border-radius: 0px;
+    height: 38px;
+}
+
+.page_item_has_children a:hover{
+    color: #fc6a33 !important;
+}
+.page_item_has_children a{
+    color: #fc6a33;
+}
+.current_page_ancestor,
+.current_page_parent a:hover{
+    color: #fc6a33 !important;
+}
+.current_page_ancestor,
+.current_page_parent a {
+    color: #fc6a33 !important;
 }

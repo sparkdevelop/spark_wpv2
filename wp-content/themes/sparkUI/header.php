@@ -49,17 +49,12 @@
                                 <button type="button" id="user-portrait" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                        <?php echo get_avatar($current_user->ID,30,'');?>
                                 </button>
-
-
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="margin-top: 14px">
-                                    <li role="presentation" style="height:35px;">
-                                        <a role="menuitem" tabindex="-1" href="<?php echo admin_url();?>"><span class="glyphicon glyphicon-home"></span> 后台管理</a>
-                                    </li>
                                     <li role="presentation" style="height:35px;">
                                         <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address;?>"><span class="glyphicon glyphicon-user"></span>个人主页</a>
                                     </li>
                                     <li role="presentation" style="height:35px;">
-                                        <a role="menuitem" tabindex="-1" href=""><span class="glyphicon glyphicon-cog"></span> 设置</a>
+                                        <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address;?>&tab=profile"><span class="glyphicon glyphicon-cog"></span> 设置</a>
                                     </li>
                                     <li role="presentation" style="height:35px;">
                                         <a role="menuitem" tabindex="-1" href="<?php echo site_url();?>/wp-login.php?loggedout=true"><span class="glyphicon glyphicon-log-in"></span> 退出</a>
@@ -77,16 +72,33 @@
                     <div class="col-md-3 col-sm-3 col-xs-3" id="col3">
                         <form class="navbar-form " role="search" method="get" action="<?php echo home_url('/');//get_permalink() ?>" style="float: right;padding-left: 0px;padding-right: 0px">
                            <div class="form-group">
-                               <input type="text" id="search-content" name='s' value="请输入要搜索的问题" onfocus="javascript:if(this.value=='请输入要搜索的问题')this.value=''" class="form-control" placeholder="Search">
-<!--                                <input type="hidden" name="post_type" value="dwqa-question" class="form-control" placeholder="Search">-->
+                                <input type="text" id="search-content" name='s' class="form-control" placeholder="Search" value="">
                                 <input type="hidden" name="post_status" value="all">
-                                <button type="submit" class="btn btn-default btn-sm" id="search-btn">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
+                                <input type="hidden" name="post_type" id="selectPostType" value=""/>
+<!--                                <button type="submit" class="btn btn-default btn-sm" id="search-btn">-->
+<!--                                    <span class="glyphicon glyphicon-search"></span>-->
+<!--                                </button>-->
+                               <select class="form-control" id="search_select" style="float:right"
+                                       onchange="selectSearchCat(this.value);">
+                                   <option value="qa">搜问答</option>
+                                   <option value="wiki">搜wiki</option>
+                                   <option value="project">搜项目</option>
+
+                               </select>
                             </div>
                         </form>
-
-
+                        <script>
+                            function selectSearchCat(value) {
+                                var post_type= document.getElementById("selectPostType");
+                                if(value=="wiki"){
+                                    post_type.value = "yada_wiki";
+                                } else if(value=="project"){
+                                    post_type.value = "post";
+                                } else{
+                                    post_type.value = "";
+                                }
+                            }
+                        </script>
                     </div>
                     <div class="clearfix visible-xs"></div>
             </nav>

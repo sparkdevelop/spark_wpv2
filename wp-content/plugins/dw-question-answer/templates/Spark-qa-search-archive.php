@@ -25,7 +25,7 @@ if (dwqa_question_answers_count() != 0) {
             <div class="qa_show">
                 <div class="qa_title">
                     <a class="ask_topic" href="<?php echo get_permalink();?>">
-                        <?php echo str_replace($search_word,'<font color=red>'.$search_word.'</font>',get_the_title());?>
+                        <?php echo str_replace($search_word,'<font color="red">'.$search_word.'</font>',get_the_title());?>
                     </a>
                 </div>
                 <div style="color:gray;margin-top:10px;">
@@ -48,7 +48,7 @@ if (dwqa_question_answers_count() != 0) {
                     </div>
                     <!--答案内容 逻辑有待完善-->
                     <div class="qa_best_answer">
-                        <?php $qa_best_answer_content = str_replace($search_word,'<font color=red>'.$search_word.'</font>',$best_post_content);?>
+                        <?php $qa_best_answer_content = str_replace($search_word,'<font color="red">'.$search_word.'</font>',$best_post_content);?>
                         <?php echo mb_strimwidth($qa_best_answer_content, 0, 100,"...");?>
                     </div>
                 </div>
@@ -83,7 +83,7 @@ if (dwqa_question_answers_count() != 0) {
                     </div>
                     <div class="qa_best_answer">
                         <span class="label label-default" id="btn-solved">已采纳</span>
-                        <?php $qa_best_answer_content = str_replace($search_word,'<font color=red>'.$search_word.'</font>',get_post(dwqa_get_the_best_answer())->post_content);?>
+                        <?php $qa_best_answer_content = str_replace($search_word,'<font color="red">'.$search_word.'</font>',get_post(dwqa_get_the_best_answer())->post_content);?>
                         <?php echo mb_strimwidth($qa_best_answer_content, 0, 100,"...");?>
                     </div>
                 </div>
