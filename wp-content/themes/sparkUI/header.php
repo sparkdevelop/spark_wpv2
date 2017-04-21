@@ -24,7 +24,7 @@
             <nav class="navbar navbar-default " role="navigation">
 
                 <div class="container-fluid">
-                    <div class="col-md-8 col-sm-8 col-xs-8" id="col9">
+                    <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
                         <div class="navbar-header">
                             <a class="navbar-brand" href="<?php echo site_url(); ?>"><img src="<?php bloginfo("template_url")?>/img/logo.png"></a>
                         </div>
@@ -47,12 +47,7 @@
                                 <button type="button" id="user-portrait" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                        <?php echo get_avatar($current_user->ID,30,'');?>
                                 </button>
-
-
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="margin-top: 14px">
-                                    <li role="presentation" style="height:35px;">
-                                        <a role="menuitem" tabindex="-1" href="<?php echo admin_url();?>"><span class="glyphicon glyphicon-home"></span> 后台管理</a>
-                                    </li>
                                     <li role="presentation" style="height:35px;">
                                         <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address;?>"><span class="glyphicon glyphicon-user"></span>个人主页</a>
                                     </li>
@@ -72,15 +67,15 @@
                         <?php } ?>
                     </div>
                     <div class="clearfix visible-xs"></div>
-                    <div class="col-md-4 col-sm-4 col-xs-4" id="col3">
+                    <div class="col-md-3 col-sm-3 col-xs-3" id="col3">
                         <form class="navbar-form " role="search" method="get" action="<?php echo home_url('/');//get_permalink() ?>" style="float: right;padding-left: 0px;padding-right: 0px">
                            <div class="form-group">
                                 <input type="text" id="search-content" name='s' class="form-control" placeholder="Search" value="">
                                 <input type="hidden" name="post_status" value="all">
                                 <input type="hidden" name="post_type" id="selectPostType" value=""/>
-                                <button type="submit" class="btn btn-default btn-sm" id="search-btn">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
+<!--                                <button type="submit" class="btn btn-default btn-sm" id="search-btn">-->
+<!--                                    <span class="glyphicon glyphicon-search"></span>-->
+<!--                                </button>-->
                                <select class="form-control" id="search_select" style="float:right"
                                        onchange="selectSearchCat(this.value);">
                                    <option value="qa">搜问答</option>
