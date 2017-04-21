@@ -25,7 +25,7 @@ $post_id = get_the_ID();
                 <!--    文章内容-->
                  <h2><b><?php the_title(); ?></b></h2><hr>
                 <?php the_content(); ?><hr>
-                <?php //comments_template(); ?>
+                <?php comments_template(); ?>
                 <?php endwhile;?>
                 <?php else: ?>
                 <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
@@ -65,32 +65,7 @@ $post_id = get_the_ID();
                 ?>
 
 
-                <style type="text/css">
-                    .create_wiki_btn {
-                        margin-bottom: 30px;
-                    }
-                    .mulu a{
-                        display: block;
-                        border: #9ea7af 1px solid;
-                        height: 50px;
-                        padding-left: 30px;
-                    }
-                    .mulu .mulu_item{
-                        display: block;
-                        border: #9ea7af 1px solid;
-                        height: 50px;
-                        padding-left: 50px;
-                    }
-                    .wiki_entry_info {
-                        border: #9ea7af 1px solid;
-                        padding: 20px 30px;
-                    }
-                    .wiki_entry_score {
-                        border: #9ea7af 1px solid;
-                        margin-top: 20px;
-                        padding: 20px 30px;
-                    }
-                </style>
+
 <!--                <div class="wiki_sidebar_wrap">-->
 <!--                    <div class="list-group mulu">-->
 <!--                        <a href="#" class="list-group-item">-->

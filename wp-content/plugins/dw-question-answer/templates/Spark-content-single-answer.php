@@ -41,7 +41,7 @@ global $wpdb;
         <div style="color:gray">
             <div style="margin-bottom: 10px">
                 <!--												回答者信息-->
-                <a href="<?php echo dwqa_get_author_link( $user_id );?>" style="margin-left: 20px;">
+                <a href="<?php echo dwqa_get_author_link( $user_id );?>" class="ask-author" style="margin-left: 20px;">
                     <?php echo get_the_author();?>
                 </a>
                 <!--												是否被采纳-->
@@ -60,7 +60,7 @@ global $wpdb;
             <p class="ask_date" style="margin-left: 20px;"><?php echo human_time_diff( get_post_time( 'U', true ) )."前回答";?></p>
         </div>
         <!--										答案内容-->
-        <div style="color: gray;margin-left: 20px"><?php the_content();?></div>
+        <div style="color: gray;margin-left: 20px;font-size: 16px;"><?php the_content();?></div>
 
         <!--										回复和点赞按钮链接-->
         <span class="answer-comment" style="margin-left: 0px;float: right;">
