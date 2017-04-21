@@ -1040,4 +1040,23 @@ function get_notice() {
 }
 add_action('wp_ajax_get_notice', 'get_notice');
 add_action('wp_ajax_nopriv_get_notice', 'get_notice');
+
+//登陆之后跳转到首页
+function my_login_redirect($redirect_to, $request){
+    if( empty( $redirect_to ) || $redirect_to == 'wp-admin/' || $redirect_to == admin_url() )
+        return get_bloginfo( 'url' ) ;
+    else
+        return $redirect_to;
+}
+add_filter('login_redirect', 'my_login_redirect', 10, 3);
+
+// 在编辑器中启用字体和字体大小选择
+if ( ! function_exists( 'wpex_mce_buttons' ) ) {
+    function wpex_mce_buttons( $buttons ) {
+        array_unshift( $buttons, 'fontselect' ); // 添加字体选择
+        array_unshift( $buttons, 'fontsizeselect' ); // 添加字体大小选择
+        return $buttons;
+    }
+}
+add_filter( 'mce_buttons_2', 'wpex_mce_buttons' );
 ?>

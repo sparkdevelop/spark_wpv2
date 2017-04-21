@@ -47,7 +47,7 @@
                 <div class="clearfix visible-xs"></div>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-3" style="text-align: center;padding:0;">
-                <img src="<?php bloginfo("template_url") ?>/img/address.png" style="margin-top: 35px;float:left;">
+                <img src="<?php bloginfo("template_url") ?>/img/address.png" style="margin-top: 35px;float:left;width:130px;">
             </div>
             <div class="clearfix visible-xs"></div>
         </div>
