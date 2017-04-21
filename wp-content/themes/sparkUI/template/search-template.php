@@ -35,17 +35,17 @@ $paginate = paginate_links($args);
     $query_parse=explode("&",$url_array['query']);
     if(array_search("post_type=yada_wiki",$query_parse)){?>
         <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki','paged'=>'1') ) )?>">wiki</a></li>
-        <li><a href="<?php echo remove_query_arg( array('post_type','paged') ) ?>">问答</a></li>
+        <li><a href="<?php echo remove_query_arg( array('post_type') ) ?>">问答</a></li>
         <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post','paged'=>'1' ) ) )?>">项目</a></li>
     <?php }
     elseif(array_search("post_type=post",$query_parse)){?>
         <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki','paged'=>'1' ) ) )?>">wiki</a></li>
-        <li><a href="<?php echo remove_query_arg( array('post_type','paged') ) ?>">问答</a></li>
+        <li><a href="<?php echo remove_query_arg( array('post_type') ) ?>">问答</a></li>
         <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post','paged'=>'1'  ) ) )?>">项目</a></li>
     <?php }
     else{ ?>
         <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki','paged'=>'1' ) ) )?>">wiki</a></li>
-        <li  class="active"><a href="<?php echo remove_query_arg( array('post_type','paged') )?>">问答</a></li>
+        <li  class="active"><a href="<?php echo remove_query_arg( array('post_type') )?>">问答</a></li>
         <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post','paged'=>'1'  ) ) )?>">项目</a></li>
     <?php } ?>
 </ul>
