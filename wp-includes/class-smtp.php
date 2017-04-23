@@ -284,13 +284,19 @@ class SMTP
         if ($streamok) {
             $socket_context = stream_context_create($options);
             set_error_handler(array($this, 'errorHandler'));
-            $this->smtp_conn = stream_socket_client(
+           /* $this->smtp_conn = stream_socket_client(
                 $host . ":" . $port,
                 $errno,
                 $errstr,
                 $timeout,
                 STREAM_CLIENT_CONNECT,
                 $socket_context
+            );*/
+            $this->smtp_conn = fsockopen(
+                $host,
+                $port,
+                $errno,
+                $errstr
             );
             restore_error_handler();
         } else {
