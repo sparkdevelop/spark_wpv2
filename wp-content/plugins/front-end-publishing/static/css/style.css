@@ -123,8 +123,11 @@ button#fep-submit-post.passive-btn:hover {
 }
 
 #fep-message.success {
-	background: none repeat scroll 0 0 #DBF9DB;
-	border: 1px solid #25A825;
+	border: 1px solid #fc6a33;
+	width: 650px;
+	height: 150px;
+	margin-left: 50px;
+	text-align: center;
 }
 
 .fep-author-bio {

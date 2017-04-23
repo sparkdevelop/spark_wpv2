@@ -22,7 +22,7 @@
                     <ul class="list-group">
                         <li class="list-group-item" style="background-color: #fafafa"><a href="<?php echo site_url() . get_page_address('wiki');?>" style="margin-bottom: 5px">wiki</a></li>
                         <li class="list-group-item" style="background-color: #fafafa"><a href="<?php echo site_url() . get_page_address('qa');?>" style="margin-bottom: 5px">问答</a></li>
-                        <li class="list-group-item" style="background-color: #fafafa"><a href="<?php echo site_url() . get_page_address('project');?>" style="margin-bottom: 5px">项目</a></li>
+                        <li class="list-group-item" style="background-color: #fafafa"><a href="<?php echo get_the_permalink( get_page_by_title( '项目' )); ?>" style="margin-bottom: 5px">项目</a></li>
                     </ul>
                 </div>
                 <div class="clearfix visible-xs"></div>

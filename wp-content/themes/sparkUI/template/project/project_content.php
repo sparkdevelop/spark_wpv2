@@ -22,8 +22,8 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
     <!--所有页面-->
     <div class="tab-pane fade in active" id="project_all">
         <ul id="rightTab" class="nav nav-pills" style="float: right;height: 42px">
-            <li><a href="#hot" data-toggle="tab" >热门</a></li>
-            <li class="active"><a href="#recent" data-toggle="tab" >最新</a></li>
+            <li class="active"><a href="#hot" data-toggle="tab" >热门</a></li>
+            <li><a href="#recent" data-toggle="tab" >最新</a></li>
         </ul>
         <div id="rightTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="recent"><!--最新-->
@@ -53,8 +53,8 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
     <!--开源硬件页面-->
     <div class="tab-pane fade" id="OShardware">
         <ul id="rightTab" class="nav nav-pills" style="float: right;height: 42px">
-            <li><a href="#hot_2" data-toggle="tab" >热门</a></li>
-            <li class="active"><a href="#recent_2" data-toggle="tab" >最新</a></li>
+            <li class="active"><a href="#hot_2" data-toggle="tab" >热门</a></li>
+            <li><a href="#recent_2" data-toggle="tab" >最新</a></li>
         </ul>
         <div id="rightTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="recent_2"><!--硬件最新-->
@@ -84,8 +84,8 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
     <!--web开发页面-->
     <div class="tab-pane fade" id="web">
         <ul id="rightTab" class="nav nav-pills" style="float: right;height: 42px">
-            <li><a href="#hot_3" data-toggle="tab" >热门</a></li>
-            <li class="active"><a href="#recent_3" data-toggle="tab" >最新</a></li>
+            <li class="active"><a href="#hot_3" data-toggle="tab" >热门</a></li>
+            <li><a href="#recent_3" data-toggle="tab" >最新</a></li>
         </ul>
         <div id="rightTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="recent_3"><!--web最新-->
