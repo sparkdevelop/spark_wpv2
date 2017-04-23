@@ -214,13 +214,10 @@ function checkPass(){
     $user_pass = $wpdb->get_var($sql);
     $data = wp_check_password($password,$user_pass);
     if($data){
-        $url=get_template_directory_uri()."/img/OK.png";
-        //$response = '<img src='.$url.'>';
+        //$url=get_template_directory_uri()."/img/OK.png";
         $response =true;
-        //$response = "good";
     }else{
-        $url=get_template_directory_uri()."/img/ERROR.png";
-        //$response = '<img src='.$url.'>';
+        //$url=get_template_directory_uri()."/img/ERROR.png";
         $response =false;
     }
     echo $response;
