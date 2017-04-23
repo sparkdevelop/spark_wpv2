@@ -42,17 +42,19 @@ $admin_url=admin_url('admin-ajax.php');
         $.ajax({
             type: "POST",
             url: "<?php echo $admin_url;?>",
-            data: create_content,
+            async: false,
+	    data: create_content,
             dataType: "json",
             success: function(data){
                 //window.location.href = "/spark_wpv2/?yada_wiki=" + data;
                 //window.open("/spark_wpv2/?yada_wiki=" + data, '_self');
-                var form = document.createElement('form');
-                form.action = "/spark_wpv2/?yada_wiki=" + data;
-                form.target = '_blank';
-                form.method = 'POST';
-                document.body.appendChild(form);
-                form.submit();
+                //var form = document.createElement('form');
+                //form.action = "/spark_wpv2/?yada_wiki=" + data;
+                //form.target = '_blank';
+                //form.method = 'POST';
+                //document.body.appendChild(form);
+                //form.submit();
+		window.open("/spark_wpv2/?yada_wiki="+data);
             },
             error: function() {
                 alert("wiki发布失败!");
