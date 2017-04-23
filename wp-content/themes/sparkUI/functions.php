@@ -1040,4 +1040,5 @@ function get_notice() {
 }
 add_action('wp_ajax_get_notice', 'get_notice');
 add_action('wp_ajax_nopriv_get_notice', 'get_notice');
+
 ?>
