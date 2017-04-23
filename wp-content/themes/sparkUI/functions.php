@@ -927,18 +927,18 @@ function ludou_sanitize_user ($username, $raw_username, $strict) {
 
 add_filter ('sanitize_user', 'ludou_sanitize_user', 10, 3);
 
-// 用户注册成功后自动登录，并跳转到指定页面
-function auto_login_new_user( $user_id ) {
-    wp_set_current_user($user_id);
-    wp_set_auth_cookie($user_id);
-
-    // 这里设置的是跳转到首页，要换成其他页面
-
-    // 如 wp_redirect( 'http://www.baidu.com' );
-    wp_redirect(  get_bloginfo( 'url' ) );
-    exit;
-}
-add_action( 'user_register', 'auto_login_new_user' );
+//// 用户注册成功后自动登录，并跳转到指定页面
+//function auto_login_new_user( $user_id ) {
+//    wp_set_current_user($user_id);
+//    wp_set_auth_cookie($user_id);
+//
+//    // 这里设置的是跳转到首页，要换成其他页面
+//
+//    // 如 wp_redirect( 'http://www.baidu.com' );
+//    wp_redirect(  get_bloginfo( 'url' ) );
+//    exit;
+//}
+//add_action( 'user_register', 'auto_login_new_user' );
 
 function get_user_related_wiki() {
     $wikis = array();
@@ -1041,4 +1041,22 @@ function get_notice() {
 add_action('wp_ajax_get_notice', 'get_notice');
 add_action('wp_ajax_nopriv_get_notice', 'get_notice');
 
+//登陆之后跳转到首页
+function my_login_redirect($redirect_to, $request){
+    if( empty( $redirect_to ) || $redirect_to == 'wp-admin/' || $redirect_to == admin_url() )
+        return get_bloginfo( 'url' ) ;
+    else
+        return $redirect_to;
+}
+add_filter('login_redirect', 'my_login_redirect', 10, 3);
+
+// 在编辑器中启用字体和字体大小选择
+if ( ! function_exists( 'wpex_mce_buttons' ) ) {
+    function wpex_mce_buttons( $buttons ) {
+        array_unshift( $buttons, 'fontselect' ); // 添加字体选择
+        array_unshift( $buttons, 'fontsizeselect' ); // 添加字体大小选择
+        return $buttons;
+    }
+}
+add_filter( 'mce_buttons_2', 'wpex_mce_buttons' );
 ?>

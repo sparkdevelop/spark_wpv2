@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * WordPress基础配置文件。
  *
@@ -30,7 +30,7 @@ define('DB_USER', 'root');
 
 /** MySQL数据库密码 */
 //define('DB_PASSWORD', 'zx1101');
-define('DB_PASSWORD', '19950715');
+define('DB_PASSWORD', 'spark123456');
 
 
 /** MySQL主机 */
@@ -98,6 +98,8 @@ if ( !defined('ABSPATH') )
     define('ABSPATH', dirname(__FILE__) . '/');
 
 /** 设置WordPress变量和包含文件。 */
+define('CONCATENATE_SCRIPTS',FALSE);
+
 require_once(ABSPATH . 'wp-settings.php');
 
 define("FS_METHOD", "direct");
