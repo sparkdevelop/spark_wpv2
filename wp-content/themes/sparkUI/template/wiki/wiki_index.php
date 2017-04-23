@@ -36,7 +36,7 @@
 </style>
 <?php
     global $wpdb;
-    $post_ids = "(235, 444, 448, 164, 451, 520, 243, 455, 458, 642, 465, 468, 160, 471)";
+    $post_ids = "(235, 444, 448, 164, 451, 213, 243, 455, 458, 462, 465, 468, 160, 471)";
     $watchs_result = $wpdb->get_results("select meta_value, meta_id, post_id from $wpdb->postmeta where meta_key=\"count\" and post_id in ".$post_ids);
     $watch_nums = array();
     foreach ($watchs_result as $item) {
@@ -129,7 +129,7 @@
                         <div class="col-md-9">
                             <a class="wiki-index-title" href="http://112.74.62.56/spark_wpv2/?yada_wiki=web学习">Web学习</a>
                             <div class="wiki-index-info">
-                                <span>入门</span><span> · </span><span><?php echo $watch_nums[520]; ?></span>
+                                <span>入门</span><span> · </span><span><?php echo $watch_nums[213]; ?></span>
                             </div>
                         </div>
                     </div>
@@ -191,7 +191,7 @@
                         <div class="col-md-9">
                             <a class="wiki-index-title" href="http://112.74.62.56/spark_wpv2/?yada_wiki=cc程序设计">C/C++程序设计</a>
                             <div class="wiki-index-info">
-                                <span>课程</span><span> · </span><span><?php echo $watch_nums[642]; ?></span>
+                                <span>课程</span><span> · </span><span><?php echo $watch_nums[462]; ?></span>
                             </div>
                         </div>
                     </div>
