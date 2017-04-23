@@ -35,7 +35,26 @@ $admin_url=admin_url('admin-ajax.php');
 
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
     <div id="user-profile">
-        <?php echo get_avatar($current_user->ID,100);?>
+        <div id="avatar">
+            <?php echo get_avatar($current_user->ID,100);?>
+        </div>
+        <p id="inner"></p>
+        <script>
+            var avatar = document.getElementById("avatar");
+            avatar.onmouseover= changeAvatar;
+            avatar.onmousemove = cancelChangeAvatar;
+
+            function changeAvatar() {
+                avatar.innerHTML = "<p>huantoux<p>";
+            }
+            function cancelChangeAvatar() {
+                avatar.innerHTML = "<p>cancel<p>";
+            }
+        </script>
+
+
+
+
         <p style="font-size: large;margin-top: 20px"><?php echo $current_user->data->display_name;?></p>
         <p style="margin-top: 10px;color: gray"><?php echo $user_description;?></p>
     </div>
