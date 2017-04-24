@@ -30,7 +30,9 @@ define('DB_USER', 'root');
 
 /** MySQL数据库密码 */
 
-define('DB_PASSWORD', 'zx1101');
+define('DB_PASSWORD', '');
+
+//define('DB_PASSWORD', 'zx1101');
 //define('DB_PASSWORD', '');
 
 /** MySQL主机 */
