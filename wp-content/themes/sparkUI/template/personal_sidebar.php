@@ -38,19 +38,43 @@ $admin_url=admin_url('admin-ajax.php');
         <div id="avatar">
             <?php echo get_avatar($current_user->ID,100);?>
         </div>
-        <p id="inner"></p>
-        <script>
-            var avatar = document.getElementById("avatar");
-            avatar.onmouseover= changeAvatar;
-            avatar.onmousemove = cancelChangeAvatar;
+        <form class="form-horizontal" role="form" name="updateAva"
+              method="post" action="<?php echo esc_url( self_admin_url('profile-process.php') ); ?>"
+              onsubmit="return checkSubmitprofile();">
+            <input type="button" class="btn btn-default" id="changeAva" value="changeAva" onclick="changeAvatar()">
+            <p id="inner"></p>
+            <script>
+                //            var Avatar = document.getElementById("avatar");
+                //            Avatar.onmouseover= preChangeAvatar;
+                //            Avatar.onmouseout = cancelChangeAvatar;
+                ////            $('#avatar').on('click', '#changeAva', function() {
+                ////                alert("change");
+                ////            });
+                //            function preChangeAvatar() {
+                //                <?php //$url=get_template_directory_uri()."/img/changeAvatar.png";?>
+                //                Avatar.innerHTML = "<input type=\"button\" id=\"changeAva\" value=\"changeAva\" onclick=\"changeAvatar()\">";
+                ////                    "<img src=\"<?////=$url?>////\" class=\"avatar\" id=\"changeAva\">";
+                ////                    " <input type='file' name='simple-local-avatar' id='simple-local-avatar'/>"+
+                ////                changeAva.onclick = changeAvatar;
+                ////                var changeAva =Avatar.getElementById("changeAva");
+                ////                changeAva.onclick = changeAvatar;
+                ////
+                //            }
+                //            function cancelChangeAvatar() {
+                //                Avatar.innerHTML = "<?php //echo get_avatar($current_user->ID,100);?>//";
+                //            }
+                function changeAvatar() {
+                    var file_button = document.getElementById("inner");
+                    file_button.innerHTML = "<input type=\"file\" name=\"simple-local-avatar\" id=\"simple-local-avatar\"/>"+
+                        "<input type=\"submit\" value=\"修改\">";
+                }
+            </script>
+        </form>
 
-            function changeAvatar() {
-                avatar.innerHTML = "<p>huantoux<p>";
-            }
-            function cancelChangeAvatar() {
-                avatar.innerHTML = "<p>cancel<p>";
-            }
-        </script>
+
+
+
+
 
 
 
