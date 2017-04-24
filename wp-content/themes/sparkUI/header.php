@@ -57,14 +57,14 @@
                                         <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address;?>&tab=profile"><span class="glyphicon glyphicon-cog"></span> 设置</a>
                                     </li>
                                     <li role="presentation" style="height:35px;">
-                                        <a role="menuitem" tabindex="-1" href="<?php echo site_url();?>/wp-login.php?loggedout=true"><span class="glyphicon glyphicon-log-in"></span> 退出</a>
+                                        <a role="menuitem" tabindex="-1" href="<?php echo wp_logout_url(); ?>"><span class="glyphicon glyphicon-log-in"></span> 退出</a>
                                     </li>
                                 </ul>
                             </div>
 
                         <?php } else { ?>
                             <!--                             https://codex.wordpress.org/Function_Reference/wp_login_url-->
-                            <a class="navbar-text" href="<?php echo wp_login_url( get_permalink() ); ?>">登陆</a>
+                            <a class="navbar-text" href="<?php echo wp_login_url(); ?>">登陆</a>
                             <a class="navbar-text" href="<?php echo site_url(); ?>/wp-login.php?action=register">注册</a>
                         <?php } ?>
                     </div>
