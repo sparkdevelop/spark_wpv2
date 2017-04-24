@@ -46,7 +46,8 @@ $admin_url=admin_url('admin-ajax.php');
 	    data: create_content,
             dataType: "json",
             success: function(data){
-                //window.location.href = "/spark_wpv2/?yada_wiki=" + data;
+
+                window.location.href = "<?php echo site_url();?>/?yada_wiki=" + data;
                 //window.open("/spark_wpv2/?yada_wiki=" + data, '_self');
                 //var form = document.createElement('form');
                 //form.action = "/spark_wpv2/?yada_wiki=" + data;
@@ -54,7 +55,7 @@ $admin_url=admin_url('admin-ajax.php');
                 //form.method = 'POST';
                 //document.body.appendChild(form);
                 //form.submit();
-		window.open("/spark_wpv2/?yada_wiki="+data);
+		//window.open("<?php echo site_url();?>/?yada_wiki="+data);
             },
             error: function() {
                 alert("wiki发布失败!");
