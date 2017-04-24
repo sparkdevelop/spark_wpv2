@@ -29,7 +29,6 @@ define('DB_NAME', 'spark_wp');
 define('DB_USER', 'root');
 
 /** MySQL数据库密码 */
-//define('DB_PASSWORD', '19950715');
 define('DB_PASSWORD', '');
 
 
