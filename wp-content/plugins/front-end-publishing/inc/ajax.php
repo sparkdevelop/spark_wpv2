@@ -157,16 +157,16 @@ function fep_process_form_input()
         );
 
         if ($fep_role_settings['instantly_publish'] && current_user_can($fep_role_settings['instantly_publish'])) {
-            $post_action = __('published', 'frontend-publishing');
+            $post_action = __('发布', 'frontend-publishing');
             $new_post['post_status'] = 'publish';
         } else {
-            $post_action = __('submitted', 'frontend-publishing');
+            $post_action = __('提交', 'frontend-publishing');
             $new_post['post_status'] = 'pending';
         }
 
         if ($_POST['post_id'] != -1) {
             $new_post['ID'] = $_POST['post_id'];
-            $post_action = __('updated', 'frontend-publishing');
+            $post_action = __('编辑', 'frontend-publishing');
         }
 
         $new_post_id = wp_insert_post($new_post, true);
@@ -188,8 +188,10 @@ function fep_process_form_input()
         $data['success'] = true;
         $data['post_id'] = $new_post_id;
         $data['message'] = sprintf(
-            '%s<br/><a href="#" id="fep-continue-editing">%s</a>&nbsp;&nbsp;<a href="?p=%u"><b>%s</b></a>',
-            sprintf(__('Your article has been %s successfully!', 'frontend-publishing'), $post_action),
+            '<div style="font-size: 30px;display: inline-block;width: 180px"><span class="fa fa-check-circle fa-8x pull-left" style="margin-top: 5px;color: orange"></span>%s<br><br>
+    <button class="btn btn-default" id="fep-continue-editing" onclick="window.location.href=\'#\'" style="float: left">%s</button>
+    <button class="btn btn-primary" onclick="window.location.href=\'?p=%u\'" style="float: right">%s</button></div>',
+            sprintf(__('%s成功', 'frontend-publishing'), $post_action),
             __('继续编辑', 'frontend-publishing'),
             $new_post_id,
             __('查看','frontend-publishing')
