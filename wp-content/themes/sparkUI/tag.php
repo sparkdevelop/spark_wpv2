@@ -7,7 +7,7 @@ get_header(); ?>
     <div class="row" style="width: 100%">
         <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
             <ul id="leftTab" class="nav nav-pills" style="height: 42px;margin-top: 10px">
-                <li class="active" style="margin-left: 16px"> <p>标签：<?php the_tags("", " , " ,""); ?> </p></li>
+                <li class="active" style="margin-left: 16px"> <p>标签：<?php single_tag_title(); ?> </p></li>
             </ul>
 
             <div id="rightTabContent" class="tab-content" >

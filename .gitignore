@@ -1,0 +1,35 @@
+gen-external-apklibs/
+
+# Ant
+local.properties
+
+# Maven
+target/
+release.properties
+
+# Eclipse
+.classpath
+.project
+.externalToolBuilders/
+.metadata
+.settings
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
+out/
+
+# Mac
+.DS_Store
+
+# gitignore
+.gitignore
+
+#过滤整个文件夹
+/wp-content/uploads/2017/
+
+#过滤某个具体文件
+wp-config.php
+

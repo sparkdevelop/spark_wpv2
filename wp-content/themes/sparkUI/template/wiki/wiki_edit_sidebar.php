@@ -53,10 +53,11 @@ $admin_url=admin_url('admin-ajax.php');
             dataType: "json",
             success: function(data){
                 var post_name = "<?php echo $_SESSION['post_name']; ?>";
+
                 //window.open("/spark_wpv2/?yada_wiki="+post_name);
 		        window.location.href = "<?php echo site_url();?>/?yada_wiki=" + post_name;
                 //var form = document.createElement('form');
-                //form.action = "/spark_wpv2/?yada_wiki=" + post_name;
+                //form.action = "/?yada_wiki=" + post_name;
                 //form.target = '_blank';
                 //form.method = 'POST';
                 //document.body.appendChild(form);
