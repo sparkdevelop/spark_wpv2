@@ -236,6 +236,13 @@ function checkPass(){
 add_action('wp_ajax_checkPass', 'checkPass');
 add_action('wp_ajax_nopriv_checkPass', 'checkPass');
 
+//附件的默认尺寸
+//add_action( 'after_setup_theme', 'default_attachment_display_settings' );
+//function default_attachment_display_settings() {
+//    update_option( 'image_default_align', 'center' );
+//    update_option( 'image_default_link_type', 'none' );
+//    update_option( 'image_default_size', 'medium' );
+//}
 
 
 //function loadCustomTemplate($template) {
