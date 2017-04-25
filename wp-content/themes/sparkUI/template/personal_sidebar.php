@@ -38,12 +38,20 @@ $admin_url=admin_url('admin-ajax.php');
         <div id="avatar">
             <?php echo get_avatar($current_user->ID,100);?>
         </div>
-        <form class="form-horizontal" role="form" name="updateAva"
-              method="post" action="<?php echo esc_url( self_admin_url('profile-process.php') ); ?>"
-              onsubmit="return checkSubmitprofile();">
+        <form class="form-horizontal" role="form" name="updateAva" enctype="multipart/form-data"
+              method="post"
+              action="<?php echo esc_url( self_admin_url('profile-process-avatar.php') ); ?>">
             <input type="button" class="btn btn-default" id="changeAva" value="changeAva" onclick="changeAvatar()">
             <p id="inner"></p>
             <script>
+                function changeAvatar() {
+                    var file_button = document.getElementById("inner");
+                    file_button.innerHTML =
+                        "<input type=\"file\" name=\"simple-local-avatar\" id=\"simple-local-avatar\"/>"+
+                        "<input type=\"submit\" name='submit' value=\"修改\">";
+                }
+
+
                 //            var Avatar = document.getElementById("avatar");
                 //            Avatar.onmouseover= preChangeAvatar;
                 //            Avatar.onmouseout = cancelChangeAvatar;
@@ -63,11 +71,7 @@ $admin_url=admin_url('admin-ajax.php');
                 //            function cancelChangeAvatar() {
                 //                Avatar.innerHTML = "<?php //echo get_avatar($current_user->ID,100);?>//";
                 //            }
-                function changeAvatar() {
-                    var file_button = document.getElementById("inner");
-                    file_button.innerHTML = "<input type=\"file\" name=\"simple-local-avatar\" id=\"simple-local-avatar\"/>"+
-                        "<input type=\"submit\" value=\"修改\">";
-                }
+
             </script>
         </form>
 

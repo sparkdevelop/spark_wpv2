@@ -874,3 +874,7 @@ box-shadow: none;
     color:#333;
     font-weight: bold;
 }
+
+.attachments-browser .media-toolbar{
+    height: 80px;
+}
