@@ -60,7 +60,6 @@ $admin_url=admin_url('admin-ajax.php');
         <p style="font-size: large;margin-top: 20px"><?php echo $current_user->data->display_name;?></p>
         <p style="margin-top: 10px;color: gray"><?php echo $user_description;?></p>
     </div>
-    <div style="height: 1px;background-color: lightgray;"></div>
     <ul id="personal_nav" class="nav nav-pills nav-stacked">
         <li id="notification">
             <img src="<?php bloginfo("template_url")?>/img/notification.png">
