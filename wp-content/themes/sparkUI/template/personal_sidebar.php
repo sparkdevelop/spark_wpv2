@@ -38,51 +38,25 @@ $admin_url=admin_url('admin-ajax.php');
         <div id="avatar">
             <?php echo get_avatar($current_user->ID,100);?>
         </div>
-        <form class="form-horizontal" role="form" name="updateAva" enctype="multipart/form-data"
-              method="post"
-              action="<?php echo esc_url( self_admin_url('profile-process-avatar.php') ); ?>">
-            <input type="button" class="btn btn-default" id="changeAva" value="changeAva" onclick="changeAvatar()">
-            <p id="inner"></p>
-            <script>
-                function changeAvatar() {
-                    var file_button = document.getElementById("inner");
-                    file_button.innerHTML =
-                        "<input type=\"file\" name=\"simple-local-avatar\" id=\"simple-local-avatar\"/>"+
-                        "<input type=\"submit\" name='submit' value=\"修改\">";
-                }
+        <div id="changeAvaDiv" style="display: none">
+            <form class="form-horizontal" role="form" name="updateAva" enctype="multipart/form-data" method="post" action="<?php echo esc_url(self_admin_url('profile-process-avatar.php')); ?>">
+                <input type='file' name='simple-local-avatar' id='simple-local-avatar' style='margin-top:20px;margin-left:45px;height: 30px;'/>
+                <input type='submit' class='btn btn-default' name='submit' value='修改'/>
+            </form>
+        </div>
 
+        <script>
+            var Avatar = document.getElementById("avatar");
+            Avatar.onclick = preChangeAvatar;
+            function preChangeAvatar() {
+                var changeAva = document.getElementById('changeAvaDiv');
+                if(changeAva.style.display == "none"){
+                    changeAva.style.display = "block";}
+                else{
+                    changeAva.style.display = "none";}
+            }
 
-                //            var Avatar = document.getElementById("avatar");
-                //            Avatar.onmouseover= preChangeAvatar;
-                //            Avatar.onmouseout = cancelChangeAvatar;
-                ////            $('#avatar').on('click', '#changeAva', function() {
-                ////                alert("change");
-                ////            });
-                //            function preChangeAvatar() {
-                //                <?php //$url=get_template_directory_uri()."/img/changeAvatar.png";?>
-                //                Avatar.innerHTML = "<input type=\"button\" id=\"changeAva\" value=\"changeAva\" onclick=\"changeAvatar()\">";
-                ////                    "<img src=\"<?////=$url?>////\" class=\"avatar\" id=\"changeAva\">";
-                ////                    " <input type='file' name='simple-local-avatar' id='simple-local-avatar'/>"+
-                ////                changeAva.onclick = changeAvatar;
-                ////                var changeAva =Avatar.getElementById("changeAva");
-                ////                changeAva.onclick = changeAvatar;
-                ////
-                //            }
-                //            function cancelChangeAvatar() {
-                //                Avatar.innerHTML = "<?php //echo get_avatar($current_user->ID,100);?>//";
-                //            }
-
-            </script>
-        </form>
-
-
-
-
-
-
-
-
-
+        </script>
         <p style="font-size: large;margin-top: 20px"><?php echo $current_user->data->display_name;?></p>
         <p style="margin-top: 10px;color: gray"><?php echo $user_description;?></p>
     </div>
