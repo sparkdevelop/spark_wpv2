@@ -13,10 +13,9 @@
                     text: '硬件项目',
                     onclick: function () {
                         editor.windowManager.open({
-                            autoScroll: true,
                             title: '硬件项目',
                             width: 400, //    对话框宽度
-                            height: 300, //    对话框高度
+                            height: 350, //    对话框高度
                             body:[
                                 {
                                     type   : 'container',
@@ -105,21 +104,76 @@
                     text: 'WEB项目',
                     onclick: function() {
                         editor.windowManager.open( {
-                            autoScroll: true,
                             title: 'WEB项目',
                             width: 400, //    对话框宽度
-                            height: 300, //    对话框高度
+                            height: 350, //    对话框高度
                             body:[
                                 {
                                     type   : 'container',
                                     name   : 'WEB项目',
-                                    html  :  '<p style="font-size:15px;">目标<br/><br/>原理<br/><br/>设备<br/><br/>功能实现<br/><br/>项目演示<br/><br/>团队故事<br/><br/>资料链接<br/><br/><p>'
+                                    html  :  '<p style="font-size:15px;">需求分析<br/><br/>目标<br/><br/>总体设计<br/><br/>详细设计<br/><br/>功能实现<br/><br/>项目演示<br/><br/>团队故事<br/><br/>资料链接<br/><br/><p>'
                                 }
                             ],
                             onsubmit: function(  ) {
-                                editor.insertContent(  '<h4>标题一</h4>' +
-                                    '<h4>标题二</h4>' +
-                                    '<a title="query_posts官方文档" href="http://codex.wordpress.org/Function_Reference/query_posts" target="_blank">query_posts的官方文档</a>');
+                                editor.insertContent(
+                                    '<h2><strong>需求分析</strong></h2>' +
+                                    '<ol>' +
+                                    '<li><p class="reader-word-layer reader-word-s1-1">业务分析</p></li>' +
+                                    '<li><p class="reader-word-layer reader-word-s1-1">用户分析</p></li>' +
+                                    '<li><p class="reader-word-layer reader-word-s1-1">功能分析</p></li>' +
+                                    '<li><p class="reader-word-layer reader-word-s1-1">性能分析</p></li>' +
+                                    '</ol>' +
+                                    '<h2><strong>目标</strong></h2>' +
+                                    '<ol>' +
+                                    '<li><p class="reader-word-layer reader-word-s3-15">基本要求：需要包括的主要功能</p></li>' +
+                                    '<li><p class="reader-word-layer reader-word-s3-15">开发目标：预期的展现形式</p></li>' +
+                                    '<li><p class="reader-word-layer reader-word-s3-15">应用目标：计划的应用效果</p></li>' +
+                                    '</ol>' +
+                                    '<h2><strong>总体设计</strong></h2>' +
+                                    '系统业务流程及描述（可以流程图的方式呈现）' +
+                                    '<h2><strong>详细设计</strong></h2>' +
+                                    '系统各个功能模块界面展示' +
+                                    '<h2><strong>功能实现</strong></h2>' +
+                                    '<ul>' +
+                                    '<li>具体文件结构</li>' +
+                                    '<li>解读每个功能模块的实现过程，并讲解一下重要部分的代码。</li>' +
+                                    '<li>项目源码可托管在github上，并在此放源码链接。</li>' +
+                                    '<li>一个优秀的开源项目，源码一定有丰富的注释，让后人易读且方便修改。</li>' +
+                                    '</ul>' +
+                                    '<h2><strong>项目演示</strong></h2>' +
+                                    '<ul>' +
+                                    '<li>项目演示可放视频链接或二维码，推荐腾讯视频哦，适合在微信里传播。</li>' +
+                                    '<li>web类项目，可以利用github的项目演示功能，创建在线链接，方法参照：<a href="http://www.tuicool.com/articles/Z7nMva" target="_blank">如何在github上创建个人项目的在线演示demo</a></li>' +
+                                    '</ul>' +
+                                    '<h2><strong>团队故事</strong></h2>' +
+                                    '<table style="height: 180px; border-color: #d8d8d8; background-color: #f9f9f9; width: 454px;" border="1" cellspacing="0" cellpadding="5px">'+
+                                    '<tbody>'+
+                                    '<tr style="height: 24px;">'+
+                                    '<td style="width: 80px; height: 24px;"><strong>姓名</strong></td>'+
+                                    '<td style="width: 289px; height: 24px;"><strong>职责</strong></td>'+
+                                    '</tr>'+
+                                    '<tr style="height: 24px;">'+
+                                    '<td style="width:80px; height: 24px;">张科科</td>'+
+                                    '<td style="width: 289px; height: 24px;">技术担当，资源协调</td>'+
+                                    '</tr>'+
+                                    '<tr style="height: 24px;">'+
+                                    '<td style="width: 80px; height: 24px;">王蛋蛋</td>'+
+                                    '<td style="width: 289px; height: 24px;">硬件设计，创意思路</td>'+
+                                    '</tr>'+
+                                    '<tr style="height: 24px;">'+
+                                    '<td style="width: 80px; height: 24px;">李华华</td>'+
+                                    '<td style="width: 289px; height: 24px;">程序调试，bug消灭者</td>'+
+                                    '</tr>'+
+                                    '<tr style="height: 24px;">'+
+                                    '<td style="width: 80px; height: 24px;">韩梅梅</td>'+
+                                    '<td style="width: 289px; height: 24px;">海报制作，文档撰写</td>'+
+                                    '</tr>'+
+                                    '</tbody>'+
+                                    '</table>'+
+                                    '团队联系方式：邮箱、QQ、电话等；<br>团队合作过程中发生的趣事、攻克的难关。'+
+                                    '<h2><strong>资料链接</strong></h2>' +
+                                    '<a href="http://www.w3school.com.cn/" target="_blank"><em>w3s</em>chool 在线教程</a>'
+                                );
                             }
                         });
                     }
