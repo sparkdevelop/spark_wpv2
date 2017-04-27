@@ -40,7 +40,12 @@ $page_personal_id = get_page_id('personal');
                     require "template/wiki/wiki_create.php";
                 }
                 elseif ( is_page($page_qa_id) ) {//显示问答内容 参数为pageID 如何自动获取??
-                    require "template/qa/QA_content.php";
+                    ?>
+                    <script>
+                        location.href = "<?= site_url();?>/?post_type=dwqa-question";
+                    </script>
+                <?php
+                    //require "template/qa/QA_content.php";
                 }
                 elseif (is_page('项目')){
                     require "template/project/project_content.php";

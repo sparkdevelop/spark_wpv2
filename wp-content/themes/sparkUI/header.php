@@ -80,7 +80,7 @@
                                    <option value="project">搜项目</option>
                                </select>
                                 <input type="text" id="search-content" name='s' class="form-control" placeholder="Search" value="">
-                                <input type="hidden" name="post_status" value="all">
+                                <input type="hidden" name="post_status" value="publish">
                                 <input type="hidden" name="post_type" id="selectPostType" value=""/>
                                 <button type="submit" class="btn btn-default btn-sm" id="search-btn">
                                     <span class="glyphicon glyphicon-search"></span>

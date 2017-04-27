@@ -202,60 +202,62 @@ foreach($tags as $key => $temp){
             </div>
         </div>
     </div><!--asker-->
-<!--    <div class="sidebar_list">-->
-<!--        <div class="sidebar_list_header">-->
-<!--            <p>助教团</p>-->
-<!--            <a href="#" id="sidebar_list_link">加入</a>-->
-<!--        </div>-->
-<!--        <!--分割线-->
-<!--        <div class="sidebar_divline"></div>-->
-<!--        <!--助教列表-->
-<!--        <ul class="list-group">-->
-<!--            <li class="list-group-item">-->
-<!--                <div style="display: inline-block;vertical-align: baseline">-->
-<!--                    <img src="--><?php //bloginfo("template_url")?><!--/img/avatar.png" style="margin-top: -15px">-->
-<!--                </div>-->
-<!--                <div style="display: inline-block; vertical-align: baseline">-->
-<!--                    <a href="personal.php" class="author_link">如影随风</a>-->
-<!--                    <p>北邮信通院大四学长</p>-->
-<!--                </div>-->
-<!--            </li>-->
-<!--            <li class="list-group-item">-->
-<!--                <div style="display: inline-block;vertical-align: baseline">-->
-<!--                    <img src="--><?php //bloginfo("template_url")?><!--/img/avatar.png" style="margin-top: -15px">-->
-<!--                </div>-->
-<!--                <div style="display: inline-block; vertical-align: baseline">-->
-<!--                    <a href="personal.php" class="author_link">如影随风</a>-->
-<!--                    <p>北邮信通院大四学长</p>-->
-<!--                </div>-->
-<!--            </li>-->
-<!--            <li class="list-group-item">-->
-<!--                <div style="display: inline-block;vertical-align: baseline">-->
-<!--                    <img src="--><?php //bloginfo("template_url")?><!--/img/avatar.png" style="margin-top: -15px">-->
-<!--                </div>-->
-<!--                <div style="display: inline-block; vertical-align: baseline">-->
-<!--                    <a href="personal.php" class="author_link">如影随风</a>-->
-<!--                    <p>北邮信通院大四学长</p>-->
-<!--                </div>-->
-<!--            </li>-->
-<!--            <li class="list-group-item">-->
-<!--                <div style="display: inline-block;vertical-align: baseline">-->
-<!--                    <img src="--><?php //bloginfo("template_url")?><!--/img/avatar.png" style="margin-top: -15px">-->
-<!--                </div>-->
-<!--                <div style="display: inline-block; vertical-align: baseline">-->
-<!--                    <a href="personal.php" class="author_link">如影随风</a>-->
-<!--                    <p>北邮信通院大四学长</p>-->
-<!--                </div>-->
-<!--            </li>-->
-<!--            <li class="list-group-item">-->
-<!--                <div style="display: inline-block;vertical-align: baseline">-->
-<!--                    <img src="--><?php //bloginfo("template_url")?><!--/img/avatar.png" style="margin-top: -15px">-->
-<!--                </div>-->
-<!--                <div style="display: inline-block; vertical-align: baseline">-->
-<!--                    <a href="personal.php" class="author_link">如影随风</a>-->
-<!--                    <p>北邮信通院大四学长</p>-->
-<!--                </div>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </div>-->
+
+<!--助教团-->
+    <div class="sidebar_list">
+        <div class="sidebar_list_header">
+            <p>助教团</p>
+            <a href="#" id="sidebar_list_link">加入</a>
+        </div>
+        <!--分割线
+        <div class="sidebar_divline"></div>
+        <!--助教列表
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div style="display: inline-block;vertical-align: baseline">
+                    <img src="<?php bloginfo("template_url")?>/img/avatar.png" style="margin-top: -15px">
+                </div>
+                <div style="display: inline-block; vertical-align: baseline">
+                    <a href="personal.php" class="author_link">如影随风</a>
+                    <p>北邮信通院大四学长</p>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div style="display: inline-block;vertical-align: baseline">
+                    <img src="<?php bloginfo("template_url")?>/img/avatar.png" style="margin-top: -15px">
+                </div>
+                <div style="display: inline-block; vertical-align: baseline">
+                    <a href="personal.php" class="author_link">如影随风</a>
+                    <p>北邮信通院大四学长</p>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div style="display: inline-block;vertical-align: baseline">
+                    <img src="<?php bloginfo("template_url")?>/img/avatar.png" style="margin-top: -15px">
+                </div>
+                <div style="display: inline-block; vertical-align: baseline">
+                    <a href="personal.php" class="author_link">如影随风</a>
+                    <p>北邮信通院大四学长</p>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div style="display: inline-block;vertical-align: baseline">
+                    <img src="<?php bloginfo("template_url")?>/img/avatar.png" style="margin-top: -15px">
+                </div>
+                <div style="display: inline-block; vertical-align: baseline">
+                    <a href="personal.php" class="author_link">如影随风</a>
+                    <p>北邮信通院大四学长</p>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div style="display: inline-block;vertical-align: baseline">
+                    <img src="<?php bloginfo("template_url")?>/img/avatar.png" style="margin-top: -15px">
+                </div>
+                <div style="display: inline-block; vertical-align: baseline">
+                    <a href="personal.php" class="author_link">如影随风</a>
+                    <p>北邮信通院大四学长</p>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>
