@@ -38,7 +38,7 @@ $args = array(
     'format' => '',
     'current' => $page,
     'total' => $qa_query->max_num_pages,
-    'show_all' => True,
+    'show_all' => true,
 );
 $paginate = paginate_links($args);
 ?>
@@ -51,8 +51,8 @@ $paginate = paginate_links($args);
             <li><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-questions' ) ) )?>">我的提问</a></li>
             <li class="active"><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-answers' ) ) )?>">我的回答</a></li>
         <?php }else{ ?>
-            <li id="my-questions" class="active"><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-questions' ) ) )?>">我的提问</a></li>
-            <li id="my-answers"><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-answers' ) ) )?>">我的回答</a></li>
+            <li class="active"><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-questions' ) ) )?>">我的提问</a></li>
+            <li><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-answers' ) ) )?>">我的回答</a></li>
         <?php } ?>
     </ul>
     <div class="dwqa-questions-list">

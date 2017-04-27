@@ -1,12 +1,40 @@
 <?php
+global $wp_query;
 $search_word=$_GET['s'];
 $post_status=$_GET['post_status'];
+//=====获取搜索到的条目数
+$query = array(
+    's' => $search_word,
+    'post_status' => 'all',
+    'post_type'	=> 'yada_wiki'
+);
+$result = new WP_Query($query);
+$wiki_found = $result->found_posts;
+
+$query = array(
+    's' => $search_word,
+    'post_status' => 'all',
+    'post_type'	=> 'post'
+);
+$result = new WP_Query($query);
+$project_found = $result->found_posts;
+
+$query = array(
+    's' => $search_word,
+    'post_status' => 'publish',
+    'post_type'	=> 'dwqa-question'
+);
+$result = new WP_Query($query);
+$QA_found = $result->found_posts;
+//======================
 $post_type= isset($_GET['post_type'])&&!empty($_GET['post_type'])?sanitize_text_field($_GET['post_type']): "dwqa-question";
 $posts_per_page= isset($_GET['posts_per_page'])&&!empty($_GET['posts_per_page']) ? $_GET['posts_per_page']: 10;
 $current_url= curPageURL();//设当前页面为archive页面
 //翻页所需参数
 $page_text = dwqa_is_front_page() ? 'page' : 'paged';
 $page = get_query_var( $page_text ) ? get_query_var( $page_text ) : 1;
+
+
 if($post_type=='yada_wiki'){    //根据自身情况更改
     $query_string = $query_string.'&posts_per_page=5'.'&post_type='.$post_type;
     $posts=query_posts($query_string);
@@ -23,7 +51,7 @@ $args = array(
     'base' => add_query_arg($page_text, '%#%', $current_url),
     'format' => '',
     'current' => $page,
-    //'show_all' => True,
+    'show_all' => false,
 );
 $paginate = paginate_links($args);
 ?>
@@ -34,19 +62,19 @@ $paginate = paginate_links($args);
     $url_array=parse_url($current_url);
     $query_parse=explode("&",$url_array['query']);
     if(array_search("post_type=yada_wiki",$query_parse)){?>
-        <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki','paged'=>'1') ) )?>">wiki</a></li>
-        <li><a href="<?php echo remove_query_arg( array('post_type') ) ?>">问答</a></li>
-        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post','paged'=>'1' ) ) )?>">项目</a></li>
+        <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki','paged'=>'1') ) )?>">wiki(<?php echo $wiki_found?>)</a></li>
+        <li><a href="<?php echo remove_query_arg( array('post_type') ) ?>">问答(<?php echo $QA_found?>)</a></li>
+        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post','paged'=>'1' ) ) )?>">项目(<?php echo $project_found?>)</a></li>
     <?php }
     elseif(array_search("post_type=post",$query_parse)){?>
-        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki','paged'=>'1' ) ) )?>">wiki</a></li>
-        <li><a href="<?php echo remove_query_arg( array('post_type') ) ?>">问答</a></li>
-        <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post','paged'=>'1'  ) ) )?>">项目</a></li>
+        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki','paged'=>'1' ) ) )?>">wiki(<?php echo $wiki_found?>)</a></li>
+        <li><a href="<?php echo remove_query_arg( array('post_type') ) ?>">问答(<?php echo $QA_found?>)</a></li>
+        <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post','paged'=>'1'  ) ) )?>">项目(<?php echo $project_found?>)</a></li>
     <?php }
     else{ ?>
-        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki','paged'=>'1' ) ) )?>">wiki</a></li>
-        <li  class="active"><a href="<?php echo remove_query_arg( array('post_type') )?>">问答</a></li>
-        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post','paged'=>'1'  ) ) )?>">项目</a></li>
+        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki','paged'=>'1' ) ) )?>">wiki(<?php echo $wiki_found?>)</a></li>
+        <li  class="active"><a href="<?php echo remove_query_arg( array('post_type') )?>">问答(<?php echo $QA_found?>)</a></li>
+        <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post','paged'=>'1'  ) ) )?>">项目(<?php echo $project_found?>)</a></li>
     <?php } ?>
 </ul>
 <div class="dwqa-questions-list">

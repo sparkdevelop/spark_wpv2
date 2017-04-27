@@ -209,17 +209,26 @@ function get_dwqa_cat_ID($cat_name){
 function checkPass(){
     global $wpdb;
     $current_user = wp_get_current_user();
+    $user_id = $current_user->data->user_login;
     $password = isset($_POST["oldpassword"]) ? $_POST["oldpassword"] :'';
     $sql = "SELECT user_pass FROM $wpdb->users WHERE ID=".$current_user->ID;
     $user_pass = $wpdb->get_var($sql);
     $data = wp_check_password($password,$user_pass);
-    if($data){
+    if($data){ //如果是wordpress的用户
         $response =true;
-    } else{
-        $sql_wiki = "";
-        $user_wiki =
-        //$url=get_template_directory_uri()."/img/ERROR.png";
-        $response =false;
+    } else {
+        if(!empty($user_id) && !empty($password)) { //如果不是wordpress的用户
+            $post_data = array(
+                'username' => $user_id,
+                'password' => $password );
+            $if_user_in_mediawiki = send_post_to_mediawiki('http://115.28.144.64/wiki_wp/index.php', $post_data);
+            if(!empty($if_user_in_mediawiki)) {
+                $response = true;
+            }
+            else{
+                $response = false;
+            }
+        }
     }
     echo $response;
     exit;
@@ -227,6 +236,13 @@ function checkPass(){
 add_action('wp_ajax_checkPass', 'checkPass');
 add_action('wp_ajax_nopriv_checkPass', 'checkPass');
 
+//附件的默认尺寸
+//add_action( 'after_setup_theme', 'default_attachment_display_settings' );
+//function default_attachment_display_settings() {
+//    update_option( 'image_default_align', 'center' );
+//    update_option( 'image_default_link_type', 'none' );
+//    update_option( 'image_default_size', 'medium' );
+//}
 
 
 //function loadCustomTemplate($template) {

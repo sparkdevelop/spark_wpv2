@@ -28,7 +28,7 @@ out/
 .gitignore
 
 #过滤整个文件夹
-/wp-content/uploads/
+/wp-content/uploads/2017/
 
 #过滤某个具体文件
 wp-config.php
