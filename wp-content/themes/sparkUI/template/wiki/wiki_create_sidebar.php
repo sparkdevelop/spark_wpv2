@@ -54,7 +54,7 @@ foreach($term_all_names as $wiki_all_name) {
 	    data: create_content,
             dataType: "json",
             success: function(data){
-                //window.location.href = "/?yada_wiki=" + data;
+                window.location.href = "<?php echo site_url()?>/?yada_wiki=" + data;
                 //window.open("/?yada_wiki=" + data, '_self');
                 //var form = document.createElement('form');
                 //form.action = "/?yada_wiki=" + data;
@@ -62,7 +62,7 @@ foreach($term_all_names as $wiki_all_name) {
                 //form.method = 'POST';
                 //document.body.appendChild(form);
                 //form.submit();
-		window.open("/?yada_wiki="+data);
+                // window.open("/?yada_wiki="+data);
             },
             error: function() {
                 alert("wiki发布失败!");

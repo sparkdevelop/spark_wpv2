@@ -82,8 +82,8 @@ $admin_url=admin_url('admin-ajax.php');
             dataType: "json",
             success: function(data){
                 var post_name = "<?php echo $post_name; ?>";
-                window.open("/?yada_wiki="+post_name);
-		//window.location.href = "/?yada_wiki=" + post_name;
+                //window.open("/?yada_wiki="+post_name);
+		        window.location.href = "<?php echo site_url()?>/?yada_wiki=" + post_name;
                 //var form = document.createElement('form');
                 //form.action = "/?yada_wiki=" + post_name;
                 //form.target = '_blank';
