@@ -62,7 +62,7 @@ foreach($term_all_names as $wiki_all_name) {
                 //form.method = 'POST';
                 //document.body.appendChild(form);
                 //form.submit();
-		        //window.open("<?php echo site_url();?>/?yada_wiki="+data);
+                //window.open("<?php echo site_url();?>/?yada_wiki="+data);
             },
             error: function() {
                 alert("wiki发布失败!");
