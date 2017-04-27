@@ -5,7 +5,7 @@ $post_status=$_GET['post_status'];
 //=====获取搜索到的条目数
 $query = array(
     's' => $search_word,
-    'post_status' => 'all',
+    'post_status' => 'publish',
     'post_type'	=> 'yada_wiki'
 );
 $result = new WP_Query($query);
@@ -13,7 +13,7 @@ $wiki_found = $result->found_posts;
 
 $query = array(
     's' => $search_word,
-    'post_status' => 'all',
+    'post_status' => 'publish',
     'post_type'	=> 'post'
 );
 $result = new WP_Query($query);
@@ -36,7 +36,7 @@ $page = get_query_var( $page_text ) ? get_query_var( $page_text ) : 1;
 
 
 if($post_type=='yada_wiki'){    //根据自身情况更改
-    $query_string = $query_string.'&posts_per_page=5'.'&post_type='.$post_type;
+    $query_string = $query_string.'&posts_per_page=10'.'&post_type='.$post_type;
     $posts=query_posts($query_string);
 }
 elseif($post_type=='post'){  //根据自身情况更改
@@ -44,7 +44,7 @@ elseif($post_type=='post'){  //根据自身情况更改
     $posts=query_posts($query_string);
 }
 else{
-    $query_string= $query_string.'&posts_per_page=7'.'&post_type='.$post_type;
+    $query_string= $query_string.'&posts_per_page=10'.'&post_type='.$post_type;
     $posts=query_posts($query_string);
 }
 $args = array(

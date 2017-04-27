@@ -55,7 +55,6 @@ $admin_url=admin_url('admin-ajax.php');
                 else{
                     changeAva.style.display = "none";}
             }
-
         </script>
         <p style="font-size: large;margin-top: 20px"><?php echo $current_user->data->display_name;?></p>
         <p style="margin-top: 10px;color: gray"><?php echo $user_description;?></p>

@@ -63,7 +63,7 @@ $paginate = paginate_links($args);
                 <?php endif; ?>
             <?php endwhile; ?>
         <?php else : ?>
-            <?php dwqa_load_template( 'content', 'none' ) ?>
+            <?php dwqa_load_template( 'Spark-content', 'none' ) ?>
         <?php endif; ?>
     </div>
     <div class="dwqa-questions-footer"  style="text-align: center;margin-bottom: 20px;margin-top: 10px">
