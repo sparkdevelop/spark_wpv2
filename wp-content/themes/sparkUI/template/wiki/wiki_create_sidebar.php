@@ -4,6 +4,14 @@
 <?php
 $admin_url=admin_url('admin-ajax.php');
 ?>
+<?php
+global $wpdb;
+$term_all_names = $wpdb->get_results("select t.`name`, t.`term_id` from $wpdb->terms t left join $wpdb->term_taxonomy tt on tt.term_id = t.term_id where tt.taxonomy = \"wiki_cats\";");
+$wiki_all_categorys = array();
+foreach($term_all_names as $wiki_all_name) {
+    $wiki_all_categorys[$wiki_all_name->term_id] = $wiki_all_name->name;
+}
+?>
 <script type="text/javascript">
 
     function create_wiki_entry() {
@@ -92,7 +100,7 @@ $admin_url=admin_url('admin-ajax.php');
     <div class="list-group mulu">
         <p class="wiki_sidebar_title">wiki分类</p>
         <?php
-        foreach($_SESSION['wiki_all_categories'] as $category_term_id => $category_name) {
+        foreach($wiki_all_categorys as $category_term_id => $category_name) {
             ?>
             <a href="#" class="list-group-item mulu_item"><input name="wiki_category" type="checkbox" value="<?php echo $category_term_id; ?>">&nbsp;&nbsp;&nbsp;<?php echo $category_name; ?></a>
             <?php

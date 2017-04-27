@@ -26,7 +26,7 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
             <li><a href="#recent" data-toggle="tab" >最新</a></li>
         </ul>
         <div id="rightTabContent" class="tab-content">
-            <div class="tab-pane fade in active" id="recent"><!--最新-->
+            <div class="tab-pane fade " id="recent"><!--最新-->
                 <div style="height: 2px;background-color: lightgray"></div><br>
                  <ul class="list-group">
                      <?php while ($project_all_new->have_posts()) : $project_all_new->the_post(); ?>
@@ -37,7 +37,7 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
                      </div>
                  </ul>
             </div>
-            <div class="tab-pane fade" id="hot"><!--热门-->
+            <div class="tab-pane fade in active" id="hot"><!--热门-->
                 <div style="height: 2px;background-color: lightgray"></div><br>
                     <ul class="list-group">
                         <?php while ($project_all_hot->have_posts()) : $project_all_hot->the_post(); ?>
@@ -57,7 +57,7 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
             <li><a href="#recent_2" data-toggle="tab" >最新</a></li>
         </ul>
         <div id="rightTabContent" class="tab-content">
-            <div class="tab-pane fade in active" id="recent_2"><!--硬件最新-->
+            <div class="tab-pane fade " id="recent_2"><!--硬件最新-->
                 <div style="height: 2px;background-color: lightgray"></div><br>
                     <ul class="list-group">
                         <?php while ($project_hardware_new ->have_posts()) : $project_hardware_new->the_post(); ?>
@@ -68,7 +68,7 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
                         </div>
                     </ul>        
             </div>
-            <div class="tab-pane fade" id="hot_2"><!--硬件热门-->
+            <div class="tab-pane fade in active" id="hot_2"><!--硬件热门-->
                 <div style="height: 2px;background-color: lightgray"></div><br>
                     <ul class="list-group">
                         <?php while ($project_hardware_hot ->have_posts()) : $project_hardware_hot->the_post(); ?>
@@ -88,7 +88,7 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
             <li><a href="#recent_3" data-toggle="tab" >最新</a></li>
         </ul>
         <div id="rightTabContent" class="tab-content">
-            <div class="tab-pane fade in active" id="recent_3"><!--web最新-->
+            <div class="tab-pane fade " id="recent_3"><!--web最新-->
                 <div style="height: 2px;background-color: lightgray"></div><br>
                     <ul class="list-group">
                         <?php while ($project_web_new  ->have_posts()) : $project_web_new ->the_post(); ?>
@@ -99,7 +99,7 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
                         </div>
                     </ul>        
             </div>
-            <div class="tab-pane fade" id="hot_3"><!--web热门-->
+            <div class="tab-pane fade in active" id="hot_3"><!--web热门-->
                 <div style="height: 2px;background-color: lightgray"></div><br>
                     <ul class="list-group">
                         <?php while ($project_web_hot  ->have_posts()) : $project_web_hot ->the_post(); ?>

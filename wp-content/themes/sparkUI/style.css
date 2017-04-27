@@ -532,14 +532,14 @@ h4{margin-bottom: 0px;}
 
 /*项目主页样式调整*/
 .thumbnail{
-    height:254px;
+    /*height:254px;*/
     border:none;
     border-radius: 5px;
     box-shadow: 2px 2px 2px #ebebeb;
     padding:0;
 }
 .thumbnail .caption{
-    padding:20px 10px 0;
+    padding:20px 10px 10px 10px;
 }
 .project-title{
     color: #262626;
