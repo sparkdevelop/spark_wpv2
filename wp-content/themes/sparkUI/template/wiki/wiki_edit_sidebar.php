@@ -9,6 +9,35 @@
     global $post;
 ?>
 <?php
+global $wpdb;
+$post_id = $_GET['post_id'];
+$post_title_result = $wpdb->get_results("select post_title, post_name from $wpdb->posts where ID = ".$post_id);
+$post_title = "";
+$post_name = "";
+foreach($post_title_result as $item) {
+    $post_title = $item->post_title; 
+    $post_name = $item->post_name;
+}
+$term_names = $wpdb->get_results("select t.`name` from ($wpdb->term_taxonomy tt left join $wpdb->term_relationships tr on tt.term_taxonomy_id=tr.term_taxonomy_id) left join $wpdb->terms t on t.term_id=tt.term_id where tr.object_id=".$post_id." and tt.taxonomy=\"wiki_cats\"");
+$wiki_categorys = array();
+foreach($term_names as $term_name) {
+    $wiki_categorys[] = $term_name->name;
+}
+
+$tag_names = $wpdb->get_results("select t.`name` from ($wpdb->term_taxonomy tt left join $wpdb->term_relationships tr on tt.term_taxonomy_id=tr.term_taxonomy_id) left join $wpdb->terms t on t.term_id=tt.term_id where tr.object_id=".$post_id." and tt.taxonomy=\"wiki_tags\"");
+$wiki_tags = array();
+foreach($tag_names as $tag_name) {
+    $wiki_tags[] = $tag_name->name;
+}
+
+$term_all_names = $wpdb->get_results("select t.`name`, t.`term_id` from $wpdb->terms t left join $wpdb->term_taxonomy tt on tt.term_id = t.term_id where tt.taxonomy = \"wiki_cats\";");
+$wiki_all_categorys = array();
+foreach($term_all_names as $wiki_all_name) {
+    $wiki_all_categorys[$wiki_all_name->term_id] = $wiki_all_name->name;
+}
+?>
+
+<?php
 $admin_url=admin_url('admin-ajax.php');
 ?>
 <script type="text/javascript">
@@ -16,7 +45,7 @@ $admin_url=admin_url('admin-ajax.php');
     function update_wiki_entry() {
         entry_content = $(document.getElementById('wiki_content_editor_ifr').contentWindow.document.body).html();
         //var entry_content = $("#wiki_content_editor").val();
-        var entry_title = "<?php echo $_SESSION['post_title']; ?>";
+        var entry_title = "<?php echo $post_title; ?>";
         if(entry_title == null || $.trim(entry_title) == "") {
             alert("词条标题不能为空!");
             return;
@@ -52,10 +81,9 @@ $admin_url=admin_url('admin-ajax.php');
 	    data: update_content,
             dataType: "json",
             success: function(data){
-                var post_name = "<?php echo $_SESSION['post_name']; ?>";
-
-                //window.open("/spark_wpv2/?yada_wiki="+post_name);
-		        window.location.href = "<?php echo site_url();?>/?yada_wiki=" + post_name;
+                var post_name = "<?php echo $post_name; ?>";
+                //window.open("/?yada_wiki="+post_name);
+                window.location.href = "<?php echo site_url();?>/?yada_wiki=" + post_name;
                 //var form = document.createElement('form');
                 //form.action = "/?yada_wiki=" + post_name;
                 //form.target = '_blank';
@@ -127,7 +155,7 @@ $admin_url=admin_url('admin-ajax.php');
         <p class="wiki_sidebar_title">选择wiki分类</p>
         <a href="#" class="list-group-item" id="wiki_entry_categories">
             <?php
-                foreach ($_SESSION['wiki_categories'] as $wiki_category) {
+                foreach ($wiki_categorys as $wiki_category) {
                     echo "<b>" . $wiki_category . "</b>" . "&nbsp;&nbsp;&nbsp;";
                 }
             ?>
@@ -135,7 +163,7 @@ $admin_url=admin_url('admin-ajax.php');
         <?php
         foreach($_SESSION['wiki_all_categories'] as $category_term_id => $category_name) {
             ?>
-            <a href="#" class="list-group-item mulu_item"><input name="wiki_category" type="checkbox" <?php if(in_array($category_name, $_SESSION['wiki_categories'])) echo "checked=\"checked\" "; ?>value="<?php echo $category_term_id; ?>">&nbsp;&nbsp;&nbsp;<?php echo $category_name; ?></a>
+            <a href="#" class="list-group-item mulu_item"><input name="wiki_category" type="checkbox" <?php if(in_array($category_name, $wiki_categorys)) echo "checked=\"checked\" "; ?>value="<?php echo $category_term_id; ?>">&nbsp;&nbsp;&nbsp;<?php echo $category_name; ?></a>
             <?php
         }
         ?>
@@ -143,7 +171,7 @@ $admin_url=admin_url('admin-ajax.php');
 
     <div class="wiki_tags">
         <p class="wiki_sidebar_title">选择wiki标签</p>
-        <input type="text" class="wiki_tags_input" value="<?php for($i=0;$i<count($_SESSION['wiki_tags']);$i++){echo $_SESSION['wiki_tags'][$i];if($i<count($_SESSION['wiki_tags'])-1){echo ",";}} ?>" placeholder="多个标签用分号隔开"><br>
+        <input type="text" class="wiki_tags_input" value="<?php for($i=0;$i<count($wiki_tags);$i++){echo $wiki_tags[$i];if($i<count($wiki_tags)-1){echo ",";}} ?>" placeholder="多个标签用分号隔开"><br>
         <div id="wiki_hot_tags"></div>
     </div>
 
