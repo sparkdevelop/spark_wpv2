@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * WordPress基础配置文件。
  *
@@ -21,7 +21,6 @@
 // ** MySQL 设置 - 具体信息来自您正在使用的主机 ** //
 /** WordPress数据库的名称 */
 
-//define('DB_NAME', 'wordpress');
 define('DB_NAME', 'spark_wp');
 //define('WP_CACHE', true); //Added by WP-Cache Manager
 
@@ -97,8 +96,6 @@ if ( !defined('ABSPATH') )
     define('ABSPATH', dirname(__FILE__) . '/');
 
 /** 设置WordPress变量和包含文件。 */
-define('CONCATENATE_SCRIPTS',FALSE);
-
 require_once(ABSPATH . 'wp-settings.php');
 
 define("FS_METHOD", "direct");

@@ -19,6 +19,7 @@
 <!--    --><?php //wp_enqueue_style('sparkUI',get_stylesheet_uri());//加载jquery?>
     <?php wp_enqueue_script("jquery");//加载jquery?>
     <?php wp_head(); //加载js?>
+    <?php $url_this = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"]; ?>
 </head>
 <body>
     <div class="container">
@@ -64,7 +65,7 @@
 
                         <?php } else { ?>
                             <!--                             https://codex.wordpress.org/Function_Reference/wp_login_url-->
-                            <a class="navbar-text" href="<?php echo wp_login_url(); ?>">登陆</a>
+                            <a class="navbar-text" href="<?php echo wp_login_url($url_this); ?>">登陆</a>
                             <a class="navbar-text" href="<?php echo site_url(); ?>/wp-login.php?action=register">注册</a>
                         <?php } ?>
                     </div>
