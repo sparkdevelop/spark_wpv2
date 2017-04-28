@@ -43,7 +43,7 @@ if ( ! empty( $_FILES['simple-local-avatar']['name'] ) ) {
 $url= site_url().$page_address;
 ?>
 <script language="javascript">
-    location.href= "<?=$url?>";
+    location.replace("<?=$url?>");
 </script>
 
 <?php

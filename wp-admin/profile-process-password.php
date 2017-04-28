@@ -16,5 +16,5 @@ else{
 $url= site_url().$page_address;
 ?>
 <script language="javascript">
-    location.href= "<?=$url?>";
+    location.replace("<?=$url?>");
 </script>

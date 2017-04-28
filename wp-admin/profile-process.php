@@ -28,7 +28,7 @@ else{
 $url= site_url().$page_address.'&tab=profile';
 ?>
 <script language="javascript">
-    location.href= "<?=$url?>";
+    location.replace("<?=$url?>");
 </script>
 
 
