@@ -2,6 +2,7 @@
 global  $wpdb;
 require_once( dirname( __FILE__ ) . '/admin.php' );
 $current_user = wp_get_current_user();
+$page_address = get_page_address('personal');
 
 //密码更改
 $newPassword = isset($_POST["newPassword"]) ? $_POST["newPassword"] : '';
