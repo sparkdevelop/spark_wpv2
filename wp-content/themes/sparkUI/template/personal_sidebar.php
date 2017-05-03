@@ -37,23 +37,145 @@ $admin_url=admin_url('admin-ajax.php');
     <div id="user-profile">
         <div id="avatar">
             <?php echo get_avatar($current_user->ID,100);?>
+            <img id="previewAva"/>
         </div>
         <div id="changeAvaDiv" style="display: none">
             <form class="form-horizontal" role="form" name="updateAva" enctype="multipart/form-data" method="post" action="<?php echo esc_url(self_admin_url('profile-process-avatar.php')); ?>">
                 <input type='file' name='simple-local-avatar' id='simple-local-avatar' style='margin-top:20px;margin-left:45px;height: 30px;'/>
-                <input type='submit' class='btn btn-default' name='submit' value='修改'/>
+                <input type='submit' class='btn btn-default' name='submit' value='确认修改'/>
             </form>
         </div>
-
         <script>
             var Avatar = document.getElementById("avatar");
             Avatar.onclick = preChangeAvatar;
             function preChangeAvatar() {
-                var changeAva = document.getElementById('changeAvaDiv');
-                if(changeAva.style.display == "none"){
-                    changeAva.style.display = "block";}
-                else{
-                    changeAva.style.display = "none";}
+                $("#avatar img").hide(1000);
+                $("#changeAvaDiv").toggle(1000);
+                $("#simple-local-avatar").change(function() {
+                    var file,img;
+                    if(file=this.files[0]){
+                        console.log("ok1");
+                        //获取图片url
+                        var picurl = getObjectURL(this.files[0]);
+                        $("#previewAva").attr("src", picurl).load(function () {
+                            var img_w = this.width;
+                            var img_h = this.height;
+                            if (img_w >= img_h) {
+                                $("#previewAva").width(img_w * 100 / img_h).height(100);
+                                var x1 = (img_w - img_h) / 2;
+                                var x2 = (img_w - img_h) / 2 + img_h;
+                                $("#previewAva").attr("src", picurl).css({
+                                    //"position": "absolute",
+                                    "clip": "rect(0px " + x2 + "px " + img_h + "px " + x1 + "px)",
+                                    "-webkit-border-radius": "60px"
+                                });
+                                console.log(img_h);
+                            } else{
+                                $("#previewAva").width(img_h * 100 / img_w).height(100);
+                                var y1 = (img_h - img_w) / 2;
+                                var y2 = (img_h - img_w) / 2 + img_w;
+                                $("#previewAva").attr("src", picurl).css({
+                                    //"position": "absolute",
+                                    "clip": "rect(" + y1 + "px "+ img_w + "px " + y2 + "px " + "0px)",
+                                    "-webkit-border-radius": "60px"
+                                });
+                            }
+                            //显示
+                            $("#previewAva").show();
+                        });
+                    }
+//                    $("#previewAva").attr("src", picurl);
+//                    //获取图片宽和高 写函数?
+//                    getImageWidthAndHeight('simple-local-avatar', function (obj) {
+//                        console.log('width:' + obj.width + '-----height:' + obj.height);
+////                        var img_w = obj.width;
+////                        var img_h = obj.height;
+////                        //处理图片,设置css
+////                        if (img_w >= img_h) {
+////                            var x1 = (img_w - img_h) / 2;
+////                            var x2 = (img_w - img_h) / 2 + img_h;
+////                            $("#previewAva").attr("src", picurl).css({
+////                                "position": "absolute",
+////                                "clip": "rect(0px " + x1 + "px " + img_h + "px " + x2 + "px)"
+////                            });
+////                        } else {
+////                            var y1 = (img_h - img_w) / 2;
+////                            var y2 = (img_h - img_w) / 2 + img_w;
+////                            $("#previewAva").attr("src", picurl).css({
+////                                "position": "absolute",
+////                                "clip": "rect(" + y1 + "px 0px" + y2 + "px " + img_w + "px)"
+////                            });
+////                        }
+////                        //显示
+////                        $("#previewAva").show();
+//                    });
+                });
+            }
+
+
+//                    getPicSize("previewAva",picurl,function () {
+//                        if (picurl) {
+//                            if (img_w >= img_h) {
+//                                var x1 = (img_w - img_h) / 2;
+//                                var x2 = (img_w - img_h) / 2 + img_h;
+//                                $(this).attr("src", picurl).css({
+//                                    "position": "absolute",
+//                                    "clip": "rect(0px " + x1 + "px " + img_h + "px " + x2 + "px)"
+//                                });
+//                                console.log($("#previewAva").width());
+//                            }else{
+//                                var y1 = (img_h - img_w) / 2;
+//                                var y2 = (img_h - img_w) / 2 + img_w;
+//                                $(this).attr("src", picurl).css({
+//                                    "position": "absolute",
+//                                    "clip": "rect("+ y1 + "px 0px" + y2 + "px " + img_w + "px)"
+//                                });
+//                                console.log($("#previewAva").width());
+//                            }
+//                            $(this).css({"width":"100px","height":"100px","-webkit-border-radius": "60px"});
+//                            console.log($("#previewAva").width());
+//                        }
+//
+
+
+
+
+//                        if(img_w>w||img_h>h){//如果图片宽度超出容器宽度--要撑破了
+//                            var height = (w*img_h)/img_w; //高度等比缩放
+//                            var width = (h*img_w)/img_h; //宽度等比缩放
+//                            $("#previewAva").show().attr("src",picurl).css({"width":width,"height":height,"-webkit-border-radius": "60px"});
+//                            //$(this).css({"width":w,"height":height});//设置缩放后的宽度和高度
+//                        }
+//                        else{
+//                            $("#previewAva").show().attr("src",picurl).css({"width":"100px","height":"100px","-webkit-border-radius": "60px"});
+//                        }
+
+
+            //------------------获取图片url地址---------------
+            function getObjectURL(file) {
+                var url = null;
+                if (window.createObjectURL!=undefined) { // basic
+                    url = window.createObjectURL(file) ;
+                } else if (window.URL!=undefined) { // mozilla(firefox)
+                    url = window.URL.createObjectURL(file) ;
+                } else if (window.webkitURL!=undefined) { // webkit or chrome
+                    url = window.webkitURL.createObjectURL(file) ;
+                }
+                return url ;
+            }
+            //获取input图片宽高和大小
+            function getImageWidthAndHeight(id, callback) {
+                var _URL = window.URL || window.webkitURL;
+                $("#" + id).change(function (e) {
+                    var file, img;
+                    if ((file = this.files[0])) {
+                        img = new Image();
+                        img.onload = function () {
+                            callback && callback({"width": this.width, "height": this.height});
+                        };
+                        img.src = _URL.createObjectURL(file);
+                    }
+                });
             }
         </script>
         <p style="font-size: large;margin-top: 20px"><?php echo $current_user->data->display_name;?></p>
