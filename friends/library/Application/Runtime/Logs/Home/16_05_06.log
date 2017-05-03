@@ -1,0 +1,1013 @@
+[ 2016-05-06T18:13:45+08:00 ] ::1 /passon/Home/Index/personshare.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `wind87_passoncount` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'personshare' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'personshare' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `wind87_passoncount` SET `pagename`='personshare',`count`='136',`date`='2016 05 06',`des`=NULL WHERE `id` = 347 [ RunTime:0.0390s ]
+SQL: SHOW COLUMNS FROM `wind87_passonnums` [ RunTime:0.0040s ]
+SQL: INSERT INTO `wind87_passonnums` (`username`,`ip`,`pagename`,`timeseconds`,`date`,`time`) VALUES ('visiter','0.0.0.0','personshare','1462529625','2016-05-06','06:13:45 pm') [ RunTime:0.0540s ]
+SQL: SHOW COLUMNS FROM `wind87_booksusers` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `wind87_book_bind` [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `wind87_book_wechat_userinfo` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `wind87_book_wechat_userinfo` WHERE `nickname` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_bind` WHERE `openid` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `wind87_booklog` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `wind87_booksusers` WHERE `username` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wind87_book` WHERE `owner_name` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book` WHERE `owner_name` = null ORDER BY book_id DESC LIMIT 0,2   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_bookinfo` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `wind87_booklog` WHERE `keeper_name` = null ORDER BY log_id desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_book_honer` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_book_honer` WHERE `username` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book` WHERE `owner_name` = null  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book_group_handleresult` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wind87_book_groupinfo` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_book_group_handleresult` WHERE `username` = null  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend_handle` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend_handleresult` [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `wind87_book_friend_handleresult` WHERE `friendname` = null  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_friend_handle` WHERE `username` = null  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_friend` WHERE `username` = null  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 18 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 21 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 40 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 42 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 43 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 52 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 71 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 79 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 81 行.
+NOTIC: [8] Undefined variable: book D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 166 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 177 行.
+NOTIC: [8] Use of undefined constant personshare - assumed 'personshare' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 178 行.
+NOTIC: [8] Use of undefined constant myKeeps - assumed 'myKeeps' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 179 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 181 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.026002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004000s ]
+
+[ 2016-05-06T18:14:23+08:00 ] ::1 /passon/Home/Index/myKeeps.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `wind87_passoncount` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'myKeeps' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'myKeeps' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `wind87_passoncount` SET `pagename`='myKeeps',`count`='51',`date`='2016 05 06',`des`=NULL WHERE `id` = 348 [ RunTime:0.0340s ]
+SQL: SHOW COLUMNS FROM `wind87_passonnums` [ RunTime:0.0050s ]
+SQL: INSERT INTO `wind87_passonnums` (`username`,`ip`,`pagename`,`timeseconds`,`date`,`time`) VALUES ('visiter','0.0.0.0','myKeeps','1462529663','2016-05-06','06:14:23 pm') [ RunTime:0.0720s ]
+SQL: SHOW COLUMNS FROM `wind87_booksusers` [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `wind87_book_bind` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `wind87_book_wechat_userinfo` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `wind87_book_wechat_userinfo` WHERE `nickname` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_bind` WHERE `openid` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `wind87_booksusers` WHERE `username` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wind87_book` WHERE `keeper_name` = null AND `status` = 2 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book` WHERE `keeper_name` = null AND `status` = 2 ORDER BY book_id desc LIMIT 0,2   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_bookinfo` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wind87_booklog` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `wind87_booklog` WHERE `keeper_name` = null ORDER BY log_id desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book_honer` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `wind87_book_honer` WHERE `username` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book` WHERE `owner_name` = null  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book_group_handleresult` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wind87_book_groupinfo` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `wind87_book_group_handleresult` WHERE `username` = null  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend_handle` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend_handleresult` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `wind87_book_friend_handleresult` WHERE `friendname` = null  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_friend_handle` WHERE `username` = null  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_friend` WHERE `username` = null  [ RunTime:0.0020s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 18 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 21 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 40 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 42 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 43 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 52 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 71 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 79 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 81 行.
+NOTIC: [8] Undefined variable: book D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 166 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 177 行.
+NOTIC: [8] Use of undefined constant personshare - assumed 'personshare' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 178 行.
+NOTIC: [8] Use of undefined constant myKeeps - assumed 'myKeeps' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 179 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 181 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 244 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 277 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 295 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 297 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 298 行.
+NOTIC: [8] Use of undefined constant bookInfo - assumed 'bookInfo' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 299 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 299 行.
+NOTIC: [8] Use of undefined constant formHandle - assumed 'formHandle' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 309 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 312 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 313 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 319 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 320 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 383 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.041002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-06T18:14:25+08:00 ] ::1 /passon/Home/Index/personshare.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `wind87_passoncount` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'personshare' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'personshare' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `wind87_passoncount` SET `pagename`='personshare',`count`='137',`date`='2016 05 06',`des`=NULL WHERE `id` = 347 [ RunTime:0.0330s ]
+SQL: SHOW COLUMNS FROM `wind87_passonnums` [ RunTime:0.0060s ]
+SQL: INSERT INTO `wind87_passonnums` (`username`,`ip`,`pagename`,`timeseconds`,`date`,`time`) VALUES ('visiter','0.0.0.0','personshare','1462529665','2016-05-06','06:14:25 pm') [ RunTime:0.0610s ]
+SQL: SHOW COLUMNS FROM `wind87_booksusers` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `wind87_book_bind` [ RunTime:0.0250s ]
+SQL: SHOW COLUMNS FROM `wind87_book_wechat_userinfo` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `wind87_book_wechat_userinfo` WHERE `nickname` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_bind` WHERE `openid` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_book` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `wind87_booklog` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `wind87_booksusers` WHERE `username` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wind87_book` WHERE `owner_name` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book` WHERE `owner_name` = null ORDER BY book_id DESC LIMIT 0,2   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_bookinfo` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_booklog` WHERE `keeper_name` = null ORDER BY log_id desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_book_honer` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_book_honer` WHERE `username` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book` WHERE `owner_name` = null  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_book_group_handleresult` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `wind87_book_groupinfo` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_book_group_handleresult` WHERE `username` = null  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend_handle` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend_handleresult` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `wind87_book_friend_handleresult` WHERE `friendname` = null  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_friend_handle` WHERE `username` = null  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_friend` WHERE `username` = null  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 18 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 21 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 40 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 42 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 43 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 52 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 71 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 79 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 81 行.
+NOTIC: [8] Undefined variable: book D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 166 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 177 行.
+NOTIC: [8] Use of undefined constant personshare - assumed 'personshare' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 178 行.
+NOTIC: [8] Use of undefined constant myKeeps - assumed 'myKeeps' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 179 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 181 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.023002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-05-06T18:14:28+08:00 ] ::1 /passon/Home/Index/myKeeps.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `wind87_passoncount` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'myKeeps' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'myKeeps' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `wind87_passoncount` SET `pagename`='myKeeps',`count`='52',`date`='2016 05 06',`des`=NULL WHERE `id` = 348 [ RunTime:0.0550s ]
+SQL: SHOW COLUMNS FROM `wind87_passonnums` [ RunTime:0.0050s ]
+SQL: INSERT INTO `wind87_passonnums` (`username`,`ip`,`pagename`,`timeseconds`,`date`,`time`) VALUES ('visiter','0.0.0.0','myKeeps','1462529668','2016-05-06','06:14:28 pm') [ RunTime:0.0750s ]
+SQL: SHOW COLUMNS FROM `wind87_booksusers` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `wind87_book_bind` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `wind87_book_wechat_userinfo` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_book_wechat_userinfo` WHERE `nickname` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_bind` WHERE `openid` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_booksusers` WHERE `username` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wind87_book` WHERE `keeper_name` = null AND `status` = 2 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book` WHERE `keeper_name` = null AND `status` = 2 ORDER BY book_id desc LIMIT 0,2   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_bookinfo` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wind87_booklog` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `wind87_booklog` WHERE `keeper_name` = null ORDER BY log_id desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book_honer` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_book_honer` WHERE `username` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book` WHERE `owner_name` = null  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_book_group_handleresult` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wind87_book_groupinfo` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `wind87_book_group_handleresult` WHERE `username` = null  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend_handle` [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend_handleresult` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_book_friend_handleresult` WHERE `friendname` = null  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_friend_handle` WHERE `username` = null  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_friend` WHERE `username` = null  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 18 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 21 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 40 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 42 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 43 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 52 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 71 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 79 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 81 行.
+NOTIC: [8] Undefined variable: book D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 166 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 177 行.
+NOTIC: [8] Use of undefined constant personshare - assumed 'personshare' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 178 行.
+NOTIC: [8] Use of undefined constant myKeeps - assumed 'myKeeps' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 179 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 181 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 244 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 277 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 295 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 297 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 298 行.
+NOTIC: [8] Use of undefined constant bookInfo - assumed 'bookInfo' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 299 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 299 行.
+NOTIC: [8] Use of undefined constant formHandle - assumed 'formHandle' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 309 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 312 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 313 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 319 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 320 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 383 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.024001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-06T18:14:34+08:00 ] ::1 /passon/Home/Index/personshare.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.004000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `wind87_passoncount` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'personshare' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'personshare' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `wind87_passoncount` SET `pagename`='personshare',`count`='138',`date`='2016 05 06',`des`=NULL WHERE `id` = 347 [ RunTime:0.0450s ]
+SQL: SHOW COLUMNS FROM `wind87_passonnums` [ RunTime:0.0080s ]
+SQL: INSERT INTO `wind87_passonnums` (`username`,`ip`,`pagename`,`timeseconds`,`date`,`time`) VALUES ('visiter','0.0.0.0','personshare','1462529674','2016-05-06','06:14:34 pm') [ RunTime:0.0810s ]
+SQL: SHOW COLUMNS FROM `wind87_booksusers` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `wind87_book_bind` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `wind87_book_wechat_userinfo` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `wind87_book_wechat_userinfo` WHERE `nickname` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_bind` WHERE `openid` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `wind87_booklog` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_booksusers` WHERE `username` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wind87_book` WHERE `owner_name` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book` WHERE `owner_name` = null ORDER BY book_id DESC LIMIT 0,2   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_bookinfo` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_booklog` WHERE `keeper_name` = null ORDER BY log_id desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book_honer` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_book_honer` WHERE `username` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book` WHERE `owner_name` = null  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book_group_handleresult` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wind87_book_groupinfo` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `wind87_book_group_handleresult` WHERE `username` = null  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend_handle` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend_handleresult` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `wind87_book_friend_handleresult` WHERE `friendname` = null  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_friend_handle` WHERE `username` = null  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_friend` WHERE `username` = null  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 18 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 21 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 40 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 42 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 43 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 52 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 71 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 79 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 81 行.
+NOTIC: [8] Undefined variable: book D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 166 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 177 行.
+NOTIC: [8] Use of undefined constant personshare - assumed 'personshare' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 178 行.
+NOTIC: [8] Use of undefined constant myKeeps - assumed 'myKeeps' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 179 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 181 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-06T18:14:35+08:00 ] ::1 /passon/Home/Index/myKeeps.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `wind87_passoncount` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'myKeeps' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'myKeeps' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `wind87_passoncount` SET `pagename`='myKeeps',`count`='53',`date`='2016 05 06',`des`=NULL WHERE `id` = 348 [ RunTime:0.1490s ]
+SQL: SHOW COLUMNS FROM `wind87_passonnums` [ RunTime:0.0050s ]
+SQL: INSERT INTO `wind87_passonnums` (`username`,`ip`,`pagename`,`timeseconds`,`date`,`time`) VALUES ('visiter','0.0.0.0','myKeeps','1462529675','2016-05-06','06:14:35 pm') [ RunTime:0.0520s ]
+SQL: SHOW COLUMNS FROM `wind87_booksusers` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `wind87_book_bind` [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `wind87_book_wechat_userinfo` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `wind87_book_wechat_userinfo` WHERE `nickname` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_bind` WHERE `openid` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `wind87_booksusers` WHERE `username` = null LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wind87_book` WHERE `keeper_name` = null AND `status` = 2 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book` WHERE `keeper_name` = null AND `status` = 2 ORDER BY book_id desc LIMIT 0,2   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_bookinfo` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `wind87_booklog` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `wind87_booklog` WHERE `keeper_name` = null ORDER BY log_id desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_book_honer` [ RunTime:0.0220s ]
+SQL: SELECT * FROM `wind87_book_honer` WHERE `username` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book` WHERE `owner_name` = null  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_book_group_handleresult` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wind87_book_groupinfo` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_book_group_handleresult` WHERE `username` = null  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend_handle` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend_handleresult` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_book_friend_handleresult` WHERE `friendname` = null  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `wind87_book_friend_handle` WHERE `username` = null  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_friend` WHERE `username` = null  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 18 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 21 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 40 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 42 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 43 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 52 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 71 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 79 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 81 行.
+NOTIC: [8] Undefined variable: book D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 166 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 177 行.
+NOTIC: [8] Use of undefined constant personshare - assumed 'personshare' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 178 行.
+NOTIC: [8] Use of undefined constant myKeeps - assumed 'myKeeps' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 179 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 181 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 244 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 277 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 295 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 297 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 298 行.
+NOTIC: [8] Use of undefined constant bookInfo - assumed 'bookInfo' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 299 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 299 行.
+NOTIC: [8] Use of undefined constant formHandle - assumed 'formHandle' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 309 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 312 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 313 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 319 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 320 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 383 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.023001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-06T18:14:43+08:00 ] ::1 /passon/Home/Index/personshare.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001001s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `wind87_passoncount` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'personshare' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'personshare' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `wind87_passoncount` SET `pagename`='personshare',`count`='139',`date`='2016 05 06',`des`=NULL WHERE `id` = 347 [ RunTime:0.0310s ]
+SQL: SHOW COLUMNS FROM `wind87_passonnums` [ RunTime:0.0040s ]
+SQL: INSERT INTO `wind87_passonnums` (`username`,`ip`,`pagename`,`timeseconds`,`date`,`time`) VALUES ('visiter','0.0.0.0','personshare','1462529683','2016-05-06','06:14:43 pm') [ RunTime:0.0440s ]
+SQL: SHOW COLUMNS FROM `wind87_booksusers` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `wind87_book_bind` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wind87_book_wechat_userinfo` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_book_wechat_userinfo` WHERE `nickname` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_bind` WHERE `openid` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_book` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `wind87_booklog` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `wind87_booksusers` WHERE `username` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wind87_book` WHERE `owner_name` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book` WHERE `owner_name` = null ORDER BY book_id DESC LIMIT 0,2   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_bookinfo` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `wind87_booklog` WHERE `keeper_name` = null ORDER BY log_id desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_book_honer` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_book_honer` WHERE `username` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book` WHERE `owner_name` = null  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_book_group_handleresult` [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `wind87_book_groupinfo` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `wind87_book_group_handleresult` WHERE `username` = null  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend_handle` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend_handleresult` [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `wind87_book_friend_handleresult` WHERE `friendname` = null  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_friend_handle` WHERE `username` = null  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_friend` WHERE `username` = null  [ RunTime:0.0020s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 18 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 21 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 40 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 42 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 43 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 52 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 71 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 79 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 81 行.
+NOTIC: [8] Undefined variable: book D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 166 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 177 行.
+NOTIC: [8] Use of undefined constant personshare - assumed 'personshare' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 178 行.
+NOTIC: [8] Use of undefined constant myKeeps - assumed 'myKeeps' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 179 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\eb4a1c91188ecd6c8e9f4f8a334915d5.php 第 181 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.026002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-06T18:14:45+08:00 ] ::1 /passon/Home/Index/myKeeps.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `wind87_passoncount` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'myKeeps' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'myKeeps' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `wind87_passoncount` SET `pagename`='myKeeps',`count`='54',`date`='2016 05 06',`des`=NULL WHERE `id` = 348 [ RunTime:0.0440s ]
+SQL: SHOW COLUMNS FROM `wind87_passonnums` [ RunTime:0.0030s ]
+SQL: INSERT INTO `wind87_passonnums` (`username`,`ip`,`pagename`,`timeseconds`,`date`,`time`) VALUES ('visiter','0.0.0.0','myKeeps','1462529685','2016-05-06','06:14:45 pm') [ RunTime:0.0280s ]
+SQL: SHOW COLUMNS FROM `wind87_booksusers` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `wind87_book_bind` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `wind87_book_wechat_userinfo` [ RunTime:0.0070s ]
+SQL: SELECT * FROM `wind87_book_wechat_userinfo` WHERE `nickname` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_bind` WHERE `openid` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `wind87_booksusers` WHERE `username` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wind87_book` WHERE `keeper_name` = null AND `status` = 2 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book` WHERE `keeper_name` = null AND `status` = 2 ORDER BY book_id desc LIMIT 0,2   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_bookinfo` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wind87_booklog` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `wind87_booklog` WHERE `keeper_name` = null ORDER BY log_id desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book_honer` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `wind87_book_honer` WHERE `username` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book` WHERE `owner_name` = null  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_book_group_handleresult` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wind87_book_groupinfo` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `wind87_book_group_handleresult` WHERE `username` = null  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend_handle` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend_handleresult` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `wind87_book_friend` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `wind87_book_friend_handleresult` WHERE `friendname` = null  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_friend_handle` WHERE `username` = null  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_friend` WHERE `username` = null  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 18 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 21 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 40 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 42 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 43 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 52 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 71 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 79 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 81 行.
+NOTIC: [8] Undefined variable: book D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 166 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 177 行.
+NOTIC: [8] Use of undefined constant personshare - assumed 'personshare' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 178 行.
+NOTIC: [8] Use of undefined constant myKeeps - assumed 'myKeeps' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 179 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 181 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 244 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 277 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 295 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 297 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 298 行.
+NOTIC: [8] Use of undefined constant bookInfo - assumed 'bookInfo' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 299 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 299 行.
+NOTIC: [8] Use of undefined constant formHandle - assumed 'formHandle' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 309 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 312 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 313 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 319 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 320 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c73c3ea370257da7b0b5736000bbe254.php 第 383 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.023002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-05-06T18:14:48+08:00 ] ::1 /passon/Home/Index/bookreading.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 18 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 21 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 40 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 42 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 43 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 52 行.
+NOTIC: [8] Undefined variable: user D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 57 行.
+NOTIC: [8] Undefined variable: booknum D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 66 行.
+NOTIC: [8] Undefined variable: integral D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 67 行.
+NOTIC: [8] Undefined variable: integral D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 68 行.
+NOTIC: [8] Undefined variable: integral D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 69 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 71 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 79 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 81 行.
+NOTIC: [8] Undefined variable: booklog D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 103 行.
+NOTIC: [8] Undefined variable: book D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 166 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 177 行.
+NOTIC: [8] Use of undefined constant personshare - assumed 'personshare' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 178 行.
+NOTIC: [8] Use of undefined constant myKeeps - assumed 'myKeeps' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 179 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 181 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 244 行.
+NOTIC: [8] Undefined variable: page D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 270 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 277 行.
+NOTIC: [8] Undefined variable: page D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 287 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 295 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 297 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 298 行.
+NOTIC: [8] Use of undefined constant bookInfo - assumed 'bookInfo' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 299 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 299 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 338 行.
+NOTIC: [8] Use of undefined constant bookwant - assumed 'bookwant' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 339 行.
+NOTIC: [8] Use of undefined constant bookalready - assumed 'bookalready' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 340 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 342 行.
+NOTIC: [8] Undefined variable: friendresult D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 530 行.
+NOTIC: [8] Undefined variable: friendhandle D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 553 行.
+NOTIC: [8] Undefined variable: resultmessage D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 573 行.
+NOTIC: [8] Undefined variable: friendaddresult D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 590 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.036002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.036002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-05-06T18:14:50+08:00 ] ::1 /passon/Home/Index/bookwant.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 18 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 21 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 40 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 42 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 43 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 52 行.
+NOTIC: [8] Undefined variable: user D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 57 行.
+NOTIC: [8] Undefined variable: booknum D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 66 行.
+NOTIC: [8] Undefined variable: integral D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 67 行.
+NOTIC: [8] Undefined variable: integral D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 68 行.
+NOTIC: [8] Undefined variable: integral D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 69 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 71 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 79 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 81 行.
+NOTIC: [8] Undefined variable: booklog D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 103 行.
+NOTIC: [8] Undefined variable: book D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 166 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 177 行.
+NOTIC: [8] Use of undefined constant personshare - assumed 'personshare' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 178 行.
+NOTIC: [8] Use of undefined constant myKeeps - assumed 'myKeeps' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 179 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 181 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 244 行.
+NOTIC: [8] Undefined variable: page D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 270 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 277 行.
+NOTIC: [8] Undefined variable: page D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 287 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 295 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 297 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 298 行.
+NOTIC: [8] Use of undefined constant bookInfo - assumed 'bookInfo' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 299 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 299 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 338 行.
+NOTIC: [8] Use of undefined constant bookwant - assumed 'bookwant' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 339 行.
+NOTIC: [8] Use of undefined constant bookalready - assumed 'bookalready' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 340 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 342 行.
+NOTIC: [8] Undefined variable: friendresult D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 530 行.
+NOTIC: [8] Undefined variable: friendhandle D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 553 行.
+NOTIC: [8] Undefined variable: resultmessage D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 573 行.
+NOTIC: [8] Undefined variable: friendaddresult D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 590 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.027001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.027001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-06T18:14:51+08:00 ] ::1 /passon/Home/Index/bookalready.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 18 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 21 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 40 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 42 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 43 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 52 行.
+NOTIC: [8] Undefined variable: user D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 57 行.
+NOTIC: [8] Undefined variable: booknum D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 66 行.
+NOTIC: [8] Undefined variable: integral D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 67 行.
+NOTIC: [8] Undefined variable: integral D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 68 行.
+NOTIC: [8] Undefined variable: integral D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 69 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 71 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 79 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 81 行.
+NOTIC: [8] Undefined variable: booklog D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 103 行.
+NOTIC: [8] Undefined variable: book D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 166 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 177 行.
+NOTIC: [8] Use of undefined constant personshare - assumed 'personshare' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 178 行.
+NOTIC: [8] Use of undefined constant myKeeps - assumed 'myKeeps' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 179 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 181 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 244 行.
+NOTIC: [8] Undefined variable: page D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 270 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 277 行.
+NOTIC: [8] Undefined variable: page D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 287 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 295 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 297 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 298 行.
+NOTIC: [8] Use of undefined constant bookInfo - assumed 'bookInfo' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 299 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 299 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 338 行.
+NOTIC: [8] Use of undefined constant bookwant - assumed 'bookwant' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 339 行.
+NOTIC: [8] Use of undefined constant bookalready - assumed 'bookalready' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 340 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 342 行.
+NOTIC: [8] Undefined variable: friendresult D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 530 行.
+NOTIC: [8] Undefined variable: friendhandle D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 553 行.
+NOTIC: [8] Undefined variable: resultmessage D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 573 行.
+NOTIC: [8] Undefined variable: friendaddresult D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\c09d7ed9a1211873e2c45a533d14a760.php 第 590 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.029001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.029001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-06T18:14:57+08:00 ] ::1 /passon/Home/Index/bookwant.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 18 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 21 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 40 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 42 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 43 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 52 行.
+NOTIC: [8] Undefined variable: user D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 57 行.
+NOTIC: [8] Undefined variable: booknum D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 66 行.
+NOTIC: [8] Undefined variable: integral D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 67 行.
+NOTIC: [8] Undefined variable: integral D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 68 行.
+NOTIC: [8] Undefined variable: integral D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 69 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 71 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 79 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 81 行.
+NOTIC: [8] Undefined variable: booklog D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 103 行.
+NOTIC: [8] Undefined variable: book D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 166 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 177 行.
+NOTIC: [8] Use of undefined constant personshare - assumed 'personshare' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 178 行.
+NOTIC: [8] Use of undefined constant myKeeps - assumed 'myKeeps' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 179 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 181 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 244 行.
+NOTIC: [8] Undefined variable: page D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 270 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 277 行.
+NOTIC: [8] Undefined variable: page D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 287 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 295 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 297 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 298 行.
+NOTIC: [8] Use of undefined constant bookInfo - assumed 'bookInfo' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 299 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 299 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 338 行.
+NOTIC: [8] Use of undefined constant bookwant - assumed 'bookwant' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 339 行.
+NOTIC: [8] Use of undefined constant bookalready - assumed 'bookalready' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 340 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 342 行.
+NOTIC: [8] Undefined variable: friendresult D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 530 行.
+NOTIC: [8] Undefined variable: friendhandle D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 553 行.
+NOTIC: [8] Undefined variable: resultmessage D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 573 行.
+NOTIC: [8] Undefined variable: friendaddresult D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\ed56e894d895b3ca732342f66cbe6537.php 第 590 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-06T18:14:58+08:00 ] ::1 /passon/Home/Index/bookreading.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 18 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 21 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 40 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 42 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 43 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 52 行.
+NOTIC: [8] Undefined variable: user D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 57 行.
+NOTIC: [8] Undefined variable: booknum D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 66 行.
+NOTIC: [8] Undefined variable: integral D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 67 行.
+NOTIC: [8] Undefined variable: integral D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 68 行.
+NOTIC: [8] Undefined variable: integral D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 69 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 71 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 79 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 81 行.
+NOTIC: [8] Undefined variable: booklog D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 103 行.
+NOTIC: [8] Undefined variable: book D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 166 行.
+NOTIC: [8] Use of undefined constant mypersonal - assumed 'mypersonal' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 177 行.
+NOTIC: [8] Use of undefined constant personshare - assumed 'personshare' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 178 行.
+NOTIC: [8] Use of undefined constant myKeeps - assumed 'myKeeps' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 179 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 181 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 244 行.
+NOTIC: [8] Undefined variable: page D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 270 行.
+NOTIC: [8] Undefined variable: mybooks D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 277 行.
+NOTIC: [8] Undefined variable: page D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 287 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 295 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 297 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 298 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 298 行.
+NOTIC: [8] Use of undefined constant bookInfo - assumed 'bookInfo' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 299 行.
+NOTIC: [8] Undefined variable: item D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 299 行.
+NOTIC: [8] Use of undefined constant bookreading - assumed 'bookreading' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 338 行.
+NOTIC: [8] Use of undefined constant bookwant - assumed 'bookwant' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 339 行.
+NOTIC: [8] Use of undefined constant bookalready - assumed 'bookalready' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 340 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 342 行.
+NOTIC: [8] Undefined variable: friendresult D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 530 行.
+NOTIC: [8] Undefined variable: friendhandle D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 553 行.
+NOTIC: [8] Undefined variable: resultmessage D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 573 行.
+NOTIC: [8] Undefined variable: friendaddresult D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\1cfe707f427704f547b08c4722825c5c.php 第 590 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.030001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-05-06T18:22:25+08:00 ] ::1 /passon/Home/Index/comment
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002001s ]
+SQL: SHOW COLUMNS FROM `wind87_passoncount` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_passoncount` WHERE `pagename` = 'comment' AND `date` = '2016 05 06' LIMIT 1   [ RunTime:0.0010s ]
+SQL: INSERT INTO `wind87_passoncount` (`pagename`,`count`,`date`,`des`) VALUES ('comment','1','2016 05 06',NULL) [ RunTime:0.0950s ]
+SQL: SHOW COLUMNS FROM `wind87_passonnums` [ RunTime:0.0160s ]
+SQL: INSERT INTO `wind87_passonnums` (`username`,`ip`,`pagename`,`timeseconds`,`date`,`time`) VALUES ('visiter','0.0.0.0','comment','1462530140','2016-05-06','06:22:20 pm') [ RunTime:0.0540s ]
+SQL: SHOW COLUMNS FROM `wind87_book` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `wind87_booksusers` [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `wind87_bookmnum` [ RunTime:0.9451s ]
+SQL: SHOW COLUMNS FROM `wind87_bookorder` [ RunTime:0.3380s ]
+SQL: SHOW COLUMNS FROM `wind87_book_groupinfo` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `wind87_book_bind` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wind87_book_wechat_userinfo` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `wind87_book_wechat_userinfo` WHERE `nickname` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_bind` WHERE `openid` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book` WHERE `book_id` = 0  [ RunTime:0.1520s ]
+SQL: SELECT * FROM `wind87_book` WHERE `book_id` = 0 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book` WHERE `book_id` = 0 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_bookinfo` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `wind87_booklog` [ RunTime:0.0100s ]
+NOTIC: [2] file_get_contents(https://api.douban.com/v2/book/isbn/:): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ D:\xampp\htdocs\passon\Application\Home\Common\function.php 第 273 行.
+SQL: SELECT * FROM `wind87_booklog` WHERE `book_id` = 0 ORDER BY log_id desc  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book` WHERE `book_id` = 0 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book` WHERE `owner_name` = null  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_book_zan` [ RunTime:0.1700s ]
+SQL: SHOW COLUMNS FROM `wind87_bookcomment` [ RunTime:0.1510s ]
+SQL: SHOW COLUMNS FROM `wind87_book_comment` [ RunTime:0.1990s ]
+SQL: SHOW COLUMNS FROM `wind87_book_commentnum` [ RunTime:0.0790s ]
+SQL: SELECT * FROM `wind87_bookcomment` WHERE `book_id` = 0  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_bookmnum` WHERE `book_id` = 0 LIMIT 1   [ RunTime:0.1040s ]
+SQL: SELECT * FROM `wind87_book_comment` WHERE `comment_id` = 37  [ RunTime:0.0140s ]
+SQL: SELECT * FROM `wind87_book_commentnum` WHERE `comment_id` = 37 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_zan` WHERE `username` = null AND `comment_id` = '37' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_comment` WHERE `comment_id` = 38  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_commentnum` WHERE `comment_id` = 38 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_zan` WHERE `username` = null AND `comment_id` = '38' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_comment` WHERE `comment_id` = 39  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_commentnum` WHERE `comment_id` = 39 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_zan` WHERE `username` = null AND `comment_id` = '39' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_comment` WHERE `comment_id` = 40  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_commentnum` WHERE `comment_id` = 40 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_zan` WHERE `username` = null AND `comment_id` = '40' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_comment` WHERE `comment_id` = 41  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_commentnum` WHERE `comment_id` = 41 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_zan` WHERE `username` = null AND `comment_id` = '41' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_comment` WHERE `comment_id` = 42  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_commentnum` WHERE `comment_id` = 42 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_zan` WHERE `username` = null AND `comment_id` = '42' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_comment` WHERE `comment_id` = 43  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_commentnum` WHERE `comment_id` = 43 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_zan` WHERE `username` = null AND `comment_id` = '43' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_comment` WHERE `comment_id` = 44  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_commentnum` WHERE `comment_id` = 44 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_zan` WHERE `username` = null AND `comment_id` = '44' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_comment` WHERE `comment_id` = 45  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_commentnum` WHERE `comment_id` = 45 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_zan` WHERE `username` = null AND `comment_id` = '45' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_comment` WHERE `comment_id` = 46  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_commentnum` WHERE `comment_id` = 46 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_zan` WHERE `username` = null AND `comment_id` = '46' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_comment` WHERE `comment_id` = 47  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book_commentnum` WHERE `comment_id` = 47 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_book_zan` WHERE `username` = null AND `comment_id` = '47' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wind87_bookattention` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `wind87_bookattention` WHERE `book_id` = 0 AND `username` = null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `wind87_bookfen` [ RunTime:0.0970s ]
+SQL: SELECT * FROM `wind87_bookfen` WHERE `username` = null AND `book_id` = 0 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_bookorder` WHERE `book_id` = 0 AND `ordername` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_bookmnum` WHERE `book_id` = 0 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_booklog` WHERE `book_id` = 0 AND `status` NOT IN ('4') ORDER BY log_id desc LIMIT 1   [ RunTime:0.0230s ]
+NOTIC: [8] Use of undefined constant anytime - assumed 'anytime' D:\xampp\htdocs\passon\Application\Home\Controller\IndexController.class.php 第 3588 行.
+SQL: SELECT * FROM `wind87_book` WHERE `book_id` = null AND `groupid` is not null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_booklog` WHERE `book_id` = null  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_booksusers` WHERE `username` = null LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `wind87_book` WHERE `book_id` = null AND `con_name` is not null LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `wind87_bookinfo` WHERE `isbn` = null LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: owner_name D:\xampp\htdocs\passon\Application\Home\Controller\IndexController.class.php 第 3659 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: phone D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 16 行.
+NOTIC: [8] Undefined index: addr D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 17 行.
+NOTIC: [8] Undefined variable: orderflag D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 21 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 43 行.
+NOTIC: [8] Use of undefined constant squre - assumed 'squre' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 44 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 45 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 48 行.
+NOTIC: [8] Use of undefined constant register - assumed 'register' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 69 行.
+NOTIC: [8] Use of undefined constant login - assumed 'login' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 70 行.
+NOTIC: [8] Use of undefined constant commentRegister - assumed 'commentRegister' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 75 行.
+NOTIC: [8] Use of undefined constant commentLogin - assumed 'commentLogin' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 76 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 79 行.
+NOTIC: [8] Undefined index: username D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 79 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 79 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 84 行.
+NOTIC: [8] Use of undefined constant bookcomment - assumed 'bookcomment' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 281 行.
+NOTIC: [8] Use of undefined constant cComment - assumed 'cComment' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 317 行.
+NOTIC: [8] Use of undefined constant cComment - assumed 'cComment' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 317 行.
+NOTIC: [8] Use of undefined constant cComment - assumed 'cComment' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 317 行.
+NOTIC: [8] Use of undefined constant cComment - assumed 'cComment' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 317 行.
+NOTIC: [8] Use of undefined constant cComment - assumed 'cComment' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 317 行.
+NOTIC: [8] Use of undefined constant cComment - assumed 'cComment' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 317 行.
+NOTIC: [8] Use of undefined constant cComment - assumed 'cComment' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 317 行.
+NOTIC: [8] Use of undefined constant cComment - assumed 'cComment' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 317 行.
+NOTIC: [8] Use of undefined constant cComment - assumed 'cComment' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 317 行.
+NOTIC: [8] Use of undefined constant cComment - assumed 'cComment' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 317 行.
+NOTIC: [8] Use of undefined constant cComment - assumed 'cComment' D:\xampp\htdocs\passon\Application\Runtime\Cache\Home\37d0b95751ffa78760ae0f0896dfb3ca.php 第 317 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.112006s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.112006s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.019002s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.019002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+

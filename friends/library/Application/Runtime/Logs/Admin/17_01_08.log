@@ -1,0 +1,706 @@
+[ 2017-01-08T19:21:24+08:00 ] 114.255.40.49 /library/Admin/Index/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000131s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000086s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000160s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000065s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000128s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003299s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003360s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000048s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000087s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000047s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000086s ]
+
+[ 2017-01-08T19:21:57+08:00 ] 114.255.40.49 /library/Admin/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000113s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000051s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000099s ]
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Admin/Controller/IndexController.class.php 第 53 行.
+
+[ 2017-01-08T19:21:57+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000163s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000043s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000092s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000050s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000102s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002538s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002586s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000060s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000102s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000049s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000089s ]
+
+[ 2017-01-08T19:21:59+08:00 ] 114.255.40.49 /library/Admin/Index/logout.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000106s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000046s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000092s ]
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Admin/Controller/IndexController.class.php 第 26 行.
+
+[ 2017-01-08T19:21:59+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000097s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000044s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000049s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000101s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002645s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002692s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000045s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000082s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000040s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000078s ]
+
+[ 2017-01-08T19:22:01+08:00 ] 114.255.40.49 /library/Admin/Index/logout.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000103s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000059s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000200s ]
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Admin/Controller/IndexController.class.php 第 26 行.
+
+[ 2017-01-08T19:22:01+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000103s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000044s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000092s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000130s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002700s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002749s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000055s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000097s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000068s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000134s ]
+
+[ 2017-01-08T19:22:04+08:00 ] 114.255.40.49 /library/Admin/Index/logout.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000111s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000052s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000099s ]
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Admin/Controller/IndexController.class.php 第 26 行.
+
+[ 2017-01-08T19:22:04+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000097s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000045s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000050s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000101s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002522s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002645s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000055s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000095s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000048s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000088s ]
+
+[ 2017-01-08T19:22:07+08:00 ] 114.255.40.49 /library/Admin/Index/logout.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000114s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000051s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000099s ]
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Admin/Controller/IndexController.class.php 第 26 行.
+
+[ 2017-01-08T19:22:07+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000102s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000045s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000092s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000100s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000155s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002731s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002778s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000049s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000088s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000045s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000085s ]
+
+[ 2017-01-08T19:22:20+08:00 ] 114.255.40.49 /library/Admin/Index/loginCheck.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000116s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000049s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000115s ]
+ERR: 1146:Table 'library.lib_book_admin' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `lib_book_admin`
+ERR: 1146:Table 'library.lib_book_admin' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `lib_book_admin`
+
+[ 2017-01-08T19:23:25+08:00 ] 114.255.40.49 /library/Admin/Index/loginCheck.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000115s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000126s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000179s ]
+ERR: 1146:Table 'library.lib_book_admin' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `lib_book_admin`
+ERR: 1146:Table 'library.lib_book_admin' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `lib_book_admin`
+
+[ 2017-01-08T19:23:38+08:00 ] 114.255.40.49 /library/Admin/Index/logout.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000114s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000053s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000099s ]
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Admin/Controller/IndexController.class.php 第 26 行.
+
+[ 2017-01-08T19:23:38+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000124s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000060s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000119s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000050s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000101s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002694s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002750s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000067s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000128s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000049s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000090s ]
+
+[ 2017-01-08T19:24:07+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000120s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000054s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000100s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000050s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000101s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002652s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002701s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000054s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000094s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000051s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000090s ]
+
+[ 2017-01-08T19:24:11+08:00 ] 114.255.40.49 /library/Admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000116s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000073s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000125s ]
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Admin/Controller/IndexController.class.php 第 53 行.
+
+[ 2017-01-08T19:24:11+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000107s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000046s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000093s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000124s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003503s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003559s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000060s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000100s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000061s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000102s ]
+
+[ 2017-01-08T19:24:20+08:00 ] 114.255.40.49 /library/Admin/Add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000210s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000073s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000127s ]
+ERR: 无法加载控制器:Add
+
+[ 2017-01-08T19:24:30+08:00 ] 114.255.40.49 /library/Admin/Show/modify
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000118s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000055s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000103s ]
+ERR: 无法加载控制器:Show
+
+[ 2017-01-08T19:24:33+08:00 ] 114.255.40.49 /library/Admin/Show/modify
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000166s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000064s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000129s ]
+ERR: 无法加载控制器:Show
+
+[ 2017-01-08T19:24:33+08:00 ] 114.255.40.49 /library/Admin/Add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000109s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000045s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000096s ]
+ERR: 无法加载控制器:Add
+
+[ 2017-01-08T19:24:34+08:00 ] 114.255.40.49 /library/Admin/Show/modify
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000155s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000067s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000139s ]
+ERR: 无法加载控制器:Show
+
+[ 2017-01-08T19:24:39+08:00 ] 114.255.40.49 /library/Admin/Admin/modify
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000114s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000050s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000096s ]
+ERR: 无法加载控制器:Admin
+
+[ 2017-01-08T19:24:43+08:00 ] 114.255.40.49 /library/Admin/Index/modify
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000112s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000053s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000100s ]
+ERR: 非法操作:modify
+
+[ 2017-01-08T19:24:46+08:00 ] 114.255.40.49 /library/Admin/Index/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000131s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000051s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000098s ]
+ERR: 非法操作:add
+
+[ 2017-01-08T19:26:43+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000116s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000074s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000122s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000131s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000186s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003393s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003441s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000060s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000100s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000062s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000105s ]
+
+[ 2017-01-08T19:45:02+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000193s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000109s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000183s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000086s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000165s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004783s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004842s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000057s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000096s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000057s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000097s ]
+
+[ 2017-01-08T19:45:06+08:00 ] 114.255.40.49 /library/Admin/Index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000114s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000053s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000101s ]
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Admin/Controller/IndexController.class.php 第 53 行.
+
+[ 2017-01-08T19:45:06+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000094s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000120s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000185s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000050s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000102s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002602s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002650s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000052s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000091s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000047s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000086s ]
+
+[ 2017-01-08T19:45:16+08:00 ] 114.255.40.49 /library/Admin/Manage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000127s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000061s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000109s ]
+ERR: 无法加载控制器:Manage
+
+[ 2017-01-08T19:45:23+08:00 ] 114.255.40.49 /library/Admin/Management
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000129s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000052s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000106s ]
+ERR: 无法加载控制器:Management
+
+[ 2017-01-08T19:45:28+08:00 ] 114.255.40.49 /library/Admin/Library
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000190s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000086s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000166s ]
+ERR: 无法加载控制器:Library
+
+[ 2017-01-08T19:45:34+08:00 ] 114.255.40.49 /library/Admin/Shop
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000107s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000049s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000101s ]
+ERR: 无法加载控制器:Shop
+
+[ 2017-01-08T19:45:36+08:00 ] 114.255.40.49 /library/Admin/Add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000169s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000102s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000175s ]
+ERR: 无法加载控制器:Add
+
+[ 2017-01-08T19:45:55+08:00 ] 114.255.40.49 /library/Admin/Share
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000106s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000047s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000094s ]
+ERR: 无法加载控制器:Share
+
+[ 2017-01-08T19:46:01+08:00 ] 114.255.40.49 /library/Admin/Index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000203s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000074s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000142s ]
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Admin/Controller/IndexController.class.php 第 53 行.
+
+[ 2017-01-08T19:46:01+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000112s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000047s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000092s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000119s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003723s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003774s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000052s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000090s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000054s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000095s ]
+
+[ 2017-01-08T19:46:13+08:00 ] 114.255.40.49 /library/Admin/Index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000118s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000058s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000105s ]
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Admin/Controller/IndexController.class.php 第 53 行.
+
+[ 2017-01-08T19:46:13+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000104s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000046s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000092s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000051s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000103s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002831s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002879s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000055s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000093s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000050s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000090s ]
+
+[ 2017-01-08T19:46:37+08:00 ] 114.255.40.49 /library/Admin/Index/Index?username=admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000155s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000069s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000142s ]
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Admin/Controller/IndexController.class.php 第 53 行.
+
+[ 2017-01-08T19:46:37+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000110s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000051s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000100s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000049s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000102s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002715s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002762s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000052s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000089s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000046s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000085s ]
+
+[ 2017-01-08T19:46:50+08:00 ] 114.255.40.49 /library/Admin/Index/loginCheck.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000200s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000082s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000132s ]
+ERR: 1146:Table 'library.lib_book_admin' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `lib_book_admin`
+ERR: 1146:Table 'library.lib_book_admin' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `lib_book_admin`
+
+[ 2017-01-08T19:47:51+08:00 ] 114.255.40.49 /library/Admin/Index/logout.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000231s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000093s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000173s ]
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Admin/Controller/IndexController.class.php 第 26 行.
+
+[ 2017-01-08T19:47:51+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000105s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000045s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000092s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000062s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000122s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003469s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003523s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000061s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000099s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000061s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000101s ]
+
+[ 2017-01-08T19:47:52+08:00 ] 114.255.40.49 /library/Admin/Index/logout.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000105s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000045s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000090s ]
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Admin/Controller/IndexController.class.php 第 26 行.
+
+[ 2017-01-08T19:47:52+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000099s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000043s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000088s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000050s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000102s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002711s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002759s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000043s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000082s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000040s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000079s ]
+
+[ 2017-01-08T19:47:53+08:00 ] 114.255.40.49 /library/Admin/Index/logout.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000177s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000047s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000096s ]
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Admin/Controller/IndexController.class.php 第 26 行.
+
+[ 2017-01-08T19:47:53+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000105s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000057s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000111s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000050s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000102s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002655s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002702s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000044s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000081s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000040s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000079s ]
+
+[ 2017-01-08T19:49:48+08:00 ] 114.255.40.49 /library/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000145s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000058s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000105s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000049s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000099s ]
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 37 行.
+NOTIC: [8] Use of undefined constant loginCheck - assumed 'loginCheck' /var/www/html/library/Application/Runtime/Cache/Admin/041185b974292283d2f6098acc3220ec.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002531s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002578s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000052s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000090s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000048s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000088s ]
+

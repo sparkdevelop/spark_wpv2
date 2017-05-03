@@ -1,0 +1,142 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-size:16px;
+    font-family:Arial,Verdana,Geneva,sans-seri,Timeshiragino sans gb,microsoft yahei,simsun;/*改动*/
+    color:black;
+    background-color: #e9edf0;
+    width: 100%;
+    min-width: 1200px;
+}
+.content{
+    width: 100%;
+}
+.main{
+    width: 100%;
+}
+.main-right{
+    width: 70%;
+    margin: 40px auto;
+}
+.message ul{
+    /*margin-left: 13.2%;*/
+    float: left;
+    width: 100px;
+    text-decoration: none;
+    list-style: none;
+    overflow: hidden;
+    background-color: #fff;
+    border: 1px solid #bcbcbc;
+    box-shadow: 0 0 2px #bcbcbc;
+    /*margin-top: 61px;*/
+    /*border-radius: 5px;*/
+}
+.message ul li{
+    /*display: inline;*/
+    /*width: 15%;*/
+    /*border: 1px solid #b0b0b0;*/
+    /*float: left;*/
+    text-align:     center;
+    height: 30px;
+    line-height: 30px;
+    /*margin-right: 4%;*/
+    padding: 3px 0px;
+    cursor: pointer;
+    /*background-color: #c2d8d7;*/
+}
+.message ul li:hover{
+    background-color: #fff;
+}
+.activecolor{
+    background-color: #f2f2f2 !important;
+}
+.second-navigate{
+    float: left;
+    margin-left: 50px;
+    border: 1px solid #bcbcbc;
+    background-color: #fff;
+    /*height: 500px;*/
+    width: 79%;
+    padding: 30px 10px;
+    margin-bottom: 30px;
+}
+.question{
+    display: block;
+}
+.second-body{
+    width: 90%;
+    margin: 20px auto;
+}
+.question-answer{
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 30px;
+}
+.question-left{
+    float: left;
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    background-color: #5e9ab2;
+    color: #fff;
+    text-align: center;
+    margin-top: 9px;
+}
+.question-right{
+    float: left;
+    width: 90%;
+    margin-left: 20px;
+    width: 91%;
+    line-height: 35px;
+}
+.qr{
+    margin: 10px auto;
+    text-align: center;
+}
+.qr img{
+    width: 100px;
+    height: 100px;
+}
+.about-us{
+    display: none;
+}
+.about-us .about-us-first{
+    text-indent: 0px;
+}
+.about-us div{
+    text-indent: 32px;
+    line-height: 35px;
+    margin-bottom: 30px;
+}
+.rules{
+    display: none;
+    text-align: center;
+}
+.rules-body{
+    line-height: 35px;
+}
+.rules-title{
+    color: #5e9ab2;
+}
+.rule-body-details{
+    width: 65%;
+    margin: auto;
+}
+.rule-body-details>div{
+    overflow: hidden;
+}
+.rules-left{
+    float: left;
+}
+.rules-right{
+    float: right;
+}
+.rule-body-details>div img{
+    height: 25px;
+    width: 25px;
+    line-height: 20px;
+    display: inline-block;
+    margin-top: 5px;
+}

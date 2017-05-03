@@ -1,0 +1,57 @@
+/* CSS Document */
+*{
+    margin:0px;
+    padding:0px;
+}
+body{
+    width: 100%;
+    font-size:16px;
+    font-family:hiragino sans gb,microsoft yahei,simsun;/*¸Ä¶¯*/
+    color:black;
+}
+.main{
+    width:80%;
+    margin: 0 auto;
+}
+.main-m{
+    width: 495px;
+    height:400px;
+    margin:200px auto;
+    /*background-color: antiquewhite;*/
+    box-shadow:0px 0px 2px black;
+}
+.title{
+    font-size: 24px;
+    padding-top: 20px;
+    text-align: center;
+}
+.form{
+    position: absolute;
+    width: 495px;
+    margin-top: 20px;
+}
+.form input{
+    /*border: none;*/
+    display: block;
+    padding: 10px 0;
+    margin: 0 auto 10px;
+    width: 70%;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #000;
+}
+.form img{
+    position: absolute;
+    right: 13%;
+    margin-top: 7px;
+    width: 40px;
+}
+.form .submit{
+    background-color: #1c57ff;
+    border: none;
+    border-radius: 5px;
+    margin-top: 50px;
+    padding: 15px 0;
+    color:#fff;
+}

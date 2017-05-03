@@ -1,0 +1,52 @@
+<div class="head">
+    <div class="title">
+        <div class="title-left">
+            <span class="title-m"><a href="{:U(share)}">物品管理</a></span>
+            <span class="title-help"><a href="{:U(mywait)}">购物车</a></span>
+            <span class="title-main"><a href="{:U(share)}">物品库</a></span>
+             <?php if($user['username'] == $admin['username']) :?>
+            <span class="title-share"><a href="{:U(contribute)}">物品上传</a></span>
+            <?php endif ?>    
+        </div>
+        <div class="div-search">
+            <form name="search" action="{:U(search)}" method="post">
+                <input  class="search" name="search" type="text" placeholder="输入您想搜索物品的名字" />
+                <div class="search-a">
+                    <input type="image" src="__PUBLIC__/images/search.png" name="img">
+                </div>
+            </form>
+            <!--<span>热门搜索：</span>-->
+            <!--<span class="detail">-->
+            <!--<span><a>数据库系统概念</a></span>-->
+            <!--<span><a>CSS 3实战</a></span>-->
+            <!--<span><a>操作系统概念</a></span>-->
+            <!--</span>-->
+        </div>
+        <?php if($user['username'] == '') :?>
+        <div class="username-list">
+                <ul>
+                    <li class="register"><a href="{:U(register)}">注册</a></li>
+                    <li class="login"><a href="{:U(login)}">登录</a></li>
+                </ul>
+        </div>
+        <?php else :?>
+        <div class="username-c">
+            <ul>
+                <li>
+                    <?php if($user['img'] == '') :?>
+                    <span><img src="__PUBLIC__/images/defaultheader.jpg"/></span>
+                    <?php else :?>
+                    <span><img src="{$user['img']}"/></span>
+                    <?php endif?>
+                    <span class="username-c-username">{$user['username']}</span>
+                    <ul>
+                        <li><a href="{:U(person)}">我的主页</a></li>
+                        <li><a href="{:U(message)}">账号设置</a></li>
+                        <li><a href="{:U(logout)}">退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <?php endif ?>
+    </div>
+</div>
