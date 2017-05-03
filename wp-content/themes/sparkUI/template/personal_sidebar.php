@@ -38,13 +38,27 @@ $admin_url=admin_url('admin-ajax.php');
         <div id="avatar">
             <?php echo get_avatar($current_user->ID,100);?>
             <img id="previewAva"/>
+            <div class="change" id="setPhoto"><i class="fa fa-camera" aria-hidden="true"></i></div>
         </div>
-        <div id="changeAvaDiv" style="display: none">
+        <div id="changeAvaDiv" style="display: none;margin-top: 20px;">
             <form class="form-horizontal" role="form" name="updateAva" enctype="multipart/form-data" method="post" action="<?php echo esc_url(self_admin_url('profile-process-avatar.php')); ?>">
-                <input type='file' name='simple-local-avatar' id='simple-local-avatar' style='margin-top:20px;margin-left:45px;height: 30px;'/>
-                <input type='submit' class='btn btn-default' name='submit' value='确认修改'/>
+                <a href="javascript:;" class="a-upload">修改头像<input type='file' name='simple-local-avatar'id='simple-local-avatar'/></a>
+                <a href="javascript:;" class="a-upload">保存<input type='submit' class='btn btn-default' name='submit' value='保存'/></a>
+                <input type="text" placeholder="文件名" id="aim" class="upload-filename"/>
             </form>
         </div>
+        <script>
+            window.onload = function(){
+                var ms = document.getElementById("avatar");
+                var add = document.getElementById("setPhoto");
+                ms.onmouseover = function(){
+                    add.style.display = "block";
+                };
+                ms.onmouseout = function(){
+                    add.style.display = "none";
+                };
+            };
+        </script>
         <script>
             var Avatar = document.getElementById("avatar");
             Avatar.onclick = preChangeAvatar;
@@ -112,7 +126,6 @@ $admin_url=admin_url('admin-ajax.php');
                 });
             }
 
-
 //                    getPicSize("previewAva",picurl,function () {
 //                        if (picurl) {
 //                            if (img_w >= img_h) {
@@ -177,6 +190,16 @@ $admin_url=admin_url('admin-ajax.php');
                     }
                 });
             }
+
+        </script>
+        <script type="text/javascript">
+            var file = $('#simple-local-avatar'),
+                aim = $('#aim');
+            file.on('change', function( e ){
+                //e.currentTarget.files 是一个数组，如果支持多个文件，则需要遍历
+                var name = e.currentTarget.files[0].name;
+                aim.val( name );
+            });
         </script>
         <p style="font-size: large;margin-top: 20px"><?php echo $current_user->data->display_name;?></p>
         <p style="margin-top: 10px;color: gray"><?php echo $user_description;?></p>

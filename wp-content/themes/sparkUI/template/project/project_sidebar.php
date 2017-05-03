@@ -53,6 +53,13 @@ $tag_count = array();
         <li class="list-group-item">
             <div style="display: inline-block; vertical-align: baseline;">
                 <span class="fa fa-star pull-left" style="color: red"
+                <p><a href="<?php the_permalink(4276); ?>">&nbsp;&nbsp;创客兴趣项目</a></p></span>
+                <!--传浏览量-->
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div style="display: inline-block; vertical-align: baseline;">
+                <span class="fa fa-star pull-left" style="color: red"
                 <p><a href="<?php the_permalink(258); ?>">&nbsp;&nbsp;小学期创新课开放项目</a></p></span>
                 <!--传浏览量-->
             </div>
