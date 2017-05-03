@@ -1,0 +1,252 @@
+[ 2017-02-26T00:37:37+08:00 ] 106.109.10.1 /library/Home/Index/share.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001958s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002015s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002080s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `lib_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `lib_admin` WHERE `username` = null LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = null LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lib_component` WHERE `tag` = '材料' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `lib_component` WHERE `tag` = '材料' LIMIT 0,12   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000104s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000180s ]
+NOTIC: [8] Use of undefined constant share - assumed 'share' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 16 行.
+NOTIC: [8] Use of undefined constant mywait - assumed 'mywait' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 18 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 20 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 24 行.
+NOTIC: [8] Use of undefined constant register - assumed 'register' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 40 行.
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 41 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 67 行.
+NOTIC: [8] Undefined variable: flag /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 88 行.
+NOTIC: [8] Undefined variable: flag /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 90 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 95 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.096956s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.097016s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.005937s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005986s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004098s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004156s ]
+
+[ 2017-02-26T00:37:38+08:00 ] 106.109.10.1 /library/Home/Index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000316s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000409s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000464s ]
+ERR: 非法操作:index
+
+[ 2017-02-26T10:55:44+08:00 ] 101.226.89.115 /library/Home/Index/mywait.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001991s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002139s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002198s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0183s ]
+SQL: SHOW COLUMNS FROM `lib_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `lib_admin` WHERE `username` = null LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `lib_component_shop` [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = null LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `lib_component_status` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lib_component_shop` WHERE ( username='' ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT a.name,a.number,b.nownumber,b.username,c.address,c.phone,d.img FROM lib_component_shop a INNER JOIN lib_component_status b ON a.name=b.name and a.number<b.nownumber and a.username!=b.username INNER JOIN lib_userinfo c ON b.username=c.username INNER JOIN lib_component d ON a.name=d.name  WHERE ( a.username='' AND status=3 ) ORDER BY a.id desc LIMIT 0,6   [ RunTime:0.0009s ]
+SQL: SELECT a.name,a.number,b.img,b.number_left FROM lib_component_shop a INNER JOIN lib_component b ON a.name=b.name and a.number<b.number_left  WHERE ( username='' ) ORDER BY a.id desc LIMIT 0,6   [ RunTime:0.0011s ]
+NOTIC: [8] Undefined variable: list2 /var/www/html/library/Application/Home/Controller/IndexController.class.php 第 903 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000099s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000171s ]
+NOTIC: [8] Use of undefined constant share - assumed 'share' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 17 行.
+NOTIC: [8] Use of undefined constant mywait - assumed 'mywait' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 25 行.
+NOTIC: [8] Use of undefined constant register - assumed 'register' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 41 行.
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 42 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 68 行.
+NOTIC: [8] Use of undefined constant myborrow - assumed 'myborrow' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 91 行.
+NOTIC: [8] Use of undefined constant myrepair - assumed 'myrepair' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 92 行.
+NOTIC: [8] Use of undefined constant mykeep - assumed 'mykeep' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 93 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.072482s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.072556s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002785s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002833s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001909s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001961s ]
+
+[ 2017-02-26T11:06:46+08:00 ] 106.108.18.26 /library/Home/Index/share.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000323s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000407s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000462s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `lib_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `lib_admin` WHERE `username` = null LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = null LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lib_component` WHERE `tag` = '材料' LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component` WHERE `tag` = '材料' LIMIT 0,12   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000079s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000140s ]
+NOTIC: [8] Use of undefined constant share - assumed 'share' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 16 行.
+NOTIC: [8] Use of undefined constant mywait - assumed 'mywait' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 18 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 20 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 24 行.
+NOTIC: [8] Use of undefined constant register - assumed 'register' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 40 行.
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 41 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 67 行.
+NOTIC: [8] Undefined variable: flag /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 88 行.
+NOTIC: [8] Undefined variable: flag /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 90 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 95 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034199s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.034252s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000152s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000196s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000428s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000480s ]
+
+[ 2017-02-26T11:06:46+08:00 ] 106.108.18.26 /library/Home/Index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000319s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000396s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000451s ]
+ERR: 非法操作:index
+
+[ 2017-02-26T20:06:37+08:00 ] 223.72.54.222 /library/Home/Index/share.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002204s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001893s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001966s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0156s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `lib_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `lib_admin` WHERE `username` = null LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = null LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lib_component` WHERE `tag` = '材料' LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component` WHERE `tag` = '材料' LIMIT 0,12   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000101s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000170s ]
+NOTIC: [8] Use of undefined constant share - assumed 'share' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 16 行.
+NOTIC: [8] Use of undefined constant mywait - assumed 'mywait' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 18 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 20 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 24 行.
+NOTIC: [8] Use of undefined constant register - assumed 'register' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 40 行.
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 41 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 67 行.
+NOTIC: [8] Undefined variable: flag /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 88 行.
+NOTIC: [8] Undefined variable: flag /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 90 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 95 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /var/www/html/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.057136s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.057207s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001619s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001669s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001841s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001901s ]
+
+[ 2017-02-26T20:38:08+08:00 ] 101.226.125.16 /library/Home/Index/mywait.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000326s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000401s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000465s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `lib_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `lib_admin` WHERE `username` = null LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `lib_component_shop` [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = null LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `lib_component_status` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lib_component_shop` WHERE ( username='' ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT a.name,a.number,b.nownumber,b.username,c.address,c.phone,d.img FROM lib_component_shop a INNER JOIN lib_component_status b ON a.name=b.name and a.number<b.nownumber and a.username!=b.username INNER JOIN lib_userinfo c ON b.username=c.username INNER JOIN lib_component d ON a.name=d.name  WHERE ( a.username='' AND status=3 ) ORDER BY a.id desc LIMIT 0,6   [ RunTime:0.0001s ]
+SQL: SELECT a.name,a.number,b.img,b.number_left FROM lib_component_shop a INNER JOIN lib_component b ON a.name=b.name and a.number<b.number_left  WHERE ( username='' ) ORDER BY a.id desc LIMIT 0,6   [ RunTime:0.0001s ]
+NOTIC: [8] Undefined variable: list2 /var/www/html/library/Application/Home/Controller/IndexController.class.php 第 903 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000091s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000163s ]
+NOTIC: [8] Use of undefined constant share - assumed 'share' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 17 行.
+NOTIC: [8] Use of undefined constant mywait - assumed 'mywait' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 25 行.
+NOTIC: [8] Use of undefined constant register - assumed 'register' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 41 行.
+NOTIC: [8] Use of undefined constant login - assumed 'login' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 42 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 68 行.
+NOTIC: [8] Use of undefined constant myborrow - assumed 'myborrow' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 91 行.
+NOTIC: [8] Use of undefined constant myrepair - assumed 'myrepair' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 92 行.
+NOTIC: [8] Use of undefined constant mykeep - assumed 'mykeep' /var/www/html/library/Application/Runtime/Cache/Home/5291477d99465f153482b489eff818ce.php 第 93 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.037302s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.037422s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000153s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000199s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000396s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000446s ]
+

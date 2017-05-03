@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <title>系统概貌</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/person.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/header.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/footer.css">
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.1.min.js"></script>    
+    <script type="text/javascript" src="__PUBLIC__/js/mine.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/jquery.leanModal.min.js"></script>
+</head>
+<body>
+<div class="content">
+    <include file="header"/>
+    <div class="main">
+        <div class="classify">
+            <div class="classify-title"><a style="cursor: pointer;color:#000;text-decoration: none" href="{:U(share)}">物品管理</a>>系统概貌</div>
+        </div>
+
+
+<div class="main-right">
+    <div class="subnavigate">
+        <div  style="display:block;">
+                    <div class="bookmessage-nav">
+                        <ul class="bookmessage">
+                            <li><a href="{:U(system)}">全部物品</a></li>
+                            <li><a href="{:U(repair)}">报修物品</a></li>
+                            <li><a href="{:U(record)}">借用记录</a></li>
+                            <li  class="activecolor">用户管理</li>
+                            <li><a href="{:U(recovery)}">待回收物品</a></li>
+                            <li><a href="{:U(examine)}">待审核物品</a></li>
+                        </ul>
+                    </div>    
+
+<div class="result-wrap">
+            <form name="myform" id="myform" method="post">
+                <!-- <div class="result-title">
+                    <div class="result-list">                    
+                        <a id="batchDel" href="javascript:void(0)" ><input form="myform" formaction="__CONTROLLER__/bdeluser" type="submit" class="btn btn-primary btn2" onclick="return confirm('确定批量删除选中项吗？');" value="批量删除" /></a>
+                    </div>
+                </div> -->
+                
+                <div class="result-content">
+                    <table class="result-tab" width="100%">
+                        <tr>
+                            <!-- <th class="tc">全选</th>   -->
+                            <th>序号</th>
+                            <th>用户名</th>
+                            <th>基本信息</th>
+                            <th>借用状态</th>
+                            <th>操作</th>                          
+                        </tr>
+                        <volist name="list" id="vo">
+                        <tr>
+                            <!-- <td class="tc" align="center">                           
+                            <input name="ids[]" value="{$vo.id}" class="check" type="checkbox">                 
+                            </td> -->
+
+                            <td align="center">{$vo.id}</td>
+                            <td align="center">{$vo.username}</td>
+                            <td align="center">学号：{$vo.number}<br />手机号：{$vo.phone}</td>
+
+                            <td align="center">
+                            <volist name="arrb" id="qo">
+                            <if condition="$qo['username'] eq $vo['username']">
+                            借用中×{$qo.nownumber}<br />
+                            </if>
+                            </volist>
+
+                            <volist name="arrk" id="wo">
+                            <if condition="$wo['username'] eq $vo['username']">
+                            保管中×{$wo.nownumber}<br />
+                            </if>
+                            </volist>
+
+                            <volist name="arrr" id="eo">
+                            <if condition="$eo['username'] eq $vo['username']">
+                            报修中×{$eo.nownumber}<br />
+                            </if>
+                            </volist>
+                            </td>
+
+                            <td align="center">
+                                                               
+                                <a class="del-user" data-id="{$vo.id}" href="#delmodal">删除</a><br /><br />                      
+                                <a class="link-details" href=" __CONTROLLER__/person/id/{$vo.id}">详情</a>
+                                
+                            </td>
+                        </tr>
+                        </volist>
+                    </table>
+                    <span style="margin-top:20px;display:inline-block;">共{$count}个用户</span>
+                    <span class="fenpage">{$page}</span>
+                </div>
+            </form>
+            <div class="main-tan"></div>
+            <div id="delmodal" class="tan-reback" style="display:none;">
+                  <div>确定删除此用户吗？</div><br/><br/><br/>
+                  <a id="delNumAck" href="#">确认</a>&nbsp;&nbsp;&nbsp;
+                  <a class='closetrouble'  href="#">取消</a>
+            </div>
+           <!--  <li> {$ttest} </li> -->
+        </div>
+    </div>

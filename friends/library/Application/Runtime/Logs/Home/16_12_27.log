@@ -1,0 +1,1819 @@
+[ 2016-12-27T20:23:02+08:00 ] ::1 /library/Home/Index/message.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000468s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000453s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000481s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0104s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0021s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000075s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000102s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/7bc926c62f03552807ce76e368c497a4.php 第 16 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/7bc926c62f03552807ce76e368c497a4.php 第 17 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/7bc926c62f03552807ce76e368c497a4.php 第 18 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/7bc926c62f03552807ce76e368c497a4.php 第 19 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/7bc926c62f03552807ce76e368c497a4.php 第 22 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/7bc926c62f03552807ce76e368c497a4.php 第 46 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/7bc926c62f03552807ce76e368c497a4.php 第 53 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/7bc926c62f03552807ce76e368c497a4.php 第 54 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/7bc926c62f03552807ce76e368c497a4.php 第 55 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/7bc926c62f03552807ce76e368c497a4.php 第 65 行.
+NOTIC: [8] Use of undefined constant usemessage - assumed 'usemessage' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/7bc926c62f03552807ce76e368c497a4.php 第 94 行.
+NOTIC: [8] Use of undefined constant imgmessage - assumed 'imgmessage' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/7bc926c62f03552807ce76e368c497a4.php 第 101 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008196s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008214s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000328s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000351s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000501s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000524s ]
+
+[ 2016-12-27T20:27:06+08:00 ] ::1 /library/Home/Index/bookinfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000503s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000448s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000475s ]
+ERR: 1146:Table 'library.lib_passoncount' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `lib_passoncount`
+ERR: 1146:Table 'library.lib_passoncount' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `lib_passoncount`
+
+[ 2016-12-27T20:29:09+08:00 ] ::1 /library/Home/Index/bookinfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000236s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000231s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000255s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000139s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000166s ]
+NOTIC: [8] Undefined variable: bookusers /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Undefined variable: bookusers /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Undefined variable: bookusers /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Undefined variable: bookusers /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Undefined variable: orderflag /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 29 行.
+NOTIC: [8] Undefined variable: message /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 32 行.
+NOTIC: [8] Undefined variable: booklogmessage /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 33 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 35 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 50 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 51 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 52 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 53 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Undefined variable: user /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 69 行.
+NOTIC: [8] Use of undefined constant register - assumed 'register' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 72 行.
+NOTIC: [8] Use of undefined constant login - assumed 'login' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 73 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 99 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 99 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 103 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 104 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 105 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 107 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 107 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 107 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 107 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 107 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 107 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 108 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 113 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 115 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 118 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 118 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 124 行.
+NOTIC: [8] Use of undefined constant comment - assumed 'comment' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 133 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 133 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 144 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 145 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 146 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 148 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 149 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 150 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 158 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 166 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 174 行.
+NOTIC: [8] Undefined variable: booklog /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 191 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 253 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 256 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 258 行.
+NOTIC: [8] Undefined variable: num /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 266 行.
+NOTIC: [8] Undefined variable: flag1 /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 273 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 285 行.
+NOTIC: [8] Undefined variable: flag1 /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 287 行.
+NOTIC: [8] Use of undefined constant bookcomment - assumed 'bookcomment' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 292 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 299 行.
+NOTIC: [8] Undefined variable: bookcomment /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 305 行.
+NOTIC: [8] Undefined variable: bookinfo2 /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 345 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009393s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009417s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000253s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000271s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000603s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000641s ]
+
+[ 2016-12-27T20:31:42+08:00 ] ::1 /library/Home/Index/bookinfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000215s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000205s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000226s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000085s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000118s ]
+NOTIC: [8] Undefined variable: bookusers /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Undefined variable: bookusers /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Undefined variable: bookusers /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Undefined variable: bookusers /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 33 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 34 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 35 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 36 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 39 行.
+NOTIC: [8] Undefined variable: user /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 52 行.
+NOTIC: [8] Use of undefined constant register - assumed 'register' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant login - assumed 'login' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 82 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 82 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 86 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 87 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 88 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 90 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 90 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 90 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 90 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 90 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 90 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 91 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 96 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 98 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 101 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 101 行.
+NOTIC: [8] Undefined variable: book /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 107 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 124 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 125 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 126 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 128 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 129 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 130 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 138 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 146 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 154 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005484s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005505s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000098s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000110s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000299s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000315s ]
+
+[ 2016-12-27T20:53:21+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000476s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000456s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000489s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0015s ]
+ERR: 1054:Unknown column 'huran' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM `lib_userinfo` WHERE ( huran ) LIMIT 1  
+ERR: 1054:Unknown column 'huran' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM `lib_userinfo` WHERE ( huran ) LIMIT 1  
+
+[ 2016-12-27T20:54:32+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000520s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000877s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000934s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+NOTIC: [8] Undefined variable: user /Applications/XAMPP/xamppfiles/htdocs/library/Application/Home/Controller/IndexController.class.php 第 2430 行.
+ERR: Call to a member function where() on unknown
+
+[ 2016-12-27T20:54:45+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000303s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000231s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000257s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined variable: comData /Applications/XAMPP/xamppfiles/htdocs/library/Application/Home/Controller/IndexController.class.php 第 2433 行.
+SQL: SELECT * FROM `lib_component` WHERE `id` = null LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000057s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000087s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 71 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 72 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 89 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 97 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006264s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006284s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000298s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000319s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000639s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000667s ]
+
+[ 2016-12-27T20:55:10+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000191s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000224s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000245s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined variable: comData /Applications/XAMPP/xamppfiles/htdocs/library/Application/Home/Controller/IndexController.class.php 第 2433 行.
+SQL: SELECT * FROM `lib_component` WHERE `id` = null LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000047s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000071s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 71 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 72 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 89 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 97 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004231s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004247s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000084s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000097s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000242s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000257s ]
+
+[ 2016-12-27T20:55:11+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000167s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000209s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000228s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined variable: comData /Applications/XAMPP/xamppfiles/htdocs/library/Application/Home/Controller/IndexController.class.php 第 2433 行.
+SQL: SELECT * FROM `lib_component` WHERE `id` = null LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000041s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000062s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 71 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 72 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 89 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 97 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002989s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003003s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000096s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000139s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000237s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000252s ]
+
+[ 2016-12-27T20:55:33+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000174s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000221s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000243s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0021s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000045s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000068s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 71 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 72 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 89 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 97 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004290s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004306s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000084s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000096s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000252s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000268s ]
+
+[ 2016-12-27T20:55:50+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000183s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000256s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000286s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000045s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000068s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 71 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 72 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 89 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 97 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003275s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003290s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000083s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000095s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000240s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000253s ]
+
+[ 2016-12-27T20:56:13+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000162s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000201s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000221s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0023s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000040s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000064s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 89 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 97 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003511s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003527s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000084s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000096s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000432s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000450s ]
+
+[ 2016-12-27T20:56:34+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000470s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000548s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000578s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000062s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000099s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 90 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 98 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006783s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006806s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000415s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000441s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001312s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001355s ]
+
+[ 2016-12-27T20:56:49+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000180s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000217s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000236s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000039s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000062s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 90 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 98 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003089s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003105s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000131s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000151s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000273s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000297s ]
+
+[ 2016-12-27T20:56:56+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000336s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000213s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000234s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000040s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000059s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+NOTIC: [8] Undefined variable: bookin /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 90 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 98 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003291s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003320s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000207s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000235s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000457s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000479s ]
+
+[ 2016-12-27T20:57:32+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000229s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000242s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000266s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000070s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000109s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 98 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005118s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005140s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000132s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000148s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000394s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000419s ]
+
+[ 2016-12-27T21:00:31+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000385s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000436s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000459s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000042s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000067s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+NOTIC: [8] Undefined variable: bookinfo /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 98 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004656s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004675s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000548s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000605s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000822s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000859s ]
+
+[ 2016-12-27T21:03:38+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000322s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000274s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000301s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000050s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000074s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004328s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004345s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000083s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000095s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000253s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000268s ]
+
+[ 2016-12-27T21:04:39+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000184s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000205s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000224s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000048s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000074s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004005s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004020s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000088s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000099s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000242s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000256s ]
+
+[ 2016-12-27T21:04:40+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000180s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000411s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000463s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000055s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000092s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005194s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005224s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000172s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000194s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000439s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000469s ]
+
+[ 2016-12-27T21:04:41+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000165s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000353s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000397s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000045s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000068s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003171s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003187s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000086s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000098s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000243s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000258s ]
+
+[ 2016-12-27T21:04:41+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000175s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000529s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000564s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000046s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000070s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003457s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003476s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000098s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000112s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000249s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000264s ]
+
+[ 2016-12-27T21:04:56+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000212s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000235s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000262s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0021s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000057s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000088s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004896s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004923s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000133s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000147s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000482s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000533s ]
+
+[ 2016-12-27T21:04:57+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000195s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000440s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000499s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000041s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000062s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003206s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003223s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000079s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000092s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000346s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000371s ]
+
+[ 2016-12-27T21:05:36+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000184s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000203s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000222s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000079s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000109s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003877s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003893s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000089s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000101s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000288s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000303s ]
+
+[ 2016-12-27T21:06:10+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000220s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000223s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000245s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000056s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000086s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006404s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006427s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000116s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000129s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000279s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000295s ]
+
+[ 2016-12-27T21:06:20+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000178s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000449s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000489s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000041s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000062s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003174s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003192s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000099s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000113s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000260s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000274s ]
+
+[ 2016-12-27T21:06:29+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000163s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000213s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000234s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000050s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000077s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004548s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004565s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000095s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000107s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000254s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000272s ]
+
+[ 2016-12-27T21:06:52+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000308s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000216s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000237s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000044s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000069s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003598s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003614s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000098s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000112s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000274s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000289s ]
+
+[ 2016-12-27T21:07:08+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000168s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000218s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000240s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000114s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000160s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003902s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003938s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000162s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000185s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000529s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000559s ]
+
+[ 2016-12-27T21:08:15+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000458s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000472s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000503s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000046s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000075s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006427s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006446s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000376s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000404s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000586s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000614s ]
+
+[ 2016-12-27T21:08:16+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000164s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000222s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000241s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000044s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000068s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003739s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003760s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000080s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000092s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000246s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000260s ]
+
+[ 2016-12-27T21:08:53+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000192s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000207s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000227s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000050s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000074s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004141s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004156s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000083s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000095s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000234s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000248s ]
+
+[ 2016-12-27T21:09:23+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000158s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000197s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000217s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0021s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000046s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000070s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003580s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003598s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000093s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000113s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000247s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000262s ]
+
+[ 2016-12-27T21:09:50+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000263s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000235s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000258s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000055s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000079s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004628s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004646s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000085s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000097s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000253s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000268s ]
+
+[ 2016-12-27T21:11:26+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000178s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000241s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000268s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0021s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000048s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000074s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003758s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003792s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000097s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000109s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000274s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000289s ]
+
+[ 2016-12-27T21:15:54+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000380s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000452s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000474s ]
+ERR: syntax error, unexpected '$usermessage' (T_VARIABLE)
+
+[ 2016-12-27T21:16:30+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000158s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000212s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000235s ]
+ERR: syntax error, unexpected 'print_r' (T_STRING)
+
+[ 2016-12-27T21:16:42+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000457s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000233s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000258s ]
+ERR: syntax error, unexpected 'echo' (T_ECHO)
+
+[ 2016-12-27T21:16:59+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000172s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000204s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000222s ]
+ERR: syntax error, unexpected '$usermessage' (T_VARIABLE)
+
+[ 2016-12-27T21:17:18+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000157s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000199s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000219s ]
+ERR: syntax error, unexpected '}'
+
+[ 2016-12-27T21:18:19+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000192s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000202s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000221s ]
+ERR: syntax error, unexpected 'print_r' (T_STRING)
+
+[ 2016-12-27T21:18:34+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000409s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000235s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000275s ]
+ERR: syntax error, unexpected '$this' (T_VARIABLE)
+
+[ 2016-12-27T21:18:35+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000157s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000198s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000216s ]
+ERR: syntax error, unexpected '$this' (T_VARIABLE)
+
+[ 2016-12-27T21:18:48+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000603s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000540s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000571s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000085s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000136s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+NOTIC: [8] Undefined index: address /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 111 行.
+NOTIC: [8] Undefined index: address /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 111 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007958s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007980s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000360s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000381s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000522s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000545s ]
+
+[ 2016-12-27T21:19:21+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000400s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000515s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000548s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000046s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000070s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+NOTIC: [8] Undefined index: address /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 111 行.
+NOTIC: [8] Undefined index: address /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 111 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005157s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005172s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000320s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000362s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000543s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000565s ]
+
+[ 2016-12-27T21:19:39+08:00 ] ::1 /library/Home/Index/bookinfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000188s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000241s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000267s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0018s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = null  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000061s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000104s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006530s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006559s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000192s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000220s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000454s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000481s ]
+
+[ 2016-12-27T21:19:45+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000230s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000206s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000226s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000058s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000085s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+NOTIC: [8] Undefined index: address /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 111 行.
+NOTIC: [8] Undefined index: address /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 111 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004834s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004853s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000102s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000116s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000257s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000272s ]
+
+[ 2016-12-27T21:20:04+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000173s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000267s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000290s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0021s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000057s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000085s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+NOTIC: [8] Undefined index: address /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 111 行.
+NOTIC: [8] Undefined index: address /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 111 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005463s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005485s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000132s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000149s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000276s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000304s ]
+
+[ 2016-12-27T21:20:26+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000180s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000373s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000409s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000050s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000076s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+NOTIC: [8] Undefined index: address /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 111 行.
+NOTIC: [8] Undefined index: address /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 111 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003679s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003697s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000099s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000112s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000274s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000289s ]
+
+[ 2016-12-27T21:20:54+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000170s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000232s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000259s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000047s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000072s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003960s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003981s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000119s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000141s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000499s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000542s ]
+
+[ 2016-12-27T21:21:02+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000218s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000266s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000296s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000058s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000086s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005776s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005792s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000116s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000154s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000397s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000421s ]
+
+[ 2016-12-27T21:21:06+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000211s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000204s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000224s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0023s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000055s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000080s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005428s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005451s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000104s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000117s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000255s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000269s ]
+
+[ 2016-12-27T21:23:30+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000197s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000454s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000539s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000045s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000068s ]
+ERR: syntax error, unexpected '＝＝' (T_STRING)
+
+[ 2016-12-27T21:23:52+08:00 ] ::1 /library/Home/Index/bookinfo.html?comid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000159s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000211s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000233s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `lib_component_log` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `lib_component` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component_log` WHERE `name` = '电阻'  [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_userinfo` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000045s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000066s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 18 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 19 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 20 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 21 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 24 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 48 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 55 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 56 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 57 行.
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/318a7865cee94dd0cdaedb710742b8ce.php 第 67 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003530s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003548s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000300s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000323s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000698s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000727s ]
+
+[ 2016-12-27T21:23:58+08:00 ] ::1 /library/Home/Index/share.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000180s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000316s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000358s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = 'huran' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lib_component` LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `lib_component` LIMIT 0,9   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000053s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000077s ]
+NOTIC: [8] Use of undefined constant index - assumed 'index' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 16 行.
+NOTIC: [8] Use of undefined constant help - assumed 'help' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 17 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 18 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 19 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 22 行.
+NOTIC: [8] Undefined index: image /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 46 行.
+NOTIC: [8] Use of undefined constant person - assumed 'person' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 53 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 54 行.
+NOTIC: [8] Use of undefined constant logout - assumed 'logout' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 55 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 65 行.
+NOTIC: [8] Undefined variable: flag /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 86 行.
+NOTIC: [8] Undefined variable: flag /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 88 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 93 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 106 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 106 行.
+NOTIC: [8] Undefined variable: page /Applications/XAMPP/xamppfiles/htdocs/library/Application/Runtime/Cache/Home/b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 116 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004557s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004578s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000132s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000145s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000279s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000294s ]
+

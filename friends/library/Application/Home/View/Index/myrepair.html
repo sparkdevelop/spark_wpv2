@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <title>管理中心</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/person.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/header.css">
+    <!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/footer.css"> -->
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.1.min.js"></script>    
+    <script type="text/javascript" src="__PUBLIC__/js/mine.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/jquery.leanModal.min.js"></script>
+
+</head>
+<body>
+<div class="content">
+    <include file="header"/>
+    <div class="main">
+        <div class="classify">
+            <div class="classify-title"><a style="cursor: pointer;color:#000;text-decoration: none" href="{:U(share)}">物品管理</a>>管理中心</div>
+        </div>
+
+        <div class="search-wrap">
+            <div class="search-content">
+                <!-- <form action="" method="post">
+                    <table class="search-tab">
+                        <tr>
+                            
+                            <td><input class="common-text" placeholder="请输入搜索关键词" name="kw" value="<?php echo I('kw');?>" id="" type="text"></td>
+                            <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>
+                        </tr>
+                    </table>
+                </form> -->
+            </div>
+        </div>
+
+<div class="main-right">
+    <div class="subnavigate">
+        <div  style="display:block;">
+                    <div class="bookmessage-nav">
+                        <ul class="bookmessage">
+                            <li><a href="{:U(mywait)}">待取物品</a></li>
+                            <li><a href="{:U(myborrow)}">已借物品</a></li>
+                            <li  class="activecolor">报修物品</li>
+                            <li><a href="{:U(mykeep)}">保管物品</a></li>
+                        </ul>
+                    </div>    
+
+<div class="result-wrap">
+            <form name="myform" id="myform" method="post">
+                <div class="result-title">
+                    <div class="result-list">                    
+                        <!-- <a id="batchDel" href="javascript:void(0)" ><input form="myform" formaction="__CONTROLLER__/bcancel" type="submit" class="btn btn-primary btn2" onclick="return confirm('确定批量取消选中项吗？');" value="批量取消" /></a> -->
+                    </div>
+                </div>
+                
+                <div class="result-content">
+                    <table class="result-tab" width="100%">
+                        <tr>
+                            <!-- <th class="tc" width="5%"><input type="checkbox" class="allChoose"  id='all' >全选</th> -->                             
+                            <th>物品图片</th>
+                            <th>物品名称</th>
+                            <th>报修数量</th>
+                            <th>报修时间</th> 
+                            <th>状态</th> 
+                            <th>操作</th>               
+                        </tr>
+                        
+                        <volist name="list" id="vo">
+                        <tr>
+                            <!-- <td class="tc" align="center">                           
+                            <input name="ids[]" value="{$vo.id}" class="check" type="checkbox">                 
+                            </td> -->
+                            <td align="center"  class="td-img"><img style="height:160px;width:160px;" src="{$vo.img}"></td>
+                            <td align="center">{$vo.name}</td>
+                            <td align="center">{$vo.nownumber}</td>
+                            <td align="center">{$vo.time}</td>
+                            <td align="center">
+                                <if condition = "$vo['conditions'] eq 0">报修中</if>
+                                <if condition = "$vo['conditions'] eq 1">处理中</if>
+                                <if condition = "$vo['conditions'] eq 2">已完成</if>
+
+                            </td>
+
+                            <td align="center">
+                                <if condition="$vo['conditions'] eq 0">                               
+                                <a class="link-canl" data-name="{$vo.name}" data-number="{$vo.nownumber}" href="#cancelmodal">取消报修</a>
+                                </if>
+                                <if condition="$vo['conditions'] eq 1">                               
+                                <a class="link-canl" data-name="{$vo.name}" data-number="{$vo.nownumber}" href="#cancelmodal">取消报修</a>
+                                </if>
+                                <if condition="$vo['conditions'] eq 2">                               
+                                <a class="link-canl" data-name="{$vo.name}" data-number="{$vo.nownumber}" href="#cancelmodal">确认</a>
+                                </if>
+                                
+                            </td>
+                            
+                        </tr>
+                        </volist>
+
+                    </table>
+                    <div class="list-page"> {$page}</div>
+                </div>
+            </form>
+            <div class="main-tan"></div>
+            <div id="cancelmodal" class="tan-reback" style="display:none;">
+                  <div>确定取消报修选中项吗？</div><br/><br/><br/>
+                  <a id="cancelNumAck" href="#">确认</a>&nbsp;&nbsp;&nbsp;
+                  <a class='closetrouble'  href="#">取消</a>
+            </div>
+        </div>        
+    </div>

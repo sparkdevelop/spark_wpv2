@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <title>物品上传</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/contribute.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/header.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/footer.css">
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <div class="content">
+        <include file="header"/>
+        <div class="main">
+            <div class="classify">
+                <div class="classify-title"><a style="cursor: pointer;color:#000;text-decoration: none" href="{:U(share)}">物品管理</a>>物品上传</div>
+            </div>
+            <div class="main-body">
+                <div class="main-main">
+                    <div class="book-upload">物&nbsp;品&nbsp;上&nbsp;传</div>
+                    <!--<form name="form" action="{doContribute}" method="post" onsubmit="return check()">-->
+                        <div class="isbn-message">
+                            <div class="label-width">物品名称</div>
+                            <div class="details-width book-details">
+                                <input type="text" name="name" placeholder=""/>
+                            </div>
+                        </div>
+                        <div class="book-reading-message">
+                            <div class="label-width">物品图片</div>
+                            <div class="details-width book-details">
+                                <input type="file" class="user_pic" value="选择图片"/>
+                                <input type="text" style="display:none;" name="imgpic" value=""/>
+                                <input id="public" value="__PUBLIC__" style="display: none">
+                            <img class="img-result" src="">                           
+
+                            </div>
+                        </div>
+                        <div class="book-reading-message">
+                            <div class="label-width">物品数量</div>
+                            <div class="details-width book-details">
+                                <input type="text" name="number" placeholder=""/>个
+                            </div>
+                        </div>
+                        <div class="book-join-drift">
+                            <div class="label-width">物品分类</div>
+                            <div class="details-width book-details">
+                                <select name="tag">
+                                    <option value="设备">设备</option>
+                                    <option value="材料">材料</option>
+                                    <option value="家具">家具</option>
+                                    <option value="图书">图书</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="book-leave-message">
+                             <div class="label-width">物品简介</div>
+                             <div class="details-width">
+                                 <textarea class="write" name="summary"></textarea>
+                             </div>
+                        </div>
+                        <input type="submit" value="确定上传" class="sure-submit"/>
+                    <!--</form>-->
+                </div>
+            </div>
+        </div>
+        <!-- <include file="footer"/> -->
+    </div>
+</body>
+<script type="text/javascript" src="__PUBLIC__/js/contribute.js"></script>
+<!-- <script type="text/javascript" src="__PUBLIC__/js/labelsearch.js"></script> --> 
+</html>
