@@ -106,3 +106,55 @@
                         "<input type=\"submit\" name='submit' value=\"修改\">";
                 }
 </script>
+    <script>
+                                $("#previewAva").attr("src", picurl).load(function () {
+                                    var img_w = this.width;
+                                    var img_h = this.height;
+                                    if (img_w >= img_h) {
+                                        $("#previewAva").width(img_w * 100 / img_h).height(100);
+                                        var x1 = (img_w - img_h) / 2;
+                                        var x2 = (img_w - img_h) / 2 + img_h;
+                                        $("#previewAva").attr("src", picurl).css({
+                                            "position": "absolute",
+                                            "clip": "rect(0px " + x2 + "px " + img_h + "px " + x1 + "px)",
+                                            //"-webkit-border-radius": "60px"
+                                        });
+                                    } else{
+                                        $("#previewAva").width(img_h * 100 / img_w).height(100);
+                                        var y1 = (img_h - img_w) / 2;
+                                        var y2 = (img_h - img_w) / 2 + img_w;
+                                        $("#previewAva").attr("src", picurl).css({
+                                            "position": "absolute",
+                                            "clip": "rect(" + y1 + "px "+ img_w + "px " + y2 + "px " + "0px)",
+                                            //"-webkit-border-radius": "60px"
+                                        });
+                                    }
+                                    //显示
+                                    $("#previewAva").show();
+                                });
+                            $("#previewAva").attr("src", picurl);
+                            //获取图片宽和高 写函数?
+                            getImageWidthAndHeight('simple-local-avatar', function (obj) {
+                                console.log('width:' + obj.width + '-----height:' + obj.height);
+        //                        var img_w = obj.width;
+        //                        var img_h = obj.height;
+        //                        //处理图片,设置css
+        //                        if (img_w >= img_h) {
+        //                            var x1 = (img_w - img_h) / 2;
+        //                            var x2 = (img_w - img_h) / 2 + img_h;
+        //                            $("#previewAva").attr("src", picurl).css({
+        //                                "position": "absolute",
+        //                                "clip": "rect(0px " + x1 + "px " + img_h + "px " + x2 + "px)"
+        //                            });
+        //                        } else {
+        //                            var y1 = (img_h - img_w) / 2;
+        //                            var y2 = (img_h - img_w) / 2 + img_w;
+        //                            $("#previewAva").attr("src", picurl).css({
+        //                                "position": "absolute",
+        //                                "clip": "rect(" + y1 + "px 0px" + y2 + "px " + img_w + "px)"
+        //                            });
+        //                        }
+        //                        //显示
+        //                        $("#previewAva").show();
+                            }
+    </script>
