@@ -31,6 +31,8 @@ if($qa_filter=='my-answers') {
                 <div class="qa_time">
                     <span><?php echo date('n月j日 G:i',get_the_time('U'));?>  </span>&nbsp;&nbsp;
                     <span>回答</span>
+                    <a onclick="deleteMyQuestion(<?=get_the_ID()?>,'answers')"
+                       style="cursor: pointer;margin-left: 20px;">删除</a>
                 </div>
             </div>
         </div>
@@ -60,10 +62,56 @@ else{ ?>
                 <div class="qa_time">
                     <span><?php echo date('n月j日 G:i',get_the_time('U'));?>  </span>&nbsp;&nbsp;
                     <span>提问</span>
+                    <a onclick="deleteMyQuestion(<?=get_the_ID()?>,'questions')"
+                       style="cursor: pointer;margin-left: 20px;">删除</a>
                 </div>
             </div>
         </div>
         <div class="divline"></div>
     </li>
-<?php } ?>
-
+<?php }
+$admin_url=admin_url( 'admin-ajax.php' );
+$url_question= site_url() . get_page_address('personal')."&filter=my-questions";
+$url_answer= site_url() . get_page_address('personal')."&filter=my-answers";
+?>
+<script>
+    function deleteMyQuestion(question_id,flag) {
+        jQuery(document).ready(function($){
+            var data={
+                action:'deleteMyQuestion',
+                question_id:question_id
+            };
+            $.post(
+                "<?php echo $admin_url;?>",
+                data,
+                function(response) {
+                    if(response===false) {
+                        alert("删除失败")
+                    } else{
+                        if(flag=="questions"){location.href = "<?=$url_question?>";}
+                        else{location.href = "<?=$url_answer?>";}
+                    }
+                }
+            )
+        });
+    }
+//    function deleteMyAnswer(question_id,flag) {
+//        jQuery(document).ready(function($){
+//            var data={
+//                action:'deleteMyQuestion',
+//                question_id:question_id
+//            };
+//            $.post(
+//                "<?php //echo $admin_url;?>//",
+//                data,
+//                function(response) {
+//                    if(response===false) {
+//                        alert("删除失败")
+//                    } else{
+//                        location.href = "<?//=$url_answer?>//";
+//                    }
+//                }
+//            )
+//        });
+//    }
+</script>

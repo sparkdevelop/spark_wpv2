@@ -205,7 +205,7 @@ function get_dwqa_cat_ID($cat_name){
     $cat_id = $wpdb->get_var("SELECT term_id FROM $wpdb->terms WHERE name = '$cat_name'");
     return $cat_id;
 }
-
+//验证原密码是否正确
 function checkPass(){
     global $wpdb;
     $current_user = wp_get_current_user();
@@ -235,6 +235,23 @@ function checkPass(){
 }
 add_action('wp_ajax_checkPass', 'checkPass');
 add_action('wp_ajax_nopriv_checkPass', 'checkPass');
+
+//删除我的问题
+function deleteMyQuestion(){
+    global $wpdb;
+    $question_id = isset($_POST["question_id"]) ? $_POST["question_id"] :'';
+    if(!empty($question_id)){
+        $sql = "UPDATE $wpdb->posts SET post_status = 'trash' WHERE ID =".$question_id;
+        $wpdb->get_results($sql);
+        $response = true;
+    } else{
+        $response = false;
+    }
+    echo $response;
+    exit;
+}
+add_action('wp_ajax_deleteMyQuestion', 'deleteMyQuestion');
+add_action('wp_ajax_nopriv_deleteMyQuestion', 'deleteMyQuestion');
 
 //附件的默认尺寸
 //add_action( 'after_setup_theme', 'default_attachment_display_settings' );

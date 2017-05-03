@@ -55,7 +55,7 @@ $page_personal_id = get_page_id('personal');
                         require "template/qa/QA_ask.php";
                     } else {?>
                         <script>
-                            location.href = "<?= wp_login_url( get_permalink())?>";
+                            location.replace("<?= wp_login_url( get_permalink())?>");
                         </script>
                 <?php   }
                 }
