@@ -139,3 +139,112 @@ INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002982s ]
 INFO: [ app_begin ] --END-- [ RunTime:0.003229s ]
 ERR: 非法操作:index
 
+[ 2017-05-03T21:30:32+08:00 ] ::1 /spark_wpv2/friends/library/Home/Index/share.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001012s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001274s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001345s ]
+ERR: SQLSTATE[HY000] [1044] Access denied for user ''@'localhost' to database 'library'
+
+[ 2017-05-03T21:31:09+08:00 ] ::1 /spark_wpv2/friends/library/Home/Index/share.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000637s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001098s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001184s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0094s ]
+SQL: SHOW COLUMNS FROM `lib_admin` [ RunTime:0.0197s ]
+SQL: SELECT * FROM `lib_admin` WHERE `username` = null LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = null LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lib_component` WHERE `tag` = '材料' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SELECT * FROM `lib_component` WHERE `tag` = '材料' LIMIT 0,12   [ RunTime:0.0011s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000101s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000167s ]
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 16 行.
+NOTIC: [8] Use of undefined constant mywait - assumed 'mywait' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 18 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 20 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 24 行.
+NOTIC: [8] Use of undefined constant register - assumed 'register' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 40 行.
+NOTIC: [8] Use of undefined constant login - assumed 'login' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 41 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 67 行.
+NOTIC: [8] Undefined variable: flag D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 88 行.
+NOTIC: [8] Undefined variable: flag D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 90 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 95 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.036278s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.036352s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.013174s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.013251s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002586s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002692s ]
+
+[ 2017-05-03T21:35:06+08:00 ] ::1 /spark_wpv2/friends/library/Home/Index/share.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000520s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001101s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001202s ]
+SQL: SHOW COLUMNS FROM `lib_userinfo` [ RunTime:0.0426s ]
+SQL: SHOW COLUMNS FROM `lib_component` [ RunTime:0.0699s ]
+SQL: SHOW COLUMNS FROM `lib_admin` [ RunTime:0.0108s ]
+SQL: SELECT * FROM `lib_admin` WHERE `username` = null LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `lib_userinfo` WHERE `username` = null LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lib_component` WHERE `tag` = '材料' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `lib_component` WHERE `tag` = '材料' LIMIT 0,12   [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000128s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000214s ]
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 16 行.
+NOTIC: [8] Use of undefined constant mywait - assumed 'mywait' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 17 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 18 行.
+NOTIC: [8] Use of undefined constant contribute - assumed 'contribute' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 20 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 24 行.
+NOTIC: [8] Use of undefined constant register - assumed 'register' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 40 行.
+NOTIC: [8] Use of undefined constant login - assumed 'login' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 41 行.
+NOTIC: [8] Use of undefined constant share - assumed 'share' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 67 行.
+NOTIC: [8] Undefined variable: flag D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 88 行.
+NOTIC: [8] Undefined variable: flag D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 90 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 95 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+NOTIC: [8] Use of undefined constant componentInfo - assumed 'componentInfo' D:\xampp\htdocs\spark_wpv2\friends\library\Application\Runtime\Cache\Home\b813aae94b2ddf4a4ed7e36f5c3a1a86.php 第 108 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016593s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016662s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000699s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000750s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001272s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001371s ]
+

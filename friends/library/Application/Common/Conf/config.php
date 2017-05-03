@@ -10,10 +10,10 @@ return array(
 //    'DB_PREFIX'             =>  'pw_',    // 数据库表前缀
 //    'COOK_PRIFIX'			=>	'passon_'
     'DB_TYPE'               =>  'MySql',     // 数据库类型
-    'DB_HOST'               =>  '', // 服务器地址
+    'DB_HOST'               =>  'localhost', // 服务器地址
     'DB_NAME'               =>  'library',          // 数据库名
-    'DB_USER'               =>  '',      // 用户名
-    'DB_PWD'                =>  '',          // 密码
+    'DB_USER'               =>  'root',      // 用户名
+    'DB_PWD'                =>  '19950715',          // 密码
     'DB_PORT'               =>  '3306',        // 端口
     'DB_PREFIX'             =>  'lib_',    // 数据库表前缀
 //    'COOK_PRIFIX'			=>	'passon_'
