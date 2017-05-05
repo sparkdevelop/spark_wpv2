@@ -1090,4 +1090,102 @@ if ( ! function_exists( 'wpex_mce_buttons' ) ) {
     }
 }
 add_filter( 'mce_buttons_2', 'wpex_mce_buttons' );
+
+//建立relation表
+function my_table_install () {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "relation";  //获取表前缀，并设置新表的名称
+    if($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+		  post_id int NOT NULL,
+		  post_type varchar(20) NOT NULL,
+		  related_id int NOT NULL,
+		  related_post_type varchar(20) NOT NULL
+          );";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+//执行数据表创建。当然你可以在前面加上一些判断，或者将函数放置到插件的安装脚本中执行。
+
+
+//写入项目-->wiki关系。
+function proRelatedWiki($pro_post_id){
+    /* 先找出一个项目,获取项目的content(ok)
+     * 进入对所有wiki词条的循环
+     * 在循环中找出wiki词条title(ok),在content中搜索,计数
+     * 并在relation数据库中插入一条数据,默认qa和project中为空
+     * 将wiki的信息保存
+     * 将返回的信息压进一个数组
+     * 在循环外对数字排序
+     * 返回值是 pro所关联的wiki信息数组。
+     * */
+    $td_array = array();
+    $arr_sort_wiki= array();
+    //获取项目内容
+    $content = strtolower(get_post($pro_post_id)->post_content);
+    //获取所有wiki词条
+    $args_wiki_all = array(
+        'post_type'  => 'yada_wiki',
+        'posts_per_page' => -1,
+    );
+    $wiki_all = new WP_Query( $args_wiki_all );
+    //进入wiki词条循环,对每一个词条
+    if ( $wiki_all->have_posts() ) :
+         while ($wiki_all->have_posts()) : $wiki_all->the_post();
+             if (get_post_status() == 'publish') :
+                 //进行比对处理,获取回来的$wiki_info包含id,title,count三个信息
+                 $wiki_info = processProWiki($pro_post_id,$content);
+                 if(!empty($wiki_info)){//如果该词条出现在了项目中,将其保存在$td_array二维数组中
+                     array_push($td_array,$wiki_info);
+                 }
+             endif;
+         endwhile;
+    else :
+        echo "error";//没有wiki词条的情况,不会出现
+    endif;
+    //如果项目中包含一些wiki词条
+    if(!empty($td_array)){
+        //按照count排序,保存在$td_array中
+        foreach($td_array as $key =>$value){
+            foreach($value as $i =>$count){
+                $arr_sort_wiki[$i][$key] = $count;
+            }
+        }
+        array_multisort($arr_sort_wiki['wiki_count'], SORT_DESC,$td_array);
+    }
+    return $td_array;
+}
+//针对每一个wiki词条
+function processProWiki($pro_post_id,$content)
+{
+    $wiki_info = array();
+    $wiki_title = strtolower(get_the_title());  //全部转化成小写 因为substr_count是精确匹配。
+    $appear_count = substr_count($content, $wiki_title);  //这个词条在content中出现的次数。
+    if ($appear_count != 0) {  //如果出现了
+        global $wpdb;
+        $wiki_id = get_the_ID(); //获取这个wiki的ID
+        //判断表中是否已经存在这个pro<->wiki对
+        $sql_1 = "SELECT * FROM wp_relation WHERE post_id=$pro_post_id AND related_id=$wiki_id";
+        $col = $wpdb->query($sql_1); //返回的结果有几行
+        if ($col === 0) {  //如果没有这个pro<->wiki对
+            $sql_2 = "INSERT INTO wp_relation VALUES ('',$pro_post_id,'post',$wiki_id,'yada_wiki')";
+            $wpdb->get_results($sql_2);
+        }
+        //如果存在了这个pro<->wiki对,不做任何处理,将wiki的信息加入返回的数组
+        $wiki_info = array('wiki_id' => $wiki_id, 'wiki_title' => $wiki_title, 'wiki_count' => $appear_count);
+    }
+    //没有出现不做任何处理,直接返回空数组。
+    return $wiki_info;
+}
+
+
+
+
+
+
+
+
+
 ?>
