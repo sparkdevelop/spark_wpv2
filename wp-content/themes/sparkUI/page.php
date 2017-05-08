@@ -65,6 +65,9 @@ $page_personal_id = get_page_id('personal');
                 elseif (is_page('My Posts')){
                     the_content();
                 }
+                elseif (is_page('ask_tiny')){
+                    require "template/qa/QA_ask_tiny.php";
+                }
                 elseif (is_page($page_personal_id)){
                     if (is_user_logged_in()) {
                         require "template/personal.php";

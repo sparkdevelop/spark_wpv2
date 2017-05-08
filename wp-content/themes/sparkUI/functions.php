@@ -1180,12 +1180,28 @@ function processProWiki($pro_post_id,$content)
     return $wiki_info;
 }
 
+//写入项目-->qa关系
+function proRelatedQA($post_id,$post_type,$related_id,$related_post_type){
+    global $wpdb;
+    $sql_1 = "SELECT * FROM wp_relation WHERE post_id=$post_id AND related_id=$related_id";
+    $col = $wpdb->query($sql_1); //返回的结果有几行
+    if ($col === 0) {  //如果没有这个pro<->wiki对
+        $sql_2 = "INSERT INTO wp_relation VALUES ('',$post_id,'$post_type',$related_id,'$related_post_type')";
+        $wpdb->get_results($sql_2);
+    }
+}
 
+//在qa页面展示来自项目or wiki
+function get_qa_related_id($qa_id){
+    global $wpdb;
+    $post_id = $wpdb->get_var($wpdb->prepare("SELECT * FROM wp_relation WHERE related_id=$qa_id;",""),1,0);
+    return $post_id;
+}
 
-
-
-
-
-
+function get_qa_related_post_type($qa_id){
+    global $wpdb;
+    $post_type = $wpdb->get_var($wpdb->prepare("SELECT * FROM wp_relation WHERE related_id=$qa_id;",""),2,0);
+    return $post_type;
+}
 
 ?>

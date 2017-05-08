@@ -17,7 +17,7 @@ $author_posts = new WP_Query(array('posts_per_page' => $per_page, 'paged' => $pa
 $post_id = get_the_ID();
 
 ?>
-    <div class="container" style="margin-top: 10px">
+<div class="container" style="margin-top: 10px">
         <div class="row" style="width: 100%">
             <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
                 <!--引入动态模板-->
@@ -104,10 +104,10 @@ $post_id = get_the_ID();
                     <span><?php comments_popup_link('0 条', '1 条', '% 条', '', '评论已关闭'); ?></span><br>
                 </div><br>
 
-                <!--    相似问题-->
                 <?php $related_wiki = proRelatedWiki(get_the_ID()); ?>
-                    <div class="related_wikis">
+                <div class="related_wikis">
                         <div class="sidebar_list_header">
+
                             <p>相关知识</p>
                             <a id="sidebar_list_link" onclick="show_more_wiki()">更多</a>
                         </div>
@@ -121,7 +121,7 @@ $post_id = get_the_ID();
                                 else{$length = 5;}
                                 for($i=0;$i<$length;$i++){ ?>
                                     <li class="list-group-item">
-                                        <a href="<?php echo get_permalink($related_wiki[$i]["wiki_id"])?>" class="question-title">
+                                        <a href="<?php echo get_permalink($related_wiki[$i]["wiki_id"]);?>" class="question-title">
                                             <?php echo get_the_title($related_wiki[$i]["wiki_id"]);?>
                                         </a>
                                     </li>
@@ -138,14 +138,34 @@ $post_id = get_the_ID();
 
                                 for($i=0;$i<$length;$i++){ ?>
                                     <li class="list-group-item">
-                                        <a href="<?php echo get_permalink($related_wiki[$i]["wiki_id"])?>" class="question-title" id="more_wiki">
+                                        <a href="<?php echo get_permalink($related_wiki[$i]["wiki_id"]);?>" class="question-title" id="more_wiki">
                                             <?php echo get_the_title($related_wiki[$i]["wiki_id"]);?>
                                         </a>
                                     </li>
                                 <?php } ?>
                             </ul>
                         </div>
+                </div>
+
+                <?php
+                $current_url = curPageURL();
+                $url_array=parse_url($current_url);
+                $current_page_id=explode("=",$url_array['query'])[1];
+                ?>
+                <?php if(is_user_logged_in()){ ?>
+                    <div class="sidebar_button" id="ask_button">
+                        <?php session_start();
+                            $_SESSION['post_id'] = $current_page_id;
+                            $_SESSION['post_type'] = get_post_type($current_page_id);?>
+                        <a href="<?php echo site_url().get_page_address('ask_tiny');?>" style="color: white" id="ask_link">我要提问</a>
                     </div>
+                <?php }else{ ?>
+                    <div class="sidebar_button" id="ask_button">
+                        <a href="<?php echo wp_login_url( get_permalink() ); ?>" style="color: white">我要提问</a>
+                    </div>
+                <?php } ?>
+
+
             </div>
             <?php //get_sidebar();?>
         </div>
@@ -166,5 +186,9 @@ $post_id = get_the_ID();
         }
         flag=!flag;
     }
+    function processProQA ($post_id) {
+        $("#ask_link").attr("href","<?php echo site_url().get_page_address('ask_tiny');?>");
+    }
 </script>
+
 
