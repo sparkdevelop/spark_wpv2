@@ -99,7 +99,7 @@ if (dwqa_question_answers_count($qa_id) != 0) {
                     <div class="qa_time">
                         <?php $user_id = get_post_field( 'post_author', $qa_id ) ? get_post_field( 'post_author', $qa_id ) : 0;?>
                         <a href="<?php dwqa_get_author_link( $best_ans_author );?>" class="author_link"><?php echo get_userdata($best_ans_author)->display_name;?></a>
-                        <span><?php echo human_time_diff(get_the_time('U',$best_ans_id))."前";?>  </span>&nbsp;&nbsp;
+                        <span><?php echo human_time_diff(get_post_time('U',true,$best_ans_id))."前";?>  </span>&nbsp;&nbsp;
                         <span>回答</span>
                     </div>
                     <div class="qa_best_answer">

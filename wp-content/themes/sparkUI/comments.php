@@ -2,6 +2,16 @@
 //get 项目 related QA id。
 $related_qa_id = pwRelatedQA(get_the_ID()); //返回一个qa_id集合而成的数组
 $length = sizeof($related_qa_id);
+$perpage = 1;
+$total_page = ceil($length/$perpage);
+if(!$_GET['paged']){
+    $current_page = 1;
+}
+else{
+    $page_num=$_GET['paged'];
+    $current_page = $page_num;
+}
+
 ?>
 <ul id="leftTab" class="nav nav-pills">
         <li class="active"><a href="#project_comment" data-toggle="tab">评论</a></li>
@@ -71,15 +81,31 @@ $length = sizeof($related_qa_id);
 </div>
         </div>
         <div class="tab-pane fade" id="related_QA">
-                <ul class="list-group" style="margin-top: 65px;border-top: 1px solid lightgray">
+                <ul class="list-group" style="margin-bottom:0px;margin-top: 65px;border-top: 1px solid lightgray">
                     <?php
                     if($length!=0){
-                        for($i=0;$i<$length;$i++){
+                        $temp = $length < $perpage*$current_page ? $length : $perpage*$current_page;
+                        for($i=$perpage*($current_page-1);$i<$temp;$i++){
                          require "template/comment-question.php";
                         }
                     }else{?>
-                        <h4>可以在侧脸栏提问</h4>
+                        <h4>可以在侧边栏提问</h4>
                     <?php } ?>
                 </ul>
+            <?php
+            if($total_page>1){?>
+                <div id="page_comment_qa" style="text-align:center;margin-bottom: 20px">
+                    <!--翻页-->
+                    <?php if($current_page==1){?>
+                        <a href="<?php echo add_query_arg(array('paged'=>$current_page+1)).'#QA_related'?>">下一页&nbsp;&raquo;</a>
+                    <?php }elseif($current_page==$total_page){ ?>
+                        <a href="<?php echo add_query_arg(array('paged'=>$current_page-1)).'#QA_related'?>">&laquo;&nbsp;上一页</a>
+                    <?php }else{?>
+                        <a href="<?php echo add_query_arg(array('paged'=>$current_page-1)).'#QA_related'?>">&laquo;&nbsp;上一页&nbsp;</a>
+                        <a href="<?php echo add_query_arg(array('paged'=>$current_page+1)).'#QA_related'?>">&nbsp;下一页&nbsp;&raquo;</a>
+                    <?php }?>
+                </div>
+            <?php } ?>
+
         </div>
 </div><!-- .comments-area -->

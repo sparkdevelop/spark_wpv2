@@ -944,3 +944,7 @@ box-shadow: none;
     margin-top: 38px;
     opacity: 1;
 }
+#QA_related:focus{
+    outline: none;
+    background-color: transparent;
+}
