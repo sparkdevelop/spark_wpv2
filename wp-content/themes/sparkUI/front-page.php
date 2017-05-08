@@ -38,7 +38,10 @@
     }
 </style>
 
-<?php get_header(); ?>
+<?php get_header();
+my_table_install();
+?>
+
 <div class="container-fluid" style="padding: 0;">
     <div class="head-box">
         <div class="banner-background" style="background-image: url(<?php bloginfo("template_url") ?>/img/spark_banner.jpg);opacity: 1;"></div>

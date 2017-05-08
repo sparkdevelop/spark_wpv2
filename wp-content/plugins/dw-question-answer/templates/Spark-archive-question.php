@@ -180,8 +180,8 @@ foreach($tags as $key => $temp){
             <p>雷锋榜</p>
             <!--列表头-->
             <ul id="sidebar_list_choose" class="nav nav-pills">
-                <li class="active"><a href="#helperday" data-toggle="tab">日</a></li>
-                <li><a href="#helpermonth" data-toggle="tab">周</a></li>
+                <li><a href="#helperday" data-toggle="tab">日</a></li>
+                <li  class="active"><a href="#helpermonth" data-toggle="tab">周</a></li>
             </ul>
         </div>
         <!--分割线 下面的是列表-->

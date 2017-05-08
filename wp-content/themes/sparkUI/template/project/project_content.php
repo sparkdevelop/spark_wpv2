@@ -9,7 +9,8 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
  $project_hardware_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => 'meta_value_num','meta_key' => 'project_views','order' =>'DESC',  'post_status' => $status,'category_name'=>'hardware' ));
  $project_web_new = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' date','order' =>'DESC',  'post_status' => $status,'category_name'=>'web'));
  $project_web_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => 'meta_value_num','meta_key' => 'project_views','order' =>'DESC',  'post_status' => $status,'category_name'=>'web'  ));
- $paged=get_query_var('paged')
+ $paged=get_query_var('paged');
+
  ?>
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
 <ul id="leftTab" class="nav nav-pills" style="float: left;height: 42px;">

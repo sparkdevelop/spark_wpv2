@@ -19,11 +19,11 @@ if(is_home() || is_front_page()) { //首页显示“首页侧栏”
 if(is_page($page_wiki_id)) {
     require "template/wiki/wiki_sidebar.php";
 }
-if ( is_page($page_qa_id) ) {//显示问答侧栏 参数为pageID 如何自动获取??
-    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_qasidebar')){
-    }
-    require "template/qa/QA_sidebar.php";
-}
+//if ( is_page($page_qa_id) ) {//显示问答侧栏 参数为pageID 如何自动获取??
+//    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_qasidebar')){
+//    }
+//    require "template/qa/QA_sidebar.php";
+//}
 if (is_page('项目')){
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_projectsidebar')){
     }

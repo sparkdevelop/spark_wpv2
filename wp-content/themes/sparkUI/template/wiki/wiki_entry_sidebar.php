@@ -156,5 +156,17 @@
 <!--    <div class="wiki_entry_share">-->
 <!--        <p>QQ     WECHAT     WEIBO</p>-->
 <!--    </div>-->
+    <?php if(is_user_logged_in()){ ?>
+        <div class="sidebar_button" id="ask_button">
+            <?php session_start();
+            $_SESSION['post_id'] = get_the_ID();
+            $_SESSION['post_type'] = get_post_type(get_the_ID());?>
+            <a href="<?php echo site_url().get_page_address('ask_tiny');?>" style="color: white" id="ask_link">我要提问</a>
+        </div>
+    <?php }else{ ?>
+        <div class="sidebar_button" id="ask_button">
+            <a href="<?php echo wp_login_url( get_permalink() ); ?>" style="color: white">我要提问</a>
+        </div>
+    <?php } ?>
 </div>
 
