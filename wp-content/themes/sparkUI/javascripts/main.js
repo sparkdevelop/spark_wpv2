@@ -7,12 +7,22 @@
 $(function(){
     $(".m-fa-search").on("click",function () {
         $(".m_search_box").show();
-        $(this).addClass("m-fa-remove");
+        $(".m-fa-search").hide();
+        $(".m-fa-remove").show();
     });
 
     $(".m-fa-remove").on("click",function () {
         $(".m_search_box").hide();
-        $(this).removeClass("m-fa-remove");
+        $(".m-fa-search").show();
+        $(".m-fa-remove").hide();
+    });
+
+    $(".m-nav-icon").on("click",function () {
+        $(".m-left-collapse-menu").show();
+    });
+
+    $(".m-fa-remove").on("click",function () {
+        $("m-left-collapse-menu").hide();
     });
 
     // //-----------------JS判断客户端是手机还是PC----------
