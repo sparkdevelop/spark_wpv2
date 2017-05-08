@@ -39,8 +39,7 @@ $page_personal_id = get_page_id('personal');
                     }
                     require "template/wiki/wiki_create.php";
                 }
-                elseif ( is_page($page_qa_id) ) {//显示问答内容 参数为pageID 如何自动获取??
-                    ?>
+                elseif ( is_page($page_qa_id) ) {//显示问答内容 参数为pageID 如何自动获取???>
                     <script>
                         location.href = "<?= site_url();?>/?post_type=dwqa-question";
                     </script>

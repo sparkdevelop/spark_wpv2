@@ -1110,8 +1110,8 @@ function my_table_install () {
 //执行数据表创建。当然你可以在前面加上一些判断，或者将函数放置到插件的安装脚本中执行。
 
 
-//写入项目-->wiki关系。
-function proRelatedWiki($pro_post_id){
+//写入pro-->wiki关系。-->在pro页面展示wiki
+function writeProWiki($pro_post_id){
     /* 先找出一个项目,获取项目的content(ok)
      * 进入对所有wiki词条的循环
      * 在循环中找出wiki词条title(ok),在content中搜索,计数
@@ -1136,7 +1136,7 @@ function proRelatedWiki($pro_post_id){
          while ($wiki_all->have_posts()) : $wiki_all->the_post();
              if (get_post_status() == 'publish') :
                  //进行比对处理,获取回来的$wiki_info包含id,title,count三个信息
-                 $wiki_info = processProWiki($pro_post_id,$content);
+                 $wiki_info = processEachProWiki($pro_post_id,$content);
                  if(!empty($wiki_info)){//如果该词条出现在了项目中,将其保存在$td_array二维数组中
                      array_push($td_array,$wiki_info);
                  }
@@ -1157,8 +1157,8 @@ function proRelatedWiki($pro_post_id){
     }
     return $td_array;
 }
-//针对每一个wiki词条
-function processProWiki($pro_post_id,$content)
+//针对每一个wiki词条 为writeProWiki服务
+function processEachProWiki($pro_post_id,$content)
 {
     $wiki_info = array();
     $wiki_title = strtolower(get_the_title());  //全部转化成小写 因为substr_count是精确匹配。
@@ -1180,8 +1180,8 @@ function processProWiki($pro_post_id,$content)
     return $wiki_info;
 }
 
-//写入项目-->qa关系
-function proRelatedQA($post_id,$post_type,$related_id,$related_post_type){
+//写入pro-->qa wiki->qa 关系.  -->在QA页面展示pro wiki
+function writePWQA($post_id,$post_type,$related_id,$related_post_type){
     global $wpdb;
     $sql_1 = "SELECT * FROM wp_relation WHERE post_id=$post_id AND related_id=$related_id";
     $col = $wpdb->query($sql_1); //返回的结果有几行
@@ -1191,17 +1191,49 @@ function proRelatedQA($post_id,$post_type,$related_id,$related_post_type){
     }
 }
 
-//在qa页面展示来自项目or wiki
-function get_qa_related_id($qa_id){
+//在qa页面展示来自项目or wiki 返回来自哪个post的info
+function qaComeFrom($qa_id){
     global $wpdb;
     $post_id = $wpdb->get_var($wpdb->prepare("SELECT * FROM wp_relation WHERE related_id=$qa_id;",""),1,0);
+    $post_type = $wpdb->get_var($wpdb->prepare("SELECT * FROM wp_relation WHERE related_id=$qa_id;",""),2,0);
+    $related_info = array('id' => $post_id, 'post_type' => $post_type);
+    return $related_info;
+}
+
+//返回此项目对用的所有问答  -->在项目和wiki页面的comment中显示QA
+function pwRelatedQA($pro_id){
+    global $wpdb;
+    $qa_id = array();
+    $sql = "SELECT * FROM wp_relation WHERE post_id=$pro_id AND related_post_type='dwqa-question'";
+    $result = $wpdb->get_results($sql);
+    foreach($result as $key =>$value){
+        $related_id[] = $value->related_id;
+        array_push($qa_id,$related_id[$key]);
+    }
+    return $qa_id;
+}
+
+//获取问题的作者id和name,为wiki和project评论中的问题服务(pwRelatedQA())
+function Spark_get_author($qa_id){
+    global $wpdb;
+    $author_id = $wpdb->get_var($wpdb->prepare("SELECT * FROM $wpdb->posts WHERE ID=$qa_id",""),1,0);
+    $author_name = $wpdb->get_var($wpdb->prepare("SELECT * FROM $wpdb->users WHERE ID=$author_id",""),1,0);
+    $author_info = array('id' => $author_id, 'name' => $author_name);
+    return $author_info;
+}
+
+//wiki侧边栏显示相关的项目
+function wikiRelatedPro($wiki_id){
+    global $wpdb;
+    $post_id = array(); //项目id
+    $sql = "SELECT * FROM wp_relation WHERE related_id=$wiki_id AND post_type='post'";
+    $result = $wpdb->get_results($sql);
+    foreach($result as $key =>$value){
+        $pro_id[] = $value->post_id;
+        array_push($post_id,$pro_id[$key]);
+    }
     return $post_id;
 }
 
-function get_qa_related_post_type($qa_id){
-    global $wpdb;
-    $post_type = $wpdb->get_var($wpdb->prepare("SELECT * FROM wp_relation WHERE related_id=$qa_id;",""),2,0);
-    return $post_type;
-}
 
 ?>
