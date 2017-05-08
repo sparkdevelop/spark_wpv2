@@ -19,7 +19,7 @@ $wiki_post = get_post($post_id);
         margin: 5px 0 25px 0;
     }
 </style>
-<div class="col-md-9 col-sm-9 col-xs-9" id="col9">
+<div class="col-md-9 col-sm-9 col-xs-12" id="col9">
     <div id="fep-new-post">
         <div id="ffff">
             <label id="edit-title" for="wiki_content_editor" style="font-size:30px;font-weight: bold;"><?php echo $wiki_post->post_title ?></label>

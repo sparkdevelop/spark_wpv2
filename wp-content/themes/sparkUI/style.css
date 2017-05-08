@@ -944,3 +944,50 @@ box-shadow: none;
     margin-top: 38px;
     opacity: 1;
 }
+
+/*右侧固定小工具*/
+.side-tool {
+    position: fixed;
+    bottom: 120px;
+    right: 120px;
+    z-index: 9;
+}
+.side-tool>ul {
+    list-style: none;
+    text-align: center;
+    display: block;
+}
+.side-tool>ul>li{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid #dcdcdc;
+    border-bottom: none;
+    background-color: #fff;
+    transition: .1s ease-in;
+    -webkit-transition: .1s ease-in;
+    -moz-transition: .1s ease-in;
+    -o-transition: .1s ease-in;
+    -ms-transition: .1s ease-in;
+}
+.side-tool>ul>li:last-child {
+    border-bottom: 1px solid #dcdcdc;
+}
+/*.side-tool>ul>li {*/
+    /*border: 1px solid #dcdcdc;*/
+    /*border-bottom: none;*/
+    /*background-color: #fff;*/
+    /*transition: .1s ease-in;*/
+    /*-webkit-transition: .1s ease-in;*/
+    /*-moz-transition: .1s ease-in;*/
+    /*-o-transition: .1s ease-in;*/
+    /*-ms-transition: .1s ease-in;*/
+/*}*/
+.side-tool>ul>li>a{
+
+}
+
+/*手机端增加元素*/
+.m_search_box,#m-login-button,.m-fa-search,.m-fa-remove,#m-project-views{
+    display: none;
+}

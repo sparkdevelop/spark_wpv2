@@ -11,7 +11,7 @@
 <?php get_header(); ?>
 <div class="container" style="margin-top: 10px">
     <div class="row" style="width: 100%">
-        <div class="col-md-9 col-sm-9 col-xs-9" style="padding-left: 0;padding-right: 0;">
+        <div class="col-md-9 col-sm-9 col-xs-12" style="padding-left: 0;padding-right: 0;">
             <!--引入动态模板 显示文章标题和提交时间-->
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
                 <h2><a href="<?php the_permalink(); ?>">

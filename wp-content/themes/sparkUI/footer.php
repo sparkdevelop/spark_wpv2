@@ -29,10 +29,10 @@
                 <div class="col-md-3 col-sm-3 col-xs-3" style="text-align: left;padding-top:20px;">
                     <p style="font-size: medium;font-weight: bold;color: #fe642d;margin-top: 15px">联系我们</p>
                     <ul class="list-group">
-                        <li class="list-group-item" style="background-color: #fafafa"><p
-                                    style="margin-bottom: 5px;">sparkspace@163.com</p></li>
-                        <li class="list-group-item" style="background-color: #fafafa"><p
-                                    style="margin-bottom: 5px;">QQ：2038448066</p></li>
+                        <li class="list-group-item" style="background-color: #fafafa"><a target="_blank" href="mailto:sparkspace@163.com"
+                                    style="margin-bottom: 5px;">sparkspace@163.com</a></li>
+                        <li class="list-group-item" style="background-color: #fafafa"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2038448066&amp;site=qq&amp;menu=yes"
+                                    style="margin-bottom: 5px;">QQ：2038448066</a></li>
                     </ul>
                 </div>
                 <div class="clearfix visible-xs"></div>
@@ -55,6 +55,8 @@
 </div>
 
 <?php wp_footer(); ?>
+
+<script src="http://localhost/spark_wpv2/wp-content/themes/sparkUI/javascripts/main.js"></script>
 
 </body>
 </html>

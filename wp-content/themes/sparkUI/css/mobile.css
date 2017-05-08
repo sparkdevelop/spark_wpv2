@@ -1,0 +1,112 @@
+@media screen and (max-width: 480px) {
+    body {
+
+    }
+    #col9{ padding-left: 0;padding-right: 0;}
+    #col3{ display: none;}
+    .row{
+        margin: 0;
+    }
+
+    /*导航header部分样式*/
+    .navbar-header{
+        float:left;
+        display: none;
+    }
+    .navbar-nav{
+        float: left;
+    }
+    .navbar-nav>li {
+        float:left;
+    }
+    .m-fa-search{
+        display: block;
+        float: right;
+        color: #333;
+        font-size: 24px;
+        margin-top: 26px;
+    }
+    .m-fa-remove{
+        float: right;
+        color: #333;
+        font-size: 29px;
+        margin-top: 20px;
+    }
+    #m-login-button{
+        display: block;
+        float: right;
+        color: #333;
+        font-size: 24px;
+        font-weight: bolder;
+        margin-top: 24px;
+    }
+    .navbar-text{
+        display: none;
+    }
+    .m_search_box{
+        position: absolute;
+        background-color: #FDFDFD;
+        padding:20px 15px;
+        box-shadow: 5px 5px 5px #F5F5F5;
+        width:100%;
+        height:88px;
+        top: 91px;
+        left:0;
+        z-index: 7;
+    }
+    .navbar-form{
+        margin:0;
+    }
+    #search_select{
+        width: 60px;
+    }
+    #search-btn{
+        width:25px;
+        position: relative;
+        float: right;
+        top:-38px;
+     }
+
+    /*问答、项目子导航样式*/
+    #project-fluid{
+        padding:0 5px 0 5px;
+    }
+    #leftTab{
+        font-size: 15px;
+    }
+    #rightTab{
+        font-size:14px;
+    }
+    #leftTab a{
+        padding:10px 20px 10px 0;
+    }
+    #rightTab a{
+        padding: 10px 0 10px 8px;
+    }
+
+    /*项目主页样式*/
+    .thumbnail .caption{
+        padding:15px 10px 10px 10px;
+    }
+    .project-title{
+        font-size: 15px;
+    }
+    .project-info{
+        color:#4d4d4d;
+        font-size: 10px;
+    }
+    #project-category-info{
+        display: none;
+    }
+    #web-project-views{
+        display: none;
+    }
+    #m-project-views{
+        display: block;
+    }
+
+    /*项目详情页样式*/
+    .side-tool{
+        display:none;
+    }
+}

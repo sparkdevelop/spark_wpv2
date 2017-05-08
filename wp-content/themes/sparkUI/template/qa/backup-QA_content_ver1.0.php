@@ -3,7 +3,7 @@
 </style>
 
 <!--//本页面是问答页面的content-->
-<div class="col-md-9 col-sm-9 col-xs-9" id="col9">
+<div class="col-md-9 col-sm-9 col-xs-12" id="col9">
     <?php
     //==============处理翻页 未完成======================
     //add_action('Spark_after_question_list','Spark_question_paginate_link');
