@@ -104,18 +104,16 @@ $post_id = get_the_ID();
                     <span><?php comments_popup_link('0 条', '1 条', '% 条', '', '评论已关闭'); ?></span><br>
                 </div><br>
 
-                <?php $related_wiki = writeProWiki(get_the_ID());
-                print_r($related_wiki);?>
+                <?php $related_wiki = writeProWiki(get_the_ID());?>
                 <div class="related_wikis">
                         <div class="sidebar_list_header">
-
                             <p>相关知识</p>
                             <a id="sidebar_list_link" onclick="show_more_wiki()">更多</a>
                         </div>
                         <!--分割线-->
                         <div style="height: 2px;background-color: lightgray"></div>
                         <div class="related_wiki" id="related_wiki">
-                            <ul>
+                            <ul style="padding-left: 20px; ">
                                 <?php
                                 //控制条数
                                 if(sizeof($related_wiki)<5){$length = sizeof($related_wiki);}
