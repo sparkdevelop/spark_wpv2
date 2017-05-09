@@ -1,6 +1,7 @@
 <?php
 //get 项目 related QA id。
 $related_qa_id = pwRelatedQA(get_the_ID()); //返回一个qa_id集合而成的数组
+$origin_url = get_permalink();
 $length = sizeof($related_qa_id);
 $perpage = 1;
 $total_page = ceil($length/$perpage);
@@ -9,13 +10,19 @@ if(!$_GET['paged']){
 }
 else{
     $page_num=$_GET['paged'];
-    $current_page = $page_num;
-}
-
-?>
+    $current_page = $page_num;?>
+    <script>
+        $(function () {
+            $("#commentTab").removeClass("active");
+            $("#project_comment").removeClass("in active");
+            $("#qaTab").addClass("active");
+            $("#related_QA").addClass("in active");
+        })
+    </script>
+<?php } ?>
 <ul id="leftTab" class="nav nav-pills">
-        <li class="active"><a href="#project_comment" data-toggle="tab">评论</a></li>
-        <li><a href="#related_QA" data-toggle="tab" id="QA_related">相关问答(<?=$length?>)</a></li>
+        <li class="active" id="commentTab"><a href="#project_comment" data-toggle="tab" onclick="backToComment()">评论</a></li>
+        <li id="qaTab"><a href="#related_QA" data-toggle="tab" id="QA_related">相关问答(<?=$length?>)</a></li>
 </ul>
 <?php
 // 如果没有问题就不显示问答tab了
@@ -88,8 +95,11 @@ else{
                         for($i=$perpage*($current_page-1);$i<$temp;$i++){
                          require "template/comment-question.php";
                         }
-                    }else{?>
-                        <h4>可以在侧边栏提问</h4>
+                    }else{ ?>
+                        <div class="alert alert-info" style="margin-top: 20px">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>  <!--关闭按钮-->
+                            <strong>Oops,还没有问题!</strong>您可以在侧边栏提问。
+                        </div>
                     <?php } ?>
                 </ul>
             <?php
@@ -109,3 +119,8 @@ else{
 
         </div>
 </div><!-- .comments-area -->
+<script>
+    function backToComment() {
+        location.href = "<?=$origin_url?>"+"#QA_related";
+    }
+</script>
