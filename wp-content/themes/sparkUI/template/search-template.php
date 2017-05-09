@@ -56,6 +56,37 @@ $args = array(
 $paginate = paginate_links($args);
 ?>
 
+<div class="m_search_page_box">
+    <form class="navbar-form " role="search" method="get" action="<?php echo home_url('/');//get_permalink() ?>" style="float: right;padding-left: 0px;padding-right: 0px">
+        <div class="form-group" style="position: relative">
+            <select class="form-control" id="search_select"
+                    onchange="selectSearchCat(this.value);">
+                <option value="qa">搜问答</option>
+                <option value="wiki">搜wiki</option>
+                <option value="project">搜项目</option>
+            </select>
+            <input type="text" id="search-content" name='s' class="form-control" placeholder="Search" value="">
+            <input type="hidden" name="post_status" value="publish">
+            <input type="hidden" name="post_type" id="selectPostType" value=""/>
+            <button type="submit" class="btn btn-default btn-sm" id="search-btn">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </div>
+    </form>
+    <script>
+        function selectSearchCat(value) {
+            var post_type= document.getElementById("selectPostType");
+            if(value=="wiki"){
+                post_type.value = "yada_wiki";
+            } else if(value=="project"){
+                post_type.value = "post";
+            } else{
+                post_type.value = "";
+            }
+        }
+    </script>
+</div>
+
 <ul id="searchTab" class="nav nav-pills">
     <?php
     $current_url = home_url(add_query_arg(array()));

@@ -175,6 +175,7 @@ body{
 }
 .dropdown-menu{min-width: 150px;left: -40px}
 
+
 /*侧边栏按钮*/
 .sidebar_button{
     height:48px;
@@ -567,6 +568,18 @@ h4{margin-bottom: 0px;}
 .sidebar-grey-frame a{
     color: #fe642d;
 }
+.time_count{
+    color: gray;
+    margin-left: 5px;
+}
+.scan_count{
+    margin-left: 0px;
+    float:right;
+}
+.ask_count{
+    margin-right: 20px;
+    float: right;
+}
 
 /*项目发布页样式*/
 .postform{
@@ -593,6 +606,18 @@ box-shadow: none;
 }
 
 /*wiki公共样式*/
+.wiki_category{
+    margin-bottom: 30px;
+    padding-top: 20px;
+}
+.wiki_category_item{
+    padding-top:20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+.wiki_category p{
+    font-size: 18px;
+}
 .create_wiki_btn{
     height:48px;
     background-color:#fe642d;
@@ -1037,6 +1062,6 @@ box-shadow: none;
 }
 
 /*手机端增加元素*/
-#m-header,.m_search_box,.m-fa-search,.m-fa-remove,#m-project-views,#m-side-tool-project,.m-left-collapse-menu {
+#m-header,.m_search_box,.m-fa-search,.m-fa-remove,#m-project-views,#m-side-tool-project,.m-left-collapse-menu,.m_search_page_box,.m-qa-count {
     display: none;
 }
