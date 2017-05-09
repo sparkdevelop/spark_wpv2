@@ -1166,6 +1166,7 @@ function processEachProWiki($pro_post_id,$content)
     if ($appear_count != 0) {  //如果出现了
         global $wpdb;
         $wiki_id = get_the_ID(); //获取这个wiki的ID
+        $view_count =getViews($wiki_id);
         //判断表中是否已经存在这个pro<->wiki对
         $sql_1 = "SELECT * FROM wp_relation WHERE post_id=$pro_post_id AND related_id=$wiki_id";
         $col = $wpdb->query($sql_1); //返回的结果有几行
@@ -1174,10 +1175,19 @@ function processEachProWiki($pro_post_id,$content)
             $wpdb->get_results($sql_2);
         }
         //如果存在了这个pro<->wiki对,不做任何处理,将wiki的信息加入返回的数组
-        $wiki_info = array('wiki_id' => $wiki_id, 'wiki_title' => $wiki_title, 'wiki_count' => $appear_count);
+        $count = 0.5*$appear_count+0.5*$view_count;
+        $wiki_info = array('wiki_id' => $wiki_id, 'wiki_title' => $wiki_title, 'wiki_count' => $count);
     }
     //没有出现不做任何处理,直接返回空数组。
     return $wiki_info;
+}
+
+//获取wiki的浏览量
+function getViews($post_id){
+    global $wpdb;
+    $sql = "SELECT * FROM wp_views WHERE post_id=$post_id";
+    $view_count = $wpdb->get_var($wpdb->prepare($sql,""),3,0);
+    return $view_count;
 }
 
 //写入pro-->qa wiki->qa 关系.  -->在QA页面展示pro wiki
