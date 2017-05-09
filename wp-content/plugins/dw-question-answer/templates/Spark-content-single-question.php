@@ -13,11 +13,12 @@
       $related_post_type = get_post_type($related_id);
 if(empty($post_id)){
     //从数据库取出
-    $post_id = get_qa_related_id($related_id);
-    $post_type = get_qa_related_post_type($related_id);
+    $post_info = qaComeFrom($related_id);
+    $post_id = $post_info["id"];
+    $post_type = $post_info["post_type"];
 } else{
     //插入数据
-    proRelatedQA($post_id,$post_type,$related_id,$related_post_type);
+    writePWQA($post_id,$post_type,$related_id,$related_post_type);
 }
 if($post_type=="post"){
     $post_from = "项目";

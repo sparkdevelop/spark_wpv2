@@ -156,6 +156,55 @@
 <!--    <div class="wiki_entry_share">-->
 <!--        <p>QQ     WECHAT     WEIBO</p>-->
 <!--    </div>-->
+
+
+
+
+<!--    相关项目-->
+    <?php
+    $related_pros = wikiRelatedPro(get_the_ID()); ?>
+    <div class="related_pros">
+        <div class="sidebar_list_header">
+            <p>相关项目</p>
+            <a id="sidebar_list_link" onclick="show_more_pros()">更多</a>
+        </div>
+        <!--分割线-->
+        <div style="height: 2px;background-color: lightgray"></div>
+        <div class="related_pros" id="related_pros">
+            <ul>
+                <?php
+                //控制条数
+                if(sizeof($related_pros)<5){$length = sizeof($related_pros);}
+                else{$length = 5;}
+                for($i=0;$i<$length;$i++){ ?>
+                    <li class="list-group-item">
+                        <a href="<?php echo get_permalink($related_pros[$i]);?>" class="question-title">
+                            <?php echo get_the_title($related_pros[$i]);?>
+                        </a>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+
+        <div class="more_related_pros" id="more_related_pros" style="display: none">
+            <ul>
+                <?php
+                //控制条数
+                if(sizeof($related_pros)>=15){$length = 15;}
+                else{$length = sizeof($related_pros);}
+
+                for($i=0;$i<$length;$i++){ ?>
+                    <li class="list-group-item">
+                        <a href="<?php echo get_permalink($related_pros[$i]);?>" class="question-title">
+                            <?php echo get_the_title($related_pros[$i]);?>
+                        </a>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+    </div>
+
+<!--    加上提问按钮-->
     <?php if(is_user_logged_in()){ ?>
         <div class="sidebar_button" id="ask_button">
             <?php session_start();
@@ -169,4 +218,18 @@
         </div>
     <?php } ?>
 </div>
-
+<script>
+    var flag=false;
+    function show_more_pros() {
+        var related_pros=document.getElementById('related_pros');
+        var more_related_pros = document.getElementById('more_related_pros');
+        if(flag){
+            related_pros.style.display ="block";
+            more_related_pros.style.display="none";
+        }else{
+            related_pros.style.display="none";
+            more_related_pros.style.display="block";
+        }
+        flag=!flag;
+    }
+</script>

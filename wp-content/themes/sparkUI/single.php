@@ -104,7 +104,8 @@ $post_id = get_the_ID();
                     <span><?php comments_popup_link('0 条', '1 条', '% 条', '', '评论已关闭'); ?></span><br>
                 </div><br>
 
-                <?php $related_wiki = proRelatedWiki(get_the_ID()); ?>
+                <?php $related_wiki = writeProWiki(get_the_ID());
+                print_r($related_wiki);?>
                 <div class="related_wikis">
                         <div class="sidebar_list_header">
 
@@ -205,9 +206,6 @@ $post_id = get_the_ID();
             more_related_wiki.style.display="block";
         }
         flag=!flag;
-    }
-    function processProQA ($post_id) {
-        $("#ask_link").attr("href","<?php echo site_url().get_page_address('ask_tiny');?>");
     }
 </script>
 

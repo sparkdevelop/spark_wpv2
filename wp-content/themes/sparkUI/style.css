@@ -945,6 +945,11 @@ box-shadow: none;
     opacity: 1;
 }
 
+#QA_related:focus{
+    outline: none;
+    background-color: transparent;
+}
+
 /*右侧固定小工具*/
 .side-tool {
     position: fixed;
@@ -1032,6 +1037,6 @@ box-shadow: none;
 }
 
 /*手机端增加元素*/
-#m-header,.m_search_box,.m-fa-search,.m-fa-remove,#m-project-views,#m-side-tool-project,.m-left-collapse-menu{
+#m-header,.m_search_box,.m-fa-search,.m-fa-remove,#m-project-views,#m-side-tool-project,.m-left-collapse-menu {
     display: none;
 }
