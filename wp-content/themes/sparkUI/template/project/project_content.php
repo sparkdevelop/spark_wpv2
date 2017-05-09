@@ -12,7 +12,7 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
  $paged=get_query_var('paged');
 
  ?>
-<div class="col-md-9 col-sm-9 col-xs-9" id="col9">
+<div class="col-md-9 col-sm-9 col-xs-12" id="col9">
 <ul id="leftTab" class="nav nav-pills" style="float: left;height: 42px;">
         <li class="active"><a href="#project_all" data-toggle="tab">所有</a></li>
         <li><a href="#OShardware" data-toggle="tab">开源硬件</a></li>

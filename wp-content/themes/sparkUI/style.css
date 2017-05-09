@@ -948,3 +948,94 @@ box-shadow: none;
     outline: none;
     background-color: transparent;
 }
+
+/*右侧固定小工具*/
+.side-tool {
+    position: fixed;
+    bottom: 120px;
+    right: 120px;
+    z-index: 9;
+}
+.side-tool>ul {
+    list-style: none;
+    text-align: center;
+    display: block;
+}
+.side-tool>ul>li{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid #dcdcdc;
+    border-bottom: none;
+    background-color: #fff;
+    transition: .1s ease-in;
+    -webkit-transition: .1s ease-in;
+    -moz-transition: .1s ease-in;
+    -o-transition: .1s ease-in;
+    -ms-transition: .1s ease-in;
+}
+.side-tool>ul>li:last-child {
+    border-bottom: 1px solid #dcdcdc;
+}
+/*.side-tool>ul>li {*/
+    /*border: 1px solid #dcdcdc;*/
+    /*border-bottom: none;*/
+    /*background-color: #fff;*/
+    /*transition: .1s ease-in;*/
+    /*-webkit-transition: .1s ease-in;*/
+    /*-moz-transition: .1s ease-in;*/
+    /*-o-transition: .1s ease-in;*/
+    /*-ms-transition: .1s ease-in;*/
+/*}*/
+.side-tool>ul>li>a{
+
+}
+
+/*footer部分样式*/
+.footer{
+    height:200px;
+    background-color: #fafafa;
+}
+#spark-foot-logo{
+    padding: 0;
+    margin-right: 3%;
+}
+#spark-foot-logo img{
+    vertical-align:middle;
+    padding:35px 0;
+    float: left
+}
+#spark-nav{
+    text-align: left;
+    padding-top:20px;
+    margin-right: 5%;
+}
+#contact-us{
+    text-align: left;
+    padding-top:20px;
+}
+#friend-link{
+    padding-top:20px;
+}
+.foot-link li{
+    background-color: #fafafa;
+}
+.foot-link>li>a{
+    margin-bottom: 5px;
+}
+#spark-nav>p,#contact-us>p,#friend-link>p{
+    font-size: medium;
+    font-weight: bold;
+    color: #fe642d;
+    margin-top: 15px;
+}
+.spark-QRCode{
+    margin-top: 35px;
+    float:left;
+    width:130px;
+}
+
+/*手机端增加元素*/
+#m-header,.m_search_box,.m-fa-search,.m-fa-remove,#m-project-views,#m-side-tool-project,.m-left-collapse-menu{
+    display: none;
+}

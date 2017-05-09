@@ -11,7 +11,7 @@ get_header(); ?>
 
 <div class="container" style="margin-top: 10px">
     <div class="row" style="width: 100%">
-        <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
+        <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
             <!--引入动态模板-->
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post();?>
                 <h2><b><?php the_title(); ?></b></h2>

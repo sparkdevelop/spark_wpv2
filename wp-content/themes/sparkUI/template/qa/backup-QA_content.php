@@ -1,5 +1,5 @@
 <!--//本页面是问答页面的content-->
-<div class="col-md-9 col-sm-9 col-xs-9" id="col9">
+<div class="col-md-9 col-sm-9 col-xs-12" id="col9">
 <?php
 $args_question_all = array(
         'post_type'  => 'dwqa-question',

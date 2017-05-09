@@ -43,7 +43,7 @@
         $watch_nums[$item->post_id] = $item->meta_value;
     }
 ?>
-<div class="col-md-9 col-sm-9 col-xs-9" id="col9">
+<div class="col-md-9 col-sm-9 col-xs-12" id="col9">
     <div class="index_content_show">
         <div class="wiki_category">
             <p style="font-size: 18px"><b>创客教育</b></p>
