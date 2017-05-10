@@ -9,7 +9,7 @@
 
 <li style="list-style-type: none;">
     <div class="col-md-4 col-sm-4 col-xs-6" id="project-fluid">
-        <div class="thumbnail">
+        <div class="thumbnail" id="project-img-fluid">
             <?php
             if ( has_post_thumbnail() ) { ?>
                 <a href="<?php the_permalink(); ?>" target="_blank"><?php the_post_thumbnail(array(220,150)); ?></a> <?php } else {?>

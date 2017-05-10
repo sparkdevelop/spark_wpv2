@@ -532,8 +532,10 @@ h4{margin-bottom: 0px;}
 }
 
 /*项目主页样式调整*/
+#project-img-fluid{
+    height:254px;
+}
 .thumbnail{
-    /*height:254px;*/
     border:none;
     border-radius: 5px;
     box-shadow: 2px 2px 2px #ebebeb;
