@@ -8,6 +8,15 @@
         margin: 0;
     }
 
+    /*首页样式*/
+    .banner-background{
+        background-image: url("../spark_wpv2/wp-content/themes/sparkUI/img/spark_banner_m.jpg");
+    }
+    .front-icon{
+        width:70%;
+        margin-top: 20px;
+    }
+
     /*导航header部分样式*/
     #m-header{
         display: block;
@@ -162,6 +171,27 @@
         border-bottom: 1px solid #eee;
     }
 
+    /*wiki样式*/
+    .wiki-index-icon{
+        margin-bottom: 10px;
+    }
+    .wiki_category{
+        margin-bottom: 0px;
+        padding-top: 10px;
+    }
+    .wiki_category_item{
+        padding:10px 0 10px 0;
+    }
+    .m-wiki-index-icon{
+        text-align: center;
+    }
+    .m-wiki-index{
+        text-align: center;
+    }
+    .wiki_category p{
+        display: none;
+    }
+
     /*问答、项目子导航样式*/
     #project-fluid{
         padding:0 5px 0 5px;
@@ -200,6 +230,15 @@
         display: block;
     }
 
+    /*搜索页样式*/
+    .m_search_page_box{
+        display: block;
+        margin:30px 0;
+    }
+    #searchTab{
+        margin-top: 95px;
+    }
+
     /*项目详情页样式*/
     #side-tool-project{
         display:none;
@@ -208,6 +247,13 @@
         display: block;
         right: 30px;
         bottom: 30px;
+    }
+    .m-qa-count{
+        display: block;
+        margin: 7px 0;
+    }
+    .time_count{
+        margin-left: 0px;
     }
 
     /*footer部分样式*/

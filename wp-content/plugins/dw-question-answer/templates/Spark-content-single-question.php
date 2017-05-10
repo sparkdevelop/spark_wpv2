@@ -77,9 +77,10 @@ if($post_type=="post"){
     <!--提问人信息-->
     <div>
         <span style="color: gray">提问人:&nbsp;<a href="<?php get_the_author_link();?>" class="author_link"><?php echo get_the_author();?></a></span>
-        <span style="color: gray;margin-left: 5px"><?php echo date('n月j日 G:i',get_the_time('U'));?></span>
-        <span class="scan_count" style="margin-left: 0px;float:right; ">浏览<?php echo dwqa_question_views_count();?></span>
-        <span class="ask_count" style="margin-right: 20px;float: right;">回答<?php echo dwqa_question_answers_count();?></span>
+        <span class="m-qa-count"></span>
+        <span class="time_count"><?php echo date('n月j日 G:i',get_the_time('U'));?></span>
+        <span class="scan_count">浏览<?php echo dwqa_question_views_count();?></span>
+        <span class="ask_count">回答<?php echo dwqa_question_answers_count();?></span>
 
     </div>
     <div class="divline"></div>
