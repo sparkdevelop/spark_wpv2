@@ -16,7 +16,15 @@ $current_user = wp_get_current_user();
 $author_posts = new WP_Query(array('posts_per_page' => $per_page, 'paged' => $paged, 'orderby' => 'DESC', 'author' => $current_user->ID, 'post_status' => $status,'category_name'=>'project'));
 $post_id = get_the_ID();
 
+//埋数据点
+session_start();
+$_SESSION['post_id'] = get_the_ID();
+$_SESSION['post_type'] =get_post_type(get_the_ID());
+$_SESSION['user_id'] = get_current_user_id();
+$_SESSION['timestamp'] = date("Y-m-d H:i:s",time() + 8*3600);
+writeUserTrack();
 ?>
+
 <div class="container" style="margin-top: 10px">
         <div class="row" style="width: 100%">
             <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
@@ -129,7 +137,7 @@ $post_id = get_the_ID();
                         </div>
 
                         <div class="more_related_wiki" id="more_related_wiki" style="display: none">
-                            <ul>
+                            <ul style="padding-left: 20px">
                                 <?php
                                 //控制条数
                                 if(sizeof($related_wiki)>=15){$length = 15;}
@@ -156,11 +164,11 @@ $post_id = get_the_ID();
                         <?php session_start();
                             $_SESSION['post_id'] = $current_page_id;
                             $_SESSION['post_type'] = get_post_type($current_page_id);?>
-                        <a href="<?php echo site_url().get_page_address('ask_tiny');?>" style="color: white" id="ask_link">我要提问</a>
+                        <a onclick="addLayer()" id="ask_link">我要提问</a>
                     </div>
                 <?php }else{ ?>
                     <div class="sidebar_button" id="ask_button">
-                        <a href="<?php echo wp_login_url( get_permalink() ); ?>" style="color: white">我要提问</a>
+                        <a href="<?php echo wp_login_url( get_permalink($current_page_id) ); ?>">我要提问</a>
                     </div>
                 <?php } ?>
 
@@ -184,6 +192,20 @@ $post_id = get_the_ID();
             more_related_wiki.style.display="block";
         }
         flag=!flag;
+    }
+    function addLayer() {
+        layer.open({
+            type : 2,
+            title: "提问", //不显示title   //'layer iframe',
+            content: '<?php echo site_url().get_page_address('ask_tiny');?>', //iframe的url
+            area: ['70%', '80%'],
+            closeBtn:1,            //是0为不显示叉叉 可选1,2
+            shadeClose: true,    //点击其他shade区域关闭窗口
+            shade: 0.5,   //透明度
+            end: function () {
+                location.reload();
+            }
+        });
     }
 </script>
 

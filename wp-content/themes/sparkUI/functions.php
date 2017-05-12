@@ -10,8 +10,10 @@ function sparkspace_scripts_with_jquery()
 {
     // Register the script like this for a theme:
     wp_register_script( 'custom-script', get_template_directory_uri() . '/bootstrap/js/bootstrap.js', array( 'jquery' ) );
+    wp_register_script( 'custom-script_2', get_template_directory_uri() . '/layer/layer.js', array( 'jquery' ) );
     // For either a plugin or a theme, you can then enqueue the script:
     wp_enqueue_script( 'custom-script');
+    wp_enqueue_script( 'custom-script_2');
 }
 add_action( 'wp_enqueue_scripts', 'sparkspace_scripts_with_jquery' );
 
@@ -1092,7 +1094,7 @@ if ( ! function_exists( 'wpex_mce_buttons' ) ) {
 add_filter( 'mce_buttons_2', 'wpex_mce_buttons' );
 
 //建立relation表
-function my_table_install () {
+function relation_table_install () {
     global $wpdb;
     $table_name = $wpdb->prefix . "relation";  //获取表前缀，并设置新表的名称
     if($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
@@ -1245,5 +1247,32 @@ function wikiRelatedPro($wiki_id){
     return $post_id;
 }
 
+//建立用户轨迹表
+function user_history_table_install () {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "user_history";  //获取表前缀，并设置新表的名称
+    if($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+		  post_id int NOT NULL,
+		  post_type varchar(20) NOT NULL,
+		  view_time datetime NOT NULL
+          );";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
 
+//写入用户浏览数据
+function writeUserTrack(){
+    global $wpdb;
+    $post_id = $_SESSION['post_id'];
+    $post_type = $_SESSION['post_type'];
+    $user_id = $_SESSION['user_id'];
+    $timestamp = $_SESSION['timestamp'];
+    session_destroy();
+    $sql = "INSERT INTO wp_user_history VALUES ('',$user_id,$post_id,'$post_type','$timestamp')";
+    $wpdb->get_results($sql);
+}
 ?>

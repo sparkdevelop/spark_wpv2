@@ -144,15 +144,16 @@
         <?php dwqa_load_template( 'captcha', 'form' ); ?>
         <?php do_action('dwqa_before_question_submit_button'); ?>
 
-        <input type="submit" name="dwqa-question-submit" value="<?php _e( '提交问题', 'dwqa' ) ?>" class="btn-green"/>
-        <input type="button" id="cancel" onclick="Cancel()" name="dwqa-question-submit" value="<?php _e( '取消', 'dwqa' ) ?>" class="btn-grey" style="float: right;" />
+        <input type="submit" name="dwqa-question-submit" value="<?php _e( '提交问题', 'dwqa' ) ?>" class="btn-green" style="float: right;"/>
+<!--        <input type="button" id="cancel" onclick="Cancel()" name="dwqa-question-submit" value="--><?php //_e( '取消', 'dwqa' ) ?><!--" class="btn-grey"  />-->
     </form>
 </div>
 
 <script language="javascript">
     function Cancel(){
-        var url = "<?=site_url()?>/?p=<?=$post_id?>";
-        location.href= url ;
+        layer.close(layer.index);
+//        var url = "<?//=site_url()?>///?p=<?//=$post_id?>//";
+//        location.href= url ;
     }
 
     function SubmitCheck() {

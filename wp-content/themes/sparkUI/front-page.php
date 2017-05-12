@@ -39,7 +39,8 @@
 </style>
 
 <?php get_header();
-my_table_install();
+relation_table_install();
+user_history_table_install();
 ?>
 
 <div class="container-fluid" style="padding: 0;">
