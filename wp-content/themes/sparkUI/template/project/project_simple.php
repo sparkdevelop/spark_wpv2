@@ -9,10 +9,10 @@
 
 <li style="list-style-type: none;">
     <div class="col-md-4 col-sm-4 col-xs-6" id="project-fluid">
-        <div class="thumbnail" id="project-img-fluid">
+        <div class="thumbnail" id="project-div-fluid">
             <?php
             if ( has_post_thumbnail() ) { ?>
-                <a href="<?php the_permalink(); ?>" target="_blank"><?php the_post_thumbnail(array(220,150)); ?></a> <?php } else {?>
+                <a href="<?php the_permalink(); ?>" target="_blank"><?php the_post_thumbnail(array(220,142)); ?></a> <?php } else {?>
                 <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" height="150"/></a>
             <?php } ?>
           <div style="height: 1px;background-color: lightgray"></div>

@@ -119,3 +119,28 @@ foreach($term_all_names as $wiki_all_name) {
     </div>
 </div>
 </div>
+
+<div class="m-create-wiki-box">
+    <div class="wiki_sidebar_wrap">
+        <div class="list-group mulu">
+            <p class="wiki_sidebar_title">wiki分类</p>
+            <?php
+            foreach($wiki_all_categorys as $category_term_id => $category_name) {
+                ?>
+                <a href="#" class="list-group-item mulu_item"><input name="wiki_category" type="checkbox" value="<?php echo $category_term_id; ?>">&nbsp;&nbsp;&nbsp;<?php echo $category_name; ?></a>
+                <?php
+            }
+            ?>
+        </div>
+
+        <div class="wiki_tags">
+            <p class="wiki_sidebar_title">wiki标签</p>
+            <input type="text" class="wiki_tags_input" placeholder="多个标签用分号隔开"><br>
+            <div id="wiki_hot_tags"></div>
+        </div>
+
+        <div class="create_wiki_btn">
+            <a class="update_wiki">发布 wiki</a>
+        </div>
+    </div>
+</div>

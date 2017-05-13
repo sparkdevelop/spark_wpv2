@@ -66,5 +66,6 @@ if (isset($_GET['fep_id']) && isset($_GET['fep_action']) && $_GET['fep_action'] 
         <button type="button" id="fep-submit-post" class="active-btn"><?php _e('发布', 'frontend-publishing'); ?></button>&nbsp;<button type="button" id="close" class="close_btn">取消</button>
         <img class="fep-loading-img" src="<?php echo plugins_url('static/img/ajax-loading.gif', dirname(__FILE__)); ?>"/>
         </div>
+
     </form>
 </div>

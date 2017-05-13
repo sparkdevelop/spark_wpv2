@@ -53,7 +53,7 @@
 
 <?php wp_footer(); ?>
 
-<script src="http://localhost/spark_wpv2/wp-content/themes/sparkUI/javascripts/main.js"></script>
+<script src="<?php bloginfo('stylesheet_directory')?>/javascripts/main.js"></script>
 
 </body>
 </html>

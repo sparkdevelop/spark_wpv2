@@ -31,6 +31,30 @@ get_header(); ?>
         </div>
     </div>
 </div>
+
+<div class="side-tool" id="side-tool-project">
+    <ul>
+        <li data-placement="left" data-toggle="tooltip" data-original-title="回到顶部"><a href="#" class="">顶部</a></li>
+        <li data-placement="left" data-toggle="tooltip" data-original-title="点赞吐槽"><a href="#comments" class="">评论</a></li>
+
+        <?php if(is_user_logged_in()){ ?>
+                <?php session_start();
+                $_SESSION['post_id'] = get_the_ID();
+                $_SESSION['post_type'] = get_post_type(get_the_ID());?>
+                <li data-placement="left" data-toggle="tooltip" data-original-title="不懂就问"><a href="<?php echo site_url().get_page_address('ask_tiny');?>">提问</a></li>
+        <?php }else{ ?>
+                <li data-placement="left" data-toggle="tooltip" data-original-title="不懂就问"><a href="<?php echo wp_login_url( get_permalink() ); ?>">提问</a></li>
+        <?php } ?>
+
+    </ul>
+</div>
+<div class="side-tool" id="m-side-tool-project">
+    <ul>
+        <li><a href="<?php echo get_permalink( get_page_by_title( '编辑wiki' )); ?>&post_id=<?php echo $post->ID ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+        <li><a href="<?php echo get_permalink( get_page_by_title( '创建wiki' )); ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+    </ul>
+</div>
+
 <?php
 global $wpdb;
 $post_id = get_the_ID();
