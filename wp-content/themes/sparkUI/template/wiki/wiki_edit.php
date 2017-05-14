@@ -24,7 +24,7 @@ $wiki_post = get_post($post_id);
         <div id="ffff">
             <label id="edit-title" for="wiki_content_editor" style="font-size:30px;font-weight: bold;"><?php echo $wiki_post->post_title ?></label>
             <?php
-            wp_editor($wiki_post->post_content, 'wiki_content_editor', $settings = array('textarea_name' => 'post_content', 'textarea_rows' => 150));
+            wp_editor($wiki_post->post_content, 'wiki_content_editor', $settings = array('textarea_name' => 'post_content', 'textarea_rows' => 50));
             ?>
         </div>
     </div>

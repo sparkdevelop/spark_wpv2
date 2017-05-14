@@ -181,8 +181,7 @@ $admin_url=admin_url('admin-ajax.php');
 </div>
 </div>
 
-<div class="m-edit-wiki-box">
-    <div class="wiki_sidebar_wrap">
+    <div class="m-edit-wiki-box">
         <div class="list-group mulu">
             <p class="wiki_sidebar_title">选择wiki分类</p>
             <a href="#" class="list-group-item" id="wiki_entry_categories">
@@ -211,4 +210,3 @@ $admin_url=admin_url('admin-ajax.php');
             <a class="update_wiki">保存 wiki</a>
         </div>
     </div>
-</div>

@@ -13,7 +13,7 @@ wp_enqueue_media();
     <div id="ffff">
         <input type="text" name="wiki_entry_title" class="wiki_entry_title" placeholder="输入词条标题">
         <?php
-        wp_editor("", 'wiki_content_editor', $settings = array('textarea_name' => 'post_content', 'textarea_rows' => 150));
+        wp_editor("", 'wiki_content_editor', $settings = array('textarea_name' => 'post_content', 'textarea_rows' => 50));
         ?>
     </div>
 </div>

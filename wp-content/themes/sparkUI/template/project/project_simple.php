@@ -12,7 +12,7 @@
         <div class="thumbnail" id="project-div-fluid">
             <?php
             if ( has_post_thumbnail() ) { ?>
-                <a href="<?php the_permalink(); ?>" target="_blank"><?php the_post_thumbnail(array(220,142)); ?></a> <?php } else {?>
+                <a href="<?php the_permalink(); ?>" target="_blank"><?php the_post_thumbnail(array(255,142)); ?></a> <?php } else {?>
                 <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" height="150"/></a>
             <?php } ?>
           <div style="height: 1px;background-color: lightgray"></div>

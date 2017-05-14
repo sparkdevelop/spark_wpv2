@@ -120,8 +120,8 @@ foreach($term_all_names as $wiki_all_name) {
 </div>
 </div>
 
-<div class="m-create-wiki-box">
-    <div class="wiki_sidebar_wrap">
+
+    <div class="m-create-wiki-box">
         <div class="list-group mulu">
             <p class="wiki_sidebar_title">wiki分类</p>
             <?php
@@ -143,4 +143,3 @@ foreach($term_all_names as $wiki_all_name) {
             <a class="update_wiki">发布 wiki</a>
         </div>
     </div>
-</div>
