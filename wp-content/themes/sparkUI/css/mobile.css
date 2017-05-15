@@ -10,7 +10,7 @@
 
     /*首页样式*/
     .banner-background{
-        background-image: url("http://localhost/spark_wpv2/wp-content/themes/sparkUI/img/spark_banner_m.jpg");
+        background-image: url("../img/spark_banner_m.jpg");
     }
     .front-icon{
         width:70%;
