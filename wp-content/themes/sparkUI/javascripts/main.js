@@ -18,7 +18,7 @@ $(function(){
 
     //-----手机端导航按钮点击-----
     $(".m-nav-icon").on("click",function () {
-        $(".m-left-collapse-menu").show();
+        $(".m-left-collapse-menu").toggle();
     });
 
     $(".m-fa-remove").on("click",function () {
@@ -49,6 +49,10 @@ $(function(){
     })()
 
 
-})
+});
+
+function collapse() {
+    $("#m-personal-nav").collapse("toggle");
+}
 
 

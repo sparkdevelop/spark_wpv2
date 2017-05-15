@@ -154,61 +154,84 @@
     <div style="height: 2px;background-color: #fe642d"></div>
     <div style="height: 4px;background-color: #ffe9e1"></div>
 
-    <div class="m-left-collapse-menu">
-        <div class="self-bg">
-            <div class="m-avatar-box">
-                <button type="button" id="m-user-portrait" class="btn btn-default">
-                    <?php echo get_avatar($current_user->ID,60,'');?>
-                </button>
-                <div class="m-login-text">
-                    <a href="<?php echo wp_login_url($url_this); ?>">登陆</a>
-                    <span>/</span>
-                    <a href="<?php echo site_url(); ?>/wp-login.php?action=register">注册</a>
+    <?php if(is_user_logged_in()){?>
+        <div class="m-left-collapse-menu">
+            <div class="self-bg">
+                <div class="m-avatar-box">
+                    <button type="button" id="m-user-portrait" class="btn btn-default">
+                        <?php echo get_avatar(wp_get_current_user()->ID, 60, ''); ?>
+                    </button>
+                    <div class="m-login-text">
+                        <p style="font-size: large;margin-top: 20px"><?php echo wp_get_current_user()->data->display_name; ?></p>
+                    </div>
                 </div>
             </div>
+            <div class="m-left-nav-box">
+                <ul class="m-left-nav">
+                    <li>
+                        <img src="<?php bloginfo("template_url") ?>/img/wiki.png">
+                        <a href="<?php echo site_url() . get_page_address('wiki'); ?>">wiki</a>
+                    </li>
+                    <li>
+                        <img src="<?php bloginfo("template_url") ?>/img/qa.png">
+                        <a href="<?php echo site_url() . get_page_address('qa'); ?>">问答</a>
+                    </li>
+                    <li>
+                        <img src="<?php bloginfo("template_url") ?>/img/project.png">
+                        <a href="<?php echo get_the_permalink(get_page_by_title('项目')); ?>">项目</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="m-left-personal-nav" id="m-left-personal-nav">
+                <a id="m-btn-nav-personal" data-target="#m-personal-nav" onclick="collapse()">
+                    <span class="glyphicon glyphicon-user"></span>个人<i class="fa fa-angle-down" aria-hidden="true"></i>
+                </a>
+                <div id="m-personal-nav" class="collapse">
+                    <ul id="personal_nav" class="nav nav-pills nav-stacked">
+                        <li><span><a href="<?php echo site_url() . get_page_address("personal") . '&tab=notification' ?>">消息提醒</a></span></li>
+                        <li><span><a href="<?php echo site_url() . get_page_address("personal") . '&tab=wiki' ?>">我的wiki</a></span></li>
+                        <li><span><a href="<?php echo site_url() . get_page_address("personal") . '&tab=qa' ?>">我的问答</a></span></li>
+                        <li><span><a href="<?php echo site_url() . get_page_address("personal") . '&tab=project' ?>">我的项目</a></span></li>
+                        <li><span><a href="<?php echo site_url() . get_page_address("personal") . '&tab=profile' ?>">个人资料</a></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="setting" id="m-setting">
+                <a href="<?php echo site_url() . get_page_address("personal"); ?>&tab=profile"><span
+                        class="glyphicon glyphicon-cog"></span> 设置</a>
+                <a href="<?php echo wp_logout_url(); ?>"><span class="glyphicon glyphicon-log-in"></span> 退出</a>
+            </div>
         </div>
-        <div class="m-left-nav-box">
-            <ul class="m-left-nav">
-                <li>
-                    <img src="<?php bloginfo("template_url")?>/img/wiki.png">
-                    <a href="<?php echo site_url() . get_page_address('wiki');?>" >wiki</a>
-                </li>
-                <li>
-                    <img src="<?php bloginfo("template_url")?>/img/qa.png">
-                    <a href="<?php echo site_url() . get_page_address('qa');?>" >问答</a>
-                </li>
-                <li>
-                    <img src="<?php bloginfo("template_url")?>/img/project.png">
-                    <a href="<?php echo get_the_permalink( get_page_by_title( '项目' )); ?>">项目</a>
-                </li>
-            </ul>
-        </div>
-        <div class="m-left-personal-nav">
-            <a data-toggle="collapse" data-target="#m-personal-nav"><span class="glyphicon glyphicon-user"></span>个人<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-            <div id="m-personal-nav" class="collapse in">
-                <ul id="personal_nav" class="nav nav-pills nav-stacked">
+    <?php }
+    else { ?>
+        <div class="m-left-collapse-menu">
+            <div class="self-bg">
+                <div class="m-avatar-box">
+                    <button type="button" id="m-user-portrait" class="btn btn-default">
+                        <?php echo get_avatar('', 60, ''); ?>
+                    </button>
+                    <div class="m-login-text">
+                        <a href="<?php echo wp_login_url($url_this); ?>">登陆</a>
+                        <span>/</span>
+                        <a href="<?php echo site_url(); ?>/wp-login.php?action=register">注册</a>
+                    </div>
+                </div>
+            </div>
+            <div class="m-left-nav-box">
+                <ul class="m-left-nav">
                     <li>
-                        <span>
-                        <a href="<?php echo esc_url(add_query_arg(array('tab'=>'notification')))?>">消息提醒</a>
-                        </span>
+                        <img src="<?php bloginfo("template_url") ?>/img/wiki.png">
+                        <a href="<?php echo site_url() . get_page_address('wiki'); ?>">wiki</a>
                     </li>
                     <li>
-                        <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'wiki')))?>">我的wiki</a></span>
+                        <img src="<?php bloginfo("template_url") ?>/img/qa.png">
+                        <a href="<?php echo site_url() . get_page_address('qa'); ?>">问答</a>
                     </li>
                     <li>
-                        <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'qa')))?>">我的问答</a></span>
-                    </li>
-                    <li>
-                        <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'project')))?>">我的项目</a></span>
-                    </li>
-                    <li>
-                        <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'profile')))?>">个人资料</a></span>
+                        <img src="<?php bloginfo("template_url") ?>/img/project.png">
+                        <a href="<?php echo get_the_permalink(get_page_by_title('项目')); ?>">项目</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="setting">
-            <a href="<?php echo site_url().$person_address;?>&tab=profile"><span class="glyphicon glyphicon-cog"></span> 设置</a>
-            <a href="<?php echo wp_logout_url(); ?>"><span class="glyphicon glyphicon-log-in"></span> 退出</a>
-        </div>
-    </div>
+    <?php } ?>
