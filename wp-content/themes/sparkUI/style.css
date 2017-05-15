@@ -178,10 +178,11 @@ body{
 /*首页大图*/
 .banner-background{
     background-image: url("img/spark_banner.jpg");
-    /*background-image: url("http://localhost/spark_wpv2/wp-content/themes/sparkUI/img/spark_banner.jpg");*/
     opacity: 1;
 }
-
+.m-banner{
+    display: none;
+}
 
 /*侧边栏按钮*/
 .sidebar_button{
@@ -1019,6 +1020,7 @@ box-shadow: none;
     border: 1px solid #dcdcdc;
     border-bottom: none;
     background-color: #fff;
+    cursor:pointer;
     transition: .1s ease-in;
     -webkit-transition: .1s ease-in;
     -moz-transition: .1s ease-in;

@@ -155,6 +155,7 @@
     <div style="height: 4px;background-color: #ffe9e1"></div>
 
     <?php if(is_user_logged_in()){?>
+    <div class="m-left-collapse-overlayer">
         <div class="m-left-collapse-menu">
             <div class="self-bg">
                 <div class="m-avatar-box">
@@ -202,8 +203,10 @@
                 <a href="<?php echo wp_logout_url(); ?>"><span class="glyphicon glyphicon-log-in"></span> 退出</a>
             </div>
         </div>
+    </div>
     <?php }
     else { ?>
+    <div class="m-left-collapse-overlayer">
         <div class="m-left-collapse-menu">
             <div class="self-bg">
                 <div class="m-avatar-box">
@@ -234,4 +237,5 @@
                 </ul>
             </div>
         </div>
+    </div>
     <?php } ?>

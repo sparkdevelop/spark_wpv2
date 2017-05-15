@@ -42,7 +42,9 @@ user_history_table_install();
 
 <div class="container-fluid" style="padding: 0;">
     <div class="head-box">
-        <div class="banner-background"></div>
+        <div class="banner-background">
+            <img class="m-banner" src="<?php bloginfo("template_url")?>/img/spark_banner_m.jpg" alt=""/>
+        </div>
     </div>
 </div>
 <!--    <div class="container" style="padding: 0">-->
