@@ -180,3 +180,33 @@ $admin_url=admin_url('admin-ajax.php');
     </div>
 </div>
 </div>
+
+    <div class="m-edit-wiki-box">
+        <div class="list-group mulu">
+            <p class="wiki_sidebar_title">选择wiki分类</p>
+            <a href="#" class="list-group-item" id="wiki_entry_categories">
+                <?php
+                foreach ($wiki_categorys as $wiki_category) {
+                    echo "<b>" . $wiki_category . "</b>" . "&nbsp;&nbsp;&nbsp;";
+                }
+                ?>
+            </a>
+            <?php
+            foreach($_SESSION['wiki_all_categories'] as $category_term_id => $category_name) {
+                ?>
+                <a href="#" class="list-group-item mulu_item"><input name="wiki_category" type="checkbox" <?php if(in_array($category_name, $wiki_categorys)) echo "checked=\"checked\" "; ?>value="<?php echo $category_term_id; ?>">&nbsp;&nbsp;&nbsp;<?php echo $category_name; ?></a>
+                <?php
+            }
+            ?>
+        </div>
+
+        <div class="wiki_tags">
+            <p class="wiki_sidebar_title">选择wiki标签</p>
+            <input type="text" class="wiki_tags_input" value="<?php for($i=0;$i<count($wiki_tags);$i++){echo $wiki_tags[$i];if($i<count($wiki_tags)-1){echo ",";}} ?>" placeholder="多个标签用分号隔开"><br>
+            <div id="wiki_hot_tags"></div>
+        </div>
+
+        <div class="create_wiki_btn">
+            <a class="update_wiki">保存 wiki</a>
+        </div>
+    </div>

@@ -212,18 +212,18 @@
     </div>
 
 <!--    加上提问按钮-->
-    <?php if(is_user_logged_in()){ ?>
-        <div class="sidebar_button" id="ask_button">
-            <?php session_start();
-            $_SESSION['post_id'] = get_the_ID();
-            $_SESSION['post_type'] = get_post_type(get_the_ID());?>
-            <a onclick="addLayer()" id="ask_link">我要提问</a>
-        </div>
-    <?php }else{ ?>
-        <div class="sidebar_button" id="ask_button">
-            <a href="<?php echo wp_login_url( get_permalink() ); ?>">我要提问</a>
-        </div>
-    <?php } ?>
+<!--    --><?php //if(is_user_logged_in()){ ?>
+<!--        <div class="sidebar_button" id="ask_button">-->
+<!--            --><?php //session_start();
+//            $_SESSION['post_id'] = get_the_ID();
+//            $_SESSION['post_type'] = get_post_type(get_the_ID());?>
+<!--            <a href="--><?php //echo site_url().get_page_address('ask_tiny');?><!--" style="color: white" id="ask_link">我要提问</a>-->
+<!--        </div>-->
+<!--    --><?php //}else{ ?>
+<!--        <div class="sidebar_button" id="ask_button">-->
+<!--            <a href="--><?php //echo wp_login_url( get_permalink() ); ?><!--" style="color: white">我要提问</a>-->
+<!--        </div>-->
+<!--    --><?php //} ?>
 </div>
 <script>
     var flag=false;
@@ -238,19 +238,5 @@
             more_related_pros.style.display="block";
         }
         flag=!flag;
-    }
-    function addLayer() {
-        layer.open({
-            type : 2,
-            title: "提问", //不显示title   //'layer iframe',
-            content: '<?php echo site_url().get_page_address('ask_tiny');?>', //iframe的url
-            area: ['70%', '80%'],
-            closeBtn:1,            //是0为不显示叉叉 可选1,2
-            shadeClose: true,    //点击其他shade区域关闭窗口
-            shade: 0.5,   //透明度
-            end: function () {
-                location.reload();
-            }
-        });
     }
 </script>

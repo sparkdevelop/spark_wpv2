@@ -1,0 +1,371 @@
+@media screen and (max-width: 480px) {
+    body {
+
+    }
+    #col9{ padding-left: 0;padding-right: 0; width:100%;}
+    #col3{ display: none;}
+    .row{
+        margin: 0;
+    }
+
+    /*首页样式*/
+    .banner-background{
+        background-image: url("../img/spark_banner_m.jpg");
+    }
+    .front-icon{
+        width:70%;
+        margin-top: 20px;
+    }
+    .head-box{
+        height:200px;
+    }
+    .banner-background{
+
+    }
+
+    /*导航header部分样式*/
+    #m-header{
+        display: block;
+    }
+    #web-header{
+        display: none;
+    }
+    #m-nav-icon{
+        display: block;
+        position: absolute;
+        left: 0;
+        font-size: 20px;
+        color: #fe642d;
+        padding: 20px 30px 20px 0;
+    }
+    .navbar-header{
+        height:50px;
+    }
+    .navbar-brand{
+        float: none;
+        display: block;
+        height:30px;
+    }
+    .navbar-brand>img{
+        height:30px;
+        margin:0 auto;
+    }
+    .navbar-nav{
+        float: left;
+    }
+    .navbar-nav>li {
+        float:left;
+    }
+    #m-search-icon{
+        display: block;
+        position: absolute;
+        right: 0;
+        font-size: 20px;
+        color: #fe642d;
+        margin-top: -8px;
+    }
+    #m-search-close{
+        display: none;
+        position: absolute;
+        right: 0;
+        font-size: 20px;
+        color: #fe642d;
+        margin-top: -8px;
+    }
+    .navbar-text{
+        display: none;
+    }
+    .m_search_box{
+        position: absolute;
+        background-color: #FDFDFD;
+        padding:20px 15px;
+        box-shadow: 3px 3px 3px #f0f0f0;
+        width:100%;
+        height:88px;
+        top: 66px;
+        left:0;
+        z-index: 7;
+        transition: all 0.25s;
+    }
+    #search_select {
+        margin-right: 2px;
+        float: left;
+        border: none;
+        box-shadow: none;
+        height: 38px;
+        padding: 0 0;
+        font-size: 10px;
+        color: grey;
+        border-right: 1px solid #e7e7e7;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+    .navbar-form{
+        margin:0;
+    }
+    #search_select{
+        width: 60px;
+    }
+    #search-btn{
+        width:25px;
+        position: relative;
+        float: right;
+        top:-38px;
+     }
+
+    /*左侧展开菜单样式*/
+    .m-left-collapse-menu{
+        display: none;
+        position: fixed;
+        width:40%;
+        min-width: 150px;
+        max-width: 440px;
+        background: #fff;
+        overflow: auto;
+        padding: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 10;
+    }
+    #m-user-portrait{
+        border:none;
+    }
+    .m-avatar-box{
+        margin:30px 20px;
+        text-align: center;
+    }
+    .m-login-text{
+        margin-top: 10px;
+    }
+    .m-login-text a{
+        color: #666666;
+        font-size: 15px;
+        margin:5px;
+    }
+    .m-left-nav{
+        margin:0;
+    }
+    .m-left-nav-box{
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+    }
+    .m-left-nav li{
+        display: block;
+        font-size: 16px;
+        height:50px;
+        line-height: 50px;
+    }
+    .m-left-nav>li>a{
+        width:100%;
+        color: #333;
+        margin-left: 5px;
+    }
+    .m-left-personal-nav a{
+        display: block;
+        font-size: 16px;
+        height:50px;
+        color: #666;
+        line-height: 50px;
+        padding-left: 40px;
+        border-bottom: 1px solid #eee;
+    }
+    #m-personal-nav a{
+        font-size: 14px;
+    }
+    #personal_nav{
+        padding:0;
+        background-color: #f5f5f5;
+    }
+    .m-left-personal-nav i{
+        font-size: 20px;
+        font-weight: bold;
+        margin-left: 15px;
+    }
+    .setting{
+        height:50px;
+    }
+    .setting a{
+        display: block;
+        font-size: 16px;
+        height:50px;
+        color: #666;
+        line-height: 50px;
+        padding-left: 40px;
+        border-bottom: 1px solid #eee;
+    }
+    /*评论框样式*/
+    #reply-title{
+        margin-bottom: 13px;
+    }
+    /*wiki样式*/
+    .wiki-index-icon{
+        margin-bottom: 10px;
+    }
+    .wiki_category{
+        margin-bottom: 0px;
+        padding-top: 10px;
+    }
+    .wiki_category_item{
+        padding:10px 0 10px 0;
+    }
+    .m-wiki-index-icon{
+        text-align: center;
+    }
+    .m-wiki-index{
+        text-align: center;
+    }
+    .wiki_category p{
+        display: none;
+    }
+
+    /*问答、项目子导航样式*/
+    #project-fluid{
+        padding:0 5px 0 5px;
+    }
+    #leftTab{
+        font-size: 15px;
+    }
+    #rightTab{
+        font-size:14px;
+    }
+    #leftTab a{
+        padding:10px 20px 10px 0;
+    }
+    #rightTab a{
+        padding: 10px 0 10px 8px;
+    }
+
+    /*项目主页样式*/
+    .thumbnail .caption{
+        padding:15px 10px 10px 10px;
+    }
+    #project-div-fluid{
+        height:198px;
+    }
+    .project-title{
+        font-size: 15px;
+    }
+    .project-info{
+        color:#4d4d4d;
+        font-size: 10px;
+    }
+    #project-category-info{
+        display: none;
+    }
+    #web-project-views{
+        display: none;
+    }
+    #m-project-views{
+        display: block;
+    }
+    .side-tool>ul>li{
+        border:none;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+        border-radius: 25px;
+        background-color: #fe642d;
+        margin-top: 15px;
+    }
+    .side-tool>ul>li>a>i {
+        color: #fff;
+        font-size: 23px;
+        line-height: 50px;
+    }
+
+    /*搜索页样式*/
+    .m_search_page_box{
+        display: block;
+        margin:30px 0;
+    }
+    #searchTab{
+        margin-top: 95px;
+    }
+    .m-search-project-list{
+        display: none;
+    }
+    #m-project-title-box{
+        height:35px;
+    }
+    #m-project-title{
+        font-size: 18px;
+    }
+    .search-project-text{
+        width: 93%;
+        display: block;
+        float: none;
+    }
+    .search-project-divline{
+        margin-top: 20px
+    }
+
+    /*项目详情页样式*/
+    #side-tool-project{
+        display:none;
+    }
+    #m-side-tool-project{
+        display: block;
+        right: 30px;
+        bottom: 30px;
+    }
+    .m-qa-count{
+        display: block;
+        margin: 7px 0;
+    }
+    .time_count{
+        margin-left: 0px;
+    }
+
+    /*footer部分样式*/
+    .footer{
+        height:330px;
+    }
+    #spark-foot-logo{
+        text-align: center;
+        margin-right: 0;
+    }
+    #spark-foot-logo img{
+        float: none;
+        padding:20px 0;
+        width: 120px;
+    }
+    #spark-nav,#friend-link{
+        display: none;
+    }
+    #contact-us{
+        text-align: center;
+        padding:0;
+        margin: 5px 0px 8px 0;
+     }
+    #contact-us ul{
+        margin-bottom: 0;
+    }
+    #contact-us p{
+    margin: 0;
+     }
+    .spark-QRCode{
+        float: none;
+        margin-top: 0;
+        width:120px;
+    }
+    /*项目编辑页*/
+    .m-publish-project{
+        display: block;
+    }
+    /*wiki编辑页*/
+    .m-edit-wiki-box{
+        display: block;
+    }
+    .m-create-wiki-box{
+        display: block;
+    }
+
+    /*主页*/
+    #front-page{
+        margin-top: 270px;
+    }
+
+}
