@@ -8,12 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); filemtime( get_stylesheet_directory() . '/style.css'); ?>"
           type="text/css" media="screen, projection"/>
-    <link rel="stylesheet" type="text/css" media="screen, projection" href="http://localhost/spark_wpv2/wp-content/themes/sparkUI/css/mobile.css" />
-<!--    <script type="text/javascript" src="--><?php //echo get_template_directory_uri(); ?><!--/js/jquery.js"></script>-->
-<!--    <script src="http://cdn.static.runoob.com/libs/jquery/3.1.1/jquery.js"></script>-->
+    <link rel="stylesheet" type="text/css" media="screen, projection" href="<?php bloginfo('stylesheet_directory')?>/css/mobile.css" />
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<!--    <script src="--><?php //bloginfo('template_url');?><!--/bootstrap/jquery-3.2.0.min.js"</script>-->
     <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -185,6 +182,30 @@
                     <a href="<?php echo get_the_permalink( get_page_by_title( '项目' )); ?>">项目</a>
                 </li>
             </ul>
+        </div>
+        <div class="m-left-personal-nav">
+            <a data-toggle="collapse" data-target="#m-personal-nav"><span class="glyphicon glyphicon-user"></span>个人<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+            <div id="m-personal-nav" class="collapse in">
+                <ul id="personal_nav" class="nav nav-pills nav-stacked">
+                    <li>
+                        <span>
+                        <a href="<?php echo esc_url(add_query_arg(array('tab'=>'notification')))?>">消息提醒</a>
+                        </span>
+                    </li>
+                    <li>
+                        <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'wiki')))?>">我的wiki</a></span>
+                    </li>
+                    <li>
+                        <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'qa')))?>">我的问答</a></span>
+                    </li>
+                    <li>
+                        <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'project')))?>">我的项目</a></span>
+                    </li>
+                    <li>
+                        <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'profile')))?>">个人资料</a></span>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="setting">
             <a href="<?php echo site_url().$person_address;?>&tab=profile"><span class="glyphicon glyphicon-cog"></span> 设置</a>

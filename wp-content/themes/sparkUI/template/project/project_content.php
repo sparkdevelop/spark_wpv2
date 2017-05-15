@@ -118,3 +118,9 @@ query_posts函数会改写并取代页面的主查询。为谨慎起见，请不
 <?php wp_reset_query();
 wp_reset_postdata(); ?>
 
+<div class="side-tool" id="m-side-tool-project">
+    <ul>
+        <li><a href="<?php echo get_the_permalink(get_page_by_title('发布项目')) ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+    </ul>
+</div>
+

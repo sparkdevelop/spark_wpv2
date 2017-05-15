@@ -148,23 +148,23 @@ $post_id = get_the_ID();
                         </div>
                 </div>
 
-                <?php
-                $current_url = curPageURL();
-                $url_array=parse_url($current_url);
-                $current_page_id=explode("=",$url_array['query'])[1];
-                ?>
-                <?php if(is_user_logged_in()){ ?>
-                    <div class="sidebar_button" id="ask_button">
-                        <?php session_start();
-                            $_SESSION['post_id'] = $current_page_id;
-                            $_SESSION['post_type'] = get_post_type($current_page_id);?>
-                        <a href="<?php echo site_url().get_page_address('ask_tiny');?>" style="color: white" id="ask_link">我要提问</a>
-                    </div>
-                <?php }else{ ?>
-                    <div class="sidebar_button" id="ask_button">
-                        <a href="<?php echo wp_login_url( get_permalink() ); ?>" style="color: white">我要提问</a>
-                    </div>
-                <?php } ?>
+<!--                --><?php
+//                $current_url = curPageURL();
+//                $url_array=parse_url($current_url);
+//                $current_page_id=explode("=",$url_array['query'])[1];
+//                ?>
+<!--                --><?php //if(is_user_logged_in()){ ?>
+<!--                    <div class="sidebar_button" id="ask_button">-->
+<!--                        --><?php //session_start();
+//                            $_SESSION['post_id'] = $current_page_id;
+//                            $_SESSION['post_type'] = get_post_type($current_page_id);?>
+<!--                        <a href="--><?php //echo site_url().get_page_address('ask_tiny');?><!--" style="color: white" id="ask_link">我要提问</a>-->
+<!--                    </div>-->
+<!--                --><?php //}else{ ?>
+<!--                    <div class="sidebar_button" id="ask_button">-->
+<!--                        <a href="--><?php //echo wp_login_url( get_permalink() ); ?><!--" style="color: white">我要提问</a>-->
+<!--                    </div>-->
+<!--                --><?php //} ?>
 
 
             </div>
@@ -174,16 +174,35 @@ $post_id = get_the_ID();
         <div class="side-tool" id="side-tool-project">
             <ul>
                 <li data-placement="left" data-toggle="tooltip" data-original-title="回到顶部"><a href="#" class="">顶部</a></li>
-                <li data-placement="left" data-toggle="tooltip" data-original-title="赞"><a href="#comments" class="">评论</a></li>
-                <li data-placement="left" data-toggle="tooltip" data-original-title="不懂就问"><a href="<?php echo wp_login_url( get_permalink() ); ?>" class="">提问</a></li>
+                <li data-placement="left" data-toggle="tooltip" data-original-title="点赞吐槽"><a href="#comments" class="">评论</a></li>
+
+                <?php
+                $current_url = curPageURL();
+                $url_array=parse_url($current_url);
+                $current_page_id=explode("=",$url_array['query'])[1];
+                ?>
+                <?php if(is_user_logged_in()){ ?>
+                        <?php session_start();
+                        $_SESSION['post_id'] = $current_page_id;
+                        $_SESSION['post_type'] = get_post_type($current_page_id);?>
+                        <li data-placement="left" data-toggle="tooltip" data-original-title="不懂就问"><a href="<?php echo site_url().get_page_address('ask_tiny');?>">提问</a></li>
+                <?php }else{ ?>
+                        <li data-placement="left" data-toggle="tooltip" data-original-title="不懂就问"><a href="<?php echo wp_login_url( get_permalink() ); ?>">提问</a></li>
+                <?php } ?>
+
             </ul>
         </div>
     <div class="side-tool" id="m-side-tool-project">
         <ul>
-            <li data-placement="left" data-toggle="tooltip" data-original-title="回到顶部"><a href="#" class="">顶部</a></li>
-            <li data-placement="left" data-toggle="tooltip" data-original-title="赞"><a href="#comments" class="">评论</a></li>
-            <li data-placement="left" data-toggle="tooltip" data-original-title="不懂就问"><a href="<?php echo wp_login_url( get_permalink() ); ?>" class="">提问</a></li>
+            <?php if($current_user->user_login  == get_the_author()){?>
+                <?php require 'template/project/project_edit_button.php';?>
+                <li><a href="?fep_action=edit&fep_id=<?= $post_id; ?><?= (isset($_SERVER['QUERY_STRING']) ? '&' . $_SERVER['QUERY_STRING'] : '') ?>&page_id=30" ><i class="fa fa-pencil" aria - hidden = "true" ></i ></a ></li >
+                <li><a href="<?php echo get_the_permalink(get_page_by_title('发布项目')) ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+             <?php }else{ ?>
+                <li><a href="<?php echo get_the_permalink(get_page_by_title('发布项目')) ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+            <?php } ?>
         </ul>
+
     </div>
 
         <script type="text/javascript">
