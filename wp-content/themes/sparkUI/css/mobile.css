@@ -363,5 +363,9 @@
         display: block;
     }
 
+    /*主页*/
+    #front-page{
+        margin-top: 270px;
+    }
 
 }

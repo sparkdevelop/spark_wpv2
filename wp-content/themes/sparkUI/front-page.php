@@ -49,7 +49,7 @@ my_table_install();
 <!--            <img class="banner" src="--><?php //bloginfo("template_url") ?><!--/img/spark_banner.jpg"/>-->
 <!--        </div>-->
 <!--    </div>-->
-<div class="container" style="padding: 50px 0; text-align: center;margin-top: 270px">
+<div class="container" id="front-page" style="padding: 50px 0; text-align: center;">
     <div class="col-md-4 col-sm-4 col-xs-12">
         <div><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/wiki_icon.png"/></div>
         <a class="features-title" href="<?php echo site_url() . get_page_address('wiki');?>"><h1>wiki</h1></a>
