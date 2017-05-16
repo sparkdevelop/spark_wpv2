@@ -2,12 +2,10 @@
     $tab = isset( $_GET['tab'] ) && !empty( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'qa';
 ?>
 <script>
-    window.onload=function(){
-        var li=document.getElementById("<?=$tab?>");
-        var li_default= document.getElementById("qa");
-        li_default.className = "";
-        li.className="active";
-    }
+    $(function () {
+        $("#qa").removeClass("active");
+        $("#<?=$tab?>").addClass("active");
+    });
 </script>
 <style>
     /*.container{background-color: #fafafa}*/

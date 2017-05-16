@@ -18,13 +18,20 @@ $(function(){
 
     //-----手机端导航按钮点击-----
     $(".m-nav-icon").on("click",function () {
-        $(".m-left-collapse-menu").show();
+        //$(".m-left-collapse-menu").toggle();
+        $(".m-left-collapse-overlayer").show();
+        $(".m-left-collapse-menu").animate({marginLeft:"0px"});
+        $('body').css({"height":"100%","overflow":"hidden"});
     });
+    $(".m-left-collapse-menu").on('click',function(e){
+        e.stopPropagation();
+    })
 
-    $(".m-fa-remove").on("click",function () {
-        $("m-left-collapse-menu").hide();
-    });
-
+    $(".m-left-collapse-overlayer").on('click',function () {
+        $(".m-left-collapse-overlayer").fadeOut();
+        $(".m-left-collapse-menu").animate({marginLeft:"-40%"});
+        $('body').css({"height":"auto","overflow":"auto"});
+    })
 
     //------JS判断客户端是手机还是PC，并移除一些div-------
     (function IsPC() {
@@ -49,6 +56,10 @@ $(function(){
     })()
 
 
-})
+});
+
+function collapse() {
+    $("#m-personal-nav").collapse("toggle");
+}
 
 

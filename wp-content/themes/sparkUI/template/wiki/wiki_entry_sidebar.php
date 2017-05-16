@@ -162,6 +162,13 @@
 
 <!--    相关项目-->
     <?php
+    //埋数据点
+    session_start();
+    $_SESSION['post_id'] = get_the_ID();
+    $_SESSION['post_type'] =get_post_type(get_the_ID());
+    $_SESSION['user_id'] = get_current_user_id();
+    $_SESSION['timestamp'] = date("Y-m-d H:i:s",time() + 8*3600);
+    writeUserTrack();
     $related_pros = wikiRelatedPro(get_the_ID()); ?>
     <div class="related_pros">
         <div class="sidebar_list_header">
@@ -171,7 +178,7 @@
         <!--分割线-->
         <div style="height: 2px;background-color: lightgray"></div>
         <div class="related_pros" id="related_pros">
-            <ul>
+            <ul style="padding-left: 20px">
                 <?php
                 //控制条数
                 if(sizeof($related_pros)<5){$length = sizeof($related_pros);}
@@ -187,7 +194,7 @@
         </div>
 
         <div class="more_related_pros" id="more_related_pros" style="display: none">
-            <ul>
+            <ul style="padding-left: 20px">
                 <?php
                 //控制条数
                 if(sizeof($related_pros)>=15){$length = 15;}

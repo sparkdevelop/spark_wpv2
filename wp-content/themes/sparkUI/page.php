@@ -39,9 +39,9 @@ $page_personal_id = get_page_id('personal');
                     }
                     require "template/wiki/wiki_create.php";
                 }
-                elseif ( is_page($page_qa_id) ) {//显示问答内容 参数为pageID 如何自动获取???>
+                elseif (is_page("qa") ) {//显示问答内容 参数为pageID 如何自动获取???>
                     <script>
-                        location.href = "<?= site_url();?>/?post_type=dwqa-question";
+                        location.replace("<?= site_url();?>/?post_type=dwqa-question");
                     </script>
                 <?php
                     //require "template/qa/QA_content.php";
@@ -49,13 +49,11 @@ $page_personal_id = get_page_id('personal');
                 elseif (is_page('项目')){
                     require "template/project/project_content.php";
                 }
-                elseif (is_page($page_ask_id)) {
+                elseif (is_page("ask")) {
                     if (is_user_logged_in()) {
                         require "template/qa/QA_ask.php";
                     } else {?>
-                        <script>
-                            location.replace("<?= wp_login_url( get_permalink())?>");
-                        </script>
+                        <script>location.replace("<?= wp_login_url( get_permalink())?>");</script>
                 <?php   }
                 }
                 elseif (is_page('发布项目')){
@@ -71,9 +69,7 @@ $page_personal_id = get_page_id('personal');
                     if (is_user_logged_in()) {
                         require "template/personal.php";
                     } else { ?>
-                    <script>
-                        location.href = "<?= wp_login_url( get_permalink())?>";
-                    </script>
+                        <script>location.href = "<?= wp_login_url( get_permalink())?>";</script>
                 <?php  }
                 }
                 else{

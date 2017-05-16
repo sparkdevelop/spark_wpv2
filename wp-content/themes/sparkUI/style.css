@@ -177,10 +177,12 @@ body{
 
 /*首页大图*/
 .banner-background{
-    background-image: url("http://localhost/spark_wpv2/wp-content/themes/sparkUI/img/spark_banner.jpg");
+    background-image: url("img/spark_banner.jpg");
     opacity: 1;
 }
-
+.m-banner{
+    display: none;
+}
 
 /*侧边栏按钮*/
 .sidebar_button{
@@ -204,6 +206,7 @@ body{
     width: 100%;
     color: white;
     text-decoration: none;
+    cursor: pointer;
 }
 
 /*侧边栏列表*/
@@ -326,7 +329,7 @@ body{
     font-weight: bolder;
 }
 .qa_title{
-    margin:3px 0 15px 0;
+    margin:10px 0 15px 0;
 }
 
 /*已采纳按钮*/
@@ -352,7 +355,7 @@ body{
 .qa_show{
     display: inline-block;
     vertical-align: top;
-    width: 92%;
+    width: 87%;
     margin-left: 15px
 }
 
@@ -1022,6 +1025,7 @@ box-shadow: none;
     border: 1px solid #dcdcdc;
     border-bottom: none;
     background-color: #fff;
+    cursor:pointer;
     transition: .1s ease-in;
     -webkit-transition: .1s ease-in;
     -moz-transition: .1s ease-in;
@@ -1081,3 +1085,4 @@ box-shadow: none;
 #m-header,.m_search_box,.m-fa-search,.m-fa-remove,#m-project-views,#m-side-tool-project,.m-left-collapse-menu,.m_search_page_box,.m-qa-count,.m-publish-project,.m-edit-wiki-box,.m-create-wiki-box {
     display: none;
 }
+

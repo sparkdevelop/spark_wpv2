@@ -16,7 +16,15 @@ $current_user = wp_get_current_user();
 $author_posts = new WP_Query(array('posts_per_page' => $per_page, 'paged' => $paged, 'orderby' => 'DESC', 'author' => $current_user->ID, 'post_status' => $status,'category_name'=>'project'));
 $post_id = get_the_ID();
 
+//埋数据点
+session_start();
+$_SESSION['post_id'] = get_the_ID();
+$_SESSION['post_type'] =get_post_type(get_the_ID());
+$_SESSION['user_id'] = get_current_user_id();
+$_SESSION['timestamp'] = date("Y-m-d H:i:s",time() + 8*3600);
+writeUserTrack();
 ?>
+
 <div class="container" style="margin-top: 10px">
         <div class="row" style="width: 100%">
             <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
@@ -103,6 +111,7 @@ $post_id = get_the_ID();
                     <p>评论：</p>
                     <span><?php comments_popup_link('0 条', '1 条', '% 条', '', '评论已关闭'); ?></span><br>
                 </div><br>
+
                 <div class="related_questions">
                     <div class="sidebar_list_header">
                         <p>相似项目</p>
@@ -112,18 +121,19 @@ $post_id = get_the_ID();
                         <?php related_project() ?>
                     </ul>
                 </div>
-                <?php $related_wiki = writeProWiki(get_the_ID());
-                print_r($related_wiki);?>
+
+
+                <?php $related_wiki = writeProWiki(get_the_ID());?>
+
                 <div class="related_wikis">
                         <div class="sidebar_list_header">
-
                             <p>相关知识</p>
                             <a id="sidebar_list_link" onclick="show_more_wiki()">更多</a>
                         </div>
                         <!--分割线-->
                         <div style="height: 2px;background-color: lightgray"></div>
                         <div class="related_wiki" id="related_wiki">
-                            <ul>
+                            <ul style="padding-left: 20px; ">
                                 <?php
                                 //控制条数
                                 if(sizeof($related_wiki)<5){$length = sizeof($related_wiki);}
@@ -139,7 +149,7 @@ $post_id = get_the_ID();
                         </div>
 
                         <div class="more_related_wiki" id="more_related_wiki" style="display: none">
-                            <ul>
+                            <ul style="padding-left: 20px">
                                 <?php
                                 //控制条数
                                 if(sizeof($related_wiki)>=15){$length = 15;}
@@ -193,7 +203,7 @@ $post_id = get_the_ID();
                         <?php session_start();
                         $_SESSION['post_id'] = $current_page_id;
                         $_SESSION['post_type'] = get_post_type($current_page_id);?>
-                        <li data-placement="left" data-toggle="tooltip" data-original-title="不懂就问"><a href="<?php echo site_url().get_page_address('ask_tiny');?>">提问</a></li>
+                        <li data-placement="left" data-toggle="tooltip" data-original-title="不懂就问"><a onclick="addLayer()" id="ask_link">提问</a></li>
                 <?php }else{ ?>
                         <li data-placement="left" data-toggle="tooltip" data-original-title="不懂就问"><a href="<?php echo wp_login_url( get_permalink() ); ?>">提问</a></li>
                 <?php } ?>
@@ -232,6 +242,20 @@ $post_id = get_the_ID();
             more_related_wiki.style.display="block";
         }
         flag=!flag;
+    }
+    function addLayer() {
+        layer.open({
+            type : 2,
+            title: "提问", //不显示title   //'layer iframe',
+            content: '<?php echo site_url().get_page_address('ask_tiny');?>', //iframe的url
+            area: ['70%', '80%'],
+            closeBtn:1,            //是0为不显示叉叉 可选1,2
+            shadeClose: true,    //点击其他shade区域关闭窗口
+            shade: 0.5,   //透明度
+            end: function () {
+                location.reload();
+            }
+        });
     }
 </script>
 

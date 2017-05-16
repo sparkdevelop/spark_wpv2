@@ -1,6 +1,5 @@
 <?php $current_user = wp_get_current_user();
       $user_description = get_user_meta($current_user->ID,'description',true);
-
 ?>
 
 <?php

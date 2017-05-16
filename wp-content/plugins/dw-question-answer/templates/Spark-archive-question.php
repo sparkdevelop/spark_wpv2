@@ -96,16 +96,16 @@ foreach($tags as $key => $temp){
                 $query_parse=explode("&",$url_array['query']);
                 if(array_search("sort=views",$query_parse)){?>
                     <li  class="active"><a href="<?php echo esc_url(add_query_arg( array( 'sort' => 'views','filter'=>'all','paged'=>'1') ) )?>">热门</a></li>
-                    <li><a href="<?php echo remove_query_arg(array('sort','filter','paged')) ?>">所有</a></li>
-                    <li><a href="<?php echo esc_url( add_query_arg( array('sort'=>'date','filter' => 'unanswered','paged'=>'1') ) ) ?>">未解决</a></li>
+                    <li><a href="<?php echo remove_query_arg(array('sort','filter','paged')) ?>">最新</a></li>
+                    <li><a href="<?php echo esc_url( add_query_arg( array('sort'=>'date','filter' => 'unanswered','paged'=>'1') ) ) ?>" id="m-unresolved">未解决</a></li>
                 <?php }elseif (array_search("filter=unanswered",$query_parse)){?>
                     <li><a href="<?php echo esc_url(add_query_arg( array( 'sort' => 'views','filter'=>'all' ,'paged'=>'1') ) )?>">热门</a></li>
-                    <li><a href="<?php echo remove_query_arg(array('sort','filter','paged')) ?>">所有</a></li>
-                    <li class="active"><a href="<?php echo esc_url( add_query_arg( array( 'sort' => 'date','filter' => 'unanswered','paged'=>'1') ) ) ?>" >未解决</a></li>
+                    <li><a href="<?php echo remove_query_arg(array('sort','filter','paged')) ?>">最新</a></li>
+                    <li class="active"><a href="<?php echo esc_url( add_query_arg( array( 'sort' => 'date','filter' => 'unanswered','paged'=>'1') ) ) ?>" id="m-unresolved">未解决</a></li>
                 <?php } else{ ?>
                     <li><a href="<?php echo esc_url(add_query_arg( array( 'sort' => 'views', 'paged'=>'1') ) )?>">热门</a></li>
-                    <li class="active"><a href="<?php echo remove_query_arg(array('sort','filter','paged')) ?>">所有</a></li>
-                    <li><a href="<?php echo esc_url( add_query_arg( array( 'sort' => 'date','filter' => 'unanswered','paged'=>'1'))) ?>">未解决</a></li>
+                    <li class="active"><a href="<?php echo remove_query_arg(array('sort','filter','paged')) ?>">最新</a></li>
+                    <li><a href="<?php echo esc_url( add_query_arg( array( 'sort' => 'date','filter' => 'unanswered','paged'=>'1'))) ?>" id="m-unresolved">未解决</a></li>
                 <?php } ?>
             </ul>
         </div>
@@ -181,7 +181,7 @@ foreach($tags as $key => $temp){
             <!--列表头-->
             <ul id="sidebar_list_choose" class="nav nav-pills">
                 <li><a href="#helperday" data-toggle="tab">日</a></li>
-                <li><a href="#helpermonth" data-toggle="tab">周</a></li>
+                <li class="active"><a href="#helpermonth" data-toggle="tab">周</a></li>
             </ul>
         </div>
         <!--分割线 下面的是列表-->
@@ -311,3 +311,18 @@ function Spark_question_paginate_link(){
     echo '</div>';
 }
 ?>
+
+
+<?php if(is_user_logged_in()){ ?>
+    <div class="side-tool" id="m-side-tool-project">
+        <ul>
+            <li><a href="<?php echo site_url().get_page_address('ask');?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+        </ul>
+    </div>
+<?php }else{ ?>
+    <div class="side-tool" id="m-side-tool-project">
+        <ul>
+            <li><a href="<?php echo wp_login_url( get_permalink() ); ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+        </ul>
+    </div>
+<?php } ?>

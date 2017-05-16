@@ -36,12 +36,15 @@
 </style>
 
 <?php get_header();
-my_table_install();
+relation_table_install();
+user_history_table_install();
 ?>
 
 <div class="container-fluid" style="padding: 0;">
     <div class="head-box">
-        <div class="banner-background"></div>
+        <div class="banner-background">
+            <img class="m-banner" src="<?php bloginfo("template_url")?>/img/spark_banner_m.jpg" alt=""/>
+        </div>
     </div>
 </div>
 <!--    <div class="container" style="padding: 0">-->
@@ -49,7 +52,7 @@ my_table_install();
 <!--            <img class="banner" src="--><?php //bloginfo("template_url") ?><!--/img/spark_banner.jpg"/>-->
 <!--        </div>-->
 <!--    </div>-->
-<div class="container" style="padding: 50px 0; text-align: center;">
+<div class="container" id="front-page" style="padding: 50px 0; text-align: center;">
     <div class="col-md-4 col-sm-4 col-xs-12">
         <div><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/wiki_icon.png"/></div>
         <a class="features-title" href="<?php echo site_url() . get_page_address('wiki');?>"><h1>wiki</h1></a>
