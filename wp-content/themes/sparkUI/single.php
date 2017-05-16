@@ -185,6 +185,7 @@ $current_user->user_login  ;
 
             </ul>
         </div>
+
         <div class="side-tool" id="m-side-tool-project">
             <ul>
             <?php if($current_user->user_login  == $author_name){
@@ -197,6 +198,7 @@ $current_user->user_login  ;
             ?>
             </ul>
         </div>
+
 
         <script type="text/javascript">
             $(function () { $("[data-toggle='tooltip']").tooltip(); });

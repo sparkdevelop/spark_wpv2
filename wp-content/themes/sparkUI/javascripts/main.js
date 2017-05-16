@@ -25,13 +25,13 @@ $(function(){
     });
     $(".m-left-collapse-menu").on('click',function(e){
         e.stopPropagation();
-    })
+    });
 
     $(".m-left-collapse-overlayer").on('click',function () {
         $(".m-left-collapse-overlayer").fadeOut();
         $(".m-left-collapse-menu").animate({marginLeft:"-40%"});
         $('body').css({"height":"auto","overflow":"auto"});
-    })
+    });
 
     //------JS判断客户端是手机还是PC，并移除一些div-------
     (function IsPC() {

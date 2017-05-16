@@ -43,9 +43,7 @@ $page_personal_id = get_page_id('personal');
                     <script>
                         location.replace("<?= site_url();?>/?post_type=dwqa-question");
                     </script>
-                <?php
-                    //require "template/qa/QA_content.php";
-                }
+                <?php }
                 elseif (is_page('项目')){
                     require "template/project/project_content.php";
                 }
