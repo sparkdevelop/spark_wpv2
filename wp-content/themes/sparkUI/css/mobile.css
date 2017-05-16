@@ -265,6 +265,11 @@
     .thumbnail .caption{
         padding:15px 10px 10px 10px;
     }
+    .thumbnail .cover{
+        height:90px;
+        width:100%;
+        display: block
+    }
     #project-div-fluid{
         height:198px;
     }
