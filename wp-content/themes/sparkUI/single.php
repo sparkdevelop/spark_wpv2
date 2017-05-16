@@ -66,7 +66,7 @@ $current_user->user_login  ;
                 <!--判断用户是否为项目发布者，若是，则显示编辑按钮,否则显示发布按钮-->
                 <div class="sidebar_button" style="margin-top: 20px;margin-right: 15px;margin-left: -2px">
                 <?php if($current_user->user_login  == $author_name) {
-                    echo "<a href='?fep_action=edit&fep_id=$post_id&page_id=199' >编辑项目</a >";
+                    echo "<a href='?fep_action=edit&fep_id=$post_id&page_id=434' >编辑项目</a >";
                 }else {
                     echo "<a href='".get_the_permalink(get_page_by_title('发布项目')). "' target='_blank' >发布项目</a>";
                 }
@@ -189,7 +189,7 @@ $current_user->user_login  ;
         <div class="side-tool" id="m-side-tool-project">
             <ul>
             <?php if($current_user->user_login  == $author_name){
-                echo "<li><a href='?fep_action=edit&fep_id=$post_id&page_id=199' ><i class='fa fa-pencil' aria-hidden = 'true' ></i ></a ></li>";
+                echo "<li><a href='?fep_action=edit&fep_id=$post_id&page_id=434' ><i class='fa fa-pencil' aria-hidden = 'true' ></i ></a ></li>";
                 echo "<li><a href='".get_the_permalink(get_page_by_title('发布项目')). "'><i class='fa fa-plus' aria-hidden='true'></i></a></li>";
             }else{
                 echo "<li><a href='".get_the_permalink(get_page_by_title('发布项目')). "'><i class='fa fa-plus' aria-hidden='true'></i></a></li>";
