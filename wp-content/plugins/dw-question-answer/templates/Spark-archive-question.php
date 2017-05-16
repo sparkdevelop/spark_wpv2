@@ -195,7 +195,7 @@ foreach($tags as $key => $temp){
                     $answer_most =array();
                     $answer_most=dwqa_user_most_answer(10,$from_day);
                     $answer_most_author_id = $answer_most[0]['post_author'];
-                    for($i=0;$i<10;$i++){
+                    for($i=0;$i<5;$i++){
                         ?>
                         <li class="list-group-item">
                             <img src="<?php bloginfo("template_url")?>/img/n<?php echo $i+1;?>.png" style="display: inline-block;margin-right: 10px;">
@@ -215,7 +215,7 @@ foreach($tags as $key => $temp){
                     $answer_most_this_week = array();
                     $answer_most_this_week = dwqa_user_most_answer(10,$from_week);
                     //$answer_most_this_week_author_id = $answer_most_this_week[0]['post_author'];
-                    for($i=0;$i<10;$i++){
+                    for($i=0;$i<5;$i++){
                         ?>
                         <li class="list-group-item">
                             <img src="<?php bloginfo("template_url")?>/img/n<?php echo $i+1;?>.png" style="display: inline-block;margin-right: 10px;"/>
@@ -254,7 +254,7 @@ foreach($tags as $key => $temp){
                     $ask_most =array();
                     $ask_most=dwqa_user_most_ask(10,$from_day);
                     $ask_most_author_id = $ask_most[0]['post_author'];
-                    for($i=0;$i<10;$i++){
+                    for($i=0;$i<5;$i++){
                         ?>
                         <li class="list-group-item">
                             <img src="<?php bloginfo("template_url")?>/img/n<?php echo $i+1;?>.png" style="display: inline-block;margin-right: 10px;">
@@ -274,7 +274,7 @@ foreach($tags as $key => $temp){
                     $ask_most_this_week = array();
                     $ask_most_this_week = dwqa_user_most_ask(10,$from_week);
                     //$answer_most_this_week_author_id = $answer_most_this_week[0]['post_author'];
-                    for($i=0;$i<10;$i++){
+                    for($i=0;$i<5;$i++){
                         ?>
                         <li class="list-group-item">
                             <img src="<?php bloginfo("template_url")?>/img/n<?php echo $i+1;?>.png" style="display: inline-block;margin-right: 10px;"/>
