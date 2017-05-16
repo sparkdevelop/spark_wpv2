@@ -80,8 +80,8 @@ $author_posts = new WP_Query(array('posts_per_page' => 9, 'paged' => $paged, 'or
                         <div class="caption">
                             <div class="project-title"><a href="<?php the_permalink(); ?>" target="_blank"><?php the_title(); ?></a></div>
                             <div>
-                                <span class="fa fa-user-o pull-left" >&nbsp;<?php the_author(); ?></span><span class="fa fa-bookmark-o pull-right" > <?php the_category(', ') ?></span><br>
-                                <span class="fa fa-clock-o pull-left" > <?php the_time('Y年n月j日') ?> </span><span class="fa fa-comments-o pull-right" > <?php comments_popup_link('0 条', '1 条', '% 条', '', '评论已关闭'); ?></span><span class="fa fa-eye pull-right" style="font-size: 12px;color: gray"> <?php echo getProjectViews(get_the_ID()); ?></span><br>
+                                <span class="fa fa-user-o pull-left">&nbsp;<?php the_author(); ?></span><span class="fa fa-bookmark-o pull-right" id="project-category-info" > <?php the_category(', ') ?></span><span class="fa fa-eye pull-right" id="m-project-views" > <?php echo getProjectViews(get_the_ID()); ?></span><br>
+                                <span class="fa fa-clock-o pull-left"> <?php echo date('n月j日 G:i',get_the_time('U'));?> </span><span class="fa fa-comments-o pull-right" > <?php comments_popup_link('0 ', '1 ', '% ', '', '评论已关闭'); ?></span><span class="fa fa-eye pull-right" id="web-project-views" > <?php echo getProjectViews(get_the_ID()); ?></span><br>
                             </div>
                         </div>
                     </div>

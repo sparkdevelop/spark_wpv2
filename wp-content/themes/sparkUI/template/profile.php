@@ -98,7 +98,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
           onsubmit="return checkSubmitprofile();">
 <!--        电子邮件-->
         <div class="form-group" style="margin: 20px 0px">
-            <label for="email" class="col-sm-2 col-md-2 col-xs-2 control-label" style="float: left">电子邮件</label>
+            <label for="email" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">电子邮件</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" name="email" id="email"
                        placeholder="<?=$current_user->user_email?>"
@@ -112,7 +112,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
 
 <!--        签名-->
         <div class="form-group" style="margin: 20px 0px">
-            <label for="description" class="col-sm-2 col-md-2 col-xs-2 control-label" style="float: left">个性签名</label>
+            <label for="description" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">个性签名</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" id="description" name="description" placeholder="<?=$user_description?>"
                     value="<?=$user_description?>">
@@ -134,7 +134,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
               onsubmit="return checkSubmitpassword();">
 <!--        原密码-->
         <div class="form-group" style="margin: 20px 0px">
-            <label for="old-password" class="col-sm-2 col-md-2 col-xs-2 control-label" style="float: left">原密码</label>
+            <label for="old-password" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">原密码</label>
             <div class="col-sm-6">
                 <input type="password" class="form-control" id="inputPassword"
                        placeholder="请输入密码" value=""
@@ -145,7 +145,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
 
 <!--        新密码-->
         <div class="form-group" style="margin: 20px 0px">
-            <label for="description" class="col-sm-2 col-md-2 col-xs-2 control-label" style="float: left">新密码</label>
+            <label for="description" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">新密码</label>
             <div class="col-sm-6">
                 <input type="password" class="form-control" id="newPassword" name="newPassword"
                        placeholder="请输入密码" value=""
@@ -156,7 +156,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
 
 <!--        重复新密码-->
         <div class="form-group" style="margin: 20px 0px">
-            <label for="description" class="col-sm-2 col-md-2 col-xs-2 control-label" style="float: left">确认密码</label>
+            <label for="description" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">确认密码</label>
             <div class="col-sm-6">
                 <input type="password" class="form-control" id="repectNewPassword" placeholder="请输入密码" value=""
                         onblur="checkRepeatPassword(this.value);">
