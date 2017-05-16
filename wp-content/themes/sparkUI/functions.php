@@ -197,7 +197,7 @@ function get_page_id($page_name){
 function get_page_address($page_name){
     global $wpdb;
     $page_id = get_page_id($page_name);
-    $page_address="?page_id=".$page_id;
+    $page_address="/?page_id=".$page_id;
     return $page_address;
 }
 

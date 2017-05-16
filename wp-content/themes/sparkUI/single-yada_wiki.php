@@ -36,11 +36,10 @@ get_header(); ?>
     <ul>
         <li data-placement="left" data-toggle="tooltip" data-original-title="回到顶部"><a href="#" class="">顶部</a></li>
         <li data-placement="left" data-toggle="tooltip" data-original-title="点赞吐槽"><a href="#comments" class="">评论</a></li>
-
-        <?php if(is_user_logged_in()){ ?>
-                <?php session_start();
-                $_SESSION['post_id'] = get_the_ID();
-                $_SESSION['post_type'] = get_post_type(get_the_ID());?>
+        <?php
+            $current_page_id = get_the_ID();
+            $current_page_type = get_post_type(get_the_ID());?>
+        <?php if(is_user_logged_in()){?>
                 <li data-placement="left" data-toggle="tooltip" data-original-title="不懂就问"><a onclick="addLayer()" id="ask_link">提问</a></li>
         <?php }else{ ?>
                 <li data-placement="left" data-toggle="tooltip" data-original-title="不懂就问"><a href="<?php echo wp_login_url( get_permalink() ); ?>">提问</a></li>
@@ -86,7 +85,7 @@ $_SESSION['wiki_tags'] = $wiki_tags;
         layer.open({
             type : 2,
             title: "提问", //不显示title   //'layer iframe',
-            content: '<?php echo site_url().get_page_address('ask_tiny');?>', //iframe的url
+            content: '<?php echo site_url().get_page_address('ask_tiny')."&post_id=".$current_page_id."&type=".$current_page_type;?>', //iframe的url
             area: ['70%', '80%'],
             closeBtn:1,            //是0为不显示叉叉 可选1,2
             shadeClose: true,    //点击其他shade区域关闭窗口
