@@ -864,14 +864,14 @@ add_action('wp_ajax_get_wiki_hot_tags', 'get_wiki_hot_tags');
 add_action('wp_ajax_nopriv_get_wiki_hot_tags', 'get_wiki_hot_tags');
 
 
-//项目分类和标签分页
+//项目首页、标签页、分类页、个人页分页
 function project_custom_pagenavi($custom_query,$range = 4 ) {
     global $paged,$wp_query;
     if ( !$max_page ) {
-        $max_page = $wp_query->max_num_pages;
+        $max_page = $custom_query->max_num_pages;
     }
     if( $max_page >1 ) {
-        echo "<div class='fenye'>";
+        echo "<div class='pagenavi'>";
         if( !$paged ){
             $paged = 1;
         }
@@ -901,7 +901,7 @@ function project_custom_pagenavi($custom_query,$range = 4 ) {
                 if($i==$paged)echo " class='current'";echo ">$i</a>";
             }
         }
-        next_posts_link('下一页');
+        next_posts_link('下一页',$custom_query->max_num_pages);
         if($paged != $max_page){
             echo "<a href='".get_pagenum_link($max_page) ."' class='extend' title='跳转到最后一页'>尾页</a>";
         }
@@ -1245,5 +1245,50 @@ function wikiRelatedPro($wiki_id){
     return $post_id;
 }
 
+//获取项目的相似项目
+function related_project(){
+    $post_num = 5;/*展示的项目数*/
+    $exclude_id = get_the_ID();
+    $posttags = get_the_tags(); $i = 0;
+    if ( $posttags ) {
+        $tags = ''; foreach ( $posttags as $tag ) $tags .= $tag->term_id . ',';
+        $args = array(
+            'post_status' => 'publish',
+            'tag__in' => explode(',', $tags),
+            'post__not_in' => explode(',', $exclude_id),
+            'caller_get_posts' => 1,
+            'orderby' => 'rand',
+            'posts_per_page' => $post_num
+        );
+        query_posts($args);
+        while( have_posts() ) { the_post(); ?>
+            <li id="related_project" class="list-group-item" >
+                <a href="<?php the_permalink(); ?>" target="_blank"><?php the_title(); ?></a>
+            </li>
+            <?php
+            $exclude_id .= ',' . $post_id; $i ++;
+        } wp_reset_query();
+    }
+//    同标签项目数量不足从分类中获取
+    if ( $i < $post_num ) {
+        $cats = ''; foreach ( get_the_category() as $cat ) $cats .= $cat->cat_ID . ',';
+        $args = array(
+            'category__in' => explode(',', $cats),
+            'post__not_in' => explode(',', $exclude_id),
+            'caller_get_posts' => 1,
+            'orderby' => 'rand',
+            'posts_per_page' => $post_num - $i
+        );
+        query_posts($args);
+        while( have_posts() ) { the_post(); ?>
+            <li  class="list-group-item"  >
+                <a href="<?php the_permalink(); ?>" target="_blank"><?php the_title(); ?></a>
+            </li>
+            <?php $i++;
+        } wp_reset_query();
+    }
+    if ( $i  == 0 )  echo '<p>没有相似项目!</p>';
+
+}
 
 ?>

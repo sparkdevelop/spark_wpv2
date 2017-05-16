@@ -40,7 +40,7 @@ if($post_type=='yada_wiki'){    //根据自身情况更改
     $posts=query_posts($query_string);
 }
 elseif($post_type=='post'){  //根据自身情况更改
-    $query_string= $query_string.'&posts_per_page=-1'.'&post_type='.$post_type;
+    $query_string= $query_string.'&posts_per_page=10'.'&post_type='.$post_type;
     $posts=query_posts($query_string);
 }
 else{
@@ -94,17 +94,17 @@ $paginate = paginate_links($args);
     $query_parse=explode("&",$url_array['query']);
     if(array_search("post_type=yada_wiki",$query_parse)){?>
         <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki','paged'=>'1') ) )?>">wiki(<?php echo $wiki_found?>)</a></li>
-        <li><a href="<?php echo remove_query_arg( array('post_type') ) ?>">问答(<?php echo $QA_found?>)</a></li>
+        <li><a href="<?php echo remove_query_arg( array('post_type','paged') ) ?>">问答(<?php echo $QA_found?>)</a></li>
         <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post','paged'=>'1' ) ) )?>">项目(<?php echo $project_found?>)</a></li>
     <?php }
     elseif(array_search("post_type=post",$query_parse)){?>
         <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki','paged'=>'1' ) ) )?>">wiki(<?php echo $wiki_found?>)</a></li>
-        <li><a href="<?php echo remove_query_arg( array('post_type') ) ?>">问答(<?php echo $QA_found?>)</a></li>
+        <li><a href="<?php echo remove_query_arg( array('post_type','paged') ) ?>">问答(<?php echo $QA_found?>)</a></li>
         <li class="active"><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post','paged'=>'1'  ) ) )?>">项目(<?php echo $project_found?>)</a></li>
     <?php }
     else{ ?>
         <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'yada_wiki','paged'=>'1' ) ) )?>">wiki(<?php echo $wiki_found?>)</a></li>
-        <li  class="active"><a href="<?php echo remove_query_arg( array('post_type') )?>">问答(<?php echo $QA_found?>)</a></li>
+        <li  class="active"><a href="<?php echo remove_query_arg( array('post_type','paged') )?>">问答(<?php echo $QA_found?>)</a></li>
         <li><a href="<?php echo esc_url(add_query_arg( array('post_type'=>'post','paged'=>'1'  ) ) )?>">项目(<?php echo $project_found?>)</a></li>
     <?php } ?>
 </ul>

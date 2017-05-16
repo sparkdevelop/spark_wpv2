@@ -113,24 +113,24 @@ $admin_url=admin_url('admin-ajax.php');
         <li id="notification">
             <img src="<?php bloginfo("template_url")?>/img/notification.png">
             <span>
-                <a href="<?php echo esc_url(add_query_arg(array('tab'=>'notification')))?>">消息提醒</a>
+                <a href="<?php echo esc_url(add_query_arg(array('tab'=>'notification'),remove_query_arg(array('paged','filter'))))?>">消息提醒</a>
             </span>
         </li>
         <li id="wiki">
             <img src="<?php bloginfo("template_url")?>/img/wiki.png">
-            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'wiki')))?>">我的wiki</a></span>
+            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'wiki'),remove_query_arg(array('paged','filter'))))?>">我的wiki</a></span>
         </li>
         <li class="active" id="qa">
             <img src="<?php bloginfo("template_url")?>/img/qa.png">
-            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'qa')))?>">我的问答</a></span>
+            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'qa'),remove_query_arg(array('paged','filter'))))?>">我的问答</a></span>
         </li>
         <li id="project">
             <img src="<?php bloginfo("template_url")?>/img/project.png">
-            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'project')))?>">我的项目</a></span>
+            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'project'),remove_query_arg(array('paged','filter'))))?>">我的项目</a></span>
         </li>
         <li id="profile">
             <img src="<?php bloginfo("template_url")?>/img/profile.png">
-            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'profile')))?>">个人资料</a></span>
+            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'profile'),remove_query_arg(array('paged','filter'))))?>">个人资料</a></span>
         </li>
     </ul>
 </div>

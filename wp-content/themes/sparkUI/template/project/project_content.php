@@ -3,124 +3,78 @@
 在主循环外的循环上使用query_posts会导致主循环运行偏差，并可能在页面上显示出你不希望看到的内容。
 query_posts函数会改写并取代页面的主查询。为谨慎起见，请不要将query_posts用作其它用途。 -->
 <?php
- $project_all_new = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' date','order' =>'DESC',  'post_status' => $status,'category_name'=>'project' ));
- $project_all_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => 'meta_value_num','meta_key' => 'project_views','order' =>'DESC',  'post_status' => $status,'category_name'=>'project' ));
- $project_hardware_new = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' date','order' =>'DESC',  'post_status' => $status,'category_name'=>'hardware' ));
- $project_hardware_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => 'meta_value_num','meta_key' => 'project_views','order' =>'DESC',  'post_status' => $status,'category_name'=>'hardware' ));
- $project_web_new = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => ' date','order' =>'DESC',  'post_status' => $status,'category_name'=>'web'));
- $project_web_hot = new WP_Query(array( 'posts_per_page' => -1, 'paged' => $paged, 'orderby' => 'meta_value_num','meta_key' => 'project_views','order' =>'DESC',  'post_status' => $status,'category_name'=>'web'  ));
- $paged=get_query_var('paged');
-
- ?>
-<div class="col-md-9 col-sm-9 col-xs-12" id="col9">
-<ul id="leftTab" class="nav nav-pills" style="float: left;height: 42px;">
-        <li class="active"><a href="#project_all" data-toggle="tab">所有</a></li>
-        <li><a href="#OShardware" data-toggle="tab">开源硬件</a></li>
-        <li><a href="#web" data-toggle="tab">web开发</a></li>
-</ul>
-
-<div id="leftTabContent" class="tab-content">
-    <!--所有页面-->
-    <div class="tab-pane fade in active" id="project_all">
-        <ul id="rightTab" class="nav nav-pills" style="float: right;height: 42px">
-            <li class="active"><a href="#hot" data-toggle="tab" >热门</a></li>
-            <li><a href="#recent" data-toggle="tab" >最新</a></li>
+global $wp_query;
+$orderby=get_query_var('orderby')? get_query_var('orderby') : 'meta_value_num';
+$category_name=get_query_var('category_name')? get_query_var('category_name') : 'project';
+$meta_key=get_query_var('meta_key')? get_query_var('meta_key') : 'project_views';
+$paged=get_query_var('paged')? get_query_var('paged') : '1';
+$query = array(
+    'post_type'	=> 'post',
+    'posts_per_page' => 9,
+    'paged' => $paged,
+    'order' =>'DESC',
+    'category_name'=>$category_name,
+    'orderby' =>$orderby,
+    'meta_key' => $meta_key
+);
+$project= new WP_Query($query);
+?>
+<script>
+    window.onload=function(){
+        var li=document.getElementById("<?=$category_name?>");
+        var li_default= document.getElementById("project");
+        li_default.className = "";
+        li.className="active";
+    }
+</script>
+<div class="col-md-9 col-sm-9 col-xs-9" id="col9">
+    <div class="archive-nav">
+        <ul id="leftTab" class="nav nav-pills" style="float: left;height: 42px;">
+            <li class="active" id="project"><a href="<?php echo esc_url(remove_query_arg(array('paged','category_name')))?>" >所有</a></li>
+            <li id="hardware"><a href="<?php echo esc_url(add_query_arg(array('category_name'=>'hardware','paged'=>'1')))?>" >开源硬件</a></li>
+            <li id="web"><a href="<?php echo esc_url(add_query_arg(array('category_name'=>'web','paged'=>'1')))?>" >web开发</a></li>
         </ul>
-        <div id="rightTabContent" class="tab-content">
-            <div class="tab-pane fade " id="recent"><!--最新-->
-                <div style="height: 2px;background-color: lightgray"></div><br>
-                 <ul class="list-group">
-                     <?php while ($project_all_new->have_posts()) : $project_all_new->the_post(); ?>
-                         <?php include(TEMPLATEPATH .'/template/project/project_simple.php'); ?>
-                     <?php endwhile; ?>
-                     <div class="pagenavi">
-                         <?php //project_custom_pagenavi($project_all_new);?>
-                     </div>
-                 </ul>
-            </div>
-            <div class="tab-pane fade in active" id="hot"><!--热门-->
-                <div style="height: 2px;background-color: lightgray"></div><br>
-                    <ul class="list-group">
-                        <?php while ($project_all_hot->have_posts()) : $project_all_hot->the_post(); ?>
-                            <?php include(TEMPLATEPATH .'/template/project/project_simple.php'); ?>
-                        <?php endwhile; ?>
-                        <div class="pagenavi">
-                            <?php// project_custom_pagenavi( $project_all_hot);?>
-                        </div>
-                    </ul>
-            </div>
-        </div>
     </div>
-    <!--开源硬件页面-->
-    <div class="tab-pane fade" id="OShardware">
-        <ul id="rightTab" class="nav nav-pills" style="float: right;height: 42px">
-            <li class="active"><a href="#hot_2" data-toggle="tab" >热门</a></li>
-            <li><a href="#recent_2" data-toggle="tab" >最新</a></li>
-        </ul>
-        <div id="rightTabContent" class="tab-content">
-            <div class="tab-pane fade " id="recent_2"><!--硬件最新-->
-                <div style="height: 2px;background-color: lightgray"></div><br>
-                    <ul class="list-group">
-                        <?php while ($project_hardware_new ->have_posts()) : $project_hardware_new->the_post(); ?>
-                            <?php include(TEMPLATEPATH .'/template/project/project_simple.php'); ?>
-                        <?php endwhile; ?>
-                        <div class="pagenavi">
-                            <?php//  project_custom_pagenavi( $project_hardware_new);?>
+    <ul id="rightTab" class="nav nav-pills" style="float: right;height: 42px">
+        <?php if($orderby== 'meta_value_num'){?>
+            <li class="active"><a href="<?php echo esc_url(add_query_arg(array( 'orderby' => 'meta_value_num', 'meta_key' => 'project_views','paged'=>'1')))?>"  >热门</a></li>
+            <li ><a href="<?php echo esc_url(remove_query_arg(array('meta_key'),add_query_arg(array('orderby' => 'date','paged'=>'1'))))?>"  >最新</a></li>
+        <?php }else{?>
+            <li ><a href="<?php echo esc_url(add_query_arg(array( 'orderby' => 'meta_value_num', 'meta_key' => 'project_views','paged'=>'1')))?>"  >热门</a></li>
+            <li class="active"><a href="<?php echo esc_url(remove_query_arg(array('meta_key'),add_query_arg(array('orderby' => 'date','paged'=>'1'))))?>"  >最新</a></li>
+        <?php }?>
+    </ul>
+    <div style="height: 2px;background-color: lightgray"></div><br>
+    <ul class="list-group">
+        <?php if ( $project->have_posts() ) : ?>
+            <?php while ($project->have_posts()) : $project->the_post(); ?>
+                <li style="list-style-type: none;">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="thumbnail">
+                            <?php
+                            if ( has_post_thumbnail() ) { ?>
+                                <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($project->ID), array( 255,142 ), false); echo $thumbnail[0]; ?>" /></a> <?php } else {?>
+                                <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" "/></a>
+                            <?php } ?>
+                            <div style="height: 1px;background-color: lightgray"></div>
+                            <div class="caption">
+                                <div class="project-title"><a href="<?php the_permalink(); ?>" target="_blank"><?php the_title(); ?></a></div>
+                                <div>
+                                    <span class="fa fa-user-o pull-left" style="font-size: 12px;color: gray">&nbsp;<?php the_author(); ?></span><span class="fa fa-bookmark-o pull-right" style="font-size: 12px;color: gray"> <?php the_category(', ') ?></span><br>
+                                    <span class="fa fa-clock-o pull-left" style="font-size: 12px;color: gray"> <?php the_time('Y年n月j日') ?> </span><span class="fa fa-comments-o pull-right" style="font-size: 12px;color: gray"> <?php comments_popup_link('0 条', '1 条', '% 条', '', '评论已关闭'); ?></span><span class="fa fa-eye pull-right" style="font-size: 12px;color: gray"> <?php echo getProjectViews(get_the_ID()); ?></span><br>
+                                </div>
+                            </div>
                         </div>
-                    </ul>        
-            </div>
-            <div class="tab-pane fade in active" id="hot_2"><!--硬件热门-->
-                <div style="height: 2px;background-color: lightgray"></div><br>
-                    <ul class="list-group">
-                        <?php while ($project_hardware_hot ->have_posts()) : $project_hardware_hot->the_post(); ?>
-                            <?php include(TEMPLATEPATH .'/template/project/project_simple.php'); ?>
-                        <?php endwhile; ?>
-                        <div class="pagenavi">
-                            <?php // project_custom_pagenavi( $project_hardware_hot);?>
-                        </div>
-                    </ul>        
-            </div>
-        </div>
-    </div>
-    <!--web开发页面-->
-    <div class="tab-pane fade" id="web">
-        <ul id="rightTab" class="nav nav-pills" style="float: right;height: 42px">
-            <li class="active"><a href="#hot_3" data-toggle="tab" >热门</a></li>
-            <li><a href="#recent_3" data-toggle="tab" >最新</a></li>
-        </ul>
-        <div id="rightTabContent" class="tab-content">
-            <div class="tab-pane fade " id="recent_3"><!--web最新-->
-                <div style="height: 2px;background-color: lightgray"></div><br>
-                    <ul class="list-group">
-                        <?php while ($project_web_new  ->have_posts()) : $project_web_new ->the_post(); ?>
-                            <?php include(TEMPLATEPATH .'/template/project/project_simple.php'); ?>
-                        <?php endwhile; ?>
-                        <div class="pagenavi">
-                            <?php  //project_custom_pagenavi( $project_web_new);?>
-                        </div>
-                    </ul>        
-            </div>
-            <div class="tab-pane fade in active" id="hot_3"><!--web热门-->
-                <div style="height: 2px;background-color: lightgray"></div><br>
-                    <ul class="list-group">
-                        <?php while ($project_web_hot  ->have_posts()) : $project_web_hot ->the_post(); ?>
-                            <?php include(TEMPLATEPATH .'/template/project/project_simple.php'); ?>
-                        <?php endwhile; ?>
-                        <div class="pagenavi">
-                            <?php // project_custom_pagenavi($project_web_hot);?>
-                        </div>
-                    </ul>        
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-<?php wp_reset_query();
-wp_reset_postdata(); ?>
+                    </div>
+                </li>
+            <?php endwhile; ?>
+            <!--分页函数-->
+            <?php project_custom_pagenavi($project,4);?>
 
-<div class="side-tool" id="m-side-tool-project">
-    <ul>
-        <li><a href="<?php echo get_the_permalink(get_page_by_title('发布项目')) ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+            <?php wp_reset_query();
+            wp_reset_postdata(); ?>
+        <?php else:  ?>
+            <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+        <?php endif; ?>
     </ul>
 </div>
-

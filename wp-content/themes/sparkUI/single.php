@@ -103,7 +103,15 @@ $post_id = get_the_ID();
                     <p>评论：</p>
                     <span><?php comments_popup_link('0 条', '1 条', '% 条', '', '评论已关闭'); ?></span><br>
                 </div><br>
-
+                <div class="related_questions">
+                    <div class="sidebar_list_header">
+                        <p>相似项目</p>
+                    </div>
+                    <div style="height: 2px;background-color: lightgray"></div>
+                    <ul class="list-group">
+                        <?php related_project() ?>
+                    </ul>
+                </div>
                 <?php $related_wiki = writeProWiki(get_the_ID());
                 print_r($related_wiki);?>
                 <div class="related_wikis">
@@ -195,8 +203,7 @@ $post_id = get_the_ID();
     <div class="side-tool" id="m-side-tool-project">
         <ul>
             <?php if($current_user->user_login  == get_the_author()){?>
-                <?php require 'template/project/project_edit_button.php';?>
-                <li><a href="?fep_action=edit&fep_id=<?= $post_id; ?><?= (isset($_SERVER['QUERY_STRING']) ? '&' . $_SERVER['QUERY_STRING'] : '') ?>&page_id=30" ><i class="fa fa-pencil" aria - hidden = "true" ></i ></a ></li >
+                <li><a href="?fep_action=edit&fep_id=<?= $post_id; ?><?= (isset($_SERVER['QUERY_STRING']) ? '&' . $_SERVER['QUERY_STRING'] : '') ?>&<?php echo get_page_id('My Posts')?>" ><i class="fa fa-pencil" aria - hidden = "true" ></i ></a ></li >
                 <li><a href="<?php echo get_the_permalink(get_page_by_title('发布项目')) ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
              <?php }else{ ?>
                 <li><a href="<?php echo get_the_permalink(get_page_by_title('发布项目')) ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>

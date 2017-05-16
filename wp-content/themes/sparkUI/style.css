@@ -551,6 +551,7 @@ h4{margin-bottom: 0px;}
 
 /*项目主页样式调整*/
 .thumbnail{
+    height:261px;
     border:none;
     border-radius: 5px;
     box-shadow: 2px 2px 2px #ebebeb;
@@ -750,7 +751,11 @@ box-shadow: none;
     margin:2px;
     padding:3px 8px;
 }
-.pagenavi a:hover,.page_navi a.current{
+.pagenavi a.current{
+    border:1px solid #FFBB76;color:#FF7200;
+    font-weight:bolder;
+}
+.pagenavi a:hover{
     border:1px solid #FFBB76;color:#FF7200;
     font-weight:bolder;
 }
