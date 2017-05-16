@@ -4,7 +4,7 @@ wp_enqueue_script('fep-script');
 wp_enqueue_media();
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $current_user = wp_get_current_user();
-$author_posts = new WP_Query(array('posts_per_page' => 9, 'paged' => $paged, 'orderby' => 'DESC', 'author' => $current_user->ID, 'post_status' => $status,'category_name'=>'project' ));
+$author_posts = new WP_Query(array('posts_per_page' => 12, 'paged' => $paged, 'orderby' => 'DESC', 'author' => $current_user->ID, 'post_status' => $status,'category_name'=>'project' ));
 
 ?>
 
