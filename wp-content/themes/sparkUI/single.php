@@ -177,7 +177,7 @@ $current_user->user_login  ;
                 <?php if(is_user_logged_in()){ ?>
                         <?php session_start();
                         $_SESSION['post_id'] = $current_page_id;
-                        $_SESSION['post_type'] = get_post_type($current_page_id);?>
+                        $_SESSION['post_type'] = get_post_type(get_the_ID());?>
                         <li data-placement="left" data-toggle="tooltip" data-original-title="不懂就问"><a onclick="addLayer()" id="ask_link">提问</a></li>
                 <?php }else{ ?>
                         <li data-placement="left" data-toggle="tooltip" data-original-title="不懂就问"><a href="<?php echo wp_login_url( get_permalink() ); ?>">提问</a></li>
