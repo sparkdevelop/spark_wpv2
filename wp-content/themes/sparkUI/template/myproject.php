@@ -59,7 +59,7 @@ $author_posts = new WP_Query(array('posts_per_page' => 9, 'paged' => $paged, 'or
             ?>
             <li style="list-style-type: none;">
                 <div class="col-md-4 col-sm-4 col-xs-6" id="project-fluid">
-                    <div class="thumbnail">
+                    <div class="thumbnail" id="project-div-fluid">
                         <span >
                              <?php
                              $url = get_bloginfo('url');

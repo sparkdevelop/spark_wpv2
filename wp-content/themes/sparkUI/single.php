@@ -219,7 +219,6 @@ writeUserTrack();
                 <li><a href="<?php echo get_the_permalink(get_page_by_title('发布项目')) ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
             <?php } ?>
         </ul>
-
     </div>
 
         <script type="text/javascript">
