@@ -168,10 +168,13 @@ global $post;
             title_none.innerHTML="<p style='color:red;margin-top:20px;margin-left: 20px'>问题标题不能为空</p>";
                 return false;
             } else{
+                actionAsk();
                 return true;
             }
     }
-
+    function actionAsk() {
+        document.cookie = "action=ask";
+    }
     function checkTagNum(value) {
         var tag = document.getElementById('Spark_question-tag');
         var alertTag = document.getElementById("alertTag");

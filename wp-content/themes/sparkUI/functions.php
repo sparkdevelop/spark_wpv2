@@ -1320,7 +1320,7 @@ function user_history_table_install ()
     }
 }
 //写入用户浏览数据
-function writeUserViewTrack(){
+function writeUserTrack(){
     global $wpdb;
     $post_id = $_SESSION['post_id'];
     $post_type = $_SESSION['post_type'];
