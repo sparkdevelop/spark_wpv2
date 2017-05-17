@@ -1,8 +1,7 @@
 <?php //在项目或者wiki提问?>
 <?php
-    session_start();
-    $_SESSION["post_id"] = $_GET["post_id"];
-    $_SESSION["post_type"] = isset($_GET["type"]) ? $_GET["type"] : "post";
+    setcookie("post_id",$_GET["post_id"]);
+    setcookie("post_type",$_GET["type"]);
 ?>
 <div id="col9">
     <h4 class="ask_topic">提 问</h4>

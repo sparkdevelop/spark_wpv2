@@ -6,9 +6,9 @@
  * @since DW Question & Answer 1.4.3
  */
 ?>
-<?php $post_id = $_SESSION['post_id'];
-      $post_type=$_SESSION['post_type'];
-      session_destroy();
+<?php
+      $post_id =$_COOKIE["post_id"];
+      $post_type = $_COOKIE["post_type"];
       $related_id = get_the_ID();
       $related_post_type = get_post_type($related_id);
 if(empty($post_id)){

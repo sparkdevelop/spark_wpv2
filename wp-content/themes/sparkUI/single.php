@@ -16,13 +16,6 @@ $current_user = wp_get_current_user();
 $post_id = get_the_ID();
 $author_id=get_post($post_id)->post_author;
 $author_name=get_the_author_meta('user_login',$author_id);
-//埋数据点
-session_start();
-$_SESSION['post_id'] = get_the_ID();
-$_SESSION['post_type'] =get_post_type(get_the_ID());
-$_SESSION['user_id'] = get_current_user_id();
-$_SESSION['timestamp'] = date("Y-m-d H:i:s",time() + 8*3600);
-writeUserTrack();
 ?>
 <?php
 //获取当前用户用户名
@@ -197,7 +190,7 @@ $current_user->user_login  ;
             }else{
                 echo "<li><a href='".get_the_permalink(get_page_by_title('发布项目')). "'><i class='fa fa-plus' aria-hidden='true'></i></a></li>";
             }
-            return;
+            //return;
             ?>
             </ul>
         </div>
