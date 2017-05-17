@@ -1310,25 +1310,26 @@ function user_history_table_install ()
         $sql = "CREATE TABLE " . $table_name . " (
           ID int AUTO_INCREMENT PRIMARY KEY,
           user_id int NOT NULL,
-		  post_id int NOT NULL,
-		  post_type varchar(20) NOT NULL,
-		  view_time datetime NOT NULL
+          user_action varchar(20) NOT NULL,
+		  action_post_id int NOT NULL,
+		  action_post_type varchar(20) NOT NULL,
+		  action_time datetime NOT NULL
           );";
         require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
         dbDelta($sql);
     }
 }
-
-
 //写入用户浏览数据
-function writeUserTrack(){
+function writeUserViewTrack(){
     global $wpdb;
     $post_id = $_SESSION['post_id'];
     $post_type = $_SESSION['post_type'];
+    $user_action = $_SESSION['action'];
     $user_id = $_SESSION['user_id'];
     $timestamp = $_SESSION['timestamp'];
     session_destroy();
-    $sql = "INSERT INTO wp_user_history VALUES ('',$user_id,$post_id,'$post_type','$timestamp')";
+    $sql = "INSERT INTO wp_user_history VALUES ('',$user_id,'$user_action',$post_id,'$post_type','$timestamp')";
     $wpdb->get_results($sql);
 }
+
 ?>
