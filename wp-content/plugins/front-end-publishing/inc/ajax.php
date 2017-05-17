@@ -187,7 +187,7 @@ function fep_process_form_input()
         //发布成功后的提示框
         $data['success'] = true;
         $data['post_id'] = $new_post_id;
-        $data['message'] = sprintf(
+        /*$data['message'] = sprintf(
             '<div style="font-size: 30px;display: inline-block;width: 180px"><span class="fa fa-check-circle fa-8x pull-left" style="margin-top: 5px;color: orange"></span>%s<br><br>
     <button class="btn btn-default" id="fep-continue-editing" onclick="window.location.href=\'#\'" style="float: left">%s</button>
     <button class="btn btn-primary" onclick="window.location.href=\'?p=%u\'" style="float: right">%s</button></div>',
@@ -195,7 +195,7 @@ function fep_process_form_input()
             __('继续编辑', 'frontend-publishing'),
             $new_post_id,
             __('查看','frontend-publishing')
-        );
+        );*/
     } catch (Exception $ex) {
         $data['success'] = false;
         $data['message'] = sprintf(

@@ -92,7 +92,7 @@ $current_user->user_login  ;
                         <p>相似项目</p>
                     </div>
                     <div style="height: 2px;background-color: lightgray"></div>
-                    <ul class="list-group">
+                    <ul class="list-group" style="padding-left: 20px; ">
                         <?php related_project() ?>
                     </ul>
                 </div>
@@ -197,7 +197,6 @@ $current_user->user_login  ;
             }else{
                 echo "<li><a href='".get_the_permalink(get_page_by_title('发布项目')). "'><i class='fa fa-plus' aria-hidden='true'></i></a></li>";
             }
-            return;
             ?>
             </ul>
         </div>
