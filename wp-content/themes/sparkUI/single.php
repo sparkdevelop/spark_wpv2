@@ -197,7 +197,6 @@ $current_user->user_login  ;
             }else{
                 echo "<li><a href='".get_the_permalink(get_page_by_title('发布项目')). "'><i class='fa fa-plus' aria-hidden='true'></i></a></li>";
             }
-            return;
             ?>
             </ul>
         </div>
