@@ -202,16 +202,17 @@ jQuery(document).ready(function ($) {
                 has_changed = false;
                 var arr = $.parseJSON(data);
                 if (arr.success) {
-                    submission_form.hide();
+                    // submission_form.hide();
                     post_id_input.val(arr.post_id);
                     message_box.removeClass('warning').addClass('success');
                 }
                 else
                     message_box.removeClass('success').addClass('warning');
-                message_box.html('').append(arr.message).show();
-                if (form_container.offset().top < $(window).scrollTop()) {
+                window.location.href='?p='+arr.post_id;
+                //message_box.html('').append(arr.message).show();
+               /* if (form_container.offset().top < $(window).scrollTop()) {
                     $('html, body').animate({scrollTop: form_container.offset().top - 10}, 'slow');
-                }
+                }*/
                 load_img.hide();
                 submit_btn.attr("disabled", false).removeClass('passive-btn').addClass('active-btn');
             },
