@@ -554,11 +554,16 @@ h4{margin-bottom: 0px;}
 
 /*项目主页样式调整*/
 .thumbnail{
-    height:261px;
+    /*height:261px;*/
     border:none;
     border-radius: 5px;
     box-shadow: 2px 2px 2px #ebebeb;
     padding:0;
+}
+.thumbnail .cover{
+    height:142px;
+    width:100%;
+    display: block
 }
 .thumbnail .caption{
     padding:20px 10px 10px 10px;
@@ -568,6 +573,10 @@ h4{margin-bottom: 0px;}
     font-size:16px;
     font-weight: bold;
     height: 48px;
+}
+.thumbnail .caption .fa {
+    font-size: 12px;
+    color: gray;
 }
 .project-info{
     color:#4d4d4d;

@@ -10,7 +10,7 @@ $meta_key=get_query_var('meta_key')? get_query_var('meta_key') : 'project_views'
 $paged=get_query_var('paged')? get_query_var('paged') : '1';
 $query = array(
     'post_type'	=> 'post',
-    'posts_per_page' => 9,
+    'posts_per_page' => 12,
     'paged' => $paged,
     'order' =>'DESC',
     'category_name'=>$category_name,
@@ -27,7 +27,7 @@ $project= new WP_Query($query);
         li.className="active";
     }
 </script>
-<div class="col-md-9 col-sm-9 col-xs-9" id="col9">
+<div class="col-md-9 col-sm-9 col-xs-12" id="col9">
     <div class="archive-nav">
         <ul id="leftTab" class="nav nav-pills" style="float: left;height: 42px;">
             <li class="active" id="project"><a href="<?php echo esc_url(remove_query_arg(array('paged','category_name')))?>" >所有</a></li>
@@ -49,19 +49,24 @@ $project= new WP_Query($query);
         <?php if ( $project->have_posts() ) : ?>
             <?php while ($project->have_posts()) : $project->the_post(); ?>
                 <li style="list-style-type: none;">
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="thumbnail">
+                    <div class="col-md-4 col-sm-4 col-xs-6" id="project-fluid">
+
+                        <div class="thumbnail" id="project-div-fluid">
                             <?php
                             if ( has_post_thumbnail() ) { ?>
-                                <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($project->ID), array( 255,142 ), false); echo $thumbnail[0]; ?>" /></a> <?php } else {?>
-                                <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" "/></a>
+                                <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php the_post_thumbnail_url('full')?>" class="cover" /></a>
+                            <?php } else {?>
+                                <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" class="cover" /></a>
+
+
+
                             <?php } ?>
                             <div style="height: 1px;background-color: lightgray"></div>
                             <div class="caption">
                                 <div class="project-title"><a href="<?php the_permalink(); ?>" target="_blank"><?php the_title(); ?></a></div>
-                                <div>
-                                    <span class="fa fa-user-o pull-left" style="font-size: 12px;color: gray">&nbsp;<?php the_author(); ?></span><span class="fa fa-bookmark-o pull-right" style="font-size: 12px;color: gray"> <?php the_category(', ') ?></span><br>
-                                    <span class="fa fa-clock-o pull-left" style="font-size: 12px;color: gray"> <?php the_time('Y年n月j日') ?> </span><span class="fa fa-comments-o pull-right" style="font-size: 12px;color: gray"> <?php comments_popup_link('0 条', '1 条', '% 条', '', '评论已关闭'); ?></span><span class="fa fa-eye pull-right" style="font-size: 12px;color: gray"> <?php echo getProjectViews(get_the_ID()); ?></span><br>
+                                <div class="project-info">
+                                    <span class="fa fa-user-o pull-left">&nbsp;<?php the_author(); ?></span><span class="fa fa-bookmark-o pull-right" id="project-category-info" > <?php the_category(', ') ?></span><span class="fa fa-eye pull-right" id="m-project-views" > <?php echo getProjectViews(get_the_ID()); ?></span><br>
+                                    <span class="fa fa-clock-o pull-left"> <?php echo date('n月j日 G:i',get_the_time('U'));?> </span><span class="fa fa-comments-o pull-right" > <?php comments_popup_link('0 ', '1 ', '% ', '', '评论已关闭'); ?></span><span class="fa fa-eye pull-right" id="web-project-views" > <?php echo getProjectViews(get_the_ID()); ?></span><br>
                                 </div>
                             </div>
                         </div>
@@ -76,5 +81,11 @@ $project= new WP_Query($query);
         <?php else:  ?>
             <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
         <?php endif; ?>
+    </ul>
+</div>
+
+<div class="side-tool" id="m-side-tool-project">
+    <ul>
+        <li><a href="<?php echo get_the_permalink(get_page_by_title('发布项目')) ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
     </ul>
 </div>

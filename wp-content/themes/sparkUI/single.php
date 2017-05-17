@@ -4,7 +4,6 @@
  * User: Bless
  * Date: 2017/4/7
  * Time: 16:52
- * 第58行需手动修改pageID为My Post ID 待修改
  */
  get_header(); ?>
 <?php
@@ -13,9 +12,10 @@ wp_enqueue_script('fep-script');
 wp_enqueue_media();
 
 $current_user = wp_get_current_user();
-$author_posts = new WP_Query(array('posts_per_page' => $per_page, 'paged' => $paged, 'orderby' => 'DESC', 'author' => $current_user->ID, 'post_status' => $status,'category_name'=>'project'));
+//获取文章作者ID、用户名
 $post_id = get_the_ID();
-
+$author_id=get_post($post_id)->post_author;
+$author_name=get_the_author_meta('user_login',$author_id);
 //埋数据点
 session_start();
 $_SESSION['post_id'] = get_the_ID();
@@ -24,7 +24,12 @@ $_SESSION['user_id'] = get_current_user_id();
 $_SESSION['timestamp'] = date("Y-m-d H:i:s",time() + 8*3600);
 writeUserTrack();
 ?>
-
+<?php
+//获取当前用户用户名
+global $current_user;
+get_currentuserinfo();
+$current_user->user_login  ;
+?>
 <div class="container" style="margin-top: 10px">
         <div class="row" style="width: 100%">
             <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
@@ -58,45 +63,15 @@ writeUserTrack();
 
                 </style>
 
-                <!--判断用户是否为项目发布者，若是，则显示编辑按钮-->
-                <?php global $current_user;
-                get_currentuserinfo();
-                $current_user->user_login  ;
-                ?>
-                <?php if($current_user->user_login  == get_the_author()) {
-                    require 'template/project/project_edit_button.php';
+                <!--判断用户是否为项目发布者，若是，则显示编辑按钮,否则显示发布按钮-->
+                <div class="sidebar_button" style="margin-top: 20px;margin-right: 15px;margin-left: -2px">
+                <?php if($current_user->user_login  == $author_name) {
+                    echo "<a href='?fep_action=edit&fep_id=$post_id&page_id=434' >编辑项目</a >";
                 }else {
-                    require 'template/project/project_release_button.php';
+                    echo "<a href='".get_the_permalink(get_page_by_title('发布项目')). "' target='_blank' >发布项目</a>";
                 }
                 ?>
-
-
-
-<!--                <div class="wiki_sidebar_wrap">-->
-<!--                    <div class="list-group mulu">-->
-<!--                        <a href="#" class="list-group-item">-->
-<!--                            <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>-->
-<!--                            目录-->
-<!--                        </a>-->
-<!--                        --><?php
-//                        global $post;
-//                        $wiki_content = $post->post_content;
-//                        $regex = "/\<h(?:.*)\>/";
-//                        $match = array();
-//                        preg_match_all($regex, $wiki_content, $match);
-//                        for($i=0;$i<count($match[0]);$i++) {
-//                            $wiki_title_item = trim($match[0][$i]);
-//                            $wiki_format_title = substr($wiki_title_item,4,-5);
-//                            if(empty($wiki_format_title)) {
-//                                continue;
-//                            }
-//                            ?>
-<!--                            <a href="#" class="list-group-item mulu_item">--><?php //echo $wiki_format_title; ?><!--</a>-->
-<!--                            --><?php
-//                        }
-//                        ?>
-<!--                    </div>-->
-<!--                </div>-->
+                </div>
                 <div class="sidebar-grey-frame" style="margin-top: 30px">
                     <p>发布者：</p>
                     <span id="" ><?php the_author(); ?></span><br>
@@ -188,7 +163,8 @@ writeUserTrack();
             </div>
             <?php //get_sidebar();?>
         </div>
-
+</div>
+<?php get_footer(); ?>
         <div class="side-tool" id="side-tool-project">
             <ul>
                 <li data-placement="left" data-toggle="tooltip" data-original-title="回到顶部"><a href="#" class="">顶部</a></li>
@@ -212,25 +188,23 @@ writeUserTrack();
 
             </ul>
         </div>
-    <div class="side-tool" id="m-side-tool-project">
-        <ul>
-            <?php if($current_user->user_login  == get_the_author()){?>
-                <li><a href="?fep_action=edit&fep_id=<?= $post_id; ?><?= (isset($_SERVER['QUERY_STRING']) ? '&' . $_SERVER['QUERY_STRING'] : '') ?>&<?php echo get_page_id('My Posts')?>" ><i class="fa fa-pencil" aria - hidden = "true" ></i ></a ></li >
-                <li><a href="<?php echo get_the_permalink(get_page_by_title('发布项目')) ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
-             <?php }else{ ?>
-                <li><a href="<?php echo get_the_permalink(get_page_by_title('发布项目')) ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
-            <?php } ?>
-        </ul>
 
-    </div>
+        <div class="side-tool" id="m-side-tool-project">
+            <ul>
+            <?php if($current_user->user_login  == $author_name){
+                echo "<li><a href='?fep_action=edit&fep_id=$post_id&page_id=434' ><i class='fa fa-pencil' aria-hidden = 'true' ></i ></a ></li>";
+                echo "<li><a href='".get_the_permalink(get_page_by_title('发布项目')). "'><i class='fa fa-plus' aria-hidden='true'></i></a></li>";
+            }else{
+                echo "<li><a href='".get_the_permalink(get_page_by_title('发布项目')). "'><i class='fa fa-plus' aria-hidden='true'></i></a></li>";
+            }
+            return;
+            ?>
+            </ul>
+        </div>
 
-        <script type="text/javascript">
-            $(function () { $("[data-toggle='tooltip']").tooltip(); });
-        </script>
-
-</div>
-
-<?php get_footer(); ?>
+<script type="text/javascript">
+    $(function () { $("[data-toggle='tooltip']").tooltip(); });
+</script>
 <script>
     var flag=false;
     function show_more_wiki() {

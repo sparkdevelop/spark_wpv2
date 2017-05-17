@@ -4,7 +4,7 @@ wp_enqueue_script('fep-script');
 wp_enqueue_media();
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $current_user = wp_get_current_user();
-$author_posts = new WP_Query(array('posts_per_page' => 9, 'paged' => $paged, 'orderby' => 'DESC', 'author' => $current_user->ID, 'post_status' => $status,'category_name'=>'project' ));
+$author_posts = new WP_Query(array('posts_per_page' => 12, 'paged' => $paged, 'orderby' => 'DESC', 'author' => $current_user->ID, 'post_status' => $status,'category_name'=>'project' ));
 
 ?>
 
@@ -59,7 +59,7 @@ $author_posts = new WP_Query(array('posts_per_page' => 9, 'paged' => $paged, 'or
             ?>
             <li style="list-style-type: none;">
                 <div class="col-md-4 col-sm-4 col-xs-6" id="project-fluid">
-                    <div class="thumbnail">
+                    <div class="thumbnail" id="project-div-fluid">
                         <span >
                              <?php
                              $url = get_bloginfo('url');
@@ -72,13 +72,14 @@ $author_posts = new WP_Query(array('posts_per_page' => 9, 'paged' => $paged, 'or
                         </span> <!--删除文章-->
                         <?php
                         if ( has_post_thumbnail() ) { ?>
-                            <a href="<?php the_permalink(); ?>" target="_blank"><?php the_post_thumbnail(array(220,150)); ?></a> <?php } else {?>
-                            <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" height="150"/></a>
+                            <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php the_post_thumbnail_url('full')?>" class="cover" /></a>
+                        <?php } else {?>
+                            <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" class="cover" /></a>
                         <?php } ?>
                         <div style="height: 1px;background-color: lightgray"></div>
                         <div class="caption">
-                                <div class="project-title"><a href="<?php the_permalink(); ?>" target="_blank"><?php the_title(); ?></a></div>
-                            <div class="project-info">
+                            <div class="project-title"><a href="<?php the_permalink(); ?>" target="_blank"><?php the_title(); ?></a></div>
+                            <div>
                                 <span class="fa fa-user-o pull-left">&nbsp;<?php the_author(); ?></span><span class="fa fa-bookmark-o pull-right" id="project-category-info" > <?php the_category(', ') ?></span><span class="fa fa-eye pull-right" id="m-project-views" > <?php echo getProjectViews(get_the_ID()); ?></span><br>
                                 <span class="fa fa-clock-o pull-left"> <?php echo date('n月j日 G:i',get_the_time('U'));?> </span><span class="fa fa-comments-o pull-right" > <?php comments_popup_link('0 ', '1 ', '% ', '', '评论已关闭'); ?></span><span class="fa fa-eye pull-right" id="web-project-views" > <?php echo getProjectViews(get_the_ID()); ?></span><br>
                             </div>
