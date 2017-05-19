@@ -79,9 +79,14 @@ if (isset($_GET['fep_id']) && isset($_GET['fep_action']) && $_GET['fep_action'] 
         <label for="fep-tags"><?php _e('标签', 'frontend-publishing'); ?></label>
         <input type="text" name="post_tags" id="fep-tags" value="<?php echo ($post) ? $post['tags'] : ''; ?>" placeholder="多个标签用英文逗号（,）隔开">
         <input type="hidden" name="post_id" id="fep-post-id" value="<?php echo $post_id ?>"><br><br>
-        <button type="button" id="fep-submit-post" class="active-btn"><?php _e('发布', 'frontend-publishing'); ?></button>&nbsp;<button type="button" id="close" class="close_btn">取消</button>
+        <button type="button" id="fep-submit-post" class="active-btn" onclick="actionPublish()"><?php _e('发布', 'frontend-publishing'); ?></button>&nbsp;<button type="button" id="close" class="close_btn">取消</button>
         <img class="fep-loading-img" src="<?php echo plugins_url('static/img/ajax-loading.gif', dirname(__FILE__)); ?>"/>
         </div>
 
     </form>
 </div>
+<script>
+    function actionPublish() {
+        document.cookie = "action=publish";
+    }
+</script>

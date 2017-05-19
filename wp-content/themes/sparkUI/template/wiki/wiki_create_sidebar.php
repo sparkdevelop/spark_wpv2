@@ -115,7 +115,7 @@ foreach($term_all_names as $wiki_all_name) {
     </div>
 
     <div class="create_wiki_btn">
-        <a class="update_wiki">发布 wiki</a>
+        <a class="update_wiki" onclick="actionPublish()">发布 wiki</a>
     </div>
 </div>
 </div>
@@ -140,6 +140,12 @@ foreach($term_all_names as $wiki_all_name) {
         </div>
 
         <div class="create_wiki_btn">
-            <a class="update_wiki">发布 wiki</a>
+            <a class="update_wiki" onclick="actionPublish()">发布 wiki</a>
         </div>
     </div>
+<script>
+    function actionPublish() {
+        document.cookie = "action=publish";
+    }
+</script>
+

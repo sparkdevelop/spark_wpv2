@@ -1127,12 +1127,14 @@ function deleteRelation(){
 function updateRelation($post_id,$relationArray){
     global $wpdb;
     $post_type = get_post_type($post_id);
-    foreach ($relationArray as $value){
-        $sql_1 = "SELECT * FROM wp_relation WHERE post_id=$post_id AND related_id=$value";
-        $col = $wpdb->query($sql_1); //返回的结果有几行
-        if ($col === 0) {  //如果没有这个pro<->wiki对
-            $sql_2 = "INSERT INTO wp_relation VALUES ('',$post_id,'$post_type',$value,'yada_wiki')";
-            $wpdb->get_results($sql_2);
+    if(!empty($relationArray)){
+        foreach ($relationArray as $value){
+            $sql_1 = "SELECT * FROM wp_relation WHERE post_id=$post_id AND related_id=$value";
+            $col = $wpdb->query($sql_1); //返回的结果有几行
+            if ($col === 0) {  //如果没有这个pro<->wiki对
+                $sql_2 = "INSERT INTO wp_relation VALUES ('',$post_id,'$post_type',$value,'yada_wiki')";
+                $wpdb->get_results($sql_2);
+            }
         }
     }
 }

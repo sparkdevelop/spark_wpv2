@@ -6,7 +6,7 @@
  * Time: 上午9:21
  */
     
-    system(get_stylesheet_directory_uri()."/algorithm/python sortWikiEntry.py",$ret);
+    system("python ".get_stylesheet_directory_uri()."/algorithm/sortWikiEntry.py",$ret);
     deleteRelation();
     $json_string = file_get_contents(get_stylesheet_directory_uri()."/algorithm/postIDToSortedWikiEntryIDDict.json");
     $json_array = (array)json_decode($json_string);
