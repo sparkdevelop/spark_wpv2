@@ -91,7 +91,9 @@ $current_user->user_login  ;
                 </div>
 
 
-                <?php $related_wiki = writeProWiki(get_the_ID());?>
+                <?php
+                    $related_wiki = showProWiki(get_the_ID());
+                ?>
 
                 <div class="related_wikis">
                         <div class="sidebar_list_header">

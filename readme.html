@@ -7,6 +7,14 @@
 	<link rel="stylesheet" href="wp-admin/css/install.css?ver=20100228" type="text/css" />
 </head>
 <body>
-已经实现了基本功能,下一步将改进提问页面的逻辑和显示。
+目前已有的数据:
+1、用户的登入登出时间: 表wp_simple_history_contexts
+2、用户的浏览某个页面的时间(连成轨迹):表wp_user_history 字段action:browse
+3、用户问答部分的action:表wp_user_history 字段action:ask、answer、reply
+4、用户项目部分的action:表wp_user_history 字段action:publish、comment
+					 表wp_posts 字段post_modified获得编辑时间
+5、用户wiki部分的acton:表wp_user_history 字段action:comment
+					 表wp_posts 字段post_modified
+
 </body>
 </html>

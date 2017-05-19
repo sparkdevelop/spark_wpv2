@@ -7,11 +7,11 @@
  *
  */
 
-$page_wiki_id = get_page_id('wiki');
-$page_qa_id = get_page_id('qa');
-$page_project_id =get_page_id('project');
-$page_ask_id = get_page_id('ask');
-$page_personal_id = get_page_id('personal');
+//$page_wiki_id = get_page_id('wiki');
+//$page_qa_id = get_page_id('qa');
+//$page_project_id =get_page_id('project');
+//$page_ask_id = get_page_id('ask');
+//$page_personal_id = get_page_id('personal');
 ?>
 
 <?php get_header(); ?>
@@ -63,7 +63,10 @@ $page_personal_id = get_page_id('personal');
                 elseif (is_page('ask_tiny')){
                     require "template/qa/QA_ask_tiny.php";
                 }
-                elseif (is_page($page_personal_id)){
+                elseif (is_page('timer')){
+                    require "template/timer.php";
+                }
+                elseif (is_page('personal')){
                     if (is_user_logged_in()) {
                         require "template/personal.php";
                     } else { ?>

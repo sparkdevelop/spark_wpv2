@@ -35,9 +35,11 @@
     }
 </style>
 
-<?php get_header();
+<?php
+$_COOKIE["page_id"] = 0;
 relation_table_install();
 user_history_table_install();
+get_header();
 ?>
 
 <div class="container-fluid" style="padding: 0;">
