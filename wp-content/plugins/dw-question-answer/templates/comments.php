@@ -28,3 +28,10 @@
 	<?php do_action( 'dwqa_after_comments' ); ?>
 </div>
 <?php endif;?>
+<script>
+	$(function () {
+		$("#submit").on("click",function () {
+			document.cookie = "action=reply";
+		})
+	})
+</script>

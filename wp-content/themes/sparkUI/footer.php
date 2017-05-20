@@ -75,16 +75,5 @@ $userId=get_current_user_id();
     ga('send', 'pageview');
 </script>
 
-<?php
-//埋数据点 
-session_start();
-$_SESSION['post_id']=get_the_ID();
-$_SESSION['post_type']=get_post_type(get_the_ID());
-$_SESSION['user_id']=get_current_user_id();
-$_SESSION['action']='browse';
-$_SESSION['timestamp']=date("Y-m-d H:i:s",time()+8*3600);
-writeUserViewTrack();
-//?>
-
 </body>
 </html>

@@ -23,10 +23,15 @@
 <!--            </optgroup>-->
 <!--        </select>-->
         <input type="hidden" name="dwqa-status" value="='publish">
-        <input type="submit" name="submit-answer" class="dwqa-btn dwqa-btn-primary" value="提交回答">
+        <input type="submit" name="submit-answer" class="dwqa-btn dwqa-btn-primary" value="提交回答" onclick="actionAnswer()">
         <input type="hidden" name="question_id" value="<?php the_ID(); ?>">
         <input type="hidden" name="dwqa-action" value="add-answer">
         <?php wp_nonce_field( '_dwqa_add_new_answer' ) ?>
     </form>
     <?php do_action( 'dwqa_after_answer_submit_form' ); ?>
 </div>
+<script>
+    function actionAnswer() {
+        document.cookie = "action=answer";
+    }
+</script>

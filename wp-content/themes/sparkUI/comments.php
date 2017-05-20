@@ -3,7 +3,7 @@
 $related_qa_id = pwRelatedQA(get_the_ID()); //返回一个qa_id集合而成的数组
 $origin_url = get_permalink();
 $length = sizeof($related_qa_id);
-$perpage = 5;
+$perpage = 4;
 $total_page = ceil($length/$perpage);
 if(!$_GET['paged']){
     $current_page = 1;
@@ -121,6 +121,11 @@ else{
 </div><!-- .comments-area -->
 <script>
     function backToComment() {
-        location.href = "<?=$origin_url?>"+"#QA_related";
+        location.href = "<?=$origin_url?>" + "#QA_related";
     }
+    $(function () {
+        $("#submit").on("click",function () {
+            document.cookie = "action=comment";
+        })
+    })
 </script>

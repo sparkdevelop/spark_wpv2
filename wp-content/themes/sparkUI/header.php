@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php //session_start(); ?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -20,6 +20,19 @@
     <?php wp_enqueue_script("jquery");//加载jquery?>
     <?php wp_head(); //加载js?>
     <?php $url_this = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"]; ?>
+    <?php
+    //埋数据点 
+    session_start();
+    $_SESSION['post_id']=isset($_COOKIE['page_id']) ? $_COOKIE['page_id'] : get_the_ID();
+    $_SESSION['post_type']=get_post_type($_SESSION['post_id']);
+    $_SESSION['user_id']=get_current_user_id();
+    $_SESSION['action']=isset($_COOKIE['action']) ? $_COOKIE['action'] : 'browse';
+    setcookie("page_id");
+    setcookie("action");
+    $_SESSION['timestamp']=date("Y-m-d H:i:s",time()+8*3600);
+    writeUserTrack();
+    //?>
+
 </head>
 <body>
     <div class="container">
