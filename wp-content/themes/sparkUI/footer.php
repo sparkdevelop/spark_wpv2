@@ -65,14 +65,15 @@ $userId=get_current_user_id();
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
     <?php
     if (isset($userId)) {
-        $gacode = "ga('create', 'UA-99101484-1', { 'userId': '%s' });";
+        $gacode = "ga('create', 'UA-99600634-1', { 'userId': '%s' });";
         echo sprintf($gacode, $userId);
     } else {
-        $gacode = "ga('create', 'UA-99101484-1');";
+        $gacode = "ga('create', 'UA-99600634-1');";
         echo sprintf($gacode);
     }
     ?>
     ga('send', 'pageview');
+
 </script>
 
 </body>
