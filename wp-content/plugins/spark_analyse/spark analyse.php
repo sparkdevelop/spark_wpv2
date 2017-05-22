@@ -1,38 +1,40 @@
 <?php
 /**
-Plugin Name: spark
-Plugin URI: http://wordpress.org/plugins/hello-dolly/
-Description: This is not just a plugin, it symbolizes the hope and enthusiasm of an entire generation summed up in two words sung most famously by Louis Armstrong: Hello, Dolly. When activated you will randomly see a lyric from <cite>Hello, Dolly</cite> in the upper right of your admin screen on every page.
-Author: Matt Mullenweg
-Version: 1.6
+Plugin Name: spark_analyse
+Plugin URI: http://wordpress.org/plugins/spark_analyse/
+Description: This is a plugin for spark analyse
+Author: Mr.Zhang
+Version: 1.0
 Author URI: http://ma.tt/
  */
 if ( ! function_exists( 'spark_settings_submenu_page' ) ) {
-    require_once( 'analyseview.php' );
+    require_once('analyseview.php');
 }
+require_once('infer.php');
 
-     add_action( 'admin_menu', 'spark_create_menu' );
-     add_action('admin_menu', 'spark_create_submenu_page');
+     add_action( 'admin_menu', 'spark_create_menu1' );
+     add_action('admin_menu', 'spark_create_submenu_page1');
+     add_action('admin_menu', 'spark_create_submenu_page2');
     // add_filter('the_content','addContent');
     // add_filter('get_comment_author','authorUpperCase');
-         function spark_create_menu()
+         function spark_create_menu1()
          {
              // 创建顶级菜单
              add_menu_page(
-                 'My Plugin',
-                 '数据分析',
+                 'My Plugin1',
+                 '用户画像',
                  'administrator',
-                 'spark_analyse',
-                 'spark_settings_menu'
+                 'spark analyse',
+                 'spark_settings_menu1'
              );
          }
 //add_action( 'admin_init', 'my_plugin_admin_init' );
 
-         function spark_create_submenu_page()
+         function spark_create_submenu_page1()
          {
 
              add_submenu_page(
-                  'spark_analyse',
+                  'spark analyse',
                   '查看用户画像',
                   '查看用户画像',
                   'administrator',
@@ -40,41 +42,54 @@ if ( ! function_exists( 'spark_settings_submenu_page' ) ) {
                   'spark_settings_submenu_page' );
           //add_action('admin_enqueue_scripts', 'wpjam_normal_script');
           }
+         function spark_create_submenu_page2()
+         {
 
-         function spark_settings_menu()
+             add_submenu_page(
+                  'spark analyse',
+                  '用户画像推测',
+                  '用户画像推测',
+                 'administrator',
+                 'spark_analyse-submenu-page2',
+                 'spark_settings_submenu_page2' );
+    //add_action('admin_enqueue_scripts', 'wpjam_normal_script');
+         }
+         function spark_settings_menu1()
          {
 
              ?>
              <?php
            //  update_option('spark_search_user_copy_right', 'root');
-             $option = get_option('spark_search_user_copy_right');//获取选项
+             $option =$_POST['option_save'];;//获取选项
              if( $option == '' ){
                  //设置默认数据
-                $option = '请输入用户ID';
+                $option = 'root';
                  update_option('spark_search_user_copy_right', $option);//更新选项
              }
              if(isset($_POST['option_save'])){
                  //处理数据
                  $option = stripslashes($_POST['spark_search_user_copy_right']);
+
                  update_option('spark_search_user_copy_right', $option);//更新选项
              }
-             //$option = get_option('spark_search_user_copy_right');//获取选项
+//             $option = get_option('spark_search_user_copy_right');
+//             $sql=0;
+//             global $wpdb;
+//             $sql =$wpdb->get_var( "SELECT ID FROM `$wpdb->users` WHERE `user_login` = '$option'");
+//             if ($sql==0)
+//                 echo "<script>alert('该用户不存在')</script>";;
 
              ?>
 
              <html>
-         <body style="background-size:100% 100%;background-color:white;position: absolute;left:0px;top:78px;z-index: -1" onload="document.all['me'].selectall = 'true';">
-
+         <body style="background-color: #f1f2f7" onload="document.all['me'].selectall = 'true';">
+         <div style="text-align:center;background-color:rgb(100,201,202);margin-top: 22px;width: 93px;height: 93px;margin-left: 46%;border-radius: 50%;border: solid 1px rgb(100,201,202)"><i class="fa fa-user fa-5x " style="color:white;"></i></div>
+         <h2 style="    text-align: center;margin: 20px;font-size: 20px;">火花空间用户画像查询</h2>
                          <form method="post" name="spark_search_user" id="spark_search_user">
-                             <h2>火花空间用户画像查询</h2>
-                             <p>
-                                 <label>
-                                     <input name="spark_search_user_copy_right" size="40" value="<?php echo get_option('spark_search_user_copy_right'); ?>"/>
-                                     请输入用户ID
-                                 </label>
-                             </p>
-                             <p class="submit">
-                                 <input type="submit" name="option_save" value="<?php _e('保存用户名'); ?>" />
+                                     <input name="spark_search_user_copy_right" class="form-control" placeholder="username" size="40" style="    margin-left: 10%; width: 80%;"/>
+
+                             <p class="submit" style="    text-align: center;">
+                                 <button type="submit" class="btn btn-default" name="option_save" ><?php _e('保存用户名'); ?></button>
                              </p>
                          </form>
              </body>
