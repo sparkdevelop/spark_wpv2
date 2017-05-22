@@ -54,6 +54,63 @@ require_once('infer.php');
                  'spark_settings_submenu_page2' );
     //add_action('admin_enqueue_scripts', 'wpjam_normal_script');
          }
+define('COUNT_TABLE', $wpdb->prefix . 'count');
+define('COUNTD_TABLE', $wpdb->prefix . 'countdesire');
+register_activation_hook(__FILE__,'install_table1');
+         function install_table1 ()
+         {
+             global $wpdb;
+             //$table_name = $wpdb->prefix . "counts";
+            // $table_name="wp_count";
+             if ($wpdb->get_var("show tables like  '" . COUNT_TABLE . "'") != COUNT_TABLE) {
+                 $sql = "CREATE TABLE IF NOT EXISTS " . COUNT_TABLE . " (
+                id bigint(20) NOT NULL AUTO_INCREMENT,
+                user varchar(60) DEFAULT '0' NOT NULL,
+                phpcount float NOT NULL,
+                htmlcount float NOT NULL,
+                jscount float NOT NULL,
+                mycookiecount float NOT NULL,
+                danpianjicount float NOT NULL,
+                csscount float NOT NULL,
+                sqlcount float NOT NULL,
+                duinocount float NOT NULL,
+                androidcount float NOT NULL,
+                ioscount float NOT NULL,
+                pingtaicount float NOT NULL,
+                webcount float NOT NULL,
+                matlabcount float NOT NULL,
+                UNIQUE KEY id (id) );";
+                 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+                 dbDelta($sql);
+             }
+         }
+register_activation_hook(__FILE__,'install_table2');
+function install_table2 ()
+{
+    global $wpdb;
+   // $table_name = $wpdb->prefix . "countdesires";
+    if ($wpdb->get_var("show tables like  '" . COUNTD_TABLE . "'") != COUNTD_TABLE) {
+        $sql = "CREATE TABLE IF NOT EXISTS " . COUNTD_TABLE . " (
+                id bigint(20) NOT NULL AUTO_INCREMENT,
+                user varchar(60) DEFAULT '0' NOT NULL,
+                phpcount float NOT NULL,
+                htmlcount float NOT NULL,
+                jscount float NOT NULL,
+                mycookiecount float NOT NULL,
+                danpianjicount float NOT NULL,
+                csscount float NOT NULL,
+                sqlcount float NOT NULL,
+                duinocount float NOT NULL,
+                androidcount float NOT NULL,
+                ioscount float NOT NULL,
+                pingtaicount float NOT NULL,
+                webcount float NOT NULL,
+                matlabcount float NOT NULL,
+                UNIQUE KEY id (id) );";
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
+    }
+}
          function spark_settings_menu1()
          {
 
