@@ -16,7 +16,7 @@
         </div>
         <div style="display: inline-block;vertical-align: top;">
             <div style="color:gray">
-                <a href="<?php echo dwqa_get_author_link( $comment->user_id );?>" class="ask-author" style="margin-left: 20px;font-weight:bold;font-size: initial">
+                <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='. $comment->user_id;?>" class="ask-author" style="margin-left: 20px;font-weight:bold;font-size: initial">
                     <?php echo get_comment_author() ?></a>&nbsp;
 <!--                <span>回复</span>&nbsp;-->
 <!--                <a href="#" style="font-weight:bold;font-size: initial">莫里哀</a>-->

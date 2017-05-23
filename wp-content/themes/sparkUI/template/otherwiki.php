@@ -71,7 +71,7 @@ $user_id =isset($_GET["id"]) ? $_GET["id"] : get_current_user_id();
     $(function(){
         get_publish_wiki(<?=$user_id?>);
         $("#publish_wiki").on("click", function() {
-            get_publish_wiki();
+            get_publish_wiki($user_id);
             document.getElementById("li_publish_wiki").className="active";
             document.getElementById("li_inherit_wiki").className="";
         });
@@ -82,10 +82,11 @@ $user_id =isset($_GET["id"]) ? $_GET["id"] : get_current_user_id();
         });
     });
 </script>
-    <ul id="personalTab" class="nav nav-pills">
-      <li class="active" id="li_publish_wiki"><a id="publish_wiki">我创建的wiki</a></li>
-      <li id="li_inherit_wiki"><a id="inherit_wiki">参与编辑的wiki</a></li>
-    </ul>
-    <div style="height: 1px;background-color: lightgrey;"></div>
-    <div id="wiki_list"></div>
+<ul id="personalTab" class="nav nav-pills">
+    <li class="active" id="li_publish_wiki"><a id="publish_wiki">TA创建的wiki</a></li>
+    <li id="li_inherit_wiki"><a id="inherit_wiki">TA参与编辑的wiki</a></li>
+</ul>
+<div style="height: 1px;background-color: lightgrey;"></div>
+<div id="wiki_list"></div>
+
 

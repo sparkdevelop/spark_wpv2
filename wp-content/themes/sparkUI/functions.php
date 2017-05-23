@@ -60,6 +60,10 @@ if ( function_exists('register_sidebar') ) {
         'name'          => 'personal_sidebar',
         'id'            => 'widget_personalsidebar',
     ));
+    register_sidebar(array(
+        'name'          => 'otherpersonal_sidebar',
+        'id'            => 'widget_otherpersonalsidebar',
+    ));
 }
 //取消注册sidebar
 //if(function_exists('unregister_sidebar')){
@@ -976,8 +980,9 @@ add_filter ('sanitize_user', 'ludou_sanitize_user', 10, 3);
 function get_user_related_wiki() {
     $wikis = array();
     $post_status = $_POST['get_wiki_type'];
-    $current_user = wp_get_current_user();
-    $post_author = $current_user->ID;
+    $post_author = $_POST['userID'];
+    //$current_user = wp_get_current_user();
+    //$post_author = $current_user->ID;
     global $wpdb;
     if($post_status == "publish") {
         $publish_wikis_result = $wpdb->get_results("select * from $wpdb->posts where post_author=".$post_author." and post_status=\"publish\" and post_type=\"yada_wiki\"");

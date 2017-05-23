@@ -200,7 +200,7 @@ foreach($tags as $key => $temp){
                         <li class="list-group-item">
                             <img src="<?php bloginfo("template_url")?>/img/n<?php echo $i+1;?>.png" style="display: inline-block;margin-right: 10px;">
                             <?php echo get_avatar($answer_most[$i]['post_author'],20,'');?>
-                            <a href="<?php echo dwqa_get_author_link($answer_most[$i]['post_author']);?>" class="author_link"><?php echo get_userdata($answer_most[$i]['post_author'])->display_name;?></a>
+                            <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$answer_most[$i]['post_author'];?>" class="author_link"><?php echo get_userdata($answer_most[$i]['post_author'])->display_name;?></a>
                             <p style="display: inline-block;float: right"><?php echo $answer_most[$i]['answer_count'];?> 答</p>
                         </li>
                         <?php
@@ -220,7 +220,7 @@ foreach($tags as $key => $temp){
                         <li class="list-group-item">
                             <img src="<?php bloginfo("template_url")?>/img/n<?php echo $i+1;?>.png" style="display: inline-block;margin-right: 10px;"/>
                             <?php echo get_avatar($answer_most_this_week[$i]['post_author'],20,'');?>
-                            <a href="<?php echo dwqa_get_author_link($answer_most_this_week[$i]['post_author']);?>" class="author_link">
+                            <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$answer_most_this_week[$i]['post_author'];?>" class="author_link">
                                 <?php echo get_userdata($answer_most_this_week[$i]['post_author'])->display_name;?>
                             </a>
                             <p style="display: inline-block;float: right"><?php echo $answer_most_this_week[$i]['answer_count'];?> 答
@@ -259,7 +259,7 @@ foreach($tags as $key => $temp){
                         <li class="list-group-item">
                             <img src="<?php bloginfo("template_url")?>/img/n<?php echo $i+1;?>.png" style="display: inline-block;margin-right: 10px;">
                             <?php echo get_avatar($ask_most[$i]['post_author'],20,'');?>
-                            <a href="<?php echo dwqa_get_author_link($ask_most[$i]['post_author']);?>" class="author_link"><?php echo get_userdata($answer_most[$i]['post_author'])->display_name;?></a>
+                            <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$ask_most[$i]['post_author'];?>" class="author_link"><?php echo get_userdata($answer_most[$i]['post_author'])->display_name;?></a>
                             <p style="display: inline-block;float: right"><?php echo $ask_most[$i]['ask_count'];?> 问</p>
                         </li>
                         <?php
@@ -279,7 +279,7 @@ foreach($tags as $key => $temp){
                         <li class="list-group-item">
                             <img src="<?php bloginfo("template_url")?>/img/n<?php echo $i+1;?>.png" style="display: inline-block;margin-right: 10px;"/>
                             <?php echo get_avatar($ask_most_this_week[$i]['post_author'],20,'');?>
-                            <a href="<?php echo dwqa_get_author_link($ask_most_this_week[$i]['post_author']);?>" class="author_link">
+                            <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$ask_most_this_week[$i]['post_author'];?>" class="author_link">
                                 <?php echo get_userdata($ask_most_this_week[$i]['post_author'])->display_name;?>
                             </a>
                             <p style="display: inline-block;float: right"><?php echo $ask_most_this_week[$i]['ask_count'];?> 问

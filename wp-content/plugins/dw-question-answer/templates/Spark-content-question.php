@@ -17,7 +17,9 @@
     $best_ans_author=$ans_author_id[$pos];  //赞数最多的答案作者ID
     $best_ans_id=$ans_id[$pos];         //赞数最多的答案ID
     $best_post_content=$post_content[$pos];
-?>
+
+    //用户的自己的链接需要
+    $user_id=get_post()->post_author;?>
 <?php
     if (dwqa_question_answers_count() != 0) {
         if (get_post_meta(get_the_ID(), '_dwqa_status', true) == 'open'||get_post_meta(get_the_ID(), '_dwqa_status', true) == 'answered') {?>
@@ -29,7 +31,7 @@
                 <div class="qa_show">
                     <!--        获取提问者名字、提问时间-->
                     <div class="qa_time">
-                        <a href="<?php get_the_author_link();?>" class="author_link"><?php echo get_the_author();?></a>
+                        <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$user_id;?>" class="author_link"><?php echo get_the_author();?></a>
                         <span><?php echo date('n月j日 G:i',get_the_time('U'));?>  </span>&nbsp;&nbsp;
                         <!--            -->
                         <span>提问</span>
@@ -44,7 +46,7 @@
                         <!--            获取回答者信息(名字、时间)-->
                         <div class="qa_time">
                             <!--                --><?php //$user_id = get_post_field( 'post_author', get_the_ID() ) ? get_post_field( 'post_author', get_the_ID() ) : 0;?>
-                            <a href="<?php echo dwqa_get_author_link($best_ans_author);?>" class="author_link"><?php echo get_userdata($best_ans_author)->display_name;?></a>
+                            <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$best_ans_author;?>" class="author_link"><?php echo get_userdata($best_ans_author)->display_name;?></a>
                             <span><?php echo human_time_diff( get_post_time( 'U', true ) )."前";//human_time_diff(get_the_time('U',$best_ans_id))."前";?> </span>&nbsp;&nbsp;
                             <span>回答</span>
                         </div>
@@ -82,7 +84,8 @@
         </div>
         <div class="qa_show">
             <div class="qa_time">
-                <a href="<?php get_the_author_link()?>" class="author_link"><?php echo get_the_author();?></a>
+                <?php $user_id=get_post()->post_author;?>
+                <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$user_id;?>" class="author_link"><?php echo get_the_author();?></a>
                 <span><?php echo date('n月j日 G:i',get_the_time('U'));?>  </span>&nbsp;&nbsp;
                 <span>提问</span>
             </div>
@@ -94,7 +97,7 @@
             <div style="color:gray;margin-top:10px;">
                 <div class="qa_time">
                     <?php $user_id = get_post_field( 'post_author', get_the_ID() ) ? get_post_field( 'post_author', get_the_ID() ) : 0;?>
-                    <a href="<?php dwqa_get_author_link( $best_ans_author );?>" class="author_link"><?php echo get_userdata($best_ans_author)->display_name;?></a>
+                    <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$best_ans_author;?>" class="author_link"><?php echo get_userdata($best_ans_author)->display_name;?></a>
                     <span><?php echo human_time_diff(get_the_time('U',$best_ans_id))."前";?>  </span>&nbsp;&nbsp;
                     <span>回答</span>
                 </div>
@@ -132,7 +135,8 @@
             </div>
             <div class="qa_show">
                 <div class="qa_time">
-                    <a href="<?php get_the_author_link();?>" class="author_link"><?php echo get_the_author();?></a>
+                    <?php $user_id=get_post()->post_author;?>
+                    <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$user_id;?>" class="author_link"><?php echo get_the_author();?></a>
                     <span><?php echo date('n月j日 G:i',get_the_time('U'));?>  </span>&nbsp;&nbsp;
                     <span>提问</span>
                 </div>

@@ -66,6 +66,9 @@
                 elseif (is_page('timer')){
                     require "algorithm/timer.php";
                 }
+                elseif (is_page('otherpersonal')){
+                    require "template/otherpersonal.php";
+                }
                 elseif (is_page('personal')){
                     if (is_user_logged_in()) {
                         require "template/personal.php";
