@@ -22,25 +22,27 @@ wp_register_script("high-script", plugins_url('js/highcharts.js', __FILE__), arr
 wp_register_script("highm-script", plugins_url('js/highcharts-more.js', __FILE__), array('jquery'));
 wp_register_script("increment-script", plugins_url('js/user_increment.js', __FILE__),array('jquery'));
 wp_register_script("transition-script", plugins_url('js/transition.js', __FILE__), array('jquery'));
-wp_enqueue_script("jquery-script");
-wp_enqueue_script("fep-script");
+if ( is_admin() ) {
+    wp_enqueue_script("jquery-script");
+    wp_enqueue_script("fep-script");
 
-wp_enqueue_script("tag-script");
-wp_enqueue_script("time-script");
-wp_enqueue_script("high-script");
-wp_enqueue_script("transition-script");
-wp_enqueue_script("highm-script");
-wp_enqueue_script("increment-script");
-wp_enqueue_script("collapse-script");
-wp_enqueue_script("date-script");
-wp_enqueue_script("ui-script");
+    wp_enqueue_script("tag-script");
+    wp_enqueue_script("time-script");
+    wp_enqueue_script("high-script");
+    wp_enqueue_script("transition-script");
+    wp_enqueue_script("highm-script");
+    wp_enqueue_script("increment-script");
+    wp_enqueue_script("collapse-script");
+    wp_enqueue_script("date-script");
+    wp_enqueue_script("ui-script");
 
-wp_enqueue_style('fep-style');
-wp_enqueue_style('datepicker-style');
-wp_enqueue_style('main-style');
-wp_enqueue_style('table-style');
-wp_enqueue_style('user-style');
-wp_enqueue_style('tag-style');
+    wp_enqueue_style('fep-style');
+    wp_enqueue_style('datepicker-style');
+    wp_enqueue_style('main-style');
+    wp_enqueue_style('table-style');
+    wp_enqueue_style('user-style');
+    wp_enqueue_style('tag-style');
+}
 require_once('model_drawing.php');
 function spark_settings_submenu_page2(){
     $socre=explode(",",getinterest());
