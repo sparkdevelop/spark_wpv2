@@ -74,10 +74,11 @@ function spark_settings_submenu_page2(){
     $c=get_option('spark_search_user_copy_right');
     $sql=0;
     global $wpdb;
-    $sql =$wpdb->get_var( "SELECT COUNT(*) FROM wp_count WHERE `user` = '$c'");
+    $sql =$wpdb->get_var( "SELECT COUNT(*) FROM ".COUNT_TABLE." WHERE `user` = '$c'");
     // echo $sql;
+    $table_name = $wpdb->prefix . "counts";
     if ($sql!=0){
-        $wpdb->update( 'wp_count', array( 'phpcount' => $phpcount, 'htmlcount' => $htmlcount, 'jscount' => $jscount
+        $wpdb->update( 'wp_count' , array( 'phpcount' => $phpcount, 'htmlcount' => $htmlcount, 'jscount' => $jscount
         , 'mycookiecount' => $mycookiecount, 'danpianjicount' => $danpianjicount, 'csscount' => $csscount
         , 'sqlcount' => $sqlcount, 'duinocount' => $duinocount, 'androidcount' => $androidcount, 'ioscount' => $ioscount
         , 'pingtaicount' => $pingtaicount, 'webcount' => $webcount, 'matlabcount' => $matlabcount), array( 'user' => $c ));
@@ -89,7 +90,7 @@ function spark_settings_submenu_page2(){
         , 'pingtaicount' => $pingtaicount, 'webcount' => $webcount, 'matlabcount' => $matlabcount));
     }
     $s=0;
-    $s =$wpdb->get_var( "SELECT COUNT(*) FROM wp_countdesire WHERE `user` = '$c'");
+    $s =$wpdb->get_var( "SELECT COUNT(*) FROM ".COUNTD_TABLE." WHERE `user` = '$c'");
     // echo $sql;
     if ($s!=0){
         $wpdb->update( 'wp_countdesire', array( 'phpcount' => $phpcountdesire, 'htmlcount' => $htmlcountdesire, 'jscount' => $jscountdesire
@@ -104,34 +105,34 @@ function spark_settings_submenu_page2(){
         , 'pingtaicount' => $pingtaicountdesire, 'webcount' => $webcountdesire, 'matlabcount' => $matlabcountdesire));
     }
 
-    $phpaverage=$wpdb->get_var( "SELECT round(avg(phpcount),2) FROM wp_count ");
-    $htmlaverage=$wpdb->get_var( "SELECT round(avg(htmlcount),2) FROM wp_count ");
-    $jsaverage=$wpdb->get_var( "SELECT round(avg(jscount),2) FROM wp_count ");
-    $mycookieaverage=$wpdb->get_var( "SELECT round(avg(mycookiecount),2) FROM wp_count ");
-    $danpianjiaverage=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM wp_count ");
-    $cssaverage=$wpdb->get_var( "SELECT round(avg(csscount),2) FROM wp_count ");
-    $sqlaverage=$wpdb->get_var( "SELECT round(avg(sqlcount),2) FROM wp_count ");
-    $duinoaverage=$wpdb->get_var( "SELECT round(avg(duinocount),2) FROM wp_count ");
-    $androidaverage=$wpdb->get_var( "SELECT round(avg(androidcount),2) FROM wp_count ");
-    $iosaverage=$wpdb->get_var( "SELECT round(avg(ioscount),2) FROM wp_count ");
-    $pingtaiaverage=$wpdb->get_var( "SELECT round(avg(pingtaicount),2) FROM wp_count ");
-    $webaverage=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM wp_count ");
-    $matlabaverage=$wpdb->get_var( "SELECT round(avg(matlabcount),2) FROM wp_count ");
+    $phpaverage=$wpdb->get_var( "SELECT round(avg(phpcount),2) FROM ".COUNT_TABLE." ");
+    $htmlaverage=$wpdb->get_var( "SELECT round(avg(htmlcount),2) FROM ".COUNT_TABLE." ");
+    $jsaverage=$wpdb->get_var( "SELECT round(avg(jscount),2) FROM ".COUNT_TABLE." ");
+    $mycookieaverage=$wpdb->get_var( "SELECT round(avg(mycookiecount),2) FROM ".COUNT_TABLE." ");
+    $danpianjiaverage=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM ".COUNT_TABLE." ");
+    $cssaverage=$wpdb->get_var( "SELECT round(avg(csscount),2) FROM ".COUNT_TABLE." ");
+    $sqlaverage=$wpdb->get_var( "SELECT round(avg(sqlcount),2) FROM ".COUNT_TABLE." ");
+    $duinoaverage=$wpdb->get_var( "SELECT round(avg(duinocount),2) FROM ".COUNT_TABLE." ");
+    $androidaverage=$wpdb->get_var( "SELECT round(avg(androidcount),2) FROM ".COUNT_TABLE." ");
+    $iosaverage=$wpdb->get_var( "SELECT round(avg(ioscount),2) FROM ".COUNT_TABLE." ");
+    $pingtaiaverage=$wpdb->get_var( "SELECT round(avg(pingtaicount),2) FROM ".COUNT_TABLE." ");
+    $webaverage=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM ".COUNT_TABLE." ");
+    $matlabaverage=$wpdb->get_var( "SELECT round(avg(matlabcount),2) FROM ".COUNT_TABLE." ");
 
 
-    $phpdesireaverage=$wpdb->get_var( "SELECT round(avg(phpcount),2) FROM wp_countdesire ");
-    $htmldesireaverage=$wpdb->get_var( "SELECT round(avg(htmlcount),2) FROM wp_countdesire ");
-    $jsdesireaverage=$wpdb->get_var( "SELECT round(avg(jscount),2) FROM wp_countdesire ");
-    $mycookiedesireaverage=$wpdb->get_var( "SELECT round(avg(mycookiecount),2) FROM wp_countdesire ");
-    $danpianjidesireaverage=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM wp_countdesire ");
-    $cssdesireaverage=$wpdb->get_var( "SELECT round(avg(csscount),2) FROM wp_countdesire ");
-    $sqldesireaverage=$wpdb->get_var( "SELECT round(avg(sqlcount),2) FROM wp_countdesire ");
-    $duinodesireaverage=$wpdb->get_var( "SELECT round(avg(duinocount),2) FROM wp_countdesire ");
-    $androiddesireaverage=$wpdb->get_var( "SELECT round(avg(androidcount),2) FROM wp_countdesire ");
-    $iosdesireaverage=$wpdb->get_var( "SELECT round(avg(ioscount),2) FROM wp_countdesire ");
-    $pingtaidesireaverage=$wpdb->get_var( "SELECT round(avg(pingtaicount),2) FROM wp_countdesire ");
-    $webdesireaverage=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM wp_countdesire ");
-    $matlabdesireaverage=$wpdb->get_var( "SELECT round(avg(matlabcount),2) FROM wp_countdesire ");
+    $phpdesireaverage=$wpdb->get_var( "SELECT round(avg(phpcount),2) FROM ".COUNTD_TABLE." ");
+    $htmldesireaverage=$wpdb->get_var( "SELECT round(avg(htmlcount),2) FROM ".COUNTD_TABLE." ");
+    $jsdesireaverage=$wpdb->get_var( "SELECT round(avg(jscount),2) FROM ".COUNTD_TABLE." ");
+    $mycookiedesireaverage=$wpdb->get_var( "SELECT round(avg(mycookiecount),2) FROM ".COUNTD_TABLE." ");
+    $danpianjidesireaverage=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM ".COUNTD_TABLE." ");
+    $cssdesireaverage=$wpdb->get_var( "SELECT round(avg(csscount),2) FROM ".COUNTD_TABLE." ");
+    $sqldesireaverage=$wpdb->get_var( "SELECT round(avg(sqlcount),2) FROM ".COUNTD_TABLE." ");
+    $duinodesireaverage=$wpdb->get_var( "SELECT round(avg(duinocount),2) FROM ".COUNTD_TABLE." ");
+    $androiddesireaverage=$wpdb->get_var( "SELECT round(avg(androidcount),2) FROM ".COUNTD_TABLE." ");
+    $iosdesireaverage=$wpdb->get_var( "SELECT round(avg(ioscount),2) FROM ".COUNTD_TABLE." ");
+    $pingtaidesireaverage=$wpdb->get_var( "SELECT round(avg(pingtaicount),2) FROM ".COUNTD_TABLE." ");
+    $webdesireaverage=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM ".COUNTD_TABLE." ");
+    $matlabdesireaverage=$wpdb->get_var( "SELECT round(avg(matlabcount),2) FROM ".COUNTD_TABLE." ");
     $tag=tag();
     ?>
 <html>
@@ -984,19 +985,19 @@ function good(){
     $webcount=$socre[11];
     $matlabcount=$socre[12];
     global $wpdb;
-    $phpaverage=$wpdb->get_var( "SELECT round(avg(phpcount),2) FROM wp_count ");
-    $htmlaverage=$wpdb->get_var( "SELECT round(avg(htmlcount),2) FROM wp_count ");
-    $jsaverage=$wpdb->get_var( "SELECT round(avg(jscount),2) FROM wp_count ");
-    $mycookieaverage=$wpdb->get_var( "SELECT round(avg(mycookiecount),2) FROM wp_count ");
-    $danpianjiaverage=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM wp_count ");
-    $cssaverage=$wpdb->get_var( "SELECT round(avg(csscount),2) FROM wp_count ");
-    $sqlaverage=$wpdb->get_var( "SELECT round(avg(sqlcount),2) FROM wp_count ");
-    $duinoaverage=$wpdb->get_var( "SELECT round(avg(duinocount),2) FROM wp_count ");
-    $androidaverage=$wpdb->get_var( "SELECT round(avg(androidcount),2) FROM wp_count ");
-    $iosaverage=$wpdb->get_var( "SELECT round(avg(ioscount),2) FROM wp_count ");
-    $pingtaiaverage=$wpdb->get_var( "SELECT round(avg(pingtaicount),2) FROM wp_count ");
-    $webaverage=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM wp_count ");
-    $matlabaverage=$wpdb->get_var( "SELECT round(avg(matlabcount),2) FROM wp_count ");
+    $phpaverage=$wpdb->get_var( "SELECT round(avg(phpcount),2) FROM ".COUNT_TABLE." ");
+    $htmlaverage=$wpdb->get_var( "SELECT round(avg(htmlcount),2) FROM ".COUNT_TABLE." ");
+    $jsaverage=$wpdb->get_var( "SELECT round(avg(jscount),2) FROM ".COUNT_TABLE." ");
+    $mycookieaverage=$wpdb->get_var( "SELECT round(avg(mycookiecount),2) FROM ".COUNT_TABLE." ");
+    $danpianjiaverage=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM ".COUNT_TABLE." ");
+    $cssaverage=$wpdb->get_var( "SELECT round(avg(csscount),2) FROM ".COUNT_TABLE." ");
+    $sqlaverage=$wpdb->get_var( "SELECT round(avg(sqlcount),2) FROM ".COUNT_TABLE." ");
+    $duinoaverage=$wpdb->get_var( "SELECT round(avg(duinocount),2) FROM ".COUNT_TABLE." ");
+    $androidaverage=$wpdb->get_var( "SELECT round(avg(androidcount),2) FROM ".COUNT_TABLE." ");
+    $iosaverage=$wpdb->get_var( "SELECT round(avg(ioscount),2) FROM ".COUNT_TABLE." ");
+    $pingtaiaverage=$wpdb->get_var( "SELECT round(avg(pingtaicount),2) FROM ".COUNT_TABLE." ");
+    $webaverage=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM ".COUNT_TABLE." ");
+    $matlabaverage=$wpdb->get_var( "SELECT round(avg(matlabcount),2) FROM ".COUNT_TABLE." ");
     $average[0]=$phpaverage;$average[1]=$htmlaverage;$average[2]=$jsaverage;$average[3]=$mycookieaverage;$average[4]=$danpianjiaverage;
     $average[5]=$cssaverage;$average[6]=$sqlaverage;$average[7]=$duinoaverage;$average[8]=$androidaverage;$average[9]=$iosaverage;
     ;$average[10]=$pingtaiaverage;$average[11]=$webaverage;$average[12]=$matlabaverage;
@@ -1080,19 +1081,19 @@ function goodornot(){
 function desire(){
     $socredesire=explode(",",getdesire());
     global $wpdb;
-    $phpdesireaverage=$wpdb->get_var( "SELECT round(avg(phpcount),2) FROM wp_countdesire ");
-    $htmldesireaverage=$wpdb->get_var( "SELECT round(avg(htmlcount),2) FROM wp_countdesire ");
-    $jsdesireaverage=$wpdb->get_var( "SELECT round(avg(jscount),2) FROM wp_countdesire ");
-    $mycookiedesireaverage=$wpdb->get_var( "SELECT round(avg(mycookiecount),2) FROM wp_countdesire ");
-    $danpianjidesireaverage=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM wp_countdesire ");
-    $cssdesireaverage=$wpdb->get_var( "SELECT round(avg(csscount),2) FROM wp_countdesire ");
-    $sqldesireaverage=$wpdb->get_var( "SELECT round(avg(sqlcount),2) FROM wp_countdesire ");
-    $duinodesireaverage=$wpdb->get_var( "SELECT round(avg(duinocount),2) FROM wp_countdesire ");
-    $androiddesireaverage=$wpdb->get_var( "SELECT round(avg(androidcount),2) FROM wp_countdesire ");
-    $iosdesireaverage=$wpdb->get_var( "SELECT round(avg(ioscount),2) FROM wp_countdesire ");
-    $pingtaidesireaverage=$wpdb->get_var( "SELECT round(avg(pingtaicount),2) FROM wp_countdesire ");
-    $webdesireaverage=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM wp_countdesire ");
-    $matlabdesireaverage=$wpdb->get_var( "SELECT round(avg(matlabcount),2) FROM wp_countdesire ");
+    $phpdesireaverage=$wpdb->get_var( "SELECT round(avg(phpcount),2) FROM ".COUNTD_TABLE." ");
+    $htmldesireaverage=$wpdb->get_var( "SELECT round(avg(htmlcount),2) FROM ".COUNTD_TABLE." ");
+    $jsdesireaverage=$wpdb->get_var( "SELECT round(avg(jscount),2) FROM ".COUNTD_TABLE." ");
+    $mycookiedesireaverage=$wpdb->get_var( "SELECT round(avg(mycookiecount),2) FROM ".COUNTD_TABLE." ");
+    $danpianjidesireaverage=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM ".COUNTD_TABLE." ");
+    $cssdesireaverage=$wpdb->get_var( "SELECT round(avg(csscount),2) FROM ".COUNTD_TABLE." ");
+    $sqldesireaverage=$wpdb->get_var( "SELECT round(avg(sqlcount),2) FROM ".COUNTD_TABLE." ");
+    $duinodesireaverage=$wpdb->get_var( "SELECT round(avg(duinocount),2) FROM ".COUNTD_TABLE." ");
+    $androiddesireaverage=$wpdb->get_var( "SELECT round(avg(androidcount),2) FROM ".COUNTD_TABLE." ");
+    $iosdesireaverage=$wpdb->get_var( "SELECT round(avg(ioscount),2) FROM ".COUNTD_TABLE." ");
+    $pingtaidesireaverage=$wpdb->get_var( "SELECT round(avg(pingtaicount),2) FROM ".COUNTD_TABLE." ");
+    $webdesireaverage=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM ".COUNTD_TABLE." ");
+    $matlabdesireaverage=$wpdb->get_var( "SELECT round(avg(matlabcount),2) FROM ".COUNTD_TABLE." ");
     $desire[0]=$phpdesireaverage;$desire[1]=$htmldesireaverage;$desire[2]=$jsdesireaverage;$desire[3]=$mycookiedesireaverage;
     $desire[4]=$danpianjidesireaverage;$desire[5]=$cssdesireaverage;$desire[6]=$sqldesireaverage;$desire[7]=$duinodesireaverage;
     $desire[8]=$androiddesireaverage;$desire[9]=$iosdesireaverage;$desire[10]=$pingtaidesireaverage;$desire[11]=$webdesireaverage;
