@@ -41,7 +41,7 @@ global $wpdb;
         <div style="color:gray">
             <div style="margin-bottom: 10px">
                 <!--												回答者信息-->
-                <a href="<?php echo dwqa_get_author_link( $user_id );?>" class="ask-author" style="margin-left: 20px;">
+                <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$user_id;?>" class="ask-author" style="margin-left: 20px;">
                     <?php echo get_the_author();?>
                 </a>
                 <!--												是否被采纳-->

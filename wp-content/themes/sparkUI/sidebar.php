@@ -49,6 +49,11 @@ if ( is_page($page_personal_id) ) {//显示问题详情页
     }
     require "template/personal_sidebar.php";
 }
+if ( is_page('otherpersonal') ) {//显示问题详情页
+    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_otherpersonalsidebar')){
+    }
+    require "template/otherpersonal_sidebar.php";
+}
 
 if (is_search()){
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_searchsidebar')){
