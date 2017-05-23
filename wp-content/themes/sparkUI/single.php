@@ -66,8 +66,11 @@ $current_user->user_login  ;
                 ?>
                 </div>
                 <div class="sidebar-grey-frame" style="margin-top: 30px">
-                    <p>发布者：</p>
-                    <span id="" ><?php the_author(); ?></span><br>
+                    <p>发布者：
+                        <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.get_post()->post_author.'&tab=project'?>"
+                           class="author_link" style="color: #5e5e5e"><?php echo get_the_author();?>
+                        </a>
+                    </p><br>
                     <p>分类：</p>
                     <span id="" ><?php the_category(', ') ?></span><br>
                     <p>标签：</p>
