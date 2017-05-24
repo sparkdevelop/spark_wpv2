@@ -39,6 +39,7 @@
 $_COOKIE["page_id"] = 0;
 relation_table_install();
 user_history_table_install();
+favorite_table_install();
 get_header();
 ?>
 
