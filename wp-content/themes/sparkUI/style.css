@@ -1095,3 +1095,41 @@ box-shadow: none;
     display: none;
 }
 
+/*项目打分部分css*/
+#proScoreTitle{
+    height:45px;
+    line-height:45px;
+    font-size:18px;
+    font-weight:bold;
+    color:#fe642d;  }
+#proScoreTitle span{
+    font-size: 14px;
+    color: black
+}
+#starsdiv{
+    text-align: center;
+}
+#stars{
+    margin-bottom: 0;
+    padding: 0;
+    display:inline-block;
+    width:160px;
+    height:60px;
+    line-height:60px;
+    cursor:pointer;
+}
+#stars li{
+    font-size:30px;
+    color:#ccc;
+    height:60px;
+    line-height:60px
+}
+#score{
+    display:inline-block;
+    height:60px;
+    line-height:60px;
+    font-size:18px;
+    font-weight:bold;
+    color: #fe642d;
+    margin-left: 20px
+}

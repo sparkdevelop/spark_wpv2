@@ -40,7 +40,6 @@ $admin_url=admin_url( 'admin-ajax.php' );
         }else{
             cancelFavorite(flag);
         }
-
     }
     function addFavorite() {
         var data={
@@ -53,6 +52,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
             url: "<?php echo $admin_url;?>",
             data: data,
             success: function(){
+                layer.msg('收藏成功',{skin:'favorite-layer',time:2000,icon:1});  //layer.msg(content, {options}, end) - 提示框
                 var html = "<a onclick=\"setCSS(0)\" class=\"btn btn-info btn-lg\" id=\"btn-add-favorite\">"+
                     "<span class=\"glyphicon glyphicon-star-empty\"></span>取消收藏"+"</a>";
                 $("#addFavorite").html(html);
@@ -76,6 +76,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
             url: "<?php echo $admin_url;?>",
             data: data,
             success: function(){
+                layer.msg('已取消',{time:2000,icon:1});  //layer.msg(content, {options}, end) - 提示框
                 var html = "<a onclick=\"setCSS(1)\" class=\"btn btn-info btn-lg\" id=\"btn-add-favorite\">"+
                     "<span class=\"glyphicon glyphicon-star-empty\"></span>收藏项目"+"</a>";
                 $("#addFavorite").html(html);
@@ -112,13 +113,9 @@ $admin_url=admin_url( 'admin-ajax.php' );
                                 background-color: transparent;
                                 border-color: #fe642d;
                             }
-                            /*#btn-add-favorite:hover {*/
-                                /*color: white;*/
-                                /*background-color: #fe642d;*/
-                                /*border-color: transparent;*/
-                            /*}*/
                         </style>
-                    <?php } else{
+                    <?php }
+                    else{
                         $flag = 0;
                         $avalue = "<span class=\"glyphicon glyphicon-star-empty\"></span>取消收藏";
                      ?>
@@ -128,17 +125,11 @@ $admin_url=admin_url( 'admin-ajax.php' );
                                 background-color: #fe642d;
                                 border-color: transparent;
                             }
-                            /*#btn-add-favorite:hover {*/
-                                /*color: #fe642d;*/
-                                /*background-color: transparent;*/
-                                /*border-color: #fe642d;*/
-                            /*}*/
                         </style>
                     <?php } ?>
                      <div id="addFavorite">
                          <a onclick="setCSS(<?=$flag?>)" class="btn btn-info btn-lg" id="btn-add-favorite">
                              <?php echo $avalue; ?>
-<!--                             <span class="glyphicon glyphicon-star-empty"></span>收藏项目-->
                          </a>
                     </div>
                  <hr>
@@ -194,6 +185,101 @@ $admin_url=admin_url( 'admin-ajax.php' );
                     <p>评论：</p>
                     <span><?php comments_popup_link('0 条', '1 条', '% 条', '', '评论已关闭'); ?></span><br>
                 </div><br>
+
+
+
+                <?php $score = calScore($post_id);
+                      $starScore = round($score['score'])-1;
+                      $hasScore = hasScore($current_user->ID,$post_id);
+                ?>
+<script>
+    window.onload = function () {
+        var flag;
+        flag =<?=hasScore($current_user->ID,$post_id);?>;
+        var score = document.getElementById('score');
+        var oUl = document.getElementById('stars');
+        var aLi = oUl.getElementsByTagName('li');
+        var arr = ['1.0', '2.0', '3.0', '4.0', '5.0'];
+        if(flag==0){ //未打分
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].index = i;
+                markOut(<?=$starScore?>);   //初始显示
+                aLi[i].onclick = function () {
+                    markOver(this.index);  //this指的是aLi[i]
+                    oUl.index = this.index;
+                    var data = {
+                        action: 'addScore',
+                        userID: '<?=$current_user->ID?>',
+                        postID: '<?=$post_id?>',
+                        score: this.index + 1
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo $admin_url;?>",
+                        data: data,
+                        success: function () {
+                            layer.msg('打分成功', {time: 2000, icon: 1},function () {
+                                location.reload();
+                            });  //layer.msg(content, {options}, end) - 提示框
+                        },
+                        error: function () {
+                            alert("Oops,打分失败了T^T");
+                        }
+                    });
+                };
+                aLi[i].onmouseover = function () {
+                    for (var i = 0; i < aLi.length; i++) {
+                        aLi[i].style.color = '#ccc';
+                    }
+                    markOver(this.index);
+                };
+                aLi[i].onmouseout = function () {
+                    for (var i = 0; i <= this.index; i++) {
+                        aLi[i].style.color = '#ccc';
+                    }
+                    markOut(<?=$starScore?>);
+                };
+            }
+        }else{
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].index = i;
+                markOut(<?=$starScore?>);   //初始显示
+                aLi[i].onclick = function (){
+                    layer.msg("你已经打过分了",{time:2000,icon:2});
+                }
+            }
+        }
+        function markOver(index) {
+            for (var i = 0; i <= index; i++) {
+                aLi[i].style.color = index < 2 ? 'gray' : '#fe642d';
+            }
+            score.innerHTML = arr[index] ? arr[index] :'<?=$score['score']?>';
+        }
+        function markOut(index) {
+            for (var i = 0; i <= index; i++) {
+                aLi[i].style.color = index < 2 ? 'gray' : '#fe642d';
+            }
+            score.innerHTML = '<?=$score['score']?>';
+        }
+    }
+</script>
+                <div id="proScore">
+                    <div class="sidebar_list_header">
+                        <p>项目评分</p>
+                    </div>
+                    <div style="height: 2px;background-color: lightgray"></div>
+                    <p class="title" id="proScoreTitle">当前评分<span>(共有<?=$score['num']?>人打分)</span></p>
+                    <div id="starsdiv">
+                        <ul class="stars" id="stars">
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                        </ul>
+                        <p id="score"><?=$score['score'];?></p>
+                    </div>
+                </div>
 
                 <div class="related_questions">
                     <div class="sidebar_list_header">

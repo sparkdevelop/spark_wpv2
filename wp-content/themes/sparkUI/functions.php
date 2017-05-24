@@ -1179,6 +1179,7 @@ function qaComeFrom($qa_id){
     return $related_info;
 }
 
+
 //返回此项目对用的所有问答  -->在项目和wiki页面的comment中显示QA
 function pwRelatedQA($pro_id){
     global $wpdb;
@@ -1338,7 +1339,6 @@ function cancelFavorite(){
     $post_id = $_POST['postID'];
     $sql = "DELETE FROM wp_favorite WHERE user_id=$user_id AND favorite_post_id=$post_id";
     $wpdb->query($sql);
-
     die();
 }
 add_action('wp_ajax_cancelFavorite', 'cancelFavorite');
@@ -1354,6 +1354,65 @@ function ifFavorite($user_id,$post_id){
     }else{ //已收藏
         return true;
     }
+}
+
+//建立用户打分表
+function score_table_install () {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "score";  //获取表前缀，并设置新表的名称
+    if($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+          score int NOT NULL,
+		  score_post_id int NOT NULL,
+		  score_post_type varchar(20) NOT NULL,
+		  score_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+//添加用户打分
+function addScore(){
+    global $wpdb;
+    $user_id = $_POST['userID'];
+    $post_id = $_POST['postID'];
+    $score = $_POST['score'];
+    $post_type = get_post_type($post_id);
+    $time = date("Y-m-d H:i:s",time()+8*3600);
+    $sql = "INSERT INTO wp_score VALUES ('',$user_id,$score,$post_id,'$post_type','$time')";
+    $wpdb->get_results($sql);
+    die();
+}
+add_action('wp_ajax_addScore', 'addScore');
+add_action('wp_ajax_nopriv_addScore', 'addScore');
+
+//计算当前项目的评分
+function calScore($post_id){
+    global $wpdb;
+    $sum = 0;
+    $sql = "SELECT score FROM wp_score WHERE score_post_id = $post_id";
+    $results = $wpdb->get_results($sql,"ARRAY_A");
+    if(sizeof($results)==0){ $scoreNum = 1;}
+    else{ $scoreNum =sizeof($results); }
+    foreach($results as $result){
+        $sum += $result['score'];
+    }
+    $scoreAverage = round($sum/$scoreNum,1);
+    $ret = array('score'=>$scoreAverage,'num'=>sizeof($results));
+    return $ret;
+}
+
+//判断用户是否已经评分
+function hasScore($user_id,$post_id){
+    global $wpdb;
+    $sql = "SELECT * FROM wp_score WHERE user_id=$user_id AND score_post_id = $post_id";
+    $col = $wpdb->query($sql);
+    if($col == 0){ //未打分
+        return 0;
+    }else{return 1;}
 }
 
 //原始算法
