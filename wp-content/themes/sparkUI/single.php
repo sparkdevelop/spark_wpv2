@@ -21,15 +21,127 @@ $author_name=get_the_author_meta('user_login',$author_id);
 //获取当前用户用户名
 global $current_user;
 get_currentuserinfo();
-$current_user->user_login  ;
+$current_user->user_login;
+$admin_url=admin_url( 'admin-ajax.php' );
 ?>
+<style>
+    #addFavorite{
+        display: inline-block;
+        float: right;
+        height: 78px;
+        line-height: 78px;
+        margin-right: 25px;
+    }
+</style>
+<script>
+    function setCSS(flag) {
+        if(flag == 1){  //未收藏
+            addFavorite();
+        }else{
+            cancelFavorite(flag);
+        }
+
+    }
+    function addFavorite() {
+        var data={
+            action:'addFavorite',
+            userID:'<?=$current_user->ID?>',
+            postID:'<?=$post_id?>'
+        };
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $admin_url;?>",
+            data: data,
+            success: function(){
+                var html = "<a onclick=\"setCSS(0)\" class=\"btn btn-info btn-lg\" id=\"btn-add-favorite\">"+
+                    "<span class=\"glyphicon glyphicon-star-empty\"></span>取消收藏"+"</a>";
+                $("#addFavorite").html(html);
+                $("#btn-add-favorite").css({"color":"white",
+                    "background-color": "#fe642d",
+                    "border-color": "transparent"});
+            },
+            error:function () {
+                alert("收藏失败");
+            }
+        });
+    }
+    function cancelFavorite() {
+        var data={
+            action:'cancelFavorite',
+            userID:'<?=$current_user->ID?>',
+            postID:'<?=$post_id?>'
+        };
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $admin_url;?>",
+            data: data,
+            success: function(){
+                var html = "<a onclick=\"setCSS(1)\" class=\"btn btn-info btn-lg\" id=\"btn-add-favorite\">"+
+                    "<span class=\"glyphicon glyphicon-star-empty\"></span>收藏项目"+"</a>";
+                $("#addFavorite").html(html);
+                //更改样式
+                $("#btn-add-favorite").css({ "color":"#fe642d",
+                    "background-color": "transparent",
+                    "border-color": "#fe642d"});
+            },
+            error:function () {
+                alert("error");
+            }
+        });
+    }
+</script>
+
+
+
 <div class="container" style="margin-top: 10px">
         <div class="row" style="width: 100%">
             <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
                 <!--引入动态模板-->
                 <?php if ( have_posts() ) : while ( have_posts() ) : the_post();?>
                 <!--    文章内容-->
-                 <h2><b><?php the_title(); ?></b></h2><hr>
+                 <div style="display:inline-block;">
+                     <h2><b><?php the_title(); ?></b></h2>
+                 </div>
+                 <?php if( !ifFavorite($current_user->ID,$post_id) ){ //未收藏
+                        $flag = 1;
+                        $avalue = "<span class=\"glyphicon glyphicon-star-empty\"></span>收藏项目";
+                     ?>
+                        <style>
+                            #btn-add-favorite{
+                                color: #fe642d;
+                                background-color: transparent;
+                                border-color: #fe642d;
+                            }
+                            /*#btn-add-favorite:hover {*/
+                                /*color: white;*/
+                                /*background-color: #fe642d;*/
+                                /*border-color: transparent;*/
+                            /*}*/
+                        </style>
+                    <?php } else{
+                        $flag = 0;
+                        $avalue = "<span class=\"glyphicon glyphicon-star-empty\"></span>取消收藏";
+                     ?>
+                        <style>
+                            #btn-add-favorite{
+                                color: white;
+                                background-color: #fe642d;
+                                border-color: transparent;
+                            }
+                            /*#btn-add-favorite:hover {*/
+                                /*color: #fe642d;*/
+                                /*background-color: transparent;*/
+                                /*border-color: #fe642d;*/
+                            /*}*/
+                        </style>
+                    <?php } ?>
+                     <div id="addFavorite">
+                         <a onclick="setCSS(<?=$flag?>)" class="btn btn-info btn-lg" id="btn-add-favorite">
+                             <?php echo $avalue; ?>
+<!--                             <span class="glyphicon glyphicon-star-empty"></span>收藏项目-->
+                         </a>
+                    </div>
+                 <hr>
                 <?php the_content(); ?><hr>
                 <?php comments_template(); ?>
                 <?php endwhile;?>
@@ -66,8 +178,11 @@ $current_user->user_login  ;
                 ?>
                 </div>
                 <div class="sidebar-grey-frame" style="margin-top: 30px">
-                    <p>发布者：</p>
-                    <span id="" ><?php the_author(); ?></span><br>
+                    <p>发布者：
+                        <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.get_post()->post_author.'&tab=project'?>"
+                           class="author_link" style="color: #5e5e5e"><?php echo get_the_author();?>
+                        </a>
+                    </p><br>
                     <p>分类：</p>
                     <span id="" ><?php the_category(', ') ?></span><br>
                     <p>标签：</p>

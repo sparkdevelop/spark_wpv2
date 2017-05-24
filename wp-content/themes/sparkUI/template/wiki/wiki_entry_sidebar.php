@@ -142,7 +142,11 @@
         });
     </script>
     <div class="wiki_entry_info">
-        <p>创建: <?php the_author(); ?></p>
+        <p>创建:
+            <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.get_post()->post_author.'&tab=wiki'?>"
+               class="author_link"><?php echo get_the_author();?>
+            </a>
+        </p>
         <p id="edit_nums"></p>
         <p id="watch_nums"></p>
         <p id="update_time"></p>
@@ -203,20 +207,6 @@
             </ul>
         </div>
     </div>
-
-<!--    加上提问按钮-->
-<!--    --><?php //if(is_user_logged_in()){ ?>
-<!--        <div class="sidebar_button" id="ask_button">-->
-<!--            --><?php //session_start();
-//            $_SESSION['post_id'] = get_the_ID();
-//            $_SESSION['post_type'] = get_post_type(get_the_ID());?>
-<!--            <a href="--><?php //echo site_url().get_page_address('ask_tiny');?><!--" style="color: white" id="ask_link">我要提问</a>-->
-<!--        </div>-->
-<!--    --><?php //}else{ ?>
-<!--        <div class="sidebar_button" id="ask_button">-->
-<!--            <a href="--><?php //echo wp_login_url( get_permalink() ); ?><!--" style="color: white">我要提问</a>-->
-<!--        </div>-->
-<!--    --><?php //} ?>
 </div>
 <script>
     var flag=false;

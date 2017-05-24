@@ -1300,9 +1300,61 @@ function writeUserTrack(){
 }
 
 
+//建立用户收藏表
+function favorite_table_install () {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "favorite";  //获取表前缀，并设置新表的名称
+    if($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+		  favorite_post_id int NOT NULL,
+		  favorite_post_type varchar(20) NOT NULL,
+		  favorite_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+//处理添加favorite操作
+function addFavorite(){
+    global $wpdb;
+    $user_id = $_POST['userID'];
+    $post_id = $_POST['postID'];
+    $post_type = get_post_type($post_id);
+    $time = date("Y-m-d H:i:s",time()+8*3600);
+    $sql = "INSERT INTO wp_favorite VALUES ('',$user_id,$post_id,'$post_type','$time')";
+    $wpdb->get_results($sql);
+    die();
+}
+add_action('wp_ajax_addFavorite', 'addFavorite');
+add_action('wp_ajax_nopriv_addFavorite', 'addFavorite');
 
 
+function cancelFavorite(){
+    global $wpdb;
+    $user_id = $_POST['userID'];
+    $post_id = $_POST['postID'];
+    $sql = "DELETE FROM wp_favorite WHERE user_id=$user_id AND favorite_post_id=$post_id";
+    $wpdb->query($sql);
 
+    die();
+}
+add_action('wp_ajax_cancelFavorite', 'cancelFavorite');
+add_action('wp_ajax_nopriv_cancelFavorite', 'cancelFavorite');
+
+//判断是否已收藏
+function ifFavorite($user_id,$post_id){
+    global $wpdb;
+    $sql = "SELECT * FROM wp_favorite WHERE user_id=$user_id AND favorite_post_id=$post_id";
+    $col = $wpdb->query($sql);
+    if($col==0){    //未收藏
+        return false;
+    }else{ //已收藏
+        return true;
+    }
+}
 
 //原始算法
 ////写入pro-->wiki关系。-->在pro页面展示wiki
