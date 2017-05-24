@@ -416,7 +416,7 @@ h4{margin-bottom: 0px;}
 }
 
 /*.list-group-item{*/
-    /*background-color: #fafafa;*/
+/*background-color: #fafafa;*/
 
 /*}*/
 
@@ -635,7 +635,7 @@ h4{margin-bottom: 0px;}
 
 }
 .close_btn:hover{
-box-shadow: none;
+    box-shadow: none;
 }
 
 /*wiki公共样式*/
