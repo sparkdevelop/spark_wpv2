@@ -1344,7 +1344,7 @@ function cancelFavorite(){
 add_action('wp_ajax_cancelFavorite', 'cancelFavorite');
 add_action('wp_ajax_nopriv_cancelFavorite', 'cancelFavorite');
 
-//判断是否已收藏
+//判断该项目是否已被该用户收藏
 function ifFavorite($user_id,$post_id){
     global $wpdb;
     $sql = "SELECT * FROM wp_favorite WHERE user_id=$user_id AND favorite_post_id=$post_id";
@@ -1353,6 +1353,75 @@ function ifFavorite($user_id,$post_id){
         return false;
     }else{ //已收藏
         return true;
+    }
+}
+
+//判断用户是否有收藏
+function hasFavorite($user_id){
+    global $wpdb;
+    $sql = "SELECT * FROM wp_favorite WHERE user_id=$user_id AND favorite_post_type='post'";
+    $col = $wpdb->query($sql);
+    if($col==0){    //未收藏
+        return false;
+    }else{ //已收藏
+        return true;
+    }
+}
+
+function showFavorite($user_id){
+    global $wpdb;
+    $ret = array();
+    $sql = "SELECT favorite_post_id FROM wp_favorite WHERE user_id=$user_id AND favorite_post_type='post'";
+    $results = $wpdb->get_results($sql,"ARRAY_A");
+    foreach($results as $result){
+        array_push($ret,$result['favorite_post_id']);
+    }
+    return $ret;
+}
+
+//收藏页分页
+function favorite_custom_pagenavi($custom_query,$range = 4){
+    global $paged;
+    if ( !$max_page ) {
+        $max_page = sizeof($custom_query);
+    }
+    if( $max_page >1 ) {
+        echo "<div class='pagenavi'>";
+        if( !$paged ){
+            $paged = 1;
+        }
+        if( $paged != 1 ) {
+            echo "<a href='".get_pagenum_link(1) ."' class='extend' title='跳转到首页'>首页</a>";
+        }
+        previous_posts_link('上一页');
+        if ( $max_page >$range ) {
+            if( $paged <$range ) {
+                for( $i = 1; $i <= ($range +1); $i++ ) {
+                    echo "<a href='".get_pagenum_link($i) ."'";
+                    if($i==$paged) echo " class='current'";echo ">$i</a>";
+                }
+            }elseif($paged >= ($max_page -ceil(($range/2)))){
+                for($i = $max_page -$range;$i <= $max_page;$i++){
+                    echo "<a href='".get_pagenum_link($i) ."'";
+                    if($i==$paged)echo " class='current'";echo ">$i</a>";
+                }
+            }elseif($paged >= $range &&$paged <($max_page -ceil(($range/2)))){
+                for($i = ($paged -ceil($range/2));$i <= ($paged +ceil(($range/2)));$i++){
+                    echo "<a href='".get_pagenum_link($i) ."'";if($i==$paged) echo " class='current'";echo ">$i</a>";
+                }
+            }
+        }else{
+            for($i = 1;$i <= $max_page;$i++){
+                echo "<a href='".get_pagenum_link($i) ."'";
+                if($i==$paged)echo " class='current'";echo ">$i</a>";
+            }
+        }
+        next_posts_link('下一页',sizeof($custom_query));
+        if($paged != $max_page){
+            echo "<a href='".get_pagenum_link($max_page) ."' class='extend' title='跳转到最后一页'>尾页</a>";
+        }
+        echo '<span>['.$paged.']/['.$max_page.']页</span>';
+        echo "</div>\n";
     }
 }
 

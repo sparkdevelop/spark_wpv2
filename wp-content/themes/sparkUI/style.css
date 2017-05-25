@@ -1101,7 +1101,9 @@ box-shadow: none;
     line-height:45px;
     font-size:18px;
     font-weight:bold;
-    color:#fe642d;  }
+    color:#fe642d;
+    margin-bottom: 0px;
+}
 #proScoreTitle span{
     font-size: 14px;
     color: black
@@ -1109,27 +1111,47 @@ box-shadow: none;
 #starsdiv{
     text-align: center;
 }
+#starsdivleft{
+    float: left;
+    height: 162px;
+}
+/*left的ul*/
 #stars{
+    margin-top: 30px;
     margin-bottom: 0;
     padding: 0;
-    display:inline-block;
-    width:160px;
-    height:60px;
-    line-height:60px;
     cursor:pointer;
 }
 #stars li{
-    font-size:30px;
+    font-size:20px;
     color:#ccc;
     height:60px;
     line-height:60px
 }
+
+#starsdivright{
+    overflow:auto;
+}
+#starsdivright ul{
+    margin-bottom: 0px;
+}
+
 #score{
-    display:inline-block;
-    height:60px;
-    line-height:60px;
-    font-size:18px;
-    font-weight:bold;
+    font-size:14px;
+    color: gray;
+}
+/*收藏css*/
+#btn-add-favorite{
+    font-size: 18px;
     color: #fe642d;
-    margin-left: 20px
+    background-color: transparent;
+    border-color: transparent;
+}
+
+#addFavorite{
+    display: inline-block;
+    float: right;
+    height: 78px;
+    line-height: 78px;
+    margin-right: 25px;
 }
