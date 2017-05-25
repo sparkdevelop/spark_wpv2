@@ -24,6 +24,9 @@ if($user_id==get_current_user_id()){?>
         if($tab=='project'){
             require "otherproject.php";
         }
+        if($tab=='favorite'){
+            require "otherfavorite.php";
+        }
         ?>
     </div>
 <?php } ?>

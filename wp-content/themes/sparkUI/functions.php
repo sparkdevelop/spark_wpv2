@@ -1344,7 +1344,7 @@ function cancelFavorite(){
 add_action('wp_ajax_cancelFavorite', 'cancelFavorite');
 add_action('wp_ajax_nopriv_cancelFavorite', 'cancelFavorite');
 
-//判断是否已收藏
+//判断该项目是否已被该用户收藏
 function ifFavorite($user_id,$post_id){
     global $wpdb;
     $sql = "SELECT * FROM wp_favorite WHERE user_id=$user_id AND favorite_post_id=$post_id";
@@ -1354,6 +1354,17 @@ function ifFavorite($user_id,$post_id){
     }else{ //已收藏
         return true;
     }
+}
+
+function showFavorite($user_id){
+    global $wpdb;
+    $ret = array();
+    $sql = "SELECT favorite_post_id FROM wp_favorite WHERE user_id=$user_id AND favorite_post_type='post'";
+    $results = $wpdb->get_results($sql,"ARRAY_A");
+    foreach($results as $result){
+        array_push($ret,$result['favorite_post_id']);
+    }
+    return $ret;
 }
 
 //建立用户打分表
@@ -1381,8 +1392,13 @@ function addScore(){
     $post_id = $_POST['postID'];
     $score = $_POST['score'];
     $post_type = get_post_type($post_id);
+    echo $user_id."<br>";
+    echo $post_id."<br>";
+    echo $post_type."<br>";
+    echo $score."<br>";
     $time = date("Y-m-d H:i:s",time()+8*3600);
     $sql = "INSERT INTO wp_score VALUES ('',$user_id,$score,$post_id,'$post_type','$time')";
+    echo $sql;
     $wpdb->get_results($sql);
     die();
 }
@@ -1411,10 +1427,24 @@ function hasScore($user_id,$post_id){
     $sql = "SELECT * FROM wp_score WHERE user_id=$user_id AND score_post_id = $post_id";
     $col = $wpdb->query($sql);
     if($col == 0){ //未打分
-        return 0;
-    }else{return 1;}
+        return "true";
+    }else{
+        return "false";
+    }
 }
 
+
+////判断用户是否有收藏
+//function hasFavorite($user_id){
+//    global $wpdb;
+//    $sql = "SELECT * FROM wp_favorite WHERE user_id=$user_id AND favorite_post_type='post'";
+//    $col = $wpdb->query($sql);
+//    if($col==0){    //未收藏
+//        return false;
+//    }else{ //已收藏
+//        return true;
+//    }
+//}
 //原始算法
 ////写入pro-->wiki关系。-->在pro页面展示wiki
 //function writeProWiki($pro_post_id){

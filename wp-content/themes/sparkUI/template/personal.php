@@ -24,6 +24,9 @@
     if($tab=='project'){
         require "myproject.php";
     }
+    if($tab=='favorite'){
+        require "myfavorite.php";
+    }
     if($tab=='profile'){
         require "profile.php";
     }

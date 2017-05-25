@@ -2,10 +2,7 @@
     $current_user = wp_get_current_user();
     $user_id = isset($_GET["id"]) ? $_GET["id"] : $current_user->ID ;
     $user_description = get_user_meta($user_id,'description',true);
-?>
-
-<?php
-$admin_url=admin_url('admin-ajax.php');
+    $admin_url=admin_url('admin-ajax.php');
 ?>
 
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
@@ -28,6 +25,10 @@ $admin_url=admin_url('admin-ajax.php');
         <li id="project">
             <img src="<?php bloginfo("template_url")?>/img/project.png">
             <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'project'),remove_query_arg(array('paged','filter'))))?>">TA的项目</a></span>
+        </li>
+        <li id="favorite">
+            <img src="<?php bloginfo("template_url")?>/img/project.png">
+            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'favorite'),remove_query_arg(array('paged','filter'))))?>">TA的收藏</a></span>
         </li>
     </ul>
 </div>

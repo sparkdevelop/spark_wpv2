@@ -33,6 +33,7 @@ else{
     echo "location.href=\"$url\"";
     echo "</script>";
 }
+
 $args = array(
     'base' => add_query_arg($page_text, '%#%', $archive_question_url),
     'format' => '',
@@ -48,11 +49,11 @@ $paginate = paginate_links($args);
         $url_array=parse_url($current_url);
         $query_parse=explode("&",$url_array['query']);
         if(array_search("filter=my-answers",$query_parse)){?>
-            <li><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-questions' ) ) )?>">我的提问</a></li>
-            <li class="active"><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-answers' ) ) )?>">我的回答</a></li>
+            <li><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-questions','paged'=>1 ) ) )?>">我的提问</a></li>
+            <li class="active"><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-answers','paged'=>1) ) )?>">我的回答</a></li>
         <?php }else{ ?>
-            <li class="active"><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-questions' ) ) )?>">我的提问</a></li>
-            <li><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-answers' ) ) )?>">我的回答</a></li>
+            <li class="active"><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-questions','paged'=>1 ) ) )?>">我的提问</a></li>
+            <li><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-answers','paged'=>1 ) ) )?>">我的回答</a></li>
         <?php } ?>
     </ul>
     <div class="dwqa-questions-list">

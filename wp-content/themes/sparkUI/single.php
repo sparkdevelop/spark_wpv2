@@ -24,15 +24,6 @@ get_currentuserinfo();
 $current_user->user_login;
 $admin_url=admin_url( 'admin-ajax.php' );
 ?>
-<style>
-    #addFavorite{
-        display: inline-block;
-        float: right;
-        height: 78px;
-        line-height: 78px;
-        margin-right: 25px;
-    }
-</style>
 <script>
     function setCSS(flag) {
         if(flag == 1){  //未收藏
@@ -52,13 +43,13 @@ $admin_url=admin_url( 'admin-ajax.php' );
             url: "<?php echo $admin_url;?>",
             data: data,
             success: function(){
-                layer.msg('收藏成功',{skin:'favorite-layer',time:2000,icon:1});  //layer.msg(content, {options}, end) - 提示框
-                var html = "<a onclick=\"setCSS(0)\" class=\"btn btn-info btn-lg\" id=\"btn-add-favorite\">"+
-                    "<span class=\"glyphicon glyphicon-star-empty\"></span>取消收藏"+"</a>";
+                layer.msg('收藏成功',{time:2000,icon:1});  //layer.msg(content, {options}, end) - 提示框
+                var html = "<a onclick=\"setCSS(0)\" class=\"btn btn-default\" id=\"btn-add-favorite\">"+
+                    "<span class=\"glyphicon glyphicon-star\"></span>已收藏"+"</a>";
                 $("#addFavorite").html(html);
-                $("#btn-add-favorite").css({"color":"white",
-                    "background-color": "#fe642d",
-                    "border-color": "transparent"});
+//                $("#btn-add-favorite").css({"color":"white",
+//                    "background-color": "#fe642d",
+//                    "border-color": "transparent"});
             },
             error:function () {
                 alert("收藏失败");
@@ -77,13 +68,13 @@ $admin_url=admin_url( 'admin-ajax.php' );
             data: data,
             success: function(){
                 layer.msg('已取消',{time:2000,icon:1});  //layer.msg(content, {options}, end) - 提示框
-                var html = "<a onclick=\"setCSS(1)\" class=\"btn btn-info btn-lg\" id=\"btn-add-favorite\">"+
-                    "<span class=\"glyphicon glyphicon-star-empty\"></span>收藏项目"+"</a>";
+                var html = "<a onclick=\"setCSS(1)\" class=\"btn btn-default\" id=\"btn-add-favorite\">"+
+                    "<span class=\"glyphicon glyphicon-star-empty\"></span>收藏"+"</a>";
                 $("#addFavorite").html(html);
                 //更改样式
-                $("#btn-add-favorite").css({ "color":"#fe642d",
-                    "background-color": "transparent",
-                    "border-color": "#fe642d"});
+//                $("#btn-add-favorite").css({ "color":"#fe642d",
+//                    "background-color": "transparent",
+//                    "border-color": "#fe642d"});
             },
             error:function () {
                 alert("error");
@@ -91,8 +82,6 @@ $admin_url=admin_url( 'admin-ajax.php' );
         });
     }
 </script>
-
-
 
 <div class="container" style="margin-top: 10px">
     <div class="row" style="width: 100%">
@@ -105,30 +94,13 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 </div>
                 <?php if( !ifFavorite($current_user->ID,$post_id) ){ //未收藏
                     $flag = 1;
-                    $avalue = "<span class=\"glyphicon glyphicon-star-empty\"></span>收藏项目";
-                    ?>
-                    <style>
-                        #btn-add-favorite{
-                            color: #fe642d;
-                            background-color: transparent;
-                            border-color: #fe642d;
-                        }
-                    </style>
-                <?php }
-                else{
+                    $avalue = "<span class=\"glyphicon glyphicon-star-empty\"></span>收藏";
+                } else{
                     $flag = 0;
-                    $avalue = "<span class=\"glyphicon glyphicon-star-empty\"></span>取消收藏";
-                    ?>
-                    <style>
-                        #btn-add-favorite{
-                            color: white;
-                            background-color: #fe642d;
-                            border-color: transparent;
-                        }
-                    </style>
-                <?php } ?>
+                    $avalue = "<span class=\"glyphicon glyphicon-star\"></span>已收藏";
+                } ?>
                 <div id="addFavorite">
-                    <a onclick="setCSS(<?=$flag?>)" class="btn btn-info btn-lg" id="btn-add-favorite">
+                    <a onclick="setCSS(<?=$flag?>)" class="btn btn-default" id="btn-add-favorite">
                         <?php echo $avalue; ?>
                     </a>
                 </div>
@@ -186,8 +158,6 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 <span><?php comments_popup_link('0 条', '1 条', '% 条', '', '评论已关闭'); ?></span><br>
             </div><br>
 
-
-
             <?php $score = calScore($post_id);
             $starScore = round($score['score'])-1;
             $hasScore = hasScore($current_user->ID,$post_id);
@@ -199,8 +169,8 @@ $admin_url=admin_url( 'admin-ajax.php' );
                     var score = document.getElementById('score');
                     var oUl = document.getElementById('stars');
                     var aLi = oUl.getElementsByTagName('li');
-                    var arr = ['1.0', '2.0', '3.0', '4.0', '5.0'];
-                    if(flag==0){ //未打分
+                    var arr = ['内容太少','项目一般', '有点帮助','学到很多','强力推荐'];
+                    if(flag==true){ //未打分
                         for (var i = 0; i < aLi.length; i++) {
                             aLi[i].index = i;
                             markOut(<?=$starScore?>);   //初始显示
@@ -259,7 +229,11 @@ $admin_url=admin_url( 'admin-ajax.php' );
                         for (var i = 0; i <= index; i++) {
                             aLi[i].style.color = index < 2 ? 'gray' : '#fe642d';
                         }
-                        score.innerHTML = '<?=$score['score']?>';
+                        var html = arr[index]+"<span>~<?=$score['num']?>人评分</span>";
+                        if(index==-1){
+                            html = "<span><?=$score['num']?>人评分</span>";
+                        }
+                        score.innerHTML =html;
                     }
                 }
             </script>
@@ -268,16 +242,30 @@ $admin_url=admin_url( 'admin-ajax.php' );
                     <p>项目评分</p>
                 </div>
                 <div style="height: 2px;background-color: lightgray"></div>
-                <p class="title" id="proScoreTitle">当前评分<span>(共有<?=$score['num']?>人打分)</span></p>
+                <p class="title" id="proScoreTitle">当前评分</p>
                 <div id="starsdiv">
-                    <ul class="stars" id="stars">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                    </ul>
-                    <p id="score"><?=$score['score'];?></p>
+                    <div id="starsdivleft">
+                        <ul class="stars" id="stars">
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                        </ul>
+                        <div id="score">
+                            <?=$score['score'];?>
+                            <span>&nbsp;<?=$score['num']?>人评分</span>
+                        </div>
+                    </div>
+                    <div id="starsdivright">
+                        <ul class="list-group">
+                            <li class="list-group-item">5.0 强力推荐</li>
+                            <li class="list-group-item">4.0 学到很多</li>
+                            <li class="list-group-item">3.0 有点帮助</li>
+                            <li class="list-group-item">2.0 项目一般</li>
+                            <li class="list-group-item">1.0 内容太少</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
