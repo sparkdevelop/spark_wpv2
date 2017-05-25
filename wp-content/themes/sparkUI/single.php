@@ -158,8 +158,6 @@ $admin_url=admin_url( 'admin-ajax.php' );
                     <span><?php comments_popup_link('0 条', '1 条', '% 条', '', '评论已关闭'); ?></span><br>
                 </div><br>
 
-
-
                 <?php $score = calScore($post_id);
                       $starScore = round($score['score'])-1;
                       $hasScore = hasScore($current_user->ID,$post_id);
@@ -172,7 +170,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
         var oUl = document.getElementById('stars');
         var aLi = oUl.getElementsByTagName('li');
         var arr = ['内容太少','项目一般', '有点帮助','学到很多','强力推荐'];
-        if(flag==0){ //未打分
+        if(flag==true){ //未打分
             for (var i = 0; i < aLi.length; i++) {
                 aLi[i].index = i;
                 markOut(<?=$starScore?>);   //初始显示

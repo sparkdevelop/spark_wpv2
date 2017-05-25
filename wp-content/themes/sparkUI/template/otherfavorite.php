@@ -5,7 +5,8 @@ wp_enqueue_media();
 $admin_url=admin_url( 'admin-ajax.php' );
 
 $current_user = wp_get_current_user();
-$faverite_pro = showFavorite($current_user->ID);
+$user_id = isset($_GET["id"]) ? $_GET["id"] : $current_user->ID ;
+$faverite_pro = showFavorite($user_id);
 
 $origin_url = get_permalink(); //当前url
 $length = sizeof($faverite_pro); //收藏项目总数
@@ -21,7 +22,7 @@ else{
 
 <style type="text/css">
     #close-icon{
-    position: absolute;
+        position: absolute;
         display: block;
         top: 6px;
         right: 20px;
@@ -98,7 +99,7 @@ else{
             }else{ ?>
                 <div class="alert alert-info">
                     <a href="#" class="close" data-dismiss="alert">&times;</a>  <!--关闭按钮-->
-                    <strong>Oops,还没有收藏!</strong>去项目页面逛逛吧。
+                    <strong>Oops,TA还没有收藏!</strong>去项目页面逛逛吧。
                 </div>
             <?php } ?>
         </ul>
