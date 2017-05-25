@@ -242,7 +242,6 @@ $admin_url=admin_url( 'admin-ajax.php' );
                     <p>项目评分</p>
                 </div>
                 <div style="height: 2px;background-color: lightgray"></div>
-                <p class="title" id="proScoreTitle">当前评分</p>
                 <div id="starsdiv">
                     <div id="starsdivleft">
                         <ul class="stars" id="stars">
@@ -256,15 +255,6 @@ $admin_url=admin_url( 'admin-ajax.php' );
                             <?=$score['score'];?>
                             <span>&nbsp;<?=$score['num']?>人评分</span>
                         </div>
-                    </div>
-                    <div id="starsdivright">
-                        <ul class="list-group">
-                            <li class="list-group-item">5.0 强力推荐</li>
-                            <li class="list-group-item">4.0 学到很多</li>
-                            <li class="list-group-item">3.0 有点帮助</li>
-                            <li class="list-group-item">2.0 项目一般</li>
-                            <li class="list-group-item">1.0 内容太少</li>
-                        </ul>
                     </div>
                 </div>
             </div>
