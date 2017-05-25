@@ -117,7 +117,7 @@ else{
             </div>
         <?php } ?>
     </div>
-    <div class="tab-pane fade" id="my-favorite-wiki" style="padding-top: 40px;">
+    <div class="tab-pane fade" id="my-favorite-wiki" style="display: none;padding-top: 40px;">
         <div style="height: 1px;background-color: lightgray;"></div><br>
         <div id="wiki_list"></div>
         <script>
