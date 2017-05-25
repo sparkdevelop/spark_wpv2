@@ -64,7 +64,10 @@
                     require "template/qa/QA_ask_tiny.php";
                 }
                 elseif (is_page('timer')){
-                    require "template/timer.php";
+                    require "algorithm/timer.php";
+                }
+                elseif (is_page('otherpersonal')){
+                    require "template/otherpersonal.php";
                 }
                 elseif (is_page('personal')){
                     if (is_user_logged_in()) {

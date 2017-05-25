@@ -60,6 +60,10 @@ if ( function_exists('register_sidebar') ) {
         'name'          => 'personal_sidebar',
         'id'            => 'widget_personalsidebar',
     ));
+    register_sidebar(array(
+        'name'          => 'otherpersonal_sidebar',
+        'id'            => 'widget_otherpersonalsidebar',
+    ));
 }
 //取消注册sidebar
 //if(function_exists('unregister_sidebar')){
@@ -976,8 +980,9 @@ add_filter ('sanitize_user', 'ludou_sanitize_user', 10, 3);
 function get_user_related_wiki() {
     $wikis = array();
     $post_status = $_POST['get_wiki_type'];
-    $current_user = wp_get_current_user();
-    $post_author = $current_user->ID;
+    $post_author = $_POST['userID'];
+    //$current_user = wp_get_current_user();
+    //$post_author = $current_user->ID;
     global $wpdb;
     if($post_status == "publish") {
         $publish_wikis_result = $wpdb->get_results("select * from $wpdb->posts where post_author=".$post_author." and post_status=\"publish\" and post_type=\"yada_wiki\"");
@@ -1174,6 +1179,7 @@ function qaComeFrom($qa_id){
     return $related_info;
 }
 
+
 //返回此项目对用的所有问答  -->在项目和wiki页面的comment中显示QA
 function pwRelatedQA($pro_id){
     global $wpdb;
@@ -1295,10 +1301,150 @@ function writeUserTrack(){
 }
 
 
+//建立用户收藏表
+function favorite_table_install () {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "favorite";  //获取表前缀，并设置新表的名称
+    if($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+		  favorite_post_id int NOT NULL,
+		  favorite_post_type varchar(20) NOT NULL,
+		  favorite_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+//处理添加favorite操作
+function addFavorite(){
+    global $wpdb;
+    $user_id = $_POST['userID'];
+    $post_id = $_POST['postID'];
+    $post_type = get_post_type($post_id);
+    $time = date("Y-m-d H:i:s",time()+8*3600);
+    $sql = "INSERT INTO wp_favorite VALUES ('',$user_id,$post_id,'$post_type','$time')";
+    $wpdb->get_results($sql);
+    die();
+}
+add_action('wp_ajax_addFavorite', 'addFavorite');
+add_action('wp_ajax_nopriv_addFavorite', 'addFavorite');
 
 
+function cancelFavorite(){
+    global $wpdb;
+    $user_id = $_POST['userID'];
+    $post_id = $_POST['postID'];
+    $sql = "DELETE FROM wp_favorite WHERE user_id=$user_id AND favorite_post_id=$post_id";
+    $wpdb->query($sql);
+    die();
+}
+add_action('wp_ajax_cancelFavorite', 'cancelFavorite');
+add_action('wp_ajax_nopriv_cancelFavorite', 'cancelFavorite');
+
+//判断该项目是否已被该用户收藏
+function ifFavorite($user_id,$post_id){
+    global $wpdb;
+    $sql = "SELECT * FROM wp_favorite WHERE user_id=$user_id AND favorite_post_id=$post_id";
+    $col = $wpdb->query($sql);
+    if($col==0){    //未收藏
+        return false;
+    }else{ //已收藏
+        return true;
+    }
+}
+
+function showFavorite($user_id){
+    global $wpdb;
+    $ret = array();
+    $sql = "SELECT favorite_post_id FROM wp_favorite WHERE user_id=$user_id AND favorite_post_type='post'";
+    $results = $wpdb->get_results($sql,"ARRAY_A");
+    foreach($results as $result){
+        array_push($ret,$result['favorite_post_id']);
+    }
+    return $ret;
+}
+
+//建立用户打分表
+function score_table_install () {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "score";  //获取表前缀，并设置新表的名称
+    if($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+          score int NOT NULL,
+		  score_post_id int NOT NULL,
+		  score_post_type varchar(20) NOT NULL,
+		  score_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+//添加用户打分
+function addScore(){
+    global $wpdb;
+    $user_id = $_POST['userID'];
+    $post_id = $_POST['postID'];
+    $score = $_POST['score'];
+    $post_type = get_post_type($post_id);
+    echo $user_id."<br>";
+    echo $post_id."<br>";
+    echo $post_type."<br>";
+    echo $score."<br>";
+    $time = date("Y-m-d H:i:s",time()+8*3600);
+    $sql = "INSERT INTO wp_score VALUES ('',$user_id,$score,$post_id,'$post_type','$time')";
+    echo $sql;
+    $wpdb->get_results($sql);
+    die();
+}
+add_action('wp_ajax_addScore', 'addScore');
+add_action('wp_ajax_nopriv_addScore', 'addScore');
+
+//计算当前项目的评分
+function calScore($post_id){
+    global $wpdb;
+    $sum = 0;
+    $sql = "SELECT score FROM wp_score WHERE score_post_id = $post_id";
+    $results = $wpdb->get_results($sql,"ARRAY_A");
+    if(sizeof($results)==0){ $scoreNum = 1;}
+    else{ $scoreNum =sizeof($results); }
+    foreach($results as $result){
+        $sum += $result['score'];
+    }
+    $scoreAverage = round($sum/$scoreNum,1);
+    $ret = array('score'=>$scoreAverage,'num'=>sizeof($results));
+    return $ret;
+}
+
+//判断用户是否已经评分
+function hasScore($user_id,$post_id){
+    global $wpdb;
+    $sql = "SELECT * FROM wp_score WHERE user_id=$user_id AND score_post_id = $post_id";
+    $col = $wpdb->query($sql);
+    if($col == 0){ //未打分
+        return "true";
+    }else{
+        return "false";
+    }
+}
 
 
+////判断用户是否有收藏
+//function hasFavorite($user_id){
+//    global $wpdb;
+//    $sql = "SELECT * FROM wp_favorite WHERE user_id=$user_id AND favorite_post_type='post'";
+//    $col = $wpdb->query($sql);
+//    if($col==0){    //未收藏
+//        return false;
+//    }else{ //已收藏
+//        return true;
+//    }
+//}
 //原始算法
 ////写入pro-->wiki关系。-->在pro页面展示wiki
 //function writeProWiki($pro_post_id){

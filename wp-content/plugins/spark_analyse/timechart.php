@@ -314,7 +314,7 @@ function wikiviewaverage(){
         $m++;
         $c--;
     }
-   $average=$average/$articulnum;
+   $average=$average/($articulnum+0.1);
     echo sprintf("%.2f", $average);
 }
 function commentpost(){
@@ -779,7 +779,7 @@ function questionviewaverage(){
         $c--;
 
     }
-     $average=$average/$articulnum;
+     $average=$average/($articulnum+0.1);
     echo sprintf("%.2f", $average);
 
 }

@@ -416,7 +416,7 @@ h4{margin-bottom: 0px;}
 }
 
 /*.list-group-item{*/
-    /*background-color: #fafafa;*/
+/*background-color: #fafafa;*/
 
 /*}*/
 
@@ -635,7 +635,7 @@ h4{margin-bottom: 0px;}
 
 }
 .close_btn:hover{
-box-shadow: none;
+    box-shadow: none;
 }
 
 /*wiki公共样式*/
@@ -1095,3 +1095,56 @@ box-shadow: none;
     display: none;
 }
 
+/*项目打分部分css*/
+#proScoreTitle{
+    height:45px;
+    line-height:45px;
+    font-size:18px;
+    font-weight:bold;
+    color:#fe642d;
+    margin-bottom: 0px;
+}
+#proScoreTitle span{
+    font-size: 14px;
+    color: black
+}
+#starsdiv{
+    text-align: center;
+}
+/*left的ul*/
+#stars{
+    margin-top: 20px;
+    padding: 0;
+    cursor:pointer;
+}
+#stars li{
+    font-size:35px;
+    color:#ccc;
+}
+
+#starsdivright{
+    overflow:auto;
+}
+#starsdivright ul{
+    margin-bottom: 0px;
+}
+
+#score{
+    font-size:15px;
+    color: gray;
+}
+/*收藏css*/
+#btn-add-favorite{
+    font-size: 18px;
+    color: #fe642d;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+#addFavorite{
+    display: inline-block;
+    float: right;
+    height: 78px;
+    line-height: 78px;
+    margin-right: 25px;
+}

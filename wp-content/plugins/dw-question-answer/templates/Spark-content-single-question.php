@@ -27,6 +27,7 @@ if($post_type=="post"){
 }else{
     $post_type="";
 }
+
 ?>
 <?php do_action( 'dwqa_before_single_question_content' ); ?>
     <div class="dwqa-question-item" style="padding: 0px 0px;">
@@ -76,7 +77,7 @@ if($post_type=="post"){
 
     <!--提问人信息-->
     <div>
-        <span style="color: gray">提问人:&nbsp;<a href="<?php get_the_author_link();?>" class="author_link"><?php echo get_the_author();?></a></span>
+        <span style="color: gray">提问人:&nbsp;<a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.get_post()->post_author;?>" class="author_link"><?php echo get_the_author();?></a></span>
         <span class="m-qa-count"></span>
         <span class="time_count"><?php echo date('n月j日 G:i',get_the_time('U'));?></span>
         <span class="scan_count">浏览<?php echo dwqa_question_views_count();?></span>

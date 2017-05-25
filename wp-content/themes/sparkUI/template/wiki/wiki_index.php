@@ -127,7 +127,7 @@
                 </div>
             </div>
         </div>
-        <div class="wiki_category">
+        <div class="wiki_category" style="display: none">
             <p><b>创新创业</b></p>
             <div class="row">
                 <div class="col-md-4 col-sm-4 col-xs-4 wiki_category_item">
@@ -213,7 +213,7 @@
                         </div>
                     </div>
                 </div><br><br>
-                <div class="col-md-4 col-sm-4 col-xs-4 wiki_category_item">
+                <div class="col-md-4 col-sm-4 col-xs-4 wiki_category_item" style="display: none">
                     <div class="row">
                         <div class="col-md-3 m-wiki-index-icon">
                             <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-14.png" class="wiki-index-icon">
@@ -226,7 +226,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-4 wiki_category_item">
+                <div class="col-md-4 col-sm-4 col-xs-4 wiki_category_item" style="display: none">
                     <div class="row">
                         <div class="col-md-3 m-wiki-index-icon">
                             <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-15.png" class="wiki-index-icon">
