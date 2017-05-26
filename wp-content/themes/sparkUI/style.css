@@ -416,7 +416,7 @@ h4{margin-bottom: 0px;}
 }
 
 /*.list-group-item{*/
-    /*background-color: #fafafa;*/
+/*background-color: #fafafa;*/
 
 /*}*/
 
@@ -635,7 +635,7 @@ h4{margin-bottom: 0px;}
 
 }
 .close_btn:hover{
-box-shadow: none;
+    box-shadow: none;
 }
 
 /*wiki公共样式*/
@@ -1111,22 +1111,15 @@ box-shadow: none;
 #starsdiv{
     text-align: center;
 }
-#starsdivleft{
-    float: left;
-    height: 162px;
-}
 /*left的ul*/
 #stars{
-    margin-top: 30px;
-    margin-bottom: 0;
+    margin-top: 20px;
     padding: 0;
     cursor:pointer;
 }
 #stars li{
-    font-size:20px;
+    font-size:35px;
     color:#ccc;
-    height:60px;
-    line-height:60px
 }
 
 #starsdivright{
@@ -1137,7 +1130,7 @@ box-shadow: none;
 }
 
 #score{
-    font-size:14px;
+    font-size:15px;
     color: gray;
 }
 /*收藏css*/
