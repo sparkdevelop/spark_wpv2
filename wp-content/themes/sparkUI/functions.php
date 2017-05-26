@@ -1356,6 +1356,7 @@ function ifFavorite($user_id,$post_id){
     }
 }
 
+//个人页面展示favorite
 function showFavorite($user_id){
     global $wpdb;
     $ret = array();
@@ -1366,6 +1367,36 @@ function showFavorite($user_id){
     }
     return $ret;
 }
+
+//
+function get_user_favorite_wiki(){
+    global $wpdb;
+    $wikis = array();
+    $post_status = $_POST['get_wiki_type'];
+    $user_id = $_POST['user_ID'];
+    if($post_status == "publish") {
+        $sql = "SELECT favorite_post_id FROM wp_favorite WHERE user_id=$user_id AND favorite_post_type='yada_wiki'";
+        $results = $wpdb->get_results($sql,'ARRAY_A');
+        foreach ($results as $result) {
+            $sql_1="select * from $wpdb->posts where ID=$result->favorite_post_id";
+            $favorite_wikis_result = $wpdb->get_results($sql_1);
+            foreach ($favorite_wikis_result as $item) {
+                $wikis[] = $item;
+            }
+        }
+    }
+    else{
+        echo "other";
+    }
+    $data = array(
+        "wikis" => $wikis
+    );
+    echo json_encode($data);
+    die();
+}
+add_action('wp_ajax_get_user_favorite_wiki', 'get_user_favorite_wiki');
+add_action('wp_ajax_nopriv_get_user_favorite_wiki', 'get_user_favorite_wiki');
+
 
 //建立用户打分表
 function score_table_install () {
