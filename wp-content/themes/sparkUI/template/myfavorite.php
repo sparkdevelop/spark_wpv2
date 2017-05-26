@@ -19,20 +19,6 @@ else{
     $current_page = $page_num;?>
 <?php } ?>
 
-<style type="text/css">
-    #close-icon{
-    position: absolute;
-        display: block;
-        top: 6px;
-        right: 20px;
-        color: lightgrey;
-    }
-    #close-icon:hover{
-        color: #fe642d;
-        cursor: pointer;
-    }
-</style>
-
 <script type="text/javascript">
     //鼠标划过事件
     $(".thumbnail").mouseover(function () {
@@ -115,11 +101,8 @@ else{
 
         if($current_page==$total_page && $pro_length%3!=0){?>
             <script>
-                $("#page_favorite").css({"position":"absolute","bottom":"-15%","left":"40%"});
-            </script>
-        <?php } else{?>
-            <script>
-                $("#page_favorite").css({"text-align":"center","margin-bottom":"20px"});
+                var flag=true;
+                pageFavorite(flag);
             </script>
         <?php } ?>
     </div>
@@ -128,42 +111,8 @@ else{
         <div id="wiki_list"></div>
         <script>
             $(function () {
-                get_favorite_wiki(<?=$user_id?>);
+                get_favorite_wiki(<?=$user_id?>,'<?=$admin_url?>');
             });
-            function get_favorite_wiki($user_id) {
-                var data = {
-                    action: "get_user_favorite_wiki",
-                    user_ID: $user_id,
-                    get_wiki_type: "publish"
-                };
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo $admin_url;?>",
-                    data: data,
-                    dataType: "json",
-                    success: function(data){
-                        $("#wiki_favorite").text(data.wikis.length);
-                        if(data.wikis.length!=0){
-                            $("#wiki_list").html("");
-                            for(var i=0;i<data.wikis.length;i++) {
-                                $("#wiki_list").append("<p>"+"<a href=\"/?yada_wiki="+data.wikis[i].post_name+"\">"+data.wikis[i].post_title+"</a>"+"</p>");
-                                $("#wiki_list").append("<p>"+data.wikis[i].post_content.substring(0, 30)+"..."+"</p>");
-                                $("#wiki_list").append("<hr>");
-                            }
-                        }else{
-                            var html ='<div class="alert alert-info">'+
-                                      '<a href="#" class="close" data-dismiss="alert">&times;</a>'+
-                                      '<strong>Oops,还没有收藏!</strong>去wiki页面逛逛吧。'+
-                                      '</div>';
-                            $("#wiki_list").css('margin-top',"0px");
-                            $("#wiki_list").html(html);
-                        }
-                    },
-                    error: function() {
-                        alert("wiki获取失败!");
-                    }
-                });
-            }
         </script>
     </div>
 </div>

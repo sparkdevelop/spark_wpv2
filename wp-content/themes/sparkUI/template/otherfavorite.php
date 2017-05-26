@@ -20,20 +20,6 @@ else{
     $current_page = $page_num;?>
 <?php } ?>
 
-<style type="text/css">
-    #close-icon{
-        position: absolute;
-        display: block;
-        top: 6px;
-        right: 20px;
-        color: lightgrey;
-    }
-    #close-icon:hover{
-        color: #fe642d;
-        cursor: pointer;
-    }
-</style>
-
 <script type="text/javascript">
     //鼠标划过事件
     $(".thumbnail").mouseover(function () {
@@ -42,14 +28,9 @@ else{
         $(this).getElementById("close-icon").css("display", "block");
     });
     $(".thumbnail").mouseleave(function () {
-        //$(this).removeClass("border");
         //隐藏删除叉
         $(this).find("#close-icon").css("display", "none");
-
     });
-    function delete_confirm() {
-
-    }
 </script>
 
 <ul id="leftTab" class="nav nav-pills" style="height: 42px">
@@ -120,11 +101,8 @@ else{
 
         if($current_page==$total_page && $pro_length%3!=0){?>
             <script>
-                $("#page_favorite").css({"position":"absolute","bottom":"-15%","left":"40%"});
-            </script>
-        <?php } else{?>
-            <script>
-                $("#page_favorite").css({"text-align":"center","margin-bottom":"20px"});
+                var flag=true;
+                pageFavorite(flag);
             </script>
         <?php } ?>
     </div>

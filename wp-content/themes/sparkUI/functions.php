@@ -11,9 +11,11 @@ function sparkspace_scripts_with_jquery()
     // Register the script like this for a theme:
     wp_register_script( 'custom-script', get_template_directory_uri() . '/bootstrap/js/bootstrap.js', array( 'jquery' ) );
     wp_register_script( 'custom-script_2', get_template_directory_uri() . '/layer/layer.js', array( 'jquery' ) );
+    wp_register_script( 'custom-script_3', get_template_directory_uri() . '/javascripts/function.js', array( 'jquery' ) );
     // For either a plugin or a theme, you can then enqueue the script:
     wp_enqueue_script( 'custom-script');
     wp_enqueue_script( 'custom-script_2');
+    wp_enqueue_script( 'custom-script_3');
 }
 add_action( 'wp_enqueue_scripts', 'sparkspace_scripts_with_jquery' );
 
