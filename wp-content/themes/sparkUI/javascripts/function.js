@@ -64,17 +64,3 @@ function setCSS(flag) {
         cancelFavorite();
     }
 }
-
-//项目页显示更多相关wiki
-function show_more_wiki(flag) {
-    var related_wiki=document.getElementById('related_wiki');
-    var more_related_wiki = document.getElementById('more_related_wiki');
-    if(flag){
-        related_wiki.style.display ="block";
-        more_related_wiki.style.display="none";
-    }else{
-        related_wiki.style.display="none";
-        more_related_wiki.style.display="block";
-    }
-    flag=!flag;
-}

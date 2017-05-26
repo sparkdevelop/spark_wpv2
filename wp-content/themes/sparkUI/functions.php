@@ -1466,6 +1466,65 @@ function hasScore($user_id,$post_id){
     }
 }
 
+//收藏项目展示页 评论部分
+function Spark_comments_popup_link($zero = false, $one = false, $more = false, $css_class = '', $none = false,$post_id){
+        $id = $post_id;
+        $title = get_the_title($post_id);
+        $number = get_comments_number( $id );
+
+        if ( false === $zero ) {
+            /* translators: %s: post title */
+            $zero = sprintf( __( 'No Comments<span class="screen-reader-text"> on %s</span>' ), $title );
+        }
+
+        if ( false === $one ) {
+            /* translators: %s: post title */
+            $one = sprintf( __( '1 Comment<span class="screen-reader-text"> on %s</span>' ), $title );
+        }
+
+        if ( false === $more ) {
+            /* translators: 1: Number of comments 2: post title */
+            $more = _n( '%1$s Comment<span class="screen-reader-text"> on %2$s</span>', '%1$s Comments<span class="screen-reader-text"> on %2$s</span>', $number );
+            $more = sprintf( $more, number_format_i18n( $number ), $title );
+        }
+
+        if ( false === $none ) {
+            /* translators: %s: post title */
+            $none = sprintf( __( 'Comments Off<span class="screen-reader-text"> on %s</span>' ), $title );
+        }
+
+        if ( 0 == $number && !comments_open($post_id) && !pings_open($post_id) ) {
+            echo '<span' . ((!empty($css_class)) ? ' class="' . esc_attr( $css_class ) . '"' : '') . '>' . $none . '</span>';
+            return;
+        }
+
+        if ( post_password_required() ) {
+            _e( 'Enter your password to view comments.' );
+            return;
+        }
+
+        echo '<a href="';   //链接
+            $respond_link = the_permalink($post_id) . '#comments';
+            echo apply_filters( 'respond_link', $respond_link, $id );
+        echo '"';
+
+        if ( !empty( $css_class ) ) {   //分类
+            echo ' class="'.$css_class.'" ';
+        }
+
+        $attributes = '';
+        /**
+         * Filters the comments link attributes for display.
+         *
+         * @since 2.5.0
+         *
+         * @param string $attributes The comments link attributes. Default empty.
+         */
+        echo apply_filters( 'comments_popup_link_attributes', $attributes );
+        echo '>';
+        echo "&nbsp".$number;  //显示数字
+        echo '</a>';
+}
 
 ////判断用户是否有收藏
 //function hasFavorite($user_id){

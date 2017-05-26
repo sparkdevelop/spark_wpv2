@@ -43,9 +43,6 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 var html = "<a onclick=\"setCSS(0)\" class=\"btn btn-default\" id=\"btn-add-favorite\">"+
                     "<span class=\"glyphicon glyphicon-star\"></span>已收藏"+"</a>";
                 $("#addFavorite").html(html);
-//                $("#btn-add-favorite").css({"color":"white",
-//                    "background-color": "#fe642d",
-//                    "border-color": "transparent"});
             },
             error:function () {
                 alert("收藏失败");
@@ -67,10 +64,6 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 var html = "<a onclick=\"setCSS(1)\" class=\"btn btn-default\" id=\"btn-add-favorite\">"+
                     "<span class=\"glyphicon glyphicon-star-empty\"></span>收藏"+"</a>";
                 $("#addFavorite").html(html);
-                //更改样式
-//                $("#btn-add-favorite").css({ "color":"#fe642d",
-//                    "background-color": "transparent",
-//                    "border-color": "#fe642d"});
             },
             error:function () {
                 alert("error");

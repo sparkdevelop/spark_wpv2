@@ -49,16 +49,6 @@ else{
                     <li style="list-style-type: none;">
                         <div class="col-md-4 col-sm-4 col-xs-6" id="project-fluid">
                             <div class="thumbnail" id="project-div-fluid">
-                        <span >
-                             <?php
-                             $url = get_bloginfo('url');
-                             if (current_user_can('edit_post', $faverite_pro[$i])){
-                                 echo '<a class="fa fa-trash-o fa-lg" id="close-icon" class="post-delete" style="font-size:15px" onclick="return confirm(\'确认删除吗？\')" href="';
-                                 echo wp_nonce_url("$url/wp-admin/post.php?action=delete&post=$id", 'delete-post_' . $faverite_pro[$i]);
-                                 echo '"></a>';
-                             }
-                             ?>
-                        </span> <!--删除文章-->
                                 <?php
                                 if ( has_post_thumbnail() ) { ?>
                                     <a href="<?php the_permalink($faverite_pro[$i]); ?>" target="_blank"><img src="<?php the_post_thumbnail_url('full')?>" class="cover" /></a>
@@ -69,8 +59,13 @@ else{
                                 <div class="caption">
                                     <div class="project-title"><a href="<?php the_permalink($faverite_pro[$i]); ?>" target="_blank"><?php echo get_the_title($faverite_pro[$i]); ?></a></div>
                                     <div>
-                                        <span class="fa fa-user-o pull-left">&nbsp;<?php the_author($faverite_pro[$i]); ?></span><span class="fa fa-bookmark-o pull-right" id="project-category-info" > <?php the_category(', ') ?></span><span class="fa fa-eye pull-right" id="m-project-views" > <?php echo getProjectViews(get_the_ID()); ?></span><br>
-                                        <span class="fa fa-clock-o pull-left"> <?php echo date('n月j日 G:i',get_the_time('U',$faverite_pro[$i]));?> </span><span class="fa fa-comments-o pull-right" > <?php comments_popup_link('0 ', '1 ', '% ', '', '评论已关闭'); ?></span><span class="fa fa-eye pull-right" id="web-project-views" > <?php echo getProjectViews($faverite_pro[$i]); ?></span><br>
+                                        <span class="fa fa-user-o pull-left">&nbsp;<?php the_author($faverite_pro[$i]); ?></span>
+                                        <span class="fa fa-bookmark-o pull-right" id="project-category-info" ><?php the_category(', ','',$faverite_pro[$i]) ?></span>
+                                        <span class="fa fa-eye pull-right" id="m-project-views" > <?php echo getProjectViews(get_the_ID()); ?></span>
+                                        <br>
+                                        <span class="fa fa-clock-o pull-left"> <?php echo date('n月j日 G:i',get_the_time('U',$faverite_pro[$i]));?> </span>
+                                        <span class="fa fa-comments-o pull-right" ><?php Spark_comments_popup_link('0 ', '1 ', '% ', '', '评论已关闭',$faverite_pro[$i]); ?></span>
+                                        <span class="fa fa-eye pull-right" id="web-project-views" ><?php echo getProjectViews($faverite_pro[$i]); ?></span><br>
                                     </div>
                                 </div>
                             </div>
