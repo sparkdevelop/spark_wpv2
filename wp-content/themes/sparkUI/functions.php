@@ -1378,7 +1378,7 @@ function get_user_favorite_wiki(){
         $sql = "SELECT favorite_post_id FROM wp_favorite WHERE user_id=$user_id AND favorite_post_type='yada_wiki'";
         $results = $wpdb->get_results($sql,'ARRAY_A');
         foreach ($results as $result) {
-            $sql_1="select * from $wpdb->posts where ID=$result->favorite_post_id";
+            $sql_1="select * from $wpdb->posts where ID=".$result['favorite_post_id'];
             $favorite_wikis_result = $wpdb->get_results($sql_1);
             foreach ($favorite_wikis_result as $item) {
                 $wikis[] = $item;

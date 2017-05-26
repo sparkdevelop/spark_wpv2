@@ -8,9 +8,9 @@ $user_id =isset($_GET["id"]) ? $_GET["id"] : get_current_user_id();
 $faverite_pro = showFavorite($user_id);
 
 $origin_url = get_permalink(); //当前url
-$length = sizeof($faverite_pro); //收藏项目总数
+$pro_length = sizeof($faverite_pro); //收藏项目总数
 $perpage = 12;       //12
-$total_page = ceil($length/$perpage); //计算总页数
+$total_page = ceil($pro_length/$perpage); //计算总页数
 if(!$_GET['paged']){
     $current_page = 1;
 }
@@ -46,14 +46,10 @@ else{
         $(this).find("#close-icon").css("display", "none");
 
     });
-    function delete_confirm() {
-
-    }
 </script>
-
 <ul id="leftTab" class="nav nav-pills" style="height: 42px">
-    <li class="active"><a href="#my-favorite-project" data-toggle="tab">项目收藏(<?=$length?>)</a></li>
-    <li><a href="#my-favorite-wiki" data-toggle="tab">wiki收藏(0)</a></li>
+    <li class="active"><a href="#my-favorite-project" data-toggle="tab">项目收藏(<?=$pro_length?>)</a></li>
+    <li><a href="#my-favorite-wiki" data-toggle="tab">wiki收藏(<span id="wiki_favorite"></span>)</a></li>
 </ul>
 
 <div id="rightTabContent" class="tab-content" >
@@ -61,8 +57,8 @@ else{
         <div style="height: 1px;background-color: lightgray;"></div><br>
         <ul class="list-group">
             <?php
-            if($length!=0){
-                $temp = $length < $perpage*$current_page ? $length : $perpage*$current_page;
+            if($pro_length!=0){
+                $temp = $pro_length < $perpage*$current_page ? $pro_length : $perpage*$current_page;
                 for($i=$perpage*($current_page-1);$i<$temp;$i++){?>
                     <li style="list-style-type: none;">
                         <div class="col-md-4 col-sm-4 col-xs-6" id="project-fluid">
@@ -115,6 +111,16 @@ else{
                     <a href="<?php echo add_query_arg(array('paged'=>$current_page+1))?>">&nbsp;下一页&nbsp;&raquo;</a>
                 <?php }?>
             </div>
+        <?php }
+
+        if($current_page==$total_page && $pro_length%3!=0){?>
+            <script>
+                $("#page_favorite").css({"position":"absolute","bottom":"-15%","left":"40%"});
+            </script>
+        <?php } else{?>
+            <script>
+                $("#page_favorite").css({"text-align":"center","margin-bottom":"20px"});
+            </script>
         <?php } ?>
     </div>
     <div class="tab-pane fade" id="my-favorite-wiki" style="padding-top: 40px;">
@@ -135,16 +141,22 @@ else{
                     url: "<?php echo $admin_url;?>",
                     data: data,
                     dataType: "json",
-//                    beforeSend: function () {
-//                        $("#wiki_list").html("");
-//                        $("#wiki_list").append("<p>"+"获取信息中..."+"</p>");
-//                    },
                     success: function(data){
-                        $("#wiki_list").html("");
-                        for(var i=0;i<data.wikis.length;i++) {
-                            $("#wiki_list").append("<p>"+"<a href=\"/?yada_wiki="+data.wikis[i].post_name+"\">"+data.wikis[i].post_title+"</a>"+"</p>");
-                            $("#wiki_list").append("<p>"+data.wikis[i].post_content.substring(0, 30)+"..."+"</p>");
-                            $("#wiki_list").append("<hr>");
+                        $("#wiki_favorite").text(data.wikis.length);
+                        if(data.wikis.length!=0){
+                            $("#wiki_list").html("");
+                            for(var i=0;i<data.wikis.length;i++) {
+                                $("#wiki_list").append("<p>"+"<a href=\"/?yada_wiki="+data.wikis[i].post_name+"\">"+data.wikis[i].post_title+"</a>"+"</p>");
+                                $("#wiki_list").append("<p>"+data.wikis[i].post_content.substring(0, 30)+"..."+"</p>");
+                                $("#wiki_list").append("<hr>");
+                            }
+                        }else{
+                            var html ='<div class="alert alert-info">'+
+                                      '<a href="#" class="close" data-dismiss="alert">&times;</a>'+
+                                      '<strong>Oops,还没有收藏!</strong>去wiki页面逛逛吧。'+
+                                      '</div>';
+                            $("#wiki_list").css('margin-top',"0px");
+                            $("#wiki_list").html(html);
                         }
                     },
                     error: function() {

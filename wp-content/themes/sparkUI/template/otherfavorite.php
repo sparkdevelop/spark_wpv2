@@ -116,6 +116,16 @@ else{
                     <a href="<?php echo add_query_arg(array('paged'=>$current_page+1))?>">&nbsp;下一页&nbsp;&raquo;</a>
                 <?php }?>
             </div>
+        <?php }
+
+        if($current_page==$total_page && $pro_length%3!=0){?>
+            <script>
+                $("#page_favorite").css({"position":"absolute","bottom":"-15%","left":"40%"});
+            </script>
+        <?php } else{?>
+            <script>
+                $("#page_favorite").css({"text-align":"center","margin-bottom":"20px"});
+            </script>
         <?php } ?>
     </div>
     <div class="tab-pane fade" id="my-favorite-wiki" style="display: none;padding-top: 40px;">
@@ -123,31 +133,26 @@ else{
         <div id="wiki_list"></div>
         <script>
             $(function () {
-                get_publish_wiki(<?=$current_user->ID?>);
+                get_favorite_wiki(<?=$user_id?>);
             });
-            function get_publish_wiki($user_id) {
-                var get_contents = {
-                    action: "get_user_related_wiki",
-                    get_wiki_type: "publish",
-                    userID: $user_id
+            function get_favorite_wiki($user_id) {
+                var data = {
+                    action: "get_user_favorite_wiki",
+                    user_ID: $user_id,
+                    get_wiki_type: "publish"
                 };
                 $.ajax({
                     type: "POST",
                     url: "<?php echo $admin_url;?>",
-                    data: get_contents,
+                    data: data,
                     dataType: "json",
-                    beforeSend: function () {
-                        $("#wiki_list").html("");
-                        $("#wiki_list").append("<p>"+"获取信息中..."+"</p>");
-                    },
                     success: function(data){
-                        //alert(data.wikis.length);
+                        $("#wiki_favorite").text(data.wikis.length);
                         $("#wiki_list").html("");
                         for(var i=0;i<data.wikis.length;i++) {
                             $("#wiki_list").append("<p>"+"<a href=\"/?yada_wiki="+data.wikis[i].post_name+"\">"+data.wikis[i].post_title+"</a>"+"</p>");
                             $("#wiki_list").append("<p>"+data.wikis[i].post_content.substring(0, 30)+"..."+"</p>");
                             $("#wiki_list").append("<hr>");
-                            //alert(data.wikis[i].post_title);
                         }
                     },
                     error: function() {
