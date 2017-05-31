@@ -11,9 +11,11 @@ function sparkspace_scripts_with_jquery()
     // Register the script like this for a theme:
     wp_register_script( 'custom-script', get_template_directory_uri() . '/bootstrap/js/bootstrap.js', array( 'jquery' ) );
     wp_register_script( 'custom-script_2', get_template_directory_uri() . '/layer/layer.js', array( 'jquery' ) );
+    wp_register_script( 'custom-script_3', get_template_directory_uri() . '/javascripts/function.js', array( 'jquery' ) );
     // For either a plugin or a theme, you can then enqueue the script:
     wp_enqueue_script( 'custom-script');
     wp_enqueue_script( 'custom-script_2');
+    wp_enqueue_script( 'custom-script_3');
 }
 add_action( 'wp_enqueue_scripts', 'sparkspace_scripts_with_jquery' );
 
@@ -1356,6 +1358,7 @@ function ifFavorite($user_id,$post_id){
     }
 }
 
+//个人页面展示favorite
 function showFavorite($user_id){
     global $wpdb;
     $ret = array();
@@ -1366,6 +1369,36 @@ function showFavorite($user_id){
     }
     return $ret;
 }
+
+//
+function get_user_favorite_wiki(){
+    global $wpdb;
+    $wikis = array();
+    $post_status = $_POST['get_wiki_type'];
+    $user_id = $_POST['user_ID'];
+    if($post_status == "publish") {
+        $sql = "SELECT favorite_post_id FROM wp_favorite WHERE user_id=$user_id AND favorite_post_type='yada_wiki'";
+        $results = $wpdb->get_results($sql,'ARRAY_A');
+        foreach ($results as $result) {
+            $sql_1="select * from $wpdb->posts where ID=".$result['favorite_post_id'];
+            $favorite_wikis_result = $wpdb->get_results($sql_1);
+            foreach ($favorite_wikis_result as $item) {
+                $wikis[] = $item;
+            }
+        }
+    }
+    else{
+        echo "other";
+    }
+    $data = array(
+        "wikis" => $wikis
+    );
+    echo json_encode($data);
+    die();
+}
+add_action('wp_ajax_get_user_favorite_wiki', 'get_user_favorite_wiki');
+add_action('wp_ajax_nopriv_get_user_favorite_wiki', 'get_user_favorite_wiki');
+
 
 //建立用户打分表
 function score_table_install () {
@@ -1433,6 +1466,65 @@ function hasScore($user_id,$post_id){
     }
 }
 
+//收藏项目展示页 评论部分
+function Spark_comments_popup_link($zero = false, $one = false, $more = false, $css_class = '', $none = false,$post_id){
+        $id = $post_id;
+        $title = get_the_title($post_id);
+        $number = get_comments_number( $id );
+
+        if ( false === $zero ) {
+            /* translators: %s: post title */
+            $zero = sprintf( __( 'No Comments<span class="screen-reader-text"> on %s</span>' ), $title );
+        }
+
+        if ( false === $one ) {
+            /* translators: %s: post title */
+            $one = sprintf( __( '1 Comment<span class="screen-reader-text"> on %s</span>' ), $title );
+        }
+
+        if ( false === $more ) {
+            /* translators: 1: Number of comments 2: post title */
+            $more = _n( '%1$s Comment<span class="screen-reader-text"> on %2$s</span>', '%1$s Comments<span class="screen-reader-text"> on %2$s</span>', $number );
+            $more = sprintf( $more, number_format_i18n( $number ), $title );
+        }
+
+        if ( false === $none ) {
+            /* translators: %s: post title */
+            $none = sprintf( __( 'Comments Off<span class="screen-reader-text"> on %s</span>' ), $title );
+        }
+
+        if ( 0 == $number && !comments_open($post_id) && !pings_open($post_id) ) {
+            echo '<span' . ((!empty($css_class)) ? ' class="' . esc_attr( $css_class ) . '"' : '') . '>' . $none . '</span>';
+            return;
+        }
+
+        if ( post_password_required() ) {
+            _e( 'Enter your password to view comments.' );
+            return;
+        }
+
+        echo '<a href="';   //链接
+            $respond_link = the_permalink($post_id) . '#comments';
+            echo apply_filters( 'respond_link', $respond_link, $id );
+        echo '"';
+
+        if ( !empty( $css_class ) ) {   //分类
+            echo ' class="'.$css_class.'" ';
+        }
+
+        $attributes = '';
+        /**
+         * Filters the comments link attributes for display.
+         *
+         * @since 2.5.0
+         *
+         * @param string $attributes The comments link attributes. Default empty.
+         */
+        echo apply_filters( 'comments_popup_link_attributes', $attributes );
+        echo '>';
+        echo "&nbsp".$number;  //显示数字
+        echo '</a>';
+}
 
 ////判断用户是否有收藏
 //function hasFavorite($user_id){

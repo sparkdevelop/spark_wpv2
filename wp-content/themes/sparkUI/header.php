@@ -100,18 +100,6 @@
                                 </button>
                             </div>
                         </form>
-                        <script>
-                            function selectSearchCat(value) {
-                                var post_type= document.getElementById("selectPostType");
-                                if(value=="wiki"){
-                                    post_type.value = "yada_wiki";
-                                } else if(value=="project"){
-                                    post_type.value = "post";
-                                } else{
-                                    post_type.value = "";
-                                }
-                            }
-                        </script>
                     </div>
                     <div class="clearfix visible-xs"></div>
             </nav>
@@ -148,18 +136,6 @@
                         </button>
                     </div>
                 </form>
-                <script>
-                    function selectSearchCat(value) {
-                        var post_type= document.getElementById("selectPostType");
-                        if(value=="wiki"){
-                            post_type.value = "yada_wiki";
-                        } else if(value=="project"){
-                            post_type.value = "post";
-                        } else{
-                            post_type.value = "";
-                        }
-                    }
-                </script>
             </div>
             <div class="clearfix visible-xs"></div>
         </div>

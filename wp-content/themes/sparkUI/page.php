@@ -22,9 +22,12 @@
                 ?>
                 <?php
                 if(is_home() || is_front_page()) { //首页显示“首页内容”
-                    echo "首页内容";
+                    the_content();
                 }
                 elseif (is_page("wiki")) {
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
                     require "template/wiki/wiki_index.php";
                 }
                 elseif (is_page("编辑wiki")) {
@@ -39,12 +42,18 @@
                     }
                     require "template/wiki/wiki_create.php";
                 }
-                elseif (is_page("qa") ) {//显示问答内容 参数为pageID 如何自动获取???>
+                elseif (is_page("qa") ) {//显示问答内容 参数为pageID 如何自动获取??
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }?>
                     <script>
                         location.replace("<?= site_url();?>/?post_type=dwqa-question");
                     </script>
                 <?php }
                 elseif (is_page('项目')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
                     require "template/project/project_content.php";
                 }
                 elseif (is_page("ask")) {
@@ -55,18 +64,30 @@
                 <?php   }
                 }
                 elseif (is_page('发布项目')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
                     the_content();
                 }
                 elseif (is_page('My Posts')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
                     the_content();
                 }
                 elseif (is_page('ask_tiny')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
                     require "template/qa/QA_ask_tiny.php";
                 }
                 elseif (is_page('timer')){
                     require "algorithm/timer.php";
                 }
                 elseif (is_page('otherpersonal')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
                     require "template/otherpersonal.php";
                 }
                 elseif (is_page('personal')){
@@ -77,6 +98,9 @@
                 <?php  }
                 }
                 else{
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
                     the_content();
                 }
                 endwhile;

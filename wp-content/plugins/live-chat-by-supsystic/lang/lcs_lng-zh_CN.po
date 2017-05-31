@@ -1,0 +1,4097 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: lcs_lng\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-15 10:19+0800\n"
+"PO-Revision-Date: 2016-07-31 10:36+0800\n"
+"Last-Translator: 倡萌@WordPress大学 <admin@cmhello.com>\n"
+"Language-Team: 倡萌@WordPress大学 <admin@cmhello.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__;_n:1,2;_x:1,2c;_ex:1,2c\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.6.5\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../classes/controller.php:209 ../classes/controller.php:218
+#: ../modules/chat/controller.php:77 ../modules/chat/controller.php:92
+#: ../modules/chat/controller.php:104 ../modules/chat/controller.php:116
+#: ../modules/chat/controller.php:137 ../modules/chat/controller.php:152
+#: ../modules/chat/controller.php:160 ../modules/chat/controller.php:169
+#: ../modules/chat/controller.php:177 ../modules/chat/controller.php:185
+#: ../modules/chat/controller.php:193 ../modules/chat/controller.php:202
+#: ../modules/chat/controller.php:210 ../modules/mail/controller.php:23
+#: ../modules/options/controller.php:6
+#: ../modules/pages/views/tpl/deactivatePage.php:37
+#: ../modules/statistics/controller.php:20
+#: ../modules/statistics/controller.php:29
+msgid "Done"
+msgstr "完成"
+
+#: ../classes/field.php:131
+#: ../modules/chat/views/tpl/chatSettingsDesign.php:54
+msgid "Select"
+msgstr "选择"
+
+#: ../classes/field.php:170 ../classes/field.php:179 ../classes/field.php:184
+msgid "N/A"
+msgstr "N/A"
+
+#: ../classes/field.php:277
+msgid "Add Checkbox"
+msgstr "添加复选框"
+
+#: ../classes/field.php:282 ../classes/field.php:287
+msgid "Add Item"
+msgstr "添加项目"
+
+#: ../classes/field.php:293
+msgid "Add Radio Button"
+msgstr "添加单选按钮"
+
+#: ../classes/field.php:311
+msgid "Dimensions"
+msgstr "外形尺寸"
+
+#: ../classes/field.php:314
+msgid "width"
+msgstr "宽度"
+
+#: ../classes/field.php:316
+msgid "height"
+msgstr "高度"
+
+#: ../classes/field.php:323
+msgid "Click to set field \"id\" and \"class\""
+msgstr "点击设置字段\"id\" 和 \"class\""
+
+#: ../classes/field.php:324
+msgid "Attributes"
+msgstr "属性"
+
+#: ../classes/field.php:402
+msgid "There are no configuration options for this module"
+msgstr "没有这个模块的设置选项"
+
+#: ../classes/fieldAdapter.php:93
+msgid "Apply To"
+msgstr "应用"
+
+#: ../classes/fieldAdapter.php:95
+msgid "Address"
+msgstr "地址"
+
+#: ../classes/fieldAdapter.php:96
+msgid "Destination"
+msgstr "目的地"
+
+#: ../classes/fieldAdapter.php:97
+msgid "Country"
+msgstr "国家"
+
+#: ../classes/fieldAdapter.php:100
+msgid "Categories"
+msgstr "分类"
+
+#: ../classes/fieldAdapter.php:101
+msgid "You have no categories"
+msgstr "你还没有添加分类"
+
+#: ../classes/fieldAdapter.php:102
+msgid "Brands"
+msgstr "品牌"
+
+#: ../classes/fieldAdapter.php:103
+msgid "You have no brands"
+msgstr "你还没有添加品牌"
+
+#: ../classes/fieldAdapter.php:105
+msgid "Tax Rate"
+msgstr "税率"
+
+#: ../classes/fieldAdapter.php:106
+msgid "Absolute"
+msgstr "绝对"
+
+#: ../classes/fieldAdapter.php:134
+msgid "Not selected"
+msgstr "没选择"
+
+#: ../classes/fieldAdapter.php:184
+msgid "class"
+msgstr "class"
+
+#: ../classes/fieldAdapter.php:186 ../classes/tables/usage_stat.php:7
+msgid "id"
+msgstr "id"
+
+#: ../classes/frame.php:136
+msgid "You have no permissions to view this page"
+msgstr "你没有权限查看这个页面"
+
+#: ../classes/html.php:240
+msgid "Upload"
+msgstr "上传"
+
+#: ../classes/html.php:608
+msgid "Default"
+msgstr "默认"
+
+#: ../classes/html.php:660
+msgid "ON"
+msgstr "开启"
+
+#: ../classes/html.php:661
+msgid "OFF"
+msgstr "关闭"
+
+#: ../classes/html.php:685
+#, php-format
+msgid "Select %s"
+msgstr "选择 %s"
+
+#: ../classes/installer.php:567
+msgid "Consultant"
+msgstr "顾问"
+
+#: ../classes/modInstaller.php:34
+#, php-format
+msgid "Move files for %s failed"
+msgstr "移动文件给 %s 失败了"
+
+#: ../classes/modInstaller.php:37
+#, php-format
+msgid "%s is not plugin module"
+msgstr "%s 不是一个插件模块"
+
+#: ../classes/modInstaller.php:76
+msgid "Cannot create module directory. Try to set permission to "
+msgstr "无法创建模块目录。尝试设置权限给"
+
+#: ../classes/modInstaller.php:103
+msgid "No modules were found in XML file"
+msgstr "在 XML 文件中没有找到模块"
+
+#: ../classes/modInstaller.php:107
+msgid "Invalid XML file"
+msgstr "无效的 XML 文件"
+
+#: ../classes/modInstaller.php:109
+msgid "No XML file were found"
+msgstr "没有找到 XML 文件"
+
+#: ../classes/modInstaller.php:131
+#, php-format
+msgid "Install %s failed"
+msgstr "安装 %s 失败"
+
+#: ../classes/modInstaller.php:137
+msgid "Error Activate module"
+msgstr "激活模块错误"
+
+#: ../classes/modInstaller.php:167
+msgid "Error Deactivation module"
+msgstr "禁用模块错误"
+
+#: ../classes/modInstaller.php:188
+msgid "Error Activating module"
+msgstr "激活的模块错误"
+
+#: ../classes/model.php:180 ../classes/model.php:192
+#: ../modules/chat/models/chat_templates.php:117
+#: ../modules/chat/models/chat_templates.php:129
+msgid "Database error detected"
+msgstr "检测到数据库错误"
+
+#: ../classes/model.php:182 ../modules/chat/models/chat_templates.php:119
+#: ../modules/chat/models/chat_templates.php:271
+#: ../modules/statistics/models/statistics.php:118
+#: ../modules/statistics/models/statistics.php:149
+msgid "Invalid ID"
+msgstr "无效的ID"
+
+#: ../classes/model.php:222
+msgid "Empty or invalid ID"
+msgstr "空或无效的ID"
+
+#: ../classes/table.php:277
+msgid "Nothing to update"
+msgstr "无需更新"
+
+#: ../classes/table.php:293
+msgid "Database error. Please contact your developer."
+msgstr "数据库错误，请联系你的开发者。"
+
+#: ../classes/tables/modules.php:7 ../classes/tables/modules_type.php:8
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:111
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:162
+msgid "Label"
+msgstr "标签"
+
+#: ../classes/tables/modules.php:8
+msgid "Type"
+msgstr "类型"
+
+#: ../classes/tables/modules.php:9
+msgid "Active"
+msgstr "活动"
+
+#: ../classes/tables/modules.php:10
+msgid "Params"
+msgstr "参数"
+
+#: ../classes/tables/modules.php:13
+msgid "Code"
+msgstr "代码"
+
+#: ../classes/tables/modules.php:14
+msgid "External plugin directory"
+msgstr "外部插件目录"
+
+#: ../classes/tables/modules_type.php:7
+msgid "ID"
+msgstr "ID"
+
+#: ../classes/tables/usage_stat.php:8
+msgid "code"
+msgstr "代码"
+
+#: ../classes/tables/usage_stat.php:9
+msgid "visits"
+msgstr "visits"
+
+#: ../classes/tables/usage_stat.php:10
+msgid "spent_time"
+msgstr "spent_time"
+
+#: ../classes/tables/usage_stat.php:11
+msgid "modify_timestamp"
+msgstr "modify_timestamp"
+
+#: ../classes/validator.php:30
+#, php-format
+msgid "Invalid length for %s, max length is %s"
+msgstr "无效的 %s 长度，最大长度为  %s"
+
+#: ../classes/validator.php:43
+#, php-format
+msgid "Invalid numeric value for %s"
+msgstr "无效的数值给 %s"
+
+#: ../classes/validator.php:71
+#: ../modules/registration/models/registration.php:53
+#: ../modules/supsystic_promo/controller.php:39
+#, php-format
+msgid "Please enter %s"
+msgstr "请输入 %s"
+
+#: ../classes/validator.php:78
+#: ../modules/registration/models/registration.php:52
+#: ../modules/supsystic_promo/controller.php:39
+#, php-format
+msgid "Please select %s"
+msgstr "请选择 %s"
+
+#: ../classes/validator.php:85 ../classes/validator.php:101
+#, php-format
+msgid "Invalid %s"
+msgstr "无效的 %s"
+
+#: ../classes/validator.php:88
+#, php-format
+msgid "%s is already registered"
+msgstr "%s 已注册"
+
+#: ../modules/adminmenu/mod.php:15
+#, php-format
+msgid ""
+"Cool WordPress plugins from supsystic.com developers. I tried %s - and this "
+"was what I need! #supsystic.com"
+msgstr ""
+"来自 supsystic.com 开发的非常棒的 WordPress 插件，我测试过 %s - 这就是我所需"
+"要的！#supsystic.com"
+
+#: ../modules/adminmenu/mod.php:16 ../modules/chat/mod.php:34
+msgid "Settings"
+msgstr "设置"
+
+#: ../modules/adminmenu/mod.php:17
+msgid "More plugins for your WordPress site here!"
+msgstr "更多 WordPress 插件请看这里！"
+
+#: ../modules/adminmenu/mod.php:18 ../modules/adminmenu/mod.php:19
+#: ../modules/adminmenu/mod.php:20
+msgid "Spread the word!"
+msgstr "分享这句话！"
+
+#: ../modules/chat/controller.php:12
+msgid "Not Assigned"
+msgstr "未分配"
+
+#: ../modules/chat/controller.php:13
+msgid "Start conversation"
+msgstr "开始聊天"
+
+#: ../modules/chat/controller.php:23
+#: ../modules/chat/models/chat_triggers.php:36
+#: ../modules/supsystic_promo/views/supsystic_promo.php:48
+#: ../modules/supsystic_promo/views/supsystic_promo.php:49
+#: ../modules/supsystic_promo/views/supsystic_promo.php:54
+#: ../modules/supsystic_promo/views/supsystic_promo.php:56
+#: ../modules/supsystic_promo/views/supsystic_promo.php:57
+msgid "Yes"
+msgstr "是"
+
+#: ../modules/chat/controller.php:23
+#: ../modules/chat/models/chat_triggers.php:37
+#: ../modules/supsystic_promo/views/supsystic_promo.php:48
+#: ../modules/supsystic_promo/views/supsystic_promo.php:49
+#: ../modules/supsystic_promo/views/supsystic_promo.php:54
+#: ../modules/supsystic_promo/views/supsystic_promo.php:56
+#: ../modules/supsystic_promo/views/supsystic_promo.php:57
+msgid "No"
+msgstr "否"
+
+#: ../modules/chat/controller.php:218
+msgid "Updating chat settings page..."
+msgstr "更新聊天设置页面……"
+
+#: ../modules/chat/mod.php:443 ../modules/chat/mod.php:444
+msgid "Live Chat Dashboard"
+msgstr "聊天仪表盘"
+
+#: ../modules/chat/models/chat.php:60
+#, php-format
+msgid "Chat from %s"
+msgstr "聊天来自 %s"
+
+#: ../modules/chat/models/chat.php:69
+msgid "Empty content"
+msgstr "空内容"
+
+#: ../modules/chat/models/chat.php:71
+msgid "Empty email"
+msgstr "空邮箱"
+
+#: ../modules/chat/models/chat_engines.php:12
+msgid "Default Engine"
+msgstr "默认引擎"
+
+#: ../modules/chat/models/chat_engines.php:42
+#: ../modules/supsystic_promo/controller.php:184
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: ../modules/chat/models/chat_engines.php:43
+#: ../modules/chat/views/tpl/chatAgentPage.php:96
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:101
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:158
+#: ../modules/supsystic_promo/controller.php:185
+#: ../modules/supsystic_promo/mod.php:150
+msgid "Name"
+msgstr "名称"
+
+#: ../modules/chat/models/chat_engines.php:175
+msgid "Hmm, something is missing here?"
+msgstr "嗯，这里缺少了什么东西吗？"
+
+#: ../modules/chat/models/chat_messages.php:87
+#: ../modules/chat/models/chat_messages.php:112
+msgid "Please enter something"
+msgstr "请输入内容"
+
+#: ../modules/chat/models/chat_messages.php:89
+#: ../modules/chat/models/chat_messages.php:114
+#: ../modules/chat/models/chat_sessions.php:222
+#: ../modules/chat/models/chat_users.php:129
+msgid "Something is missing here"
+msgstr "这里缺少了一些东西"
+
+#: ../modules/chat/models/chat_sessions.php:41
+msgid "Pending"
+msgstr "等待中"
+
+#: ../modules/chat/models/chat_sessions.php:42
+msgid "In Progress"
+msgstr "进行中"
+
+#: ../modules/chat/models/chat_sessions.php:43
+msgid "Complete"
+msgstr "完成"
+
+#: ../modules/chat/models/chat_sessions.php:44
+msgid "User Gone"
+msgstr "用户已离开"
+
+#: ../modules/chat/models/chat_sessions.php:45
+msgid "Cancelled"
+msgstr "已取消"
+
+#: ../modules/chat/models/chat_sessions.php:118
+msgid "New chat started notification"
+msgstr "新聊天开始通知"
+
+#: ../modules/chat/models/chat_sessions.php:121
+#, php-format
+msgid "New chat started on %s"
+msgstr "新聊天开始于 %s"
+
+#: ../modules/chat/models/chat_sessions.php:122
+#: ../modules/chat/views/tpl/chatSettingsNotifications.php:63
+msgid ""
+"New chat was started on your site <a href=\"[siteurl]\">[sitename]</a>.<br /"
+"><b>User information:</b><br />[user_data]<br /><b>Session information:</"
+"b><br />[session_data]<br />"
+msgstr ""
+"在你的网站 <a href=\"[siteurl]\">[sitename]</a> 有新的聊天请求。<br /><b>用户"
+"信息：</b><br />[user_data]<br /><b>会话信息：</b><br />[session_data]<br />"
+
+#: ../modules/chat/models/chat_sessions.php:144
+#: ../modules/chat/views/tpl/chatAgentPage.php:123
+#: ../modules/chat/views/tpl/chatDashboard.php:20
+msgid "Status"
+msgstr "状态"
+
+#: ../modules/chat/models/chat_sessions.php:145
+#: ../modules/chat/views/tpl/chatAgentPage.php:119
+msgid "IP"
+msgstr "IP"
+
+#: ../modules/chat/models/chat_sessions.php:146
+#: ../modules/chat/models/chat_triggers.php:20
+msgid "URL"
+msgstr "URL"
+
+#: ../modules/chat/models/chat_sessions.php:147
+msgid "Date"
+msgstr "日期"
+
+#: ../modules/chat/models/chat_sessions.php:158
+msgid "No user data"
+msgstr "无用户数据"
+
+#: ../modules/chat/models/chat_sessions.php:159
+msgid "No session data available"
+msgstr "无可用的会话数据"
+
+#: ../modules/chat/models/chat_templates.php:89
+msgid "img/preview/"
+msgstr "img/preview/"
+
+#: ../modules/chat/models/chat_templates.php:186
+#: ../modules/chat/models/chat_templates.php:302
+msgid "Provided data was corrupted"
+msgstr "提供的数据已损坏"
+
+#: ../modules/chat/models/chat_templates.php:273
+msgid "Please enter Name"
+msgstr "请输入名称。"
+
+#: ../modules/chat/models/chat_templates.php:300
+msgid "Con not find required templates"
+msgstr "无法找到所需的模板"
+
+#: ../modules/chat/models/chat_triggers.php:15
+msgid "Agent Online"
+msgstr "客服在线"
+
+#: ../modules/chat/models/chat_triggers.php:16
+msgid "Pages / Posts"
+msgstr "页面/文章"
+
+#: ../modules/chat/models/chat_triggers.php:17
+msgid "For Countries"
+msgstr "给国家"
+
+#: ../modules/chat/models/chat_triggers.php:18
+msgid "Hour of the Day"
+msgstr "在线时间段"
+
+#: ../modules/chat/models/chat_triggers.php:19
+msgid "Day of the Week"
+msgstr "一周中的哪些天"
+
+#: ../modules/chat/models/chat_triggers.php:21
+msgid "Time spent on Page"
+msgstr "在页面中停留的时间"
+
+#: ../modules/chat/models/chat_triggers.php:22
+msgid "On Exit"
+msgstr "下线"
+
+#: ../modules/chat/models/chat_triggers.php:30
+msgid "More then"
+msgstr "大于"
+
+#: ../modules/chat/models/chat_triggers.php:31
+msgid "Less then"
+msgstr "小于"
+
+#: ../modules/chat/models/chat_triggers.php:32
+msgid "Equal"
+msgstr "等于"
+
+#: ../modules/chat/models/chat_triggers.php:33
+msgid "Not equal"
+msgstr "不等于"
+
+#: ../modules/chat/models/chat_triggers.php:34
+msgid "Like"
+msgstr "喜欢"
+
+#: ../modules/chat/models/chat_triggers.php:35
+msgid "Not like"
+msgstr "不喜欢"
+
+#: ../modules/chat/models/chat_triggers.php:46
+msgid "Show eye catcher"
+msgstr "显示吸引眼球"
+
+#: ../modules/chat/models/chat_triggers.php:47
+msgid "Auto start chat"
+msgstr "自动开始聊天"
+
+#: ../modules/chat/models/chat_triggers.php:48
+msgid "Auto open chat"
+msgstr "自动打开聊天"
+
+#: ../modules/chat/models/chat_triggers.php:105
+msgid "Please select at least one action for trigger"
+msgstr "请选择触发至少一个动作"
+
+#: ../modules/chat/models/chat_triggers.php:107
+msgid "Please enter trigger name"
+msgstr "请输入触发器名称"
+
+#: ../modules/chat/models/chat_users.php:66
+msgid "User"
+msgstr "用户"
+
+#: ../modules/chat/models/chat_users.php:67
+msgid "Admin"
+msgstr "管理员"
+
+#: ../modules/chat/models/chat_users.php:68
+msgid "Agent"
+msgstr "客服"
+
+#: ../modules/chat/models/chat_users.php:69
+msgid "Bot"
+msgstr "机器人"
+
+#: ../modules/chat/models/chat_users.php:127
+msgid "Name can not be empty"
+msgstr "名字不能为空"
+
+#: ../modules/chat/views/chat.php:51 ../modules/chat/views/chat.php:253
+msgid "None"
+msgstr "无"
+
+#: ../modules/chat/views/chat.php:52
+msgid "Image"
+msgstr "图片"
+
+#: ../modules/chat/views/chat.php:53
+msgid "Color"
+msgstr "颜色"
+
+#: ../modules/chat/views/chat.php:57
+msgid "Mobile"
+msgstr "手机"
+
+#: ../modules/chat/views/chat.php:58
+msgid "Tablet"
+msgstr "平板"
+
+#: ../modules/chat/views/chat.php:59
+msgid "Desktop PC"
+msgstr "电脑"
+
+#: ../modules/chat/views/chat.php:78
+msgid "Main Home page"
+msgstr "首页"
+
+#: ../modules/chat/views/chat.php:150
+msgid "Appearance"
+msgstr "外观"
+
+#: ../modules/chat/views/chat.php:155
+msgid "Texts"
+msgstr "文本"
+
+#: ../modules/chat/views/chat.php:163
+msgid "Design"
+msgstr "设计"
+
+#: ../modules/chat/views/chat.php:168
+msgid "When show"
+msgstr "何时显示"
+
+#: ../modules/chat/views/chat.php:173
+msgid "Pre-Chats Triggers"
+msgstr "预设聊天触发器"
+
+#: ../modules/chat/views/chat.php:178
+msgid "User Registration"
+msgstr "用户注册"
+
+#: ../modules/chat/views/chat.php:183
+msgid "Notifications"
+msgstr "通知"
+
+#: ../modules/chat/views/chat.php:188
+msgid "Agents"
+msgstr "客服"
+
+#: ../modules/chat/views/chat.php:193
+msgid "CSS / HTML Code"
+msgstr "CSS / HTML代码"
+
+#: ../modules/chat/views/chat.php:273
+msgid "Text"
+msgstr "文字"
+
+#: ../modules/chat/views/chat.php:274
+msgid "Text area"
+msgstr "多行文本"
+
+#: ../modules/chat/views/chat.php:275
+msgid "Selectbox"
+msgstr "选择框"
+
+#: ../modules/chat/views/chat.php:276
+msgid "Checkbox"
+msgstr "复选"
+
+#: ../modules/chat/views/chat.php:277
+msgid "Hidden Field"
+msgstr "隐藏字段"
+
+#: ../modules/chat/views/chat.php:308
+msgid "Bounce"
+msgstr "弹跳"
+
+#: ../modules/chat/views/chat.php:309
+msgid "Bounce Up"
+msgstr "向上弹跳"
+
+#: ../modules/chat/views/chat.php:310
+msgid "Bounce Down"
+msgstr "向下弹跳"
+
+#: ../modules/chat/views/chat.php:311
+msgid "Bounce Left"
+msgstr "向左弹跳"
+
+#: ../modules/chat/views/chat.php:312
+msgid "Bounce Right"
+msgstr "向右弹跳"
+
+#: ../modules/chat/views/chat.php:314
+msgid "Fade"
+msgstr "渐隐"
+
+#: ../modules/chat/views/chat.php:315
+msgid "Fade Up"
+msgstr "向上渐隐"
+
+#: ../modules/chat/views/chat.php:316
+msgid "Fade Down"
+msgstr "向下渐隐"
+
+#: ../modules/chat/views/chat.php:317
+msgid "Fade Left"
+msgstr "向左渐隐"
+
+#: ../modules/chat/views/chat.php:318
+msgid "Fade Right"
+msgstr "向右渐隐"
+
+#: ../modules/chat/views/chat.php:320
+msgid "Flip X"
+msgstr "翻转 X"
+
+#: ../modules/chat/views/chat.php:321
+msgid "Flip Y"
+msgstr "翻转 Y"
+
+#: ../modules/chat/views/chat.php:323
+msgid "Rotate"
+msgstr "旋转"
+
+#: ../modules/chat/views/chat.php:324
+msgid "Rotate Up Left"
+msgstr "左上旋转"
+
+#: ../modules/chat/views/chat.php:325
+msgid "Rotate Up Right"
+msgstr "右上旋转"
+
+#: ../modules/chat/views/chat.php:326
+msgid "Rotate Down Left"
+msgstr "左下旋转"
+
+#: ../modules/chat/views/chat.php:327
+msgid "Rotate Down Right"
+msgstr "右下旋转"
+
+#: ../modules/chat/views/chat.php:329
+msgid "Slide Up"
+msgstr "向上滑动"
+
+#: ../modules/chat/views/chat.php:330
+msgid "Slide Down"
+msgstr "向下滑动"
+
+#: ../modules/chat/views/chat.php:331
+msgid "Slide Left"
+msgstr "向左滑动"
+
+#: ../modules/chat/views/chat.php:332
+msgid "Slide Right"
+msgstr "向右滑动"
+
+#: ../modules/chat/views/chat.php:334
+msgid "Zoom"
+msgstr "放大"
+
+#: ../modules/chat/views/chat.php:335
+msgid "Zoom Up"
+msgstr "向上放大"
+
+#: ../modules/chat/views/chat.php:336
+msgid "Zoom Down"
+msgstr "向下放大"
+
+#: ../modules/chat/views/chat.php:337
+msgid "Zoom Left"
+msgstr "向左放大"
+
+#: ../modules/chat/views/chat.php:338
+msgid "Zoom Right"
+msgstr "向右放大"
+
+#: ../modules/chat/views/chat.php:340
+msgid "Light Speed"
+msgstr "光速"
+
+#: ../modules/chat/views/chat.php:341
+msgid "Rolling!"
+msgstr "滚石！"
+
+#: ../modules/chat/views/chat.php:419
+msgid "Print"
+msgstr "打印"
+
+#: ../modules/chat/views/chat.php:420
+msgid "Send to email"
+msgstr "发送邮件"
+
+#: ../modules/chat/views/chat.php:421
+msgid "Switch sound"
+msgstr "切换声音"
+
+#: ../modules/chat/views/chat.php:473
+msgid "Enter your email here"
+msgstr "在这里输入你的邮箱"
+
+#: ../modules/chat/views/chat.php:474
+#: ../modules/chat/views/tpl/chatSettingsTopFormControls.php:4
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:17
+#: ../modules/mail/views/tpl/mailAdmin.php:69
+#: ../modules/options/views/tpl/optionsSettingsTabContent.php:6
+msgid "Save"
+msgstr "保存"
+
+#: ../modules/chat/views/chat.php:475
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:7
+msgid "Cancell"
+msgstr "取消"
+
+#: ../modules/chat/views/chat.php:552
+msgid "Top Left"
+msgstr "左上"
+
+#: ../modules/chat/views/chat.php:553
+msgid "Top Center"
+msgstr "中上"
+
+#: ../modules/chat/views/chat.php:554
+msgid "Top Right"
+msgstr "右上"
+
+#: ../modules/chat/views/chat.php:556
+msgid "Bottom Left"
+msgstr "左下"
+
+#: ../modules/chat/views/chat.php:557
+msgid "Bottom Center"
+msgstr "中下"
+
+#: ../modules/chat/views/chat.php:558
+msgid "Bottom Right"
+msgstr "右下"
+
+#: ../modules/chat/views/chat.php:574
+msgid "All"
+msgstr "所有"
+
+#: ../modules/chat/views/chat.php:585
+msgid "Can not find Session"
+msgstr "无法找到会话"
+
+#: ../modules/chat/views/chat.php:590
+#: ../modules/registration/models/registration.php:31
+msgid "Can not find Engine"
+msgstr "无法找到引擎"
+
+#: ../modules/chat/views/tpl/chatAgentPage.php:3
+msgid "Agents Support"
+msgstr "客服支持"
+
+#: ../modules/chat/views/tpl/chatAgentPage.php:49
+msgid "Chat"
+msgstr "聊天"
+
+#: ../modules/chat/views/tpl/chatAgentPage.php:80
+#: ../modules/supsystic_promo/controller.php:191
+msgid "Send"
+msgstr "发送"
+
+#: ../modules/chat/views/tpl/chatAgentPage.php:92
+msgid "User Data"
+msgstr "用户数据"
+
+#: ../modules/chat/views/tpl/chatAgentPage.php:101
+#: ../modules/supsystic_promo/mod.php:151
+msgid "Email"
+msgstr "Email"
+
+#: ../modules/chat/views/tpl/chatAgentPage.php:106
+msgid "Chat Session Data"
+msgstr "聊天会话数据"
+
+#: ../modules/chat/views/tpl/chatAgentPage.php:109
+msgid "Created"
+msgstr "已创建"
+
+#: ../modules/chat/views/tpl/chatAgentPage.php:114
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:128
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:151
+msgid "From"
+msgstr "来自"
+
+#: ../modules/chat/views/tpl/chatDashboard.php:10
+#: ../modules/chat/views/tpl/chatDashboard.php:13
+#: ../modules/chat/views/tpl/chatSettingsAgents.php:7
+msgid "Delete selected"
+msgstr "删除所选"
+
+#: ../modules/chat/views/tpl/chatDashboard.php:17
+#: ../modules/chat/views/tpl/chatDashboard.php:18
+msgid "Search"
+msgstr "搜索"
+
+#: ../modules/chat/views/tpl/chatDashboard.php:30
+msgid "Refresh"
+msgstr "刷新"
+
+#: ../modules/chat/views/tpl/chatDashboard.php:40
+msgid "You have no active Chats for now."
+msgstr "你现在没有活动的聊天对话。"
+
+#: ../modules/chat/views/tpl/chatExtraUserFields.php:4
+msgid "Live Chat Agent"
+msgstr "在线客服"
+
+#: ../modules/chat/views/tpl/chatExtraUserFields.php:9
+msgid "You can make anyone - agent for your live chat"
+msgstr "你可以设置任何人作为在线客服"
+
+#: ../modules/chat/views/tpl/chatSettingsAdmin.php:72
+msgid "Loading preview..."
+msgstr "加载预览……"
+
+#: ../modules/chat/views/tpl/chatSettingsAdmin.php:77
+msgid "Back to top"
+msgstr "返回顶部"
+
+#: ../modules/chat/views/tpl/chatSettingsAgents.php:3
+msgid "Add New Agent"
+msgstr "添加新客服"
+
+#: ../modules/chat/views/tpl/chatSettingsAgents.php:13
+msgid "You have no agents for now."
+msgstr "你还没设置客服。"
+
+#: ../modules/chat/views/tpl/chatSettingsCode.php:3
+#, php-format
+msgid ""
+"Edit this ONLY if you know basics of HTML, CSS and have been acquainted with "
+"the rules of template editing described <a target=\"_blank\" href=\"%s"
+"\">here</a>"
+msgstr ""
+"只有当你懂得 HTML、CSS 基础知识，以及熟悉 <a target=\"_blank\" href=\"%s\">这"
+"里</a> 所说的模板编辑规则的时候，你才能编辑！！"
+
+#: ../modules/chat/views/tpl/chatSettingsCode.php:7
+msgid "CSS code"
+msgstr "CSS 代码"
+
+#: ../modules/chat/views/tpl/chatSettingsCode.php:8
+msgid "Update CSS code to latest version from original template"
+msgstr "从原始模板中更新css代码到最新版"
+
+#: ../modules/chat/views/tpl/chatSettingsCode.php:10
+#: ../modules/chat/views/tpl/chatSettingsCode.php:20
+msgid "Update from Default"
+msgstr "从默认中更新"
+
+#: ../modules/chat/views/tpl/chatSettingsCode.php:17
+msgid "HTML code"
+msgstr "HTML 代码"
+
+#: ../modules/chat/views/tpl/chatSettingsCode.php:18
+msgid "Update HTML code to latest version from original template"
+msgstr "从原始模板中更新 HTML 代码到最新版"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:3
+msgid "Chat Position"
+msgstr "聊天位置"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:5
+msgid "Position of your chat on user screen"
+msgstr "用户屏幕中，你的聊天内容的位置"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:15
+msgid "Width"
+msgstr "宽度"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:17
+msgid "Width of your chat window"
+msgstr "你的聊天窗口的宽度"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:21
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:39
+msgid "Max width for percentage - is 100"
+msgstr "百分比的最大宽度为 100"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:23
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:43
+msgid "Percents"
+msgstr "百分比"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:27
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:49
+msgid "Pixels"
+msgstr "像素"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:32
+msgid "Height of Messages box"
+msgstr "聊天框的高度"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:34
+msgid "Maximum height for messages box in Chat"
+msgstr "聊天框的最大高度"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:54
+msgid "Chat Bar padding"
+msgstr "聊天栏的边距"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:56
+msgid "Chat bar offset from the edge of the screen"
+msgstr "聊天栏和屏幕边缘的距离"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:65
+msgid "Main Theme Color"
+msgstr "主题主要颜色"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:67
+msgid "Main color will define main theme design"
+msgstr "主要颜色将定义的设计"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:74
+msgid "Main Theme Titles Color"
+msgstr "主题主要标题颜色"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:76
+msgid "Main color for all text titles on your chat"
+msgstr "你的聊天界面的所有文本标题的主要颜色"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:83
+msgid "Main Background Color"
+msgstr "主要背景颜色"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:85
+msgid "Main background color for your chat window"
+msgstr "聊天窗口的主要背景颜色"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:92
+msgid "Main Text Color"
+msgstr "主要文本颜色"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:94
+msgid "Main color for all text in your chat messages and texts"
+msgstr "你的聊天信息和文本的主要颜色"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:101
+msgid "Main Font Family"
+msgstr "主要字体"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:103
+msgid "You can select font type for your Chat here"
+msgstr "在这里选择你的聊天字体类型"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:114
+msgid "Draggable"
+msgstr "可拖动"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:116
+msgid "Allow users to drag chat screen in any place of browser window"
+msgstr "允许用户拖放聊天界面到浏览器窗口的任何位置"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:121
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:133
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:150
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:162
+#: ../modules/chat/views/tpl/chatSettingsNotifications.php:10
+#: ../modules/chat/views/tpl/chatSettingsNotifications.php:31
+msgid "Enable"
+msgstr "启用"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:126
+msgid "Enable Agent avatar"
+msgstr "启用客服头像"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:128
+msgid "Enable agent avatar when this is possible to display in Chat window."
+msgstr "当聊天窗口允许时显示客服头像"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:139
+msgid "Enable Rating"
+msgstr "启用评分"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:141
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:58
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:139
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:33
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:81
+#: ../modules/options/views/tpl/optionsSettingsTabContent.php:52
+msgid "PRO option"
+msgstr "专业版选项"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:145
+#, php-format
+msgid ""
+"Enable agent Rating buttons. If enabled - user will be able to rate agent, "
+"and you will see - who is best agent from your team. <img src=\"%s\" />"
+msgstr ""
+"启用客服评分按钮。如果启用，用户将可以对客服进行评分，你将可以知道团队中哪个"
+"是最好的客服。<img src=\"%s\" />"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:155
+msgid "Enable additonal chat options"
+msgstr "启用其他聊天选项"
+
+#: ../modules/chat/views/tpl/chatSettingsDesAppearance.php:157
+msgid ""
+"Buttons that allow disable sound, or print chat conversation from frontend "
+"for example."
+msgstr "显示一些按钮，允许在前台禁用声音，或打印聊天记录等。"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:4
+msgid "Chat Bar Title Text"
+msgstr "聊天栏标题文本"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:6
+msgid "Text on your chat bar that user will see before chat opens"
+msgstr "显示在聊天栏，让用户在打开聊天窗口时看到"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:14
+msgid "\"Send Message\" button text"
+msgstr "\"发送信息\" 按钮文本"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:16
+msgid "Text for main send button in your chat"
+msgstr "聊天窗口的发送按钮的文本"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:23
+msgid "\"Wait\" message"
+msgstr "\"等待\"消息"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:25
+msgid "Message that users will see before operator will start chat"
+msgstr "客服接入前显示给用户的信息"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:34
+msgid "Chat header text"
+msgstr "聊天标题文本"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:36
+msgid "You can add some text to the header of your main chat section"
+msgstr "你可以添加一些文本到你的聊天头部"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:45
+msgid "Complete chat text"
+msgstr "结束聊天的文本"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:47
+msgid "Text that users will see after chat will be completed"
+msgstr "在结束聊天时显示给用户的文本"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:57
+msgid "\"Operator joined chat\" message"
+msgstr "\"客服接入聊天\" 信息"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:58
+msgid ""
+"Use [name] tag in this field, it will be replaced to operator name in chat "
+"session"
+msgstr "在这个字段中使用  [name] 标签，将在聊天会话中替换为客服的名字"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:61
+msgid "Text that will show when operator is joined user chat"
+msgstr "当客服接入聊天时显示给用户的文本"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:71
+msgid "Default text for message field"
+msgstr "信息字段的默认文本"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:74
+msgid ""
+"This text will be placed in message text (placeholder) to indicate where "
+"exactly user should start print his message"
+msgstr ""
+"这个文本将被放置在信息文本（占位符）中，用以指示用户应该开始输入他的信息"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:78
+#: ../modules/supsystic_promo/controller.php:201
+msgid "Ask me here..."
+msgstr "在这里问我…"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:83
+msgid "\"Register\" button text"
+msgstr "\"注册\" 按钮文本"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:85
+msgid "Text that will appear on your registration button"
+msgstr "用户注册按钮的文本"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:94
+msgid "Before registration message text"
+msgstr "注册前的信息文本"
+
+#: ../modules/chat/views/tpl/chatSettingsDesTexts.php:96
+msgid "Text that will appear on registration form if registration is enabled"
+msgstr "如果启用注册，这个文本将显示在注册按钮上"
+
+#: ../modules/chat/views/tpl/chatSettingsDesign.php:3
+msgid "Choose Chat Template"
+msgstr "选择聊天模板"
+
+#: ../modules/chat/views/tpl/chatSettingsDesign.php:44
+msgid "Select your chat design"
+msgstr "选择你的聊天设计"
+
+#: ../modules/chat/views/tpl/chatSettingsDesign.php:52
+msgid "Get in PRO"
+msgstr "获取专业版"
+
+#: ../modules/chat/views/tpl/chatSettingsDesign.php:54
+msgid "Selected"
+msgstr "选择"
+
+#: ../modules/chat/views/tpl/chatSettingsNotifications.php:3
+msgid "Sound Notification"
+msgstr "声音通知"
+
+#: ../modules/chat/views/tpl/chatSettingsNotifications.php:5
+msgid ""
+"Sound that will be played for your users and support agents once new message "
+"is arrived."
+msgstr "声音将在收到新信息时播放提醒用户和客服"
+
+#: ../modules/chat/views/tpl/chatSettingsNotifications.php:14
+msgid "Select Sound"
+msgstr "选择声音"
+
+#: ../modules/chat/views/tpl/chatSettingsNotifications.php:18
+msgid "Set default"
+msgstr "设为默认"
+
+#: ../modules/chat/views/tpl/chatSettingsNotifications.php:24
+msgid "Auto update Dashboard"
+msgstr "自动更新仪表盘"
+
+#: ../modules/chat/views/tpl/chatSettingsNotifications.php:26
+msgid ""
+"Periodically auto update Agents Dashboard - to check new chat sessions in "
+"auto mode. Once new message will arrive - sound notification will be "
+"triggered."
+msgstr ""
+"定时自动更新客服仪表盘 - 以便检查新聊天会话。一旦收到新信息，将触发声音通知。"
+
+#: ../modules/chat/views/tpl/chatSettingsNotifications.php:37
+msgid "New chat start notification"
+msgstr "新聊天通知"
+
+#: ../modules/chat/views/tpl/chatSettingsNotifications.php:40
+msgid ""
+"Enter the email addresses that should receive notifications (separate by "
+"comma) about new chat start. Leave it blank - and you will not get any "
+"notifications."
+msgstr ""
+"输入用于接受新聊天通知的邮箱（多个请用英文逗号隔开）。留空的话，你将不会收到"
+"任何通知。"
+
+#: ../modules/chat/views/tpl/chatSettingsNotifications.php:52
+msgid "New chat start email text"
+msgstr "新聊天请求的邮件文本"
+
+#: ../modules/chat/views/tpl/chatSettingsNotifications.php:54
+#, php-format
+msgid "You can use next variables here: %s"
+msgstr "你可以在这里使用这些变量：%s"
+
+#: ../modules/chat/views/tpl/chatSettingsNotifications.php:57
+msgid "Message that you will receive about new chat start on your site."
+msgstr "你将收到关于新聊天请求的提示信息。"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:1
+msgid "Fully disable registration for your chat"
+msgstr "在聊天中禁用注册"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:6
+msgid "No Registration"
+msgstr "无需注册"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:8
+msgid "Registration will be enabled, but not required"
+msgstr "启用注册，但不是必须的"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:13
+msgid "Ask for Registration"
+msgstr "询问注册"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:15
+msgid ""
+"Registration will required: user will not be able to start chat without it"
+msgstr "必须注册：用户未注册将无法使用聊天"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:20
+msgid "Required"
+msgstr "必需注册"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:47
+msgid "Registration Fields"
+msgstr "注册字段"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:49
+msgid ""
+"To change field position - just drag-&-drop it to required place between "
+"other fields. To add new field to Subscribe form - click on \"+ Add\" button."
+msgstr ""
+"更改字段位置 - 仅需在其他字段间拖放排序。要添加新字段到订阅表单 - 点击 \"+ 添"
+"加\"按钮。"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:54
+msgid "Add"
+msgstr "添加"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:84
+msgid "Edit"
+msgstr "编辑"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:88
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:165
+msgid "Remove"
+msgstr "移除"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:97
+msgid "Field Settings"
+msgstr "字段设置"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:103
+#, php-format
+msgid ""
+"Name (key) for your field. This parameter is for system - to be able to "
+"determine the field. Use here only latin letters, numbers, symbols -_+ and "
+"space. For more info about this parameter - your can check <a href=\"%s\" "
+"target=\"_blank\">this page</a>."
+msgstr ""
+"你的字段的名称（键）。这个参数是用于系统 - 可用于确定场所。只能使用拉丁字母、"
+"数字、符号 -_+ 和空格。要了解该参数的更多信息，访问查看<a href=\"%s\" target="
+"\"_blank\">这个页面</a>。"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:112
+msgid "Label that will be visible for your users."
+msgstr "标签将显示给你的用户。"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:120
+msgid "Value"
+msgstr "值"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:121
+msgid "Default value for your field"
+msgstr "字段的默认值"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:129
+msgid "HTML Type"
+msgstr "HTML 类型"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:130
+msgid "Input HTML type"
+msgstr "表单HTML类型"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:146
+msgid "Select Options"
+msgstr "选择选项"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:174
+msgid "Mandatory"
+msgstr "强制性"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:175
+msgid ""
+"Is this field mandatory to fill-in. If yes - then users will not be able to "
+"continue without filling-in this field."
+msgstr "这个字段是强制填写的吗？如果 是，用户没有填写这个字段将无法继续。"
+
+#: ../modules/chat/views/tpl/chatSettingsRegistration.php:186
+msgid "Registration Field Settings"
+msgstr "注册字段设置"
+
+#: ../modules/chat/views/tpl/chatSettingsTopFormControls.php:2
+msgid "Save all changes"
+msgstr "保存所有更改"
+
+#: ../modules/chat/views/tpl/chatSettingsTopFormControls.php:8
+msgid "Preview"
+msgstr "预览"
+
+#: ../modules/chat/views/tpl/chatSettingsTopFormControls.php:11
+msgid "Turn Off"
+msgstr "关闭"
+
+#: ../modules/chat/views/tpl/chatSettingsTopFormControls.php:12
+msgid "Turn On"
+msgstr "打开"
+
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:4
+msgid "Add Trigger"
+msgstr "添加触发器"
+
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:12
+msgid "Trigger Name"
+msgstr "触发器名称"
+
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:19
+msgid "Conditions"
+msgstr "条件"
+
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:54
+msgid "Actions"
+msgstr "操作"
+
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:81
+msgid "Animation type"
+msgstr "动画类型"
+
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:94
+msgid "Animation speed"
+msgstr "动画速度"
+
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:101
+msgid "ms"
+msgstr "毫秒"
+
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:110
+msgid "Default message for auto-opened chat"
+msgstr "自动打开聊天的默认信息"
+
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:128
+msgid ""
+"You have no triggers for now. You can simply click <a href=\"#\" class="
+"\"lcsChatTriggersAddBtn\">here</a> to add new one, or on button above."
+msgstr ""
+"你没有添加触发器。你可以简单地点击 <a href=\"#\" class="
+"\"lcsChatTriggersAddBtn\">这里</a> 添加新的触发器，或在上面的按钮。"
+
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:137
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:106
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:115
+msgid "Choose Pages"
+msgstr "选择页面"
+
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:140
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:261
+msgid "Choose countries"
+msgstr "选择国家"
+
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:146
+msgid "Choose week days"
+msgstr "选择工作日"
+
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:151
+msgid "Min"
+msgstr "分"
+
+#: ../modules/chat/views/tpl/chatSettingsTriggers.php:155
+msgid "Sec"
+msgstr "秒"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:2
+msgid "When to show Chat"
+msgstr "何时显示聊天框"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:8
+msgid "When page loads"
+msgstr "当页面加载"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:13
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:57
+msgid "Delay for"
+msgstr "延迟"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:17
+msgid "Seconds"
+msgstr "秒"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:17
+msgid "sec"
+msgstr "秒"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:24
+msgid "User click on the page"
+msgstr "用户在页面进行点击"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:30
+msgid "Click on certain link / button / other element"
+msgstr "在某个链接/按钮/其他元素中点击"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:33
+msgid "Copy & paste next code - into required link to open Chat on Click"
+msgstr "复制并粘贴代码到所需的链接中，可以点击打开聊天"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:36
+#, php-format
+msgid ""
+"Check screenshot with details - <a onclick=\"lcsShowTipScreenPopUp(this); "
+"return false;\" href=\"%s\">here</a>."
+msgstr ""
+"查看截图详情 - <a onclick=\"lcsShowTipScreenPopUp(this); return false;\" "
+"href=\"%s\">这里</a>。"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:38
+msgid ""
+"Or, if you know HTML basics, - you can insert \"onclick\" attribute to any "
+"of your element from code below"
+msgstr ""
+"或者，如果你会点HTML知识，你可以将下面的代码插入到你的任何元素的 \"onclick"
+"\"属性"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:42
+msgid "Or you can even use it for your Menu item, just add code"
+msgstr "或者你可以在你的菜单项中使用它，仅需要添加代码"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:46
+msgid ""
+"into your menu item \"Title Attribute\" field. Don't worry - users will not "
+"see this code as menu item title on your site."
+msgstr ""
+"到你菜单项目的  \"标题属性\" 字段。别担心，用户不会在你菜单的标题中看到这个代"
+"码。"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:52
+msgid "Scroll window"
+msgstr "滚动窗口"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:61
+msgid "seconds after first scroll"
+msgstr "首次滚动后多少秒"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:65
+msgid "Scrolled to"
+msgstr "滚动到"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:69
+msgid "percents of total scroll"
+msgstr "滚动的百分比"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:77
+msgid "Show when user tries to exit from your site."
+msgstr "当用户试图退出你的网站时显示。"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:78
+msgid "On Exit from Site"
+msgstr "当从网站退出时"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:84
+msgid "To allow user to send message before agent starts chatting or not"
+msgstr "允许用户在客服接入前发送信息"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:87
+msgid "Wait for agent response"
+msgstr "等待客服响应"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:91
+msgid "Show on next pages"
+msgstr "在下一页显示"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:97
+msgid "All pages"
+msgstr "所有页面"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:103
+msgid "Show on next pages / posts"
+msgstr "在下一页/下一篇文章中显示"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:112
+msgid "Don't show on next pages / posts"
+msgstr "不要在下一页/下一篇文章中显示"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:119
+msgid "Time display settings"
+msgstr "时间显示设置"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:125
+msgid "Set display time"
+msgstr "设置显示时间"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:134
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:155
+msgid "to"
+msgstr "给"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:142
+msgid "Date display settings"
+msgstr "日期显示设置"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:148
+msgid "Set display date"
+msgstr "设置显示日期"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:162
+msgid "Whom to show"
+msgstr "显示给谁"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:168
+msgid "Everyone"
+msgstr "任何人"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:174
+msgid "For first-time visitors"
+msgstr "对于首次访问者"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:177
+msgid ""
+"Will remember user visit for entered number of days and show Chat to same "
+"user again - after this period. To remember only for one browser session - "
+"use 0 here, to remember forever - try to set big number - 99999 for example."
+msgstr ""
+"将用户的访问记住几天，并在这个时期后再次显示聊天给同一个用户。设置为 0 仅记住"
+"一个浏览器会话，要永久记住，请尝试设置为大数字，比如 99999。"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:178
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:194
+msgid "Remember for"
+msgstr "记住"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:183
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:199
+msgid "days"
+msgstr "天"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:186
+msgid "Registration, Chat session start, etc."
+msgstr "注册，聊天会话开始，等等。"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:190
+msgid "Until user makes an action"
+msgstr "直到用户进行操作"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:193
+msgid ""
+"Will remember user action for entered number of days and show Chat to same "
+"user again - after this period. To remember only for one browser session - "
+"use 0 here, to remember forever - try to set big number - 99999 for example."
+msgstr ""
+"将用户的聊天操作记住几天，并在这个时期后再次显示聊天给同一个用户。设置为 0 仅"
+"记住一个浏览器会话，要永久记住，请尝试设置为大数字，比如 99999。"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:203
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:218
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:233
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:249
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:264
+msgid "Click to revert feature function: from Hide - to Show, and vice versa."
+msgstr "点击还原功能：从 隐藏 到 显示，反之亦然。"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:204
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:219
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:234
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:250
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:265
+msgid "Hide"
+msgstr "隐藏"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:204
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:219
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:234
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:250
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:265
+msgid "Show Only"
+msgstr "显示"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:209
+msgid "for Devices"
+msgstr "给设备"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:210
+msgid ""
+"You can make Chat visible or hidden only when users will view your site from "
+"selected devices."
+msgstr "你可以设置只有使用所选设备访问的用户才可以显示或隐藏聊天框。"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:215
+msgid "Choose devices"
+msgstr "选择设备"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:224
+msgid "for Post Types"
+msgstr "给文章类型"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:225
+msgid ""
+"You can make Chat visible or hidden only for specified Post Types, for "
+"example - hide it on all Pages."
+msgstr "你可以设置聊天框只对特定文章类型可见或隐藏，例如 -在所有页面隐藏它。"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:230
+msgid "Choose post types"
+msgstr "选择文章类型"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:239
+msgid "for IP"
+msgstr "给IP"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:240
+#, php-format
+msgid ""
+"For those IPs Chat will not be displayed (or vice versa - depending on Hide/"
+"Show Only option). Please be advised that your IP - %s"
+msgstr ""
+"聊天框将不会对这些IP的用户显示（反之亦然 - 基于“仅隐藏/显示”选项）。请注意，"
+"你的IP为 %s"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:242
+msgid "Show IPs List"
+msgstr "显示IP地址列表"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:255
+msgid "for Countries"
+msgstr "给国家"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:256
+#, php-format
+msgid ""
+"For those Countries Chat will not be displayed (or vice versa - depending on "
+"Hide/Show Only option). Please be advised that your Country code is %s"
+msgstr ""
+"聊天框将不会对这些国家的用户显示（反之亦然 - 基于“仅隐藏/显示”选项）。请注"
+"意，你的国家代码为 %s"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:270
+msgid "for Languages"
+msgstr "给语言"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:271
+#, php-format
+msgid ""
+"For those Languages Chat will not be displayed. Language is defined by "
+"visitor browser language. Please be advised that your browser language is %s"
+msgstr ""
+"聊天框将不会对使用这些语言的用户显示。语言是根据用户的浏览器语言来定义的。请"
+"注意，你的浏览器语言是 %s"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:277
+msgid "Choose languages"
+msgstr "选择语言"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:279
+msgid "This feature is supported only in WordPress version 4.0.0 or higher"
+msgstr "该功能只能在  WordPress 4.0.0 或更高版本才可以使用。"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:282
+msgid ""
+"Hide Chat for Logged-in users and show it only for not Logged site visitors."
+msgstr "对已登录的用户隐藏聊天框，仅对未登录的访客显示"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:285
+msgid "Hide for Logged-in"
+msgstr "对已登录的用户隐藏"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:288
+msgid "IPs List"
+msgstr "IP列表"
+
+#: ../modules/chat/views/tpl/chatSettingsWhenShow.php:290
+msgid ""
+"Type here IPs that will not see (or vice versa) Chat, each IP - from new line"
+msgstr ""
+"在此输入的IP将不会看到聊天框（反之亦然 - 基于“仅隐藏/显示”选项），每行一个IP"
+
+#: ../modules/mail/controller.php:7
+msgid "Now check your email inbox / spam folders for test mail."
+msgstr "检查你的邮箱的收件箱/垃圾箱看看有没有测试邮件。"
+
+#: ../modules/mail/mod.php:37
+msgid "Cannot send email - problem with send server"
+msgstr "无法发送邮件 - 可能是主机服务器不支持"
+
+#: ../modules/mail/mod.php:50
+msgid "Mail"
+msgstr "邮件"
+
+#: ../modules/mail/mod.php:52
+msgid "Mail function tested and work"
+msgstr "邮件功能已测试可以正常工作"
+
+#: ../modules/mail/mod.php:53
+msgid "Notify Email"
+msgstr "通知邮箱"
+
+#: ../modules/mail/mod.php:53
+msgid "Email address used for all email notifications from plugin"
+msgstr "用于发送该插件所有邮件通知的邮箱"
+
+#: ../modules/mail/models/mail.php:7
+msgid "Test email functionality"
+msgstr "测试邮件功能"
+
+#: ../modules/mail/models/mail.php:8
+#, php-format
+msgid "This is a test email for testing email functionality on your site, %s."
+msgstr "这是一封用于测试你的主机服务器的邮件功能的邮件， %s。"
+
+#: ../modules/mail/models/mail.php:15
+msgid "Empty email address"
+msgstr "空email 地址"
+
+#: ../modules/mail/views/tpl/mailAdmin.php:3
+msgid "Send test email to"
+msgstr "发送测试邮件到"
+
+#: ../modules/mail/views/tpl/mailAdmin.php:10
+msgid "Send test"
+msgstr "发送测试邮件"
+
+#: ../modules/mail/views/tpl/mailAdmin.php:12
+msgid "This option allows you to check your server mail functionality"
+msgstr "这个选项允许你检查你的服务器的邮件功能"
+
+#: ../modules/mail/views/tpl/mailAdmin.php:15
+msgid "Did you receive test email?"
+msgstr "你有没有收到测试邮件？"
+
+#: ../modules/mail/views/tpl/mailAdmin.php:18
+msgid "Yes! It works!"
+msgstr "是的！它正常工作了！"
+
+#: ../modules/mail/views/tpl/mailAdmin.php:22
+msgid "No, I need to contact my hosting provider with mail function issue."
+msgstr "不，我需要联系我的托管服务提供商解决邮件功能问题。"
+
+#: ../modules/mail/views/tpl/mailAdmin.php:26
+msgid "Great! Mail function was tested and is working fine."
+msgstr "太棒了，邮件功能测试可以正常工作。"
+
+#: ../modules/mail/views/tpl/mailAdmin.php:29
+msgid ""
+"Bad, please contact your hosting provider and ask them to setup mail "
+"functionality on your server."
+msgstr "糟糕，请联系您的主机托管服务提供商，并要求他们在服务器上设置邮件功能。"
+
+#: ../modules/mail/views/tpl/mailAdmin.php:47
+#: ../modules/options/views/tpl/optionsSettingsTabContent.php:44
+#, php-format
+msgid "Turned On %s"
+msgstr "打开 %s"
+
+#: ../modules/mail/views/tpl/mailAdmin.php:48
+#: ../modules/options/views/tpl/optionsSettingsTabContent.php:45
+#, php-format
+msgid "Turned Off %s"
+msgstr "关闭 %s"
+
+#: ../modules/options/mod.php:48
+msgid "System"
+msgstr "系统"
+
+#: ../modules/options/mod.php:114
+msgid "General"
+msgstr "常规"
+
+#: ../modules/options/mod.php:116
+msgid "Send usage statistics"
+msgstr "发送使用统计信息"
+
+#: ../modules/options/mod.php:116
+msgid ""
+"Send information about what plugin options you prefer to use, this will help "
+"us make our solution better for You."
+msgstr ""
+"发送你使用这个插件的选项的信息，这将帮助我们改进插件，为你提供更好的功能。"
+
+#: ../modules/options/mod.php:118
+msgid "Enable promo link"
+msgstr "启用促销链接"
+
+#: ../modules/options/mod.php:118
+msgid ""
+"We are trying to make our plugin better for you, and you can help us with "
+"this. Just check this option - and small promotion link will be added in the "
+"bottom of your Chat. This is easy for you - but very helpful for us!"
+msgstr ""
+"我们正在努力使我们的插件对你更有用，你可以帮助我们。只要勾选这个选项 - 小推广"
+"链接会在你聊天的底部加入。这对你来说很容易 - 但对我们非常有帮助！"
+
+#: ../modules/options/models/modules.php:35
+msgid "Module Updated"
+msgstr "模块已更新"
+
+#: ../modules/options/models/modules.php:50
+msgid "Module Update Failed"
+msgstr "模块更新失败"
+
+#: ../modules/options/models/modules.php:53
+msgid "Error module ID"
+msgstr "错误的模块ID"
+
+#: ../modules/options/models/options.php:64
+msgid "Empty data to save option"
+msgstr "没有数据需要保存"
+
+#: ../modules/options/views/options.php:62
+#: ../modules/supsystic_promo/views/supsystic_promo.php:47
+msgid "Undefined"
+msgstr "未定义"
+
+#: ../modules/options/views/tpl/optionsAdminPage.php:32
+msgid "Improve Free version"
+msgstr "提高免费版"
+
+#: ../modules/options/views/tpl/optionsAdminPage.php:34
+#, php-format
+msgid ""
+"Please be advised that this option is available only in <a target=\"_blank\" "
+"href=\"%s\">PRO version</a>. You can <a target=\"_blank\" href=\"%s\" class="
+"\"button\">Get PRO</a> today and get this and other PRO option for your Chat!"
+msgstr ""
+"该选项只有 <a target=\"_blank\" href=\"%s\">专业版</a> 才能使用。 你可以 <a "
+"target=\"_blank\" href=\"%s\" class=\"button\">升级专业版</a> 来获取所有专业"
+"版的功能。"
+
+#: ../modules/options/views/tpl/optionsSettingsTabContent.php:3
+msgid "Save all options"
+msgstr "保存所有选项"
+
+#: ../modules/pages/views/tpl/deactivatePage.php:33
+msgid "Delete Plugin Data (options, setup data, database tables, etc.)"
+msgstr "删除插件数据（选项，安装数据，数据库表等）"
+
+#: ../modules/registration/models/registration.php:33
+msgid "Empty Engine ID or URL"
+msgstr "空引擎ID或网址"
+
+#: ../modules/statistics/mod.php:9
+msgid "Statistics"
+msgstr "统计"
+
+#: ../modules/statistics/mod.php:28
+msgid "Chat Displayed"
+msgstr "聊天已显示"
+
+#: ../modules/statistics/mod.php:29
+msgid "Chat Opened"
+msgstr "聊天已开启"
+
+#: ../modules/statistics/mod.php:30
+msgid "User Registered"
+msgstr "用户注册"
+
+#: ../modules/statistics/mod.php:31
+msgid "Session Started"
+msgstr "会话启动"
+
+#: ../modules/statistics/models/statistics.php:30
+msgid "Send me some info, pls"
+msgstr "给我发送一些信息，请"
+
+#: ../modules/statistics/models/statistics.php:75
+msgid "Messages"
+msgstr "信息"
+
+#: ../modules/statistics/models/statistics.php:187
+msgid "No data found"
+msgstr "无数据"
+
+#: ../modules/statistics/views/tpl/statPromoGraph.php:4
+msgid "Get PRO"
+msgstr "升级到专业版"
+
+#: ../modules/statistics/views/tpl/statPromoGraph.php:5
+msgid "All Statistics in PRO version"
+msgstr "在专业版所有统计"
+
+#: ../modules/supsystic_promo/controller.php:7
+msgid "Information was saved. Thank you!"
+msgstr "信息已被保存。 谢谢！"
+
+#: ../modules/supsystic_promo/controller.php:23
+msgid ""
+"Please don't send contact requests so often - wait for response for your "
+"previous requests."
+msgstr "请不要频繁发送联系请求 - 正在等待回应你先前的请求。"
+
+#: ../modules/supsystic_promo/controller.php:45
+msgid "Please enter valid email address"
+msgstr "请输入有效的邮箱地址"
+
+#: ../modules/supsystic_promo/controller.php:192
+msgid "Please wait while our operator will start conversation"
+msgstr "请稍等，我们的客服将为你服务"
+
+#: ../modules/supsystic_promo/controller.php:193
+msgid ""
+"<a href=\"https://supsystic.com/\" target=\"_blank\">supsystic.com</a> chat "
+"engine"
+msgstr ""
+"<a href=\"https://supsystic.com/\" target=\"_blank\">supsystic.com</a> 聊天引"
+"擎"
+
+#: ../modules/supsystic_promo/controller.php:194
+msgid ""
+"Thank you for using our support! Driven by <a href=\"https://supsystic.com/"
+"\" target=\"_blank\">supsystic.com chat engine</a>"
+msgstr ""
+"感谢使用我们的支持平台！由 <a href=\"https://supsystic.com/\" target=\"_blank"
+"\">supsystic.com 聊天引擎</a> 驱动。"
+
+#: ../modules/supsystic_promo/controller.php:195
+msgid "Operator [name] joined chat with you"
+msgstr "客服 [name] 加入了你的聊天"
+
+#: ../modules/supsystic_promo/controller.php:196
+msgid "Start Chat!"
+msgstr "开始聊天！"
+
+#: ../modules/supsystic_promo/controller.php:197
+msgid "Please register before chat"
+msgstr "请先注册后进行聊天"
+
+#: ../modules/supsystic_promo/mod.php:32
+#, php-format
+msgid ""
+"<h3>Hey, I noticed you just use %s over a week - that's awesome!</"
+"h3><p>Could you please do me a BIG favor and give it a 5-star rating on "
+"WordPress? Just to help us spread the word and boost our motivation.</p>"
+msgstr ""
+"<h3>你好，我主要到你使用 %s 超过一周了 - 棒极了！</h3><p>能否请你帮我一个大"
+"忙，在 WordPress 官方给它一个5星评级？正好可以帮助我们传播和提高你的意志。</"
+"p>"
+
+#: ../modules/supsystic_promo/mod.php:33 ../modules/supsystic_promo/mod.php:39
+msgid "Ok, you deserve it"
+msgstr "好吧，你值得"
+
+#: ../modules/supsystic_promo/mod.php:34 ../modules/supsystic_promo/mod.php:40
+msgid "Nope, maybe later"
+msgstr "不，也许以后"
+
+#: ../modules/supsystic_promo/mod.php:35
+msgid "I already did"
+msgstr "我已完成"
+
+#: ../modules/supsystic_promo/mod.php:36
+#, php-format
+msgid "<h3>More then eleven days with our %s plugin - Congratulations!</h3>"
+msgstr "<h3>你已经使用我们的 %s 插件超过11天了，祝贺你！</h3>"
+
+#: ../modules/supsystic_promo/mod.php:37
+msgid ""
+"<p>On behalf of the entire <a href=\"https://supsystic.com/\" target=\"_blank"
+"\">supsystic.com</a> company I would like to thank you for been with us, and "
+"I really hope that our software helped you.</p>"
+msgstr ""
+"<p>我代表 <a href=\"https://supsystic.com/\" target=\"_blank\">supsystic."
+"com</a> 公司感谢你一直和我们在一起，我真的希望我们的软件帮到你。</p>"
+
+#: ../modules/supsystic_promo/mod.php:38
+msgid ""
+"<p>And today, if you want, - you can help us. This is really simple - you "
+"can just add small promo link to our site under your Chat. This is small "
+"step for you, but a big help for us! Sure, if you don't want - just skip "
+"this and continue enjoy our software!</p>"
+msgstr ""
+"<p>今天，如果你愿意，你可以帮助我们。非常简单，只需要在你的聊天界面添加一个小"
+"小的促销链接即可。一个小的操作，对我们的有大的帮助。如果你不愿意，直接跳过，"
+"可以继续使用我们的插件！</p>"
+
+#: ../modules/supsystic_promo/mod.php:41
+msgid "Skip"
+msgstr "跳过"
+
+#: ../modules/supsystic_promo/mod.php:85
+msgid "Overview"
+msgstr "预览"
+
+#: ../modules/supsystic_promo/mod.php:152
+msgid "Website"
+msgstr "网址"
+
+#: ../modules/supsystic_promo/mod.php:153
+msgid "Subject"
+msgstr "项目"
+
+#: ../modules/supsystic_promo/mod.php:154
+msgid "Topic"
+msgstr "主题"
+
+#: ../modules/supsystic_promo/mod.php:155
+msgid "Plugin options"
+msgstr "插件选项"
+
+#: ../modules/supsystic_promo/mod.php:156
+msgid "Report a bug"
+msgstr "反馈一个问题"
+
+#: ../modules/supsystic_promo/mod.php:157
+msgid "Require a new functionality"
+msgstr "需要一个新的功能"
+
+#: ../modules/supsystic_promo/mod.php:158
+msgid "Other"
+msgstr "其他"
+
+#: ../modules/supsystic_promo/mod.php:160
+msgid "Message"
+msgstr "信息"
+
+#: ../modules/supsystic_promo/mod.php:160
+msgid "Hello Supsystic Team!"
+msgstr "你好，Supsystic 团队！"
+
+#: ../modules/supsystic_promo/views/supsystic_promo.php:38
+#, php-format
+msgid ""
+"There were some problems while trying to retrieve our news, but you can "
+"always check all list <a target=\"_blank\" href=\"%s\">here</a>."
+msgstr ""
+"有些问题导致无法接收到我们的新闻，你可以 <a target=\"_blank\" href=\"%s\">点"
+"击这里</a> 查看所有新闻。"
+
+#: ../modules/supsystic_promo/views/tpl/adminFooter.php:4
+msgid "Version"
+msgstr "版本"
+
+#: ../modules/supsystic_promo/views/tpl/adminFooter.php:10
+msgid "Go"
+msgstr "访问"
+
+#: ../modules/supsystic_promo/views/tpl/adminFooter.php:10
+msgid "PRO"
+msgstr "专业版"
+
+#: ../modules/supsystic_promo/views/tpl/adminFooter.php:15
+#: ../modules/supsystic_promo/views/tpl/welcomePage.php:28
+msgid "Support"
+msgstr "支持"
+
+#: ../modules/supsystic_promo/views/tpl/overviewTabContent.php:6
+msgid "Server Settings"
+msgstr "服务器设置"
+
+#: ../modules/supsystic_promo/views/tpl/overviewTabContent.php:19
+msgid "Contact form"
+msgstr "联系信息"
+
+#: ../modules/supsystic_promo/views/tpl/overviewTabContent.php:51
+msgid "Send email"
+msgstr "发送邮件"
+
+#: ../modules/supsystic_promo/views/tpl/overviewTabContent.php:60
+msgid ""
+"Your email was sent, we will try to respond to your as soon as possible. "
+"Thank you for support!"
+msgstr "你的邮件已发送，我们将会尽快回复你。感谢支持！"
+
+#: ../modules/supsystic_promo/views/tpl/welcomePage.php:7
+#, php-format
+msgid "Welcome to the %s v %s"
+msgstr "欢迎使用  %s v %s"
+
+#: ../modules/supsystic_promo/views/tpl/welcomePage.php:8
+msgid "Skip tutorial"
+msgstr "跳过教程"
+
+#: ../modules/supsystic_promo/views/tpl/welcomePage.php:11
+msgid ""
+"The best way to collect subscribers and show notifications.<br />We are "
+"trying to make our plugin work in most comfortable way for you. Here is some "
+"base information about it."
+msgstr ""
+"最好的收集订阅者和显示通知的方式。<br />我们在尝试让我们的插件以最舒适的方式"
+"为你工作。这里是一些它的基本信息。"
+
+#: ../modules/supsystic_promo/views/tpl/welcomePage.php:19
+msgid "Step-by-step tutorial"
+msgstr "一步步教程"
+
+#: ../modules/supsystic_promo/views/tpl/welcomePage.php:21
+msgid ""
+"There're really many options of Live Chat customization. So as soon as you "
+"close that page, I'll show you step-by-step tutorial of how to use plugin. "
+"Hope it will be usefull for you :)"
+msgstr ""
+"的确有很多选项用户定制聊天插件，所以一旦你选择那个页面，我们为你显示如何一步"
+"步使用这个插件的教程，希望对你有用:)"
+
+#: ../modules/supsystic_promo/views/tpl/welcomePage.php:24
+msgid "As an option we can install and setup plugin for you."
+msgstr "可选为你可以安装和设置插件。"
+
+#: ../modules/supsystic_promo/views/tpl/welcomePage.php:30
+#, php-format
+msgid ""
+"We love our plugin and do the best to improve all features for You. But "
+"sometimes issues happened, or you can't find required feature that you need. "
+"Don't worry, just <a href='%s' target='_blank'>contact us</a> and we will "
+"help you!"
+msgstr ""
+"我们爱我们的插件和尽可能为你改进所有功能。如果出现了问题，或你无法找到你需要"
+"的功能，不要着急，只要 <a href='%s' target='_blank'>联系我们</a> 就可以获得帮"
+"助！"
+
+#: ../modules/supsystic_promo/views/tpl/welcomePage.php:36
+msgid "Video Tutorial"
+msgstr "视频教程"
+
+#: ../modules/supsystic_promo/views/tpl/welcomePage.php:48
+msgid "Frequently Asked Questions"
+msgstr "常见问答"
+
+#: ../modules/supsystic_promo/views/tpl/welcomePage.php:51
+msgid "Check all FAQs"
+msgstr "查看所有常见问答"
+
+#: ../modules/supsystic_promo/views/tpl/welcomePage.php:59
+msgid "Let's Start!"
+msgstr "开始吧！"
+
+#~ msgid "WP User Frontend Pro add-ons"
+#~ msgstr "WP 用户前端的扩展"
+
+#~ msgid "Fixed Price"
+#~ msgstr "固定价格"
+
+#~ msgid "&infin;"
+#~ msgstr "&infin;"
+
+#~ msgid "Coupon Code"
+#~ msgstr "优惠券代码"
+
+#~ msgid "Coupon Type"
+#~ msgstr "优惠券类型"
+
+#~ msgid "Amount"
+#~ msgstr "数量"
+
+#~ msgid "Usage / Limit"
+#~ msgstr "用法 / 限制"
+
+#~ msgid "Expire date"
+#~ msgstr "到期日期"
+
+#~ msgid "Custom field updated."
+#~ msgstr "自定义字段已更新"
+
+#~ msgid "Custom field deleted."
+#~ msgstr "自定义字段已删除"
+
+#~ msgid "Coupon restored to revision from %s"
+#~ msgstr "优惠券已从 %s版本中恢复"
+
+#~ msgid "Coupon published."
+#~ msgstr "优惠券已发布"
+
+#~ msgid "Coupon saved."
+#~ msgstr "优惠券已保存。"
+
+#~ msgid "Coupon submitted."
+#~ msgstr "优惠券已提交"
+
+#~ msgid "Coupon draft updated."
+#~ msgstr "优惠券草稿已更新"
+
+#~ msgid "Enter coupon code"
+#~ msgstr "输入优惠券代码"
+
+#~ msgid "Coupon"
+#~ msgstr "优惠券"
+
+#~ msgid "Add Coupon"
+#~ msgstr "添加优惠券"
+
+#~ msgid "Add New Coupon"
+#~ msgstr "添加新优惠券"
+
+#~ msgid "Edit Coupon"
+#~ msgstr "编辑优惠券"
+
+#~ msgid "New Coupon"
+#~ msgstr "新优惠券"
+
+#~ msgid "View Coupon"
+#~ msgstr "查看优惠券"
+
+#~ msgid "Search Coupon"
+#~ msgstr "搜索优惠券"
+
+#~ msgid "No Coupon Found"
+#~ msgstr "没找到优惠券"
+
+#~ msgid "No Coupon Found in Trash"
+#~ msgstr "回收站里没有优惠券"
+
+#~ msgid "Parent Coupon"
+#~ msgstr "父优惠券"
+
+#~ msgid "Coupon Details"
+#~ msgstr "优惠券详情"
+
+#~ msgid "Amount without <code>%</code> or currency symbol"
+#~ msgstr "数量没有 <code>%</code> 或 货币符号"
+
+#~ msgid "Give a description of this coupon"
+#~ msgstr "给这个优惠券添加说明"
+
+#~ msgid "Package"
+#~ msgstr "套餐"
+
+#~ msgid "Select one or more packages to apply coupon"
+#~ msgstr "选择一个或多个套餐来应用优惠券"
+
+#~ msgid "Usage Limit"
+#~ msgstr "使用限制"
+
+#~ msgid "How many times the coupon can be used? Give a numeric value."
+#~ msgstr "优惠券可以使用多少次？给一个数值。"
+
+#~ msgid "Validity"
+#~ msgstr "有效期"
+
+#~ msgid "End date"
+#~ msgstr "结束日期"
+
+#~ msgid "Email Restriction"
+#~ msgstr "电子邮件限制"
+
+#~ msgid ""
+#~ "Only users with these email addresses will be able to use this coupon. "
+#~ "Enter Email addresses. One per each line."
+#~ msgstr ""
+#~ "只有具备这些电子邮件地址的用户才能够使用这个优惠券。输入电子邮件地址。一行"
+#~ "一个。"
+
+#~ msgid "Forms"
+#~ msgstr "表单"
+
+#~ msgid "Form"
+#~ msgstr "表单"
+
+#~ msgid "Add New Form"
+#~ msgstr "添加新表单"
+
+#~ msgid "Edit Form"
+#~ msgstr "编辑表单"
+
+#~ msgid "New Form"
+#~ msgstr "新表单"
+
+#~ msgid "View Form"
+#~ msgstr "查看表单"
+
+#~ msgid "No Form Found"
+#~ msgstr "没找到表单"
+
+#~ msgid "No Form Found in Trash"
+#~ msgstr "回收站里没有表单"
+
+#~ msgid "Parent Form"
+#~ msgstr "父表单"
+
+#~ msgid "Registraton Forms"
+#~ msgstr "注册表单"
+
+#~ msgid "Form updated."
+#~ msgstr "表单已更新"
+
+#~ msgid "Form restored to revision from %s"
+#~ msgstr "表单已从 %s版本中恢复"
+
+#~ msgid "Form published."
+#~ msgstr "表单已发布"
+
+#~ msgid "Form saved."
+#~ msgstr "表单已保存。"
+
+#~ msgid "Form submitted."
+#~ msgstr "表单已提交"
+
+#~ msgid "Form draft updated."
+#~ msgstr "表单草稿已更新"
+
+#~ msgid "Form Name"
+#~ msgstr "表单名"
+
+#~ msgid "Post Status"
+#~ msgstr "文章状态"
+
+#~ msgid "Duplicate"
+#~ msgstr "复制"
+
+#~ msgid "WPUF Form"
+#~ msgstr "WPUF 表单"
+
+#~ msgid "Form Editor"
+#~ msgstr "表单编辑器"
+
+#~ msgid "Form Elements"
+#~ msgstr "表单元素"
+
+#~ msgid "Preview Form"
+#~ msgstr "预览表单"
+
+#~ msgid "Schedule"
+#~ msgstr "日程"
+
+#~ msgid "Publish"
+#~ msgstr "发布"
+
+#~ msgid "Submit for Review"
+#~ msgstr "提交评论"
+
+#~ msgid "This page is restricted. Please Log in / Register to view this page."
+#~ msgstr "本文访问受限。请登录/注册以查看本文。"
+
+#~ msgid "Post saved"
+#~ msgstr "文章已保存"
+
+#~ msgid "Post updated successfully"
+#~ msgstr "文章已更新成功"
+
+#~ msgid "Submit"
+#~ msgstr "提交"
+
+#~ msgid "Save Draft"
+#~ msgstr "保存草稿"
+
+#~ msgid "Disable Subscription"
+#~ msgstr "禁用订购"
+
+#~ msgid ""
+#~ "If checked, any subscription and pay-per-post will be disabled on the "
+#~ "form and will take no effect."
+#~ msgstr ""
+#~ "如果选中，任何订购和按次付费发布会在表格上被禁用，并且不会有任何影响。"
+
+#~ msgid "Post Format"
+#~ msgstr "文章格式"
+
+#~ msgid "Default Post Category"
+#~ msgstr "默认文章类别"
+
+#~ msgid ""
+#~ "If users are not allowed to choose any category, this category will be "
+#~ "used instead (if post type supports)"
+#~ msgstr "如果用户被不允许选择分类，将使用这个分类"
+
+#~ msgid "Enable Guest Post"
+#~ msgstr "启用访客发文章"
+
+#~ msgid "Unregistered users will be able to submit posts"
+#~ msgstr "未注册用户将可以提交文章"
+
+#~ msgid "Require Name and Email address"
+#~ msgstr "需要名称和Email 地址"
+
+#~ msgid ""
+#~ "If requires, users will be automatically registered to the site using the "
+#~ "name and email address"
+#~ msgstr "如果需要，用户将使用这个用户名和email注册为网站用户。"
+
+#~ msgid "Name Label"
+#~ msgstr "姓名标签"
+
+#~ msgid "Label text for email field"
+#~ msgstr "email 字段的标签文字"
+
+#~ msgid "Unauthorized Message"
+#~ msgstr "未注册用户管理"
+
+#~ msgid "Not logged in users will see this message"
+#~ msgstr "没有登录用户将看到这个信息"
+
+#~ msgid "Redirect To"
+#~ msgstr "重定向到"
+
+#~ msgid "Same Page"
+#~ msgstr "同一页"
+
+#~ msgid "To a page"
+#~ msgstr "到一个页面"
+
+#~ msgid "To a custom URL"
+#~ msgstr "到一个自定义URL"
+
+#~ msgid "After successfull submit, where the page will redirect to"
+#~ msgstr "提交成功以后，页面将重定向到"
+
+#~ msgid "Message to show"
+#~ msgstr "信息显示"
+
+#~ msgid "Page"
+#~ msgstr "页面"
+
+#~ msgid "Custom URL"
+#~ msgstr "自定义URL"
+
+#~ msgid "Comment Status"
+#~ msgstr "评论状态"
+
+#~ msgid "Open"
+#~ msgstr "打开"
+
+#~ msgid "Closed"
+#~ msgstr "关闭"
+
+#~ msgid "Submit Post Button text"
+#~ msgstr "提交文章按钮文字"
+
+#~ msgid "Post Draft"
+#~ msgstr "文章草稿"
+
+#~ msgid "Enable Saving as draft"
+#~ msgstr "启用保存为草稿"
+
+#~ msgid "It will show a button to save as draft"
+#~ msgstr "会显示一个保存为草稿按钮"
+
+#~ msgid "Update"
+#~ msgstr "更新"
+
+#~ msgid "Set Post Status to"
+#~ msgstr "设置文章状态到"
+
+#~ msgid "No Change"
+#~ msgstr "不修改"
+
+#~ msgid "Post Update Message"
+#~ msgstr "文章更新信息"
+
+#~ msgid "Subscription Title"
+#~ msgstr "订购标题"
+
+#~ msgid "Update Post Button text"
+#~ msgstr "更新文章按钮文字"
+
+#~ msgid "New post created"
+#~ msgstr "新文章已创建"
+
+#~ msgid "A post has been edited"
+#~ msgstr "一个文章已被编辑"
+
+#~ msgid "Enable post notification"
+#~ msgstr "启用文章通知"
+
+#~ msgid "To"
+#~ msgstr "到"
+
+#~ msgid "Update Post Notificatoin"
+#~ msgstr "更新文章通知"
+
+#~ msgid "You may use in message:"
+#~ msgstr "您可以使用信息："
+
+#~ msgid "Registration successful"
+#~ msgstr "注册成功"
+
+#~ msgid "Profile updated successfully"
+#~ msgstr "个人信息更新成功"
+
+#~ msgid "New User Role"
+#~ msgstr "新用户角色"
+
+#~ msgid "Update profile message"
+#~ msgstr "更新个人简介信息"
+
+#~ msgid "Post Settings"
+#~ msgstr "文章设置"
+
+#~ msgid "Click to add to the editor"
+#~ msgstr "勾选添加到编辑器"
+
+#~ msgid "Custom Fields"
+#~ msgstr "自定义字段"
+
+#~ msgid "Dropdown"
+#~ msgstr "下拉"
+
+#~ msgid "Multi Select"
+#~ msgstr "多选"
+
+#~ msgid "Radio"
+#~ msgstr "单选"
+
+#~ msgid "Image Upload"
+#~ msgstr "图片上传"
+
+#~ msgid "Repeat Field"
+#~ msgstr "重复字段"
+
+#~ msgid "Google Maps"
+#~ msgstr "谷歌地图"
+
+#~ msgid "reCaptcha"
+#~ msgstr "验证码"
+
+#~ msgid "Really Simple Captcha"
+#~ msgstr "真正简单的验证码"
+
+#~ msgid "Section Break"
+#~ msgstr "分节符"
+
+#~ msgid "HTML"
+#~ msgstr "HTML"
+
+#~ msgid "Action Hook"
+#~ msgstr "动作 Hook"
+
+#~ msgid "Term &amp; Conditions"
+#~ msgstr "协议条款"
+
+#~ msgid "Post Fields"
+#~ msgstr "文章字段"
+
+#~ msgid "Post Title"
+#~ msgstr "文章标题"
+
+#~ msgid "Post Body"
+#~ msgstr "文章正文"
+
+#~ msgid "Excerpt"
+#~ msgstr "摘录"
+
+#~ msgid "Tags"
+#~ msgstr "标签"
+
+#~ msgid "Featured Image"
+#~ msgstr "特色图像"
+
+#~ msgid "Custom Taxonomies"
+#~ msgstr "自定义分类"
+
+#~ msgid "No custom taxonomies found"
+#~ msgstr "没有找到自定义分类"
+
+#~ msgid "Profile Fields"
+#~ msgstr "简介字段"
+
+#~ msgid "Username"
+#~ msgstr "用户名"
+
+#~ msgid "Last Name"
+#~ msgstr "名"
+
+#~ msgid "Nickname"
+#~ msgstr "昵称"
+
+#~ msgid "E-mail"
+#~ msgstr "E-mail"
+
+#~ msgid "Biographical Info"
+#~ msgstr "个人简介"
+
+#~ msgid "Password"
+#~ msgstr "密码"
+
+#~ msgid "Avatar"
+#~ msgstr "头像"
+
+#~ msgid "Toggle All"
+#~ msgstr "展开/收起全部"
+
+#~ msgid "Click on a form element to add to the editor"
+#~ msgstr "单击一个表单元素以添加到编辑器"
+
+#~ msgid ""
+#~ "If you have not created <strong>WP User Frontend Pro</strong> pages yet, "
+#~ "you can do this by one click."
+#~ msgstr ""
+#~ "如果你还没有创建 <strong>WP User Frontend Pro</strong> 页面，你可以点击一"
+#~ "下完成创建。"
+
+#~ msgid "Congratulations!"
+#~ msgstr "恭喜您！"
+
+#~ msgid ""
+#~ "Pages for <strong>WP User Frontend Pro</strong> has been successfully "
+#~ "installed and saved!"
+#~ msgstr "<strong>WP User Frontend Pro</strong> 页面已被成功安装和保存！"
+
+#~ msgid "Login"
+#~ msgstr "登录"
+
+#~ msgid "Subscription"
+#~ msgstr "订购"
+
+#~ msgid "[wpuf_sub_pack]"
+#~ msgstr "[wpuf_sub_pack]"
+
+#~ msgid "Payment"
+#~ msgstr "支付"
+
+#~ msgid "Please select a gateway for payment"
+#~ msgstr "请选择支付网关"
+
+#~ msgid "Thank You"
+#~ msgstr "谢谢"
+
+#~ msgid ""
+#~ "<h1>Payment is complete</h1><p>Congratulations, your payment has been "
+#~ "completed!</p>"
+#~ msgstr "<h1>付款完成</h1><p>恭喜，您的付款已完成！</p>"
+
+#~ msgid "Order Received"
+#~ msgstr "收到的订单"
+
+#~ msgid ""
+#~ "Hi, we have received your order. We will validate the order and will take "
+#~ "necessary steps to move forward."
+#~ msgstr "嗨，我们已经收到您的订单。我们将验证订单和进行下一步操作。"
+
+#~ msgid "Sample Form"
+#~ msgstr "表单样本"
+
+#~ msgid "WPUF Post Lock"
+#~ msgstr "WPUF 发帖锁定"
+
+#~ msgid "Lock Post:"
+#~ msgstr "锁定发帖："
+
+#~ msgid "Lock user from creating new post."
+#~ msgstr "锁定该用户，不让其创建新文章"
+
+#~ msgid "Lock Reason:"
+#~ msgstr "锁定原因："
+
+#~ msgid "Are you sure?"
+#~ msgstr "您确定？"
+
+#~ msgid "Allowed Files"
+#~ msgstr "允许上传的文件"
+
+#~ msgid "WPUF Custom Fields"
+#~ msgstr "WPUF 自定义字段"
+
+#~ msgid "No custom fields found."
+#~ msgstr "没找到自定义字段。"
+
+#~ msgid "Login / Registration"
+#~ msgstr "登录 / 注册"
+
+#~ msgid "Payments"
+#~ msgstr "支付"
+
+#~ msgid "Fixed Form Elements "
+#~ msgstr "固定表单元素"
+
+#~ msgid "Show fixed form elements sidebar in form editor"
+#~ msgstr "在表单编辑器显示固定表单元素侧边栏"
+
+#~ msgid "Edit Page"
+#~ msgstr "编辑页面"
+
+#~ msgid "Select the page where [wpuf_edit] is located"
+#~ msgstr "选择 [wpuf_edit] 所在的页面"
+
+#~ msgid "Default Post Owner"
+#~ msgstr "默认文章作者"
+
+#~ msgid ""
+#~ "If guest post is enabled and user details are OFF, the posts are assigned "
+#~ "to this user"
+#~ msgstr "如果访客发表文章是开启并且用户详情是关闭，本文指派给这个用户。"
+
+#~ msgid "Admin area access"
+#~ msgstr "管理区域访问"
+
+#~ msgid "Allow you to block specific user role to WordPress admin area."
+#~ msgstr "允许您阻止特定的用户角色访问WordPress管理区域。"
+
+#~ msgid "Admins, Editors"
+#~ msgstr "管理员，编辑者"
+
+#~ msgid "Admins, Editors, Authors"
+#~ msgstr "管理员，编辑者，作者"
+
+#~ msgid "Admins, Editors, Authors, Contributors"
+#~ msgstr "管理员，编辑者，作者，投稿者"
+
+#~ msgid "Override the post edit link"
+#~ msgstr "重写文章编辑链接"
+
+#~ msgid ""
+#~ "Users see the edit link in post if s/he is capable to edit the post/page. "
+#~ "Selecting <strong>Yes</strong> will override the default WordPress edit "
+#~ "post link in frontend"
+#~ msgstr ""
+#~ "如果用户可以编辑文章/页面则他可以看到文章编辑链接. 选择 <strong>是</"
+#~ "strong> 将在前端重写链接地址"
+
+#~ msgid "Custom Fields in post"
+#~ msgstr "文章自定义字段"
+
+#~ msgid "Show custom fields on post content area"
+#~ msgstr "在文章内容区域显示自定义字段"
+
+#~ msgid "Load Scripts"
+#~ msgstr "加载代码"
+
+#~ msgid "Load scripts/styles in all pages"
+#~ msgstr "加载代码/样式到全部页面"
+
+#~ msgid "Insert Photo image size"
+#~ msgstr "插入图片的尺寸"
+
+#~ msgid ""
+#~ "Default image size of \"<strong>Insert Photo</strong>\" button in post "
+#~ "content area"
+#~ msgstr "在文章内容区域的\"<strong>插入图片</strong>\"按钮的默认图片大小"
+
+#~ msgid "Insert Photo image type"
+#~ msgstr "插入图片的类型"
+
+#~ msgid ""
+#~ "Default image type of \"<strong>Insert Photo</strong>\" button in post "
+#~ "content area"
+#~ msgstr "在文章内容区域的\"<strong>插入图片</strong>\"按钮的默认图片类型"
+
+#~ msgid "Image only"
+#~ msgstr "仅图片"
+
+#~ msgid "Image with link"
+#~ msgstr "包含链接的图片"
+
+#~ msgid "Allow users to update image/video title, caption and description"
+#~ msgstr "允许用户更新图像/视频标题，说明和描述"
+
+#~ msgid "Default Post Form"
+#~ msgstr "默认文章表单"
+
+#~ msgid "Fallback form for post editing if no associated form found"
+#~ msgstr "如果没有发现相关的表单，就返回文章编辑表单"
+
+#~ msgid "reCAPTCHA Public Key"
+#~ msgstr "验证码公开密匙"
+
+#~ msgid "reCAPTCHA Private Key"
+#~ msgstr "验证码私密密匙"
+
+#~ msgid ""
+#~ "If you want to add your custom CSS code, it will be added on page header "
+#~ "wrapped with style tag"
+#~ msgstr "如果您想添加自定义CSS代码，它将被添加到页面页眉"
+
+#~ msgid "Users can edit post?"
+#~ msgstr "用户可以编辑文章？"
+
+#~ msgid "Users will be able to edit their own posts"
+#~ msgstr "用户将可以编辑他们的文章"
+
+#~ msgid "User can delete post?"
+#~ msgstr "用户可以删除文章？"
+
+#~ msgid "Users will be able to delete their own posts"
+#~ msgstr "用户可以删除他们自己的文章"
+
+#~ msgid "Pending Post Edit"
+#~ msgstr "待审文章编辑"
+
+#~ msgid "Disable post editing while post in \"pending\" status"
+#~ msgstr "当文章处于“待审核”状态时，禁止编辑"
+
+#~ msgid "Posts per page"
+#~ msgstr "每页文章数"
+
+#~ msgid "How many posts will be listed in a page"
+#~ msgstr "多少文章将在一页被呈现"
+
+#~ msgid "Users biographical info will be shown"
+#~ msgstr "将显示用户的个人简介"
+
+#~ msgid "Show how many posts are created by the user"
+#~ msgstr "显示用户创作的多少文章"
+
+#~ msgid "Show Featured Image"
+#~ msgstr "显示特色图像"
+
+#~ msgid "Show featured image of the post"
+#~ msgstr "显示文章特色图像"
+
+#~ msgid "Featured Image size"
+#~ msgstr "特色图像尺寸"
+
+#~ msgid "Login/Registration override"
+#~ msgstr "登录 / 注册覆盖"
+
+#~ msgid ""
+#~ "If enabled, default login and registration forms will be overridden by "
+#~ "WPUF with pages below"
+#~ msgstr "如果启用，默认的登录和注册表单将被以下 WPUF 的页面所替换"
+
+#~ msgid "Registration Page"
+#~ msgstr "注册页面"
+
+#~ msgid ""
+#~ "Select the page you want to use as registration page override <em>(should "
+#~ "have shortcode)</em>"
+#~ msgstr "选择您想用户用来注册的页面 <em>(应该有简码)</em>"
+
+#~ msgid "Login Page"
+#~ msgstr "登录页面"
+
+#~ msgid "Select the page which contains <code>[wpuf-login]</code> shortcode"
+#~ msgstr "选择包含 <code>[wpuf-login]</code> 简码的页面"
+
+#~ msgid "Charge for posting"
+#~ msgstr "发文章收费"
+
+#~ msgid "Charge user for submitting a post"
+#~ msgstr "收费用户才能提交文章"
+
+#~ msgid "Force pack purchase"
+#~ msgstr "强制购买套餐"
+
+#~ msgid "When active, users must have to buy a pack for posting"
+#~ msgstr "当激活时，用户必须得买一个套餐才能发布"
+
+#~ msgid "Subscription Pack Page"
+#~ msgstr "订购套餐页面"
+
+#~ msgid "Select the page where <code>[wpuf_sub_pack]</code> located."
+#~ msgstr "选择 <ode>[wpuf_sub_pack]</code> 所在的页面"
+
+#~ msgid "Subscription at registration"
+#~ msgstr "订购注册"
+
+#~ msgid "Registration time redirect to subscription page"
+#~ msgstr "重定向到订购页面的注册时间"
+
+#~ msgid "Currency"
+#~ msgstr "货币"
+
+#~ msgid "Currency Symbol"
+#~ msgstr "货币符号"
+
+#~ msgid "Cost"
+#~ msgstr "费用"
+
+#~ msgid "Enable demo/sandbox mode"
+#~ msgstr "启用演示/沙盒模式"
+
+#~ msgid ""
+#~ "When sandbox mode is active, all payment gateway will be used in demo mode"
+#~ msgstr "当沙盒模式激活，全部支付方式将用于演示模式"
+
+#~ msgid "This page will be used to process payment options"
+#~ msgstr "这个页面将用于付款流程选项"
+
+#~ msgid "Payment Success Page"
+#~ msgstr "付款成功页面"
+
+#~ msgid "After payment users will be redirected here"
+#~ msgstr "用户完成付款以后返回的页面"
+
+#~ msgid "Payment Gateways"
+#~ msgstr "支付方式"
+
+#~ msgid "Active payment gateways"
+#~ msgstr "激活支付方式"
+
+#~ msgid "Need Help?"
+#~ msgstr "需要帮助？"
+
+#~ msgid ""
+#~ "Select profile/registration forms for user roles. These forms will be "
+#~ "used to populate extra edit profile fields in backend."
+#~ msgstr ""
+#~ "选择用户角色的个人资料/注册表单。这个表单将用于填写后端额外的编辑个人资料"
+#~ "文件中的字段。"
+
+#~ msgid " - select - "
+#~ msgstr " - 选择 - "
+
+#~ msgid "WP User Frontend"
+#~ msgstr "WP 用户前端"
+
+#~ msgid "User Frontend"
+#~ msgstr "用户前端"
+
+#~ msgid "Coupons"
+#~ msgstr "优惠券"
+
+#~ msgid "Transaction"
+#~ msgstr "交易"
+
+#~ msgid "Tools"
+#~ msgstr "工具"
+
+#~ msgid "Subscription pack updated."
+#~ msgstr "订购套餐已更新。"
+
+#~ msgid "Subscription pack restored to revision from %s"
+#~ msgstr "订购套餐已从 %s版本中恢复"
+
+#~ msgid "Subscription pack published."
+#~ msgstr "订购套餐已发布。"
+
+#~ msgid "Subscription pack saved."
+#~ msgstr "订购套餐已保存。"
+
+#~ msgid "Subscription pack submitted."
+#~ msgstr "订购套餐已提交。"
+
+#~ msgid "Subscription pack draft updated."
+#~ msgstr "订购套餐草稿已更新。"
+
+#~ msgid "Free"
+#~ msgstr "免费"
+
+#~ msgid "Pack Name"
+#~ msgstr "套餐名称"
+
+#~ msgid "Recurring"
+#~ msgstr "经常性"
+
+#~ msgid "Duration"
+#~ msgstr "时间"
+
+#~ msgid "Pack Deleted"
+#~ msgstr "套餐已删除"
+
+#~ msgid "Are you sure to delete this pack?"
+#~ msgstr "您确定删除这个套餐？"
+
+#~ msgid "Delete"
+#~ msgstr "删除"
+
+#~ msgid "No subscription pack found"
+#~ msgstr "未发现订购套餐"
+
+#~ msgid "Pack Description"
+#~ msgstr "套餐描述"
+
+#~ msgid "Billing amount:"
+#~ msgstr "开票金额："
+
+#~ msgid "Billing amount each cycle:"
+#~ msgstr "开票金额每个周期："
+
+#~ msgid "Expires In:"
+#~ msgstr "到期日期："
+
+#~ msgid "Enable Recurring Payment"
+#~ msgstr "启用定期付款"
+
+#~ msgid "Billing cycle:"
+#~ msgstr "计费周期："
+
+#~ msgid "Billing cycle stop"
+#~ msgstr "计费周期停止"
+
+#~ msgid "Never"
+#~ msgstr "从不"
+
+#~ msgid "After how many cycles should billing stop?"
+#~ msgstr "经过多少个周期后计费停止？"
+
+#~ msgid "Trial"
+#~ msgstr "试用"
+
+#~ msgid "Enable trial period"
+#~ msgstr "启用试用期"
+
+#~ msgid "Trial amount"
+#~ msgstr "使用数量"
+
+#~ msgid "Amount to bill for the trial period"
+#~ msgstr "试用期的金额数量"
+
+#~ msgid "Trial period"
+#~ msgstr "试用期"
+
+#~ msgid "Define the trial period"
+#~ msgstr "定义试用期"
+
+#~ msgid "Day(s)"
+#~ msgstr "天"
+
+#~ msgid "Week(s)"
+#~ msgstr "周"
+
+#~ msgid "Month(s)"
+#~ msgstr "月"
+
+#~ msgid "Year(s)"
+#~ msgstr "年"
+
+#~ msgid "WPUF Subscription"
+#~ msgstr "WPUF 订购"
+
+#~ msgid "Assign Package"
+#~ msgstr "分配套餐"
+
+#~ msgid "Show Package"
+#~ msgstr "显示套餐"
+
+#~ msgid "Pack:"
+#~ msgstr "套餐:"
+
+#~ msgid "Subscription Details"
+#~ msgstr "订购详情"
+
+#~ msgid "Subcription Name: "
+#~ msgstr "订购名称："
+
+#~ msgid "Package billing details: "
+#~ msgstr "套餐计费的详细信息："
+
+#~ msgid "Remaining post: "
+#~ msgstr "剩余发帖量："
+
+#~ msgid "Expire date:"
+#~ msgstr "有效期至："
+
+#~ msgid "Enable Image Insertion"
+#~ msgstr "启用图像插入"
+
+#~ msgid "Enable image upload in post area"
+#~ msgstr "在内容编辑上方启用图像上传"
+
+#~ msgid "Enter maximum upload size limit in KB"
+#~ msgstr "输入最大上传大小 KB"
+
+#~ msgid "Max. file size"
+#~ msgstr "最大文件大小"
+
+#~ msgid "Text Input"
+#~ msgstr "文本输入框"
+
+#~ msgid "Ajax"
+#~ msgstr "Ajax"
+
+#~ msgid "Order By"
+#~ msgstr "排序方式"
+
+#~ msgid "Term ID"
+#~ msgstr "项目ID"
+
+#~ msgid "Slug"
+#~ msgstr "别名"
+
+#~ msgid "Term Group"
+#~ msgstr "Term Group"
+
+#~ msgid "Order"
+#~ msgstr "订单"
+
+#~ msgid "ASC"
+#~ msgstr "正序"
+
+#~ msgid "DESC"
+#~ msgstr "倒序"
+
+#~ msgid "Selection Type"
+#~ msgstr "选择类型"
+
+#~ msgid "Exclude"
+#~ msgstr "排除"
+
+#~ msgid "Include"
+#~ msgstr "包括"
+
+#~ msgid "Child of"
+#~ msgstr "子项目"
+
+#~ msgid "Selection terms"
+#~ msgstr "选择条款"
+
+#~ msgid ""
+#~ "Enter the term IDs as comma separated (without space) to exclude/include "
+#~ "in the form."
+#~ msgstr "输入排除/包含项目的ID，使用英文逗号分隔。"
+
+#~ msgid "WooCommerce Attribute"
+#~ msgstr "WooCommerce 属性"
+
+#~ msgid "This taxonomy is a WooCommerce attribute"
+#~ msgstr "这个分类是WooCommerce属性"
+
+#~ msgid "Visibility"
+#~ msgstr "可见性"
+
+#~ msgid "Visible on product page"
+#~ msgstr "产品页面上可见"
+
+#~ msgid "Confirm Password"
+#~ msgstr "确认密码"
+
+#~ msgid "Minimum password length"
+#~ msgstr "最小密码长度"
+
+#~ msgid "Password Re-type"
+#~ msgstr "再次输入密码"
+
+#~ msgid "Require Password repeat"
+#~ msgstr "必须重复密码"
+
+#~ msgid "Re-type password label"
+#~ msgstr "再次输入密码标签"
+
+#~ msgid "Password Strength Meter"
+#~ msgstr "密码强度表"
+
+#~ msgid "Show password strength meter"
+#~ msgstr "显示密码强度表"
+
+#~ msgid "Click and Drag to rearrange"
+#~ msgstr "单击并拖动重新排列"
+
+#~ msgid "Toggle"
+#~ msgstr "切换"
+
+#~ msgid "Field Label"
+#~ msgstr "字段标签"
+
+#~ msgid "Enter a title of this field"
+#~ msgstr "输入此字段标题"
+
+#~ msgid "Meta Key"
+#~ msgstr "Meta Key"
+
+#~ msgid "Name of the meta key this field will save to"
+#~ msgstr "meta key 名称这个字段将保存到"
+
+#~ msgid "Help text"
+#~ msgstr "帮助文字"
+
+#~ msgid "Give the user some information about this field"
+#~ msgstr "关于这个字段给用户一些提示信息"
+
+#~ msgid "CSS Class Name"
+#~ msgstr "CSS类名称"
+
+#~ msgid "Add a CSS class name for this field"
+#~ msgstr "为这个字段添加一个CSS类名称"
+
+#~ msgid "Size"
+#~ msgstr "大小"
+
+#~ msgid "Rows"
+#~ msgstr "行"
+
+#~ msgid "Columns"
+#~ msgstr "列"
+
+#~ msgid "Normal"
+#~ msgstr "正常"
+
+#~ msgid "Rich textarea"
+#~ msgstr "丰富文本区域"
+
+#~ msgid "Teeny Rich textarea"
+#~ msgstr "极小丰富文本区域"
+
+#~ msgid "Conditional Logic"
+#~ msgstr "条件逻辑"
+
+#~ msgid "show values"
+#~ msgstr "显示值"
+
+#~ msgid ""
+#~ "First element of the select dropdown. Leave this empty if you don't want "
+#~ "to show this field"
+#~ msgstr "选择下拉的第一个元素。如果您不想显示这个字段请留空"
+
+#~ msgid "Number of images can be uploaded"
+#~ msgstr "可以上传的图片数量"
+
+#~ msgid "Max. files"
+#~ msgstr "最大文件"
+
+#~ msgid "Multiple Column"
+#~ msgstr "多列"
+
+#~ msgid "Title"
+#~ msgstr "标题"
+
+#~ msgid "Meta Value"
+#~ msgstr "Meta 值"
+
+#~ msgid ""
+#~ "Insert your public key and private key in <a href='%s'>plugin settings</"
+#~ "a>. <a href='https://www.google.com/recaptcha/' target='_blank'>Register</"
+#~ "a> first if you don't have any keys."
+#~ msgstr ""
+#~ "插入您的公开和私密密匙在 <a href='%s'>插件设置</a>. 如果您还没有请在这里 "
+#~ "<a href='https://www.google.com/recaptcha/' target='_blank'>注册</a> ."
+
+#~ msgid ""
+#~ "Depends on <a href='http://wordpress.org/extend/plugins/really-simple-"
+#~ "captcha/' target='_blank'>Really Simple Captcha</a> Plugin. Install it "
+#~ "first."
+#~ msgstr ""
+#~ "取决于 <a href='http://wordpress.org/extend/plugins/really-simple-"
+#~ "captcha/' target='_blank'>真正简单验证码</a> 插件. 先安装它."
+
+#~ msgid "Hook Name"
+#~ msgstr "Hook 名"
+
+#~ msgid ""
+#~ "An option for developers to add dynamic elements they want. It provides "
+#~ "the chance to add whatever input type you want to add in this form."
+#~ msgstr "为开发者添加动态元素。"
+
+#~ msgid ""
+#~ "This way, you can bind your own functions to render the form to this "
+#~ "action hook. You'll be given 3 parameters to play with: $form_id, "
+#~ "$post_id, $form_settings."
+#~ msgstr ""
+#~ "This way, you can bind your own functions to render the form to this "
+#~ "action hook. You'll be given 3 parameters to play with: $form_id, "
+#~ "$post_id, $form_settings."
+
+#~ msgid "The date format"
+#~ msgstr "日期格式"
+
+#~ msgid "Date Format"
+#~ msgstr "日期格式"
+
+#~ msgid "Time"
+#~ msgstr "时间"
+
+#~ msgid "Set the map zoom level"
+#~ msgstr "设置地图放大层级"
+
+#~ msgid "Enter default latitude and longitude to center the map"
+#~ msgstr "为中心地图输入默认经度和纬度"
+
+#~ msgid "Default Co-ordinate"
+#~ msgstr "默认协调"
+
+#~ msgid "Show address find button"
+#~ msgstr "显示地址查找按钮"
+
+#~ msgid "Show Latitude/Longitude"
+#~ msgstr "显示纬度/经度"
+
+#~ msgid "Show latitude and longitude input box value"
+#~ msgstr "显示纬度和经度输入框值"
+
+#~ msgid "Insert terms and condtions here."
+#~ msgstr "输入条款协议在这里"
+
+#~ msgid "Form Export"
+#~ msgstr "表单导入"
+
+#~ msgid "Export"
+#~ msgstr "导出"
+
+#~ msgid "Sorry you have no form to export"
+#~ msgstr "抱歉，没有表单可导出"
+
+#~ msgid "Registration Form Export"
+#~ msgstr "注册表单导出"
+
+#~ msgid "Somthing went wrong. Please choose a file again"
+#~ msgstr "出错了，请再次选择一个文件"
+
+#~ msgid "Import successful. Have fun!"
+#~ msgstr "导入成功了！"
+
+#~ msgid "Invalid file or file size too big."
+#~ msgstr "无效文件或文件太大了。"
+
+#~ msgid "Import forms"
+#~ msgstr "导入表单"
+
+#~ msgid "Click Browse button and choose a json file that you backup before."
+#~ msgstr "点击浏览按钮，选择一个你之前备份的JSON文件。"
+
+#~ msgid "Press Restore button, WordPress does the rest for you."
+#~ msgstr "按下还原按钮，WordPress 将为你完成剩下的工作。"
+
+#~ msgid "Import"
+#~ msgstr "导入"
+
+#~ msgid "All forms has been deleted"
+#~ msgstr "所有表单已被删除"
+
+#~ msgid "Settings has been cleared!"
+#~ msgstr "设置已被清除！"
+
+#~ msgid "All transactions has been deleted!"
+#~ msgstr "所有交易已被删除！"
+
+#~ msgid "Page Installation"
+#~ msgstr "页面安装"
+
+#~ msgid ""
+#~ "Clicking this button will create required pages for the plugin. Note: "
+#~ "It'll not delete/replace existing pages."
+#~ msgstr ""
+#~ "点击这个按钮将创建该插件所需的页面。注：这个操作不会删除/替换已经存在的页"
+#~ "面。"
+
+#~ msgid ""
+#~ "<strong>Caution:</strong> This tool will delete all the plugin settings "
+#~ "of WP User Frontend Pro"
+#~ msgstr ""
+#~ "<strong>注意：</strong> 该工具会删除 WP User Frontend Pro 的所有设置"
+
+#~ msgid "Delete Forms"
+#~ msgstr "删除表单"
+
+#~ msgid ""
+#~ "<strong>Caution:</strong> This tool will delete all the post and "
+#~ "registration/profile forms."
+#~ msgstr "<strong>注意：</strong> 该工具会删除所有投稿和注册/个人资料表单。"
+
+#~ msgid "Delete Post Forms"
+#~ msgstr "删除投稿表单"
+
+#~ msgid "Delete Registration Forms"
+#~ msgstr "删除注册表单"
+
+#~ msgid "Delete Subscriptions"
+#~ msgstr "删除订购"
+
+#~ msgid "Delete Coupons"
+#~ msgstr "删除优惠券"
+
+#~ msgid "Transactions"
+#~ msgstr "交易"
+
+#~ msgid ""
+#~ "This tool will delete all the transactions from the transaction table."
+#~ msgstr "该工具将从交易表中的删除所有事务。"
+
+#~ msgid "Delete Transactions"
+#~ msgstr "删除交易"
+
+#~ msgid "WP User Frontend: Payments Received"
+#~ msgstr "WP 用户前端: 付款"
+
+#~ msgid "Total Income:"
+#~ msgstr "总收入："
+
+#~ msgid "This Month:"
+#~ msgstr "本月："
+
+#~ msgid "Transaction(s) deleted"
+#~ msgstr "交易已删除"
+
+#~ msgid "User ID"
+#~ msgstr "用户 ID"
+
+#~ msgid "Post"
+#~ msgstr "文章"
+
+#~ msgid "Pack ID"
+#~ msgstr "套餐 ID"
+
+#~ msgid "Payer"
+#~ msgstr "付款人"
+
+#~ msgid "Transaction ID"
+#~ msgstr "交易ID"
+
+#~ msgid "Pending Orders"
+#~ msgstr "等待中的订单"
+
+#~ msgid "Item Details"
+#~ msgstr "项目详情"
+
+#~ msgid "Accept"
+#~ msgstr "接受"
+
+#~ msgid "Reject"
+#~ msgstr "拒绝"
+
+#~ msgid "No pending orders found"
+#~ msgstr "没有找到等待订单"
+
+#~ msgid "Sorry invalid coupon code!"
+#~ msgstr "抱歉，无效的优惠券代码！"
+
+#~ msgid "Coupon is not availiable for this package!"
+#~ msgstr "优惠券不适用于这个套餐！"
+
+#~ msgid "Coupon usage limit exceeded!"
+#~ msgstr "超过优惠券的使用限制！"
+
+#~ msgid "Sorry, this coupon is not start!"
+#~ msgstr "抱歉，该优惠券还没有启用！"
+
+#~ msgid "Sorry, this coupon has been expired!"
+#~ msgstr "抱歉，该优惠券已过期！"
+
+#~ msgid "You are not allowed to use this coupon!"
+#~ msgstr "您不被允许使用这个优惠券！"
+
+#~ msgid "This page is restricted. Please %s to view this page."
+#~ msgstr "此页面访问受限制。 请到%s 查看此页面。"
+
+#~ msgid "<strong>Success</strong>: Profile updated"
+#~ msgstr "<strong>成功</strong>: 个人资料已更新"
+
+#~ msgid "(required)"
+#~ msgstr "(必填)"
+
+#~ msgid "Display to Public as"
+#~ msgstr "公开显示为"
+
+#~ msgid "About Yourself"
+#~ msgstr "关于您自己"
+
+#~ msgid ""
+#~ "Share a little biographical information to fill out your profile. This "
+#~ "may be shown publicly."
+#~ msgstr "分享一个个人资料信息。这可能是公开的。"
+
+#~ msgid "New Password"
+#~ msgstr "新密码"
+
+#~ msgid "Type your new password again."
+#~ msgstr "再次输入您的新密码"
+
+#~ msgid "Password Strength"
+#~ msgstr "密码强度"
+
+#~ msgid "Strength indicator"
+#~ msgstr "强度评估"
+
+#~ msgid "Post Count:"
+#~ msgstr "文章数："
+
+#~ msgid "Validity:"
+#~ msgstr "有效性:"
+
+#~ msgid "Post Deleted"
+#~ msgstr "文章已删除"
+
+#~ msgid "Author Info"
+#~ msgstr "作者信息"
+
+#~ msgid "You are not the post author. Cheeting huh!"
+#~ msgstr "您不是文章作者，Cheeting huh!"
+
+#~ msgid "You are not logged in"
+#~ msgstr "您没有登录"
+
+#~ msgid "Post Editing is disabled"
+#~ msgstr "禁止文章编辑"
+
+#~ msgid "You are not allowed to edit"
+#~ msgstr "您没有权限编辑"
+
+#~ msgid "I don't know how to edit this post, I don't have the form ID"
+#~ msgstr "我不知道如何编辑这个文章，我没有这个表单ID"
+
+#~ msgid "You can't edit a post while in pending mode."
+#~ msgstr "您不能编辑正处于待审状态的文章"
+
+#~ msgid "Something went wrong"
+#~ msgstr "未知错误"
+
+#~ msgid "Please login to update your profile!"
+#~ msgstr "该页面只允许已登录用户访问，请登录/注册后访问。"
+
+#~ msgid "You are already logged in!"
+#~ msgstr "您已经登录！"
+
+#~ msgid "User registration is currently not allowed."
+#~ msgstr "当前不允许用户注册"
+
+#~ msgid "An Email address is required"
+#~ msgstr "Email 地址是必填"
+
+#~ msgid "Username already exists."
+#~ msgstr "用户名已存在。"
+
+#~ msgid "E-mail address already exists."
+#~ msgstr "E-mail 地址已存在。"
+
+#~ msgid "Username is not valid"
+#~ msgstr "用户名无效"
+
+#~ msgid "Password must be %s character long"
+#~ msgstr "密码必须 %s 个字符长"
+
+#~ msgid "Password didn't match"
+#~ msgstr "密码不匹配"
+
+#~ msgid "Please check your email for activation link"
+#~ msgstr "请检查您的邮箱激活链接"
+
+#~ msgid "Congrats! You are Successfully registered to %s:"
+#~ msgstr "恭喜！您已成功注册到 %s："
+
+#~ msgid "To activate your account, please click the link below"
+#~ msgstr "要激活您的账号，请点击下面的链接"
+
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgid "[%s] Account Activation"
+#~ msgstr "[%s] 账号激活"
+
+#~ msgid "Log In"
+#~ msgstr "登录"
+
+#~ msgid "Lost Password"
+#~ msgstr "忘记密码"
+
+#~ msgid ""
+#~ "Please enter your username or email address. You will receive a link to "
+#~ "create a new password via email."
+#~ msgstr ""
+#~ "请输入您的用户名或电子邮件地址。您将通过电子邮件收到一个创建新密码的链接。"
+
+#~ msgid "Your password has been reset. %s"
+#~ msgstr "您的密码已重设。%s"
+
+#~ msgid "Enter your new password below.."
+#~ msgstr "在下面输入您的新密码"
+
+#~ msgid "Check your e-mail for the confirmation link."
+#~ msgstr "请检查您的电子邮件的确认链接。"
+
+#~ msgid "Error"
+#~ msgstr "错误"
+
+#~ msgid "Username is required."
+#~ msgstr "用户名是必填的。"
+
+#~ msgid "Password is required."
+#~ msgstr "密码是必填的。"
+
+#~ msgid "A user could not be found with this email address."
+#~ msgstr "无法找到使用这个电子邮箱的用户。"
+
+#~ msgid "Passwords do not match."
+#~ msgstr "密码不匹配。"
+
+#~ msgid "Enter a username or e-mail address."
+#~ msgstr "输入一个用户名或邮箱地址。"
+
+#~ msgid "There is no user registered with that email address."
+#~ msgstr "没有发现使用那个邮箱注册的用户。"
+
+#~ msgid "Password reset is not allowed for this user"
+#~ msgstr "该用户不允许进行密码重设"
+
+#~ msgid ""
+#~ "<strong>Your account is not active.</strong><br>Please check your email "
+#~ "for activation link."
+#~ msgstr "<strong>您的账号还没有激活。</strong><br>请检查您的邮箱激活链接。"
+
+#~ msgid "Your account has been activated"
+#~ msgstr "您的账号已经激活"
+
+#~ msgid ""
+#~ "Someone requested that the password be reset for the following account:"
+#~ msgstr "有人请求为下面的账号重置密码："
+
+#~ msgid "Username: %s"
+#~ msgstr "用户名：%s"
+
+#~ msgid ""
+#~ "If this was a mistake, just ignore this email and nothing will happen."
+#~ msgstr "如果这是个失误，请直接忽略该邮件，不会发生任何事情。"
+
+#~ msgid "To reset your password, visit the following address:"
+#~ msgstr "要重置您的密码，请访问下面的地址："
+
+#~ msgid "[%s] Password Reset"
+#~ msgstr "[%s] 密码重置"
+
+#~ msgid "The e-mail could not be sent."
+#~ msgstr "邮件无法发送。"
+
+#~ msgid "Possible reason: your host may have disabled the mail() function."
+#~ msgstr "可能的原因：您的主机可能已经禁用了mail() 函数。"
+
+#~ msgid "PayPal"
+#~ msgstr "PayPal"
+
+#~ msgid "Bank Payment"
+#~ msgstr "银行卡支付"
+
+#~ msgid "Please select your payment page from admin panel"
+#~ msgstr "请从管理面板选择付款页面"
+
+#~ msgid "Your free package has been activated. Enjoy!"
+#~ msgstr "您的免费套餐已经激活，尽情使用吧！"
+
+#~ msgid "You already have activated a free package previously."
+#~ msgstr "您之前已经激活过一个免费套餐了。"
+
+#~ msgid "Pricing & Plans"
+#~ msgstr "定价与计划"
+
+#~ msgid "Change Pack"
+#~ msgstr "更改套餐"
+
+#~ msgid "Have a discount code?"
+#~ msgstr "有优惠码？"
+
+#~ msgid "Choose Your Payment Method"
+#~ msgstr "选择您的支付方式"
+
+#~ msgid "Proceed"
+#~ msgstr "继续进行"
+
+#~ msgid "No Payment gateway found"
+#~ msgstr "没找到支付方式"
+
+#~ msgid "[%s] Payment Received"
+#~ msgstr "[%s] 已收到付款"
+
+#~ msgid "New payment received at %s"
+#~ msgstr "新的付款收到在%s"
+
+#~ msgid "Really Simple Captcha validation failed"
+#~ msgstr "验证码错误，请输入正确的验证码！"
+
+#~ msgid "reCAPTCHA validation failed"
+#~ msgstr "验证码验证失败"
+
+#~ msgid "Insert Photo"
+#~ msgstr "插入图片"
+
+#~ msgid "Select File(s)"
+#~ msgstr "选择文件"
+
+#~ msgid "Download File"
+#~ msgstr "下载文件"
+
+#~ msgid "Select Image"
+#~ msgstr "选择图像"
+
+#~ msgid "If you want to set a new password, please re-enter."
+#~ msgstr "如果要设置新密码，请重新输入"
+
+#~ msgid "-- Select --"
+#~ msgstr "-- 选择 --"
+
+#~ msgid "Terms of Agreement"
+#~ msgstr "协议条款"
+
+#~ msgid "Error: Really Simple Captcha plugin not found!"
+#~ msgstr "错误：真正简单验证码插件没找到！"
+
+#~ msgid "Type an address to find"
+#~ msgstr "输入一个地址以查找"
+
+#~ msgid "Add Subscription"
+#~ msgstr "添加订购"
+
+#~ msgid "Add New Subscription"
+#~ msgstr "添加新订购"
+
+#~ msgid "Edit Subscription"
+#~ msgstr "编辑订购"
+
+#~ msgid "New Subscription"
+#~ msgstr "新订购"
+
+#~ msgid "View Subscription"
+#~ msgstr "查看订购"
+
+#~ msgid "Search Subscription"
+#~ msgstr "搜索订购"
+
+#~ msgid "No Subscription Found"
+#~ msgstr "未发现订购套餐"
+
+#~ msgid "No Subscription Found in Trash"
+#~ msgstr "回收站里没有订购套餐"
+
+#~ msgid "Parent Subscription"
+#~ msgstr "父级订购"
+
+#~ msgid "Billing Details"
+#~ msgstr "账单详情"
+
+#~ msgid "Remain post: "
+#~ msgstr "剩余发帖量："
+
+#~ msgid "Change"
+#~ msgstr "更改"
+
+#~ msgid "Please enable force pack and charge posting from admin panel"
+#~ msgstr "请在管理面板启用强制套餐和付费发帖"
+
+#~ msgid "One time payment"
+#~ msgstr "一次性付款"
+
+#~ msgid "Sign Up"
+#~ msgstr "报名"
+
+#~ msgid "Buy Now"
+#~ msgstr "立即购买"
+
+#~ msgid "This will cost you <strong>%s</strong> to add a new post. "
+#~ msgstr "将花费您<strong>%s</strong>来添加新文章。"
+
+#~ msgid "You must <a href=\"%s\">purchase a pack</a> before posting"
+#~ msgstr "在发文章之前您必须 <a href=\"%s\">购买一个套餐</a>"
+
+#~ msgid "Updates"
+#~ msgstr "更新"
+
+#~ msgid ""
+#~ "Please <a href=\"%s\">enter</a> your <strong>WP User Frontend</strong> "
+#~ "plugin license key to get regular update and support."
+#~ msgstr ""
+#~ "请<a href=\"%s\">输入</a> 您的 <strong>WP 用户前端</strong>插件许可以方便"
+#~ "升级"
+
+#~ msgid "Pleae activate your copy"
+#~ msgstr "请激活您的副本"
+
+#~ msgid "WP User Frontend Error:"
+#~ msgstr "WP用户前端错误:"
+
+#~ msgid "Settings Saved"
+#~ msgstr "设置已保存"
+
+#~ msgid "E-mail Address"
+#~ msgstr "E-mail 地址"
+
+#~ msgid "License Key"
+#~ msgstr "许可"
+
+#~ msgid "Enter your license key"
+#~ msgstr "输入您的许可"
+
+#~ msgid "Plugin is activated"
+#~ msgstr "插件已激活"
+
+#~ msgid "Very weak"
+#~ msgstr "极弱"
+
+#~ msgid "Weak"
+#~ msgstr "弱"
+
+#~ msgid "Medium"
+#~ msgstr "中等"
+
+#~ msgid "Strong"
+#~ msgstr "强"
+
+#~ msgid "Mismatch"
+#~ msgstr "不匹配"
+
+#~ msgid "Live"
+#~ msgstr "已发布"
+
+#~ msgid "Offline"
+#~ msgstr "草稿"
+
+#~ msgid "Awaiting Approval"
+#~ msgstr "待审核"
+
+#~ msgid "Scheduled"
+#~ msgstr "定时发布"
+
+#~ msgid "Private"
+#~ msgstr "私人"
+
+#~ msgid "Bank Instruction"
+#~ msgstr "银行指令"
+
+#~ msgid "Bank Payment Success Page"
+#~ msgstr "银行卡付款成功页面"
+
+#~ msgid "[%s] New Bank Order Received"
+#~ msgstr "[%s] 新银行卡已收到付款"
+
+#~ msgid "New bank order received at %s, please check it out: %s"
+#~ msgstr "新银行已收到订单%s,请单击 %s"
+
+#~ msgid "Hello %s,"
+#~ msgstr "Hello %s,"
+
+#~ msgid "We have received your bank payment."
+#~ msgstr "我们已经收到您的银行付款。"
+
+#~ msgid "Thanks for being with us."
+#~ msgstr "谢谢您加入我们队伍"
+
+#~ msgid "Subscription %s at %s"
+#~ msgstr "订购 %s 于 %s"
+
+#~ msgid "PayPal Email"
+#~ msgstr "PayPal 邮箱"
+
+#~ msgid "PayPal Instruction"
+#~ msgstr "PayPal 指令"
+
+#~ msgid "PayPal API username"
+#~ msgstr "PayPal API 用户名"
+
+#~ msgid "PayPal API password"
+#~ msgstr "PayPal API 密码"
+
+#~ msgid "PayPal API signature"
+#~ msgstr "PayPal API 签名"
+
+#~ msgid "You have created <span>%d</span> %s"
+#~ msgstr "您已发布<span>%d</span>篇%s"
+
+#~ msgid ""
+#~ "Tips: If your manuscript is removed, meaning no reviews yet. Reviewers "
+#~ "will take time, please be patient."
+#~ msgstr "提示：如果稿件被删除，说明审核没有通过。审稿需要时间，请耐心等候。"
+
+#~ msgid "No Image"
+#~ msgstr "没有图片"
+
+#~ msgid "Pay Now"
+#~ msgstr "立即购买"
+
+#~ msgid "Prohibit edit"
+#~ msgstr "禁止编辑"
+
+#~ msgid "Are you sure to delete?"
+#~ msgstr "您确定要删除吗？"
+
+#~ msgid "Prohibit delete"
+#~ msgstr "禁止删除"
+
+#~ msgid "&laquo;"
+#~ msgstr "&laquo;"
+
+#~ msgid "&raquo;"
+#~ msgstr "&raquo;"
+
+#~ msgid "Hello %s"
+#~ msgstr "你好 %s"
+
+#~ msgid "You are currently logged in! %s?"
+#~ msgstr "您已经登录！ %s ?"
+
+#~ msgid "Username or E-mail:"
+#~ msgstr "用户名或邮箱："
+
+#~ msgid "New password"
+#~ msgstr "新密码"
+
+#~ msgid "Confirm new password"
+#~ msgstr "确认新密码"
+
+#~ msgid "Published"
+#~ msgstr "已发布"
+
+#~ msgid "Draft"
+#~ msgstr "草稿"
+
+#~ msgid "-- select --"
+#~ msgstr "-- 选择 --"
+
+#~ msgid "Audio"
+#~ msgstr "音频"
+
+#~ msgid "Videos"
+#~ msgstr "视频"
+
+#~ msgid "PDF"
+#~ msgstr "PDF"
+
+#~ msgid "Office Documents"
+#~ msgstr "办公文档"
+
+#~ msgid "Zip Archives"
+#~ msgstr "Zip 压缩包"
+
+#~ msgid "Executable Files"
+#~ msgstr "可执行文件"
+
+#~ msgid "CSV"
+#~ msgstr "CSV"
+
+#~ msgctxt "tag delimiter"
+#~ msgid ","
+#~ msgstr ","
+
+#~ msgid "Please fix the errors to proceed"
+#~ msgstr "请处理好出现的错误才能继续哦！"
+
+#~ msgid ""
+#~ "Access Denied. Your site administrator has blocked your access to the "
+#~ "WordPress back-office. return to <strong><a href=\"%s\">Home page</a></"
+#~ "strong> or <strong><a href=\"%s\">User center</a></strong>"
+#~ msgstr ""
+#~ "访问被拒绝。您的网站管理员已阻止您访问WordPress的后台。请返回 <strong><a "
+#~ "href=\"%s\"> 网站首页 </a></strong> 或 <strong><a href=\"%s\"> 个人中心 </"
+#~ "a></strong>。"
+
+#~ msgid "Profile"
+#~ msgstr "个人资料"
+
+#~ msgid ""
+#~ "Override registration link. <span class=\"description\">(check if you "
+#~ "have any custom registration page. Compatible with <strong>Theme My "
+#~ "Login</strong>. Changes the registration url on Meta widget and theme my "
+#~ "login plugin.)</span>"
+#~ msgstr ""
+#~ "重写注册链接。<span class=\"description\">(如果您有个注册页面请勾选. 兼容 "
+#~ "<strong>Theme My Login</strong>.改变注册的 url 在 Meta小工具和主题我的登录"
+#~ "插件.)</span>"
+
+#~ msgid "Pack update successful."
+#~ msgstr "包更新成功"
+
+#~ msgid "Pack creation successful."
+#~ msgstr "包创造成功。"
+
+#~ msgid "price/cost of the pack"
+#~ msgstr "此包的价格/费用"
+
+#~ msgid "Pack validity"
+#~ msgstr "包的有效时间"
+
+#~ msgid ""
+#~ "How many days this pack will remain valid? Enter <strong>0</strong> for "
+#~ "unlimited."
+#~ msgstr "这个包的有效时间是多少天？输入<strong>0</strong> 则无限制。"
+
+#~ msgid "Number of Posts"
+#~ msgstr "文章数量"
+
+#~ msgid ""
+#~ "How many posts the user can list with this pack? Enter <strong>0</strong> "
+#~ "for unlimited."
+#~ msgstr "用户可以使用这个包发多少个文章？输入<strong>0</strong>则无限制"
+
+#~ msgid "Update Package"
+#~ msgstr "更新包"
+
+#~ msgid "&larr; Back"
+#~ msgstr "&larr; 返回"
+
+#~ msgid "Unlimited duration"
+#~ msgstr "无限期"
+
+#~ msgid "You can only buy the free pack once. Proceed?"
+#~ msgstr "您只能购买一次免费套餐，要继续吗？"
+
+#~ msgid "%s's Dashboard"
+#~ msgstr "%s's 的仪表盘"
+
+#~ msgid "Your new password for the account at:"
+#~ msgstr "您的账号新密码来自网站："
+
+#~ msgid "Password: %s"
+#~ msgstr "密码：%s"
+
+#~ msgid "You can now login with your new password at: "
+#~ msgstr "您现在可以使用新密码进行登录："
+
+#~ msgid "Click here to complete the payment on %s"
+#~ msgstr "单击这里完成支付在 %s"
+
+#~ msgid "User doesn't exists"
+#~ msgstr "用户不存在"
+
+#~ msgid "User Deleted"
+#~ msgstr "用户已删除"
+
+#~ msgid "User Added"
+#~ msgstr "用户已添加"
+
+#~ msgid "Role"
+#~ msgstr "角色"
+
+#~ msgid "<strong>ERROR</strong>: Please enter a username."
+#~ msgstr "<strong>错误</strong>: 请输入一个用户名。"
+
+#~ msgid ""
+#~ "<strong>ERROR</strong>: This username is invalid because it uses illegal "
+#~ "characters. Please enter a valid username."
+#~ msgstr ""
+#~ "<strong>错误</strong>: 这个用户名使用非法字符无效。请输入一个有效的用户"
+#~ "名。"
+
+#~ msgid ""
+#~ "<strong>ERROR</strong>: This username is already registered, please "
+#~ "choose another one."
+#~ msgstr "<strong>错误</strong>: 这个用户名已被注册，请选择另一个"
+
+#~ msgid "<strong>ERROR</strong>: Please type your e-mail address."
+#~ msgstr "<strong>错误</strong>: 请输入您的e-mail 地址"
+
+#~ msgid "<strong>ERROR</strong>: The email address isn&#8217;t correct."
+#~ msgstr "<strong>错误</strong>: email 地址不正确"
+
+#~ msgid ""
+#~ "<strong>ERROR</strong>: This email is already registered, please choose "
+#~ "another one."
+#~ msgstr "<strong>错误</strong>: email 已被注册，请选择其他的"
+
+#~ msgid ""
+#~ "<strong>ERROR</strong>: Couldn&#8217;t register you... please contact the "
+#~ "<a href=\"mailto:%s\">webmaster</a> !"
+#~ msgstr ""
+#~ "<strong>错误</strong>: 不能注册，请联系<a href=\"mailto:%s\">站长</a> !"
+
+#~ msgid "投稿表单"
+#~ msgstr "投稿表单"
+
+#~ msgid "注册表单"
+#~ msgstr "注册表单"
+
+#~ msgid ""
+#~ "Sorry, your account login now in other places, for safety reasons, please "
+#~ "change your password to login again."
+#~ msgstr ""
+#~ "对不起，您的账号目前已在其他地方登录，为了安全起见，请修改密码后重新登录。"
+
+#~ msgid ""
+#~ "<div class=\"error\">This page is restricted. Please login to view this "
+#~ "page.</div>"
+#~ msgstr ""
+#~ "<div class=\"error\">该页面只允许已登录用户访问，请登录/注册后访问。</div>"
+
+#~ msgid ""
+#~ "Access Denied. Your site administrator has blocked your access to the "
+#~ "WordPress back-office."
+#~ msgstr "访问被拒绝。您的网站管理员已阻止您访问WordPress的后台。"

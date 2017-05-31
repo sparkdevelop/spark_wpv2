@@ -16,6 +16,9 @@ $current_user = wp_get_current_user();
 $post_id = get_the_ID();
 $author_id=get_post($post_id)->post_author;
 $author_name=get_the_author_meta('user_login',$author_id);
+
+//相关知识
+$related_wiki = showProWiki(get_the_ID());
 ?>
 <?php
 //获取当前用户用户名
@@ -25,13 +28,6 @@ $current_user->user_login;
 $admin_url=admin_url( 'admin-ajax.php' );
 ?>
 <script>
-    function setCSS(flag) {
-        if(flag == 1){  //未收藏
-            addFavorite();
-        }else{
-            cancelFavorite(flag);
-        }
-    }
     function addFavorite() {
         var data={
             action:'addFavorite',
@@ -47,9 +43,6 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 var html = "<a onclick=\"setCSS(0)\" class=\"btn btn-default\" id=\"btn-add-favorite\">"+
                     "<span class=\"glyphicon glyphicon-star\"></span>已收藏"+"</a>";
                 $("#addFavorite").html(html);
-//                $("#btn-add-favorite").css({"color":"white",
-//                    "background-color": "#fe642d",
-//                    "border-color": "transparent"});
             },
             error:function () {
                 alert("收藏失败");
@@ -71,10 +64,6 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 var html = "<a onclick=\"setCSS(1)\" class=\"btn btn-default\" id=\"btn-add-favorite\">"+
                     "<span class=\"glyphicon glyphicon-star-empty\"></span>收藏"+"</a>";
                 $("#addFavorite").html(html);
-                //更改样式
-//                $("#btn-add-favorite").css({ "color":"#fe642d",
-//                    "background-color": "transparent",
-//                    "border-color": "#fe642d"});
             },
             error:function () {
                 alert("error");
@@ -270,10 +259,6 @@ $admin_url=admin_url( 'admin-ajax.php' );
             </div>
 
 
-            <?php
-            $related_wiki = showProWiki(get_the_ID());
-            ?>
-
             <div class="related_wikis">
                 <div class="sidebar_list_header">
                     <p>相关知识</p>
@@ -314,26 +299,6 @@ $admin_url=admin_url( 'admin-ajax.php' );
                     </ul>
                 </div>
             </div>
-
-            <!--                --><?php
-            //                $current_url = curPageURL();
-            //                $url_array=parse_url($current_url);
-            //                $current_page_id=explode("=",$url_array['query'])[1];
-            //                ?>
-            <!--                --><?php //if(is_user_logged_in()){ ?>
-            <!--                    <div class="sidebar_button" id="ask_button">-->
-            <!--                        --><?php //session_start();
-            //                            $_SESSION['post_id'] = $current_page_id;
-            //                            $_SESSION['post_type'] = get_post_type($current_page_id);?>
-            <!--                        <a href="--><?php //echo site_url().get_page_address('ask_tiny');?><!--" style="color: white" id="ask_link">我要提问</a>-->
-            <!--                    </div>-->
-            <!--                --><?php //}else{ ?>
-            <!--                    <div class="sidebar_button" id="ask_button">-->
-            <!--                        <a href="--><?php //echo wp_login_url( get_permalink() ); ?><!--" style="color: white">我要提问</a>-->
-            <!--                    </div>-->
-            <!--                --><?php //} ?>
-
-
         </div>
         <?php //get_sidebar();?>
     </div>
@@ -380,6 +345,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
 </script>
 <script>
     var flag=false;
+
     function show_more_wiki() {
         var related_wiki=document.getElementById('related_wiki');
         var more_related_wiki = document.getElementById('more_related_wiki');

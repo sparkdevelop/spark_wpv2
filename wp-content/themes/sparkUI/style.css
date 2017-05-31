@@ -1148,3 +1148,16 @@ h4{margin-bottom: 0px;}
     line-height: 78px;
     margin-right: 25px;
 }
+
+/*没有项目或收藏的提示框样式*/
+#close-icon{
+    position: absolute;
+    display: block;
+    top: 6px;
+    right: 20px;
+    color: lightgrey;
+}
+#close-icon:hover{
+    color: #fe642d;
+    cursor: pointer;
+}
