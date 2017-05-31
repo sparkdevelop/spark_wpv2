@@ -1,1 +1,0 @@
-<b style="color: red;"><?php echo implode(LCS_EOL, $this->errors)?></b>
