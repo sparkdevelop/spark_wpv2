@@ -7,7 +7,7 @@ $jsonString = jsonGenerate($user_id);
     var myChart = echarts.init(document.getElementById('chart'));
     option = null;
     myChart.showLoading();
-    //var jsonURL = "<?=get_template_directory_uri()?>/asset/test.json";
+    //var jsonURL = "<?php//get_template_directory_uri()?>/asset/test.json";
     //$.get(jsonURL, function (data) {
 
     var jsonString = '<?=$jsonString?>';
@@ -70,6 +70,7 @@ $jsonString = jsonGenerate($user_id);
                 }
             }]
         };
+
         myChart.setOption(option);
     //});
 </script>

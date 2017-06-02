@@ -1544,7 +1544,6 @@ function jsonGenerate($user_id){
     global $wpdb;
     $nodes=array();
     $links=array();
-    $categories=array();
     $json=array();
 
     $sql = "SELECT DISTINCT action_post_id FROM wp_user_history WHERE user_id=$user_id";
@@ -1580,7 +1579,6 @@ function jsonGenerate($user_id){
     $pre_json =array("categories"=>$categories,"nodes"=>$nodes,"links"=>$links);
     array_push($json,$pre_json);
     $jsonString = json_encode($pre_json);
-    echo $jsonString;
     return $jsonString;
 }
 
