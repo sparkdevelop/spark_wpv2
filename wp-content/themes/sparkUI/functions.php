@@ -12,10 +12,12 @@ function sparkspace_scripts_with_jquery()
     wp_register_script( 'custom-script', get_template_directory_uri() . '/bootstrap/js/bootstrap.js', array( 'jquery' ) );
     wp_register_script( 'custom-script_2', get_template_directory_uri() . '/layer/layer.js', array( 'jquery' ) );
     wp_register_script( 'custom-script_3', get_template_directory_uri() . '/javascripts/function.js', array( 'jquery' ) );
+    wp_register_script( 'custom-script_4', get_template_directory_uri() . '/javascripts/echarts.js', array( 'jquery' ) );
     // For either a plugin or a theme, you can then enqueue the script:
     wp_enqueue_script( 'custom-script');
     wp_enqueue_script( 'custom-script_2');
     wp_enqueue_script( 'custom-script_3');
+    wp_enqueue_script( 'custom-script_4');
 }
 add_action( 'wp_enqueue_scripts', 'sparkspace_scripts_with_jquery' );
 
@@ -1298,8 +1300,10 @@ function writeUserTrack(){
     $user_id = $_SESSION['user_id'];
     $timestamp = $_SESSION['timestamp'];
     session_destroy();
-    $sql = "INSERT INTO wp_user_history VALUES ('',$user_id,'$user_action',$post_id,'$post_type','$timestamp')";
-    $wpdb->get_results($sql);
+    if($user_id !=0){
+        $sql = "INSERT INTO wp_user_history VALUES ('',$user_id,'$user_action',$post_id,'$post_type','$timestamp')";
+        $wpdb->get_results($sql);
+    }
 }
 
 
@@ -1358,7 +1362,7 @@ function ifFavorite($user_id,$post_id){
     }
 }
 
-//个人页面展示favorite
+//个人页面展示项目favorite
 function showFavorite($user_id){
     global $wpdb;
     $ret = array();
@@ -1370,7 +1374,7 @@ function showFavorite($user_id){
     return $ret;
 }
 
-//
+//获取用户收藏的wiki
 function get_user_favorite_wiki(){
     global $wpdb;
     $wikis = array();
@@ -1525,6 +1529,62 @@ function Spark_comments_popup_link($zero = false, $one = false, $more = false, $
         echo "&nbsp".$number;  //显示数字
         echo '</a>';
 }
+
+//知识图谱json生成
+function jsonGenerate($user_id){
+    //echo "function";
+//    exec("python wp-content/themes/sparkUI/algorithm/sortWikiEntry.py",$output,$ret);
+//    print_r($output);
+//    if($ret==0){
+//        echo "success";
+//    }else{
+//        echo "error";
+//    }
+    //生成知识图谱json串 格式按照test.json  只要 nodes:name,value link
+    global $wpdb;
+    $nodes=array();
+    $links=array();
+    $categories=array();
+    $json=array();
+
+    $sql = "SELECT DISTINCT action_post_id FROM wp_user_history WHERE user_id=$user_id";
+    $results = $wpdb->get_results($sql,"ARRAY_A");
+    foreach ($results as $key => $result){
+        //nodes数据
+        $sql_1 = "SELECT COUNT(*) FROM wp_user_history WHERE action_post_id=".$result['action_post_id'];
+        $value = $wpdb->get_var($sql_1,0);  //获取每个节点的value
+        $sql_2 = "SELECT post_title,post_type FROM $wpdb->posts WHERE ID=".$result['action_post_id'];
+        $temp = $wpdb->get_results($sql_2,"ARRAY_A");  //获取每个节点的name和类型
+
+        //node中的category数据
+        if($temp[0]["post_type"] =="post"){
+            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>0);
+        }elseif($temp[0]["post_type"]=="dwqa-question"){
+            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>1);
+        }elseif($temp[0]["post_type"] =="yada_wiki"){
+            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>2);
+        }else{
+            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>3);
+        }
+        array_push($nodes,$pre_node);
+        //links数据
+        $pre_links = array("target"=>$key+1,"source"=>$key);
+        array_push($links,$pre_links);
+    }
+    $categories = array(
+                    array("name"=>"wiki"),
+                    array("name"=>"问答"),
+                    array("name"=>"项目"),
+                    array("name"=>"其他")
+                );
+    $pre_json =array("categories"=>$categories,"nodes"=>$nodes,"links"=>$links);
+    array_push($json,$pre_json);
+    $jsonString = json_encode($pre_json);
+    echo $jsonString;
+    return $jsonString;
+}
+
+
 
 ////判断用户是否有收藏
 //function hasFavorite($user_id){

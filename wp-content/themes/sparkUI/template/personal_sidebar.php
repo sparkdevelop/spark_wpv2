@@ -135,5 +135,10 @@ $admin_url=admin_url('admin-ajax.php');
             <img src="<?php bloginfo("template_url")?>/img/profile.png">
             <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'profile'),remove_query_arg(array('paged','filter'))))?>">个人资料</a></span>
         </li>
+        <li id="knowledge">
+            <img src="<?php bloginfo("template_url")?>/img/qa.png">
+            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'knowledge'),remove_query_arg(array('paged','filter'))))?>">我的知识</a></span>
+        </li>
+
     </ul>
 </div>

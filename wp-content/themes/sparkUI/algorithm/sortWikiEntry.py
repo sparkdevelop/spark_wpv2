@@ -24,6 +24,7 @@ count=0
 delete=0
 maxEntry=0
 no=0
+
 for postID in postDict.keys():
 	postTitle=postDict[postID]
 	cursor.execute("select post_content from wp_posts where ID="+str(postID)+";")
@@ -86,4 +87,6 @@ for postID in postDict.keys():
 		sortedTf_idfList=sortedTf_idfList.tolist()
 		sortedTf_idfList.reverse()
 		postIDToSortedWikiEntryIDDict[postID]=sortedWikiEntryIDList
-json.dump(postIDToSortedWikiEntryIDDict,open("postIDToSortedWikiEntryIDDict.json","w"))
+jsonString = json.dumps(postIDToSortedWikiEntryIDDict, ensure_ascii=False).encode('utf8')
+print jsonString
+#json.dump(postIDToSortedWikiEntryIDDict,open("postIDToSortedWikiEntryIDDict.json","w"))
