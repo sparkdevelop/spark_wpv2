@@ -161,7 +161,110 @@
 <!--        <p>QQ     WECHAT     WEIBO</p>-->
 <!--    </div>-->
 
-
+<!--评分-->
+    <?php
+    $post_id= $post->ID;
+    $current_user = wp_get_current_user();
+    $score = calScore($post_id);
+    $starScore = round($score['score'])-1;
+    $hasScore = hasScore($current_user->ID,$post_id);
+    ?>
+    <script>
+        window.onload = function () {
+            var flag;
+            flag =<?=hasScore($current_user->ID,$post_id);?>;
+            var score = document.getElementById('score');
+            var oUl = document.getElementById('stars');
+            var aLi = oUl.getElementsByTagName('li');
+            var arr = ['毫无帮助','内容一般', '有点帮助','学到很多','强力推荐'];
+            if(flag==true){ //未打分
+                for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].index = i;
+                    markOut(<?=$starScore?>);   //初始显示
+                    aLi[i].onclick = function () {
+                        markOver(this.index);  //this指的是aLi[i]
+                        oUl.index = this.index;
+                        var data = {
+                            action: 'addScore',
+                            userID: '<?=$current_user->ID?>',
+                            postID: '<?=$post_id?>',
+                            score: this.index + 1
+                        };
+                        $.ajax({
+                            type: "POST",
+                            url: "<?php echo $admin_url;?>",
+                            data: data,
+                            success: function () {
+                                layer.msg('打分成功', {time: 2000, icon: 1},function () {
+                                    location.reload();
+                                });  //layer.msg(content, {options}, end) - 提示框
+                            },
+                            error: function () {
+                                alert("Oops,打分失败了T^T");
+                            }
+                        });
+                    };
+                    aLi[i].onmouseover = function () {
+                        for (var i = 0; i < aLi.length; i++) {
+                            aLi[i].style.color = '#ccc';
+                        }
+                        markOver(this.index);
+                    };
+                    aLi[i].onmouseout = function () {
+                        for (var i = 0; i <= this.index; i++) {
+                            aLi[i].style.color = '#ccc';
+                        }
+                        markOut(<?=$starScore?>);
+                    };
+                }
+            }else{
+                for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].index = i;
+                    markOut(<?=$starScore?>);   //初始显示
+                    aLi[i].onclick = function (){
+                        layer.msg("你已经打过分了",{time:2000,icon:2});
+                    }
+                }
+            }
+            function markOver(index) {
+                for (var i = 0; i <= index; i++) {
+                    aLi[i].style.color = index < 2 ? 'gray' : '#fe642d';
+                }
+                score.innerHTML = arr[index] ? arr[index] :'<?=$score['score']?>';
+            }
+            function markOut(index) {
+                for (var i = 0; i <= index; i++) {
+                    aLi[i].style.color = index < 2 ? 'gray' : '#fe642d';
+                }
+                var html = arr[index]+"<span>~<?=$score['num']?>人评分</span>";
+                if(index==-1){
+                    html = "<span><?=$score['num']?>人评分</span>";
+                }
+                score.innerHTML =html;
+            }
+        }
+    </script>
+    <div id="proScore">
+        <div class="sidebar_list_header">
+            <p>wiki评分</p>
+        </div>
+        <div style="height: 2px;background-color: lightgray"></div>
+        <div id="starsdiv">
+            <div id="starsdivleft">
+                <ul class="stars" id="stars">
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                </ul>
+                <div id="score">
+                    <?=$score['score'];?>
+                    <span>&nbsp;<?=$score['num']?>人评分</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 <!--    相关项目-->

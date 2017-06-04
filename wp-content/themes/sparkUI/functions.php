@@ -11,9 +11,13 @@ function sparkspace_scripts_with_jquery()
     // Register the script like this for a theme:
     wp_register_script( 'custom-script', get_template_directory_uri() . '/bootstrap/js/bootstrap.js', array( 'jquery' ) );
     wp_register_script( 'custom-script_2', get_template_directory_uri() . '/layer/layer.js', array( 'jquery' ) );
+    wp_register_script( 'custom-script_3', get_template_directory_uri() . '/javascripts/function.js', array( 'jquery' ) );
+    wp_register_script( 'custom-script_4', get_template_directory_uri() . '/javascripts/echarts.js', array( 'jquery' ) );
     // For either a plugin or a theme, you can then enqueue the script:
     wp_enqueue_script( 'custom-script');
     wp_enqueue_script( 'custom-script_2');
+    wp_enqueue_script( 'custom-script_3');
+    wp_enqueue_script( 'custom-script_4');
 }
 add_action( 'wp_enqueue_scripts', 'sparkspace_scripts_with_jquery' );
 
@@ -1179,6 +1183,7 @@ function qaComeFrom($qa_id){
     return $related_info;
 }
 
+
 //返回此项目对用的所有问答  -->在项目和wiki页面的comment中显示QA
 function pwRelatedQA($pro_id){
     global $wpdb;
@@ -1295,8 +1300,10 @@ function writeUserTrack(){
     $user_id = $_SESSION['user_id'];
     $timestamp = $_SESSION['timestamp'];
     session_destroy();
-    $sql = "INSERT INTO wp_user_history VALUES ('',$user_id,'$user_action',$post_id,'$post_type','$timestamp')";
-    $wpdb->get_results($sql);
+    if($user_id !=0){
+        $sql = "INSERT INTO wp_user_history VALUES ('',$user_id,'$user_action',$post_id,'$post_type','$timestamp')";
+        $wpdb->get_results($sql);
+    }
 }
 
 
@@ -1338,13 +1345,12 @@ function cancelFavorite(){
     $post_id = $_POST['postID'];
     $sql = "DELETE FROM wp_favorite WHERE user_id=$user_id AND favorite_post_id=$post_id";
     $wpdb->query($sql);
-
     die();
 }
 add_action('wp_ajax_cancelFavorite', 'cancelFavorite');
 add_action('wp_ajax_nopriv_cancelFavorite', 'cancelFavorite');
 
-//判断是否已收藏
+//判断该项目是否已被该用户收藏
 function ifFavorite($user_id,$post_id){
     global $wpdb;
     $sql = "SELECT * FROM wp_favorite WHERE user_id=$user_id AND favorite_post_id=$post_id";
@@ -1356,6 +1362,239 @@ function ifFavorite($user_id,$post_id){
     }
 }
 
+//个人页面展示项目favorite
+function showFavorite($user_id){
+    global $wpdb;
+    $ret = array();
+    $sql = "SELECT favorite_post_id FROM wp_favorite WHERE user_id=$user_id AND favorite_post_type='post'";
+    $results = $wpdb->get_results($sql,"ARRAY_A");
+    foreach($results as $result){
+        array_push($ret,$result['favorite_post_id']);
+    }
+    return $ret;
+}
+
+//获取用户收藏的wiki
+function get_user_favorite_wiki(){
+    global $wpdb;
+    $wikis = array();
+    $post_status = $_POST['get_wiki_type'];
+    $user_id = $_POST['user_ID'];
+    if($post_status == "publish") {
+        $sql = "SELECT favorite_post_id FROM wp_favorite WHERE user_id=$user_id AND favorite_post_type='yada_wiki'";
+        $results = $wpdb->get_results($sql,'ARRAY_A');
+        foreach ($results as $result) {
+            $sql_1="select * from $wpdb->posts where ID=".$result['favorite_post_id'];
+            $favorite_wikis_result = $wpdb->get_results($sql_1);
+            foreach ($favorite_wikis_result as $item) {
+                $wikis[] = $item;
+            }
+        }
+    }
+    else{
+        echo "other";
+    }
+    $data = array(
+        "wikis" => $wikis
+    );
+    echo json_encode($data);
+    die();
+}
+add_action('wp_ajax_get_user_favorite_wiki', 'get_user_favorite_wiki');
+add_action('wp_ajax_nopriv_get_user_favorite_wiki', 'get_user_favorite_wiki');
+
+
+//建立用户打分表
+function score_table_install () {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "score";  //获取表前缀，并设置新表的名称
+    if($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+          score int NOT NULL,
+		  score_post_id int NOT NULL,
+		  score_post_type varchar(20) NOT NULL,
+		  score_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+//添加用户打分
+function addScore(){
+    global $wpdb;
+    $user_id = $_POST['userID'];
+    $post_id = $_POST['postID'];
+    $score = $_POST['score'];
+    $post_type = get_post_type($post_id);
+    echo $user_id."<br>";
+    echo $post_id."<br>";
+    echo $post_type."<br>";
+    echo $score."<br>";
+    $time = date("Y-m-d H:i:s",time()+8*3600);
+    $sql = "INSERT INTO wp_score VALUES ('',$user_id,$score,$post_id,'$post_type','$time')";
+    echo $sql;
+    $wpdb->get_results($sql);
+    die();
+}
+add_action('wp_ajax_addScore', 'addScore');
+add_action('wp_ajax_nopriv_addScore', 'addScore');
+
+//计算当前项目的评分
+function calScore($post_id){
+    global $wpdb;
+    $sum = 0;
+    $sql = "SELECT score FROM wp_score WHERE score_post_id = $post_id";
+    $results = $wpdb->get_results($sql,"ARRAY_A");
+    if(sizeof($results)==0){ $scoreNum = 1;}
+    else{ $scoreNum =sizeof($results); }
+    foreach($results as $result){
+        $sum += $result['score'];
+    }
+    $scoreAverage = round($sum/$scoreNum,1);
+    $ret = array('score'=>$scoreAverage,'num'=>sizeof($results));
+    return $ret;
+}
+
+//判断用户是否已经评分
+function hasScore($user_id,$post_id){
+    global $wpdb;
+    $sql = "SELECT * FROM wp_score WHERE user_id=$user_id AND score_post_id = $post_id";
+    $col = $wpdb->query($sql);
+    if($col == 0){ //未打分
+        return "true";
+    }else{
+        return "false";
+    }
+}
+
+//收藏项目展示页 评论部分
+function Spark_comments_popup_link($zero = false, $one = false, $more = false, $css_class = '', $none = false,$post_id){
+        $id = $post_id;
+        $title = get_the_title($post_id);
+        $number = get_comments_number( $id );
+
+        if ( false === $zero ) {
+            /* translators: %s: post title */
+            $zero = sprintf( __( 'No Comments<span class="screen-reader-text"> on %s</span>' ), $title );
+        }
+
+        if ( false === $one ) {
+            /* translators: %s: post title */
+            $one = sprintf( __( '1 Comment<span class="screen-reader-text"> on %s</span>' ), $title );
+        }
+
+        if ( false === $more ) {
+            /* translators: 1: Number of comments 2: post title */
+            $more = _n( '%1$s Comment<span class="screen-reader-text"> on %2$s</span>', '%1$s Comments<span class="screen-reader-text"> on %2$s</span>', $number );
+            $more = sprintf( $more, number_format_i18n( $number ), $title );
+        }
+
+        if ( false === $none ) {
+            /* translators: %s: post title */
+            $none = sprintf( __( 'Comments Off<span class="screen-reader-text"> on %s</span>' ), $title );
+        }
+
+        if ( 0 == $number && !comments_open($post_id) && !pings_open($post_id) ) {
+            echo '<span' . ((!empty($css_class)) ? ' class="' . esc_attr( $css_class ) . '"' : '') . '>' . $none . '</span>';
+            return;
+        }
+
+        if ( post_password_required() ) {
+            _e( 'Enter your password to view comments.' );
+            return;
+        }
+
+        echo '<a href="';   //链接
+            $respond_link = the_permalink($post_id) . '#comments';
+            echo apply_filters( 'respond_link', $respond_link, $id );
+        echo '"';
+
+        if ( !empty( $css_class ) ) {   //分类
+            echo ' class="'.$css_class.'" ';
+        }
+
+        $attributes = '';
+        /**
+         * Filters the comments link attributes for display.
+         *
+         * @since 2.5.0
+         *
+         * @param string $attributes The comments link attributes. Default empty.
+         */
+        echo apply_filters( 'comments_popup_link_attributes', $attributes );
+        echo '>';
+        echo "&nbsp".$number;  //显示数字
+        echo '</a>';
+}
+
+//知识图谱json生成
+function jsonGenerate($user_id){
+    //echo "function";
+//    exec("python wp-content/themes/sparkUI/algorithm/sortWikiEntry.py",$output,$ret);
+//    print_r($output);
+//    if($ret==0){
+//        echo "success";
+//    }else{
+//        echo "error";
+//    }
+    //生成知识图谱json串 格式按照test.json  只要 nodes:name,value link
+    global $wpdb;
+    $nodes=array();
+    $links=array();
+    $json=array();
+
+    $sql = "SELECT DISTINCT action_post_id FROM wp_user_history WHERE user_id=$user_id";
+    $results = $wpdb->get_results($sql,"ARRAY_A");
+    foreach ($results as $key => $result){
+        //nodes数据
+        $sql_1 = "SELECT COUNT(*) FROM wp_user_history WHERE action_post_id=".$result['action_post_id'];
+        $value = $wpdb->get_var($sql_1,0);  //获取每个节点的value
+        $sql_2 = "SELECT post_title,post_type FROM $wpdb->posts WHERE ID=".$result['action_post_id'];
+        $temp = $wpdb->get_results($sql_2,"ARRAY_A");  //获取每个节点的name和类型
+
+        //node中的category数据
+        if($temp[0]["post_type"] =="post"){
+            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>0);
+        }elseif($temp[0]["post_type"]=="dwqa-question"){
+            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>1);
+        }elseif($temp[0]["post_type"] =="yada_wiki"){
+            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>2);
+        }else{
+            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>3);
+        }
+        array_push($nodes,$pre_node);
+        //links数据
+        $pre_links = array("target"=>$key+1,"source"=>$key);
+        array_push($links,$pre_links);
+    }
+    $categories = array(
+                    array("name"=>"wiki"),
+                    array("name"=>"问答"),
+                    array("name"=>"项目"),
+                    array("name"=>"其他")
+                );
+    $pre_json =array("categories"=>$categories,"nodes"=>$nodes,"links"=>$links);
+    array_push($json,$pre_json);
+    $jsonString = json_encode($pre_json);
+    return $jsonString;
+}
+
+
+
+////判断用户是否有收藏
+//function hasFavorite($user_id){
+//    global $wpdb;
+//    $sql = "SELECT * FROM wp_favorite WHERE user_id=$user_id AND favorite_post_type='post'";
+//    $col = $wpdb->query($sql);
+//    if($col==0){    //未收藏
+//        return false;
+//    }else{ //已收藏
+//        return true;
+//    }
+//}
 //原始算法
 ////写入pro-->wiki关系。-->在pro页面展示wiki
 //function writeProWiki($pro_post_id){
