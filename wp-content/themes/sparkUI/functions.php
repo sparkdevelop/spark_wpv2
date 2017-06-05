@@ -1540,7 +1540,7 @@ function jsonGenerate($user_id){
 //    }else{
 //        echo "error";
 //    }
-    //生成知识图谱json串 格式按照test.json  只要 nodes:name,value link
+    //生成知识图谱json串 格式按照test.json  只要 nodes:name,value,url,category  link category
     global $wpdb;
     $nodes=array();
     $links=array();
@@ -1557,13 +1557,13 @@ function jsonGenerate($user_id){
 
         //node中的category数据
         if($temp[0]["post_type"] =="post"){
-            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>0);
+            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>0,"url"=>get_permalink($result['action_post_id']));
         }elseif($temp[0]["post_type"]=="dwqa-question"){
-            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>1);
+            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>1,"url"=>get_permalink($result['action_post_id']));
         }elseif($temp[0]["post_type"] =="yada_wiki"){
-            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>2);
+            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>2,"url"=>get_permalink($result['action_post_id']));
         }else{
-            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>3);
+            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>3,"url"=>get_permalink($result['action_post_id']));
         }
         array_push($nodes,$pre_node);
         //links数据
@@ -1571,9 +1571,9 @@ function jsonGenerate($user_id){
         array_push($links,$pre_links);
     }
     $categories = array(
-                    array("name"=>"wiki"),
-                    array("name"=>"问答"),
                     array("name"=>"项目"),
+                    array("name"=>"问答"),
+                    array("name"=>"wiki"),
                     array("name"=>"其他")
                 );
     $pre_json =array("categories"=>$categories,"nodes"=>$nodes,"links"=>$links);
@@ -1582,7 +1582,26 @@ function jsonGenerate($user_id){
     return $jsonString;
 }
 
+//项目知识图谱生成
+function proJSONGenerte($user_id){
+    $jsonString = jsonGenerate($user_id);
+    $jsonArray = json_decode($jsonString,true);
+    $nodes = array();
+    $links = array();
+    $categories = $jsonArray['categories'];
+    foreach ($jsonArray['nodes'] as $key =>$value){
+        if($value['category']==0){
+            $pre_node = array("name"=>$value["name"],"value"=>$value['value'],"category"=>0,"url"=>$value['url']);
+            array_push($nodes,$pre_node);
+            $pre_link = $jsonArray['links'][$key];
+            array_push($links,$pre_link);
+        }
+    }
+    $pre_json =array("categories"=>$categories,"nodes"=>$nodes,"links"=>$links);
+    $proJsonString = json_encode($pre_json);
 
+    return $proJsonString;
+}
 
 ////判断用户是否有收藏
 //function hasFavorite($user_id){
