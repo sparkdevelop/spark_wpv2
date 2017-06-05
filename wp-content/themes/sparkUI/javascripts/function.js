@@ -70,14 +70,11 @@ function myKnowledgeChart(jsonstring) {
     var myChart = echarts.init(document.getElementById('chart'));
     option = null;
     myChart.showLoading();
-//var jsonURL = "<?php//get_template_directory_uri()?>/asset/test.json";
-//$.get(jsonURL, function (data) {
-
-    var jsonString = jsonstring;
     myChart.hideLoading();
 //处理json数据
-    var data = JSON.parse(jsonString);
-    data.nodes.forEach(function (node) {
+    var wholedata = JSON.parse(jsonstring);
+    console.log(wholedata);
+    wholedata.nodes.forEach(function (node) {
         if(node.value>100){
             node.symbolSize = node.value/15;
         }else if(node.value<10){
@@ -91,18 +88,63 @@ function myKnowledgeChart(jsonstring) {
             }
         }
     });
-    option = {
+    // option =
+    // {
+    //     title: {
+    //         text: 'My Knowledge'
+    //         //top: 'bottom',
+    //         //left: 'right'
+    //     },
+    //     tooltip: {},
+    //     legend: [
+    //         {
+    //         data: wholedata.categories.map(function(a) {
+    //             return a.name;
+    //         })
+    //     }
+    //     ],
+    //     series: [{
+    //         type: 'graph',      //关系图
+    //         //name: 'My Knowledge',  //tooltip显示
+    //         layout: 'force',  //布局怎么显示,
+    //         animationDuration: 1500,
+    //         animationEasingUpdate: 'quinticInOut',
+    //         draggable: true, //节点可拖拽
+    //         roam: 'move',     //鼠标缩放和平移漫游
+    //         focusNodeAdjacency: 'true',  //是否在鼠标移到节点上的时候突出显示节点以及节点的边和邻接节点。
+    //         smybol: 'circle',          //节点的形状'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
+    //         data: wholedata.nodes,
+    //         links: wholedata.links,
+    //         categories:wholedata.categories,
+    //         force: {
+    //             edgeLength: 100,//连线的长度
+    //             repulsion: 100  //子节点之间的间距
+    //         },
+    //         label: {
+    //             normal: {
+    //                 position: 'right',
+    //                 formatter: '{b}'
+    //             }
+    //         },
+    //         lineStyle: {
+    //             normal: {
+    //                 curveness: 0.3
+    //             }
+    //         }
+    //     }]
+    // };
+    myChart.setOption({
         title: {
             text: 'My Knowledge'
-            //top: 'bottom',
-            //left: 'right'
         },
         tooltip: {},
-        legend: [{
-            data: data.categories.map(function(a) {
-                return a.name;
-            })
-        }],
+        legend: [
+            {
+                data: wholedata.categories.map(function(a) {
+                    return a.name;
+                })
+            }
+        ],
         series: [{
             type: 'graph',      //关系图
             //name: 'My Knowledge',  //tooltip显示
@@ -113,9 +155,9 @@ function myKnowledgeChart(jsonstring) {
             roam: 'move',     //鼠标缩放和平移漫游
             focusNodeAdjacency: 'true',  //是否在鼠标移到节点上的时候突出显示节点以及节点的边和邻接节点。
             smybol: 'circle',          //节点的形状'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
-            data: data.nodes,
-            links: data.links,
-            categories:data.categories,
+            data: wholedata.nodes,
+            links: wholedata.links,
+            categories:wholedata.categories,
             force: {
                 edgeLength: 100,//连线的长度
                 repulsion: 100  //子节点之间的间距
@@ -132,12 +174,11 @@ function myKnowledgeChart(jsonstring) {
                 }
             }
         }]
-    };
-    myChart.setOption(option);
+    });
+    //myChart.setOption(option);
 
-    myChart.on('dbclick',function (params) {
+    myChart.on('dblclick',function (params) {
         var data = params.data;
-        console.log(data);
         //判断节点的相关数据是否正确
         if (data != null && data != undefined) {
             if (data.url != null && data.url != undefined) {
@@ -149,8 +190,8 @@ function myKnowledgeChart(jsonstring) {
 }
 
 //画出项目页面的知识图谱
-function proChart(jsonstring) {
-    var myChart = echarts.init(document.getElementById('prochart'));
+function sideChart(jsonstring) {
+    var myChart = echarts.init(document.getElementById('sidechart'));
     option = null;
     myChart.showLoading();
     var jsonString = jsonstring;
@@ -192,17 +233,15 @@ function proChart(jsonstring) {
             layout: 'force',  //布局怎么显示,
             animationDuration: 1500,
             animationEasingUpdate: 'quinticInOut',
-            draggable: true,
+            draggable: false,
             roam: 'move',     //是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
             focusNodeAdjacency: 'true',  //是否在鼠标移到节点上的时候突出显示节点以及节点的边和邻接节点。
             smybol: 'circle',          //节点的形状'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
             data: jsondata.nodes,
             links: jsondata.links,
-            //categories:jsondata.categories,
-            //categories:jsondata.categories,
             force: {
-                edgeLength: 100,//连线的长度
-                repulsion: 100  //子节点之间的间距
+                edgeLength: 80,//连线的长度
+                repulsion: 80  //子节点之间的间距
             },
             label: {
                 normal: {
@@ -220,7 +259,7 @@ function proChart(jsonstring) {
 
     myChart.setOption(option);
 
-    myChart.on('dbclick', function (params) {
+    myChart.on('dblclick', function (params) {
         var data = params.data;
         //判断节点的相关数据是否正确
         if (data != null && data != undefined) {

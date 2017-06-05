@@ -248,18 +248,16 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 </div>
             </div>
 
-            <?php
-            $projsonString = proJSONGenerte($current_user->ID);
-            ?>
+            <?php $projsonString = sideJSONGenerte($current_user->ID,"post"); ?>
             <div class="proknowledge">
                 <div class="sidebar_list_header">
                     <p>学习路径</p>
                 </div>
                 <div style="height: 2px;background-color: lightgray"></div>
-                <div id="prochart" style="width:300px;height: 300px"></div>
+                <div id="sidechart" style="width:350px;height: 350px"></div>
             </div>
             <script>
-                proChart('<?=$projsonString?>');
+                sideChart('<?=$projsonString?>');
             </script>
 
 

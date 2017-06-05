@@ -1549,26 +1549,28 @@ function jsonGenerate($user_id){
     $sql = "SELECT DISTINCT action_post_id FROM wp_user_history WHERE user_id=$user_id";
     $results = $wpdb->get_results($sql,"ARRAY_A");
     foreach ($results as $key => $result){
-        //nodes数据
-        $sql_1 = "SELECT COUNT(*) FROM wp_user_history WHERE action_post_id=".$result['action_post_id'];
-        $value = $wpdb->get_var($sql_1,0);  //获取每个节点的value
-        $sql_2 = "SELECT post_title,post_type FROM $wpdb->posts WHERE ID=".$result['action_post_id'];
-        $temp = $wpdb->get_results($sql_2,"ARRAY_A");  //获取每个节点的name和类型
+        if($result['action_post_id']!=0){
+            //nodes数据
+            $sql_1 = "SELECT COUNT(*) FROM wp_user_history WHERE action_post_id=".$result['action_post_id'];
+            $value = $wpdb->get_var($sql_1,0);  //获取每个节点的value
+            $sql_2 = "SELECT post_title,post_type FROM $wpdb->posts WHERE ID=".$result['action_post_id'];
+            $temp = $wpdb->get_results($sql_2,"ARRAY_A");  //获取每个节点的name和类型
 
-        //node中的category数据
-        if($temp[0]["post_type"] =="post"){
-            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>0,"url"=>get_permalink($result['action_post_id']));
-        }elseif($temp[0]["post_type"]=="dwqa-question"){
-            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>1,"url"=>get_permalink($result['action_post_id']));
-        }elseif($temp[0]["post_type"] =="yada_wiki"){
-            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>2,"url"=>get_permalink($result['action_post_id']));
-        }else{
-            $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>3,"url"=>get_permalink($result['action_post_id']));
+            //node中的category数据
+            if($temp[0]["post_type"] =="post"){
+                $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>0,"url"=>get_permalink($result['action_post_id']));
+            }elseif($temp[0]["post_type"]=="dwqa-question"){
+                $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>1,"url"=>get_permalink($result['action_post_id']));
+            }elseif($temp[0]["post_type"] =="yada_wiki"){
+                $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>2,"url"=>get_permalink($result['action_post_id']));
+            }else{
+                $pre_node = array("name"=>$temp[0]["post_title"],"value"=>$value,"category"=>3,"url"=>get_permalink($result['action_post_id']));
+            }
+            array_push($nodes,$pre_node);
+            //links数据
+            $pre_links = array("target"=>$key+1,"source"=>$key);
+            array_push($links,$pre_links);
         }
-        array_push($nodes,$pre_node);
-        //links数据
-        $pre_links = array("target"=>$key+1,"source"=>$key);
-        array_push($links,$pre_links);
     }
     $categories = array(
                     array("name"=>"项目"),
@@ -1583,15 +1585,24 @@ function jsonGenerate($user_id){
 }
 
 //项目知识图谱生成
-function proJSONGenerte($user_id){
+function sideJSONGenerte($user_id,$post_type){
+    if($post_type=="post"){
+        $cat_id = 0;
+    }elseif ($post_type =="qa"){
+        $cat_id = 1;
+    }elseif ($post_type =="yada_wiki"){
+        $cat_id = 2;
+    }else{
+        $cat_id = 3;
+    }
     $jsonString = jsonGenerate($user_id);
     $jsonArray = json_decode($jsonString,true);
     $nodes = array();
     $links = array();
     $categories = $jsonArray['categories'];
     foreach ($jsonArray['nodes'] as $key =>$value){
-        if($value['category']==0){
-            $pre_node = array("name"=>$value["name"],"value"=>$value['value'],"category"=>0,"url"=>$value['url']);
+        if($value['category']==$cat_id){
+            $pre_node = array("name"=>$value["name"],"value"=>$value['value'],"category"=>$cat_id,"url"=>$value['url']);
             array_push($nodes,$pre_node);
             $pre_link = $jsonArray['links'][$key];
             array_push($links,$pre_link);
@@ -1599,7 +1610,6 @@ function proJSONGenerte($user_id){
     }
     $pre_json =array("categories"=>$categories,"nodes"=>$nodes,"links"=>$links);
     $proJsonString = json_encode($pre_json);
-
     return $proJsonString;
 }
 
