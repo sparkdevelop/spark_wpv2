@@ -1613,6 +1613,78 @@ function sideJSONGenerte($user_id,$post_type){
     return $proJsonString;
 }
 
+//wiki和项目内容处理 去标签化
+function removeHTMLLabel($post_id){
+    global $wpdb;
+    $sql = "select post_content from $wpdb->posts WHERE ID= $post_id";
+    $result = $wpdb->get_var($sql,0);
+    return strip_tags($result);
+}
+
+//出路wiki和项目内容
+function keywordHighlight(){
+    //请求api后用
+    $phrase = strip_tags(get_the_content());  //去掉标签
+    $phrase = preg_replace("/\s*/","",$phrase);  //去掉空格
+    $phrase = mb_substr($phrase,0,700,"utf-8");
+    //echo $phrase;
+
+    $url = 'http://ebs.ckcest.cn/kb/elxml?apikey=RHizNjRR&phrase='.$phrase;
+    $returnXML = file_get_contents($url);
+    if(xml_parser($returnXML)==true){
+        $xml = simplexml_load_string($returnXML); //创建 SimpleXML对象 读字符串法
+        $new_content = get_the_content();
+        foreach ($xml->ENTITY->ITEM as $value){
+            $keyword = $value->NAME;    //所有关键词的名字
+            $abstract = preg_replace("/\s*/","",(string)$value->ABSTRACT->ITEM);  //去掉所有空格
+            if($abstract!=""){          //如果关键词有摘要
+                $insteadString = "<a id=layer-".$keyword.'>'.$keyword.'</a>'; //将文字替换成为链接
+                $firstPos = strpos((string)$new_content,(string)$keyword);      //获取第一次出现位置
+                $new_content = substr_replace($new_content,$insteadString,$firstPos,strlen($keyword)); //替换 
+                //$new_content = str_replace($keyword,$insteadString,$new_content,$count);
+            } ?>
+            <script>
+                $(function () {
+                    $("#layer-<?=$keyword?>").on('mouseover',function () {
+                        layer.tips("<?php echo $abstract?>", '#layer-<?=$keyword?>',
+                            {
+                                tips: [1,"black"]    //位置和颜色
+                            });
+                    })
+                })
+            </script>
+        <?php }
+    }else{
+        $new_content = get_the_content();
+    }
+    echo $new_content;
+
+//        $url = get_template_directory_uri()."/highlight.xml";
+//        $xml = simplexml_load_file($url); //创建 SimpleXML对象
+//        $new_content = get_the_content();  //初始字符串是原文内容
+//        foreach ($xml->ENTITY->ITEM as $value){
+//            $keyword = $value->NAME;    //所有关键词的名字
+//            $abstract = preg_replace("/\s*/","",(string)$value->ABSTRACT->ITEM);  //去掉所有空格
+//            if($abstract!=""){          //如果关键词有摘要
+//                $insteadString = "<a id=layer-".$keyword.'>'.$keyword.'</a>';
+//                $firstPos = strpos((string)$new_content,(string)$keyword);
+//                $new_content = substr_replace($new_content,$insteadString,$firstPos,strlen($keyword));
+//                //$new_content = str_replace($keyword,$insteadString,$new_content,$count);
+//            } ?>
+<!--        --><?php //}
+//        //$new_content = get_the_content();
+//        echo $new_content;
+}
+function xml_parser($str){
+    $xml_parser = xml_parser_create();
+    if(!xml_parse($xml_parser,$str,true)){
+        return false;
+    }else {
+        return true;
+    }
+}
+
+
 ////判断用户是否有收藏
 //function hasFavorite($user_id){
 //    global $wpdb;

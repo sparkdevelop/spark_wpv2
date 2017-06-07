@@ -94,7 +94,10 @@ $admin_url=admin_url( 'admin-ajax.php' );
                     </a>
                 </div>
                 <hr>
-                <?php the_content(); ?><hr>
+                <?php
+                //the_content();
+                keywordHighlight();
+                ?><hr>
                 <?php comments_template(); ?>
             <?php endwhile;?>
             <?php else: ?>
