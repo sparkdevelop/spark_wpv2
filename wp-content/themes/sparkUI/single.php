@@ -96,7 +96,8 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 <hr>
                 <?php
                 //the_content();
-                keywordHighlight();
+                keywordHighlight_update();
+                //keywordHighlight();
                 ?><hr>
                 <?php comments_template(); ?>
             <?php endwhile;?>
