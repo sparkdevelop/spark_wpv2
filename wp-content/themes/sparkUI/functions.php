@@ -1639,6 +1639,10 @@ function keywordHighlight(){
             $abstract = preg_replace("/\s*/","",(string)$value->ABSTRACT->ITEM);  //去掉所有空格
             if($abstract!=""){          //如果关键词有摘要
                 $insteadString = "<a id=layer-".$keyword.'>'.$keyword.'</a>'; //将文字替换成为链接
+
+                //new_content处理,
+
+
                 $firstPos = strpos((string)$new_content,(string)$keyword);      //获取第一次出现位置
                 $new_content = substr_replace($new_content,$insteadString,$firstPos,strlen($keyword)); //替换 
                 //$new_content = str_replace($keyword,$insteadString,$new_content,$count);
@@ -1683,6 +1687,100 @@ function xml_parser($str){
         return true;
     }
 }
+
+//建立用户打分表
+function xml_table_install () {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "xml";  //获取表前缀，并设置新表的名称
+    if($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          post_id int NOT NULL,
+          post_type varchar(20) NOT NULL,
+          xml_string longtext NOT NULL,
+          modified_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+function updateContentItem(){
+    //更新数据库中的xml串(暂时只有项目)
+    /* step1: 选出所有项目的id post_type和modified_time
+     * step2: 判断xml表中是否有改post_id,若有,则查看posts中的modefiedtime和xml中的modifiedtime哪个更近。
+     * step3: 若在修改后没有刷新过,则请求新的xml文件 (必要时要截取原串)
+     * step4: 将新的xml文件存入数据库
+     * step5: 在keywordHighlight()中提取xml;
+     * */
+    //step1
+    global $wpdb;
+    $sql = "SELECT ID, post_modified FROM $wpdb->posts WHERE post_type='post'";
+    $results = $wpdb->get_results($sql,'ARRAY_A');
+    //step2
+    foreach($results as $result){
+        $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$result['ID'];
+        $col = $wpdb->get_results($sql_1,"ARRAY_A");
+        print_r($result);
+        if(sizeof($col)!=0){    //xml表总是否已经有这个项目的xml,如果有
+            $flag = strtotime($col[0]["modified_time"])-strtotime($result['post_modified']);
+            if($flag<0){ // 项目内容有了新的修改 否则不做任何操作。
+
+//                $phrase = strip_tags(get_the_content($result['ID']));  //去掉标签
+//                $phrase = preg_replace("/\s*/","",$phrase);  //去掉空格
+//                $phrase = mb_substr($phrase,0,700,"utf-8");
+//                $url = 'http://ebs.ckcest.cn/kb/elxml?apikey=RHizNjRR&phrase='.$phrase;
+//                $xml_string = file_get_contents($url);
+
+                $url = get_template_directory_uri()."/highlight2.xml";
+                $xml_string = file_get_contents($url);    //字符串。
+                //以上两行要删掉。仅测试使用
+                $modified_time = date("Y-m-d H:i:s",time()+8*3600);
+                $sql_update = "update wp_xml set xml_string = '$xml_string',modified_time = '$modified_time' WHERE post_id=".$result['ID'];
+                $wpdb->get_results($sql_update);
+                echo "更新--".$result['ID']."<br>";
+            }
+        }else{//如果xml表没有这个post_id, 执行step3.  在新增项目那里可以执行这个函数。
+            echo "执行一次insert".$result['ID']."<br>";
+            insertContentItem($result['ID']);
+        }
+    }
+
+
+}
+
+//新增xml中的一行  在发布项目那里可以调用一次
+function insertContentItem($post_id){
+    global $wpdb;
+    $phrase = strip_tags(get_the_content($post_id));  //去掉标签
+    $phrase = preg_replace("/\s*/","",$phrase);  //去掉空格
+    $phrase = mb_substr($phrase,0,700,"utf-8");
+
+    $url = get_template_directory_uri()."/highlight2.xml";
+    $returnXML = file_get_contents($url);    //字符串。
+
+    //$xml = simplexml_load_file($url); //创建 SimpleXML对象
+    //$strxml = $xml;
+    //print_r($strxml);
+//    echo gettype($strxml);
+//    print_r($strxml);
+
+    //$url = 'http://ebs.ckcest.cn/kb/elxml?apikey=RHizNjRR&phrase='.$phrase;
+    //$returnXML = file_get_contents($url);
+    if(xml_parser($returnXML)==true){
+        $post_type = get_post_type($post_id);
+        $modified_time = date("Y-m-d H:i:s",time()+8*3600);
+     //   $xml = simplexml_load_string($returnXML); //创建 SimpleXML对象 读字符串法
+        $sql = "INSERT INTO wp_xml VALUES ('',$post_id,'$post_type','$returnXML','$modified_time')";
+        //$wpdb->get_results($sql);
+    }else{
+        echo "html";
+    }
+}
+
+
+
+
+
 
 
 ////判断用户是否有收藏
