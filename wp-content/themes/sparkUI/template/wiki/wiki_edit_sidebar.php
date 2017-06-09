@@ -161,7 +161,7 @@ $admin_url=admin_url('admin-ajax.php');
             ?>
         </a>
         <?php
-        foreach($_SESSION['wiki_all_categories'] as $category_term_id => $category_name) {
+        foreach($wiki_all_categorys as $category_term_id => $category_name) {
             ?>
             <a href="#" class="list-group-item mulu_item"><input name="wiki_category" type="checkbox" <?php if(in_array($category_name, $wiki_categorys)) echo "checked=\"checked\" "; ?>value="<?php echo $category_term_id; ?>">&nbsp;&nbsp;&nbsp;<?php echo $category_name; ?></a>
             <?php
@@ -192,7 +192,7 @@ $admin_url=admin_url('admin-ajax.php');
                 ?>
             </a>
             <?php
-            foreach($_SESSION['wiki_all_categories'] as $category_term_id => $category_name) {
+            foreach($wiki_all_categorys as $category_term_id => $category_name) {
                 ?>
                 <a href="#" class="list-group-item mulu_item"><input name="wiki_category" type="checkbox" <?php if(in_array($category_name, $wiki_categorys)) echo "checked=\"checked\" "; ?>value="<?php echo $category_term_id; ?>">&nbsp;&nbsp;&nbsp;<?php echo $category_name; ?></a>
                 <?php
