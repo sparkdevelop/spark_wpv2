@@ -1587,7 +1587,12 @@ function jsonGenerate_old($user_id){
 //通过python生成知识图谱底图
 function jsonGenerate(){
     exec("python wp-content/themes/sparkUI/algorithm/category.py",$output,$ret);
-    return $output[0];
+    if($ret ==0){
+        return $output[0];
+    }else{
+        exec("python wp-content/themes/sparkUI/algorithm/category.py 2>&1",$output,$ret);
+        return $output;
+    }
 }
 
 //项目知识图谱生成
