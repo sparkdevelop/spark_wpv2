@@ -1530,7 +1530,7 @@ function Spark_comments_popup_link($zero = false, $one = false, $more = false, $
         echo '</a>';
 }
 
-//知识图谱json生成
+//学习路径json生成
 function jsonGenerate_old($user_id){
     //echo "function";
 //    exec("python wp-content/themes/sparkUI/algorithm/sortWikiEntry.py",$output,$ret);
@@ -1584,11 +1584,11 @@ function jsonGenerate_old($user_id){
     return $jsonString;
 }
 
+//通过python生成知识图谱底图
 function jsonGenerate(){
     exec("python wp-content/themes/sparkUI/algorithm/category.py",$output,$ret);
     return $output[0];
 }
-
 
 //项目知识图谱生成
 function sideJSONGenerte($user_id,$post_type){
@@ -1619,15 +1619,7 @@ function sideJSONGenerte($user_id,$post_type){
     return $proJsonString;
 }
 
-//wiki和项目内容处理 去标签化 暂时无用
-function removeHTMLLabel($post_id){
-    global $wpdb;
-    $sql = "select post_content from $wpdb->posts WHERE ID= $post_id";
-    $result = $wpdb->get_var($sql,0);
-    return strip_tags($result);
-}
-
-//处理wiki和项目内容
+//处理wiki和项目内容,请求API的版本
 function keywordHighlight(){
     //请求api后用
     $phrase =get_the_content();
@@ -1645,11 +1637,11 @@ function keywordHighlight(){
         foreach ($xml->ENTITY->ITEM as $value){
             $keyword = $value->NAME;    //所有关键词的名字
             $abstract = preg_replace("/\s*/","",(string)$value->ABSTRACT->ITEM);  //去掉所有空格
+
             if($abstract!=""){          //如果关键词有摘要
                 $insteadString = "<a id=layer-".$keyword.'>'.$keyword.'</a>'; //将文字替换成为链接
 
                 //new_content处理,
-
 
                 $firstPos = strpos((string)$new_content,(string)$keyword);      //获取第一次出现位置
                 $new_content = substr_replace($new_content,$insteadString,$firstPos,strlen($keyword)); //替换
@@ -1689,7 +1681,7 @@ function keywordHighlight(){
 //        echo $new_content;
 }
 
-//从数据库取出xml文件
+//处理wiki和项目内容,从数据库取出xml文件版本
 function keywordHighlight_update(){
     //更新后从数据库提取xml文件
     /* step1: 从数据库提出当前项目的xml 格式转化成为xml object
@@ -1716,12 +1708,19 @@ function keywordHighlight_update(){
             } ?>
             <script>
                 $(function () {
-                    $("#layer-<?=$keyword?>").on('mouseover',function () {
+                    $("#layer-<?=$keyword?>").css({"color":"#fe642d","cursor":"pointer"})
+                        .on('mouseover',function () {
                         layer.tips("<?php echo $abstract?>", '#layer-<?=$keyword?>',
                             {
-                                tips: [1,"black"]    //位置和颜色
+                                tips: [1,"black"],   //位置和颜色
+                                success:addFavoriteKnowledge()
                             });
-                    })
+                    });
+                    function addFavoriteKnowledge(){
+                        $("#layer-<?=$keyword?>").on('click',function () {
+
+                        })
+                    }
                 })
             </script>
         <?php }
@@ -1729,17 +1728,7 @@ function keywordHighlight_update(){
     echo $new_content;
 }
 
-
-function xml_parser($str){  //暂时无用
-    $xml_parser = xml_parser_create();
-    if(!xml_parse($xml_parser,$str,true)){
-        return false;
-    }else {
-        return true;
-    }
-}
-
-//建立用户打分表
+//建立关键词信息表
 function xml_table_install () {
     global $wpdb;
     $table_name = $wpdb->prefix . "xml";  //获取表前缀，并设置新表的名称
@@ -1756,6 +1745,7 @@ function xml_table_install () {
     }
 }
 
+//timer中更新的项目的关键词内容
 function updateContentItem(){
     //更新数据库中的xml串(暂时只有项目) 在timer中手动更新
     /* step1: 选出所有项目的id post_type和modified_time
@@ -1854,6 +1844,7 @@ function insertContentItem($post_id){
     }
 }
 
+//判断返回是否是XML
 function isXML($str){
     $pattern = "/^\<\?xml/";
     if(preg_match($pattern,$str)){
@@ -1863,6 +1854,7 @@ function isXML($str){
     }
 }
 
+//处理每个项目的内容,生成调取api的phrase
 function processContent($post_id){
     $phrase = get_the_content_by_id($post_id);
     //echo $phrase;//去掉标题
@@ -1872,6 +1864,7 @@ function processContent($post_id){
     return $phrase;
 }
 
+//通过post_id获取post内容。
 function get_the_content_by_id($post_id){
     global  $wpdb;
     $sql = "SELECT post_content FROM $wpdb->posts WHERE ID=$post_id";
@@ -1879,6 +1872,21 @@ function get_the_content_by_id($post_id){
     return $result[0]->post_content;
 }
 
+////wiki和项目内容处理 去标签化 暂时无用
+//function removeHTMLLabel($post_id){
+//    global $wpdb;
+//    $sql = "select post_content from $wpdb->posts WHERE ID= $post_id";
+//    $result = $wpdb->get_var($sql,0);
+//    return strip_tags($result);
+//}
+//function xml_parser($str){  //暂时无用
+//    $xml_parser = xml_parser_create();
+//    if(!xml_parse($xml_parser,$str,true)){
+//        return false;
+//    }else {
+//        return true;
+//    }
+//}
 ////判断用户是否有收藏
 //function hasFavorite($user_id){
 //    global $wpdb;
