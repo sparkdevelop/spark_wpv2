@@ -1,7 +1,7 @@
 <?php
 //system("python wp-content/themes/sparkUI/algorithm/ 2>&1", $ret);
 
-
+//更新相关wiki与项目相关度
 //exec("python wp-content/themes/sparkUI/algorithm/sortWikiEntry.py",$output, $ret);
 //if ($ret == 0) {
 //    deleteRelation();
@@ -17,5 +17,4 @@
 //}
 
 //刷新xml表内容
-    //updateContentItem();
-    insertContentItem(14);
+    updateContentItem();

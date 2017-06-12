@@ -1531,7 +1531,7 @@ function Spark_comments_popup_link($zero = false, $one = false, $more = false, $
 }
 
 //知识图谱json生成
-function jsonGenerate($user_id){
+function jsonGenerate_old($user_id){
     //echo "function";
 //    exec("python wp-content/themes/sparkUI/algorithm/sortWikiEntry.py",$output,$ret);
 //    print_r($output);
@@ -1584,6 +1584,12 @@ function jsonGenerate($user_id){
     return $jsonString;
 }
 
+function jsonGenerate(){
+    exec("python wp-content/themes/sparkUI/algorithm/category.py",$output,$ret);
+    return $output[0];
+}
+
+
 //项目知识图谱生成
 function sideJSONGenerte($user_id,$post_type){
     if($post_type=="post"){
@@ -1595,7 +1601,7 @@ function sideJSONGenerte($user_id,$post_type){
     }else{
         $cat_id = 3;
     }
-    $jsonString = jsonGenerate($user_id);
+    $jsonString = jsonGenerate_old($user_id);
     $jsonArray = json_decode($jsonString,true);
     $nodes = array();
     $links = array();
@@ -1621,10 +1627,12 @@ function removeHTMLLabel($post_id){
     return strip_tags($result);
 }
 
-//出路wiki和项目内容
+//处理wiki和项目内容
 function keywordHighlight(){
     //请求api后用
-    $phrase = strip_tags(get_the_content());  //去掉标签
+    $phrase =get_the_content();
+    $phrase = preg_replace("/<h[^>]*?>.*?</h[^>]*?>/","",$phrase); //去掉标题
+    $phrase = strip_tags($phrase);  //去掉其他标签
     $phrase = preg_replace("/\s*/","",$phrase);  //去掉空格
     $phrase = mb_substr($phrase,0,700,"utf-8");
     //echo $phrase;
@@ -1693,29 +1701,31 @@ function keywordHighlight_update(){
     $xml = simplexml_load_string($returnXML[0]->xml_string); //创建 SimpleXML对象 读字符串法
 
     $new_content = get_the_content();
-    foreach ($xml->ENTITY->ITEM as $value){
-        $keyword = $value->NAME;    //所有关键词的名字
-        $abstract = preg_replace("/\s*/","",(string)$value->ABSTRACT->ITEM);  //去掉所有空格
-        if($abstract!=""){          //如果关键词有摘要
-            $insteadString = "<a id=layer-".$keyword.'>'.$keyword.'</a>'; //将文字替换成为链接
+    if($xml->ENTITY->ITEM != NULL){
+        foreach ($xml->ENTITY->ITEM as $value){
+            $keyword = $value->NAME;    //所有关键词的名字
+            $abstract = preg_replace("/\s*/","",(string)$value->ABSTRACT->ITEM);  //去掉所有空格
+            if($abstract!=""){          //如果关键词有摘要
+                $insteadString = "<a id=layer-".$keyword.'>'.$keyword.'</a>'; //将文字替换成为链接
 
-            //new_content处理,
+                //new_content处理,
 
-            $firstPos = strpos((string)$new_content,(string)$keyword);      //获取第一次出现位置
-            $new_content = substr_replace($new_content,$insteadString,$firstPos,strlen($keyword)); //替换
-            //$new_content = str_replace($keyword,$insteadString,$new_content,$count);
-        } ?>
-        <script>
-            $(function () {
-                $("#layer-<?=$keyword?>").on('mouseover',function () {
-                    layer.tips("<?php echo $abstract?>", '#layer-<?=$keyword?>',
-                        {
-                            tips: [1,"black"]    //位置和颜色
-                        });
+                $firstPos = strpos((string)$new_content,(string)$keyword);      //获取第一次出现位置
+                $new_content = substr_replace($new_content,$insteadString,$firstPos,strlen($keyword)); //替换
+                //$new_content = str_replace($keyword,$insteadString,$new_content,$count);
+            } ?>
+            <script>
+                $(function () {
+                    $("#layer-<?=$keyword?>").on('mouseover',function () {
+                        layer.tips("<?php echo $abstract?>", '#layer-<?=$keyword?>',
+                            {
+                                tips: [1,"black"]    //位置和颜色
+                            });
+                    })
                 })
-            })
-        </script>
-    <?php }
+            </script>
+        <?php }
+    }
     echo $new_content;
 }
 
@@ -1758,6 +1768,7 @@ function updateContentItem(){
     global $wpdb;
     $sql = "SELECT ID, post_modified FROM $wpdb->posts WHERE post_type='post' and post_status ='publish'";
     $results = $wpdb->get_results($sql,'ARRAY_A');
+    echo sizeof($results);
     //step2
     foreach($results as $result){
         $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$result['ID'];
@@ -1766,10 +1777,7 @@ function updateContentItem(){
         if(sizeof($col)!=0){    //xml表总是否已经有这个项目的xml,如果有
             $flag = strtotime($col[0]["modified_time"])-strtotime($result['post_modified']);
             if($flag<0){ // 项目内容有了新的修改 否则不做任何操作。
-
-                $phrase = strip_tags(get_the_content($result['ID']));  //去掉标签
-                $phrase = preg_replace("/\s*/","",$phrase);  //去掉空格
-                $phrase = mb_substr($phrase,0,700,"utf-8");
+                $phrase = processContent($result['ID']);
                 $url = 'http://ebs.ckcest.cn/kb/elxml?apikey=RHizNjRR&phrase='.$phrase;
                 $xml_string = file_get_contents($url);
 
@@ -1781,33 +1789,58 @@ function updateContentItem(){
                 $wpdb->get_results($sql_update);
                 echo "更新--".$result['ID']."<br>";
             }
-        }else{//如果xml表没有这个post_id, 执行step3.  在新增项目那里可以执行这个函数。
+        }
+        else{//如果xml表没有这个post_id, 执行step3.  在新增项目那里可以执行这个函数。
             echo "执行一次insert".$result['ID']."<br>";
             insertContentItem($result['ID']);
+            sleep(10);
         }
     }
 
-
+//    for($i=228;$i<273;$i++){
+//        $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$results[$i]['ID'];
+//        $col = $wpdb->get_results($sql_1,"ARRAY_A");
+//        if(sizeof($col)!=0){    //xml表总是否已经有这个项目的xml,如果有
+//            $flag = strtotime($col[0]["modified_time"])-strtotime($results[$i]['post_modified']);
+//            if($flag<0){        // 项目内容有了新的修改 否则不做任何操作。
+//                $phrase = processContent($results[$i]['ID']);
+//                $url = 'http://ebs.ckcest.cn/kb/elxml?apikey=RHizNjRR&phrase='.$phrase;
+//                $xml_string = file_get_contents($url);
+//
+////                $url = get_template_directory_uri()."/highlight.xml";
+////                $xml_string = file_get_contents($url);    //字符串。
+//                //以上两行要删掉。仅测试使用
+//
+//                $modified_time = date("Y-m-d H:i:s",time()+8*3600);
+//                $sql_update = "update wp_xml set xml_string = '$xml_string',modified_time = '$modified_time' WHERE post_id=".$results[$i]['ID'];
+//                $wpdb->get_results($sql_update);
+//                echo "更新--".$results[$i]['ID']."<br>";
+//            }
+//        }
+//        else{//如果xml表没有这个post_id, 执行step3.  在新增项目那里可以执行这个函数。
+//            echo "执行一次insert".$results[$i]['ID']."<br>";
+//            insertContentItem($results[$i]['ID']);
+//        }
+//    }
 }
 
 //新增xml中的一行  在发布项目那里可以调用一次
 function insertContentItem($post_id){
     global $wpdb;
-    $phrase = strip_tags(get_the_content($post_id));  //去掉标签
-    $phrase = preg_replace("/\s*/","",$phrase);  //去掉空格
-    $phrase = mb_substr($phrase,0,700,"utf-8");
+    $phrase = processContent($post_id);
 
-    $url = get_template_directory_uri()."/highlight.xml";
-    $returnXML = file_get_contents($url);    //字符串。
+//    $url = get_template_directory_uri()."/highlight.xml";
+//    $returnXML = file_get_contents($url);    //字符串。
 
-    //$xml = simplexml_load_file($url); //创建 SimpleXML对象
-    //$strxml = $xml;
-    //print_r($strxml);
+//    $xml = simplexml_load_file($url); //创建 SimpleXML对象
+//    $strxml = $xml;
+//    print_r($strxml);
 //    echo gettype($strxml);
 //    print_r($strxml);
-
-    //$url = 'http://ebs.ckcest.cn/kb/elxml?apikey=RHizNjRR&phrase='.$phrase;
-    //$returnXML = file_get_contents($url);
+    echo $phrase;
+    $url = 'http://ebs.ckcest.cn/kb/elxml?apikey=RHizNjRR&phrase='.$phrase;
+    $returnXML = file_get_contents($url);
+    print_r($returnXML);
 
     //if(xml_parser($returnXML)==true){ //判断是否是xml字符串 废弃
     if(isXML($returnXML)){
@@ -1815,7 +1848,7 @@ function insertContentItem($post_id){
         $modified_time = date("Y-m-d H:i:s",time()+8*3600);
      //   $xml = simplexml_load_string($returnXML); //创建 SimpleXML对象 读字符串法
         $sql = "INSERT INTO wp_xml VALUES ('',$post_id,'$post_type','$returnXML','$modified_time')";
-       // $wpdb->get_results($sql);
+        $wpdb->get_results($sql);
     }else{
         echo "error";
     }
@@ -1828,6 +1861,22 @@ function isXML($str){
     }else{
         return false;
     }
+}
+
+function processContent($post_id){
+    $phrase = get_the_content_by_id($post_id);
+    //echo $phrase;//去掉标题
+    $phrase = strip_tags($phrase);  //去掉其他标签
+    $phrase = preg_replace("/\s*/","",$phrase);  //去掉空格
+    $phrase = mb_substr($phrase,0,650,"utf-8");
+    return $phrase;
+}
+
+function get_the_content_by_id($post_id){
+    global  $wpdb;
+    $sql = "SELECT post_content FROM $wpdb->posts WHERE ID=$post_id";
+    $result = $wpdb->get_results($sql);
+    return $result[0]->post_content;
 }
 
 ////判断用户是否有收藏

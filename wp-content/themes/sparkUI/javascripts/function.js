@@ -66,7 +66,7 @@ function setCSS(flag) {
 }
 
 //画出我的知识图谱
-function myKnowledgeChart(jsonstring) {
+function myKnowledgeChart_old(jsonstring) {
     var myChart = echarts.init(document.getElementById('chart'));
     option = null;
     myChart.showLoading();
@@ -161,6 +161,130 @@ function myKnowledgeChart(jsonstring) {
             force: {
                 edgeLength: 100,//连线的长度
                 repulsion: 100  //子节点之间的间距
+            },
+            label: {
+                normal: {
+                    position: 'right',
+                    formatter: '{b}'
+                }
+            },
+            lineStyle: {
+                normal: {
+                    curveness: 0.3
+                }
+            }
+        }]
+    });
+    //myChart.setOption(option);
+
+    myChart.on('dblclick',function (params) {
+        var data = params.data;
+        //判断节点的相关数据是否正确
+        if (data != null && data != undefined) {
+            if (data.url != null && data.url != undefined) {
+                //根据节点的扩展属性url打开新页面
+                location.replace(data.url);
+            }
+        }
+    });
+}
+
+function myKnowledgeChart(jsonstring) {
+    var myChart = echarts.init(document.getElementById('chart'));
+    option = null;
+    myChart.showLoading();
+    myChart.hideLoading();
+//处理json数据
+    var wholedata = JSON.parse(jsonstring);
+    console.log(wholedata);
+    wholedata.nodes.forEach(function (node) {
+        // if(node.value>100){
+        //     node.symbolSize = node.value/15;
+        // }else if(node.value<10){
+        //     node.symbolSize = node.value*5;
+        // }else{
+        //     node.symbolSize = node.value;
+        // }
+        node.symbolSize = node.value;
+        node.label = {
+            normal:{
+                show:true
+            }
+        }
+    });
+    // option =
+    // {
+    //     title: {
+    //         text: 'My Knowledge'
+    //         //top: 'bottom',
+    //         //left: 'right'
+    //     },
+    //     tooltip: {},
+    //     legend: [
+    //         {
+    //         data: wholedata.categories.map(function(a) {
+    //             return a.name;
+    //         })
+    //     }
+    //     ],
+    //     series: [{
+    //         type: 'graph',      //关系图
+    //         //name: 'My Knowledge',  //tooltip显示
+    //         layout: 'force',  //布局怎么显示,
+    //         animationDuration: 1500,
+    //         animationEasingUpdate: 'quinticInOut',
+    //         draggable: true, //节点可拖拽
+    //         roam: 'move',     //鼠标缩放和平移漫游
+    //         focusNodeAdjacency: 'true',  //是否在鼠标移到节点上的时候突出显示节点以及节点的边和邻接节点。
+    //         smybol: 'circle',          //节点的形状'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
+    //         data: wholedata.nodes,
+    //         links: wholedata.links,
+    //         categories:wholedata.categories,
+    //         force: {
+    //             edgeLength: 100,//连线的长度
+    //             repulsion: 100  //子节点之间的间距
+    //         },
+    //         label: {
+    //             normal: {
+    //                 position: 'right',
+    //                 formatter: '{b}'
+    //             }
+    //         },
+    //         lineStyle: {
+    //             normal: {
+    //                 curveness: 0.3
+    //             }
+    //         }
+    //     }]
+    // };
+    myChart.setOption({
+        title: {
+            text: 'My Knowledge'
+        },
+        tooltip: {},
+        legend: [
+            {
+                data: wholedata.categories.map(function(a) {
+                    return a.name;
+                })
+            }
+        ],
+        series: [{
+            type: 'graph',      //关系图
+            //name: 'My Knowledge',  //tooltip显示
+            layout: 'force',  //布局怎么显示,
+            animationDuration: 1500,
+            animationEasingUpdate: 'quinticInOut',
+            draggable: true, //节点可拖拽
+            roam: 'move',     //鼠标缩放和平移漫游
+            focusNodeAdjacency: 'true',  //是否在鼠标移到节点上的时候突出显示节点以及节点的边和邻接节点。
+            smybol: 'circle',          //节点的形状'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
+            data: wholedata.nodes,
+            links: wholedata.links,
+            categories:wholedata.categories,
+            force: {
+                edgeLength: 50,//连线的长度
+                repulsion: 50  //子节点之间的间距
             },
             label: {
                 normal: {
