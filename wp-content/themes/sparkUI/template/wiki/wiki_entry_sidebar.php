@@ -266,7 +266,18 @@
         </div>
     </div>
 
-
+<!--知识图谱-->
+    <?php $jsonString = sideJSONGenerte($current_user->ID,"yada_wiki"); ?>
+    <div class="wikiknowledge">
+        <div class="sidebar_list_header">
+            <p>学习路径</p>
+        </div>
+        <div style="height: 2px;background-color: lightgray"></div>
+        <div id="sidechart" style="width:350px;height: 350px"></div>
+    </div>
+    <script>
+        sideChart('<?=$jsonString?>');
+    </script>
 <!--    相关项目-->
     <?php
     $related_pros = wikiRelatedPro(get_the_ID()); ?>

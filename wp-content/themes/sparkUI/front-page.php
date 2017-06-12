@@ -41,6 +41,7 @@ relation_table_install();
 user_history_table_install();
 favorite_table_install();
 score_table_install ();
+xml_table_install ();
 get_header();
 ?>
 
