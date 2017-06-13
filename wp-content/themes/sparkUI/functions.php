@@ -1595,6 +1595,40 @@ function jsonGenerate(){
     }
 }
 
+//直接拿json文件做底
+function readJson($file_name){
+    $nodes=array();
+    $links = array();
+    $file_url = "wp-content/themes/sparkUI/algorithm/".$file_name.".json";
+    $jsonString = file_get_contents($file_url);
+    $jsonString = json_decode($jsonString,true);
+    //nodes加工
+    $temp_1 = array("itemStyle"=>
+                    array("normal"=>
+                            array("opacity"=>1)
+                         )
+                    );
+    foreach($jsonString["nodes"] as $key => $value){
+        $value +=$temp_1;
+        $value +=array("id"=>$key);
+        array_push($nodes,$value);
+    }
+    $jsonString["nodes"] = $nodes;
+    //links加工
+    $temp_1 = array("lineStyle"=>
+                array("normal"=>
+                    array("opacity"=>1)
+                      )
+                    );
+    foreach($jsonString["links"] as $key => $value){
+        $value +=$temp_1;
+        array_push($links,$value);
+    }
+    $jsonString["links"] = $links;
+
+    $jsonString = json_encode($jsonString);
+    return $jsonString;
+}
 //项目知识图谱生成
 function sideJSONGenerte($user_id,$post_type){
     if($post_type=="post"){

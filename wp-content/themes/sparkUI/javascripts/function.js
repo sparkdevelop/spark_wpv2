@@ -189,14 +189,13 @@ function myKnowledgeChart_old(jsonstring) {
     });
 }
 
-function myKnowledgeChart(jsonstring) {
-    var myChart = echarts.init(document.getElementById('chart'));
+function myKnowledgeChart(id,jsonstring) {
+    var myChart = echarts.init(document.getElementById(id));
     option = null;
     myChart.showLoading();
     myChart.hideLoading();
 //处理json数据
     var wholedata = JSON.parse(jsonstring);
-    console.log(wholedata);
     wholedata.nodes.forEach(function (node) {
         // if(node.value>100){
         //     node.symbolSize = node.value/15;
@@ -258,9 +257,9 @@ function myKnowledgeChart(jsonstring) {
     //     }]
     // };
     myChart.setOption({
-        title: {
-            text: 'My Knowledge'
-        },
+        // title: {
+        //     text: 'My Knowledge'
+        // },
         tooltip: {},
         legend: [
             {
@@ -301,6 +300,7 @@ function myKnowledgeChart(jsonstring) {
     });
     //myChart.setOption(option);
 
+    //双击打开链接
     myChart.on('dblclick',function (params) {
         var data = params.data;
         //判断节点的相关数据是否正确
@@ -311,6 +311,38 @@ function myKnowledgeChart(jsonstring) {
             }
         }
     });
+
+    //单击进行折叠
+    myChart.on('click',function (param) {
+        var option = myChart.getOption();           //获取所有option
+        console.log(option);
+        var nodesOption = option.series[0].data;   //获取node中的数据
+
+        var linksOption = option.series[0].links;   //获取target,source信息
+        var data = param.data;                      //点谁获取谁的node中对应的数据。是node中的子集
+
+        if (data != null && data != undefined) {    //如果有这个节点
+            /*
+             * step1:查找所有下一级节点以及迭代下一级节点(how)
+             * step2:若下一级节点的itemStyle.normal.opacity为0,则将下一级节点的itemStyle.normal.opacity设为1
+             * step3:反之设为0.
+             * */
+            if(data.itemStyle.normal.opacity==1){
+                for ( var i in linksOption) {   //对于每一个连接
+                    if (linksOption[i].source == data.id) {   //这个节点是另一些节点的上级,则将这些节点隐藏或显示
+                        if(nodesOption[linksOption[i].target].itemStyle.normal.opacity==1){  //如果现在的状态是显示
+                            linksOption[i].lineStyle.normal.opacity=0;
+                            nodesOption[linksOption[i].target].itemStyle.normal.opacity=0;
+                        }else{
+                            linksOption[i].lineStyle.normal.opacity=1;
+                            nodesOption[linksOption[i].target].itemStyle.normal.opacity=1;
+                        }
+                    }
+                }
+            }
+        }
+        myChart.setOption(option);
+    })
 }
 
 //画出项目页面的知识图谱
