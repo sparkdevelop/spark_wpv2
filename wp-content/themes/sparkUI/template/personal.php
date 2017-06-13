@@ -30,5 +30,8 @@
     if($tab=='profile'){
         require "profile.php";
     }
+    if($tab=='knowledge'){
+        require "myknowledge.php";
+    }
     ?>
 </div>

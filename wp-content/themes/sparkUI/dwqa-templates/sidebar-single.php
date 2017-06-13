@@ -127,6 +127,20 @@ function Spark_related_question( $question_id = false, $number = 5, $echo = true
     <div class="sidebar_button" style="margin-top: 20px">
         <a href="<?php echo site_url().get_page_address('ask');?>" style="color: white">我要提问</a>
     </div>
+
+<!--知识图谱-->
+    <?php $qajsonString = sideJSONGenerte(get_current_user_id(),"qa"); ?>
+    <div class="proknowledge">
+        <div class="sidebar_list_header">
+            <p>学习路径</p>
+        </div>
+        <div style="height: 2px;background-color: lightgray"></div>
+        <div id="sidechart" style="width:350px;height: 350px"></div>
+    </div>
+    <script>
+        sideChart('<?=$qajsonString?>');
+    </script>
+
 <!--热门标签-->
     <div class="sidebar_list">
         <div class="sidebar_list_header">

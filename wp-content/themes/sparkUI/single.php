@@ -94,7 +94,11 @@ $admin_url=admin_url( 'admin-ajax.php' );
                     </a>
                 </div>
                 <hr>
-                <?php the_content(); ?><hr>
+                <?php
+                //the_content();
+                keywordHighlight_update();
+                //keywordHighlight();
+                ?><hr>
                 <?php comments_template(); ?>
             <?php endwhile;?>
             <?php else: ?>
@@ -247,6 +251,19 @@ $admin_url=admin_url( 'admin-ajax.php' );
                     </div>
                 </div>
             </div>
+
+            <?php $projsonString = sideJSONGenerte($current_user->ID,"post"); ?>
+            <div class="proknowledge">
+                <div class="sidebar_list_header">
+                    <p>学习路径</p>
+                </div>
+                <div style="height: 2px;background-color: lightgray"></div>
+                <div id="sidechart" style="width:350px;height: 350px"></div>
+            </div>
+            <script>
+                sideChart('<?=$projsonString?>');
+            </script>
+
 
             <div class="related_questions">
                 <div class="sidebar_list_header">

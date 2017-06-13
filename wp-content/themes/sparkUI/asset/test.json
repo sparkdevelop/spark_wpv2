@@ -1,0 +1,44 @@
+{
+  "categories": [
+    {"name": "类别1"},
+    {"name": "类别2"},
+    {"name": "类别3"}
+  ],
+  "nodes": [
+    {
+      "name": "Arduino",
+      "value": 30,
+      "category": 0,
+      "x":"-266.82776",
+      "y":"299.6904"
+    },
+    {
+      "name": "Web",
+      "value": 50,
+      "category": 1,
+      "x":"-418.08344",
+      "y":"446.8853"
+    },
+    {
+      "name": "项目",
+      "value": 40,
+      "category": 2,
+      "x":"-212.76357",
+      "y":"245.29176"
+    }
+  ],
+  "links": [
+    {
+      "source": 0,
+      "target": 1
+    },
+    {
+      "source": 1,
+      "target": 2
+    },
+    {
+      "source": 2,
+      "target": 0
+    }
+  ]
+}
