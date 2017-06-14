@@ -3,7 +3,7 @@
   Plugin Name: WP Live Chat Support
   Plugin URI: http://www.wp-livechat.com
   Description: The easiest to use website live chat plugin. Let your visitors chat with you and increase sales conversion rates with WP Live Chat Support. No third party connection required!
-  Version: 7.0.07
+  Version: 7.0.08
   Author: WP-LiveChat
   Author URI: http://www.wp-livechat.com
   Text Domain: wplivechat
@@ -11,22 +11,23 @@
  */
  
 /**
- * 7.0.07 - 2017-05-15 - Medium priority
+ * 7.0.08 - 2017-06-08 - Low Priority
+ * Tested on WordPress 4.8
+ *
+ * 7.0.07 - 2017-05-16 - Medium Priority
  * You can now change the text of the offline message button
  * You can now change the text of the close chat button
  * Added a notification to the chat dashboard to help agents identify if the chat box is not showing up on the front end, and provide a reason
  * Added ability to set a default visitor name
  * Added ability to choose which user fields are required (name, email or both)
- * Added visual aid when new message is sent and chat is minimized (user's side)
- * Fixed a security issue in the back end (thank you JPCERT Coordination Center (https://www.jpcert.or.jp/english/))
+ * Added visual aid when new message is sent and chat is minimized (user’s side)
  * Fixed a bug that caused a sound to be played on every page load of a visitor
  * Fixed a bug that stopped a user from sending a message when the admin initiated a chat
  * Fixed the bug that showed the incorrect icon for IE
  * Fixed a bug that caused empty button without remove/delete icon in Missed Chats
  * Fixed a bug that caused attached images to not display correctly
  * Fixed a bug that caused notifications to show up in the front end when the agent is testing a chat with him or herself
- * Fixed a bug that caused the visitor count to flash when the visitor count had not changed
- * 
+ *
  * 7.0.06 -2017-03-13 - Low Priority
  * Enhancement: 'Open Chat' button changes to 'Chat Accepted' once a chat is active
  * Bug Fix: Compatibility bug fix for decryption in the Pro version
@@ -506,7 +507,7 @@ global $wplc_tblname_offline_msgs;
 $wplc_tblname_offline_msgs = $wpdb->prefix . "wplc_offline_messages";
 $wplc_tblname_chats = $wpdb->prefix . "wplc_chat_sessions";
 $wplc_tblname_msgs = $wpdb->prefix . "wplc_chat_msgs";
-$wplc_version = "7.0.07";
+$wplc_version = "7.0.08";
 
 define('WPLC_BASIC_PLUGIN_DIR', dirname(__FILE__));
 define('WPLC_BASIC_PLUGIN_URL', plugins_url() . "/wp-live-chat-support/");
@@ -3359,26 +3360,25 @@ function wplc_add_user_stylesheet() {
  * @return void
  */
 function wplc_add_admin_stylesheet() {
-	global $wplc_version;
     if (isset($_GET['page']) && ($_GET['page'] == 'wplivechat-menu' ||  $_GET['page'] == 'wplivechat-menu-api-keys-page' ||  $_GET['page'] == 'wplivechat-menu-extensions-page' || $_GET['page'] == 'wplivechat-menu-settings' || $_GET['page'] == 'wplivechat-menu-offline-messages' || $_GET['page'] == 'wplivechat-menu-history' || $_GET['page'] == 'wplivechat-menu-missed-chats')) {
-        wp_register_style( 'wplc-admin-style', plugins_url( '/css/jquery-ui.css', __FILE__ ), false, $wplc_version );
-        wp_enqueue_style( 'wplc-admin-style' );
-        wp_register_style( 'wplc-chat-style', plugins_url( '/css/chat-style.css', __FILE__ ), false, $wplc_version );
-        wp_enqueue_style( 'wplc-chat-style' );
-        wp_register_style( 'wplc-font-awesome', plugins_url( '/css/font-awesome.min.css', __FILE__ ), false, $wplc_version );
-        wp_enqueue_style( 'wplc-font-awesome' );
-        wp_enqueue_script( 'jquery-ui-core' );
-        wp_enqueue_script( 'jquery-effects-core' );
+        wp_register_style('wplc-admin-style', plugins_url('/css/jquery-ui.css', __FILE__));
+        wp_enqueue_style('wplc-admin-style');
+        wp_register_style('wplc-chat-style', plugins_url('/css/chat-style.css', __FILE__));
+        wp_enqueue_style('wplc-chat-style');
+        wp_register_style('wplc-font-awesome', plugins_url('/css/font-awesome.min.css', __FILE__));
+        wp_enqueue_style('wplc-font-awesome');
+        wp_enqueue_script('jquery-ui-core');
+        wp_enqueue_script('jquery-effects-core');
     }
     if (isset($_GET['page']) && $_GET['page'] == 'wplivechat-menu' && isset($_GET['action']) && $_GET['action'] == "ac") {
-        wp_register_style('wplc-admin-chat-box-style', plugins_url('/css/admin-chat-box-style.css', __FILE__ ), false, $wplc_version );
+        wp_register_style('wplc-admin-chat-box-style', plugins_url('/css/admin-chat-box-style.css', __FILE__));
         wp_enqueue_style('wplc-admin-chat-box-style');
 
     }
     if (isset($_GET['page']) && $_GET['page'] == "wplivechat-menu-support-page") {
-        wp_register_style('fontawesome', plugins_url('css/font-awesome.min.css', __FILE__ ), false, $wplc_version );
+        wp_register_style('fontawesome', plugins_url('css/font-awesome.min.css', __FILE__));
         wp_enqueue_style('fontawesome');
-        wp_register_style('wplc-support-page-css', plugins_url('css/support-css.css', __FILE__ ), false, $wplc_version );
+        wp_register_style('wplc-support-page-css', plugins_url('css/support-css.css', __FILE__));
         wp_enqueue_style('wplc-support-page-css');
     }
 }
@@ -3497,7 +3497,7 @@ function wplc_hook_control_chat_history() {
                 //Prompt
                 echo "<div class='update-nag' style='margin-top: 0px;margin-bottom: 5px;'>
                         ".__("Are you sure you would like to delete this chat?", "wplivechat")."<br>
-                        <a class='button' href='?page=wplivechat-menu-history&wplc_action=remove_cid&cid=".sanitize_text_field( $_GET['cid'] )."&wplc_confirm=1''>".__("Yes", "wplivechat")."</a> <a class='button' href='?page=wplivechat-menu-history'>".__("No", "wplivechat")."</a>
+                        <a class='button' href='?page=wplivechat-menu-history&wplc_action=remove_cid&cid=".$_GET['cid']."&wplc_confirm=1''>".__("Yes", "wplivechat")."</a> <a class='button' href='?page=wplivechat-menu-history'>".__("No", "wplivechat")."</a>
                       </div>";
             }
         }
@@ -5403,27 +5403,4 @@ function wplc_basic_version_departments(){
   	$content .= 	"</table>";
 
   	echo $content;
-}
-
-add_filter( 'wplc_filter_active_chat_box_notification', 'wplc_active_chat_box_notice' );
-
-if ( ! function_exists( "wplc_active_chat_box_notices" ) ) {
-	add_action( "wplc_hook_chat_dashboard_above", "wplc_active_chat_box_notices" );
-	function wplc_active_chat_box_notices() {
-		$wplc_settings   = get_option( "WPLC_SETTINGS" );
-		if ( $wplc_settings["wplc_settings_enabled"] == 2 ) { ?>
-            <div class="wplc-chat-box-notification wplc-chat-box-notification--disabled">
-                <p><?php echo sprintf( __( 'The Live Chat box is currently disabled on your website due to : <a href="%s">General Settings</a>', 'wp-livechat' ), admin_url( 'admin.php?page=wplivechat-menu-settings#tabs-1' ) ) ?></p>
-            </div>
-			<?php
-		} else {
-			//$notice = '<div class="wplc-chat-box-notification">';
-			//$notice .= '<p>' . __( 'The Live Chat box is currently active', 'wp-livechat' ) . '</p>';
-			//$notice .= '</div>';
-			$notice = '';
-			$notice = apply_filters( 'wplc_filter_active_chat_box_notice', $notice );
-			echo $notice;
-		}
-
-	}
 }

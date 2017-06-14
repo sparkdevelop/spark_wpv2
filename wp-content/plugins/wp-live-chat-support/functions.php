@@ -443,7 +443,7 @@ function wplc_filter_control_list_chats_actions($actions,$result,$post_data) {
             $url = admin_url( 'admin.php?page=wplivechat-menu'.$url_params);
             $actions = "<a href=\"".$url."\" class=\"wplc_open_chat button button-primary\" window-title=\"WP_Live_Chat_".$result->id."\">". apply_filters("wplc_accept_chat_button_filter", __("Accept Chat","wplivechat"), $result->id)."</a>";
         }
-        else if (intval($result->status) == 3 || intval($result->status) == 10) {
+        else if (intval($result->status) == 3) {
             $url_params = "&action=ac&cid=".$result->id.$aid;
             $url = admin_url( 'admin.php?page=wplivechat-menu'.$url_params);
 	        if ( ! function_exists("wplc_pro_version_control") || !isset( $result->agent_id ) || $wplc_current_user == $result->agent_id ) { //Added backwards compat checks
@@ -457,7 +457,7 @@ function wplc_filter_control_list_chats_actions($actions,$result,$post_data) {
             $url = admin_url( 'admin.php?page=wplivechat-menu'.$url_params);
             $actions = "<a href=\"".$url."\" class=\"wplc_open_chat button button-primary\" window-title=\"WP_Live_Chat_".$result->id."\">".__("Accept Chat","wplivechat")."</a>";
         }
-        else if (intval($result->status) == 12 ) {
+        else if (intval($result->status) == 12) {
             $url_params = "&action=ac&cid=".$result->id.$aid;
             $url = admin_url( 'admin.php?page=wplivechat-menu'.$url_params);
             $actions = "<a href=\"".$url."\" class=\"wplc_open_chat button button-primary\" window-title=\"WP_Live_Chat_".$result->id."\">".__("Open Chat","wplivechat")."</a>";
@@ -568,6 +568,7 @@ function wplc_list_chats_new($post_data) {
 
 
 function wplc_return_user_chat_messages($cid,$wplc_settings = false,$cdata = false) {
+
     global $wpdb;
     global $wplc_tblname_msgs;
     
@@ -820,7 +821,7 @@ function wplc_return_chat_messages($cid, $transcript = false, $html = true, $wpl
     $previous_time = "";
     $previous_timestamp = 0;
     foreach ($results as $result) {
-        $display_notification = false;
+        
         $system_notification = false;
 
         $from = $result->msgfrom;
@@ -906,20 +907,13 @@ function wplc_return_chat_messages($cid, $transcript = false, $html = true, $wpl
             } else {
                 $image = "";
             }
-
         } else if ($result->originates == 0 || $result->originates == 3) {
-
             $system_notification = true;
             $cuid = get_current_user_id();
             $is_agent = get_user_meta(esc_html( $cuid ), 'wplc_ma_agent', true); 
-            if ($is_agent && $result->originates == 3 ) {
+            if ($is_agent && $result->originates == 3) {
                 /* this user is an agent and the notification is meant for an agent, therefore display it */
                 $display_notification = true;
-
-                /* check if this came from the front end.. if it did, then dont display it (if this code is removed, all notifications will be displayed to agents who are logged in and chatting with themselves during testing, which may cause confusion) */
-                if (isset($_POST) && isset($_POST['action']) && sanitize_text_field( $_POST['action'] ) == "wplc_call_to_server_visitor") {
-                    $display_notification = false;
-                }
             }
             else if (!$is_agent && $result->originates == 0) {
                 /* this user is a not an agent and the notification is meant for a users, therefore display it */
@@ -929,6 +923,7 @@ function wplc_return_chat_messages($cid, $transcript = false, $html = true, $wpl
 
                 $display_notification = false;
             }
+            
         }
 
         if (!$system_notification) {
@@ -1492,6 +1487,7 @@ function wplc_user_initiate_chat($name,$email,$cid = null,$session) {
 
     global $wpdb;
     global $wplc_tblname_chats;
+    do_action("wplc_hook_initiate_chat",array("cid" => $cid, "name" => $name, "email" => $email));
   
 
     $wplc_settings = get_option('WPLC_SETTINGS');
@@ -1576,7 +1572,6 @@ function wplc_user_initiate_chat($name,$email,$cid = null,$session) {
             ), 
             array('%d') 
         );
-        do_action("wplc_hook_initiate_chat",array("cid" => $cid, "name" => $name, "email" => $email));
 
         do_action("wplc_start_chat_hook_after_data_insert", $cid);
         return $cid;
@@ -1925,8 +1920,7 @@ function wplc_admin_display_missed_chats() {
             WHERE (`status` = 7 
             OR `agent_id` = 0)
             AND `email` != 'no email set'                     
-            AND `email` NOT REGEXP '^[0-9]{6}@[0-9]{6}\.com$'                     
-ORDER BY `timestamp` DESC
+            ORDER BY `timestamp` DESC
                 ";
     } else {
         $sql = "
@@ -1934,7 +1928,6 @@ ORDER BY `timestamp` DESC
             FROM $wplc_tblname_chats
             WHERE `status` = 7             
             AND `email` != 'no email set'                     
-            AND `email` NOT REGEXP '^[0-9]{6}@[0-9]{6}\.com$'                     
             ORDER BY `timestamp` DESC
                 ";
     }
