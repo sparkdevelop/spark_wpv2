@@ -2,7 +2,7 @@
 /**
  * sidebar共同的样式
  */
-$page_wiki_id = get_page_id('wiki');
+$page_wiki_id = get_page_id('wiki_index');
 $page_qa_id = get_page_id('qa');
 $page_project_id =get_page_id('project');
 $page_ask_id = get_page_id('ask');
