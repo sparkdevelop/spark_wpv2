@@ -1744,7 +1744,12 @@ function keywordHighlight_update(){
                 $firstPos = strpos((string)$new_content,(string)$keyword);      //获取第一次出现位置
                 $new_content = substr_replace($new_content,$insteadString,$firstPos,strlen($keyword)); //替换
                 //$new_content = str_replace($keyword,$insteadString,$new_content,$count);
-            } ?>
+            }
+            //ajax的参数
+            $current_user = wp_get_current_user();
+            $admin_url = admin_url( 'admin-ajax.php' );
+            $post_id = get_the_ID_by_title($keyword);
+            ?>
             <script>
                 $(function () {
                     $("#layer-<?=$keyword?>").css({"color":"#fe642d","cursor":"pointer"})
@@ -1757,6 +1762,26 @@ function keywordHighlight_update(){
                     });
                     function addFavoriteKnowledge(){
                         $("#layer-<?=$keyword?>").on('click',function () {
+                            if('<?=$post_id?>'==''){
+                                layer.msg('还没有该词条,无法收藏',{time:5000,icon:2});
+                            }else{
+                                var data={
+                                    action:'addFavorite',
+                                    userID:'<?=$current_user->ID?>',
+                                    postID:'<?=$post_id?>'
+                                };
+                                $.ajax({
+                                    type: "POST",
+                                    url: "<?php echo $admin_url;?>",
+                                    data: data,
+                                    success: function(){
+                                        layer.msg('收藏成功',{time:2000,icon:1});  //layer.msg(content, {options}, end) - 提示框
+                                    },
+                                    error:function () {
+                                        alert("收藏失败");
+                                    }
+                                });
+                            }
 
                         })
                     }
@@ -1909,6 +1934,14 @@ function get_the_content_by_id($post_id){
     $sql = "SELECT post_content FROM $wpdb->posts WHERE ID=$post_id";
     $result = $wpdb->get_results($sql);
     return $result[0]->post_content;
+}
+
+//通过post_title获取post_id()
+function get_the_ID_by_title($post_title){
+    global  $wpdb;
+    $sql = "SELECT ID FROM $wpdb->posts WHERE post_title='$post_title' AND post_status = 'publish'";
+    $result = $wpdb->get_results($sql);
+    return $result[0]->ID;
 }
 
 ////wiki和项目内容处理 去标签化 暂时无用

@@ -315,7 +315,6 @@ function myKnowledgeChart(id,jsonstring) {
     //单击进行折叠
     myChart.on('click',function (param) {
         var option = myChart.getOption();           //获取所有option
-        console.log(option);
         var nodesOption = option.series[0].data;   //获取node中的数据
 
         var linksOption = option.series[0].links;   //获取target,source信息
