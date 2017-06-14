@@ -129,41 +129,41 @@ foreach($user_answer_favor_result as $item) {
     $user_answer_favors[$str_index] = $favour_users;
 }
 
-echo "one$$$$$$$$$$$$$$$$$$:";
-foreach ($comments_user as $item) {
-    echo $item->comment_content;
-    echo "<br>";
-}
-echo "<br>";
-echo "two$$$$$$$$$$$$$$$$$$:";
-foreach ($user_replys as $item) {
-    echo $item->comment_content;
-    echo "<br>";
-}
-echo "<br>";
-echo "three$$$$$$$$$$$$$$$$$$:";
-foreach ($related_qas as $item) {
-    echo $item->post_title;
-    echo "<br>";
-}
-echo "<br>";
-echo "four$$$$$$$$$$$$$$$$$$:";
-foreach ($user_receive_answer as $item) {
-    echo $item->post_content;
-    echo "<br>";
-}
-echo "<br>";
-echo "five$$$$$$$$$$$$$$$$$$:";
-foreach ($user_best_answer as $item) {
-    echo $item->post_id;
-    echo "<br>";
-}
-echo "<br>";
-echo "six$$$$$$$$$$$$$$$$$$:";
-foreach ($user_answer_favors as $key => $value) {
-    echo $key;
-    echo "<br>";
-}
-
-
-echo "<br><hr>";
+//echo "one$$$$$$$$$$$$$$$$$$:";
+//foreach ($comments_user as $item) {
+//    echo $item->comment_content;
+//    echo "<br>";
+//}
+//echo "<br>";
+//echo "two$$$$$$$$$$$$$$$$$$:";
+//foreach ($user_replys as $item) {
+//    echo $item->comment_content;
+//    echo "<br>";
+//}
+//echo "<br>";
+//echo "three$$$$$$$$$$$$$$$$$$:";
+//foreach ($related_qas as $item) {
+//    echo $item->post_title;
+//    echo "<br>";
+//}
+//echo "<br>";
+//echo "four$$$$$$$$$$$$$$$$$$:";
+//foreach ($user_receive_answer as $item) {
+//    echo $item->post_content;
+//    echo "<br>";
+//}
+//echo "<br>";
+//echo "five$$$$$$$$$$$$$$$$$$:";
+//foreach ($user_best_answer as $item) {
+//    echo $item->post_id;
+//    echo "<br>";
+//}
+//echo "<br>";
+//echo "six$$$$$$$$$$$$$$$$$$:";
+//foreach ($user_answer_favors as $key => $value) {
+//    echo $key;
+//    echo "<br>";
+//}
+//
+//
+//echo "<br><hr>";
