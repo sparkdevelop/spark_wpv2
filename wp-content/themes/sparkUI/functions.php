@@ -1738,17 +1738,20 @@ function keywordHighlight_update(){
             $abstract = preg_replace("/\s*/","",(string)$value->ABSTRACT->ITEM);  //去掉所有空格
             if($abstract!=""){          //如果关键词有摘要
                 $insteadString = "<a id=layer-".$keyword.'>'.$keyword.'</a>'; //将文字替换成为链接
-
+                $pattern = "#(?=[^>]*(?=<(?!/a>)|$))".$keyword."#";
                 //new_content处理,
+                $new_content = preg_replace($pattern,$insteadString,$new_content,1);
 
-                $firstPos = strpos((string)$new_content,(string)$keyword);      //获取第一次出现位置
-                $new_content = substr_replace($new_content,$insteadString,$firstPos,strlen($keyword)); //替换
-                //$new_content = str_replace($keyword,$insteadString,$new_content,$count);
+//                $firstPos = strpos((string)$new_content,(string)$keyword);      //获取第一次出现位置
+//                $new_content = substr_replace($new_content,$insteadString,$firstPos,strlen($keyword)); //替换一次
+//
+                //$new_content = str_replace($keyword,$insteadString,$new_content,$count);//替换所有
             }
             //ajax的参数
             $current_user = wp_get_current_user();
             $admin_url = admin_url( 'admin-ajax.php' );
             $post_id = get_the_ID_by_title($keyword);
+            $keyword_url = get_permalink($post_id);
             ?>
             <script>
                 $(function () {
@@ -1757,11 +1760,13 @@ function keywordHighlight_update(){
                         layer.tips("<?php echo $abstract?>", '#layer-<?=$keyword?>',
                             {
                                 tips: [1,"black"],   //位置和颜色
-                                success:addFavoriteKnowledge()
+                                success:clickEvent()
                             });
                     });
-                    function addFavoriteKnowledge(){
-                        $("#layer-<?=$keyword?>").on('click',function () {
+                    function clickEvent(){
+                        var _time = null;
+                        $("#layer-<?=$keyword?>").dblclick(function(){
+                            clearTimeout(_time);
                             if('<?=$post_id?>'==''){
                                 layer.msg('还没有该词条,无法收藏',{time:5000,icon:2});
                             }else{
@@ -1782,8 +1787,16 @@ function keywordHighlight_update(){
                                     }
                                 });
                             }
-
-                        })
+                        }).click(function(){  //跳转到该词条
+                            clearTimeout(_time);
+                            _time = setTimeout(function () {
+                                if('<?=$post_id?>'==''){
+                                    layer.msg('还没有该词条,无法跳转',{time:5000,icon:2});
+                                }else{
+                                    location.href = '<?=$keyword_url?>';
+                                }
+                            },300);
+                        });
                     }
                 })
             </script>
@@ -1791,6 +1804,9 @@ function keywordHighlight_update(){
     }
     echo $new_content;
 }
+
+
+//
 
 //建立关键词信息表
 function xml_table_install () {
@@ -1921,9 +1937,12 @@ function isXML($str){
 //处理每个项目的内容,生成调取api的phrase
 function processContent($post_id){
     $phrase = get_the_content_by_id($post_id);
-    //echo $phrase;//去掉标题
-    $phrase = strip_tags($phrase);  //去掉其他标签
     $phrase = preg_replace("/\s*/","",$phrase);  //去掉空格
+    $phrase = preg_replace("/\<hr\/\>*/","",$phrase);  //去掉分割线
+    $phrase = preg_replace("/\<h[^\>]*?>.*?\<\/h[^\>]*?>/","",$phrase); //去掉标题
+    $phrase = preg_replace("/\<pre\>*?>.*?\<\/pre\>*?>/","",$phrase); //去掉代码
+    $phrase = preg_replace("/\<a[^\>]*?>.*?\<\/a[^\>]*?>/","",$phrase); //去掉链接
+    $phrase = strip_tags($phrase);  //去掉其他标签
     $phrase = mb_substr($phrase,0,650,"utf-8");
     return $phrase;
 }

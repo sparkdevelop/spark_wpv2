@@ -278,7 +278,7 @@ function myKnowledgeChart(id,jsonstring) {
             roam: 'move',     //鼠标缩放和平移漫游
             focusNodeAdjacency: 'true',  //是否在鼠标移到节点上的时候突出显示节点以及节点的边和邻接节点。
             smybol: 'circle',          //节点的形状'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
-            data: wholedata.nodes,
+            nodes: wholedata.nodes,
             links: wholedata.links,
             categories:wholedata.categories,
             force: {
@@ -315,8 +315,7 @@ function myKnowledgeChart(id,jsonstring) {
     //单击进行折叠
     myChart.on('click',function (param) {
         var option = myChart.getOption();           //获取所有option
-        var nodesOption = option.series[0].data;   //获取node中的数据
-
+        var nodesOption = option.series[0].nodes;   //获取node中的数据
         var linksOption = option.series[0].links;   //获取target,source信息
         var data = param.data;                      //点谁获取谁的node中对应的数据。是node中的子集
 
@@ -326,22 +325,69 @@ function myKnowledgeChart(id,jsonstring) {
              * step2:若下一级节点的itemStyle.normal.opacity为0,则将下一级节点的itemStyle.normal.opacity设为1
              * step3:反之设为0.
              * */
-            if(data.itemStyle.normal.opacity==1){
-                for ( var i in linksOption) {   //对于每一个连接
-                    if (linksOption[i].source == data.id) {   //这个节点是另一些节点的上级,则将这些节点隐藏或显示
-                        if(nodesOption[linksOption[i].target].itemStyle.normal.opacity==1){  //如果现在的状态是显示
-                            linksOption[i].lineStyle.normal.opacity=0;
-                            nodesOption[linksOption[i].target].itemStyle.normal.opacity=0;
-                        }else{
-                            linksOption[i].lineStyle.normal.opacity=1;
-                            nodesOption[linksOption[i].target].itemStyle.normal.opacity=1;
-                        }
-                    }
-                }
+            //如果下一级节点的状态是1,那么调用fold,反之
+
+            if(nodeStatus(linksOption,data,nodesOption)==1){
+                foldNode(linksOption,data,nodesOption);
+            }
+            else{
+                openNode(linksOption,data,nodesOption);
+                //openNodeOnce(linksOption,data,nodesOption);  //只打开一层
             }
         }
         myChart.setOption(option);
-    })
+    });
+
+
+    //判断是否是边缘节点
+    function isEdgeNode(links,node) {
+        for(var j in links){
+            if(links[j].source == node.id){return true;}
+            else{return false;}
+        }
+    }
+
+    //判断下一级节点状态
+    function nodeStatus(links,node,nodesOption){
+        for(var i in links){
+            if(links[i].source == node.id){
+                return nodesOption[links[i].target].itemStyle.normal.opacity;
+            }
+        }
+    }
+
+    function openNode(links,node,nodesOption){  //可以考虑展开一层
+        for (var i in links) {
+            if (links[i].source == node.id) {
+                if (!isEdgeNode(links, nodesOption[links[i].target], nodesOption)) {
+                    nodesOption[links[i].target].itemStyle.normal.opacity = 1;
+                    links[i].lineStyle.normal.opacity = 1;
+                    openNode(links, nodesOption[links[i].target], nodesOption);
+                }
+            }
+        }
+    }
+
+    function foldNode(links,node,nodesOption) {
+        for (var i in links) {
+            if (links[i].source == node.id) {
+                if (!isEdgeNode(links, nodesOption[links[i].target], nodesOption)) {
+                    nodesOption[links[i].target].itemStyle.normal.opacity = 0;
+                    links[i].lineStyle.normal.opacity = 0;
+                    foldNode(links, nodesOption[links[i].target], nodesOption);
+                }
+            }
+        }
+    }
+
+    function openNodeOnce(links,node,nodesOption){  //可以考虑展开一层
+        for (var i in links) {
+            if (links[i].source == node.id) {
+                nodesOption[links[i].target].itemStyle.normal.opacity = 1;
+                links[i].lineStyle.normal.opacity = 1;
+            }
+        }
+    }
 }
 
 //画出项目页面的知识图谱
