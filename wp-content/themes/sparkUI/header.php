@@ -20,6 +20,15 @@
     <?php wp_enqueue_script("jquery");//加载jquery?>
     <?php wp_head(); //加载js?>
     <?php $url_this = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"]; ?>
+
+    <?php
+    //控制导航栏显示哪几个page
+    $page_wiki_id = get_page_id('wiki');
+    $page_qa_id = get_page_id('qa');
+    $page_project_id =get_page_id('project');
+    $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id);
+    ?>
+
     <?php
     //埋数据点 
     session_start();
@@ -48,7 +57,7 @@
                             <ul class="nav navbar-nav">
                                 <?php
                                 //列出用户添加的页面 不列出Home页//问题是如何加特效?
-                                wp_list_pages(array('title_li' => '','depth'=>1));//,'exclude' => 38
+                                wp_list_pages(array('include'=> $page_all_id,'title_li' => '','depth'=>1));//,'exclude' => 38
                                 ?>
                             </ul>
                         </div>
