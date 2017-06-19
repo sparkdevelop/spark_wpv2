@@ -87,7 +87,7 @@
 ?>
 <div class="wiki_sidebar_wrap">
     <div class="row wiki-handle">
-        <div class="edit-wiki"><a href="<?php echo get_permalink( get_page_by_title( '编辑wiki' )); ?>?post_id=<?php echo $post->ID ?>">编辑 wiki</a></div>
+        <div class="edit-wiki"><a href="<?php echo get_permalink( get_page_by_title( '编辑wiki' )); ?>&post_id=<?php echo $post->ID ?>">编辑 wiki</a></div>
         <div class="create-wiki"><a href="<?php echo get_permalink( get_page_by_title( '创建wiki' )); ?>">创建 wiki</a></div>
     </div>
 <!--    <div class="list-group mulu">-->
