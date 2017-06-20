@@ -24,7 +24,7 @@
                 if(is_home() || is_front_page()) { //首页显示“首页内容”
                     the_content();
                 }
-                elseif (is_page("wiki")) {
+                elseif (is_page("wiki_index")) {
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );
                     }

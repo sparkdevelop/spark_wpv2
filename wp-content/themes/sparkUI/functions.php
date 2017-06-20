@@ -1755,7 +1755,7 @@ function keywordHighlight_update(){
             ?>
             <script>
                 $(function () {
-                    $("#layer-<?=$keyword?>").css({"color":"#fe642d","cursor":"pointer"})
+                    $("#layer-<?=$keyword?>").css({"color":"#3194d0","cursor":"pointer"})
                         .on('mouseover',function () {
                         layer.tips("<?php echo $abstract?>", '#layer-<?=$keyword?>',
                             {
