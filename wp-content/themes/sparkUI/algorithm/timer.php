@@ -17,5 +17,9 @@
 //}
 
 //刷新xml表内容
-    //updateContentItem();
-    processContent(1270);
+    updateContentItem();
+    //processContent(1062);
+
+
+//插入实体表内容
+    //preInsertEntity();
