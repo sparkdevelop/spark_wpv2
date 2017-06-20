@@ -17,7 +17,7 @@
 //}
 
 //刷新xml表内容
-    updateContentItem();
+    //updateContentItem();
     //processContent(1062);
 
 

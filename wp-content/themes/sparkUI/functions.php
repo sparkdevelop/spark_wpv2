@@ -1762,7 +1762,7 @@ function keywordHighlight_update(){
 //                $new_content = substr_replace($new_content,$insteadString,$firstPos,strlen($keyword)); //替换一次
 //
                 //$new_content = str_replace($keyword,$insteadString,$new_content,$count);//替换所有
-            }
+          }
             //ajax的参数
             $current_user = wp_get_current_user();
             $admin_url = admin_url( 'admin-ajax.php' );
@@ -1978,52 +1978,13 @@ function isXML($str){
 //处理每个项目的内容,生成调取api的phrase
 function processContent($post_id){
     $phrase = get_the_content_by_id($post_id);
-    $phrase = preg_replace("#\"*\'*#","",$phrase);
-    ?>
-    <?php
+    $phrase = preg_replace("#\"*\'*#","",$phrase); //去掉" '
     $phrase = preg_replace("/\s*/","",$phrase);  //去掉空格
-    ?>
-    <script>
-        console.log("去掉空格");
-        console.log('<?=$phrase?>');
-    </script>
-    <?php
     $phrase = preg_replace("#<hr[^>].*?/>.*?[/>]*#","",$phrase);  //去掉分割线
-    //$phrase = preg_replace("/\<hr\/\>*/","",$phrase);  //去掉分割线
-    ?>
-    <script>
-        console.log("去掉分割线");
-        console.log('<?=$phrase?>');
-    </script>
-    <?php
     $phrase = preg_replace("/\<h[^\>]*?>.*?\<\/h[^\>]*?>/","",$phrase); //去掉标题
-    ?>
-    <script>
-        console.log("去掉标题");
-        console.log('<?=$phrase?>');
-    </script>
-    <?php
     $phrase = preg_replace("/\<pre\>*?>.*?\<\/pre\>*?>/","",$phrase); //去掉代码
-    ?>
-    <script>
-        console.log("去掉代码");
-        console.log("<?=$phrase?>");
-    </script>
-    <?php
     $phrase = preg_replace("/\<a[^\>]*?>.*?\<\/a[^\>]*?>/","",$phrase); //去掉链接
-    ?>
-    <script>
-        console.log('去掉连接');
-        console.log('<?=$phrase?>');
-    </script>
-    <?php
     $phrase = strip_tags($phrase);  //去掉其他标签
-    ?>
-    <script>
-        console.log("去掉标签");
-        console.log('<?=$phrase?>');
-    </script>
-    <?php
     $phrase = mb_substr($phrase,0,650,"utf-8");
     return $phrase;
 }
@@ -2039,7 +2000,7 @@ function get_the_content_by_id($post_id){
 //通过post_title获取post_id()
 function get_the_ID_by_title($post_title){
     global  $wpdb;
-    $sql = "SELECT ID FROM $wpdb->posts WHERE post_title='$post_title' AND post_status = 'publish'";
+    $sql = "SELECT ID FROM $wpdb->posts WHERE post_title='$post_title' AND post_status = 'publish' AND post_type='yada_wiki'";
     $result = $wpdb->get_results($sql);
     return $result[0]->ID;
 }
