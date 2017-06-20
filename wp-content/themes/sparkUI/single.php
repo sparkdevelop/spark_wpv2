@@ -16,7 +16,7 @@ $current_user = wp_get_current_user();
 $post_id = get_the_ID();
 $author_id=get_post($post_id)->post_author;
 $author_name=get_the_author_meta('user_login',$author_id);
-
+$release_id=get_page_id('release');
 //相关知识
 $related_wiki = showProWiki(get_the_ID());
 ?>
@@ -127,7 +127,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
             <!--判断用户是否为项目发布者，若是，则显示编辑按钮,否则显示发布按钮-->
             <div class="sidebar_button" style="margin-top: 20px;margin-right: 15px;margin-left: -2px">
                 <?php if($current_user->user_login  == $author_name) {
-                    echo "<a href='?fep_action=edit&fep_id=$post_id&page_id=434' >编辑项目</a >";
+                    echo "<a href='?fep_action=edit&fep_id=$post_id&page_id=$release_id' >编辑项目</a >";
                 }else {
                     echo "<a href='".get_the_permalink(get_page_by_title('发布项目')). "' target='_blank' >发布项目</a>";
                 }
@@ -348,7 +348,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
 <div class="side-tool" id="m-side-tool-project">
     <ul>
         <?php if($current_user->user_login  == $author_name){
-            echo "<li><a href='?fep_action=edit&fep_id=$post_id&page_id=434' ><i class='fa fa-pencil' aria-hidden = 'true' ></i ></a ></li>";
+            echo "<li><a href='?fep_action=edit&fep_id=$post_id&page_id=$release_id' ><i class='fa fa-pencil' aria-hidden = 'true' ></i ></a ></li>";
             echo "<li><a href='".get_the_permalink(get_page_by_title('发布项目')). "'><i class='fa fa-plus' aria-hidden='true'></i></a></li>";
         }else{
             echo "<li><a href='".get_the_permalink(get_page_by_title('发布项目')). "'><i class='fa fa-plus' aria-hidden='true'></i></a></li>";
