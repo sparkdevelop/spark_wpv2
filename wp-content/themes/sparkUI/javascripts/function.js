@@ -209,6 +209,13 @@ function myKnowledgeChart(id,jsonstring) {
             normal:{
                 show:true
             }
+        };
+        //console.log(node);
+        if(isEdgeNode(wholedata.links,node,wholedata.nodes)){
+            console.log(wholedata.links);
+            console.log(node);
+            console.log(node.itemStyle.normal.opacity);
+            node.itemStyle.normal.opacity = 0;
         }
     });
     // option =
@@ -340,7 +347,7 @@ function myKnowledgeChart(id,jsonstring) {
 
 
     //判断是否是边缘节点
-    function isEdgeNode(links,node) {
+    function isEdgeNode(links,node,nodeoptions) {
         for(var j in links){
             if(links[j].source == node.id){return true;}
             else{return false;}

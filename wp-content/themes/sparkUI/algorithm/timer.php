@@ -18,8 +18,9 @@
 
 //刷新xml表内容
     //updateContentItem();
-    //processContent(1062);
+    //$phrase_arr = processContent(5);
+    //print_r($phrase_arr);
 
 
 //插入实体表内容
-    //preInsertEntity();
+    updateInsertEntity();

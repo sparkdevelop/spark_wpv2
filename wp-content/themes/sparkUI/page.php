@@ -56,6 +56,12 @@
                     }
                     require "template/project/project_content.php";
                 }
+                elseif (is_page('group')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/group/group.php";
+                }
                 elseif (is_page("ask")) {
                     if (is_user_logged_in()) {
                         require "template/qa/QA_ask.php";
