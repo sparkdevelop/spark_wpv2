@@ -60,7 +60,7 @@
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );
                     }
-                    require "template/group/group.php";
+                    require "template/group/index.php";
                 }
                 elseif (is_page("ask")) {
                     if (is_user_logged_in()) {
@@ -102,6 +102,18 @@
                     } else { ?>
                         <script>location.href = "<?= wp_login_url( get_permalink())?>";</script>
                 <?php  }
+                }
+                elseif (is_page('creategroup')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/group/create_group.php";
+                }
+                elseif (is_page('createtask')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/group/create_task.php";
                 }
                 else{
                     if (!is_user_logged_in()) {

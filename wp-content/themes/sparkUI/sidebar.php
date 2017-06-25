@@ -65,6 +65,11 @@ if (is_tag()){
     }
     //require "template/qa/QA_tags_sidebar.php";
 }
+if (is_page("group")){
+    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_searchsidebar')){
+    }
+    require "template/group/index_sidebar.php";
+}
 //这个判断wiki详情是谁写的，not created by chenli
 if(is_page("wiki详情")) {
     require "template/wiki/wiki_entry_sidebar.php";

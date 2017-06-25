@@ -13,11 +13,16 @@ function sparkspace_scripts_with_jquery()
     wp_register_script( 'custom-script_2', get_template_directory_uri() . '/layer/layer.js', array( 'jquery' ) );
     wp_register_script( 'custom-script_3', get_template_directory_uri() . '/javascripts/function.js', array( 'jquery' ) );
     wp_register_script( 'custom-script_4', get_template_directory_uri() . '/javascripts/echarts.js', array( 'jquery' ) );
+    wp_register_script( 'custom-script_5', get_template_directory_uri() . '/datetimepicker/js/bootstrap-datetimepicker.js', array( 'jquery'));
+    wp_register_script( 'custom-script_6', get_template_directory_uri() . '/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js');
+
     // For either a plugin or a theme, you can then enqueue the script:
     wp_enqueue_script( 'custom-script');
     wp_enqueue_script( 'custom-script_2');
     wp_enqueue_script( 'custom-script_3');
     wp_enqueue_script( 'custom-script_4');
+    wp_enqueue_script( 'custom-script_5');
+    wp_enqueue_script( 'custom-script_6');
 }
 add_action( 'wp_enqueue_scripts', 'sparkspace_scripts_with_jquery' );
 
@@ -1629,7 +1634,6 @@ function readJson($file_name){
     $jsonString["links"] = $links;
 
     $jsonString = json_encode($jsonString);
-    echo $jsonString;
     return $jsonString;
 }
 //项目知识图谱生成
@@ -1781,6 +1785,7 @@ function keywordHighlight_update(){
                                 layer.tips(html, '#layer-<?=$keyword?>',
                                     {
                                         tips: [1, "black"],   //位置和颜色
+                                        time: 10000,
                                         success: clickEvent()
                                     });
                             });
@@ -1886,7 +1891,7 @@ function updateContentItem(){
 //        }
 //    }
 
-    for($i=75;$i<85;$i++){  //目前到这里了,这十组全是error
+    for($i=235;$i<255;$i++){  //目前到这里了,这十组全是error
         $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$results[$i]['ID'];
         $col = $wpdb->get_results($sql_1,"ARRAY_A");
         if(sizeof($col)!=0){    //xml表总是否已经有这个项目的xml,如果有
@@ -1937,7 +1942,7 @@ function updateXML($post_id){
     $phrase = processContent($post_id);
     $length = sizeof($phrase);
     for($i=0;$i<$length;$i++) {
-        $url = 'http://ebs.ckcest.cn/kb/elxml?apikey=RHizNjRR&phrase=' . $phrase[$i];
+        $url = 'http://ebs.ckcest.cn/kb/elxml?apikey=RHizNjRR&phrase='.$phrase[$i];
         $returnXML = file_get_contents($url);
         ?>
         <script>
@@ -1947,12 +1952,6 @@ function updateXML($post_id){
         if (isXML($returnXML)) {
             $modified_time = date("Y-m-d H:i:s", time() + 8 * 3600);
             //判断表中是否已有section1,2…… 若有,执行update,若没有,执行insert
-            ?>
-            <script>
-                console.log("hasSection");
-                console.log('<?=hasSection($post_id,$i)?>');
-            </script>
-            <?php
             if(hasSection($post_id,$i)==1){
                 $sql_update = "update wp_xml set xml_string = '$returnXML',modified_time = '$modified_time' WHERE section_id= $i and post_id=" . $post_id;
                 $wpdb->get_results($sql_update);
@@ -1962,7 +1961,7 @@ function updateXML($post_id){
                 $wpdb->get_results($sql_insert);
             }
         } else {
-            echo "error";
+            echo "error"."<hr>";
         }
     }
 }
