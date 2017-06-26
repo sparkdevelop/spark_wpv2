@@ -90,6 +90,12 @@
                     }
                     require "template/otherpersonal.php";
                 }
+                elseif (is_page('student_management')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/student_management/test.php";
+                }
                 elseif (is_page('personal')){
                     if (is_user_logged_in()) {
                         require "template/personal.php";
