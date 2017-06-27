@@ -17,10 +17,7 @@
 //}
 
 //刷新xml表内容
-    updateContentItem();
-    //$phrase_arr = processContent(5);
-    //print_r($phrase_arr);
-
+    //updateContentItem();
 
 //插入实体表内容
-    //updateInsertEntity();
+    updateInsertEntity();

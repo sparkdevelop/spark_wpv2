@@ -43,6 +43,8 @@ favorite_table_install();
 score_table_install ();
 xml_table_install ();
 entity_table_install ();
+gp_table_install ();
+gp_verify_table_install ();
 get_header();
 ?>
 

@@ -1,10 +1,13 @@
-<?php //未写JS ?>
+<?php //未写JS
+//从哪个群组跳转过来的?
+
+?>
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
     <h4 class="index_title" style="margin-left: 20px">填写任务信息</h4>
     <div class="divline"></div>
 
     <form class="form-horizontal" role="form" name="profile" method="post"
-          action="<?php echo esc_url(self_admin_url('process-group.php')); ?>" onsubmit="return checkSubmitGroup();">
+          action="<?php echo esc_url(self_admin_url('process-task.php')); ?>">
         <!--任务名称-->
         <div class="form-group" style="margin: 20px 0px">
             <label for="tname" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">任务名称<span
@@ -53,7 +56,7 @@
             <label for="gstatustask" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">截止时间<span
                     style="color: red">*</span></label>
             <div id="form_datetime" class="input-group date form_datetime col-md-3" data-link-field="dtp_input1">
-                <input class="form-control" size="16" type="text" value="<?= date("Y-m-d", time() + 3600 * 24) ?>">
+                <input class="form-control" size="16" name="tdeadline" type="text" value="<?= date("Y-m-d", time() + 3600 * 24) ?>">
                 <span class="input-group-addon">
                         <span class="glyphicon glyphicon-remove" style="margin-right: 0px;"></span>
                 </span>
@@ -76,8 +79,13 @@
             });
         </script>
         <div class="form-group">
+            <input type="hidden" name="tauthor" value="<?=get_current_user_id()?>">
+            <input type="hidden" name="tstatus" value="close">
+            <input type="hidden" name="tcreatedate" value="<?=date("Y-m-d")?>">
+        </div>
+        <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <input type="submit" class="btn btn-default" id="save-btn" value="创建群组">
+                <input type="submit" class="btn btn-default" id="save-btn" value="发布任务">
             </div>
         </div>
     </form>

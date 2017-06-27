@@ -1865,51 +1865,42 @@ function updateContentItem(){
     $sql = "SELECT ID, post_modified FROM $wpdb->posts WHERE post_type='post' and post_status ='publish'";
     $results = $wpdb->get_results($sql,'ARRAY_A');
     //step2
-//    foreach($results as $result){
-//        $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$result['ID'];
-//        $col = $wpdb->get_results($sql_1,"ARRAY_A");
-//        if(sizeof($col)!=0){    //xml表总是否已经有这个项目的xml,如果有
-//            $flag = strtotime($col[0]["modified_time"])-strtotime($result['post_modified']);
-//            if($flag<0){ // 项目内容有了新的修改 否则不做任何操作。
-//                $phrase = processContent($result['ID']);
-//                $url = 'http://ebs.ckcest.cn/kb/elxml?apikey=RHizNjRR&phrase='.$phrase;
-//                $xml_string = file_get_contents($url);
-//
-////                $url = get_template_directory_uri()."/highlight.xml";
-////                $xml_string = file_get_contents($url);    //字符串。
-//                //以上两行要删掉。仅测试使用
-//                $modified_time = date("Y-m-d H:i:s",time()+8*3600);
-//                $sql_update = "update wp_xml set xml_string = '$xml_string',modified_time = '$modified_time' WHERE post_id=".$result['ID'];
-//                $wpdb->get_results($sql_update);
-//                echo "更新--".$result['ID']."<br>";
-//            }
-//        }
-//        else{//如果xml表没有这个post_id, 执行step3.  在新增项目那里可以执行这个函数。
-//            echo "执行一次insert".$result['ID']."<br>";
-//            insertContentItem($result['ID']);
-//            sleep(10);
-//        }
-//    }
-
-    for($i=235;$i<255;$i++){  //目前到这里了,这十组全是error
-        $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$results[$i]['ID'];
+    foreach($results as $result){
+        $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$result['ID'];
         $col = $wpdb->get_results($sql_1,"ARRAY_A");
         if(sizeof($col)!=0){    //xml表总是否已经有这个项目的xml,如果有
-            $flag = strtotime($col[0]["modified_time"])-strtotime($results[$i]['post_modified']);
-            if($flag>0){        // 项目内容有了新的修改 否则不做任何操作。
-                echo "执行一次update".$results[$i]['ID']."<br>";
-                updateXML($results[$i]['ID']);
-                sleep(5);
-////                $url = get_template_directory_uri()."/highlight.xml";
-////                $xml_string = file_get_contents($url);    //字符串。
-//                //以上两行要删掉。仅测试使用
+            $flag = strtotime($col[0]["modified_time"])-strtotime($result['post_modified']);
+            if($flag<0){ // 项目内容有了新的修改 否则不做任何操作。
+                echo "执行一次update".$result['ID']."<br>";
+                updateXML($result['ID']);
+                sleep(3);
             }
         }
         else{//如果xml表没有这个post_id, 执行step3.  在新增项目那里可以执行这个函数。
-            echo "执行一次insert".$results[$i]['ID']."<br>";
-            insertContentItem($results[$i]['ID']);
+            echo "执行一次insert".$result['ID']."<br>";
+            insertContentItem($result['ID']);
+            sleep(10);
         }
     }
+//    for($i=255;$i<270;$i++){  //目前到这里了,这十组全是error
+//        $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$results[$i]['ID'];
+//        $col = $wpdb->get_results($sql_1,"ARRAY_A");
+//        if(sizeof($col)!=0){    //xml表总是否已经有这个项目的xml,如果有
+//            $flag = strtotime($col[0]["modified_time"])-strtotime($results[$i]['post_modified']);
+//            if($flag>0){        // 项目内容有了新的修改 否则不做任何操作。
+//                echo "执行一次update".$results[$i]['ID']."<br>";
+//                updateXML($results[$i]['ID']);
+//                sleep(5);
+//////                $url = get_template_directory_uri()."/highlight.xml";
+//////                $xml_string = file_get_contents($url);    //字符串。
+////                //以上两行要删掉。仅测试使用
+//            }
+//        }
+//        else{//如果xml表没有这个post_id, 执行step3.  在新增项目那里可以执行这个函数。
+//            echo "执行一次insert".$results[$i]['ID']."<br>";
+//            insertContentItem($results[$i]['ID']);
+//        }
+//    }
 }
 
 //新增xml中的一行  在发布项目那里可以调用一次
@@ -2114,7 +2105,78 @@ function isNewEntity($entity_name){
 }
 
 
+//建立任务表
+function gp_task_table_install () {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "gp_task";  //获取表前缀，并设置新表的名称
+    if($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          task_name text NOT NULL,
+          task_author int NOT NULL,
+          belong_to int NOT NULL,
+          task_content longtext NOT NULL,
+          task_status text NOT NULL,
+          task_type text NOT NULL,
+          create_date datetime NOT NULL,
+          deadline datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
 
+//建立群组表
+function gp_table_install () {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "gp";  //获取表前缀，并设置新表的名称
+    if($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          group_name text NOT NULL,
+          group_author int NOT NULL,
+          group_abstract longtext NOT NULL,
+          group_status text NOT NULL,
+          group_cover text NOT NULL,
+          join_permission text NOT NULL,
+          task_permission text NOT NULL,
+          create_date datetime NOT NULL,
+          member_count int NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+//判断群组是否重名
+function checkGroupName(){
+    global $wpdb;
+    $groupName =$_POST['groupName'];
+    $sql = "SELECT ID FROM wp_gp WHERE group_name = '$groupName'";
+    $col = $wpdb->query($sql);
+    if($col==0){
+        $response = true;
+    }else{ $response = false; }
+    echo $response;
+    exit();
+}
+add_action('wp_ajax_checkGroupName', 'checkGroupName');
+add_action('wp_ajax_nopriv_checkGroupName', 'checkGroupName');
+
+//建立群组表
+function gp_verify_table_install () {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "gp_verify";  //获取表前缀，并设置新表的名称
+    if($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          verify_id int NOT NULL,
+          verify_content longtext NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
 
 
 
