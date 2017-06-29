@@ -2137,6 +2137,7 @@ function gp_table_install () {
           group_author int NOT NULL,
           group_abstract longtext NOT NULL,
           group_status text NOT NULL,
+          publish_status text NOT NULL,
           group_cover text NOT NULL,
           join_permission text NOT NULL,
           task_permission text NOT NULL,
@@ -2151,12 +2152,21 @@ function gp_table_install () {
 //判断群组是否重名
 function checkGroupName(){
     global $wpdb;
-    $groupName =$_POST['groupName'];
-    $sql = "SELECT ID FROM wp_gp WHERE group_name = '$groupName'";
-    $col = $wpdb->query($sql);
-    if($col==0){
-        $response = true;
-    }else{ $response = false; }
+    $groupName =isset($_POST['groupName']) ? $_POST['groupName'] : "";
+    $nowGroupName = isset($_POST['nowGroupName']) ? $_POST['nowGroupName'] : "";
+    if($nowGroupName!=''){
+        if($groupName==$nowGroupName){
+            $response = true;
+        }else{ $response=false;}
+    }elseif($groupName!=''){
+        $sql = "SELECT ID FROM wp_gp WHERE group_name = '$groupName'";
+        $col = $wpdb->query($sql);
+        if($col==0){
+            $response = true;
+        }else{ $response = false; }
+    }else{
+        $response=false;
+    }
     echo $response;
     exit();
 }
@@ -2171,11 +2181,62 @@ function gp_verify_table_install () {
         $sql = "CREATE TABLE " . $table_name . " (
           ID int AUTO_INCREMENT PRIMARY KEY,
           verify_id int NOT NULL,
+          verify_type text NOT NULL,
           verify_content longtext NOT NULL
           ) character set utf8";
         require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
         dbDelta($sql);
     }
+}
+
+//建立群组成员表
+function gp_member_table_install ()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "gp_member";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+          group_id int NOT NULL,
+          indentity text NOT NULL,
+          join_date datetime NOT NULL,
+          member_status int NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+//获取所有的群组信息
+function get_group($id = null){
+    global $wpdb;
+    if($id!=null){
+        $sql = "SELECT * FROM wp_gp WHERE ID = $id";
+    }else{
+        $sql = "SELECT * FROM wp_gp";
+    }
+    $results = $wpdb->get_results($sql,'ARRAY_A');
+    return $results;
+}
+
+//写头像适配大小函数
+function get_group_avatar(){
+    //返回值为<img>
+}
+
+//判断用户是否为群组管理员
+function is_group_admin(){
+
+}
+
+//获取验证字段,参数(id,type) 返回值 验证字段数组
+function get_verify_field($id,$type){
+    global $wpdb;
+    $sql = "SELECT verify_content FROM wp_gp_verify WHERE verify_id=$id and verify_type='$type'";
+    $result = $wpdb->get_results($sql,'ARRAY_A');
+    $verifyField = explode(',',$result[0]['verify_content']);
+    return $verifyField;
 }
 
 

@@ -7,11 +7,12 @@
     }
     #group-info{
         display: inline-block;
-        width: 60%;
+        width: 55%;
     }
     #latest-active{
         display: inline-block;
         float: right;
+        margin-top: 10px;
     }
     .group_title h4{
         margin-bottom: 10px;
@@ -26,9 +27,10 @@
     <div class="divline"></div>
     <ul class="list-group">
     <?php
+    $all_group = get_group();
     //翻页
-    $total_group = 18;
-    $perpage = 10;
+    $total_group = sizeof($all_group);
+    $perpage = 5;
     $total_page = ceil($total_group/$perpage); //计算总页数
     if(!$_GET['paged']){
         $current_page = 1;
@@ -41,25 +43,26 @@
         $temp = $total_group < $perpage * $current_page ? $total_group : $perpage * $current_page;
 
         for ($i=$perpage*($current_page-1);$i<$temp;$i++) {
-            $group_name = "造梦空间";
-            $member = 32;
+            $group_name = $all_group[$i]['group_name'];
+            $member = $all_group[$i]['member_count'];
+            $author = $all_group[$i]['group_author']
             ?>
             <li class="list-group-item">
                 <div id="group-ava">
-                    <img src="<?php bloginfo("template_url") ?>/img/group_ava.png">
+                    <img src="<?=$all_group[$i]['group_cover']?>" style="width: 85px;height: 85px">
                 </div>
-                <div id="group-info">
+                <div id="group-info" style="margin-left: 20px">
                     <div class="group_title">
-                        <a class="group_name" href="#"><h4><?= $group_name ?></h4></a>
+                        <a class="group_name" href="<?php echo site_url().get_page_address('single_group').'&id='.$all_group[$i]['ID'];?>"><h4><?= $group_name ?></h4></a>
                     </div>
                     <div class="group_abs">
-                        所谓造梦，造的不是浑浑噩噩的白日梦，而是一个个鲜活的梦想
+                        <?php echo $all_group[$i]['group_abstract'];?>
                     </div>
                     <div class="group_others">
                         <span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">已加入</span>&nbsp;&nbsp;
                         <span><?= $member ?>个成员</span>&nbsp;&nbsp;
                         <span>管理员</span>
-                        <a href="#" style="color: #169bd5">如影随风</a>
+                        <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$author;?>" style="color: #169bd5"><?php echo get_author_name($author)?></a>
                     </div>
                 </div>
                 <div id="latest-active">
@@ -68,12 +71,9 @@
                     for ($j = 0; $j < 3; $j++) {
                         ?>
                         <div style="display: inline-block;margin-top: 10px">
-                            <div style="text-align: center">
+                            <div style="text-align: center;width: 40px">
                                 <?php echo get_avatar(get_current_user_id(), 30, ''); ?>
                             </div>
-                            <?php
-                            echo wp_get_current_user()->display_name;
-                            ?>
                         </div>
                     <?php } ?>
                 </div>

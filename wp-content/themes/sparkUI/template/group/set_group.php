@@ -1,4 +1,8 @@
-<?php ?>
+<?php
+//获取verify的值
+$group_id = $group[0]['ID'];
+$verifyField = get_verify_field($group_id,'group');
+?>
 <style>
     #gstatus-addon p {
         margin-top: 10px;
@@ -27,7 +31,8 @@
         else {
             var data = {
                 action: 'checkGroupName',
-                groupName: groupName
+                groupName: groupName,
+                nowGroupName:'<?=$group[0]['group_name']?>'
             };
             $.ajax({
                 async: false,    //否则永远返回false
@@ -79,18 +84,15 @@
     }
 
 </script>
-<div class="col-md-9 col-sm-9 col-xs-12" id="col9">
-    <h4 class="index_title" style="margin-left: 20px">填写群组信息</h4>
-    <div class="divline"></div>
 
     <form class="form-horizontal" role="form" name="profile" method="post" enctype="multipart/form-data"
-          action="<?php echo esc_url(self_admin_url('process-group.php')); ?>" onsubmit="return checkSubmitGroup();">
+          action="<?php echo esc_url(self_admin_url('process-group-update.php')); ?>" onsubmit="return checkSubmitGroup();">
         <!--群组名称-->
         <div class="form-group" style="margin: 20px 0px">
             <label for="gname" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">群组名称<span
                     style="color: red">*</span></label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="gname" id="gname" placeholder="请输入群组名称" value=""
+                <input type="text" class="form-control" name="gname" id="gname" placeholder="请输入群组名称" value="<?=$group[0]['group_name']?>"
                        onblur="checkGroupName(this.value)"/>
             </div>
             <span style="line-height: 30px;height: 30px" id="checkGroupNamebox"></span>
@@ -101,7 +103,7 @@
                     style="color: red">*</span></label>
             <div class="col-sm-6">
                 <textarea class="form-control" rows="5" name="gabstract" id="gabstract" placeholder="请输入群组简介"
-                          onblur="checkGroupAbs(this.value)"></textarea>
+                          onblur="checkGroupAbs(this.value)"><?=$group[0]['group_abstract']?></textarea>
             </div>
             <span style="line-height: 30px;height: 30px" id="checkGroupAbsbox"></span>
         </div>
@@ -139,8 +141,9 @@
                                     var html = '<div style="background-color: #f2f2f2;padding-top: 10px">' +
                                         '<div id="insert-text">' +
                                         '<p style="margin: 10px 20px; margin-top: 0px">设置需要用户填写的验证字段,如:真实姓名、学号,该信息将在小组内公开</p>' +
-                                        '<input type="text" class="form-control" name="g-ver-info[]" id="g-ver-info" style="margin-bottom:10px;margin-left:10px;display:inline;width: 85%" placeholder="真实姓名" value="真实姓名"/>' +
-                                        '<input type="text" class="form-control" name="g-ver-info[]" id="g-ver-info" style="margin-bottom:10px;margin-left:10px;display:inline;width: 85%" placeholder="学号" value="学号"/>' +
+                                        '<?php for($i=0;$i<sizeof($verifyField);$i++){?>'+
+                                        '<input type="text" class="form-control" name="g-ver-info[]" id="g-ver-info" style="margin-bottom:10px;margin-left:10px;display:inline;width: 85%" value="<?php echo $verifyField[$i]?>"/>' +
+                                        '<?php } ?>'+
                                         '<input type="button" id="addNewFieldBtn" value="+" style="margin-left:10px;display:inline">' +
                                         '</div>' +
                                         '</div>';
@@ -222,14 +225,12 @@
         </script>
         <!--        隐藏信息-->
         <div class="form-group">
-            <input type="hidden" name="gauthor" value="<?= get_current_user_id() ?>">
-            <input type="hidden" name="gcreatedate" value="<?= date("Y-m-d H:i:s", time() + 8 * 3600) ?>">
+            <input type="hidden" name="group_id" value="<?=$group[0]['ID']?>">
         </div>
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <input type="submit" class="btn btn-default" name="save-btn" id="save-btn" value="创建群组">
+                <input type="submit" class="btn btn-default" name="save-btn" id="save-btn" value="保存修改">
             </div>
         </div>
     </form>
-</div>

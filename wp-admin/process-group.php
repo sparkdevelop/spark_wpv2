@@ -20,26 +20,28 @@
 
     $group_abstract = isset($_POST["gabstract"]) ? $_POST["gabstract"] : '';
 
-    $group_status = isset($_POST["gstatus"]) ? $_POST["gstatus"] : "publish";
+    $group_status = isset($_POST["gstatus"]) ? $_POST["gstatus"] : '';  //群组是否开放 value=open、close
 
-    $join_permission = isset($_POST["gjoin"]) ? $_POST["gjoin"] : "";
+    $join_permission = isset($_POST["gjoin"]) ? $_POST["gjoin"] : '';   //freejoin、verifyjoin、verify
 
-    $task_permission = isset($_POST["gstatustask"]) ? $_POST["gstatustask"] : "";
+    $task_permission = isset($_POST["gstatustask"]) ? $_POST["gstatustask"] : ''; //all、admin
 
-    $create_date = isset($_POST["gcreatedate"]) ? $_POST["gcreatedate"] : "";
+    $create_date = isset($_POST["gcreatedate"]) ? $_POST["gcreatedate"] : '';
 
     //处理上传的图片
     $upload_path = wp_upload_dir();  //获取wordpress的上传路径。
+    print_r($upload_path);
+
     if(!empty($_FILES['gava']["name"])){
+        $group_cover_address = $upload_path['url'] . "/" . $_FILES['gava']["name"];
         $new_upload_path = $upload_path['path'] . "/" . $_FILES['gava']["name"];  //本文件的上传路径,精确到文件名
     }else{
-        $new_upload_path = $upload_path['basedir']."/group-avatars/1/default.png";
+        $group_cover_address = $upload_path['baseurl'] . "/group-avatars/1/default.png";
+        $new_upload_path = $upload_path['basedir'] . "/group-avatars/1/default.png";
     }
 
     if (is_uploaded_file($_FILES['gava']['tmp_name'])) {   //判断文件时候是通过http_post上传的
         move_uploaded_file($_FILES['gava']['tmp_name'], $new_upload_path);
-    }else{
-        echo "this is not http post";
     }
     //处理加入方式
     //首先获取最后一个group_id;
@@ -47,18 +49,28 @@
     $result = $wpdb->get_results($sql_fun);
     $group_id = $result[0]->ID+1;
 
-    if ($join_permission = "verifyjoin"){
+    if ($join_permission == "verifyjoin"){
         $verify_content = $_POST['g-ver-info'];
-        $verify_content = implode(",",$verify_content);
-        $sql_verify = "INSERT INTO wp_gp_verify VALUES ('','$group_id','$verify_content')";
-        $wpdb->query($sql_verify);
+        if(sizeof($verify_content)!=0){
+            $verify_content = implode(",",$verify_content);
+            $sql_verify = "INSERT INTO wp_gp_verify VALUES ('','$group_id','group','$verify_content')";
+            $wpdb->query($sql_verify);
+        }
     }
 
     $sql = "INSERT INTO wp_gp VALUES ('$group_id','$group_name',$group_author,
-                                          '$group_abstract','$group_status',
-                                          '$new_upload_path','$join_permission',
+                                          '$group_abstract','$group_status','publish',
+                                          '$group_cover_address','$join_permission',
                                           '$task_permission','$create_date',1)";
-    $wpdb->query($sql);
 
+    if($group_name!="" && $group_abstract!="" && $group_status!="" &&
+        $join_permission!="" && $task_permission!=""){
+        $wpdb->query($sql);
+    }
 
+$url= site_url().get_page_address('group');
+?>
+<script>
+    location.replace("<?=$url?>");
+</script>
 

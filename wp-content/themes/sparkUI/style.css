@@ -1161,3 +1161,32 @@ h4{margin-bottom: 0px;}
     color: #fe642d;
     cursor: pointer;
 }
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
+    color: #fe642d;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-bottom: none;
+}
+.nav-tabs>li>a {
+    border-color: transparent;
+    color: black;
+}
+.nav-tabs>li>a:hover {
+    border-color: transparent;
+    color: #fe642d;
+}
+
+#single-group-abstract{  background-color: #f9f9f9;  margin: 20px 20px;  }
+#single-group-abstract p{  padding: 20px 20px;  }
+#group-ava,#group-info{  vertical-align: top;  display: inline-block;  }
+#h4_name{  font-size: 18px;  font-weight: bold;  }
+.group_title{  margin: 10px 0px;  }
+.group_others{ margin-bottom: 10px;}
+#single-group-leftTab li.active>a {border: 1px solid;  border-color: lightgray;  border-bottom: 0px; color: #fe642d;background-color: transparent }
+#single-group-leftTab li>a{    border: 1px solid;  border-color: lightgray;  border-bottom: 0px; color: black;background-color: #f2f2f2 }
+#single-group-leftTab >li+li { margin-left: 0px; }
