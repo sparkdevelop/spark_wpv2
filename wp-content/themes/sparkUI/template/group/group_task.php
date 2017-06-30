@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <div>
     <?php for($i=0;$i<5;$i++){?>
         <div style="height: 1px;background-color: lightgray"></div>

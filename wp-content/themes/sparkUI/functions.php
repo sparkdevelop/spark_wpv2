@@ -2119,7 +2119,8 @@ function gp_task_table_install () {
           task_status text NOT NULL,
           task_type text NOT NULL,
           create_date datetime NOT NULL,
-          deadline datetime NOT NULL
+          deadline datetime NOT NULL,
+          complete_count int NOT NULL
           ) character set utf8";
         require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
         dbDelta($sql);
@@ -2218,6 +2219,28 @@ function get_group($id = null){
     }
     $results = $wpdb->get_results($sql,'ARRAY_A');
     return $results;
+}
+
+//获取所有的群组信息 变量为task_id
+function get_task($group_id,$id=null){
+    global $wpdb;
+    if($id !=null) {   //
+        $sql = "SELECT * FROM wp_gp_task WHERE ID = $id AND belong_to = $group_id";
+    }else{
+        $sql = "SELECT * FROM wp_gp_task WHERE belong_to=$group_id";
+    }
+    $results = $wpdb->get_results($sql,'ARRAY_A');
+    return $results;
+}
+
+//获取该群组的所有任务信息 变量为task_id
+function get_task_group($id){
+    global $wpdb;
+    $sql = "SELECT belong_to FROM wp_gp_task WHERE ID = $id";
+    $results = $wpdb->get_results($sql,'ARRAY_A');
+
+    print_r($results);
+    return $results[0]['belong_to'];
 }
 
 //写头像适配大小函数

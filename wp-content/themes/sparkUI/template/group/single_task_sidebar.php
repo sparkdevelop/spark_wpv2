@@ -1,20 +1,15 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: zhangxue
+ * Date: 17/6/29
+ * Time: 下午5:05
+ */
+$task_id = isset($_GET['id']) ? $_GET['id'] : "";
+$group_id = get_task_group($task_id);
+$task = get_task($group_id, $task_id);
+$group = get_group($group_id);
 ?>
-<script>
-    flag = false;
-    function show_all_groups() {
-        var $all_groups = document.getElementById('all_groups');
-        var $joined_groups = document.getElementById('joined_groups');
-        if (flag) {
-            $all_groups.style.display = "block";
-            $joined_groups.style.display = "none";
-        } else {
-            $all_groups.style.display = "none";
-            $joined_groups.style.display = "block";
-        }
-        flag = !flag;
-    }
-</script>
 <style>
     #my_group_badge {
         color: #fe642d;
@@ -39,22 +34,10 @@
     }
 </style>
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
-
-    <?php if (is_user_logged_in()) { ?>
-        <div class="sidebar_button">
-            <a href="<?php echo site_url() . get_page_address("createtask"); ?>" style="color: white">发布任务</a>
-        </div>
-    <?php } else { ?>
-        <div class="sidebar_button">
-            <a href="<?php echo wp_login_url(get_permalink()); ?>" style="color: white">发布任务</a>
-        </div>
-    <?php } ?>
-
-    <!--    我加入了群组-->
+    <!--我加入的群组-->
     <div class="sidebar_list">
         <div class="sidebar_list_header">
             <p>我加入的群组</p>
-            <a id="sidebar_list_link" onclick="show_all_groups()">全部群组</a>
         </div>
         <!--分割线-->
         <div class="sidebar_divline"></div>
@@ -74,56 +57,30 @@
                             <span class="badge" id="my_group_badge">我创建的</span>
                         </div>
                     </li>
-                    <?php
-                }
-                ?>
-            </ul>
-        </div>
-
-        <div id="all_groups" style="display: none;word-wrap: break-word; word-break: keep-all;">
-            <ul class="list-group">
-                <?php
-                foreach ($result as $value) {
-                    ?>
-                    <li class="list-group-item">
-                        <div style="display: inline-block;vertical-align: baseline">
-                            <img src="<?php bloginfo("template_url") ?>/img/avatar.png" style="margin-top: -15px">
-                        </div>
-                        <div style="display: inline-block; vertical-align: baseline">
-                            <a href="personal.php" class="author_link">如影随风</a>
-                            <p>北邮信通院大四学长</p>
-                        </div>
-                    </li>
-                    <?php
-                }
-                ?>
+                <?php } ?>
             </ul>
         </div>
     </div>
 
-    <!--最近加入  选取member中最后加入的四个   -->
+    <!--未完成任务-->
     <div class="sidebar_list">
         <div class="sidebar_list_header">
-            <p>最近加入</p>
+            <p>未完成任务</p>
         </div>
-        <!--分割线-->
         <div class="sidebar_divline"></div>
-
-        <div id="latestJoin">
+        <ul class="list-group">
             <?php
-            for ($j = 0; $j < 5; $j++) { ?>
-                <div style="display: inline-block;margin-top: 10px">
-                    <div style="text-align: center;width: 45px">
-                        <?php echo get_avatar(get_current_user_id(), 30, ''); ?>
-                    </div>
-                    <?php // echo wp_get_current_user()->display_name; ?>
-                </div>
+            for ($i = 0; $i < 5; $i++) {
+                ?>
+                <li class="list-group-item">
+                    <span><a href="#">学习wiki课程“电子电路基础”</a></span>
+                    <span style="float: right">1天</span>
+                </li>
             <?php } ?>
-        </div>
-
+        </ul>
     </div>
 
-    <!--    群组动态-->
+    <!--群组动态-->
     <div class="sidebar_list">
         <div class="sidebar_list_header">
             <p>群组动态</p>
@@ -149,4 +106,3 @@
             ?>
         </ul>
     </div>
-</div>

@@ -17,13 +17,14 @@
         }
     }
     function checkLength(taskname,boxid) {
+        var id = "#"+boxid;
         if(taskname.length == 0){
             <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
-            $("#"+boxid).html("<img src='<?=$url?>'><span>该项不能为空</span>");
+            $(id).html("<img src='<?=$url?>'><span>该项不能为空</span>");
             return false;
         }else{
             <?php $url = get_template_directory_uri() . "/img/OK.png";?>
-            $("#checkTaskNamebox").html("<img src='<?=$url?>'");
+            $(id).html("<img src='<?=$url?>'>");
             return true;
         }
     }
@@ -105,7 +106,6 @@
                                     break;
                             }
                         }
-
                         $(document).on('click', '#addNewFieldBtn', function () {
                             $("#addNewFieldBtn").hide();
                             var input = '<input type="text" class="form-control" name="tlink[]" id="tlink" style="margin-bottom:10px;display:inline;width: 90%" placeholder="" value=""/>' +
@@ -155,8 +155,8 @@
         </div>
 
         <div class="form-group">
+            <input type="hidden" name="belong_to" value="<?=$_COOKIE['group_id']?>"/>
             <input type="hidden" name="tauthor" value="<?=get_current_user_id()?>">
-            <input type="hidden" name="tstatus" value="close">
             <input type="hidden" name="tcreatedate" value="<?=date("Y-m-d")?>">
         </div>
         <div class="form-group">
@@ -165,4 +165,5 @@
             </div>
         </div>
     </form>
+    <?php setcookie('group_id','');?>
 </div>

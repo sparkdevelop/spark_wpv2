@@ -121,6 +121,12 @@
                     }
                     require "template/group/single_group.php";
                 }
+                elseif (is_page('single_task')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/group/single_task.php";
+                }
                 else{
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );

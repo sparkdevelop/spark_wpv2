@@ -58,14 +58,17 @@
         }
     }
 
-    $sql = "INSERT INTO wp_gp VALUES ('$group_id','$group_name',$group_author,
+    $sql_gp = "INSERT INTO wp_gp VALUES ('$group_id','$group_name',$group_author,
                                           '$group_abstract','$group_status','publish',
                                           '$group_cover_address','$join_permission',
                                           '$task_permission','$create_date',1)";
 
+    $sql_member = "INSERT INTO wp_gp_member VALUES ('',$group_author,$group_id,'admin','$create_date','in')";
+
     if($group_name!="" && $group_abstract!="" && $group_status!="" &&
         $join_permission!="" && $task_permission!=""){
-        $wpdb->query($sql);
+        $wpdb->query($sql_gp);
+        $wpdb->query($sql_member);
     }
 
 $url= site_url().get_page_address('group');

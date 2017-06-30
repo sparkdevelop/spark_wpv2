@@ -90,7 +90,7 @@ if($group_name!="" && $group_abstract!="" && $group_status!="" &&
     $wpdb->query($sql);
 }
 
-$url= site_url().get_page_address('singlegroup')."&id=".$group_id;
+$url= site_url().get_page_address('single_group')."&id=".$group_id;
 ?>
 <script>
     location.replace("<?=$url?>");
