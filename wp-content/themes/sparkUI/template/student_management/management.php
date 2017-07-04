@@ -6,14 +6,11 @@
  * Time: 下午2:41
  */
 global $wpdb;
-//echo esc_url(add_query_arg(array('test'=>'hh')));
-//$current_url = esc_url(add_query_arg(array(), remove_query_arg(array('start','words'))));
-//echo $current_url;
 $type = $_GET['type'];
 $start = $_GET['start'];
 $end = $_GET['end'];
-date_default_timezone_set("Asia/Shanghai");
 $words = $_GET['words'];
+date_default_timezone_set("Asia/Shanghai");
 if ($start == '' && $end == '') {
     $start = date("Y-m-d", strtotime("-6 day"));
     $end = date("Y-m-d", strtotime("-0 day"));
@@ -22,6 +19,7 @@ if ($start == '' && $end == '') {
 } else if ($start == '') {
     $start = date("Y-m-d", strtotime("$end-6 day"));
 }
+//----------词条频度--------------
 if ($type == 'fre') {
     $vresults = [];
     $results = [];
@@ -46,22 +44,23 @@ if ($type == 'fre') {
         $vresults[$currentDate] = $newvResult;
     }
 }
+
+//-----------行为轨迹--------------
+
+
+//-----------兴趣分布--------------
 ?>
+
 <style>
-    .nav_bar span {
-        font-size: 24px;
-        margin-right: 15px;
+    .datepicker, #tags {
+        border-radius: 4px;
     }
 
-    .search_bar {
-        width: 40%;
+    #submit {
+        width: 50px;
+        height: 25px;
+        cursor: pointer;
     }
-
-    .time input {
-        margin-left: 15px;
-        margin-right: 15px;
-    }
-
     .button a {
         display: block;
         float: left;
@@ -76,189 +75,30 @@ if ($type == 'fre') {
         line-height: 25px;
         text-decoration: none;
     }
-
-    .clearfix:after {
-        content: "."; /* Older browser do not support empty content */
-        visibility: hidden;
-        display: block;
-        height: 0;
-        clear: both;
-
+    .time{
+        margin-top: 10px;
     }
-
-    #search_table, #view_table {
-        width: 50%;
-        float: left;
+    .time input {
+        margin-left: 15px;
+        margin-right: 15px;
+        border: 1px solid #ccc;
     }
-
-    table caption {
-        color: #fe642d;
+    .title{
+        line-height: 26px;
+        margin-right: 10px;
     }
-
-    .chart_title {
-        color: #fe642d;
+    input[type=radio]{
+        line-height: 26px;
+        margin: 0 4px;
     }
-
-    #datepicker1, #datepicker2, #tags {
-        border-radius: 4px;
-    }
-
-    #submit {
-        width: 50px;
-        height: 25px;
-        cursor: pointer;
-    }
-
-    .spark {
-        width: 1500px;
-        height: 600px;
-    }
-
-    /*兴趣分布*/
-    .main1 {
-        width: 700px;
-        height: 500px;
-        float: left;
-    }
-
-    .main2 {
-        width: 700px;
-        height: 500px;
-        float: left;
-    }
-
-    /*行为轨迹*/
-    *, *:after, *:before {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-
-    .trail {
-        width: 500px;
-        color: black;
-    }
-
-    .top_title {
-        text-align: center;
-        font-size: 20px;
-        font-weight: bold;
-    }
-
-    .cd-container {
-        width: 90%;
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
-    #cd-timeline {
-        position: relative;
-        padding: 2em 0;
-        margin-top: 3em;
-        margin-bottom: 3em;
-    }
-
-    /*垂直时间线*/
-    #cd-timeline::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        height: 100%;
-        width: 4px;
-        background: #d7e4ed;
-        left: 50%;
-        margin-left: -2px;
-    }
-
-    /*每个时间点及内容*/
-    .cd-timeline-block {
-        position: relative;
-        margin: 4em 0;
-    }
-
-    .cd-timeline-block:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    .cd-timeline-block:first-child {
-        margin-top: 0;
-    }
-
-    .cd-timeline-block:last-child {
-        margin-bottom: 0;
-    }
-
-    /*圆形节点*/
-    .cd-timeline-img {
-        position: absolute;
-        width: 30px;
-        height: 30px;
-        left: 53%;
-        margin-left: -30px;
-        border-radius: 50%;
-        box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
-        -webkit-transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-    }
-
-    .cd-timeline-img.cd-picture {
-        background: #75ce66;
-    }
-
-    .cd-timeline-img.cd-movie {
-        background: #c03b44;
-    }
-
-    .cd-timeline-img.cd-location {
-        background: #f0ca45;
-    }
-
-    /*节点内容*/
-    .cd-timeline-content {
-        position: relative;
-        background: #d7e4ed;
-        border-radius: 0.25em;
-        margin-left: 0;
-        padding: 1.6em;
-        width: 40%;
-    }
-
-    .cd-timeline-content h2 {
-        text-align: center;
-
-    }
-
-    .cd-timeline-content .cd-date {
-        float: left;
-        padding: .8em 0;
-        opacity: .7;
-        position: absolute;
-        width: 100%;
-        left: 150%;
-        top: 5px;
-        font-size: 1rem;
-    }
-
-    /*偶数节点的位置*/
-    .cd-timeline-block:nth-child(even) .cd-timeline-content {
-        float: right;
-    }
-
-    .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-date {
-        left: auto;
-        right: 150%;
-        text-align: right;
-    }
-
-
 </style>
 <link href="<?php bloginfo('stylesheet_directory') ?>/css/jquery-ui-1.9.2.custom.min.css" rel="stylesheet">
 <script src="<?php bloginfo('stylesheet_directory') ?>/javascripts/jquery-1.8.3.js"></script>
 <script src="<?php bloginfo('stylesheet_directory') ?>/javascripts/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="<?php bloginfo('stylesheet_directory') ?>/javascripts/datepicker-zh-CN.js"></script>
+<!--页面内容 开始-->
 <div class="col-md-9 col-sm-9 col-xs-12">
+    <!--    学生管理导航栏 开始-->
     <div class="archive-nav">
         <ul id="leftTab" class="nav nav-pills" style="float: left;height: 42px;">
             <li class="" id="project"><a>所有</a></li>
@@ -275,7 +115,42 @@ if ($type == 'fre') {
     </div>
     <div style="height: 2px;background-color: lightgray"></div>
     <br>
+    <!--    学生管理导航栏 结束-->
+
+    <!--    词条频度 开始-->
     <?php if ($type == 'fre') { ?>
+        <style>
+            .nav_bar span {
+                font-size: 24px;
+                margin-right: 15px;
+            }
+
+            .search_bar {
+                width: 40%;
+            }
+
+            .clearfix:after {
+                content: "."; /* Older browser do not support empty content */
+                visibility: hidden;
+                display: block;
+                height: 0;
+                clear: both;
+
+            }
+
+            #search_table, #view_table {
+                width: 50%;
+                float: left;
+            }
+
+            table caption {
+                color: #fe642d;
+            }
+
+            .chart_title {
+                color: #fe642d;
+            }
+        </style>
         <div>
             <div class="search_bar">
                 <form>
@@ -285,7 +160,9 @@ if ($type == 'fre') {
                 </form>
             </div>
             <br>
-            <p class="time">开始时间:<input type="text" id="datepicker1"/>结束时间:<input type="text" id="datepicker2"/></p>
+            <p class="time">
+                <label class="title" for="">开始时间:</label><input type="text" class="datepicker" id="datepicker1"/>
+                <label class="title" for="">结束时间:</label>:<input type="text" class="datepicker" id="datepicker2"/></p>
             <p class="button clearfix">
                 <a id="submit">提交</a>
                 <a href="<?php echo esc_url(add_query_arg(array(), remove_query_arg(array('start', 'end', 'words')))); ?>">默认</a>
@@ -468,36 +345,236 @@ if ($type == 'fre') {
             });
         </script>
     <?php } ?>
+    <!--    词条频度 结束-->
 
+    <!--    行为轨迹 开始-->
     <?php if ($type == 'tra') { ?>
+        <style>
+            /*行为轨迹*/
+            *, *:after, *:before {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            .trail {
+                width: 500px;
+                color: black;
+            }
+
+            .top_title {
+                text-align: center;
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            .cd-container {
+                width: 90%;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            #cd-timeline {
+                position: relative;
+                padding: 2em 0;
+                margin-top: 3em;
+                margin-bottom: 3em;
+            }
+
+            /*垂直时间线*/
+            #cd-timeline::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                height: 100%;
+                width: 4px;
+                background: #d7e4ed;
+                left: 50%;
+                margin-left: -2px;
+            }
+
+            /*每个时间点及内容*/
+            .cd-timeline-block {
+                position: relative;
+                margin: 4em 0;
+            }
+
+            .cd-timeline-block:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            .cd-timeline-block:first-child {
+                margin-top: 0;
+            }
+
+            .cd-timeline-block:last-child {
+                margin-bottom: 0;
+            }
+
+            /*圆形节点*/
+            .cd-timeline-img {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                left: 53%;
+                margin-left: -30px;
+                border-radius: 50%;
+                box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+                -webkit-transform: translateZ(0);
+                -webkit-backface-visibility: hidden;
+            }
+
+            .cd-timeline-img.cd-picture {
+                background: #75ce66;
+            }
+
+            .cd-timeline-img.cd-movie {
+                background: #c03b44;
+            }
+
+            .cd-timeline-img.cd-location {
+                background: #f0ca45;
+            }
+
+            /*节点内容*/
+            .cd-timeline-content {
+                position: relative;
+                background: #d7e4ed;
+                border-radius: 0.25em;
+                margin-left: 0;
+                padding: 1.6em;
+                width: 40%;
+            }
+
+            .cd-timeline-content h2 {
+                text-align: center;
+
+            }
+
+            .cd-timeline-content .cd-date {
+                float: left;
+                padding: .8em 0;
+                opacity: .7;
+                position: absolute;
+                width: 100%;
+                left: 150%;
+                top: 5px;
+                font-size: 1rem;
+            }
+
+            /*偶数节点的位置*/
+            .cd-timeline-block:nth-child(even) .cd-timeline-content {
+                float: right;
+            }
+
+            .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-date {
+                left: auto;
+                right: 150%;
+                text-align: right;
+            }
+
+            .dropdown{
+                width: 200px;
+            }
+            .dropdown .btn-dropdown {
+                width: 160px;
+                height: 26px;
+                padding: 0;
+                margin-right: -5px;
+                /*border-left: 0;*/
+                border-right: 0;
+                border-radius: 0;
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+            }
+            .dropdown .dropdown-toggle {
+                height: 26px;
+                width: 40px;
+                border-bottom-left-radius: 0;
+                border-top-left-radius: 0;
+                color: #333;
+                background-color: #d4d4d4;
+                border-color: #8c8c8c;
+            }
+            .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover {
+                color: #333;
+                background-color: #d4d4d4;
+                border-color: #8c8c8c;
+            }
+            .dropdown .dropdown-menu {
+                padding: 0;
+                width: 100%;
+                left: 0;
+            }
+            .dropdown .dropdown-menu li {
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+            }
+            .dropdown .dropdown-menu li :hover {
+                background-color: #0096ff;
+            }
+            .dropdown .dropdown-menu li a {
+                padding: 0;
+                line-height: 30px;
+            }
+            .group, .user{
+                display: flex;
+                margin-top: 10px;
+            }
+        </style>
         <div>
-            <span>类别:</span>
-            <input type="radio">问答标签
-            <input type="radio">wiki分类
+            <label class="title">类别:</label>
+            <input type="radio" name="ctype">问答标签
+            <input type="radio" name="ctype">wiki分类
         </div>
-        <div>
-<!--            <div class="dropdown" data-id="3">-->
-<!--                <button type="button" class="btn btn-default dropdown-toggle"-->
-<!--                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                    <span class="caret"></span>-->
-<!--                    <span class="sr-only">Toggle Dropdown</span>-->
-<!--                </button>-->
-<!--                <ul class="dropdown-menu">-->
-<!--                    <li><a href="javascript:void(0)" data-id="1">1个等级</a></li>-->
-<!--                    <li><a href="javascript:void(0)" data-id="2">2个等级</a></li>-->
-<!--                    <li><a href="javascript:void(0)" data-id="3">3个等级</a></li>-->
-<!--                    <li><a href="javascript:void(0)" data-id="4">4个等级</a></li>-->
-<!--                    <li><a href="javascript:void(0)" data-id="5">5个等级</a></li>-->
-<!--                    <li><a href="javascript:void(0)" data-id="6">6个等级</a></li>-->
-<!--                    <li><a href="javascript:void(0)" data-id="7">7个等级</a></li>-->
-<!--                    <li><a href="javascript:void(0)" data-id="8">8个等级</a></li>-->
-<!--                    <li><a href="javascript:void(0)" data-id="9">9个等级</a></li>-->
-<!--                    <li><a href="javascript:void(0)" data-id="10">10个等级</a></li>-->
-<!--                </ul>-->
-<!--            </div>-->
+        <div class="group">
+            <label class="title">小组:</label>
+            <div class="dropdown">
+                <button type="button" class="btn btn-default btn-dropdown">
+                    <span>请选择小组</span></button>
+                <button type="button" class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="javascript:void(0)" data-id="1">1个等级</a></li>
+                    <li><a href="javascript:void(0)" data-id="2">2个等级</a></li>
+                    <li><a href="javascript:void(0)" data-id="3">3个等级</a></li>
+                    <li><a href="javascript:void(0)" data-id="10">10个等级</a></li>
+                </ul>
+            </div>
+            <input type="radio" name="group">全部小组
+            <input type="radio" name="group">最活跃小组
+            <input type="radio" name="group">最受挫小组
         </div>
-        <br>
-        <p class="time">开始时间:<input type="text" id="datepicker1"/>结束时间:<input type="text" id="datepicker2"/></p>
+        <div class="user">
+            <label class="title">成员:</label>
+            <div class="dropdown">
+                <button type="button" class="btn btn-default btn-dropdown">
+                    <span>请选择成员</span></button>
+                <button type="button" class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="javascript:void(0)" data-id="1">1个等级</a></li>
+                    <li><a href="javascript:void(0)" data-id="2">2个等级</a></li>
+                    <li><a href="javascript:void(0)" data-id="3">3个等级</a></li>
+                    <li><a href="javascript:void(0)" data-id="10">10个等级</a></li>
+                </ul>
+            </div>
+            <input type="radio" name="user">全部成员
+            <input type="radio" name="user">最活跃成员
+            <input type="radio" name="user">最受挫成员
+        </div>
+        <p class="time">
+            <label class="title" for="">开始时间:</label><input type="text" class="datepicker" id="datepicker3"/>
+            <label class="title" for="">结束时间:</label><input type="text" class="datepicker" id="datepicker4"/></p>
         <p class="button clearfix">
             <a id="submit">提交</a>
             <a href="<?php echo esc_url(add_query_arg(array(), remove_query_arg(array('start', 'end', 'words')))); ?>">默认</a>
@@ -565,23 +642,60 @@ if ($type == 'fre') {
 
             </section>
         </div>
+        <script>
+            $(function () {
+                $(".dropdown").delegate("ul li a","click",function(){
+                    var text=$(this).text();
+                    var level=$(this).attr("data-id");
+                    var parent=$(this).parents(".dropdown");
+                    parent.find("span").eq(0).text(text);
+                    parent.attr("data-id",level);
+                    $(this).parents(".form-group").nextAll(".prize_input_box").each(function(){
+                        if($(this).index()<=parseInt(level)){
+                            $(this).show();
+                            console.log("v");
+                        }else{
+                            $(this).hide();
+                        }
+                    });
+                });
+            })
+        </script>
 
     <?php } ?>
+    <!--    行为轨迹 结束-->
 
+    <!--    兴趣分布 开始-->
     <?php if ($type == 'int') { ?>
+        <style>
+            /*兴趣分布*/
+            .main1 {
+                width: 700px;
+                height: 500px;
+                float: left;
+            }
+
+            .main2 {
+                width: 700px;
+                height: 500px;
+                float: left;
+            }
+        </style>
         <div class="classify">
-            <label for="">类别:</label>
-            <input type="radio" value="">问答标签
-            <input type="radio" value="">wiki分类
+            <label class="title" for="">类别:</label>
+            <input type="radio" name="ctype">问答标签
+            <input type="radio" name="ctype">wiki分类
         </div>
         <div>
-            自选标签(可选5个):<input type="radio">全选
+            <label class="title" for="">自选标签(可选5个):</label><input type="radio">全选
             <br>
             <input type="checkbox">电子设计
             <input type="checkbox">红外
         </div>
-        <br>
-        <p class="time">开始时间:<input type="text" id="datepicker1"/>结束时间:<input type="text" id="datepicker2"/></p>
+        <p class="time">
+            <label class="title" for="">开始时间:</label><input type="text" class="datepicker" id="datepicker5"/>
+            <label class="title" for="">结束时间:</label><input type="text" class="datepicker" id="datepicker6"/>
+        </p>
         <p class="button clearfix">
             <a id="submit">提交</a>
             <a href="<?php echo esc_url(add_query_arg(array(), remove_query_arg(array('start', 'end', 'words')))); ?>">默认</a>
@@ -713,5 +827,9 @@ if ($type == 'fre') {
             })
         </script>
     <?php } ?>
+    <!--    兴趣分布 结束-->
+
 </div>
+<!--页面内容 结束-->
+
 
