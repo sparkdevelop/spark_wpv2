@@ -110,6 +110,7 @@ if($type == 'int'){
 <style>
     .datepicker, #tags {
         border-radius: 4px;
+        border: 1px solid #ccc;
     }
 
     #submit {
@@ -215,10 +216,9 @@ if($type == 'int'){
                     </div>
                 </form>
             </div>
-            <br>
             <p class="time">
                 <label class="title" for="">开始时间:</label><input type="text" class="datepicker" id="datepicker1"/>
-                <label class="title" for="">结束时间:</label>:<input type="text" class="datepicker" id="datepicker2"/></p>
+                <label class="title" for="">结束时间:</label><input type="text" class="datepicker" id="datepicker2"/></p>
             <p class="button clearfix">
                 <a id="submit">提交</a>
                 <a href="<?php echo esc_url(add_query_arg(array(), remove_query_arg(array('start', 'end', 'words')))); ?>">默认</a>
