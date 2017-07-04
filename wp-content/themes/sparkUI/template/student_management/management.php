@@ -633,7 +633,7 @@ if($type == 'int'){
             <label class="title" for="">结束时间:</label><input type="text" class="datepicker" id="datepicker4"/></p>
         <p class="button clearfix">
             <a id="submit">提交</a>
-            <a href="<?php echo esc_url(add_query_arg(array(), remove_query_arg(array('start', 'end', 'words')))); ?>">默认</a>
+            <a href="<?php echo esc_url(add_query_arg(array(), remove_query_arg(array('start', 'end', 'words','tags')))); ?>">默认</a>
         </p>
         <!--行为轨迹（均7个节点）-->
         <div class="trail">
@@ -758,7 +758,7 @@ if($type == 'int'){
         </p>
         <p class="button clearfix">
             <a id="submit">提交</a>
-            <a href="<?php echo esc_url(add_query_arg(array(), remove_query_arg(array('start', 'end', 'words')))); ?>">默认</a>
+            <a href="<?php echo esc_url(add_query_arg(array(), remove_query_arg(array('start', 'end', 'words','tags')))); ?>">默认</a>
         </p>
         <div class="interest">
             <div id="main1" class="main1"></div>
