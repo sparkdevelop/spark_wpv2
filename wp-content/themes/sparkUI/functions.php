@@ -2182,4 +2182,20 @@ function updateEntity(){
 //    return $view_count;
 //}
 
+
+/*
+ * 作者: 周悦
+ * 功能: 根据时间(默认近一周)和词条(不填写则返回top 10)查询词条频度
+ * 参数: $start 开始时间
+ *      $end 结束时间
+ *      $words 所查询的词条
+ * */
+function getWordsFrequencyByPeriod($start, $end, $words){
+
+}
+function searchInfoByDate(){
+    echo 'hh';
+}
+
+
 ?>

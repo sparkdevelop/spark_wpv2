@@ -11,7 +11,8 @@
 
 global $wpdb;
 
-define('SS_TABLE', $wpdb->prefix . 'search_statistics');
+define('SS_TABLE', $wpdb->prefix . 'search_statistics');//搜索统计表
+define('SEARCHDATAS', $wpdb->prefix . 'search_datas');//搜索统计表
 define('SS_BG_VERSION', 23);
 
 /* Handlers for Detect and save search keywords */
@@ -20,8 +21,8 @@ add_action('wp_loaded', 'ss_keyword_trace');
 function ss_keyword_trace() {
 
     require 'ss-keyword-trace.php';
-    if (strpos($_SERVER['PHP_SELF'], 'wp-admin') == false) {
-        if (!empty($_GET['s'])) {
+    if (strpos($_SERVER['PHP_SELF'], 'wp-admin') == false) {//PHP_SELF 域名后面的部分 如果含有wp-admin则说明是后台配置页面
+        if (!empty($_GET['s'])) {//查询到内容
             $keyword = trim($_GET['s']);
 
             save_keyword($keyword, @$_SERVER['HTTP_REFERER']);
