@@ -129,16 +129,16 @@ function Spark_related_question( $question_id = false, $number = 5, $echo = true
     </div>
 
 <!--知识图谱-->
-    <?php $qajsonString = proSideJSONGenerte(get_current_user_id(),"qa"); ?>
-    <div class="proknowledge">
-        <div class="sidebar_list_header">
-            <p>学习路径</p>
-        </div>
-        <div style="height: 2px;background-color: lightgray"></div>
-        <div id="sidechart" style="width:350px;height: 350px"></div>
-    </div>
+    <?php //$qajsonString = proSideJSONGenerte(get_current_user_id(),"qa"); ?>
+<!--    <div class="proknowledge">-->
+<!--        <div class="sidebar_list_header">-->
+<!--            <p>学习路径</p>-->
+<!--        </div>-->
+<!--        <div style="height: 2px;background-color: lightgray"></div>-->
+<!--        <div id="sidechart" style="width:350px;height: 350px"></div>-->
+<!--    </div>-->
     <script>
-        sideChart('<?=$qajsonString?>');
+        //sideChart('sidechart','<?php //$qajsonString?>');
     </script>
 
 <!--热门标签-->

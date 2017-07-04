@@ -277,7 +277,7 @@
             <div id="sidechart" style="width:280px;height: 280px;padding-left: 0px"></div>
         </div>
         <script>
-            sideChart('<?=$jsonString?>');
+            sideChart('sidechart','<?=$jsonString?>');
         </script>
     <?php } ?>
 

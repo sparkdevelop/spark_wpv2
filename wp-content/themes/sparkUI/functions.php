@@ -1715,6 +1715,7 @@ function addUrl($jsonString){
         $node_id = get_the_ID_by_title($value['name']);
         $temp = array("url"=>get_permalink($node_id));
         $value +=$temp;
+        $value +=array("id"=>$key);
         array_push($nodes,$value);
     }
     $json["nodes"] = $nodes;

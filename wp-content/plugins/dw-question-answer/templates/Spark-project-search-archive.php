@@ -2,7 +2,7 @@
 $search_word=$_GET['s'];
 ?>
 
-   <div style="margin-top: 20px;"class="clearfix">
+   <div style="margin-top: 20px;" class="clearfix">
         <div class="m-search-project-list" style="float: left;">
             <?php
             if ( has_post_thumbnail() ) { ?>
