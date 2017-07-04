@@ -252,7 +252,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 </div>
             </div>
 
-            <?php $projsonString = sideJSONGenerte($current_user->ID,"post"); ?>
+            <?php $projsonString = proSideJSONGenerte($current_user->ID,"post"); ?>
             <div class="proknowledge">
                 <div class="sidebar_list_header">
                     <p>学习路径</p>

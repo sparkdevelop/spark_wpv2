@@ -1,0 +1,133 @@
+{
+  "nodes": [
+    {
+      "category": 1,
+      "name": "\u901a\u4fe1",
+      "value": 15
+    },
+    {
+      "category": 1,
+      "name": "\u4fe1\u606f\u8bba",
+      "value": 13
+    },
+    {
+      "category": 1,
+      "name": "\u968f\u673a\u4fe1\u53f7\u5206\u6790",
+      "value": 13
+    },
+    {
+      "category": 1,
+      "name": "\u4fe1\u53f7\u4e0e\u7cfb\u7edf",
+      "value": 13
+    },
+    {
+      "category": 1,
+      "name": "\u901a\u4fe1\u7f51\u7406\u8bba\u57fa\u7840",
+      "value": 13
+    },
+    {
+      "category": 1,
+      "name": "\u6570\u5b57\u4fe1\u53f7\u5904\u7406",
+      "value": 13
+    },
+    {
+      "category": 1,
+      "name": "\u901a\u4fe1\u539f\u7406",
+      "value": 13
+    },
+    {
+      "category": 1,
+      "name": "\u7535\u78c1\u573a\u4e0e\u7535\u78c1\u6ce2",
+      "value": 13
+    },
+    {
+      "category": 1,
+      "name": "\u5c04\u9891\u4e0e\u5fae\u6ce2\u6280\u672f",
+      "value": 13
+    },
+    {
+      "category": 1,
+      "name": "\u65e0\u7ebf\u901a\u4fe1",
+      "value": 13
+    },
+    {
+      "category": 1,
+      "name": "\u5bbd\u5e26\u63a5\u5165\u6280\u672f",
+      "value": 13
+    },
+    {
+      "category": 1,
+      "name": "\u79fb\u52a8\u901a\u4fe1",
+      "value": 13
+    },
+    {
+      "category": 1,
+      "name": "\u5149\u7ea4\u901a\u4fe1",
+      "value": 13
+    }
+  ],
+  "links": [
+    {
+      "source": 0,
+      "target": 1
+    },
+    {
+      "source": 0,
+      "target": 2
+    },
+    {
+      "source": 0,
+      "target": 3
+    },
+    {
+      "source": 0,
+      "target": 4
+    },
+    {
+      "source": 0,
+      "target": 5
+    },
+    {
+      "source": 0,
+      "target": 6
+    },
+    {
+      "source": 0,
+      "target": 7
+    },
+    {
+      "source": 0,
+      "target": 8
+    },
+    {
+      "source": 0,
+      "target": 9
+    },
+    {
+      "source": 0,
+      "target": 10
+    },
+    {
+      "source": 0,
+      "target": 11
+    },
+    {
+      "source": 0,
+      "target": 12
+    }
+  ],
+  "categories": [
+    {
+      "name": "\u7535\u5b50"
+    },
+    {
+      "name": "\u901a\u4fe1"
+    },
+    {
+      "name": "\u8ba1\u7b97\u673a"
+    },
+    {
+      "name": "\u4eba\u5de5\u667a\u80fd"
+    }
+  ]
+}

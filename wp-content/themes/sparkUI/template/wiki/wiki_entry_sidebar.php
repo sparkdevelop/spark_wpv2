@@ -267,60 +267,65 @@
     </div>
 
 <!--知识图谱-->
-    <?php $jsonString = sideJSONGenerte($current_user->ID,"yada_wiki"); ?>
-    <div class="wikiknowledge">
-        <div class="sidebar_list_header">
-            <p>学习路径</p>
+    <?php $jsonString = wikiSideJsonGenerate(get_the_title());
+    if($jsonString!=''){?>
+        <div class="wikiknowledge">
+            <div class="sidebar_list_header">
+                <p>学习路径</p>
+            </div>
+            <div style="height: 2px;background-color: lightgray"></div>
+            <div id="sidechart" style="width:280px;height: 280px;padding-left: 0px"></div>
         </div>
-        <div style="height: 2px;background-color: lightgray"></div>
-        <div id="sidechart" style="width:350px;height: 350px"></div>
-    </div>
-    <script>
-        sideChart('<?=$jsonString?>');
-    </script>
-<!--    相关项目-->
+        <script>
+            sideChart('<?=$jsonString?>');
+        </script>
+    <?php } ?>
+
+<!--相关项目-->
     <?php
-    $related_pros = wikiRelatedPro(get_the_ID()); ?>
-    <div class="related_pros">
-        <div class="sidebar_list_header">
-            <p>相关项目</p>
-            <a id="sidebar_list_link" onclick="show_more_pros()">更多</a>
-        </div>
-        <!--分割线-->
-        <div style="height: 2px;background-color: lightgray"></div>
-        <div class="related_pros" id="related_pros">
-            <ul style="padding-left: 20px">
-                <?php
-                //控制条数
-                if(sizeof($related_pros)<5){$length = sizeof($related_pros);}
-                else{$length = 5;}
-                for($i=0;$i<$length;$i++){ ?>
-                    <li class="list-group-item">
-                        <a href="<?php echo get_permalink($related_pros[$i]);?>" class="question-title">
-                            <?php echo get_the_title($related_pros[$i]);?>
-                        </a>
-                    </li>
-                <?php } ?>
-            </ul>
-        </div>
+    $related_pros = wikiRelatedPro(get_the_ID());
+    if(sizeof($related_pros)!=0){?>
+        <div class="related_pros">
+            <div class="sidebar_list_header">
+                <p>相关项目</p>
+                <a id="sidebar_list_link" onclick="show_more_pros()">更多</a>
+            </div>
+            <!--分割线-->
+            <div style="height: 2px;background-color: lightgray"></div>
+            <div class="related_pros" id="related_pros">
+                <ul style="padding-left: 20px">
+                    <?php
+                    //控制条数
+                    if(sizeof($related_pros)<5){$length = sizeof($related_pros);}
+                    else{$length = 5;}
+                    for($i=0;$i<$length;$i++){ ?>
+                        <li class="list-group-item">
+                            <a href="<?php echo get_permalink($related_pros[$i]);?>" class="question-title">
+                                <?php echo get_the_title($related_pros[$i]);?>
+                            </a>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
 
-        <div class="more_related_pros" id="more_related_pros" style="display: none">
-            <ul style="padding-left: 20px">
-                <?php
-                //控制条数
-                if(sizeof($related_pros)>=15){$length = 15;}
-                else{$length = sizeof($related_pros);}
+            <div class="more_related_pros" id="more_related_pros" style="display: none">
+                <ul style="padding-left: 20px">
+                    <?php
+                    //控制条数
+                    if(sizeof($related_pros)>=15){$length = 15;}
+                    else{$length = sizeof($related_pros);}
 
-                for($i=0;$i<$length;$i++){ ?>
-                    <li class="list-group-item">
-                        <a href="<?php echo get_permalink($related_pros[$i]);?>" class="question-title">
-                            <?php echo get_the_title($related_pros[$i]);?>
-                        </a>
-                    </li>
-                <?php } ?>
-            </ul>
+                    for($i=0;$i<$length;$i++){ ?>
+                        <li class="list-group-item">
+                            <a href="<?php echo get_permalink($related_pros[$i]);?>" class="question-title">
+                                <?php echo get_the_title($related_pros[$i]);?>
+                            </a>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
         </div>
-    </div>
+    <?php } ?>
 </div>
 <script>
     var flag=false;

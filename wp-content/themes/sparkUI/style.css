@@ -140,9 +140,9 @@ body{
 #search-content{
     border:none;
     height: 38px;
-    width: 56%;
+    width: 90%;
     box-shadow: none;
-    padding: 6px 6px;
+    padding: 10px 6px;
 }
 #search-btn{
     border: none;

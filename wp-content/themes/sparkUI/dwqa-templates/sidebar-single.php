@@ -129,7 +129,7 @@ function Spark_related_question( $question_id = false, $number = 5, $echo = true
     </div>
 
 <!--知识图谱-->
-    <?php $qajsonString = sideJSONGenerte(get_current_user_id(),"qa"); ?>
+    <?php $qajsonString = proSideJSONGenerte(get_current_user_id(),"qa"); ?>
     <div class="proknowledge">
         <div class="sidebar_list_header">
             <p>学习路径</p>

@@ -1637,7 +1637,7 @@ function readJson($file_name){
     return $jsonString;
 }
 //项目知识图谱生成
-function sideJSONGenerte($user_id,$post_type){
+function proSideJSONGenerte($user_id,$post_type){
     if($post_type=="post"){
         $cat_id = 0;
     }elseif ($post_type =="qa"){
@@ -1664,6 +1664,64 @@ function sideJSONGenerte($user_id,$post_type){
     $proJsonString = json_encode($pre_json);
     return $proJsonString;
 }
+
+//wiki图谱生成
+function wikiSideJsonGenerate($post_id){
+    /* Step1: 判断该wiki属于哪个类,实现:取出该post_id对应的wp_wiki_class表中的class
+     * Step2: 把这个class explode
+     * Step3: array_search
+     * Step4: 分类(暂时分为四类) 每一类调用对应的json串
+     * Step5: 如果不属于任何类,返回空串
+     * */
+    global $wpdb;
+    $sql = "SELECT class FROM new_wiki WHERE wiki = '$post_id'";
+    $result = $wpdb->get_var($wpdb->prepare($sql,'ARRAY_A'),0,0);
+//    $result_array = explode(",",$result);
+//    print_r($result_array);
+//    if(array_search('计算机',$result_array)){
+//        $jsonString = readJson('computer');
+//    } elseif(array_search('通信',$result_array)){
+//        $jsonString = readJson('communication');
+//    } elseif(array_search('电子',$result_array)){
+//        $jsonString = readJson('electron');
+//    } elseif(array_search('人工智能',$result_array)){
+//        $jsonString = readJson('artificial');
+//    } else{
+//        $jsonString = "";
+//    }
+    if($result == "计算机"){
+        $jsonString = readJson('computer');
+    }elseif($result == "通信"){
+        $jsonString = readJson('communication');
+    }elseif($result == "电子"){
+        $jsonString = readJson('electron');
+    }elseif($result == "人工智能"){
+        $jsonString = readJson('artificial');
+    }elseif($result == "项目指导"){
+        $jsonString = readJson('course');
+        $jsonString = addUrl($jsonString);
+    }else{
+        $jsonString = "";
+    }
+    return $jsonString;
+}
+
+//node加工,加链接
+function addUrl($jsonString){
+    $nodes= array();
+    $json = json_decode($jsonString,true);
+    //加工
+    foreach($json["nodes"] as $key => $value){
+        $node_id = get_the_ID_by_title($value['name']);
+        $temp = array("url"=>get_permalink($node_id));
+        $value +=$temp;
+        array_push($nodes,$value);
+    }
+    $json["nodes"] = $nodes;
+    $jsonString = json_encode($json);
+    return $jsonString;
+}
+
 
 //处理wiki和项目内容,请求API的版本
 function keywordHighlight(){
@@ -1748,12 +1806,13 @@ function keywordHighlight_update(){
     /* step1: 从数据库提出当前项目的xml 格式转化成为xml object
      * step2: foreach $keyword
      * */
+    $new_content = get_the_content();
     global  $wpdb;
     $xmlsql = "SELECT xml_string FROM wp_xml WHERE post_id =".get_the_ID();
     $returnXML = $wpdb->get_results($xmlsql);
-    $new_content = get_the_content();
     for($i=0;$i<sizeof($returnXML);$i++) {
-        $xml[$i] = simplexml_load_string($returnXML[$i]->xml_string); //创建 SimpleXML对象 读字符串法
+
+        $xml[$i] = @simplexml_load_string($returnXML[$i]->xml_string); //创建 SimpleXML对象 读字符串法
         if ($xml[$i]->ENTITY->ITEM != NULL) {
             foreach ($xml[$i]->ENTITY->ITEM as $value) {
                 $keyword = $value->NAME;    //所有关键词的名字
@@ -1785,7 +1844,7 @@ function keywordHighlight_update(){
                                 layer.tips(html, '#layer-<?=$keyword?>',
                                     {
                                         tips: [1, "black"],   //位置和颜色
-                                        time: 10000,
+                                        time: 8000,
                                         success: clickEvent()
                                     });
                             });
@@ -1862,45 +1921,41 @@ function updateContentItem(){
      * */
     //step1
     global $wpdb;
-    $sql = "SELECT ID, post_modified FROM $wpdb->posts WHERE post_type='post' and post_status ='publish'";
+    $sql = "SELECT ID, post_modified FROM $wpdb->posts WHERE post_type='yada_wiki' and post_status ='publish'";
     $results = $wpdb->get_results($sql,'ARRAY_A');
     //step2
-    foreach($results as $result){
-        $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$result['ID'];
-        $col = $wpdb->get_results($sql_1,"ARRAY_A");
-        if(sizeof($col)!=0){    //xml表总是否已经有这个项目的xml,如果有
-            $flag = strtotime($col[0]["modified_time"])-strtotime($result['post_modified']);
-            if($flag<0){ // 项目内容有了新的修改 否则不做任何操作。
-                echo "执行一次update".$result['ID']."<br>";
-                updateXML($result['ID']);
-                sleep(3);
-            }
-        }
-        else{//如果xml表没有这个post_id, 执行step3.  在新增项目那里可以执行这个函数。
-            echo "执行一次insert".$result['ID']."<br>";
-            insertContentItem($result['ID']);
-            sleep(10);
-        }
-    }
-//    for($i=255;$i<270;$i++){  //目前到这里了,这十组全是error
-//        $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$results[$i]['ID'];
+//    foreach($results as $result){
+//        $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$result['ID'];
 //        $col = $wpdb->get_results($sql_1,"ARRAY_A");
 //        if(sizeof($col)!=0){    //xml表总是否已经有这个项目的xml,如果有
-//            $flag = strtotime($col[0]["modified_time"])-strtotime($results[$i]['post_modified']);
-//            if($flag>0){        // 项目内容有了新的修改 否则不做任何操作。
-//                echo "执行一次update".$results[$i]['ID']."<br>";
-//                updateXML($results[$i]['ID']);
-//                sleep(5);
-//////                $url = get_template_directory_uri()."/highlight.xml";
-//////                $xml_string = file_get_contents($url);    //字符串。
-////                //以上两行要删掉。仅测试使用
+//            $flag = strtotime($col[0]["modified_time"])-strtotime($result['post_modified']);
+//            if($flag<0){ // 项目内容有了新的修改 否则不做任何操作。
+//                echo "执行一次update".$result['ID']."<br>";
+//                updateXML($result['ID']);
+//                sleep(3);
 //            }
 //        }
 //        else{//如果xml表没有这个post_id, 执行step3.  在新增项目那里可以执行这个函数。
-//            echo "执行一次insert".$results[$i]['ID']."<br>";
-//            insertContentItem($results[$i]['ID']);
+//            echo "执行一次insert".$result['ID']."<br>";
+//            insertContentItem($result['ID']);
+//            sleep(3);
 //        }
 //    }
+    for($i=235;$i<240;$i++){  //目前到这里了,这十组全是error
+        $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$results[$i]['ID'];
+        $col = $wpdb->get_results($sql_1,"ARRAY_A");
+        if(sizeof($col)!=0){    //xml表总是否已经有这个项目的xml,如果有
+            $flag = strtotime($col[0]["modified_time"])-strtotime($results[$i]['post_modified']);
+            if($flag>0){        // 项目内容有了新的修改 否则不做任何操作。
+                echo "执行一次update".$results[$i]['ID']."<br>";
+                updateXML($results[$i]['ID']);
+            }
+        }
+        else{//如果xml表没有这个post_id, 执行step3.  在新增项目那里可以执行这个函数。
+            echo "执行一次insert".$results[$i]['ID']."<br>";
+            insertContentItem($results[$i]['ID']);
+        }
+    }
 }
 
 //新增xml中的一行  在发布项目那里可以调用一次
@@ -1911,11 +1966,6 @@ function insertContentItem($post_id){
     for($i=0;$i<$length;$i++){
         $url = 'http://ebs.ckcest.cn/kb/elxml?apikey=RHizNjRR&phrase='.$phrase[$i];
         $returnXML = file_get_contents($url);
-        ?>
-        <script>
-            console.log('<?=$phrase[$i]?>');
-        </script>
-        <?php
         if(isXML($returnXML)){
             $post_type = get_post_type($post_id);
             $modified_time = date("Y-m-d H:i:s",time()+8*3600);
@@ -1924,6 +1974,7 @@ function insertContentItem($post_id){
         }else{
             echo "error";
         }
+        sleep(5);
     }
 }
 
@@ -1935,11 +1986,6 @@ function updateXML($post_id){
     for($i=0;$i<$length;$i++) {
         $url = 'http://ebs.ckcest.cn/kb/elxml?apikey=RHizNjRR&phrase='.$phrase[$i];
         $returnXML = file_get_contents($url);
-        ?>
-        <script>
-            console.log('<?=$phrase[$i]?>');
-        </script>
-        <?php
         if (isXML($returnXML)) {
             $modified_time = date("Y-m-d H:i:s", time() + 8 * 3600);
             //判断表中是否已有section1,2…… 若有,执行update,若没有,执行insert
@@ -1954,6 +2000,7 @@ function updateXML($post_id){
         } else {
             echo "error"."<hr>";
         }
+        sleep(5);
     }
 }
 
@@ -1998,22 +2045,43 @@ function isXML($str){
 
 //处理每个项目的内容,生成调取api的phrase
 function processContent($post_id){
-    $phrase_arr =array();
-    $phrase = get_the_content_by_id($post_id);
-    $phrase = preg_replace("#\"*\'*#","",$phrase); //去掉" '
-    $phrase = preg_replace("/\s*/","",$phrase);  //去掉空格
-    $phrase = preg_replace("#<hr[^>]+>#","",$phrase);  //去掉分割线
-    $phrase = preg_replace("/\<h[^\>]*?>.*?\<\/h[^\>]*?>/","",$phrase); //去掉标题
-    $phrase = preg_replace("/\<a[^\>]*?>.*?\<\/a[^\>]*?>/","",$phrase); //去掉链接
-    $phrase = preg_replace("/\<pre\>*?>.*?\<\/pre\>*?>/","",$phrase); //去掉代码
-    $phrase = strip_tags($phrase);  //去掉其他标签
-    //添加长的文章
-    $length = mb_strlen($phrase,'utf-8');
-    $total_section = ceil($length/650);//共有几个section
-    echo $length."   ".$total_section."<br>";
-    for($i=0;$i<$total_section;$i++){
-        array_push($phrase_arr,mb_substr($phrase,$i*650,$i+650,"utf-8"));
+    $post_type = get_post_type($post_id);
+    if($post_type = 'post'){
+        $phrase_arr =array();
+        $phrase = get_the_content_by_id($post_id);
+        $phrase = preg_replace("#\"*\'*#","",$phrase); //去掉" '
+        $phrase = preg_replace("/\s*/","",$phrase);  //去掉空格
+        $phrase = preg_replace("#<hr[^>]+>#","",$phrase);  //去掉分割线
+        $phrase = preg_replace("/\<h[^\>]*?>.*?\<\/h[^\>]*?>/","",$phrase); //去掉标题
+        $phrase = preg_replace("/\<a[^\>]*?>.*?\<\/a[^\>]*?>/","",$phrase); //去掉链接
+        $phrase = preg_replace("/\<pre\>*?>.*?\<\/pre\>*?>/","",$phrase); //去掉代码
+        $phrase = strip_tags($phrase);  //去掉其他标签
+        //添加长的文章
+        $length = mb_strlen($phrase,'utf-8');
+        $total_section = ceil($length/650);//共有几个section
+        echo $length."   ".$total_section."<br>";
+        for($i=0;$i<$total_section;$i++){
+            array_push($phrase_arr,mb_substr($phrase,$i*650,$i+650,"utf-8"));
+        }
+    }else{ //wiki
+        $phrase_arr =array();
+        $phrase = get_the_content_by_id($post_id);
+        $phrase = preg_replace("#\"*\'*#","",$phrase); //去掉" '
+        $phrase = preg_replace("/\s*/","",$phrase);  //去掉空格
+        $phrase = preg_replace("#<hr[^>]+>#","",$phrase);  //去掉分割线
+        $phrase = preg_replace("/\<h[^\>]*?>.*?\<\/h[^\>]*?>/","",$phrase); //去掉标题
+        $phrase = preg_replace("/\<a[^\>]*?>.*?\<\/a[^\>]*?>/","",$phrase); //去掉链接
+        $phrase = preg_replace("/\<pre\>*?>.*?\<\/pre\>*?>/","",$phrase); //去掉代码
+        $phrase = strip_tags($phrase);  //去掉其他标签
+        //添加长的文章
+        $length = mb_strlen($phrase,'utf-8');
+        $total_section = ceil($length/650);//共有几个section
+        echo $length."   ".$total_section."<br>";
+        for($i=0;$i<$total_section;$i++){
+            array_push($phrase_arr,mb_substr($phrase,$i*650,$i+650,"utf-8"));
+        }
     }
+
     //$phrase = mb_substr($phrase,0,650,"utf-8");
     return $phrase_arr;
 }
@@ -2238,8 +2306,6 @@ function get_task_group($id){
     global $wpdb;
     $sql = "SELECT belong_to FROM wp_gp_task WHERE ID = $id";
     $results = $wpdb->get_results($sql,'ARRAY_A');
-
-    print_r($results);
     return $results[0]['belong_to'];
 }
 
