@@ -1942,7 +1942,7 @@ function updateContentItem(){
 //            sleep(3);
 //        }
 //    }
-    for($i=235;$i<240;$i++){  //目前到这里了,这十组全是error
+    for($i=240;$i<245;$i++){  //目前到这里了,这十组全是error
         $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$results[$i]['ID'];
         $col = $wpdb->get_results($sql_1,"ARRAY_A");
         if(sizeof($col)!=0){    //xml表总是否已经有这个项目的xml,如果有
@@ -1966,7 +1966,7 @@ function insertContentItem($post_id){
     $length = sizeof($phrase);
     for($i=0;$i<$length;$i++){
         $url = 'http://ebs.ckcest.cn/kb/elxml?apikey=RHizNjRR&phrase='.$phrase[$i];
-        $returnXML = file_get_contents($url);
+        $returnXML = @file_get_contents($url);
         if(isXML($returnXML)){
             $post_type = get_post_type($post_id);
             $modified_time = date("Y-m-d H:i:s",time()+8*3600);
@@ -2329,6 +2329,26 @@ function get_verify_field($id,$type){
     return $verifyField;
 }
 
+//修改域名  域名要包括http
+function changeDomain($old_domain,$new_domain){
+    global  $wpdb;
+    //usermeta表中meta_key  meta_value 变更
+    //post表中post_content变更
+    $sql_meta = "select * from $wpdb->usermeta WHERE meta_key='simple_local_avatar'";
+    $results = $wpdb->get_results($sql_meta);
+    foreach($results as $key =>$value){
+        $new_value = str_replace($old_domain,$new_domain,$value->meta_value);
+        $sql_update = "update $wpdb->usermeta set meta_value='$new_value' WHERE meta_key='simple_local_avatar' and umeta_id = $value->umeta_id";
+        $wpdb->get_results($sql_update);
+    }
+    $sql_post = "select ID, post_content from $wpdb->posts ORDER BY 'ID' ASC";
+    $results_post = $wpdb->get_results($sql_post);
+    foreach($results_post as $key =>$value){
+        $new_value = addslashes(str_replace($old_domain,$new_domain,$value->post_content));
+        $sql_update = "update $wpdb->posts set post_content ='$new_value' WHERE ID = $value->ID";
+        $wpdb->get_results($sql_update);
+    }
+}
 
 
 ////wiki和项目内容处理 去标签化 暂时无用
