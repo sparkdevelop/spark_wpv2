@@ -35,7 +35,7 @@ $tag_count = array();
 </style>
 
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
-    <div class="sidebar_button" style="margin-top: 20px;margin-right: 15px;margin-left: -2px">
+    <div class="sidebar_button">
         <a href="<?php echo get_the_permalink(get_page_by_title('发布项目'))?>" target="_blank">发布项目</a>
     </div>
 <!--推荐项目-->

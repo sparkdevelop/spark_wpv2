@@ -125,7 +125,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
             </style>
 
             <!--判断用户是否为项目发布者，若是，则显示编辑按钮,否则显示发布按钮-->
-            <div class="sidebar_button" style="margin-top: 20px;margin-right: 15px;margin-left: -2px">
+            <div class="sidebar_button">
                 <?php if($current_user->user_login  == $author_name) {
                     echo "<a href='?fep_action=edit&fep_id=$post_id&page_id=$release_id' >编辑项目</a >";
                 }else {

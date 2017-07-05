@@ -2348,6 +2348,7 @@ function changeDomain($old_domain,$new_domain){
         $sql_update = "update $wpdb->posts set post_content ='$new_value' WHERE ID = $value->ID";
         $wpdb->get_results($sql_update);
     }
+    echo "<h4>已将域名由".$old_domain."变更为".$new_domain."</h4>";
 }
 
 
