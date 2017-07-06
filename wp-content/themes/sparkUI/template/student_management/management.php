@@ -210,11 +210,9 @@ if($type == 'int'){
         </style>
         <div>
             <div class="search_bar">
-                <form>
-                    <div class="ui-widget input-group">
+                    <div class="input-group">
                         <input id="tags" type="text" placeholder="请输入要搜索的词条"/>
                     </div>
-                </form>
             </div>
             <p class="time">
                 <label class="title" for="">开始时间:</label><input type="text" class="datepicker" id="datepicker1"/>
@@ -247,10 +245,10 @@ if($type == 'int'){
             </table>
             <div style="width: 100%;clear: both;">
                 <div class="chart_title">浏览词条TOP10</div>
-                <div id="search_chart" style="width:60vw;height:30vw;"></div>
+                <div id="view_chart" style="width:60vw;height:30vw;"></div>
                 <br>
                 <div class="chart_title">搜索词条TOP10</div>
-                <div id="view_chart" style="width:60vw;height:30vw;"></div>
+                <div id="search_chart" style="width:60vw;height:30vw;"></div>
             </div>
         </div>
 
@@ -814,7 +812,7 @@ if($type == 'int'){
                 })
                 var xData = [];
                 <?php foreach ($xData as $value){ ?>
-                xData.push({text:'<?php echo $value; ?>'});
+                xData.push({text:'<?php echo $value; ?>',max:10});
                 <?php } ?>
 
                 var pData = [];
@@ -856,7 +854,9 @@ if($type == 'int'){
                         backgroundColor: 'rgba(0,0,250,0.2)'
                     },
                     visualMap: {
-                        color: ['red', 'yellow']
+                        color: ['red', 'yellow'],
+                        max:10,
+                        min: 0
                     },
                     radar: {
                         indicator: xData
@@ -881,7 +881,7 @@ if($type == 'int'){
                 var myChart4 = echarts.init(document.getElementById('main2'));
                 var option4 = {
                     title: {
-                        text: 'wiki分类',
+                        text: '问答分类',
                         subtext: 'Top5',
                         x: 'left',
                         y: 'top'
@@ -891,7 +891,9 @@ if($type == 'int'){
                         backgroundColor: 'rgba(0,0,250,0.2)'
                     },
                     visualMap: {
-                        color: ['red', 'yellow']
+                        color: ['red', 'yellow'],
+                        max:10,
+                        min: 0
                     },
                     radar: {
                         indicator: xData
