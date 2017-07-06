@@ -21,7 +21,7 @@ if ($start == '' && $end == '') {
     $start = date("Y-m-d", strtotime("$end-6 day"));
 }
 //----------词条频度--------------
-if ($type == 'fre') {
+if ($type == 'fre' || $type == '') {
     $vresults = [];
     $results = [];
     $viewTop10 = $wpdb->get_results('SELECT `post_title`, COUNT(`post_title`) as c FROM `wp_user_history` LEFT JOIN `wp_posts` ON `wp_user_history`.`action_post_id` = `wp_posts`.`ID` WHERE `action_post_type`!="page" AND `post_title`!= "" AND `post_title` LIKE "%' . $words . '%" AND `action_time` >= "' . date("Y-m-d 00:00:00", strtotime($start)) . '" AND `action_time` <= "' . date("Y-m-d 23:59:59", strtotime($end)) . '" GROUP BY `post_title` ORDER BY c DESC LIMIT 10');
@@ -72,10 +72,8 @@ if($type == 'int'){
         $tagArr=explode(",", $tagss);
     }
     $xData = [];
-    $xDataId = [];
     foreach ($tagArr as $tag){
         $xData[]=explode("_", $tag)[1];
-        $xDataId[]=explode("_", $tag)[0];
     }
     function getTagInfo($start,$end,$wpdb,$type,$xData){
         $results=[];
@@ -136,8 +134,6 @@ if($type == 'int'){
         margin-top: 10px;
     }
     .time input {
-        margin-left: 15px;
-        margin-right: 15px;
         border: 1px solid #ccc;
     }
     .title{
@@ -158,7 +154,6 @@ if($type == 'int'){
     <!--    学生管理导航栏 开始-->
     <div class="archive-nav">
         <ul id="leftTab" class="nav nav-pills" style="float: left;height: 42px;">
-            <li class="" id="project"><a>所有</a></li>
             <li class="<?php echo $type == 'fre' ? 'active' : ''; ?>" id="project"><a
                     href="<?php echo esc_url(add_query_arg(array('type' => 'fre'), remove_query_arg(array('start', 'end', 'words', 'tags')))); ?>">词条频度</a>
             </li>
@@ -175,7 +170,7 @@ if($type == 'int'){
     <!--    学生管理导航栏 结束-->
 
     <!--    词条频度 开始-->
-    <?php if ($type == 'fre') { ?>
+    <?php if ($type == 'fre' || $type == '') { ?>
         <style>
             .nav_bar span {
                 font-size: 24px;
@@ -209,10 +204,9 @@ if($type == 'int'){
             }
         </style>
         <div>
-            <div class="search_bar">
-                    <div class="input-group">
-                        <input id="tags" type="text" placeholder="请输入要搜索的词条"/>
-                    </div>
+            <div>
+                <label class="title" for="">词条检索:</label>
+                <input id="tags" type="text" placeholder=""/>
             </div>
             <p class="time">
                 <label class="title" for="">开始时间:</label><input type="text" class="datepicker" id="datepicker1"/>
@@ -342,6 +336,7 @@ if($type == 'int'){
                 <?php foreach ($xData as $value){ ?>
                 xData.push('<?php echo $value; ?>');
                 <?php } ?>
+                console.info(syData)
                 myChart1.setOption({
                     title: {
 //                text: '浏览词条TOP10'
@@ -735,13 +730,8 @@ if($type == 'int'){
                 float: left;
             }
         </style>
-<!--        <div class="classify">-->
-<!--            <label class="title" for="">类别:</label>-->
-<!--            <input type="radio" name="ctype">问答标签-->
-<!--            <input type="radio" name="ctype">wiki分类-->
-<!--        </div>-->
         <div>
-            <label class="title" for="">自选标签(可选5个):</label>
+            <label class="title" for="">自选标签:</label>
             <div id="all_tags" style="word-wrap: break-word; word-break: keep-all;">
                 <?php
                 foreach ($tag_name as $key =>$i){?>
@@ -758,6 +748,13 @@ if($type == 'int'){
             <a id="submit">提交</a>
             <a href="<?php echo esc_url(add_query_arg(array(), remove_query_arg(array('start', 'end', 'words','tags')))); ?>">默认</a>
         </p>
+        <div style="width: 100%;clear: both;">
+            <div class="chart_title">项目标签</div>
+            <div id="project_tag" style="width:60vw;height:30vw;"></div>
+            <br>
+            <div class="chart_title">问答标签</div>
+            <div id="qa_tag" style="width:60vw;height:30vw;"></div>
+        </div>
         <div class="interest">
             <div id="main1" class="main1"></div>
             <div id="main2" class="main2"></div>
@@ -769,26 +766,21 @@ if($type == 'int'){
                     $('input[name="tags"]:checked').each(function(){
                         chk_value.push($(this).val());
                     });
-                    if(chk_value.length!=5){
-                        alert('请选择5个标签!')
-                    }else{
-                        var start = $("#datepicker5").datepicker("getDate");
-                        var end = $("#datepicker6").datepicker("getDate");
-                        if (end == null) {
-                            end = new Date().toLocaleDateString()
-                        } else {
-                            end = end.toLocaleDateString();
-                        }
-                        if (start == null) {
-                            start = new Date(Date.parse(end) - 3600 * 1000 * 24 * 6).toLocaleDateString();
-                        } else {
-                            start = start.toLocaleDateString();
-                        }
-                        $tags=chk_value.join(',');
-                        var current_url = '<?php echo esc_url(add_query_arg(array(), remove_query_arg(array('start', 'end', 'tags', 'type')))); ?>';
-                        location.href = current_url + '&type=int' + '&start=' + start + '&end=' + end + '&tags=' + $tags;
-
+                    var start = $("#datepicker5").datepicker("getDate");
+                    var end = $("#datepicker6").datepicker("getDate");
+                    if (end == null) {
+                        end = new Date().toLocaleDateString()
+                    } else {
+                        end = end.toLocaleDateString();
                     }
+                    if (start == null) {
+                        start = new Date(Date.parse(end) - 3600 * 1000 * 24 * 6).toLocaleDateString();
+                    } else {
+                        start = start.toLocaleDateString();
+                    }
+                    $tags=chk_value.join(',');
+                    var current_url = '<?php echo esc_url(add_query_arg(array(), remove_query_arg(array('start', 'end', 'tags', 'type')))); ?>';
+                    location.href = current_url + '&type=int' + '&start=' + start + '&end=' + end + '&tags=' + $tags;
                 })
                 $("#datepicker5").datepicker({
                     maxDate: "+0D",
@@ -810,110 +802,104 @@ if($type == 'int'){
                         $startDate.datepicker('option', 'maxDate', endDate)
                     }
                 })
-                var xData = [];
+                var legend = [];
                 <?php foreach ($xData as $value){ ?>
-                xData.push({text:'<?php echo $value; ?>',max:10});
+                legend.push("<?php echo $value; ?>");
                 <?php } ?>
+                var xData = [];
+                <?php foreach ($presults as $key => $value){ ?>
+                xData.push("<?php echo $key; ?>");
+                <?php } ?>
+                console.info(legend)
 
                 var pData = [];
+                var pyData = [];
+                <?php foreach ($xData as $key=>$val){ ?>
+                var val=[];
+                <?php foreach ($presults as $item){ ?>
+                val.push(<?php echo $item[$key]; ?>)
+                <?php } ?>
+                pData.push(val);
+                <?php } ?>
+                for (var i = 0; i < legend.length; i++) {
+                    pyData.push({
+                        name: legend[i],
+                        type: 'line',
+                        data: pData[i]
+                    })
+                }
+                console.info(pyData)
                 var qData = [];
-                <?php foreach ($presults as $key=>$presult){ ?>
+                var qyData = [];
+                <?php foreach ($xData as $key=>$value){ ?>
                 var val=[];
-                <?php foreach ($presult as $item){ ?>
-                val.push(<?php echo $item; ?>)
+                <?php foreach ($qresults as $item){ ?>
+                val.push(<?php echo $item[$key]; ?>)
                 <?php } ?>
-                pData.push({
-                    value: val,
-                    name: '<?php echo $key; ?>'
-                });
+                qData.push(val);
                 <?php } ?>
-                <?php foreach ($qresults as $key=>$qresult){ ?>
-                var val=[];
-                <?php foreach ($qresult as $item){ ?>
-                val.push(<?php echo $item; ?>)
-                <?php } ?>
-                qData.push({
-                    value: val,
-                    name: '<?php echo $key; ?>'
-                });
-                <?php } ?>
-                console.info(qData)
-                console.info(qData[0])
-                var myChart3 = echarts.init(document.getElementById('main1'));
+                for (var i = 0; i < legend.length; i++) {
+                    qyData.push({
+                        name: legend[i],
+                        type: 'line',
+                        data: qData[i]
+                    })
+                }
 
-                var option3 = {
+                var myChart3 = echarts.init(document.getElementById('project_tag'));
+                var myChart4 = echarts.init(document.getElementById('qa_tag'));
+
+                myChart3.setOption({
                     title: {
-                        // 主标签为问答标签／wiki分类，副标签为Top5（默认的副标签）／自选／全部
-                        text: '项目标签',
-                        subtext: '自选',
-                        x: 'left',
-                        y: 'top'
+//                text: '浏览词条TOP10'
                     },
                     tooltip: {
-                        trigger: 'item',
-                        backgroundColor: 'rgba(0,0,250,0.2)'
+                        trigger: 'axis'
                     },
-                    visualMap: {
-                        color: ['red', 'yellow'],
-                        max:10,
-                        min: 0
+                    legend: {
+                        data: legend
                     },
-                    radar: {
-                        indicator: xData
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
                     },
-                    series: [{
-                        type: 'radar',
-                        symbol: 'none',
-                        itemStyle: {
-                            normal: {
-                                lineStyle: {
-                                    width: 1
-                                }
-                            },
-                            emphasis: {
-                                areaStyle: {color: 'rgba(0,250,0,0.3)'}
-                            }
-                        },
-                        data: pData}]
-                };
-                myChart3.setOption(option3);
-
-                var myChart4 = echarts.init(document.getElementById('main2'));
-                var option4 = {
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: xData
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: pyData
+                });
+                myChart4.setOption({
                     title: {
-                        text: '问答分类',
-                        subtext: 'Top5',
-                        x: 'left',
-                        y: 'top'
                     },
                     tooltip: {
-                        trigger: 'item',
-                        backgroundColor: 'rgba(0,0,250,0.2)'
+                        trigger: 'axis'
                     },
-                    visualMap: {
-                        color: ['red', 'yellow'],
-                        max:10,
-                        min: 0
+                    legend: {
+                        data: legend
                     },
-                    radar: {
-                        indicator: xData
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
                     },
-                    series: [{
-                        type: 'radar',
-                        symbol: 'none',
-                        itemStyle: {
-                            normal: {
-                                lineStyle: {
-                                    width: 1
-                                }
-                            },
-                            emphasis: {
-                                areaStyle: {color: 'rgba(0,250,0,0.3)'}
-                            }
-                        },
-                        data: qData}]
-                };
-                myChart4.setOption(option4);
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: xData
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: qyData
+                })
             })
         </script>
     <?php } ?>
