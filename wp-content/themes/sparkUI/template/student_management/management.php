@@ -144,6 +144,9 @@ if($type == 'int'){
         line-height: 26px;
         margin: 0 4px;
     }
+    .chart_title {
+        color: #fe642d;
+    }
 </style>
 <link href="<?php bloginfo('stylesheet_directory') ?>/css/jquery-ui-1.9.2.custom.min.css" rel="stylesheet">
 <script src="<?php bloginfo('stylesheet_directory') ?>/javascripts/jquery-1.8.3.js"></script>
@@ -196,10 +199,6 @@ if($type == 'int'){
             }
 
             table caption {
-                color: #fe642d;
-            }
-
-            .chart_title {
                 color: #fe642d;
             }
         </style>
@@ -754,10 +753,6 @@ if($type == 'int'){
             <br>
             <div class="chart_title">问答标签</div>
             <div id="qa_tag" style="width:60vw;height:30vw;"></div>
-        </div>
-        <div class="interest">
-            <div id="main1" class="main1"></div>
-            <div id="main2" class="main2"></div>
         </div>
         <script>
             $(function () {
