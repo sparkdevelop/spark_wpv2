@@ -168,7 +168,6 @@ function myKnowledgeChart_old(jsonstring) {
                     formatter: '{b}'
                 }
             },
-            cursor:pointer,
             lineStyle: {
                 normal: {
                     curveness: 0.3
@@ -299,7 +298,6 @@ function myKnowledgeChart(id,jsonstring) {
                     formatter: '{b}'
                 }
             },
-            cursor:pointer,
             lineStyle: {
                 normal: {
                     curveness: 0.3
@@ -460,7 +458,6 @@ function sideChart(id,jsonstring) {
                     formatter: '{b}'
                 }
             },
-            cursor:pointer,
             lineStyle: {
                 normal: {
                     curveness: 0.3
