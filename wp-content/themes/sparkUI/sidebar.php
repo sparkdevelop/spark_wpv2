@@ -65,6 +65,21 @@ if (is_tag()){
     }
     //require "template/qa/QA_tags_sidebar.php";
 }
+if (is_page("group")){
+    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_groupsidebar')){
+    }
+    require "template/group/index_sidebar.php";
+}
+if (is_page("single_group")){
+    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_singlegroupsidebar')){
+    }
+    require "template/group/single_group_sidebar.php";
+}
+if (is_page("single_task")){
+    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_singletasksidebar')){
+    }
+    require "template/group/single_task_sidebar.php";
+}
 //这个判断wiki详情是谁写的，not created by chenli
 if(is_page("wiki详情")) {
     require "template/wiki/wiki_entry_sidebar.php";

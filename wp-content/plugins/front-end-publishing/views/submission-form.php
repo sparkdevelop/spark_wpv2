@@ -42,7 +42,13 @@ if (isset($_GET['fep_id']) && isset($_GET['fep_action']) && $_GET['fep_action'] 
 <!--        <label for="fep-post-content">--><?php //_e('內容', 'frontend-publishing'); ?><!--</label>-->
         <?php
         $enable_media = (isset($fep_roles['enable_media']) && $fep_roles['enable_media']) ? current_user_can($fep_roles['enable_media']) : 1;
-        wp_editor($post['content'], 'fep-post-content', $settings = array('textarea_name' => 'post_content', 'textarea_rows' => 50, 'media_buttons' => $enable_media));
+        wp_editor($post['content'], 'fep-post-content',
+                  $settings = array(
+                      'textarea_name' => 'post_content',
+                      'textarea_rows' => 50,
+                      'media_buttons' => $enable_media
+                      )
+                );
         wp_nonce_field('fepnonce_action', 'fepnonce');
         ?>
         <?php if (!$fep_misc['disable_author_bio']): ?>

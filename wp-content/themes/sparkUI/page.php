@@ -56,6 +56,12 @@
                     }
                     require "template/project/project_content.php";
                 }
+                elseif (is_page('group')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/group/index.php";
+                }
                 elseif (is_page("ask")) {
                     if (is_user_logged_in()) {
                         require "template/qa/QA_ask.php";
@@ -84,6 +90,9 @@
                 elseif (is_page('timer')){
                     require "algorithm/timer.php";
                 }
+                elseif (is_page('changedomain')){
+                    require "algorithm/changedomain.php";
+                }
                 elseif (is_page('otherpersonal')){
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );
@@ -102,6 +111,30 @@
                     } else { ?>
                         <script>location.href = "<?= wp_login_url( get_permalink())?>";</script>
                 <?php  }
+                }
+                elseif (is_page('creategroup')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/group/create_group.php";
+                }
+                elseif (is_page('createtask')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/group/create_task.php";
+                }
+                elseif (is_page('single_group')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/group/single_group.php";
+                }
+                elseif (is_page('single_task')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/group/single_task.php";
                 }
                 else{
                     if (!is_user_logged_in()) {

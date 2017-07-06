@@ -12,8 +12,9 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo('stylesheet_directory')?>/datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <!--    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.js"></script>-->
+<!--    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
     <meta charset="UTF-8">
     <title>火花空间</title>
 <!--    --><?php //wp_enqueue_style('sparkUI',get_stylesheet_uri());//加载jquery?>
@@ -27,7 +28,8 @@
     $page_qa_id = get_page_id('qa');
     $page_project_id =get_page_id('project');
 //    $student_management_id =get_page_id('student_management');
-    $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$student_management_id);
+    $page_group_id =get_page_id('group');
+    $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id);
     ?>
 
     <?php
@@ -96,15 +98,16 @@
                     <div class="col-md-3 col-sm-3 col-xs-3" id="col3">
                         <form class="navbar-form " role="search" method="get" action="<?php echo home_url('/');//get_permalink() ?>" style="float: right;padding-left: 0px;padding-right: 0px">
                             <div class="form-group" style="position: relative">
-                                <select class="form-control" id="search_select"
-                                        onchange="selectSearchCat(this.value);">
-                                    <option value="qa">搜问答</option>
-                                    <option value="wiki">搜wiki</option>
-                                    <option value="project">搜项目</option>
-                                </select>
+<!--                                <select class="form-control" id="search_select"-->
+<!--                                        onchange="selectSearchCat(this.value);">-->
+<!--                                    <option value="all">搜全部</option>-->
+<!--                                    <option value="qa">搜问答</option>-->
+<!--                                    <option value="wiki">搜wiki</option>-->
+<!--                                    <option value="project">搜项目</option>-->
+<!--                                </select>-->
                                 <input type="text" id="search-content" name='s' class="form-control" placeholder="Search" value="">
-                                <input type="hidden" name="post_status" value="publish">
-                                <input type="hidden" name="post_type" id="selectPostType" value=""/>
+<!--                                <input type="hidden" name="post_status" value="publish">-->
+<!--                                <input type="hidden" name="post_type" id="selectPostType" value="all"/>-->
                                 <button type="submit" class="btn btn-default btn-sm" id="search-btn">
                                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
@@ -132,15 +135,7 @@
             <div class="m_search_box">
                 <form class="navbar-form " role="search" method="get" action="<?php echo home_url('/');//get_permalink() ?>" style="float: right;padding-left: 0px;padding-right: 0px">
                     <div class="form-group" style="position: relative">
-                        <select class="form-control" id="search_select"
-                                onchange="selectSearchCat(this.value);">
-                            <option value="qa">搜问答</option>
-                            <option value="wiki">搜wiki</option>
-                            <option value="project">搜项目</option>
-                        </select>
                         <input type="text" id="search-content" name='s' class="form-control" placeholder="Search" value="">
-                        <input type="hidden" name="post_status" value="publish">
-                        <input type="hidden" name="post_type" id="selectPostType" value=""/>
                         <button type="submit" class="btn btn-default btn-sm" id="search-btn">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
@@ -170,7 +165,7 @@
                 <ul class="m-left-nav">
                     <li>
                         <img src="<?php bloginfo("template_url") ?>/img/wiki.png">
-                        <a href="<?php echo site_url() . get_page_address('wiki'); ?>">wiki</a>
+                        <a href="<?php echo site_url() . get_page_address('wiki_index'); ?>">wiki</a>
                     </li>
                     <li>
                         <img src="<?php bloginfo("template_url") ?>/img/qa.png">

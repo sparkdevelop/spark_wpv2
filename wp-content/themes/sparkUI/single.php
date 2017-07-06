@@ -125,7 +125,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
             </style>
 
             <!--判断用户是否为项目发布者，若是，则显示编辑按钮,否则显示发布按钮-->
-            <div class="sidebar_button" style="margin-top: 20px;margin-right: 15px;margin-left: -2px">
+            <div class="sidebar_button">
                 <?php if($current_user->user_login  == $author_name) {
                     echo "<a href='?fep_action=edit&fep_id=$post_id&page_id=$release_id' >编辑项目</a >";
                 }else {
@@ -252,18 +252,17 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 </div>
             </div>
 
-            <?php $projsonString = sideJSONGenerte($current_user->ID,"post"); ?>
-            <div class="proknowledge">
-                <div class="sidebar_list_header">
-                    <p>学习路径</p>
-                </div>
-                <div style="height: 2px;background-color: lightgray"></div>
-                <div id="sidechart" style="width:350px;height: 350px"></div>
-            </div>
+            <?php //$projsonString = proSideJSONGenerte($current_user->ID,"post"); ?>
+<!--            <div class="proknowledge">-->
+<!--                <div class="sidebar_list_header">-->
+<!--                    <p>学习路径</p>-->
+<!--                </div>-->
+<!--                <div style="height: 2px;background-color: lightgray"></div>-->
+<!--                <div id="sidechart" style="width:350px;height: 350px"></div>-->
+<!--            </div>-->
             <script>
-                sideChart('<?=$projsonString?>');
+                //sideChart('sidechart','<?php //$projsonString?>');
             </script>
-
 
             <div class="related_questions">
                 <div class="sidebar_list_header">
@@ -358,7 +357,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
 </div>
 
 <script type="text/javascript">
-    $(function () { $("[data-toggle='tooltip']").tooltip(); });
+    $(function () { jQuery("[data-toggle='tooltip']").tooltip(); });
 </script>
 <script>
     var flag=false;

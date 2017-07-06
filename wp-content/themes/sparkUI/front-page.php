@@ -43,6 +43,10 @@ favorite_table_install();
 score_table_install ();
 xml_table_install ();
 entity_table_install ();
+gp_table_install ();
+gp_verify_table_install ();
+gp_member_table_install ();
+gp_task_table_install ();
 get_header();
 ?>
 
@@ -61,7 +65,7 @@ get_header();
 <div class="container" id="front-page" style="padding: 50px 0; text-align: center;">
     <div class="col-md-4 col-sm-4 col-xs-12">
         <div><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/wiki_icon.png"/></div>
-        <a class="features-title" href="<?php echo site_url() . get_page_address('wiki');?>"><h1>wiki</h1></a>
+        <a class="features-title" href="<?php echo site_url() . get_page_address('wiki_index');?>"><h1>wiki</h1></a>
         <p class="features-sec">“ 学习 ”</p>
         <p>知识共享：创客教育、自学资源、创新创业...<br/>协同创作：人人可免费浏览、编辑、创建wiki</p>
     </div>

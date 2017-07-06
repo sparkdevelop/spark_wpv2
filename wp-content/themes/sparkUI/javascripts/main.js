@@ -59,7 +59,7 @@ $(function(){
 });
 
 function collapse() {
-    $("#m-personal-nav").collapse("toggle");
+    jQuery("#m-personal-nav").collapse("toggle");
 }
 
 

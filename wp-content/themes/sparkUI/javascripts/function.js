@@ -209,7 +209,14 @@ function myKnowledgeChart(id,jsonstring) {
             normal:{
                 show:true
             }
-        }
+        };
+        //console.log(node);
+        // if(isEdgeNode(wholedata.links,node,wholedata.nodes)){
+        //     console.log(wholedata.links);
+        //     console.log(node);
+        //     console.log(node.itemStyle.normal.opacity);
+        //     //node.itemStyle.normal.opacity = 0;
+        // }
     });
     // option =
     // {
@@ -272,7 +279,7 @@ function myKnowledgeChart(id,jsonstring) {
             type: 'graph',      //关系图
             //name: 'My Knowledge',  //tooltip显示
             layout: 'force',  //布局怎么显示,
-            animationDuration: 1500,
+            animationDuration: 500,
             animationEasingUpdate: 'quinticInOut',
             draggable: true, //节点可拖拽
             roam: 'move',     //鼠标缩放和平移漫游
@@ -287,7 +294,7 @@ function myKnowledgeChart(id,jsonstring) {
             },
             label: {
                 normal: {
-                    position: 'right',
+                    position: 'top',
                     formatter: '{b}'
                 }
             },
@@ -316,6 +323,7 @@ function myKnowledgeChart(id,jsonstring) {
     myChart.on('click',function (param) {
         var option = myChart.getOption();           //获取所有option
         var nodesOption = option.series[0].nodes;   //获取node中的数据
+        console.log(nodesOption);
         var linksOption = option.series[0].links;   //获取target,source信息
         var data = param.data;                      //点谁获取谁的node中对应的数据。是node中的子集
 
@@ -337,83 +345,83 @@ function myKnowledgeChart(id,jsonstring) {
         }
         myChart.setOption(option);
     });
+}
 
+//判断是否是边缘节点
+function isEdgeNode(links,node,nodeoptions) {
+    for(var j in links){
+        if(links[j].source == node.id){return true;}
+        else{return false;}
+    }
+}
 
-    //判断是否是边缘节点
-    function isEdgeNode(links,node) {
-        for(var j in links){
-            if(links[j].source == node.id){return true;}
-            else{return false;}
+//判断下一级节点状态
+function nodeStatus(links,node,nodesOption){
+    for(var i in links){
+        if(links[i].source == node.id){
+            return nodesOption[links[i].target].itemStyle.normal.opacity;
         }
     }
+}
 
-    //判断下一级节点状态
-    function nodeStatus(links,node,nodesOption){
-        for(var i in links){
-            if(links[i].source == node.id){
-                return nodesOption[links[i].target].itemStyle.normal.opacity;
-            }
-        }
-    }
-
-    function openNode(links,node,nodesOption){  //可以考虑展开一层
-        for (var i in links) {
-            if (links[i].source == node.id) {
-                if (!isEdgeNode(links, nodesOption[links[i].target], nodesOption)) {
-                    nodesOption[links[i].target].itemStyle.normal.opacity = 1;
-                    links[i].lineStyle.normal.opacity = 1;
-                    openNode(links, nodesOption[links[i].target], nodesOption);
-                }
-            }
-        }
-    }
-
-    function foldNode(links,node,nodesOption) {
-        for (var i in links) {
-            if (links[i].source == node.id) {
-                if (!isEdgeNode(links, nodesOption[links[i].target], nodesOption)) {
-                    nodesOption[links[i].target].itemStyle.normal.opacity = 0;
-                    links[i].lineStyle.normal.opacity = 0;
-                    foldNode(links, nodesOption[links[i].target], nodesOption);
-                }
-            }
-        }
-    }
-
-    function openNodeOnce(links,node,nodesOption){  //可以考虑展开一层
-        for (var i in links) {
-            if (links[i].source == node.id) {
+function openNode(links,node,nodesOption){  //可以考虑展开一层
+    for (var i in links) {
+        if (links[i].source == node.id) {
+            if (!isEdgeNode(links, nodesOption[links[i].target], nodesOption)) {
                 nodesOption[links[i].target].itemStyle.normal.opacity = 1;
                 links[i].lineStyle.normal.opacity = 1;
+                openNode(links, nodesOption[links[i].target], nodesOption);
             }
         }
     }
 }
 
+function foldNode(links,node,nodesOption) {
+    for (var i in links) {
+        if (links[i].source == node.id) {
+            if (!isEdgeNode(links, nodesOption[links[i].target], nodesOption)) {
+                nodesOption[links[i].target].itemStyle.normal.opacity = 0;
+                links[i].lineStyle.normal.opacity = 0;
+                foldNode(links, nodesOption[links[i].target], nodesOption);
+            }
+        }
+    }
+}
+
+function openNodeOnce(links,node,nodesOption){  //可以考虑展开一层
+    for (var i in links) {
+        if (links[i].source == node.id) {
+            nodesOption[links[i].target].itemStyle.normal.opacity = 1;
+            links[i].lineStyle.normal.opacity = 1;
+        }
+    }
+}
+
 //画出项目页面的知识图谱
-function sideChart(jsonstring) {
-    var myChart = echarts.init(document.getElementById('sidechart'));
+function sideChart(id,jsonstring) {
+    var myChart = echarts.init(document.getElementById(id));
     option = null;
     myChart.showLoading();
-    var jsonString = jsonstring;
     myChart.hideLoading();
     //处理json数据
-    var jsondata = JSON.parse(jsonString);
+    var jsondata = JSON.parse(jsonstring);
     jsondata.nodes.forEach(function (node) {
-        if (node.value > 50) {
-            node.symbolSize = node.value / 25;
-        } else if (node.value < 10) {
-            node.symbolSize = node.value * 5;
-        } else {
-            node.symbolSize = node.value;
-        }
+        // if (node.value > 50) {
+        //     node.symbolSize = node.value / 25;
+        // } else if (node.value < 10) {
+        //     node.symbolSize = node.value * 5;
+        // } else {
+        //     node.symbolSize = node.value;
+        // }
+        node.symbolSize = node.value;
         node.label = {
             normal: {
                 show: true
             }
-        }
+        };
     });
-    option = {
+
+    myChart.setOption({
         title: {
             //text: 'My Knowledge'
             //top: 'bottom',
@@ -421,32 +429,32 @@ function sideChart(jsonstring) {
         },
         tooltip: {},
         legend: [
-//                          {
-//                        data: jsondata.categories.map(function(a) {
-//                            return a.name;
-//                        })
-//
-//                    }
+            // {
+            //     data: jsondata.categories.map(function(a) {
+            //         return a.name;
+            //     })
+            // }
         ],
         series: [{
             type: 'graph',      //关系图
             //name: 'My Knowledge',  //tooltip显示
             layout: 'force',  //布局怎么显示,
-            animationDuration: 1500,
+            animationDuration: 500,
             animationEasingUpdate: 'quinticInOut',
-            draggable: false,
+            draggable: true,
             roam: 'move',     //是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
             focusNodeAdjacency: 'true',  //是否在鼠标移到节点上的时候突出显示节点以及节点的边和邻接节点。
             smybol: 'circle',          //节点的形状'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
-            data: jsondata.nodes,
+            nodes: jsondata.nodes,
             links: jsondata.links,
+            //categories: jsondata.categories,
             force: {
                 edgeLength: 80,//连线的长度
                 repulsion: 80  //子节点之间的间距
             },
             label: {
                 normal: {
-                    position: 'right',
+                    position: 'top',
                     formatter: '{b}'
                 }
             },
@@ -456,9 +464,7 @@ function sideChart(jsonstring) {
                 }
             }
         }]
-    };
-
-    myChart.setOption(option);
+    });
 
     myChart.on('dblclick', function (params) {
         var data = params.data;
@@ -470,4 +476,29 @@ function sideChart(jsonstring) {
             }
         }
     });
+
+    // myChart.on('click',function (param) {
+    //     var option = myChart.getOption();           //获取所有option
+    //     var nodesOption = option.series[0].nodes;   //获取node中的数据
+    //     var linksOption = option.series[0].links;   //获取target,source信息
+    //     var data = param.data;                      //点谁获取谁的node中对应的数据。是node中的子集
+    //
+    //     if (data != null && data != undefined) {    //如果有这个节点
+    //         /*
+    //          * step1:查找所有下一级节点以及迭代下一级节点(how)
+    //          * step2:若下一级节点的itemStyle.normal.opacity为0,则将下一级节点的itemStyle.normal.opacity设为1
+    //          * step3:反之设为0.
+    //          * */
+    //         //如果下一级节点的状态是1,那么调用fold,反之
+    //
+    //         if(nodeStatus(linksOption,data,nodesOption)==1){
+    //             foldNode(linksOption,data,nodesOption);
+    //         }
+    //         else{
+    //             openNode(linksOption,data,nodesOption);
+    //             //openNodeOnce(linksOption,data,nodesOption);  //只打开一层
+    //         }
+    //     }
+    //     myChart.setOption(option);
+    // });
 }

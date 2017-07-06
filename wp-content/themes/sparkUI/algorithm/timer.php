@@ -17,9 +17,12 @@
 //}
 
 //刷新xml表内容
-    //updateContentItem();
-    //processContent(1062);
-
+    //updateContentItem('post');
+    //updateContentItem('yada_wiki');
 
 //插入实体表内容
-    //preInsertEntity();
+    //updateInsertEntity();
+
+//测试get_user_meta()
+    //getMeta();
+
