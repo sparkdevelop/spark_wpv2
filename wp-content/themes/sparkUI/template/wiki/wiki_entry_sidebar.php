@@ -293,16 +293,25 @@
             <!--分割线-->
             <div style="height: 2px;background-color: lightgray"></div>
             <div class="related_pros" id="related_pros">
-                <ul style="padding-left: 20px">
+                <ul style="padding-left: 0px">
                     <?php
                     //控制条数
                     if(sizeof($related_pros)<5){$length = sizeof($related_pros);}
                     else{$length = 5;}
                     for($i=0;$i<$length;$i++){ ?>
                         <li class="list-group-item">
-                            <a href="<?php echo get_permalink($related_pros[$i]);?>" class="question-title">
-                                <?php echo get_the_title($related_pros[$i]);?>
-                            </a>
+                            <div style="display: inline;">
+                            <?php
+                            if ( has_post_thumbnail($related_pros[$i]) ) { ?>
+                                <a href="<?php the_permalink($related_pros[$i]); ?>" target="_blank"><img src="<?php the_post_thumbnail_url('30')?>" class="cover" /></a>
+                            <?php } else {?>
+                                <a href="<?php the_permalink($related_pros[$i]); ?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" style="width: 90px;height: 50px" class="cover" /></a>
+                            <?php } ?>
+                            </div>
+                            <div style="width: 63%;float: right;">
+                                <a href="<?php echo get_permalink($related_pros[$i]);?>" style="word-wrap: break-word;word-break: break-all" class="question-title"><?php echo get_the_title($related_pros[$i]);?></a>
+                            </div>
+
                         </li>
                     <?php } ?>
                 </ul>
@@ -326,6 +335,54 @@
             </div>
         </div>
     <?php } ?>
+
+<!--知新-->
+    <?php
+    $wiki_recommend = wikiRecommend($current_user->ID);
+    $wiki_review = wikiReview($current_user->ID);
+    if(sizeof($wiki_recommend)!=0){?>
+        <div class="wiki_recommends">
+            <div class="sidebar_list_header">
+                <p>推荐学习</p>
+            </div>
+            <!--分割线-->
+            <div style="height: 2px;background-color: lightgray"></div>
+            <div class="wiki_recommend" id="wiki_recommend">
+                <ul style="padding-left: 0px">
+                    <?php
+                    for($i=0;$i<sizeof($wiki_recommend);$i++){ ?>
+                        <li class="list-group-item">
+                            <a href="<?php echo get_permalink($wiki_recommend[$i]);?>" class="question-title">
+                                <?php echo get_the_title($wiki_recommend[$i]);?>
+                            </a>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    <?php }
+    if(sizeof($wiki_review)!=0){?>
+    <div class="wiki_recommends">
+        <div class="sidebar_list_header">
+            <p>温故知新</p>
+        </div>
+        <!--分割线-->
+        <div style="height: 2px;background-color: lightgray"></div>
+        <div class="wiki_review" id="wiki_review">
+            <ul style="padding-left: 0px">
+                <?php
+                for($i=0;$i<sizeof($wiki_review);$i++){ ?>
+                    <li class="list-group-item">
+                        <a href="<?php echo get_permalink($wiki_review[$i]);?>" class="question-title">
+                            <?php echo get_the_title($wiki_review[$i]);?>
+                        </a>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+    </div>
+    <?php }
+    ?>
 </div>
 <script>
     var flag=false;

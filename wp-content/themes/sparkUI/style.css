@@ -1190,3 +1190,8 @@ h4{margin-bottom: 0px;}
 #single-group-leftTab li.active>a {border: 1px solid;  border-color: lightgray;  border-bottom: 0px; color: #fe642d;background-color: transparent }
 #single-group-leftTab li>a{    border: 1px solid;  border-color: lightgray;  border-bottom: 0px; color: black;background-color: #f2f2f2 }
 #single-group-leftTab >li+li { margin-left: 0px; }
+
+
+.question-title {color: black}
+
+

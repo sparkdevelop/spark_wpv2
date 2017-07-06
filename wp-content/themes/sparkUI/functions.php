@@ -1676,30 +1676,21 @@ function wikiSideJsonGenerate($post_id){
     global $wpdb;
     $sql = "SELECT class FROM new_wiki WHERE wiki = '$post_id'";
     $result = $wpdb->get_var($wpdb->prepare($sql,'ARRAY_A'),0,0);
-//    $result_array = explode(",",$result);
-//    print_r($result_array);
-//    if(array_search('计算机',$result_array)){
-//        $jsonString = readJson('computer');
-//    } elseif(array_search('通信',$result_array)){
-//        $jsonString = readJson('communication');
-//    } elseif(array_search('电子',$result_array)){
-//        $jsonString = readJson('electron');
-//    } elseif(array_search('人工智能',$result_array)){
-//        $jsonString = readJson('artificial');
-//    } else{
-//        $jsonString = "";
-//    }
     if($result == "计算机"){
-        $jsonString = readJson('computer');
+        $json = readJson('computer');
+        $jsonString = addUrl($json);
     }elseif($result == "通信"){
-        $jsonString = readJson('communication');
+        $json = readJson('communication');
+        $jsonString = addUrl($json);
     }elseif($result == "电子"){
-        $jsonString = readJson('electron');
+        $json = readJson('electron');
+        $jsonString = addUrl($json);
     }elseif($result == "人工智能"){
-        $jsonString = readJson('artificial');
+        $json = readJson('artificial');
+        $jsonString = addUrl($json);
     }elseif($result == "项目指导"){
-        $jsonString = readJson('course');
-        $jsonString = addUrl($jsonString);
+        $json = readJson('course');
+        $jsonString = addUrl($json);
     }else{
         $jsonString = "";
     }
@@ -1715,14 +1706,13 @@ function addUrl($jsonString){
         $node_id = get_the_ID_by_title($value['name']);
         $temp = array("url"=>get_permalink($node_id));
         $value +=$temp;
-        $value +=array("id"=>$key);
+//        $value +=array("id"=>$key);
         array_push($nodes,$value);
     }
     $json["nodes"] = $nodes;
     $jsonString = json_encode($json);
     return $jsonString;
 }
-
 
 //处理wiki和项目内容,请求API的版本
 function keywordHighlight(){
@@ -1912,7 +1902,7 @@ function xml_table_install () {
 }
 
 //timer中更新的项目的关键词内容
-function updateContentItem(){
+function updateContentItem($post_type){
     //更新数据库中的xml串(暂时只有项目) 在timer中手动更新
     /* step1: 选出所有项目的id post_type和modified_time
      * step2: 判断xml表中是否有改post_id,若有,则查看posts中的modefiedtime和xml中的modifiedtime哪个更近。
@@ -1922,8 +1912,9 @@ function updateContentItem(){
      * */
     //step1
     global $wpdb;
-    $sql = "SELECT ID, post_modified FROM $wpdb->posts WHERE post_type='yada_wiki' and post_status ='publish'";
+    $sql = "SELECT ID, post_modified FROM $wpdb->posts WHERE post_type='$post_type' and post_status ='publish'";
     $results = $wpdb->get_results($sql,'ARRAY_A');
+    echo sizeof($results)."<hr>";
     //step2
 //    foreach($results as $result){
 //        $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$result['ID'];
@@ -1942,7 +1933,7 @@ function updateContentItem(){
 //            sleep(3);
 //        }
 //    }
-    for($i=240;$i<245;$i++){  //目前到这里了,这十组全是error
+    for($i=340;$i<375;$i++){  //目前到这里了,这十组全是error
         $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$results[$i]['ID'];
         $col = $wpdb->get_results($sql_1,"ARRAY_A");
         if(sizeof($col)!=0){    //xml表总是否已经有这个项目的xml,如果有
@@ -1973,7 +1964,7 @@ function insertContentItem($post_id){
             $sql = "INSERT INTO wp_xml VALUES ('',$post_id,'$post_type','$returnXML','$modified_time',$i)";
             $wpdb->get_results($sql);
         }else{
-            echo "error";
+            echo "error"."<br>";
         }
         sleep(5);
     }
@@ -2100,7 +2091,20 @@ function get_the_ID_by_title($post_title){
     global  $wpdb;
     $sql = "SELECT ID FROM $wpdb->posts WHERE post_title='$post_title' AND post_status = 'publish' AND post_type='yada_wiki'";
     $result = $wpdb->get_results($sql);
-    return $result[0]->ID;
+    if(sizeof($result)!=0){
+        return $result[0]->ID;
+    }else{
+        $sql_m = "SELECT ID FROM $wpdb->posts WHERE post_title like '%$post_title%' AND post_status = 'publish' AND post_type='yada_wiki'";
+//        return $sql;
+        $result_m = $wpdb->get_results($sql_m);
+        if(sizeof($result_m)!=0){
+            return $result_m[0]->ID;
+        }else{
+            return 0;
+        }
+
+    }
+
 }
 
 //建立实体表
@@ -2350,6 +2354,64 @@ function changeDomain($old_domain,$new_domain){
     }
     echo "<h4>已将域名由".$old_domain."变更为".$new_domain."</h4>";
 }
+
+//测试user_meta 头像相关
+function getMeta(){
+//    $meta_type = 'user';
+//    $object_id = 22;
+//    if ( ! $meta_type || ! is_numeric( $object_id ) ) {
+//        return false;
+//    }
+//
+//    $object_id = absint( $object_id );
+//    if ( ! $object_id ) {
+//        return false;
+//    }
+//    else{
+//        return true;
+//    }
+
+    echo get_simple_local_avatar(19, '96', '',  false);
+    //print_r(get_metadata('user', 22, 'simple_local_avatar', false));
+    //print_r(get_user_meta( 22, 'simple_local_avatar',false ));
+//   if(get_user_meta( 22, 'simple_local_avatar',true )){
+//       echo "get";
+//   }else{
+//       echo "unget";
+//   }
+}
+
+//温故
+function wikiReview($id){
+//    exec("python wp-content/themes/sparkUI/algorithm/wenguzhixin.py",$output,$ret);
+//    if($ret ==0){
+//        return $output[0];
+//    }else{
+//        exec("python wp-content/themes/sparkUI/algorithm/wenguzhixin.py 2>&1",$output,$ret);
+//        return $output;
+//    }
+    global $wpdb;
+    $result_arr = array();
+    $sql = "SELECT know_new FROM wp_user_review WHERE ID=$id";
+    $result = $wpdb->get_results($sql,'ARRAY_A');
+    if(sizeof($result)!=0){
+        $result_arr = explode(",",$result[0]['review_old']);
+    }
+    return $result_arr;
+}
+
+//知新  参数用户id
+function wikiRecommend($id){
+    global $wpdb;
+    $result_arr = array();
+    $sql = "SELECT know_new FROM wp_user_review WHERE ID=$id";
+    $result = $wpdb->get_results($sql,'ARRAY_A');
+    if(sizeof($result)!=0){
+        $result_arr = explode(",",$result[0]['know_new']);
+    }
+    return $result_arr;
+}
+
 
 
 ////wiki和项目内容处理 去标签化 暂时无用

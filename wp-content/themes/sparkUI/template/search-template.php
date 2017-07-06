@@ -1,4 +1,5 @@
 <?php
+//http://wanlimm.com/77201410012399.html 翻页的解决
 global $wp_query;
 $search_word = isset($_GET['s'])&&!empty($_GET['s'])&&!ctype_space($_GET['s']) ? $_GET['s'] : '';
 if($search_word==''){

@@ -58,8 +58,6 @@ $project= new WP_Query($query);
                             <?php } else {?>
                                 <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" class="cover" /></a>
 
-
-
                             <?php } ?>
                             <div style="height: 1px;background-color: lightgray"></div>
                             <div class="caption">

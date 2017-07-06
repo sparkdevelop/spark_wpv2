@@ -168,6 +168,7 @@ function myKnowledgeChart_old(jsonstring) {
                     formatter: '{b}'
                 }
             },
+            cursor:pointer,
             lineStyle: {
                 normal: {
                     curveness: 0.3
@@ -279,7 +280,7 @@ function myKnowledgeChart(id,jsonstring) {
             type: 'graph',      //关系图
             //name: 'My Knowledge',  //tooltip显示
             layout: 'force',  //布局怎么显示,
-            animationDuration: 1500,
+            animationDuration: 500,
             animationEasingUpdate: 'quinticInOut',
             draggable: true, //节点可拖拽
             roam: 'move',     //鼠标缩放和平移漫游
@@ -298,6 +299,7 @@ function myKnowledgeChart(id,jsonstring) {
                     formatter: '{b}'
                 }
             },
+            cursor:pointer,
             lineStyle: {
                 normal: {
                     curveness: 0.3
@@ -439,7 +441,7 @@ function sideChart(id,jsonstring) {
             type: 'graph',      //关系图
             //name: 'My Knowledge',  //tooltip显示
             layout: 'force',  //布局怎么显示,
-            animationDuration: 1500,
+            animationDuration: 500,
             animationEasingUpdate: 'quinticInOut',
             draggable: true,
             roam: 'move',     //是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
@@ -458,6 +460,7 @@ function sideChart(id,jsonstring) {
                     formatter: '{b}'
                 }
             },
+            cursor:pointer,
             lineStyle: {
                 normal: {
                     curveness: 0.3
