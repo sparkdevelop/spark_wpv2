@@ -2392,7 +2392,7 @@ function wikiReview($id){
 //    }
     global $wpdb;
     $result_arr = array();
-    $sql = "SELECT know_new FROM wp_user_review WHERE ID=$id";
+    $sql = "SELECT review_old FROM wp_user_review WHERE ID=$id";
     $result = $wpdb->get_results($sql,'ARRAY_A');
     if(sizeof($result)!=0){
         $result_arr = explode(",",$result[0]['review_old']);
