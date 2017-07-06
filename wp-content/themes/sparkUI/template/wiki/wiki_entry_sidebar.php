@@ -318,7 +318,7 @@
             </div>
 
             <div class="more_related_pros" id="more_related_pros" style="display: none">
-                <ul style="padding-left: 20px">
+                <ul style="padding-left: 0px">
                     <?php
                     //控制条数
                     if(sizeof($related_pros)>=15){$length = 15;}
@@ -326,9 +326,18 @@
 
                     for($i=0;$i<$length;$i++){ ?>
                         <li class="list-group-item">
-                            <a href="<?php echo get_permalink($related_pros[$i]);?>" class="question-title">
-                                <?php echo get_the_title($related_pros[$i]);?>
-                            </a>
+                            <div style="display: inline;">
+                                <?php
+                                if ( has_post_thumbnail($related_pros[$i]) ) { ?>
+                                    <a href="<?php the_permalink($related_pros[$i]); ?>" target="_blank"><img src="<?php the_post_thumbnail_url('30')?>" class="cover" /></a>
+                                <?php } else {?>
+                                    <a href="<?php the_permalink($related_pros[$i]); ?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" style="width: 90px;height: 50px" class="cover" /></a>
+                                <?php } ?>
+                            </div>
+                            <div style="width: 63%;float: right;">
+                                <a href="<?php echo get_permalink($related_pros[$i]);?>" style="word-wrap: break-word;word-break: break-all" class="question-title"><?php echo get_the_title($related_pros[$i]);?></a>
+                            </div>
+
                         </li>
                     <?php } ?>
                 </ul>
