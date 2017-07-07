@@ -1158,7 +1158,7 @@ function showProWiki($post_id){
     global $wpdb;
     $td_array =array();
     $sql_1 = "SELECT related_id FROM wp_relation WHERE post_id=$post_id and related_post_type='yada_wiki'";
-    $result = $wpdb->get_results($sql_1, ARRAY_A);
+    $result = $wpdb->get_results($sql_1, 'ARRAY_A');
     foreach ($result as $value){
         $wiki_id = $value['related_id'];
         $wiki_title = get_the_title($wiki_id);
