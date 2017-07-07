@@ -1644,6 +1644,7 @@ function readJson($file_name){
     $jsonString["links"] = $links;
 
     $jsonString = json_encode($jsonString);
+    //$jsonString = addUrl($jsonString);
     return $jsonString;
 }
 //项目知识图谱生成
@@ -1924,40 +1925,37 @@ function updateContentItem($post_type){
     global $wpdb;
     $sql = "SELECT ID, post_modified FROM $wpdb->posts WHERE post_type='$post_type' and post_status ='publish'";
     $results = $wpdb->get_results($sql,'ARRAY_A');
-    echo sizeof($results)."<hr>";
     //step2
-//    foreach($results as $result){
-//        $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$result['ID'];
-//        $col = $wpdb->get_results($sql_1,"ARRAY_A");
-//        if(sizeof($col)!=0){    //xml表总是否已经有这个项目的xml,如果有
-//            $flag = strtotime($col[0]["modified_time"])-strtotime($result['post_modified']);
-//            if($flag<0){ // 项目内容有了新的修改 否则不做任何操作。
-//                echo "执行一次update".$result['ID']."<br>";
-//                updateXML($result['ID']);
-//                sleep(3);
-//            }
-//        }
-//        else{//如果xml表没有这个post_id, 执行step3.  在新增项目那里可以执行这个函数。
-//            echo "执行一次insert".$result['ID']."<br>";
-//            insertContentItem($result['ID']);
-//            sleep(3);
-//        }
-//    }
-    for($i=340;$i<375;$i++){  //目前到这里了,这十组全是error
-        $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$results[$i]['ID'];
+    foreach($results as $result){
+        $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$result['ID'];
         $col = $wpdb->get_results($sql_1,"ARRAY_A");
         if(sizeof($col)!=0){    //xml表总是否已经有这个项目的xml,如果有
-            $flag = strtotime($col[0]["modified_time"])-strtotime($results[$i]['post_modified']);
-            if($flag>0){        // 项目内容有了新的修改 否则不做任何操作。
-                echo "执行一次update".$results[$i]['ID']."<br>";
-                updateXML($results[$i]['ID']);
+            $flag = strtotime($col[0]["modified_time"])-strtotime($result['post_modified']);
+            if($flag<0){ // 项目内容有了新的修改 否则不做任何操作。
+                echo "执行一次update".$result['ID']."<br>";
+                updateXML($result['ID']);
             }
         }
         else{//如果xml表没有这个post_id, 执行step3.  在新增项目那里可以执行这个函数。
-            echo "执行一次insert".$results[$i]['ID']."<br>";
-            insertContentItem($results[$i]['ID']);
+            echo "执行一次insert".$result['ID']."<br>";
+            insertContentItem($result['ID']);
         }
     }
+//    for($i=340;$i<375;$i++){  //目前到这里了,这十组全是error
+//        $sql_1 = "SELECT post_id, modified_time FROM wp_xml WHERE post_id=".$results[$i]['ID'];
+//        $col = $wpdb->get_results($sql_1,"ARRAY_A");
+//        if(sizeof($col)!=0){    //xml表总是否已经有这个项目的xml,如果有
+//            $flag = strtotime($col[0]["modified_time"])-strtotime($results[$i]['post_modified']);
+//            if($flag>0){        // 项目内容有了新的修改 否则不做任何操作。
+//                echo "执行一次update".$results[$i]['ID']."<br>";
+//                updateXML($results[$i]['ID']);
+//            }
+//        }
+//        else{//如果xml表没有这个post_id, 执行step3.  在新增项目那里可以执行这个函数。
+//            echo "执行一次insert".$results[$i]['ID']."<br>";
+//            insertContentItem($results[$i]['ID']);
+//        }
+//    }
 }
 
 //新增xml中的一行  在发布项目那里可以调用一次
@@ -1987,7 +1985,7 @@ function updateXML($post_id){
     $length = sizeof($phrase);
     for($i=0;$i<$length;$i++) {
         $url = 'http://ebs.ckcest.cn/kb/elxml?apikey=RHizNjRR&phrase='.$phrase[$i];
-        $returnXML = file_get_contents($url);
+        $returnXML = @file_get_contents($url);
         if (isXML($returnXML)) {
             $modified_time = date("Y-m-d H:i:s", time() + 8 * 3600);
             //判断表中是否已有section1,2…… 若有,执行update,若没有,执行insert
@@ -2000,7 +1998,7 @@ function updateXML($post_id){
                 $wpdb->get_results($sql_insert);
             }
         } else {
-            echo "error"."<hr>";
+            echo "error"."<br>";
         }
         sleep(5);
     }
