@@ -2363,32 +2363,6 @@ function changeDomain($old_domain,$new_domain){
     echo "<h4>已将域名由".$old_domain."变更为".$new_domain."</h4>";
 }
 
-//测试user_meta 头像相关
-function getMeta(){
-//    $meta_type = 'user';
-//    $object_id = 22;
-//    if ( ! $meta_type || ! is_numeric( $object_id ) ) {
-//        return false;
-//    }
-//
-//    $object_id = absint( $object_id );
-//    if ( ! $object_id ) {
-//        return false;
-//    }
-//    else{
-//        return true;
-//    }
-
-    echo get_simple_local_avatar(19, '96', '',  false);
-    //print_r(get_metadata('user', 22, 'simple_local_avatar', false));
-    //print_r(get_user_meta( 22, 'simple_local_avatar',false ));
-//   if(get_user_meta( 22, 'simple_local_avatar',true )){
-//       echo "get";
-//   }else{
-//       echo "unget";
-//   }
-}
-
 //温故
 function wikiReview($id){
 //    exec("python wp-content/themes/sparkUI/algorithm/wenguzhixin.py",$output,$ret);

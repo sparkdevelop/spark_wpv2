@@ -23,6 +23,4 @@
 //插入实体表内容
     //updateInsertEntity();
 
-//测试get_user_meta()
-    //getMeta();
 
