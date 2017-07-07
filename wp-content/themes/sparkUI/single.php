@@ -269,11 +269,10 @@ $admin_url=admin_url( 'admin-ajax.php' );
                     <p>相似项目</p>
                 </div>
                 <div style="height: 2px;background-color: lightgray"></div>
-                <ul class="list-group" style="padding-left: 20px; ">
+                <ul class="list-group" style="padding-left: 0px; ">
                     <?php related_project() ?>
                 </ul>
             </div>
-
 
             <div class="related_wikis">
                 <div class="sidebar_list_header">
@@ -283,7 +282,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 <!--分割线-->
                 <div style="height: 2px;background-color: lightgray"></div>
                 <div class="related_wiki" id="related_wiki">
-                    <ul style="padding-left: 20px; ">
+                    <ul style="padding-left: 0px; ">
                         <?php
                         //控制条数
                         if(sizeof($related_wiki)<5){$length = sizeof($related_wiki);}
@@ -299,7 +298,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 </div>
 
                 <div class="more_related_wiki" id="more_related_wiki" style="display: none">
-                    <ul style="padding-left: 20px">
+                    <ul style="padding-left: 0px">
                         <?php
                         //控制条数
                         if(sizeof($related_wiki)>=15){$length = 15;}

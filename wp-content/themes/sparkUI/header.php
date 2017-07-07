@@ -27,7 +27,7 @@
     $page_wiki_id = get_page_id('wiki_index');
     $page_qa_id = get_page_id('qa');
     $page_project_id =get_page_id('project');
-//    $student_management_id =get_page_id('student_management');
+    $student_management_id =get_page_id('student_management');
     $page_group_id =get_page_id('group');
     $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id);
     ?>
