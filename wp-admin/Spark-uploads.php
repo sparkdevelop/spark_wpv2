@@ -42,7 +42,11 @@ for($x=0;$x<$arrlength;$x++) {
         echo '该词条已存在';
         echo "<br>";
     } else {
-        $post_name = urlencode($title[0]);//postname编码
+        $lower=strtolower($title[0]);//标题转为小写
+        $str1 = trim($lower);
+        $str2= preg_replace("/\s+/",' ',$str1);//替换多个空格为一个
+        $str3 = str_replace(' ', '-', $str2);//替换空格为-
+        $post_name = urlencode($str3);//postname编码
         $author = array_rand($authors, 1);//随机选取作者
         $id = $x + $id_max + 1;
         $sql = "INSERT INTO wp_posts (ID,post_author,post_date,post_date_gmt,post_content,post_title,post_excerpt,post_status,comment_status,ping_status,post_password,post_name,to_ping,pinged,post_modified,post_modified_gmt,post_content_filtered,post_parent,guid,menu_order,post_type,post_mime_type,comment_count)
