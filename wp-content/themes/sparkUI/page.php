@@ -93,6 +93,9 @@
                 elseif (is_page('changedomain')){
                     require "algorithm/changedomain.php";
                 }
+                elseif (is_page('autowiki')){
+                    require "template/wiki/wiki_uploads/upload.php";
+                }
                 elseif (is_page('otherpersonal')){
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );

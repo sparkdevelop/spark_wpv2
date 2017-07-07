@@ -1,5 +1,7 @@
 <?php
-$conn = new mysqli('localhost','root','spark123456','spark_wp') ;
+global  $wpdb;
+require_once( dirname( __FILE__ ) . '/admin.php' );
+$conn = new mysqli('localhost','root','zx1101','spark_wp') ;
 // 检测连接
 if ($conn->connect_error) {
     die("连接失败: " . $conn->connect_error);
@@ -9,13 +11,14 @@ echo "<br>";
 $name= $_GET["name"];
 $separator= $_GET["separator"];
 $conn -> set_charset('utf8mb4');
-$content = file_get_contents("$name");//源文件地址
+$file_url = get_template_directory_uri()."/template/wiki/wiki_uploads/".$name;
+$content = file_get_contents($file_url);//源文件地址
 $date= date('Y-m-d H:i:s');//获取日期
 echo $date;
 echo "<br>";
 $authors=array("1"=>"1","19"=>"19","22"=>"22","958"=>"958","1142"=>"1142");//可用作者spark_admin 1,YANSHUAI 19,cherie 22,zyl 958,Normcore 1142
 
-$contents= explode("\r\n",$content);//explode()函数以$separator为标识符进行拆分
+$contents= explode("\n",$content);//explode()函数以$separator为标识符进行拆分
 $arrlength=count($contents);
 //获取site_url
 $sql="SELECT option_value from wp_options WHERE option_name='siteurl'";
