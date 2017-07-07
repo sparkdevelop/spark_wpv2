@@ -1,7 +1,7 @@
 <?php
 global  $wpdb;
 require_once( dirname( __FILE__ ) . '/admin.php' );
-$conn = new mysqli('localhost','root','zx1101','spark_wp') ;
+$conn = new mysqli('localhost','root','spark123456','spark_wp') ;
 // 检测连接
 if ($conn->connect_error) {
     die("连接失败: " . $conn->connect_error);

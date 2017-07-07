@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>上传wiki参数</title>
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
-<body>
 <form action="<?php echo esc_url(self_admin_url('Spark-uploads.php')); ?>" class="form-horizontal" method="get">
     <div class="form-group">
         <div class="col-sm-10">
@@ -23,5 +15,3 @@
         </div>
     </div>
 </form>
-</body>
-</html>
