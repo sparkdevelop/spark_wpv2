@@ -17,8 +17,8 @@
 //}
 
 //刷新xml表内容
-    //updateContentItem('post');
-    //updateContentItem('yada_wiki');
+    updateContentItem('post');
+    updateContentItem('yada_wiki');
 
 //插入实体表内容
     //updateInsertEntity();
