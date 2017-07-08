@@ -1249,7 +1249,7 @@ function related_project()
                 <div style="display: inline;">
                     <?php
                     if ( has_post_thumbnail() ) { ?>
-                        <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php the_post_thumbnail_url('30')?>" class="cover" /></a>
+                        <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php the_post_thumbnail_url('30')?>" class="cover" height="50px" width="90px"/></a>
                     <?php } else {?>
                         <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" style="width: 90px;height: 50px" class="cover" /></a>
                     <?php } ?>
@@ -1279,7 +1279,17 @@ function related_project()
         while (have_posts()) {
             the_post(); ?>
             <li class="list-group-item">
-                <a href="<?php the_permalink(); ?>" target="_blank"><?php the_title(); ?></a>
+                <div style="display: inline;">
+                    <?php
+                    if ( has_post_thumbnail() ) { ?>
+                        <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php the_post_thumbnail_url('30')?>" class="cover" height="50px" width="90px"/></a>
+                    <?php } else {?>
+                        <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" style="width: 90px;height: 50px" class="cover" /></a>
+                    <?php } ?>
+                </div>
+                <div style="width: 63%;float: right;">
+                    <a href="<?php echo get_permalink();?>" style="word-wrap: break-word;word-break: break-all" class="question-title"><?php echo get_the_title();?></a>
+                </div>
             </li>
             <?php $i++;
         }
