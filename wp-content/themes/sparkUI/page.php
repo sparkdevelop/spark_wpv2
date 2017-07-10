@@ -42,6 +42,12 @@
                     }
                     require "template/wiki/wiki_create.php";
                 }
+                elseif (is_page("wiki_revisions")) {
+                if (!is_user_logged_in()) {
+                    wp_redirect( home_url().'/wp-login.php' );
+                }
+                require "template/wiki/wiki_revisions.php";
+            }
                 elseif (is_page("qa") ) {//显示问答内容 参数为pageID 如何自动获取??
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );
