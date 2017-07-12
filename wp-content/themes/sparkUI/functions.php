@@ -1846,7 +1846,6 @@ function keywordHighlight_update(){
                                 layer.tips(html, '#layer-<?=$keyword?>',
                                     {
                                         tips: [1, "black"],   //位置和颜色
-                                        time: 8000,
                                         success: clickEvent()
                                     });
                             });
