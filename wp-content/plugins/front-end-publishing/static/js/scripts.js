@@ -169,8 +169,8 @@ jQuery(document).ready(function ($) {
             alert("标题太短了");
             return;
         }
-        if(($.trim($('#fep-post-title').val()).length)>28){
-            alert("标题太长了");
+        if(($.trim($('#fep-post-title').val()).length)>20){
+            alert("标题太长了，请不要超过20字。");
             return;
         }
         if(($.trim($('#fep-post-content').val()).length)<5){

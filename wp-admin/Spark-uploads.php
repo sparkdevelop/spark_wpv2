@@ -18,7 +18,7 @@ $a_content = addslashes($content);//使用反斜线引用字符串
 $date= date('Y-m-d H:i:s');//获取日期
 echo $date;
 echo "<br>";
-$authors=array("1"=>"1","19"=>"19","22"=>"22","958"=>"958","1142"=>"1142");//可用作者spark_admin 1,YANSHUAI 19,cherie 22,zyl 958,Normcore 1142
+$authors=array("1"=>"1","19"=>"19","22"=>"22","958"=>"958","1124"=>"1124");//可用作者spark_admin 1,YANSHUAI 19,cherie 22,zyl 958,Normcore 1142
 
 $contents= explode("\n",$a_content);//explode()函数以$separator为标识符进行拆分
 $arrlength=count($contents);
