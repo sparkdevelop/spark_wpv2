@@ -4,26 +4,26 @@
 <div class="col-md-9 col-sm-9 col-xs-12"  id="col9">
     <div id="single-group-title">
         <div id="group-ava">
-            <img src="<?=$group[0]['group_cover']?>" style="width: 85px;height: 85px">
+            <img src="<?=$group['group_cover']?>" style="width: 85px;height: 85px">
         </div>
         <div id="group-info" style="margin-left: 20px">
             <div class="group_title">
-                <span id="h4_name"><?=$group[0]['group_name']?></span>
+                <span id="h4_name"><?=$group['group_name']?></span>
                 <span style="color: #fe642d;margin-left: 20px">已加入</span>
             </div>
             <div class="group_others">
-                <span><?=$group[0]['member_count']?>个成员</span>&nbsp;&nbsp;
+                <span><?=$group['member_count']?>个成员</span>&nbsp;&nbsp;
                 <span>管理员</span>
-                <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$group[0]['group_author'];?>" style="color: #169bd5"><?php echo get_author_name($group[0]['group_author'])?></a>
+                <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$group['group_author'];?>" style="color: #169bd5"><?php echo get_author_name($group[0]['group_author'])?></a>
             </div>
             <div class="group_create_time">
                 <span>创建于:&nbsp;</span>
-                <span><?=$group[0]['create_date']?></span>
+                <span><?=$group['create_date']?></span>
             </div>
         </div>
     </div>
     <div id="single-group-abstract">
-        <p><span style="font-weight: bold">群组简介:</span><?=$group[0]['group_abstract']?></p>
+        <p><span style="font-weight: bold">群组简介:</span><?=$group['group_abstract']?></p>
     </div>
     <div id="single-group-tab">
         <ul id="single-group-leftTab" class="nav nav-pills">

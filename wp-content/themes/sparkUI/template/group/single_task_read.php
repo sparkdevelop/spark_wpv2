@@ -5,68 +5,110 @@
  * Date: 17/6/30
  * Time: 下午7:22
  */
-echo "this is task read"; ?>
-<div class="col-md-9 col-sm-9 col-xs-12" id="col9">
-    <div id="single-group-title">
-        <div id="group-ava">
-            <img src="<?= $group[0]['group_cover'] ?>" style="width: 85px;height: 85px">
-        </div>
-        <div id="group-info" style="margin-left: 20px">
-            <div class="group_title">
-                <span id="h4_name"><?= $group[0]['group_name'] ?></span>
-                <span style="color: #fe642d;margin-left: 20px">已加入</span>
-            </div>
-            <div class="group_others">
-                <span><?= $group[0]['member_count'] ?>个成员</span>&nbsp;&nbsp;
-                <span>管理员</span>
-                <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $group[0]['group_author']; ?>"
-                   style="color: #169bd5"><?php echo get_author_name($group[0]['group_author']) ?></a>
-            </div>
-            <div class="group_create_time">
-                <span>创建于:&nbsp;</span>
-                <span><?= $group[0]['create_date'] ?></span>
-            </div>
-        </div>
-    </div>
-    <div id="single-group-abstract">
-        <p><span style="font-weight: bold">群组简介:</span><?= $group[0]['group_abstract'] ?></p>
-    </div>
-    <div id="single-group-tab">
-        <ul id="single-group-leftTab" class="nav nav-pills">
-            <?php
-            $current_url = curPageURL();
-            $url_array = parse_url($current_url);
-            $query_parse = explode("&", $url_array['query']);
-            if (array_search("tab=member", $query_parse)) {
-                ?>
-                <li><a href="<?php echo esc_url(add_query_arg(array('tab' => 'task', 'paged' => 1))) ?>">群组任务</a></li>
-                <li class="active"><a
-                        href="<?php echo esc_url(add_query_arg(array('tab' => 'member', 'paged' => 1))) ?>">成员列表</a>
-                </li>
-                <li><a href="<?php echo esc_url(add_query_arg(array('tab' => 'manage', 'paged' => 1))) ?>">群组管理</a></li>
-            <?php } elseif (array_search("tab=manage", $query_parse)) { ?>
-                <li><a href="<?php echo esc_url(add_query_arg(array('tab' => 'task', 'paged' => 1))) ?>">群组任务</a></li>
-                <li><a href="<?php echo esc_url(add_query_arg(array('tab' => 'member', 'paged' => 1))) ?>">成员列表</a></li>
-                <li class="active"><a
-                        href="<?php echo esc_url(add_query_arg(array('tab' => 'manage', 'paged' => 1))) ?>">群组管理</a>
-                </li>
-            <?php } else { ?>
-                <li class="active"><a href="<?php echo esc_url(add_query_arg(array('tab' => 'task', 'paged' => 1))) ?>">群组任务</a>
-                </li>
-                <li><a href="<?php echo esc_url(add_query_arg(array('tab' => 'member', 'paged' => 1))) ?>">成员列表</a></li>
-                <li><a href="<?php echo esc_url(add_query_arg(array('tab' => 'manage', 'paged' => 1))) ?>">群组管理</a></li>
-            <?php } ?>
-        </ul>
+//print_r($task);
+$group = get_group($group_id)[0];
+$post_link = get_verify_field($task['ID'],'task');
+//print_r($group);
+//print_r($post_link);
+?>
+<style>
+    #single-task-abstract p {
+        background: #f9f9f9;
+        padding: 20px 20px;
+        margin-top: 10px;
+    }
 
-        <?php
-        $tab = isset($_GET['tab']) && !empty($_GET['tab']) ? $_GET['tab'] : 'task';
-        if ($tab == 'task') {
-            require 'group_task.php';
-        } elseif ($tab == 'member') {
-            require 'group_member.php';
-        } else {
-            require 'group_manage.php';
-        }
-        ?>
+    #single-task-abstract {
+        margin-top: 20px;
+    }
+    .table,.table-striped,.table-bordered {
+        margin: 20px 0px;
+    }
+    .table,.table-striped thead {
+        border: 1px solid #f9f9f9;
+    }
+    .table,.table-bordered thead > tr >th {
+        border-bottom-width: 1px;
+        text-align: center;
+    }
+    .table,.table-striped thead > tr >th {
+        text-align: center;
+        border-bottom-width: 1px;
+        border-right: 1px solid #f2f2f2;
+    }
+    .table,.table-striped tbody > tr >td {
+        text-align: center;
+        border: 1px solid #f2f2f2;
+    }
+
+</style>
+<div class="col-md-9 col-sm-9 col-xs-12" id="col9">
+    <div id="single-task-title">
+        <h3>任务 : <?= $task['task_name'] ?></h3>
+        <div id="task-info" style="margin-top: 20px">
+            <span>群组: <?= $group['group_name'] ?></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+            <span>截止: <?= $task['deadline'] ?></span>&nbsp;&nbsp;
+            <span>还剩x天</span>
+        </div>
+    </div>
+    <div class="divline"></div>
+    <div id="single-task-abstract">
+        <h4>任务详情: </h4>
+        <p><?= $task['task_content'] ?></p>
+    </div>
+    <div id="single-task-complete">
+        <h4 style="margin-top: 25px">完成情况 : </h4>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th style="width: 10%">序号</th>
+                <th>需阅读文章链接</th>
+                <th style="width: 15%">完成情况</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            for ($i=0;$i<sizeof($post_link);$i++){ ?>
+                <tr>
+                    <td><?=$i+1?></td>
+                    <td><a href="<?=$post_link[$i]?>">link名字</a></td>
+                    <td>未完成</td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+    <div id="single-task-member-complete">
+        <h4>组员完成情况 : </h4>
+        <span>80%组员已完成</span>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>用户名</th>
+                <th>真实姓名</th>
+                <th>班级</th>
+                <th>学号</th>
+                <th>完成情况</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Tanmay</td>
+                <td>Bangalore</td>
+                <td>560001</td>
+            </tr>
+            <tr>
+                <td>Sachin</td>
+                <td>Mumbai</td>
+                <td>400003</td>
+            </tr>
+            <tr>
+                <td>Uma</td>
+                <td>Pune</td>
+                <td>411027</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>

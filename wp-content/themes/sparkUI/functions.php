@@ -1456,13 +1456,8 @@ function addScore(){
     $post_id = $_POST['postID'];
     $score = $_POST['score'];
     $post_type = get_post_type($post_id);
-    echo $user_id."<br>";
-    echo $post_id."<br>";
-    echo $post_type."<br>";
-    echo $score."<br>";
     $time = date("Y-m-d H:i:s",time()+8*3600);
     $sql = "INSERT INTO wp_score VALUES ('',$user_id,$score,$post_id,'$post_type','$time')";
-    echo $sql;
     $wpdb->get_results($sql);
     die();
 }
@@ -2195,6 +2190,17 @@ function isNewEntity($entity_name){
 }
 
 
+
+/*下面一系列函数为群组相关函数
+ * 获取所有的群组信息,若无群组id则取所有的群组get_group($id = null)
+ * 获取群组的任务信息 变量为群组id,若无taskid则去全部的任务。get_task($group_id,$id=null)
+ * 获取该群组的所有任务信息 变量为task_id。 get_task_group($id)
+ * 头像适配大小函数get_group_avatar() 返回值为<img>
+ * 判断用户是否为群组管理员 is_group_admin()
+ * 判断成员是否是这个群组的成员 is_group_member()
+ *
+ *
+ * */
 //建立任务表
 function gp_task_table_install () {
     global $wpdb;
@@ -2264,7 +2270,7 @@ function checkGroupName(){
 add_action('wp_ajax_checkGroupName', 'checkGroupName');
 add_action('wp_ajax_nopriv_checkGroupName', 'checkGroupName');
 
-//建立群组表
+//建立任务验证表
 function gp_verify_table_install () {
     global $wpdb;
     $table_name = $wpdb->prefix . "gp_verify";  //获取表前缀，并设置新表的名称
@@ -2299,7 +2305,7 @@ function gp_member_table_install ()
     }
 }
 
-//获取所有的群组信息
+//获取所有的群组信息,若无群组id则取所有的群组
 function get_group($id = null){
     global $wpdb;
     if($id!=null){
@@ -2311,7 +2317,7 @@ function get_group($id = null){
     return $results;
 }
 
-//获取所有的群组信息 变量为task_id
+//获取群组的任务信息 变量为群组id,若无taskid则去全部的任务。
 function get_task($group_id,$id=null){
     global $wpdb;
     if($id !=null) {   //
@@ -2336,10 +2342,72 @@ function get_group_avatar(){
     //返回值为<img>
 }
 
-//判断用户是否为群组管理员
-function is_group_admin(){
+//判断用户是否为群组管理员  在显示管理员哪里用?
+function is_group_admin($group_id){
+    global $wpdb;
+    $user_id = get_current_user_id();
+    $sql = "SELECT indentity from wp_gp_member WHERE user_id = $user_id and group_id = $group_id";
+    echo $sql;
 
 }
+//判断成员是否是这个群组的成员
+function is_group_member($group_id){
+    global $wpdb;
+    $user_id = get_current_user_id();
+    $sql = "SELECT indentity from wp_gp_member WHERE user_id = $user_id and group_id = $group_id and member_status=0";
+    $col = $wpdb->query($sql);
+    if($col!=0){ return true; }
+    else{ return false; }
+}
+
+//获取当前用户加入的所有群组
+function get_current_user_group(){
+    global $wpdb;
+    $joined_group = array();
+    $user_id = get_current_user_id();
+    $sql = "SELECT group_id FROM wp_gp_member WHERE user_id = $user_id";
+    $results = $wpdb->get_results($sql,'ARRAY_A');
+    foreach ($results as $value) {
+        $group_info = get_group($value['group_id']);
+        array_push($joined_group,$group_info[0]);
+    }
+    return $joined_group;
+}
+
+//ajax 加入群组
+function join_the_group(){
+    global $wpdb;
+    $group_id = isset($_POST['group_id']) ? $_POST['group_id'] : "";
+    if($group_id!=""){
+        $user_id = get_current_user_id();
+        $join_date = date('Y-m-d H:i:s',time()+8*3600);
+        $sql_member = "INSERT INTO wp_gp_member VALUES ('',$user_id,$group_id,'member','$join_date',0)";
+        echo $sql_member;
+        $wpdb->get_results($sql_member);
+        $response = "success";
+    }else{
+        $response = "failed";
+    }
+    echo $response;
+    die();
+}
+add_action('wp_ajax_join_the_group', 'join_the_group');
+add_action('wp_ajax_nopriv_join_the_group', 'join_the_group');
+
+//ajax 退出群组
+function quit_the_group(){
+    global $wpdb;
+    $group_id = isset($_POST['group_id']) ? $_POST['group_id'] : "";
+    if($group_id!=""){
+        $user_id = get_current_user_id();
+        $sql_member = "update wp_gp_member set member_status = 1 WHERE user_id = $user_id and group_id = $group_id";
+        $wpdb->get_results($sql_member);
+    }
+    die();
+}
+add_action('wp_ajax_quit_the_group', 'quit_the_group');
+add_action('wp_ajax_nopriv_quit_the_group', 'quit_the_group');
+
 
 //获取验证字段,参数(id,type) 返回值 验证字段数组
 function get_verify_field($id,$type){
@@ -2349,6 +2417,14 @@ function get_verify_field($id,$type){
     $verifyField = explode(',',$result[0]['verify_content']);
     return $verifyField;
 }
+
+
+
+
+
+
+
+
 
 //修改域名  域名要包括http
 function changeDomain($old_domain,$new_domain){

@@ -1,14 +1,12 @@
-<?php
-//$tab = isset($_GET['tab']) && !empty($_GET['tab']) ? $_GET['tab'] : 'task';
-//?>
+<?php ?>
 <style>
     .btn-green{ width: 60px;height: 35px;float: right;font-size: 14px;margin-top: 0px  }
 </style>
 <script>
-    function quit_the_group($group_id) {
+    function join_the_group($group_id) {
         //ajax
         var data = {
-            action: 'quit_the_group',
+            action: 'join_the_group',
             group_id: $group_id
         };
         $.ajax({
@@ -17,10 +15,10 @@
             url: "<?=admin_url('admin-ajax.php');?>",
             data: data,
             success: function () {
-                layer.msg("您已成功退群", {time: 2000, icon: 1});
+                layer.msg("您已成功加入", {time: 2000, icon: 1});
                 location.reload();
             },
-            error: function () {
+            error:function () {
                 alert("error");
             }
         });
@@ -34,7 +32,7 @@
         <div id="group-info" style="margin-left: 20px">
             <div class="group_title">
                 <span id="h4_name"><?=$group['group_name']?></span>
-                <span style="color: #fe642d;margin-left: 20px">已加入群组,<a onclick="quit_the_group(<?=$group['ID']?>)">退出</a></span>
+                <span style="color: #fe642d;margin-left: 20px"><button onclick="join_the_group(<?=$group['ID']?>)">加入</button></span>
             </div>
             <div class="group_others">
                 <span><?=$group['member_count']?>个成员</span>&nbsp;&nbsp;

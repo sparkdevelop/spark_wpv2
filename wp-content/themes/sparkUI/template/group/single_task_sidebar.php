@@ -106,3 +106,4 @@ $group = get_group($group_id);
             ?>
         </ul>
     </div>
+</div>

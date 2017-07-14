@@ -1,7 +1,4 @@
-<?php //未写JS
-//从哪个群组跳转过来的?
-
-?>
+<?php ?>
 <script>
     function checkSubmitTask() {
         var tname = document.getElementById('tname');
