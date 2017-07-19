@@ -2517,7 +2517,7 @@ function get_current_user_group()
     global $wpdb;
     $joined_group = array();
     $user_id = get_current_user_id();
-    $sql = "SELECT group_id FROM wp_gp_member WHERE user_id = $user_id";
+    $sql = "SELECT group_id FROM wp_gp_member WHERE user_id = $user_id and member_status = 0";
     $results = $wpdb->get_results($sql, 'ARRAY_A');
     foreach ($results as $value) {
         $group_info = get_group($value['group_id']);
@@ -2535,16 +2535,12 @@ function join_the_group()
         $user_id = get_current_user_id();
         $join_date = date('Y-m-d H:i:s', time() + 8 * 3600);
         $sql_member = "INSERT INTO wp_gp_member VALUES ('',$user_id,$group_id,'member','$join_date',0)";
-        echo $sql_member;
         $wpdb->get_results($sql_member);
-        $response = "success";
-    } else {
-        $response = "failed";
+        $sql_add_count = "update wp_gp set member_count = (member_count+1) WHERE ID = $group_id";
+        $wpdb->get_results($sql_add_count);
     }
-    echo $response;
     die();
 }
-
 add_action('wp_ajax_join_the_group', 'join_the_group');
 add_action('wp_ajax_nopriv_join_the_group', 'join_the_group');
 
@@ -2557,6 +2553,8 @@ function quit_the_group()
         $user_id = get_current_user_id();
         $sql_member = "update wp_gp_member set member_status = 1 WHERE user_id = $user_id and group_id = $group_id";
         $wpdb->get_results($sql_member);
+        $sql_cut_count = "update wp_gp set member_count = (member_count-1) WHERE ID = $group_id";
+        $wpdb->get_results($sql_cut_count);
     }
     die();
 }

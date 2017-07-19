@@ -41,9 +41,7 @@
         </div>
         <!--分割线-->
         <div class="sidebar_divline"></div>
-    <?php
-        $all_joined_group = get_current_user_group();
-    ?>
+    <?php $all_joined_group = get_current_user_group();?>
         <div id="joined_groups" style="word-wrap: break-word; word-break: keep-all;">
             <ul class="list-group">
                 <?php

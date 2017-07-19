@@ -1515,5 +1515,37 @@ h4 {
 .question-title {
     color: black
 }
+/*加入群组按钮*/
+#group_join_btn{
+    border: 1px solid transparent;
+    background-color: #1fbba6;
+    color: #fff;
+    border-radius: 5px;
+}
+/*群组主页css*/
+#group-ava {
+    display: inline-block;
+    float: left;
+    width: 10%;
+}
 
+#group-info {
+    display: inline-block;
+    width: 55%;
+}
+
+#latest-active {
+    display: inline-block;
+    float: right;
+    margin-top: 10px;
+}
+
+.group_title h4 {
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
+.group_others {
+    margin-top: 10px;
+}
 

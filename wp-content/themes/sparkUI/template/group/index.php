@@ -1,31 +1,6 @@
 <!-- 本页面是群组的主页,按照我的收藏写翻页-->
-<style>
-    #group-ava {
-        display: inline-block;
-        float: left;
-        width: 10%;
-    }
-
-    #group-info {
-        display: inline-block;
-        width: 55%;
-    }
-
-    #latest-active {
-        display: inline-block;
-        float: right;
-        margin-top: 10px;
-    }
-
-    .group_title h4 {
-        margin-bottom: 10px;
-        margin-top: 0px;
-    }
-
-    .group_others {
-        margin-top: 10px;
-    }
-</style>
+<?php $admin_url=admin_url( 'admin-ajax.php' );?>
+<style></style>
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
     <h4 class="index_title" style="margin-left: 20px">所有群组</h4>
     <div class="divline"></div>
@@ -59,7 +34,7 @@
                             <?php
                             if ($all_group[$i]['group_status'] == "close") {
                                 if (get_current_user_id() != $author) {?>
-                                    <a class="group_name" href="#"><h4><?=$group_name?></h4></a>;
+                                    <a class="group_name" href="#group-info"><h4><?=$group_name?></h4></a>
                                 <?php } else { ?>
                                     <a class="group_name" href="<?php echo site_url() . get_page_address('single_group') . '&id=' . $all_group[$i]['ID']; ?>">
                                         <h4><?= $group_name ?></h4>
@@ -78,11 +53,11 @@
                             <?php
                             if (is_group_member($all_group[$i]['ID'])) {
                                 echo '<span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">已加入</span>&nbsp;&nbsp;';
-                            } elseif ($all_group[$i]['group_status'] == "close" && get_current_user_id() == $author) {
+                            } elseif ($all_group[$i]['group_status'] == "close") {
                                 echo '<span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">已关闭</span>&nbsp;&nbsp;';
-                            } else {
-                                echo '<button onclick="join_the_group()">+加入</button>&nbsp;&nbsp;';
-                            }
+                            } else { ?>
+                                <button id="group_join_btn" onclick="join_the_group(<?=$all_group[$i]['ID']?>,'<?=$admin_url?>')">+加入</button>&nbsp;&nbsp;
+                            <?php }
                             ?>
                             <span><?= $member ?>个成员</span>&nbsp;&nbsp;
                             <span>管理员</span>

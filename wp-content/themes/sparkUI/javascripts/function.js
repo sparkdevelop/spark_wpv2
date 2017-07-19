@@ -65,6 +65,52 @@ function setCSS(flag) {
     }
 }
 
+//加入group
+function join_the_group($group_id,$admin_url) {
+    //ajax
+    var data = {
+        action: 'join_the_group',
+        group_id: $group_id
+    };
+    $.ajax({
+        //async: false,    //否则永远返回false
+        type: "POST",
+        url: $admin_url,
+        data: data,
+        success: function () {
+            layer.msg("您已成功加入", {time: 2000, icon: 1});
+            location.reload();
+        },
+        error:function () {
+            alert("error");
+        }
+    });
+}
+//退群
+function quit_the_group($group_id,$admin_url) {
+    //ajax
+    var data = {
+        action: 'quit_the_group',
+        group_id: $group_id
+    };
+    $.ajax({
+        //async: false,    //否则永远返回false
+        type: "POST",
+        url: $admin_url,
+        data: data,
+        success: function () {
+            layer.msg("您已成功退群", {time: 2000, icon: 1});
+            location.reload();
+        },
+        error: function () {
+            alert("error");
+        }
+    });
+}
+
+
+
+
 //画出我的知识图谱
 function myKnowledgeChart_old(jsonstring) {
     var myChart = echarts.init(document.getElementById('chart'));
