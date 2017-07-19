@@ -28,16 +28,21 @@
 function wp_signon( $credentials = array(), $secure_cookie = '' ) {
 
 	// add by chenli, checkout if user in mediawiki
-	// password: www.ourspark.space
+	// password: www.ourspark.space  逻辑有问题,当mediawiki的用户修改密码后,应该先用wordpress的密码
+    // 输入 $_POST['log'] & $_POST['pwd']  输出 $_POST['pwd']
 	if(!empty($_POST['log']) && !empty($_POST['pwd'])) {
-		$post_data = array(
-				'username' => $_POST['log'],
-				'password' => $_POST['pwd']
-		);
-		$if_user_in_mediawiki = send_post_to_mediawiki('http://115.28.144.64/wiki_wp/index.php', $post_data);
-		if(!empty($if_user_in_mediawiki)) {
-			$_POST['pwd'] = "www.ourspark.space";
-		}
+	    //若在数据库中有该用户,判断pwd是否正确 直接输出$_POST['pwd']
+        $if_user_in_wp = checkLoginPass($_POST['log'],$_POST['pwd']);
+        if(!$if_user_in_wp){ //否则才发送post
+            $post_data = array(
+                'username' => $_POST['log'],
+                'password' => $_POST['pwd']
+            );
+            $if_user_in_mediawiki = send_post_to_mediawiki('http://115.28.144.64/wiki_wp/index.php', $post_data);
+            if(!empty($if_user_in_mediawiki)) {
+                $_POST['pwd'] = "www.ourspark.space";
+            }
+        }
 	}
 
 	if ( empty($credentials) ) {
