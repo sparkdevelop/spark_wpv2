@@ -1537,7 +1537,7 @@ h4 {
 #latest-active {
     display: inline-block;
     float: right;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
 }
 
 .group_title h4 {

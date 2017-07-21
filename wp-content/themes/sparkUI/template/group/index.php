@@ -71,8 +71,9 @@
                         for ($j = 0; $j < 3; $j++) {
                             ?>
                             <div style="display: inline-block;margin-top: 10px">
-                                <div style="text-align: center;width: 40px">
-                                    <?php echo get_avatar(get_current_user_id(), 30, ''); ?>
+                                <div style="text-align: center;margin-right: 10px">
+                                    <?php echo get_avatar(get_current_user_id(), 36, ''); ?>
+                                    <p style="width: 48px;word-wrap: break-word;margin-bottom: 0px"><?php echo get_user_by('ID',get_current_user_id())->display_name ?></p>
                                 </div>
                             </div>
                         <?php } ?>

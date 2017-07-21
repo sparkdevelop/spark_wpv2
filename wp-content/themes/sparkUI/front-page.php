@@ -47,6 +47,7 @@ gp_table_install ();
 gp_verify_table_install ();
 gp_member_table_install ();
 gp_task_table_install ();
+gp_member_verify_tmp_table_install();
 get_header();
 ?>
 

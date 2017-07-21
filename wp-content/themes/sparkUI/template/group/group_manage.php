@@ -8,13 +8,13 @@
     </ul>
     <div id="groupManageTabContent" class="tab-content">
         <div class="tab-pane fade in active" id="group_form">
-            <?php require 'set_group.php';?>
+            <?php require 'group_manage_set_group.php';?>
         </div>
         <div class="tab-pane fade" id="member_verify">
-            <?php require 'create_task.php';?>
+            <?php require 'group_manage_verify.php';?>
         </div>
         <div class="tab-pane fade" id="member_management">
-            <?php require 'index.php';?>
+            <?php require 'group_manage_member_manage.php';?>
         </div>
     </div>
 

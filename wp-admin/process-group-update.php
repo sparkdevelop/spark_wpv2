@@ -49,13 +49,10 @@ if(!empty($_FILES['gava']["name"])){
  * 6、审核加入变为检验审核加入 3-》2    更新gp表      审核表加入字段
  * 7、不变                          更新gp表    检验审核加入 总之就是更新一次
  * */
-echo "join_permission:".$group[0]['join_permission']."<br>";
-echo "new_join_permission:".$join_permission."<br>";
 
 if(($group[0]['join_permission'] =='freejoin' && $join_permission == 'verifyjoin')
     ||$group[0]['join_permission'] == 'verify' && $join_permission =='verifyjoin'){
     //加入字段
-    echo "加入字段";
     $verify_content = $_POST['g-ver-info'];
     if(sizeof($verify_content)!=0){
         $verify_content = implode(",",$verify_content);
@@ -65,12 +62,10 @@ if(($group[0]['join_permission'] =='freejoin' && $join_permission == 'verifyjoin
 }elseif(($group[0]['join_permission'] =='verifyjoin' && $join_permission == 'verify')
     ||($group[0]['join_permission'] =='verifyjoin' && $join_permission == 'freejoin')){
     //删除字段
-    echo "删除字段";
     $sql_verify = "DELETE FROM wp_gp_verify WHERE verify_id=$group_id and verify_type='group'";
     $wpdb->query($sql_verify);
 }elseif($group[0]['join_permission'] == $join_permission && $join_permission == 'verifyjoin'){
     //更新字段
-    echo "更新字段"."<br>";
     $verify_content = $_POST['g-ver-info'];
     print_r($verify_content);
     if(sizeof($verify_content)!=0){

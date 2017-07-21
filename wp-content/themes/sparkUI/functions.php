@@ -2439,6 +2439,7 @@ function gp_member_table_install()
           group_id int NOT NULL,
           indentity text NOT NULL,
           join_date datetime NOT NULL,
+          verify_info text ,
           member_status int NOT NULL
           ) character set utf8";
         require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
@@ -2526,19 +2527,41 @@ function get_current_user_group()
     return $joined_group;
 }
 
-//ajax 加入群组
+//ajax 加入群组  逻辑需要重新梳理
 function join_the_group()
 {
     global $wpdb;
     $group_id = isset($_POST['group_id']) ? $_POST['group_id'] : "";
+    $user_id = get_current_user_id();
+    $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+    //判断验证方式
     if ($group_id != "") {
-        $user_id = get_current_user_id();
-        $join_date = date('Y-m-d H:i:s', time() + 8 * 3600);
-        $sql_member = "INSERT INTO wp_gp_member VALUES ('',$user_id,$group_id,'member','$join_date',0)";
-        $wpdb->get_results($sql_member);
-        $sql_add_count = "update wp_gp set member_count = (member_count+1) WHERE ID = $group_id";
-        $wpdb->get_results($sql_add_count);
+        $verify_type = get_verify_type($group_id);
+        if($verify_type == "freejoin"){
+            //看这个人是第几次加入了,初次加入,执行insert,退出又加入,执行update
+            $sql_count ="Select * From wp_gp_member WHERE user_id=$user_id and group_id=$group_id";
+            $col = $wpdb->query($sql_count);
+            if($col == 0){
+                $sql_member = "INSERT INTO wp_gp_member VALUES ('',$user_id,$group_id,'member','$current_time','',0)";
+                $wpdb->get_results($sql_member);
+            }else{
+                $sql_member = "update wp_gp_member set member_status = 0 WHERE user_id = $user_id and group_id = $group_id";
+                $wpdb->get_results($sql_member);
+            }
+            $sql_add_count = "update wp_gp set member_count = (member_count+1) WHERE ID = $group_id";
+            $wpdb->get_results($sql_add_count);
+            $response = "freejoin";
+        }elseif ($verify_type == "verify"){
+            //等待验证即可,将其存入tmp表
+            $sql_member = "INSERT INTO wp_gp_member_verify_tmp VALUES ('',$user_id,$group_id,'$current_time','')";
+            $wpdb->get_results($sql_member);
+            $response = "verify";
+        }else{
+            //先弹出框框,填写好字段,然后将字段值存入tmp表
+            $response = "verifyjoin";
+        }
     }
+    echo $response;
     die();
 }
 add_action('wp_ajax_join_the_group', 'join_the_group');
@@ -2572,6 +2595,146 @@ function get_verify_field($id, $type)
     $verifyField = explode(',', $result[0]['verify_content']);
     return $verifyField;
 }
+
+//获取验证方式
+function get_verify_type($group_id){
+    global $wpdb;
+    $sql = "SELECT join_permission FROM wp_gp WHERE ID=$group_id";
+    $result = $wpdb->get_results($sql, 'ARRAY_A');
+    return $result[0]['join_permission'];
+}
+
+//获取成员信息 返回所有成员分身份的数组
+function get_group_member($group_id){
+    global $wpdb;
+    $m_admin = array();
+    $m_common = array();
+    $sql = "SELECT * FROM wp_gp_member WHERE group_id = $group_id and member_status = 0";
+    $results = $wpdb->get_results($sql,'ARRAY_A');
+    foreach ($results as $value){
+        if($value['indentity']=='admin'){
+            array_push($m_admin,$value);
+        }else{
+            array_push($m_common,$value);
+        }
+    }
+    $m = array('admin'=>$m_admin,'common'=>$m_common);
+    return $m;
+}
+
+//获取成员的验证信息
+function get_member_verify_tmp($group_id){
+    global $wpdb;
+    $sql= "select * from wp_gp_member_verify_tmp WHERE group_id = $group_id";
+    $results = $wpdb->get_results($sql,'ARRAY_A');
+    return $results;
+}
+
+//通过
+function verify_pass(){
+    /* 若有user_id, 则把user加入到member表中,gp表member+1,删除当前tmp表中的内容
+     * 若没有user_id,则遍历所有的user_id 执行上面的操作。因此把上面的操作写成函数。
+     * */
+    $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : "";
+    $group_id = isset($_POST['group_id']) ? $_POST['group_id'] : "";
+    if($group_id!=""){   //前提
+        if($user_id != ""){
+            verify_pass_process($user_id,$group_id);
+        }else{
+            $all_verify_info = get_member_verify_tmp($group_id);
+            foreach ($all_verify_info as $tmp){
+                verify_pass_process($tmp['user_id'],$group_id);
+            }
+        }
+    }
+    exit();
+}
+add_action('wp_ajax_verify_pass', 'verify_pass');
+add_action('wp_ajax_nopriv_verify_pass', 'verify_pass');
+
+//忽略
+function verify_ignore(){
+    $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : "";
+    $group_id = isset($_POST['group_id']) ? $_POST['group_id'] : "";
+    if($group_id!=""){   //前提
+        if($user_id != ""){
+            verify_ignore_process($user_id,$group_id);
+        }else{
+            $all_verify_info = get_member_verify_tmp($group_id);
+            foreach ($all_verify_info as $tmp){
+                verify_ignore_process($tmp['user_id'],$group_id);
+            }
+        }
+    }
+    exit();
+}
+add_action('wp_ajax_verify_ignore', 'verify_ignore');
+add_action('wp_ajax_nopriv_verify_ignore', 'verify_ignore');
+
+
+
+//审核通过处理
+function verify_pass_process($user_id,$group_id){
+    global $wpdb;
+    $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+    //首先获取验证信息
+    $sql = "SELECT verify_info FROM wp_gp_member_verify_tmp WHERE user_id = $user_id and group_id=$group_id";
+    $result = $wpdb->get_results($sql,"ARRAY_A");
+    $verify_info = $result[0]['verify_info'];
+    //看他是第几次加入
+    $sql_count ="Select * From wp_gp_member WHERE user_id=$user_id and group_id=$group_id";
+    $col = $wpdb->query($sql_count);
+    if($col == 0){ //如果没加入过,那么进行插入
+        $sql_member = "INSERT INTO wp_gp_member VALUES ('',$user_id,$group_id,'member','$current_time','$verify_info',0)";
+        $wpdb->get_results($sql_member);
+    }else{  //如果插入过,进行更新
+        $sql_member = "update wp_gp_member set member_status = 0 WHERE user_id = $user_id and group_id = $group_id";
+        $wpdb->get_results($sql_member);
+    }
+    //在gp表中添加成员
+    $sql_add_count = "update wp_gp set member_count = (member_count+1) WHERE ID = $group_id";
+    $wpdb->get_results($sql_add_count);
+
+    $sql_delete_tmp = "delete from wp_gp_member_verify_tmp WHERE user_id = $user_id and group_id = $group_id";
+    $wpdb->get_results($sql_delete_tmp);
+
+
+}
+
+
+function verify_ignore_process($user_id,$group_id){
+    global $wpdb;
+    $sql_delete_tmp = "delete from wp_gp_member_verify_tmp WHERE user_id = $user_id and group_id = $group_id";
+    $wpdb->get_results($sql_delete_tmp);
+}
+
+
+//建立成员审核表
+function gp_member_verify_tmp_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "gp_member_verify_tmp";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+          group_id int NOT NULL,
+          apply_time datetime NOT NULL,
+          verify_info text
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 //修改域名  域名要包括http

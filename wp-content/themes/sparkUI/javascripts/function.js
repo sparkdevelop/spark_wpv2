@@ -77,9 +77,19 @@ function join_the_group($group_id,$admin_url) {
         type: "POST",
         url: $admin_url,
         data: data,
-        success: function () {
-            layer.msg("您已成功加入", {time: 2000, icon: 1});
-            location.reload();
+        dataType:"text",
+        success: function (response) {
+            if(response.trim()=='freejoin'){
+                layer.msg("您已成功加入", {time: 2000, icon: 1});
+                location.reload();
+            }else if(response.trim()=='verify'){
+                layer.msg("申请已发送,等待管理员审核", {time: 5000, icon: 1});
+                location.reload();
+            }else{
+                layer.msg("haha");
+                console.log(response)
+            }
+
         },
         error:function () {
             alert("error");
