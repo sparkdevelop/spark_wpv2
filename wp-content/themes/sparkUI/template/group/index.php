@@ -55,9 +55,15 @@
                                 echo '<span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">已加入</span>&nbsp;&nbsp;';
                             } elseif ($all_group[$i]['group_status'] == "close") {
                                 echo '<span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">已关闭</span>&nbsp;&nbsp;';
-                            } else { ?>
-                                <button id="group_join_btn" onclick="join_the_group(<?=$all_group[$i]['ID']?>,'<?=$admin_url?>')">+加入</button>&nbsp;&nbsp;
-                            <?php }
+                            } else {
+                                $verify_type = get_verify_type($all_group[$i]['ID']);
+                                $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $all_group[$i]['ID'];
+                                if ($verify_type == 'verifyjoin') { ?>
+                                    <button id="group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
+                                <?php } else { ?>
+                                    <button id="group_join_btn" onclick="join_the_group(<?= $all_group[$i]['ID'] ?>,'<?= $admin_url ?>')">+加入</button>&nbsp;&nbsp;
+                                <?php }
+                            }
                             ?>
                             <span><?= $member ?>个成员</span>&nbsp;&nbsp;
                             <span>管理员</span>

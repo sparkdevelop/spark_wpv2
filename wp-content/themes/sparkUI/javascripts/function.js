@@ -117,7 +117,19 @@ function quit_the_group($group_id,$admin_url) {
         }
     });
 }
-
+//验证加群
+function verify_join_the_group($url) {
+    layer.open({
+        type: 2,
+        title: "填写验证字段",
+        content: $url,
+        area: ['70%','80%'],
+        closeBtn:1,
+        shadeClose:true,
+        shade:0.5,
+        end:function () {}
+    })
+}
 
 
 
