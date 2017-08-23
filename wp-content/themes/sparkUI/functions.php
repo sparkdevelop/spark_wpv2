@@ -2604,6 +2604,9 @@ function get_verify_type($group_id){
     return $result[0]['join_permission'];
 }
 
+/* 用于成员列表页
+ * 获取所有成员信息 返回带成员身份的数组 get_group_member($group_id)
+ * */
 //获取成员信息 返回所有成员分身份的数组
 function get_group_member($group_id){
     global $wpdb;
@@ -2622,6 +2625,13 @@ function get_group_member($group_id){
     return $m;
 }
 
+//用于群组管理的成员审核
+/* 获取成员的验证信息 get_member_verify_tmp($group_id)
+ * 通过ajax   verify_pass()
+ * 通过后台处理 verify_pass_process($user_id,$group_id)
+ * 忽略ajax   verify_ignore()
+ * 忽略后台处理 verify_ignore_process($user_id,$group_id)
+ * */
 //获取成员的验证信息
 function get_member_verify_tmp($group_id){
     global $wpdb;
@@ -2671,8 +2681,6 @@ function verify_ignore(){
 add_action('wp_ajax_verify_ignore', 'verify_ignore');
 add_action('wp_ajax_nopriv_verify_ignore', 'verify_ignore');
 
-
-
 //审核通过处理
 function verify_pass_process($user_id,$group_id){
     global $wpdb;
@@ -2688,7 +2696,7 @@ function verify_pass_process($user_id,$group_id){
         $sql_member = "INSERT INTO wp_gp_member VALUES ('',$user_id,$group_id,'member','$current_time','$verify_info',0)";
         $wpdb->get_results($sql_member);
     }else{  //如果插入过,进行更新
-        $sql_member = "update wp_gp_member set member_status = 0 WHERE user_id = $user_id and group_id = $group_id";
+        $sql_member = "update wp_gp_member set member_status = 0 , verify_info = '$verify_info' , join_date='$current_time' WHERE user_id = $user_id and group_id = $group_id";
         $wpdb->get_results($sql_member);
     }
     //在gp表中添加成员
@@ -2697,10 +2705,7 @@ function verify_pass_process($user_id,$group_id){
 
     $sql_delete_tmp = "delete from wp_gp_member_verify_tmp WHERE user_id = $user_id and group_id = $group_id";
     $wpdb->get_results($sql_delete_tmp);
-
-
 }
-
 
 function verify_ignore_process($user_id,$group_id){
     global $wpdb;
@@ -2708,8 +2713,7 @@ function verify_ignore_process($user_id,$group_id){
     $wpdb->get_results($sql_delete_tmp);
 }
 
-
-//建立成员审核表
+//建立成员临时审核表
 function gp_member_verify_tmp_table_install()
 {
     global $wpdb;
@@ -2728,13 +2732,52 @@ function gp_member_verify_tmp_table_install()
 }
 
 
+/* 群组管理之成员管理页面
+ * 获取成员的基本信息 get_member_info($group_id)
+ * 修改成员身份 changeIndentity
+ *
+ *
+ * */
+//获取成员的基本信息
+function get_member_info($group_id){
+    global $wpdb;
+    $ret = array();
+    $sql = "SELECT * FROM wp_gp_member WHERE group_id = $group_id and member_status = 0";
+    $results = $wpdb->get_results($sql,'ARRAY_A');
+    foreach ($results as $value){
+        $arr_tmp = array();
+        //返回的数组格式[id,用户名,验证字段切分,身份]
+        array_push($arr_tmp,$value['user_id']);
+        $user_name = get_author_name($value['user_id']);
+        array_push($arr_tmp,$user_name);
+        $verifyInfo = explode(',', $value['verify_info']);
+        $len = sizeof(get_verify_field($group_id,'group'));
+        if($len == sizeof($verifyInfo)){  //没填的写空
+            for($i=0;$i<$len;$i++){
+                array_push($arr_tmp,$verifyInfo[$i]);
+            }
+        }else{
+            for($i=0;$i<$len;$i++){
+                array_push($arr_tmp,'');
+            }
+        }
+        if($value['indentity'] =='admin'){    # 可改进
+            $indentity = '管理员';
+        }else{
+            $indentity = '普通成员';
+        }
+        array_push($arr_tmp,$indentity);
+        array_push($ret,$arr_tmp);
+    }
+    return $ret;
+}
 
-
-
-
-
-
-
+//修改成员身份
+function changeIndentity(){
+    global $wpdb;
+    $indentity = $_POST['indentity'];
+    $sql_indentity = "update wp_gp_member set indentity ='$indentity' WHERE user_id = $user_id and group_id = $group_id";
+}
 
 
 //修改域名  域名要包括http

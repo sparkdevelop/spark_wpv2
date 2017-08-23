@@ -7,7 +7,7 @@
                 <div style="height: 1px;background-color: lightgray"></div>
                 <div style="margin: 20px 20px">
                     <div style="width: 90%;display:inline-block;;">
-                        <h4><a style="color: black" href="#"><?=$all_task[$i]['task_name']?></a></h4>
+                        <h4><a style="color: black" href="<?php echo site_url().get_page_address('single_task').'&id='.$all_task[$i]['ID'];?>"><?=$all_task[$i]['task_name']?></a></h4>
                         <div style="margin-top: 10px">
                             <span>发布人:</span>
                             <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$all_task[$i]['task_author'];?>" style="color: #169bd5"><?php echo get_author_name($all_task[$i]['task_author'])?></a>

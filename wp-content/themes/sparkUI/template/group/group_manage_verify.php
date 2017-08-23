@@ -30,6 +30,9 @@
         height: 30px;
         margin-top: 10px;
     }
+    #verify-field{
+        margin-top: 10px;
+    }
 </style>
 <script>
     function verify_pass($group_id, $user_id, $admin_url) {
@@ -124,12 +127,14 @@ if ($verify_type == 'freejoin') {
                 <?php } ?>
             </div>
         </div>
-    <?php } ?>
-<?php } else {
-    $member_verify_info = get_member_verify_tmp($group_id);
-    if (sizeof($member_verify_info) == 0) {
+    <?php } ?><?php
+} else {
+    $member_verify_info = get_member_verify_tmp($group_id);     //获取需要审核的成员信息
+    $verify_field_tmp = $member_verify_info[0]['verify_info'];     //成员填写的审核信息
+    $verify_arr = explode(',', $verify_field_tmp);             //拆分成为数组
+    if (sizeof($member_verify_info) == 0) {                     //如果没有需要审核的成员
         echo '<div class="alert alert-info" style="margin-top: 20px">没有需要审核的成员</div>';
-    } else { ?>
+    } else {        //显示审核信息  ?>
         <div id="all_verify">
             <a onclick="verify_pass(<?= $group_id ?>,'','<?= $admin_url ?>')">全部通过</a>
             <span>|</span>
@@ -137,7 +142,7 @@ if ($verify_type == 'freejoin') {
         </div>
         <div id="member_verify">
             <div style="display: block">
-                <?php //获取所有需要审核的成员
+                <?php
                 for ($k = 0; $k < sizeof($member_verify_info); $k++) { ?>
                     <div id="verify-display" style="display: block">
                         <hr style="height:1px;border:none;border-top:1px dashed lightgrey;"/>
@@ -150,15 +155,15 @@ if ($verify_type == 'freejoin') {
                                 &nbsp; &nbsp; &nbsp;
                                 <span>(<?= $member_verify_info[$k]['apply_time'] ?>)</span>
                             </div>
+                            <div id="verify-field">
+                                <?php $verify_field = get_verify_field($group_id,'group');
+                                    for($z=0;$z<sizeof($verify_field);$z++){ ?>
+                                        <p><?=$verify_field[$z]?> : <?=$verify_arr[$z]?></p>
+                                    <?php } ?>
+                            </div>
                             <div style="display: block">
-                                <button class="btn-green"
-                                        onclick="verify_pass(<?= $group_id ?>,<?= $member_verify_info[$k]['user_id'] ?>,'<?= $admin_url ?>')">
-                                    通过
-                                </button>
-                                <button class="btn-green"
-                                        onclick="verify_ignore(<?= $group_id ?>,<?= $member_verify_info[$k]['user_id'] ?>,'<?= $admin_url ?>')">
-                                    忽略
-                                </button>
+                                <button class="btn-green" onclick="verify_pass(<?= $group_id ?>,<?= $member_verify_info[$k]['user_id'] ?>,'<?= $admin_url ?>')">通过</button>
+                                <button class="btn-green" onclick="verify_ignore(<?= $group_id ?>,<?= $member_verify_info[$k]['user_id'] ?>,'<?= $admin_url ?>')">忽略</button>
                             </div>
                         </div>
                     </div>
