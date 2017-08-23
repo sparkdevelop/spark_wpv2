@@ -2772,12 +2772,41 @@ function get_member_info($group_id){
     return $ret;
 }
 
-//修改成员身份
+//修改成员身份  可改进的部分就是判断群有几个管理员,还有默认群主不能修改身份
 function changeIndentity(){
     global $wpdb;
+    $user_id = $_POST['user_id'];
     $indentity = $_POST['indentity'];
-    $sql_indentity = "update wp_gp_member set indentity ='$indentity' WHERE user_id = $user_id and group_id = $group_id";
+    $group_id = $_POST['group_id'];
+    for($i=0;$i<sizeof($user_id);$i++){
+        $sql_indentity = "update wp_gp_member set indentity ='$indentity' WHERE user_id = $user_id[$i] and group_id = $group_id";
+        $wpdb->get_results($sql_indentity);
+    }
+    exit();
 }
+add_action('wp_ajax_changeIndentity', 'changeIndentity');
+add_action('wp_ajax_nopriv_changeIndentity', 'changeIndentity');
+
+function kick_out_the_group()
+{
+    global $wpdb;
+    $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : "";
+    $group_id = isset($_POST['group_id']) ? $_POST['group_id'] : "";
+    if ($group_id != "" and $user_id !="") {
+        for($i=0;$i<sizeof($user_id);$i++){
+            $sql_member = "update wp_gp_member set member_status = 1 WHERE user_id = $user_id[$i] and group_id = $group_id";
+            $wpdb->get_results($sql_member);
+            $sql_cut_count = "update wp_gp set member_count = (member_count-1) WHERE ID = $group_id";
+            $wpdb->get_results($sql_cut_count);
+        }
+    }
+    die();
+}
+add_action('wp_ajax_kick_out_the_group', 'kick_out_the_group');
+add_action('wp_ajax_nopriv_kick_out_the_group', 'kick_out_the_group');
+
+
+
 
 
 //修改域名  域名要包括http

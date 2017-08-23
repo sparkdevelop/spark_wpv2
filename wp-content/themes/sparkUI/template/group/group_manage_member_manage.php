@@ -65,10 +65,14 @@ $member_info = get_member_info($group_id);;
         height: 35px;;
     }
 </style>
+<?php
+//    $admin_url = admin_url('admin-ajax.php');
+//    $user_id = $_POST['user_id'];
+//?>
 <div style="display: inline-block;vertical-align: super;margin-left: 20px">
-    <button class="btn-green"  onclick="changeIndentity('<?=$verify_url?>','admin',<?=$group_id?>,<?=$user_id?>)">设为管理员</button>
-    <button class="btn-green" onclick="changeIndentity('<?=$verify_url?>','member',<?=$group_id?>,<?=$user_id?>)">设为普通成员</button>
-    <button class="btn-green" onclick="quit_the_group(<?=$group_id?>,'<?=$verify_url?>')">提出群组</button>
+    <button class="btn-green"  onclick="changeIndentity('<?=$admin_url?>','admin',<?=$group_id?>)">设为管理员</button>
+    <button class="btn-green" onclick="changeIndentity('<?=$admin_url?>','member',<?=$group_id?>)">设为普通成员</button>
+    <button class="btn-green" onclick="kick_out_the_group('<?=$admin_url?>',<?=$group_id?>)">提出群组</button>
 </div>
 
 <script>
@@ -90,9 +94,9 @@ $member_info = get_member_info($group_id);;
                     $tbr.find('input').parent().parent().removeClass('warning');
                 }
                 /*保存选中行的数据  每点击一次,push 一个id进来*/
-                var td = new Array();
-                td.push($('.warning'));
-                saveChecked(td);
+//                var td = new Array();
+//                td.push($('.warning'));
+//                saveChecked(td);
                 /*阻止向上冒泡，以防再次触发点击操作*/
                 event.stopPropagation();
             });
@@ -109,9 +113,9 @@ $member_info = get_member_info($group_id);;
                 /*调整选中行的CSS样式*/
                 $(this).parent().parent().toggleClass('warning');
                 /*保存选中行的数据  每点击一次,push 一个id进来*/
-                var td = new Array();
-                td.push($('.warning'));
-                saveChecked(td);
+//                var td = new Array();
+//                td.push($('.warning'));
+//                saveChecked(td);
                 /*如果已经被选中行的行数等于表格的数据行数，将全选框设为选中状态，否则设为未选中状态*/
                 $checkAll.prop('checked',$tbr.find('input:checked').length == $tbr.find('input').length ? true : false);
                 /*阻止向上冒泡，以防再次触发点击操作*/
@@ -126,23 +130,20 @@ $member_info = get_member_info($group_id);;
 
     });
     function saveChecked(td) {
+        var user_id = new Array();
         //td是很多td组成的,其中需要的是#hidden_id的数据组成数组
-        console.log(td);
-//        var loc = $('.warning #hidden_id');
-//        if(loc.length!=1){
-//            for(var i=0;i<loc.length;i++){
-//                tmp = loc.children().text();
-//                console.log(tmp)
-//            }
-//        }else{
-//            user_id.push(loc.text());
-//            console.log(user_id)
-//        }
-
-            
+        for(var j=0;j<td[0].length;j++){
+            var loc = td[0][j];
+            user_id.push($(loc).children('#hidden_id').text());
+            //console.log(user_id);
+        }
+        return user_id;
     }
 
-    function changeIndentity(url,indentity,group_id,user_id) {
+    function changeIndentity(url,indentity,group_id) {
+        var td = new Array();
+        td.push($('.warning'));
+        var user_id = saveChecked(td);
         var data = {
             action: 'changeIndentity',
             indentity: indentity,
@@ -156,7 +157,32 @@ $member_info = get_member_info($group_id);;
             data: data,
             dataType:"text",
             success: function () {
-                layer.msg("您已成功修改", {time: 2000, icon: 1});
+                layer.msg('修改成功', {time: 2000, icon: 1});
+                location.reload();
+            },
+            error:function () {
+                alert("error");
+            }
+        });
+    }
+
+    function kick_out_the_group(url,group_id){
+        var td = new Array();
+        td.push($('.warning'));
+        var user_id = saveChecked(td);
+        var data = {
+            action: 'kick_out_the_group',
+            group_id: group_id,
+            user_id: user_id
+        };
+        $.ajax({
+            //async: false,    //否则永远返回false
+            type: "POST",
+            url: url,
+            data: data,
+            dataType:"text",
+            success: function () {
+                layer.msg('已移除', {time: 2000, icon: 1});
                 location.reload();
             },
             error:function () {
