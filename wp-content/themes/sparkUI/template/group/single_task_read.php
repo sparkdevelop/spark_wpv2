@@ -10,6 +10,7 @@ $group = get_group($group_id)[0];
 $post_link = get_verify_field($task['ID'],'task');
 //print_r($group);
 //print_r($post_link);
+$countdown = countDown($task_id);
 ?>
 <style>
     #single-task-abstract p {
@@ -47,8 +48,15 @@ $post_link = get_verify_field($task['ID'],'task');
         <h3>任务 : <?= $task['task_name'] ?></h3>
         <div id="task-info" style="margin-top: 20px">
             <span>群组: <?= $group['group_name'] ?></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-            <span>截止: <?= $task['deadline'] ?></span>&nbsp;&nbsp;
-            <span>还剩x天</span>
+            <span>截止: <?= $task['deadline'] ?></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+            <?php
+                if($countdown!=0){
+                    $countdown = "还剩 ".$countdown." 天";
+                }else{
+                    $countdown = "已截止";
+                }
+            ?>
+            <span style="color: #fe642d"><?=$countdown?></span>
         </div>
     </div>
     <div class="divline"></div>
@@ -71,7 +79,7 @@ $post_link = get_verify_field($task['ID'],'task');
             for ($i=0;$i<sizeof($post_link);$i++){ ?>
                 <tr>
                     <td><?=$i+1?></td>
-                    <td><a href="<?=$post_link[$i]?>">link名字</a></td>
+                    <td><a href="<?=$post_link[$i]?>"><?=$post_link[$i]?></a></td>
                     <td>未完成</td>
                 </tr>
             <?php } ?>

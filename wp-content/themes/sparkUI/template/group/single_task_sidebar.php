@@ -7,7 +7,6 @@
  */
 $task_id = isset($_GET['id']) ? $_GET['id'] : "";
 $group_id = get_task_group($task_id);
-$task = get_task($group_id, $task_id);
 $group = get_group($group_id);
 ?>
 <style>
@@ -61,9 +60,7 @@ $group = get_group($group_id);
                             } ?>
                         </div>
                     </li>
-                    <?php
-                }
-                ?>
+            <?php } ?>
             </ul>
         </div>
 
@@ -92,16 +89,18 @@ $group = get_group($group_id);
     <!--未完成任务-->
     <div class="sidebar_list">
         <div class="sidebar_list_header">
-            <p>未完成任务</p>
+            <p>本组未完成任务</p>
         </div>
         <div class="sidebar_divline"></div>
         <ul class="list-group">
             <?php
-            for ($i = 0; $i < 5; $i++) {
+            $unfinish_task = get_unfinish_task($group_id);
+            foreach ($unfinish_task as $key =>$value) {
                 ?>
                 <li class="list-group-item">
-                    <span><a href="#">学习wiki课程“电子电路基础”</a></span>
-                    <span style="float: right">1天</span>
+                    <span><a href="<?php echo site_url().get_page_address('single_group').'&id='.$value['ID']?>"><?=$value['task_name']?></a></span>
+                    <?php $countdown = countDown($value['ID'])." 天";?>
+                    <span style="float: right"><?=$countdown?></span>
                 </li>
             <?php } ?>
         </ul>

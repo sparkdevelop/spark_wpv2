@@ -2380,36 +2380,6 @@ function gp_table_install()
     }
 }
 
-//判断群组是否重名
-function checkGroupName()
-{
-    global $wpdb;
-    $groupName = isset($_POST['groupName']) ? $_POST['groupName'] : "";
-    $nowGroupName = isset($_POST['nowGroupName']) ? $_POST['nowGroupName'] : "";
-    if ($nowGroupName != '') {
-        if ($groupName == $nowGroupName) {
-            $response = true;
-        } else {
-            $response = false;
-        }
-    } elseif ($groupName != '') {
-        $sql = "SELECT ID FROM wp_gp WHERE group_name = '$groupName'";
-        $col = $wpdb->query($sql);
-        if ($col == 0) {
-            $response = true;
-        } else {
-            $response = false;
-        }
-    } else {
-        $response = false;
-    }
-    echo $response;
-    exit();
-}
-
-add_action('wp_ajax_checkGroupName', 'checkGroupName');
-add_action('wp_ajax_nopriv_checkGroupName', 'checkGroupName');
-
 //建立任务验证表
 function gp_verify_table_install()
 {
@@ -2446,6 +2416,53 @@ function gp_member_table_install()
         dbDelta($sql);
     }
 }
+
+//建立成员临时审核表
+function gp_member_verify_tmp_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "gp_member_verify_tmp";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+          group_id int NOT NULL,
+          apply_time datetime NOT NULL,
+          verify_info text
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+//判断群组是否重名
+function checkGroupName()
+{
+    global $wpdb;
+    $groupName = isset($_POST['groupName']) ? $_POST['groupName'] : "";
+    $nowGroupName = isset($_POST['nowGroupName']) ? $_POST['nowGroupName'] : "";
+    if ($nowGroupName != '') {
+        if ($groupName == $nowGroupName) {
+            $response = true;
+        } else {
+            $response = false;
+        }
+    } elseif ($groupName != '') {
+        $sql = "SELECT ID FROM wp_gp WHERE group_name = '$groupName'";
+        $col = $wpdb->query($sql);
+        if ($col == 0) {
+            $response = true;
+        } else {
+            $response = false;
+        }
+    } else {
+        $response = false;
+    }
+    echo $response;
+    exit();
+}
+add_action('wp_ajax_checkGroupName', 'checkGroupName');
+add_action('wp_ajax_nopriv_checkGroupName', 'checkGroupName');
 
 //获取所有的群组信息,若无群组id则取所有的群组
 function get_group($id = null)
@@ -2581,7 +2598,6 @@ function quit_the_group()
     }
     die();
 }
-
 add_action('wp_ajax_quit_the_group', 'quit_the_group');
 add_action('wp_ajax_nopriv_quit_the_group', 'quit_the_group');
 
@@ -2593,6 +2609,11 @@ function get_verify_field($id, $type)
     $sql = "SELECT verify_content FROM wp_gp_verify WHERE verify_id=$id and verify_type='$type'";
     $result = $wpdb->get_results($sql, 'ARRAY_A');
     $verifyField = explode(',', $result[0]['verify_content']);
+    foreach($verifyField as $key => $value){
+        if($value==''){
+            unset($verifyField[$key]);
+        }
+    }
     return $verifyField;
 }
 
@@ -2632,7 +2653,7 @@ function get_group_member($group_id){
  * 忽略ajax   verify_ignore()
  * 忽略后台处理 verify_ignore_process($user_id,$group_id)
  * */
-//获取成员的验证信息
+//获取成员的验证信息   取一个成员的最后申请信息
 function get_member_verify_tmp($group_id){
     global $wpdb;
     $sql= "select * from wp_gp_member_verify_tmp WHERE group_id = $group_id";
@@ -2681,7 +2702,7 @@ function verify_ignore(){
 add_action('wp_ajax_verify_ignore', 'verify_ignore');
 add_action('wp_ajax_nopriv_verify_ignore', 'verify_ignore');
 
-//审核通过处理
+//审核通过(忽略)处理
 function verify_pass_process($user_id,$group_id){
     global $wpdb;
     $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
@@ -2713,30 +2734,9 @@ function verify_ignore_process($user_id,$group_id){
     $wpdb->get_results($sql_delete_tmp);
 }
 
-//建立成员临时审核表
-function gp_member_verify_tmp_table_install()
-{
-    global $wpdb;
-    $table_name = $wpdb->prefix . "gp_member_verify_tmp";  //获取表前缀，并设置新表的名称
-    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
-        $sql = "CREATE TABLE " . $table_name . " (
-          ID int AUTO_INCREMENT PRIMARY KEY,
-          user_id int NOT NULL,
-          group_id int NOT NULL,
-          apply_time datetime NOT NULL,
-          verify_info text
-          ) character set utf8";
-        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
-        dbDelta($sql);
-    }
-}
-
-
 /* 群组管理之成员管理页面
  * 获取成员的基本信息 get_member_info($group_id)
  * 修改成员身份 changeIndentity
- *
- *
  * */
 //获取成员的基本信息
 function get_member_info($group_id){
@@ -2804,6 +2804,55 @@ function kick_out_the_group()
 }
 add_action('wp_ajax_kick_out_the_group', 'kick_out_the_group');
 add_action('wp_ajax_nopriv_kick_out_the_group', 'kick_out_the_group');
+
+/*task部分*/
+/* 距离任务结束还有多长时间,精确到天或小时 countDown()
+ * 判断任务是否截止 is_overdue()
+ * 获取
+ *
+ * */
+function countDown($task_id){
+    global $wpdb;
+    $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+    $deadline = $wpdb->get_var($wpdb->prepare("SELECT deadline FROM wp_gp_task WHERE ID=$task_id",""),0,0);
+    $current_time = strtotime($current_time);
+    $deadline = strtotime($deadline);
+    $day_time =  $deadline-$current_time;
+    if($day_time>0){  //未到截止日期
+        $day =  ceil($day_time/(24*3600));
+        return $day;
+    }else{
+        return 0;
+    }
+}
+
+//判断任务是否截止
+function is_overdue($task_id){
+    global $wpdb;
+    $current_time = strtotime(date('Y-m-d H:i:s', time() + 8 * 3600));
+    $deadline = strtotime($wpdb->get_var($wpdb->prepare("SELECT deadline FROM wp_gp_task WHERE ID=$task_id",""),0,0));
+    $day_time =  $deadline-$current_time;
+    if($day_time>0){  //未到截止日期
+        return false;
+    }else{
+        return true;
+    }
+}
+
+//获取本组的所有未截止项目
+function get_unfinish_task($group_id){
+    $task = get_task($group_id);
+    foreach($task as $key =>$value){
+        if(is_overdue($value['ID'])){
+            unset($task[$key]);
+        }
+    }
+    return $task;
+}
+
+
+
+
 
 
 

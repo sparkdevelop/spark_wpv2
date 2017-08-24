@@ -7,7 +7,12 @@
                 <div style="height: 1px;background-color: lightgray"></div>
                 <div style="margin: 20px 20px">
                     <div style="width: 90%;display:inline-block;;">
-                        <h4><a style="color: black" href="<?php echo site_url().get_page_address('single_task').'&id='.$all_task[$i]['ID'];?>"><?=$all_task[$i]['task_name']?></a></h4>
+                        <?php
+                        if(is_group_member($group_id)){?>
+                            <h4><a style="color: black" href="<?php echo site_url().get_page_address('single_task').'&id='.$all_task[$i]['ID'];?>"><?=$all_task[$i]['task_name']?></a></h4>
+                        <?php }else{ ?>
+                            <h4><a style="color: black;cursor: pointer" onclick="layer.msg('还未加入群组,不能查看任务', {time: 2000, icon: 4});"><?=$all_task[$i]['task_name']?></a></h4>
+                        <?php } ?>
                         <div style="margin-top: 10px">
                             <span>发布人:</span>
                             <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$all_task[$i]['task_author'];?>" style="color: #169bd5"><?php echo get_author_name($all_task[$i]['task_author'])?></a>
@@ -15,7 +20,10 @@
                         </div>
                     </div>
                     <div style="display: inline-block;vertical-align: super">
-                        <button class="btn-green" onclick="location.href ='<?php echo site_url().get_page_address('single_task').'&id='.$all_task[$i]['ID'];?>'">去完成</button>
+                        <?php
+                            if(is_group_member($group_id)){?>
+                                <button class="btn-green" onclick="location.href ='<?php echo site_url().get_page_address('single_task').'&id='.$all_task[$i]['ID'];?>'">去完成</button>
+                            <?php } ?>
                     </div>
                 </div>
             <?php } ?>
