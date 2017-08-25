@@ -11,6 +11,8 @@ $post_link = get_verify_field($task['ID'],'task');
 //print_r($group);
 //print_r($post_link);
 $countdown = countDown($task_id);
+$group_verify_field = get_verify_field($group_id, 'group');   //获取群组的验证字段作为表头
+$member_info = get_member_info($group_id);
 ?>
 <style>
     #single-task-abstract p {
@@ -89,7 +91,38 @@ $countdown = countDown($task_id);
     <div id="single-task-member-complete">
         <h4>组员完成情况 : </h4>
         <span>80%组员已完成</span>
-        <table class="table table-bordered">
+        <table class="table table-striped" id="member_manage_table">
+            <thead>
+            <tr>
+                <th style="display: none">id</th>
+                <th>用户名</th>
+                <?php
+                if(sizeof($group_verify_field)!=0){
+                    for ($i = 0; $i < sizeof($group_verify_field); $i++) {?>
+                        <th><?=$group_verify_field[$i]?></th>
+                    <?php }
+                } ?>
+                <th>完成情况</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <?php
+            //外层循环控制几行
+            for ($i = 0; $i < sizeof($member_info); $i++) {?>
+            <tr>
+                <td id="hidden_id" style="display: none"><?=$member_info[$i][0]?></td>
+                <?php
+                //内循环控制字段
+                for ($j = 1; $j < sizeof($group_verify_field)+3; $j++) {?>
+                    <td><?=$member_info[$i][$j]?></td>
+                <?php }
+                } ?>
+            </tr>
+            </tbody>
+        </table>
+
+        <table style="display: none" class="table table-bordered">
             <thead>
             <tr>
                 <th>序号</th>

@@ -2435,6 +2435,32 @@ function gp_member_verify_tmp_table_install()
     }
 }
 
+//建立成员-任务关系表
+function gp_task_member_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "gp_task_member";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+          task_id int NOT NULL,
+          completion int NOT NULL default 0,
+          complete_time datetime NOT NULL,
+          apply_content text,
+          team_id int 
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+
+
+
+
+
+
 //判断群组是否重名
 function checkGroupName()
 {
@@ -2850,6 +2876,10 @@ function get_unfinish_task($group_id){
     return $task;
 }
 
+//获取本任务的组员完成情况和组员信息 显示在single_task页面
+function get_member_task_info($task_id){
+    
+}
 
 
 

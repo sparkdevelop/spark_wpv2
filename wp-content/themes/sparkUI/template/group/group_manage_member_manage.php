@@ -1,7 +1,7 @@
 <?php
 $group_id = $group['ID'];
 $group_verify_field = get_verify_field($group_id, 'group');   //获取群组的验证字段作为表头
-$member_info = get_member_info($group_id);;
+$member_info = get_member_info($group_id);
 ?>
 <style>
     #member_manage_table{
