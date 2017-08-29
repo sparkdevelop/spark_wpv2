@@ -20,7 +20,7 @@ $task_name = isset($_POST["tname"]) ? $_POST["tname"] : '';
 $task_author = isset($_POST["tauthor"]) ? $_POST["tauthor"] : '';
 
 $belong_to = isset($_POST['belong_to']) ? $_POST['belong_to'] : '';
-
+//echo $belong_to;
 $task_content = isset($_POST["tabstract"]) ? $_POST["tabstract"] : '';
 
 $task_type  = isset($_POST["ttype"]) ? $_POST["ttype"] : '';
@@ -45,7 +45,7 @@ if ($task_type == "tread"){
 $sql = "INSERT INTO wp_gp_task VALUES ($task_id,'$task_name',$task_author,$belong_to,
                                           '$task_content','publish','$task_type',
                                           '$create_date','$deadline',0)";
-
+//echo $sql;
 if($task_name!="" && $task_content!="" && $task_author!="" && $belong_to !="" &&
     $task_type!="" && $create_date!=""){
     $wpdb->query($sql);

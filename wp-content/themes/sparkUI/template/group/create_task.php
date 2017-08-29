@@ -77,7 +77,7 @@
                                     $("#tcheckways").html(html);
                                     break;
                                 case "tpro":
-                                    var html ='<p>自动检查，组员将填写项目链接和项目组成员信息</p>';
+                                    var html ='<p>组员将填写项目链接和项目组成员信息</p>';
 //                                            '<div class="form-group" style="margin: 20px 0px">'+
 //                                                '<label for="tprolink" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">项目链接</label>'+
 //                                                '<div class="col-sm-7">'+
@@ -150,7 +150,6 @@
                 });
             </script>
         </div>
-
         <div class="form-group">
             <input type="hidden" name="belong_to" value="<?=$_COOKIE['group_id']?>"/>
             <input type="hidden" name="tauthor" value="<?=get_current_user_id()?>">

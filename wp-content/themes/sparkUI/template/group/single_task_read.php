@@ -6,37 +6,6 @@ $group_verify_field = get_verify_field($group_id, 'group');   //获取群组的�
 $member_info = get_member_info($group_id);
 $per_all = complete_percentage($group_id,$task_id);
 ?>
-<style>
-    #single-task-abstract p {
-        background: #f9f9f9;
-        padding: 20px 20px;
-        margin-top: 10px;
-    }
-
-    #single-task-abstract {
-        margin-top: 20px;
-    }
-    .table,.table-striped,.table-bordered {
-        margin: 20px 0px;
-    }
-    .table,.table-striped thead {
-        border: 1px solid #f9f9f9;
-    }
-    .table,.table-bordered thead > tr >th {
-        border-bottom-width: 1px;
-        text-align: center;
-    }
-    .table,.table-striped thead > tr >th {
-        text-align: center;
-        border-bottom-width: 1px;
-        border-right: 1px solid #f2f2f2;
-    }
-    .table,.table-striped tbody > tr >td {
-        text-align: center;
-        border: 1px solid #f2f2f2;
-    }
-
-</style>
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
     <div id="single-task-title">
         <h3>任务 : <?= $task['task_name'] ?></h3>
@@ -114,7 +83,7 @@ $per_all = complete_percentage($group_id,$task_id);
                 for ($j = 1; $j < sizeof($group_verify_field)+2; $j++) {?>
                     <td><?=$member_info[$i][$j]?></td>
                 <?php }
-                    $per = complete_all($task_id,$member_info[$i][0]);
+                    $per = complete_all_read($task_id,$member_info[$i][0]);
                     if($per==100){
                         $url = get_template_directory_uri() . "/img/complete.png";
                         echo '<td><img src="'.$url.'"></td>';

@@ -2904,9 +2904,20 @@ function get_unfinish_task($group_id){
     $task = get_task($group_id);
     $user_id = get_current_user_id();
     foreach($task as $key =>$value){
-        $per = complete_all($value['ID'],$user_id);
-        if(is_overdue($value['ID']) || $per == 100){
-            unset($task[$key]);
+        if($value['task_type']=='tread'){
+            $per = complete_all_read($value['ID'],$user_id);
+            if(is_overdue($value['ID']) || $per == 100){
+                unset($task[$key]);
+            }
+        }elseif ($value['task_type']=='tpro'){
+            if(is_overdue($value['ID'])||is_complete_task($value['ID'],$user_id)){ //已完成
+                echo "enter tpro";
+                unset($task[$key]);
+            }
+        }else{
+            if(is_overdue($value['ID'])||is_complete_task($value['ID'],$user_id)){
+                unset($task[$key]);
+            }
         }
     }
     return $task;
@@ -2931,7 +2942,7 @@ function complete_read_task(){
     if($col==0){
         $sql_insert = "INSERT INTO wp_gp_task_complete_tmp VALUES ('','$user_id','$task_id','$complete_content')";
         $wpdb->get_results($sql_insert);
-        $per = complete_all($task_id,$user_id);
+        $per = complete_all_read($task_id,$user_id);
     }
     echo '#'.$id;
     die();
@@ -2964,8 +2975,8 @@ function complete_single($task_id){
     return $result;
 }
 
-//在成员-任务表中添加成员的完成情况
-function complete_all($task_id,$user_id){
+//在成员-任务表中添加成员的完成情况 read
+function complete_all_read($task_id,$user_id){
     global $wpdb;
     $time = date('Y-m-d H:i:s', time() + 8 * 3600);
     $sql_all = "SELECT * FROM wp_gp_task_complete_tmp WHERE user_id = $user_id and task_id = $task_id";
@@ -2999,7 +3010,17 @@ function complete_percentage($group_id,$task_id){
     return $per;
 }
 
-
+//项目任务是否完成
+function is_complete_task($task_id,$user_id){
+    global $wpdb;
+    $sql = "SELECT * FROM wp_gp_task_member WHERE user_id=$user_id and task_id = $task_id and completion !=0";
+    $col = $wpdb->query($sql);
+    if($col!=0){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 
 
