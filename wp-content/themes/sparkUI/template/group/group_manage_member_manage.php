@@ -112,10 +112,6 @@ $member_info = get_member_info($group_id);
             $tbr.find('input').click(function(event){
                 /*调整选中行的CSS样式*/
                 $(this).parent().parent().toggleClass('warning');
-                /*保存选中行的数据  每点击一次,push 一个id进来*/
-//                var td = new Array();
-//                td.push($('.warning'));
-//                saveChecked(td);
                 /*如果已经被选中行的行数等于表格的数据行数，将全选框设为选中状态，否则设为未选中状态*/
                 $checkAll.prop('checked',$tbr.find('input:checked').length == $tbr.find('input').length ? true : false);
                 /*阻止向上冒泡，以防再次触发点击操作*/

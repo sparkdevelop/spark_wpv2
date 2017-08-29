@@ -2455,10 +2455,38 @@ function gp_task_member_table_install()
     }
 }
 
-
-
-
-
+//建立成员-团队表
+function gp_member_team_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "gp_member_team";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+          task_id int NOT NULL,
+          team_id int NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+//建立任务完成tmp表,针对reading任务
+function gp_task_complete_tmp_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "gp_task_complete_tmp";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+          task_id int NOT NULL,
+          complete_content text NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
 
 
 //判断群组是否重名
@@ -2834,7 +2862,13 @@ add_action('wp_ajax_nopriv_kick_out_the_group', 'kick_out_the_group');
 /*task部分*/
 /* 距离任务结束还有多长时间,精确到天或小时 countDown()
  * 判断任务是否截止 is_overdue()
- * 获取
+ * 获取本组的所有未截止项目且未完成任务 get_unfinish_task($group_id)
+ * 为了自动检测阅读任务的完成情况ajax complete_read_task()
+ * 打开时完成度的显示 complete_single($task_id)
+ * 在成员-任务表中添加成员的完成情况 complete_all($task_id,$user_id)
+ * 群组中完成成员的总百分比 complete_percentage($group_id,$task_id)
+ *
+ *
  *
  * */
 function countDown($task_id){
@@ -2865,21 +2899,107 @@ function is_overdue($task_id){
     }
 }
 
-//获取本组的所有未截止项目
+//获取本组的所有未截止项目且未完成任务!!
 function get_unfinish_task($group_id){
     $task = get_task($group_id);
+    $user_id = get_current_user_id();
     foreach($task as $key =>$value){
-        if(is_overdue($value['ID'])){
+        $per = complete_all($value['ID'],$user_id);
+        if(is_overdue($value['ID']) || $per == 100){
             unset($task[$key]);
         }
     }
     return $task;
 }
 
-//获取本任务的组员完成情况和组员信息 显示在single_task页面
-function get_member_task_info($task_id){
-    
+//为了自动检测阅读任务的完成情况
+function complete_read_task(){
+    global $wpdb;
+    $user_id = get_current_user_id();
+    $task_id = $_POST['task_id'];
+    $complete_content = $_POST['complete_content'];
+    $id = $_POST['id'];
+    /* step1: 查找有没有这个用户完成这个任务的信息
+     * step2: 若没有,则insert into tmp表
+     * step3: 若有,则insert新的一行到tmp表,但不能重复
+     * step4: 上述操作做完,检测全部阅读链接的完成情况,若完成,则更改成员任务表的完成情况
+     * step5: 完成情况可以从这里面提取,有链接的就可以算完成了。
+     * */
+    $sql_1 = "SELECT * FROM wp_gp_task_complete_tmp 
+                    WHERE user_id = $user_id and task_id = $task_id and complete_content = '$complete_content'";
+    $col = $wpdb->query($sql_1);
+    if($col==0){
+        $sql_insert = "INSERT INTO wp_gp_task_complete_tmp VALUES ('','$user_id','$task_id','$complete_content')";
+        $wpdb->get_results($sql_insert);
+        $per = complete_all($task_id,$user_id);
+    }
+    echo '#'.$id;
+    die();
 }
+add_action('wp_ajax_complete_read_task', 'complete_read_task');
+add_action('wp_ajax_nopriv_complete_read_task', 'complete_read_task');
+
+//打开时完成度的显示
+function complete_single($task_id){
+    /* 返回值是一个数组,按顺序的返回完成ornot 格式[0,1],0表示完成,1表示未完成
+     * step:1 取出验证字段,即,link的字段
+     * step:2 对于每一个link,搜索该用户是否在tmp表中有过。
+     * step:3 若col不为0,即已经看过,result push 1 否则push 0
+     * */
+    global $wpdb;
+    $result = array();
+    $verify_field = get_verify_field($task_id,'task');
+    $user_id = get_current_user_id();
+    foreach ($verify_field as $key =>$value){
+        $sql_1 = "SELECT * FROM wp_gp_task_complete_tmp 
+                    WHERE user_id = $user_id and task_id = $task_id and complete_content = '$value'";
+        $col = $wpdb->query($sql_1);
+        if($col==0){
+            array_push($result,'<span>未完成</span>');
+        }else{
+            $url = get_template_directory_uri() . "/img/complete.png";
+            array_push($result,"<img src=".$url.">");
+        }
+    }
+    return $result;
+}
+
+//在成员-任务表中添加成员的完成情况
+function complete_all($task_id,$user_id){
+    global $wpdb;
+    $time = date('Y-m-d H:i:s', time() + 8 * 3600);
+    $sql_all = "SELECT * FROM wp_gp_task_complete_tmp WHERE user_id = $user_id and task_id = $task_id";
+    $col_all = $wpdb->query($sql_all);
+    $verify_size = sizeof(get_verify_field($task_id,'task'));
+    if($col_all == $verify_size){   //完成了
+        //加判断是否已经插入过了
+        $sql_exist = "SELECT * FROM wp_gp_task_member WHERE user_id = $user_id and task_id = $task_id";
+        $col_exist_in_task_member = $wpdb->query($sql_exist);
+        if($col_exist_in_task_member==0){  //如果没有插入过
+            $sql_insert = "INSERT INTO wp_gp_task_member VALUES ('',$user_id,$task_id,1,'$time','','')";
+            $sql_update_task = "UPDATE wp_gp_task SET complete_count = (complete_count + 1) WHERE ID = $task_id";
+            $wpdb->get_results($sql_insert);
+            $wpdb->get_results($sql_update_task);
+        }
+    }
+    $per = round(($col_all/$verify_size) * 100);
+    return $per;
+}
+
+//群组中完成成员的总百分比 退出群组怎么办??
+function complete_percentage($group_id,$task_id){
+    /* step1: 取出本组所有的成员数
+     * step2: 取出本组所有完成的成员数
+     * */
+    global $wpdb;
+    $all_member = get_group($group_id)[0]['member_count'];
+    $sql_complete = "SELECT * FROM wp_gp_task_member WHERE task_id =$task_id and completion = 1";
+    $complete_member = $wpdb->query($sql_complete);
+    $per = round(($complete_member/$all_member)*100);
+    return $per;
+}
+
+
 
 
 

@@ -1,18 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: zhangxue
- * Date: 17/6/30
- * Time: 下午7:22
- */
-//print_r($task);
 $group = get_group($group_id)[0];
 $post_link = get_verify_field($task['ID'],'task');
-//print_r($group);
-//print_r($post_link);
 $countdown = countDown($task_id);
 $group_verify_field = get_verify_field($group_id, 'group');   //获取群组的验证字段作为表头
 $member_info = get_member_info($group_id);
+$per_all = complete_percentage($group_id,$task_id);
 ?>
 <style>
     #single-task-abstract p {
@@ -78,11 +70,17 @@ $member_info = get_member_info($group_id);
             </thead>
             <tbody>
             <?php
+            $complete_single = complete_single($task_id);
             for ($i=0;$i<sizeof($post_link);$i++){ ?>
                 <tr>
                     <td><?=$i+1?></td>
-                    <td><a href="<?=$post_link[$i]?>"><?=$post_link[$i]?></a></td>
-                    <td>未完成</td>
+                    <?php
+                    if(is_overdue($task_id)){?>
+                        <td><a href="<?=$post_link[$i]?>"><?=$post_link[$i]?></a></td>
+                    <?php }else{ ?>
+                        <td><a style ="cursor: pointer" onclick="complete_read_task('<?=$post_link[$i]?>','<?=$i?>')"><?=$post_link[$i]?></a></td>
+                    <?php } ?>
+                    <td id="cmp_<?=$i?>"><?=$complete_single[$i]?></td>
                 </tr>
             <?php } ?>
             </tbody>
@@ -90,7 +88,7 @@ $member_info = get_member_info($group_id);
     </div>
     <div id="single-task-member-complete">
         <h4>组员完成情况 : </h4>
-        <span>80%组员已完成</span>
+        <span><?=$per_all?>%组员已完成</span>
         <table class="table table-striped" id="member_manage_table">
             <thead>
             <tr>
@@ -106,7 +104,6 @@ $member_info = get_member_info($group_id);
             </tr>
             </thead>
             <tbody>
-
             <?php
             //外层循环控制几行
             for ($i = 0; $i < sizeof($member_info); $i++) {?>
@@ -114,10 +111,17 @@ $member_info = get_member_info($group_id);
                 <td id="hidden_id" style="display: none"><?=$member_info[$i][0]?></td>
                 <?php
                 //内循环控制字段
-                for ($j = 1; $j < sizeof($group_verify_field)+3; $j++) {?>
+                for ($j = 1; $j < sizeof($group_verify_field)+2; $j++) {?>
                     <td><?=$member_info[$i][$j]?></td>
                 <?php }
-                } ?>
+                    $per = complete_all($task_id,$member_info[$i][0]);
+                    if($per==100){
+                        $url = get_template_directory_uri() . "/img/complete.png";
+                        echo '<td><img src="'.$url.'"></td>';
+                    }else{
+                        echo '<td>'.$per.'%</td>';
+                    }
+            } ?>
             </tr>
             </tbody>
         </table>
@@ -153,3 +157,29 @@ $member_info = get_member_info($group_id);
         </table>
     </div>
 </div>
+<script>
+    function complete_read_task(link,id) {
+        //把阅读过的链接存到tmp表中
+        //比对tmp的链接和verify_field比对,若一致就可以更改成员-任务表的完成情况了
+        var data = {
+            action: 'complete_read_task',
+            task_id : '<?=$task_id?>',
+            complete_content:link,
+            id: 'cmp_'+id
+        };
+        $.ajax({
+            type:'POST',
+            url:'<?=$admin_url?>',
+            data:data,
+            dataType:"text",
+            success:function (response) {
+                <?php $url = get_template_directory_uri() . "/img/complete.png";?>
+                $(response).html("<img src='<?=$url?>'>");
+                window.open(link);
+            },
+            error: function () {
+                alert('error')
+            }
+        })
+    }
+</script>

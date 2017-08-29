@@ -95,14 +95,18 @@ $group = get_group($group_id);
         <ul class="list-group">
             <?php
             $unfinish_task = get_unfinish_task($group_id);
-            foreach ($unfinish_task as $key =>$value) {
-                ?>
-                <li class="list-group-item">
-                    <span><a href="<?php echo site_url().get_page_address('single_group').'&id='.$value['ID']?>"><?=$value['task_name']?></a></span>
-                    <?php $countdown = countDown($value['ID'])." 天";?>
-                    <span style="float: right"><?=$countdown?></span>
-                </li>
-            <?php } ?>
+            if(sizeof($unfinish_task)!=0){
+                foreach ($unfinish_task as $key =>$value) {
+                    ?>
+                    <li class="list-group-item">
+                        <span><a href="<?php echo site_url().get_page_address('single_group').'&id='.$value['ID']?>"><?=$value['task_name']?></a></span>
+                        <?php $countdown = countDown($value['ID'])." 天";?>
+                        <span style="float: right"><?=$countdown?></span>
+                    </li>
+                <?php }
+            } else{
+                echo '<div class="alert alert-info" style="margin-top: 10px;padding: 10px">没有未完成的任务!</div>';
+            }?>
         </ul>
     </div>
 
