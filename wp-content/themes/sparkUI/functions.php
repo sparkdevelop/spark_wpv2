@@ -2564,9 +2564,14 @@ function is_group_admin($group_id)
 {
     global $wpdb;
     $user_id = get_current_user_id();
-    $sql = "SELECT indentity from wp_gp_member WHERE user_id = $user_id and group_id = $group_id";
-    echo $sql;
-
+    $sql = "SELECT * from wp_gp_member 
+            WHERE user_id = $user_id and group_id = $group_id and indentity='admin' and member_status=0";
+    $col = $wpdb->query($sql);
+    if ($col != 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 //判断成员是否是这个群组的成员
@@ -3023,9 +3028,45 @@ function is_complete_task($task_id,$user_id){
 }
 
 
+/*得到本群组中最近活跃成员的函数
+ *即最近加入的三个成员
+ * 参数：group的id
+ * 返回：三个成员或更少成员（当加入人数小于3）的id
+ * */
+function get_latest_active($group_id_tmp){
+    global $wpdb;
+    $group_active_info = $wpdb->get_results("select * from wp_gp_member where group_id=".$group_id_tmp);
 
+    $group_active = array();
+    foreach($group_active_info as $item) {
+        $group_active[$item->user_id] = $item->join_date;
+    }
 
+    //print_r($group_active);
+    arsort($group_active);
 
+    //如果只有小于3个成员加入，只存入1或2个人
+    if(sizeof($group_active) >= 3) {
+        $i = 0;
+        foreach ($group_active as $key=>$value) {
+            $group_active_id[] = $key;
+            $i++;
+            if ($i == 3)
+                break;
+        }
+    }
+    else {
+        $i = 0;
+        foreach ($group_active as $key=>$value) {
+            $group_active_id[] = $key;
+            $i++;
+            if ($i == sizeof($group_active))
+                break;
+        }
+    }
+    //print_r($group_active_id);
+    return $group_active_id;
+}
 
 
 

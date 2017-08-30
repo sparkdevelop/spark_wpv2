@@ -74,12 +74,16 @@
                     <div id="latest-active">
                         <div>最近活跃</div>
                         <?php
-                        for ($j = 0; $j < 3; $j++) {
+                        $latest_active = get_latest_active($all_group[$i]['ID']);
+                        for ($j = 0; $j < sizeof($latest_active); $j++) {
                             ?>
-                            <div style="display: inline-block;margin-top: 10px">
+                            <div style="display: inline-block;margin-top: 15px">
                                 <div style="text-align: center;margin-right: 10px">
-                                    <?php echo get_avatar(get_current_user_id(), 36, ''); ?>
-                                    <p style="width: 48px;word-wrap: break-word;margin-bottom: 0px"><?php echo get_user_by('ID',get_current_user_id())->display_name ?></p>
+                                    <?php echo get_avatar($latest_active[$j], 36, ''); ?>
+                                    <p style="width: 48px;word-wrap: break-word;margin-bottom: 0px">
+                                        <?php $user_name = get_user_by('ID',$latest_active[$j])->display_name;
+                                        echo mb_strimwidth($user_name, 0, 7,".."); ?>
+                                    </p>
                                 </div>
                             </div>
                         <?php } ?>

@@ -30,7 +30,7 @@
 
     //处理上传的图片
     $upload_path = wp_upload_dir();  //获取wordpress的上传路径。
-    print_r($upload_path);
+    //print_r($upload_path);
 
     if(!empty($_FILES['gava']["name"])){
         $group_cover_address = $upload_path['url'] . "/" . $_FILES['gava']["name"];
@@ -63,8 +63,8 @@
                                           '$group_cover_address','$join_permission',
                                           '$task_permission','$create_date',1)";
 
-    $sql_member = "INSERT INTO wp_gp_member VALUES ('',$group_author,$group_id,'admin','$create_date','in')";
-
+    $sql_member = "INSERT INTO wp_gp_member VALUES ('',$group_author,$group_id,'admin','$create_date','',0)";
+echo $sql_member;
     if($group_name!="" && $group_abstract!="" && $group_status!="" &&
         $join_permission!="" && $task_permission!=""){
         $wpdb->query($sql_gp);

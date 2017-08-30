@@ -70,9 +70,9 @@
                             switch ($("input[name=ttype]:checked").attr("id")) {   //根据id判断
                                 case "tread":
                                     var html = '<p>自动检查,仅支持站内文章,请在下框中填写文章链接</p>'+
+                                               '<input type="button" id="addNewFieldBtn" value="+" style="display:inline;margin-right: 10px">'+
                                                '<input type="text" class="form-control" name="tlink[]" id="tlink" ' +
-                                                        'style="margin-bottom:10px;display:inline;width: 90%" placeholder="" value=""/>'+
-                                               '<input type="button" id="addNewFieldBtn" value="+" style="display:inline;margin-left: 10px">';
+                                                        'style="margin-bottom:10px;display:inline;width: 90%" placeholder="" value=""/>';
                                     $("#ttype-addon").html('<p style="margin-top: 5px">注:可用于检查组员阅读wiki教程,查看<a href="#">任务示例</a></p>');
                                     $("#tcheckways").html(html);
                                     break;
@@ -104,9 +104,9 @@
                             }
                         }
                         $(document).on('click', '#addNewFieldBtn', function () {
-                            $("#addNewFieldBtn").hide();
-                            var input = '<input type="text" class="form-control" name="tlink[]" id="tlink" style="margin-bottom:10px;display:inline;width: 90%" placeholder="" value=""/>' +
-                                        '<input type="button" id="addNewFieldBtn" value="+" style="margin-left:10px;display:inline">';
+                            var input = '<input type="text" class="form-control" name="tlink[]" id="tlink" ' +
+                                        'style="margin-left: 35px;margin-bottom:10px;display:inline;width: 90%" ' +
+                                        'placeholder="" value=""/>';
                             $("#tcheckways").append(input);
                         })
                     })

@@ -103,12 +103,18 @@
 
         <div id="latestJoin">
             <?php
+            $latest_active = get_latest_active($group_id);
             for ($j = 0; $j < 5; $j++) { ?>
                 <div style="display: inline-block;margin-top: 10px">
                     <div style="text-align: center;width: 45px">
-                        <?php echo get_avatar(get_current_user_id(), 30, ''); ?>
+                        <?php echo get_avatar($latest_active[$j], 30, ''); ?>
+                        <p style="width: 48px;word-wrap: break-word;margin-bottom: 0px">
+                            <?php
+                            $user_name = get_user_by('ID',$latest_active[$j])->display_name;
+                            echo mb_strimwidth($user_name, 0, 7,".."); ?>
+                        </p>
                     </div>
-                    <?php // echo wp_get_current_user()->display_name; ?>
+
                 </div>
             <?php } ?>
         </div>

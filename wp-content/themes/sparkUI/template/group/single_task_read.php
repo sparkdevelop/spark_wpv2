@@ -94,36 +94,6 @@ $per_all = complete_percentage($group_id,$task_id);
             </tr>
             </tbody>
         </table>
-
-        <table style="display: none" class="table table-bordered">
-            <thead>
-            <tr>
-                <th>序号</th>
-                <th>用户名</th>
-                <th>真实姓名</th>
-                <th>班级</th>
-                <th>学号</th>
-                <th>完成情况</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Tanmay</td>
-                <td>Bangalore</td>
-                <td>560001</td>
-            </tr>
-            <tr>
-                <td>Sachin</td>
-                <td>Mumbai</td>
-                <td>400003</td>
-            </tr>
-            <tr>
-                <td>Uma</td>
-                <td>Pune</td>
-                <td>411027</td>
-            </tr>
-            </tbody>
-        </table>
     </div>
 </div>
 <script>

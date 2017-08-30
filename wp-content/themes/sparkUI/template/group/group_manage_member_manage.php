@@ -126,18 +126,17 @@ $member_info = get_member_info($group_id);
 
     });
     function saveChecked(td) {
-        var user_id = new Array();
+        var user_id = [];
         //td是很多td组成的,其中需要的是#hidden_id的数据组成数组
         for(var j=0;j<td[0].length;j++){
             var loc = td[0][j];
             user_id.push($(loc).children('#hidden_id').text());
-            //console.log(user_id);
         }
         return user_id;
     }
 
     function changeIndentity(url,indentity,group_id) {
-        var td = new Array();
+        var td = [];
         td.push($('.warning'));
         var user_id = saveChecked(td);
         var data = {
@@ -163,7 +162,7 @@ $member_info = get_member_info($group_id);
     }
 
     function kick_out_the_group(url,group_id){
-        var td = new Array();
+        var td = [];
         td.push($('.warning'));
         var user_id = saveChecked(td);
         var data = {

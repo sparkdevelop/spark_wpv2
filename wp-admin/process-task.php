@@ -50,7 +50,7 @@ if($task_name!="" && $task_content!="" && $task_author!="" && $belong_to !="" &&
     $task_type!="" && $create_date!=""){
     $wpdb->query($sql);
 }
-$url= site_url().get_page_address('single_group').'&id='.$task_id;
+$url= site_url().get_page_address('single_task').'&id='.$task_id;
 ?>
 <script>
     location.replace("<?=$url?>");
