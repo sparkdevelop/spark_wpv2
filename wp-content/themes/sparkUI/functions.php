@@ -2575,16 +2575,26 @@ function is_group_admin($group_id)
 }
 
 //判断成员是否是这个群组的成员
-function is_group_member($group_id)
+function is_group_member($group_id,$user_id = Null)
 {
     global $wpdb;
-    $user_id = get_current_user_id();
-    $sql = "SELECT indentity from wp_gp_member WHERE user_id = $user_id and group_id = $group_id and member_status=0";
-    $col = $wpdb->query($sql);
-    if ($col != 0) {
-        return true;
-    } else {
-        return false;
+    if($user_id == NULL){
+        $user_id = get_current_user_id();
+        $sql = "SELECT indentity from wp_gp_member WHERE user_id = $user_id and group_id = $group_id and member_status=0";
+        $col = $wpdb->query($sql);
+        if ($col != 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }else{
+        $sql = "SELECT indentity from wp_gp_member WHERE user_id = $user_id and group_id = $group_id and member_status=0";
+        $col = $wpdb->query($sql);
+        if ($col != 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
@@ -2916,7 +2926,6 @@ function get_unfinish_task($group_id){
             }
         }elseif ($value['task_type']=='tpro'){
             if(is_overdue($value['ID'])||is_complete_task($value['ID'],$user_id)){ //已完成
-                echo "enter tpro";
                 unset($task[$key]);
             }
         }else{
@@ -3027,7 +3036,6 @@ function is_complete_task($task_id,$user_id){
     }
 }
 
-
 /*得到本群组中最近活跃成员的函数
  *即最近加入的三个成员
  * 参数：group的id
@@ -3067,6 +3075,45 @@ function get_latest_active($group_id_tmp){
     //print_r($group_active_id);
     return $group_active_id;
 }
+
+//判断用户名输入的是否正确
+function checkUserName(){
+    global $wpdb;
+    $name = $_POST['name'];
+    $group_id = $_POST['group_id'];
+    $sql = "SELECT * FROM $wpdb->users WHERE user_login = '$name'";
+    $col = $wpdb->query($sql);
+    if($col==0){
+        $response =  false;
+    }else{
+        //如果有这个用户判断这个用户是不是该组成员
+        $id = get_the_ID_by_name($name);
+        if(is_group_member($group_id,$id)){
+            $response = true;
+        }else{
+            $response = false;
+        }
+
+    }
+    echo $response;
+    die();
+}
+add_action('wp_ajax_checkUserName', 'checkUserName');
+add_action('wp_ajax_nopriv_checkUserName', 'checkUserName');
+
+//通过user_name获取user_id
+function get_the_ID_by_name($user_name)
+{
+    global $wpdb;
+    $sql = "SELECT ID FROM $wpdb->users WHERE user_login = '$user_name'";
+    $id = $wpdb->get_var($wpdb->prepare($sql,""),0,0);
+    return $id;
+}
+
+
+
+
+
 
 
 

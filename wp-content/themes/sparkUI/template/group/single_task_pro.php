@@ -36,7 +36,7 @@ $group_verify_field = get_verify_field($group_id,'group');
                 <label for="proname" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">项目链接<span
                         style="color: red">*</span></label>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" name="proname" id="proname" placeholder="请输入项目链接" value=""
+                    <input type="text" class="form-control" name="prolink" id="prolink" placeholder="请输入项目链接" value=""
                            onblur="checkLength(this.value,'checkLinkbox')"/>
                 </div>
                 <span style="line-height: 30px;height: 30px" id="checkLinkbox"></span>
@@ -48,20 +48,14 @@ $group_verify_field = get_verify_field($group_id,'group');
                 <div class="col-sm-8">
                     <input type="button" id="addNewFieldBtn" value="+" style="display:inline">
                     <input type="text" class="form-control" name="team_member[]" id="team_member"
-                           style="margin-right:0px;margin-bottom:10px;display:inline;width: 10%" placeholder="" value=""/>
+                           style="margin-right:0px;margin-bottom:10px;display:inline;width: 15%"
+                           placeholder="本组成员" value="" onblur="checkUserName(this.value)"/>
                     <div id="addField" style="display:inline;margin-top: 7px;margin-left: -4px"></div>
-                    <script>
-                        $(document).on('click', '#addNewFieldBtn', function () {
-                            var input = '<input type="text" class="form-control" name="team_member[]" id="team_member" ' +
-                                                'style="margin-left: 10px;margin-bottom:10px;display:inline;width: 10%" ' +
-                                                'placeholder="" value=""/>';
-                            $("#addField").append(input);
-                        });
-                    </script>
+                    <div id="ajax-response" style="display: inline;margin-left: 10px"></div>
             </div>
             </div>
             <div class="form-group" style="display: none">
-                <input type="hidden" name="belong_to" value="<?=$_COOKIE['group_id']?>"/>
+                <input type="hidden" name="task_id" value="<?=$task_id?>"/>
                 <input type="hidden" name="tauthor" value="<?=get_current_user_id()?>">
                 <input type="hidden" name="tcreatedate" value="<?=date("Y-m-d")?>">
             </div>
@@ -123,7 +117,7 @@ $group_verify_field = get_verify_field($group_id,'group');
     $(function () {
         $("[rowspan]").css({"vertical-align":"middle",
             "text-align":"center"});
-    })
+    });
     function checkLength(taskname,boxid) {
         var id = "#"+boxid;
         if(taskname.length == 0){
@@ -135,5 +129,32 @@ $group_verify_field = get_verify_field($group_id,'group');
             $(id).html("<img src='<?=$url?>'>");
             return true;
         }
+    }
+    $(document).on('click', '#addNewFieldBtn', function () {
+        var input = '<input type="text" class="form-control" name="team_member[]" id="team_member" ' +
+            'style="margin-left: 10px;margin-bottom:10px;display:inline;width: 15%" ' +
+            'placeholder="本组成员" value="" onblur="checkUserName(this.value)" />';
+        $("#addField").append(input);
+    });
+    function checkUserName(name) {
+        var data = {
+            action:"checkUserName",
+            name:name,
+            group_id:'<?=$group_id?>'
+        };
+        $.ajax({
+            type:'POST',
+            url:'<?=$admin_url?>',
+            data:data,
+            success: function (response) {
+                if (response == false) {
+                    <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
+                    $('#ajax-response').html("<img src='<?=$url?>'><span>用户名错误</span>");
+                } else {
+                    <?php $url = get_template_directory_uri() . "/img/OK.png";?>
+                    $('#ajax-response').html("<img src='<?=$url?>'>");
+                }
+            }
+        })
     }
 </script>
