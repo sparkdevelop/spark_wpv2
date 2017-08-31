@@ -3011,14 +3011,14 @@ function complete_all_read($task_id,$user_id){
     return $per;
 }
 
-//群组中完成成员的总百分比 退出群组怎么办??
+//群组中完成成员的总百分比 退出群组怎么办——————不用管,仍然保存他的数据
 function complete_percentage($group_id,$task_id){
     /* step1: 取出本组所有的成员数
      * step2: 取出本组所有完成的成员数
      * */
     global $wpdb;
     $all_member = get_group($group_id)[0]['member_count'];
-    $sql_complete = "SELECT * FROM wp_gp_task_member WHERE task_id =$task_id and completion = 1";
+    $sql_complete = "SELECT * FROM wp_gp_task_member WHERE task_id =$task_id";
     $complete_member = $wpdb->query($sql_complete);
     $per = round(($complete_member/$all_member)*100);
     return $per;
@@ -3027,7 +3027,7 @@ function complete_percentage($group_id,$task_id){
 //项目任务是否完成
 function is_complete_task($task_id,$user_id){
     global $wpdb;
-    $sql = "SELECT * FROM wp_gp_task_member WHERE user_id=$user_id and task_id = $task_id and completion !=0";
+    $sql = "SELECT * FROM wp_gp_task_member WHERE user_id=$user_id and task_id = $task_id";
     $col = $wpdb->query($sql);
     if($col!=0){
         return true;
@@ -3076,7 +3076,7 @@ function get_latest_active($group_id_tmp){
     return $group_active_id;
 }
 
-//判断用户名输入的是否正确
+//判断用户名输入的是否正确ajax
 function checkUserName(){
     global $wpdb;
     $name = $_POST['name'];
@@ -3110,6 +3110,31 @@ function get_the_ID_by_name($user_name)
     return $id;
 }
 
+//获取user提交的任务内容
+function get_user_task_content($task_id,$user_id = NULL){
+    global $wpdb;
+    if($user_id==NULL){ $user_id = get_current_user_id(); }
+    $sql = "SELECT * from wp_gp_task_member WHERE user_id=$user_id and task_id = $task_id";
+    $result = $wpdb->get_results($sql,'ARRAY_A');
+    return $result[0];
+}
+
+//获取本team的成员
+function get_team_member($task_id){
+    global $wpdb;
+    $team_id = get_team_id($task_id);
+    $sql_id = "SELECT user_id from wp_gp_member_team WHERE team_id=$team_id and task_id = $task_id";
+    $uid = $wpdb->get_results($sql_id,'ARRAY_N');
+    return $uid;
+}
+//获取team_id
+function get_team_id($task_id, $user_id = NULL){
+    global $wpdb;
+    if($user_id==NULL){ $user_id = get_current_user_id(); }
+    $sql = "SELECT team_id from wp_gp_member_team WHERE user_id=$user_id and task_id = $task_id";
+    $team_id = $wpdb->get_results($sql,'ARRAY_A')[0]['team_id'];
+    return $team_id;
+}
 
 
 
