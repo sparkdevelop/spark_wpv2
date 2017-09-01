@@ -2882,7 +2882,13 @@ add_action('wp_ajax_nopriv_kick_out_the_group', 'kick_out_the_group');
  * 打开时完成度的显示 complete_single($task_id)
  * 在成员-任务表中添加成员的完成情况 complete_all($task_id,$user_id)
  * 群组中完成成员的总百分比 complete_percentage($group_id,$task_id)
- *
+ * 项目任务是否完成  is_complete_task($task_id,$user_id)
+ * 最活跃成员:  get_latest_active($group_id_tmp)
+ * 判断用户名输入的是否正确ajax  checkUserName()
+ * 通过user_name获取user_id  get_the_ID_by_name($user_name)
+ * 获取user提交的任务内容    get_user_task_content($task_id,$user_id = NULL)
+ * 获取本team的成员   get_team_member($task_id)
+ * 获取team_id    get_team_id($task_id, $user_id = NULL)
  *
  *
  * */
@@ -3120,14 +3126,19 @@ function get_user_task_content($task_id,$user_id = NULL){
 }
 
 //获取本team的成员
-function get_team_member($task_id){
+function get_team_member($task_id,$team_id = NULL){
     global $wpdb;
-    $team_id = get_team_id($task_id);
+    $result = [];
+    if($team_id==NULL){ $team_id = get_team_id($task_id); }
     $sql_id = "SELECT user_id from wp_gp_member_team WHERE team_id=$team_id and task_id = $task_id";
     $uid = $wpdb->get_results($sql_id,'ARRAY_N');
-    return $uid;
+    foreach ($uid as $value){
+        array_push($result,$value[0]);
+    }
+    return $result;
 }
-//获取team_id
+
+//获取team_id  (当前用户或指定用户的team_id)
 function get_team_id($task_id, $user_id = NULL){
     global $wpdb;
     if($user_id==NULL){ $user_id = get_current_user_id(); }
@@ -3135,6 +3146,124 @@ function get_team_id($task_id, $user_id = NULL){
     $team_id = $wpdb->get_results($sql,'ARRAY_A')[0]['team_id'];
     return $team_id;
 }
+
+//专为提交项目类任务表格提供信息的函数返回一个二维数组,一维是team_id,一维是表格信息
+function pro_table($group_id,$task_id){
+    /* step0: 取出本任务的所有team_id 为了控制合并行的数量
+     * step1: 取出本组的所有成员 为了控制总的行数
+     * step2: 对于每一个team_id 取出team中的成员,在本组所有成员的数组中减去他们。最后剩下的就是还未分组的成员
+     * step3: 对于每一个team_id 中的每一个成员, 数据有:用户名,验证字段,项目链接,完成情况(completion)  对于管理员? 另算 在循环的td中修改
+     * step4: 最后push到一个巨大的二维数组中。
+     * 未分组成员用array_unshift($a,$element)
+     * */
+    global $wpdb;
+    $result = [];  //存储返回数组
+    //step0:
+    $sql_team_id = "SELECT distinct(team_id) FROM wp_gp_member_team WHERE task_id = $task_id";
+    $array_team_id = $wpdb->get_results($sql_team_id,'ARRAY_A');
+
+    //step1: 格式 Array ( [0] => 22 [1] => 1 )
+    $sql_member_id = "SELECT DISTINCT(user_id) FROM wp_gp_member WHERE group_id = $group_id and member_status = 0";
+    $array_member_id_tmp = $wpdb->get_results($sql_member_id,'ARRAY_A');
+    $array_member_id = [];
+    foreach ($array_member_id_tmp as $value){
+        array_push($array_member_id,$value['user_id']);
+    }
+
+    //step2:
+    $array_member_id_ungroup = $array_member_id;
+    foreach($array_team_id as $key =>$value){
+        $tmp_team = [];
+        $uid = get_team_member($task_id,$value['team_id']);
+        $array_member_id_ungroup = array_diff($array_member_id_ungroup,$uid);  //获取未分组的成员
+        foreach($uid as $id){
+            $tmp = [];//存储内层数组
+            $user_id = $id;
+            $user_name = get_author_name($id);
+            $verify_field = get_user_verify_field($group_id,$id);
+            $completion = get_user_task_completion($task_id,$user_id);
+            array_push($tmp,$user_id,$user_name);
+            $tmp = array_merge($tmp,$verify_field,$completion[0]);
+            array_push($tmp_team,$tmp);
+        }
+        array_push($result,$tmp_team);
+    }
+    //处理未分组的成员
+    $tmp_team_ungroup = [];
+    foreach ($array_member_id_ungroup as $key =>$value_ungroup){
+        $tmp = [];//存储内层数组
+        $user_id = $value_ungroup;
+        $user_name = get_author_name($value_ungroup);
+        $verify_field = get_user_verify_field($group_id,$value_ungroup);
+        $completion = array('completion'=>'','apply_content'=>'');
+        array_push($tmp,$user_id,$user_name);
+        $tmp = array_merge($tmp,$verify_field,$completion);
+        array_push($tmp_team_ungroup,$tmp);
+    }
+    $result  = array("ungroup"=>$tmp_team_ungroup,"team"=>$result);
+    return $result;
+}
+
+//根据用户id获取验证字段
+function get_user_verify_field($group_id,$user_id){
+    global $wpdb;
+    $sql = "SELECT * FROM wp_gp_member WHERE group_id = $group_id and user_id = $user_id and member_status = 0";
+    $results = $wpdb->get_results($sql,'ARRAY_A');
+
+    foreach ($results as $value){
+        $arr_tmp =[];
+        $verifyInfo = explode(',', $value['verify_info']);
+        $len = sizeof(get_verify_field($group_id,'group'));
+        if($len == sizeof($verifyInfo)){  //没填的写空
+            for($i=0;$i<$len;$i++){
+                array_push($arr_tmp,$verifyInfo[$i]);
+            }
+        }else{
+            for($i=0;$i<$len;$i++){
+                array_push($arr_tmp,'');
+            }
+        }
+        return $arr_tmp;
+    }
+}
+
+//根据用户id获取任务内容和完成情况
+function get_user_task_completion($task_id,$user_id){
+    global $wpdb;
+    $sql = "SELECT completion,apply_content FROM wp_gp_task_member WHERE task_id = $task_id and user_id = $user_id";
+    $results = $wpdb->get_results($sql,'ARRAY_A');
+    return $results;
+}
+
+//判断用户名输入的是否正确ajax
+function change_grade(){
+    global $wpdb;
+    $completion = $_POST['grade'];
+    $task_id = $_POST['task_id'];
+    $team_id = $_POST['team_id'] + 1;
+    $team_member = get_team_member($task_id,$team_id);
+    foreach ($team_member as $member){
+        $sql = "update wp_gp_task_member set completion = $completion WHERE user_id=$member and task_id=$task_id";
+        try{
+            $wpdb->get_results($sql);
+        }catch (Exception $e){
+            return [ 'code' => $e->getCode(), 'msg' => $e->getMessage() ];
+        }
+    }
+    echo $sql;
+    echo $team_id;
+    die();
+}
+add_action('wp_ajax_change_grade', 'change_grade');
+add_action('wp_ajax_nopriv_change_grade', 'change_grade');
+
+//成绩的数字和文字转换
+function transform_grade($rank){
+    $map = ['pending','pass','good','great','perfect'];
+    return $map[$rank];
+}
+
+
 
 
 

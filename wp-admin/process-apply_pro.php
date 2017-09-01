@@ -17,10 +17,12 @@ $task_id = isset($_POST["task_id"]) ? $_POST["task_id"] : '';
  * */
 
 //step0:获取team_id
-$sql_fun = "select ID from wp_gp_member_team ORDER BY team_id DESC LIMIT 0,1";
+$sql_fun = "select team_id from wp_gp_member_team WHERE task_id = $task_id ORDER BY team_id DESC LIMIT 0,1";
 $result = $wpdb->get_results($sql_fun);
-$team_id = $result[0]->ID + 1;
-
+$team_id = $result[0]->team_id + 1;
+//echo $sql_fun."<br>";
+//print_r($result);
+//echo $team_id."<br>";
 //step1,2
 foreach ($team_member as $value) {
     $id = get_the_ID_by_name($value);
@@ -37,5 +39,5 @@ foreach ($team_member as $value) {
 $url= site_url().get_page_address('single_task').'&id='.$task_id;
 ?>
 <script>
-    location.replace("<?= $url?>");
+    location.replace("<?=$url?>");
 </script>

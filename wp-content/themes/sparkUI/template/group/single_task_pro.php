@@ -55,7 +55,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
                             ?>
                             <input type="text" class="form-control" name="team_member[]" id="team_member"
                                    style="margin-right:0px;margin-bottom:10px;display:inline;width: 15%"
-                                   value="<?= get_author_name($value[0]) ?>" readonly/>
+                                   value="<?= get_author_name($value) ?>" readonly/>
                         <? } ?>
                     </div>
                 </div>
@@ -74,7 +74,8 @@ $group_verify_field = get_verify_field($group_id, 'group');
                     </div>
                 <? } ?>
             </form>
-        <?php } else { // 首次插入?>
+        <?php }
+              else { // 首次插入?>
             <form class="form-horizontal" role="form" name="profile" method="post" onsubmit="return checkSubmitPro()"
                   action="<?php echo esc_url(self_admin_url('process-apply_pro.php')); ?>">
                 <!--项目链接-->
@@ -119,8 +120,11 @@ $group_verify_field = get_verify_field($group_id, 'group');
     </div>
     <div class="divline"></div>
 
-
-
+    <?php
+    $table_content = pro_table($group_id,$task_id);
+//    print_r($table_content);
+//    echo sizeof($table_content['team']);
+    ?>
     <div id="single-task-member-complete" style="margin-top: 30px">
         <?php $per_all = complete_percentage($group_id,$task_id)?>
         <h4>组员完成情况 : <span style="font-size: 14px"><?=$per_all?>%组员已完成</span></h4>
@@ -129,6 +133,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
             <thead>
             <tr>
                 <th>组号</th>
+                <th style="display:none">id</th>
                 <th>用户名</th>
                 <?php //验证字段
                 if (sizeof($group_verify_field) != 0) {
@@ -141,27 +146,84 @@ $group_verify_field = get_verify_field($group_id, 'group');
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td id="team_id" rowspan="3">1组</td>
-                <td>lyl222</td>
-                <?php for ($j = 2; $j < sizeof($group_verify_field) + 2; $j++) { ?>
-                    <td><?= $member_info[0][$j] ?></td>
-                <?php } ?>
-                <td id="pro_link" rowspan="3">http://localhost/wordpress/?p=248</td>
-                <td id="grade" rowspan="3">perfect</td>
-            </tr>
-            <tr>
-                <td>如影随风</td>
-                <?php for ($j = 2; $j < sizeof($group_verify_field) + 2; $j++) { ?>
-                    <td><?= $member_info[1][$j] ?></td>
-                <?php } ?>
-            </tr>
-            <tr>
-                <td>黄冰瑶</td>
-                <?php for ($j = 2; $j < sizeof($group_verify_field) + 2; $j++) { ?>
-                    <td><?= $member_info[2][$j] ?></td>
-                <?php } ?>
-            </tr>
+            <?php
+            if(sizeof($table_content['team'])!=0){  //存在已经组成了的队伍
+                foreach ($table_content['team'] as $key => $team){  //对于每个team,每个team也有多行
+                    $team_size = sizeof($team);  //一个team有几行
+                    for ($i=0;$i<$team_size;$i++){  //每一行的内容
+                        if($i==0){  //每个team的第一行要显示更多的东西,比如组号,链接和评价?>
+                            <tr>
+                                <td id="team_id" rowspan="<?=$team_size?>"><?=$key+1?>组</td>
+                                <td style="display: none"><?=$team[$i][0]?></td>
+                                <td><?=$team[$i][1]?></td>
+                                <?php for ($j = 2; $j < sizeof($team[$i])-2; $j++) { ?>
+                                    <td><?=$team[$i][$j]?></td>
+                                <?php } ?>
+                                <td id="pro_link" rowspan="<?=$team_size?>"><a href="<?=$team[$i]['apply_content']?>"><?=$team[$i]['apply_content']?></a></td>
+                                <?php
+                                if (is_group_admin($group_id)){ ?>
+                                    <td id="grade" rowspan="<?=$team_size?>">
+                                        <script>
+                                            $(function () {
+                                                var sel_id ='<?=$team[$i]['completion']?>';
+                                                document.getElementById("change_grade_<?=$key?>")[sel_id].selected=true;
+                                            })
+                                        </script>
+<!--                                        <form role="form">-->
+<!--                                            <div class="form-group">-->
+                                                <select class="form-control" id="change_grade_<?=$key?>" onchange="change_grade(this.value,'<?=$key?>')">
+                                                    <option value="0">pending</option>
+                                                    <option value="1">pass</option>
+                                                    <option value="2">good</option>
+                                                    <option value="3">great</option>
+                                                    <option value="4">perfect</option>
+                                                </select>
+<!--                                            </div>-->
+<!--                                        </form>-->
+                                    </td>
+                                <?php } else { $grade = transform_grade($team[$i]['completion']) //将数字转化为文字?>
+                                    <td id="grade" rowspan="<?=$team_size?>"><?=$grade?></td>
+                                <?php } ?>
+                            </tr>
+                        <?php }
+                        else{ //team中的其他行,只显示基本信息?>
+                            <tr>
+                                <td style="display: none"><?=$team[$i][0]?></td>
+                                <td><?=$team[$i][1]?></td>
+                                <?php for ($j = 2; $j < sizeof($team[$i])-2; $j++) { ?>
+                                    <td><?=$team[$i][$j]?></td>
+                                <?php } ?>
+                            </tr>
+                        <?php }
+                    }
+                }
+            }
+            if(sizeof($table_content['ungroup'])!=0){  //如果有未组队的人
+                $ungroup = $table_content['ungroup'];
+                for ($i=0;$i<sizeof($ungroup);$i++){
+                    if($i==0){  //每个team的第一行要显示更多的东西,比如组号,链接和评价?>
+                        <tr>
+                            <td id="team_id" rowspan="<?=sizeof($ungroup)?>">未分组</td>
+                            <td style="display: none"><?=$ungroup[$i][0]?></td>
+                            <td><?=$ungroup[$i][1]?></td>
+                            <?php for ($j = 2; $j < sizeof($ungroup[$i])-2; $j++) { ?>
+                                <td><?=$ungroup[$i][$j]?></td>
+                            <?php } ?>
+                            <td id="pro_link" rowspan="<?=sizeof($ungroup)?>"><a href="<?=$ungroup[$i]['apply_content']?>"><?=$ungroup[$i]['apply_content']?></a></td>
+                            <td id="grade" rowspan="<?=sizeof($ungroup)?>"><?=$ungroup[$i]['completion']?></td>
+                        </tr>
+                    <?php }
+                    else{ //team中的其他行,只显示基本信息?>
+                        <tr>
+                            <td style="display: none"><?=$ungroup[$i][0]?></td>
+                            <td><?=$ungroup[$i][1]?></td>
+                            <?php for ($j = 2; $j < sizeof($ungroup[$i])-2; $j++) { ?>
+                                <td><?=$ungroup[$i][$j]?></td>
+                            <?php } ?>
+                        </tr>
+                    <?php }
+                }
+            } ?>
             </tbody>
         </table>
     </div>
@@ -169,6 +231,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
 <script>
     $(function () {
         $("[rowspan]").css({"vertical-align": "middle", "text-align": "center"});
+        $("tbody tr td").css("vertical-align",'middle');
     });
     $(document).on('click', '#addNewFieldBtn', function () {
         var input = '<input type="text" class="form-control" name="team_member[]" id="team_member" ' +
@@ -220,5 +283,24 @@ $group_verify_field = get_verify_field($group_id, 'group');
             layer.alert("请修正错误");
             return false;
         }
+    }
+    function change_grade(grade,team_id) {
+        var data = {
+            action:"change_grade",
+            grade:grade,
+            task_id:'<?=$task_id?>',
+            team_id:team_id
+        };
+        $.ajax({
+            data:data,
+            type:"POST",
+            url:'<?=$admin_url?>',
+            success:function (response) {
+                layer.msg("审核成功", {time: 2000, icon: 1});
+            },
+            error:function () {
+                layer.msg("操作失败", {time: 2000, icon: 2});
+            }
+        })
     }
 </script>
