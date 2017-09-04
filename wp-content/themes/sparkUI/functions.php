@@ -2560,10 +2560,10 @@ function get_group_avatar()
 }
 
 //判断用户是否为群组管理员  在显示管理员哪里用?
-function is_group_admin($group_id)
+function is_group_admin($group_id,$user_id=NULL)
 {
     global $wpdb;
-    $user_id = get_current_user_id();
+    if($user_id == NULL){ $user_id = get_current_user_id(); }
     $sql = "SELECT * from wp_gp_member 
             WHERE user_id = $user_id and group_id = $group_id and indentity='admin' and member_status=0";
     $col = $wpdb->query($sql);
@@ -2578,23 +2578,13 @@ function is_group_admin($group_id)
 function is_group_member($group_id,$user_id = Null)
 {
     global $wpdb;
-    if($user_id == NULL){
-        $user_id = get_current_user_id();
-        $sql = "SELECT indentity from wp_gp_member WHERE user_id = $user_id and group_id = $group_id and member_status=0";
-        $col = $wpdb->query($sql);
-        if ($col != 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }else{
-        $sql = "SELECT indentity from wp_gp_member WHERE user_id = $user_id and group_id = $group_id and member_status=0";
-        $col = $wpdb->query($sql);
-        if ($col != 0) {
-            return true;
-        } else {
-            return false;
-        }
+    if($user_id == NULL){ $user_id = get_current_user_id();}
+    $sql = "SELECT indentity from wp_gp_member WHERE user_id = $user_id and group_id = $group_id and member_status=0";
+    $col = $wpdb->query($sql);
+    if ($col != 0) {
+        return true;
+    } else {
+        return false;
     }
 }
 
