@@ -99,7 +99,7 @@ $group = get_group($group_id);
                 foreach ($unfinish_task as $key =>$value) {
                     ?>
                     <li class="list-group-item">
-                        <span><a href="<?php echo site_url().get_page_address('single_group').'&id='.$value['ID']?>"><?=$value['task_name']?></a></span>
+                        <span><a href="<?php echo site_url().get_page_address('single_task').'&id='.$value['ID']?>"><?=$value['task_name']?></a></span>
                         <?php $countdown = countDown($value['ID'])." 天";?>
                         <span style="float: right"><?=$countdown?></span>
                     </li>
