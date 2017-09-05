@@ -3253,9 +3253,31 @@ function transform_grade($rank){
     return $map[$rank];
 }
 
+//获取本other项目完成的成员和信息
+function task_complete_other($task_id){
+    global $wpdb;
+    $sql = "SELECT * FROM wp_gp_task_member WHERE task_id = $task_id";
+    $results = $wpdb->get_results($sql,'ARRAY_A');
+    return $results;
+}
 
-
-
+//审核other项目结果
+function change_grade_other(){
+    global $wpdb;
+    $completion = $_POST['grade'];
+    $task_id = $_POST['task_id'];
+    $user_id = $_POST['user_id'];
+    $sql = "update wp_gp_task_member set completion = $completion WHERE user_id=$user_id and task_id=$task_id";
+    try{
+        $wpdb->get_results($sql);
+    }catch (Exception $e){
+        return [ 'code' => $e->getCode(), 'msg' => $e->getMessage() ];
+    }
+    //echo $sql;
+    die();
+}
+add_action('wp_ajax_change_grade_other', 'change_grade_other');
+add_action('wp_ajax_nopriv_change_grade_other', 'change_grade_other');
 
 
 
