@@ -7,7 +7,6 @@
  */
 $task_id = isset($_GET['id']) ? $_GET['id'] : "";
 $group_id = get_task_group($task_id);
-$task = get_task($group_id, $task_id);
 $group = get_group($group_id);
 ?>
 <style>
@@ -38,23 +37,48 @@ $group = get_group($group_id);
     <div class="sidebar_list">
         <div class="sidebar_list_header">
             <p>我加入的群组</p>
+            <a id="sidebar_list_link" onclick="show_all_groups()">全部群组</a>
         </div>
         <!--分割线-->
         <div class="sidebar_divline"></div>
-
+        <?php $all_joined_group = get_current_user_group();?>
         <div id="joined_groups" style="word-wrap: break-word; word-break: keep-all;">
             <ul class="list-group">
                 <?php
-                for ($i = 0; $i < 5; $i++) {
-                    ?>
+                $length = min(5,sizeof($all_joined_group));
+                for($i=0;$i<$length;$i++){?>
                     <li class="list-group-item" style="width: 100%">
                         <div style="display: inline-block;width:20%">
-                            <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
+                            <img src="<?=$all_joined_group[$i]['group_cover']?>" style="width: 40px;height: 40px">
                         </div>
                         <div id="li_joined_groups">
-                            <a href="#">造梦空间</a>
+                            <a href="<?php echo site_url().get_page_address('single_group').'&id='.$all_joined_group[$i]['ID'];?>"><?= $all_joined_group[$i]['group_name'] ?></a>
                             <!--                            判断是否是该群群主-->
-                            <span class="badge" id="my_group_badge">我创建的</span>
+                            <?php
+                            if(get_current_user_id() == $all_joined_group[$i]['group_author']){
+                                echo '<span class="badge" id="my_group_badge">我创建的</span>';
+                            } ?>
+                        </div>
+                    </li>
+            <?php } ?>
+            </ul>
+        </div>
+
+        <div id="all_groups" style="display: none;word-wrap: break-word; word-break: keep-all;">
+            <ul class="list-group">
+                <?php
+                foreach($all_joined_group as $value){?>
+                    <li class="list-group-item">
+                        <div style="display: inline-block;vertical-align: baseline">
+                            <img src="<?=$value['group_cover']?>" style="width: 40px;height: 40px">
+                        </div>
+                        <div id="li_joined_groups">
+                            <a href="<?php echo site_url().get_page_address('single_group').'&id='.$value['ID'];?>"><?=$value['group_name'] ?></a>
+                            <!--                            判断是否是该群群主-->
+                            <?php
+                            if(get_current_user_id() == $value['group_author']){
+                                echo '<span class="badge" id="my_group_badge">我创建的</span>';
+                            } ?>
                         </div>
                     </li>
                 <?php } ?>
@@ -65,18 +89,24 @@ $group = get_group($group_id);
     <!--未完成任务-->
     <div class="sidebar_list">
         <div class="sidebar_list_header">
-            <p>未完成任务</p>
+            <p>本组未完成任务</p>
         </div>
         <div class="sidebar_divline"></div>
         <ul class="list-group">
             <?php
-            for ($i = 0; $i < 5; $i++) {
-                ?>
-                <li class="list-group-item">
-                    <span><a href="#">学习wiki课程“电子电路基础”</a></span>
-                    <span style="float: right">1天</span>
-                </li>
-            <?php } ?>
+            $unfinish_task = get_unfinish_task($group_id);
+            if(sizeof($unfinish_task)!=0){
+                foreach ($unfinish_task as $key =>$value) {
+                    ?>
+                    <li class="list-group-item">
+                        <span><a href="<?php echo site_url().get_page_address('single_task').'&id='.$value['ID']?>"><?=$value['task_name']?></a></span>
+                        <?php $countdown = countDown($value['ID'])." 天";?>
+                        <span style="float: right"><?=$countdown?></span>
+                    </li>
+                <?php }
+            } else{
+                echo '<div class="alert alert-info" style="margin-top: 10px;padding: 10px">没有未完成的任务!</div>';
+            }?>
         </ul>
     </div>
 
@@ -107,3 +137,18 @@ $group = get_group($group_id);
         </ul>
     </div>
 </div>
+<script>
+    var flag_group = false;
+    function show_all_groups() {
+        var $all_groups=document.getElementById('all_groups');
+        var $joined_groups = document.getElementById('joined_groups');
+        if(flag_group){
+            $all_groups.style.display ="block";
+            $joined_groups.style.display="none";
+        }else{
+            $all_groups.style.display="none";
+            $joined_groups.style.display="block";
+        }
+        flag_group =! flag_group;
+    }
+</script>

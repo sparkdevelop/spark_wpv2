@@ -1,30 +1,11 @@
 <?php
-//$tab = isset($_GET['tab']) && !empty($_GET['tab']) ? $_GET['tab'] : 'task';
-//?>
+$admin_url=admin_url( 'admin-ajax.php' );
+?>
 <style>
     .btn-green{ width: 60px;height: 35px;float: right;font-size: 14px;margin-top: 0px  }
 </style>
 <script>
-    function quit_the_group($group_id) {
-        //ajax
-        var data = {
-            action: 'quit_the_group',
-            group_id: $group_id
-        };
-        $.ajax({
-            //async: false,    //否则永远返回false
-            type: "POST",
-            url: "<?=admin_url('admin-ajax.php');?>",
-            data: data,
-            success: function () {
-                layer.msg("您已成功退群", {time: 2000, icon: 1});
-                location.reload();
-            },
-            error: function () {
-                alert("error");
-            }
-        });
-    }
+
 </script>
 <div class="col-md-9 col-sm-9 col-xs-12"  id="col9">
     <div id="single-group-title">
@@ -34,12 +15,12 @@
         <div id="group-info" style="margin-left: 20px">
             <div class="group_title">
                 <span id="h4_name"><?=$group['group_name']?></span>
-                <span style="color: #fe642d;margin-left: 20px">已加入群组,<a onclick="quit_the_group(<?=$group['ID']?>)">退出</a></span>
+                <span style="color: #fe642d;margin-left: 20px">已加入群组&nbsp;&nbsp;<button id="group_join_btn" onclick="quit_the_group(<?=$group['ID']?>,'<?=$admin_url?>')">退出</button></span>
             </div>
             <div class="group_others">
                 <span><?=$group['member_count']?>个成员</span>&nbsp;&nbsp;
                 <span>管理员</span>
-                <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$author;?>" style="color: #169bd5"><?php echo get_author_name($author)?></a>
+                <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$group['group_author'];?>" style="color: #169bd5"><?php echo get_author_name($group['group_author'])?></a>
             </div>
             <div class="group_create_time">
                 <span>创建于:&nbsp;</span>

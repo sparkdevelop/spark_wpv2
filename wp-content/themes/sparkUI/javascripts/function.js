@@ -65,6 +65,72 @@ function setCSS(flag) {
     }
 }
 
+//加入group
+function join_the_group($group_id,$admin_url) {
+    //ajax
+    var data = {
+        action: 'join_the_group',
+        group_id: $group_id
+    };
+    $.ajax({
+        //async: false,    //否则永远返回false
+        type: "POST",
+        url: $admin_url,
+        data: data,
+        dataType:"text",
+        success: function (response) {
+            if(response.trim()=='freejoin'){
+                layer.msg("您已成功加入", {time: 2000, icon: 1});
+                location.reload();
+            }else if(response.trim()=='verify'){
+                layer.msg("申请已发送,等待管理员审核", {time: 3000, icon: 1});
+                // location.reload();
+            }else{
+                layer.msg("申请已发送,等待管理员审核", {time: 3000, icon: 1});
+            }
+        },
+        error:function () {
+            alert("error");
+        }
+    });
+}
+//退群
+function quit_the_group($group_id,$admin_url) {
+    //ajax
+    var data = {
+        action: 'quit_the_group',
+        group_id: $group_id
+    };
+    $.ajax({
+        //async: false,    //否则永远返回false
+        type: "POST",
+        url: $admin_url,
+        data: data,
+        success: function () {
+            layer.msg("您已成功退群", {time: 2000, icon: 1});
+            location.reload();
+        },
+        error: function () {
+            alert("error");
+        }
+    });
+}
+//验证加群
+function verify_join_the_group($url) {
+    layer.open({
+        type: 2,
+        title: "填写验证字段",
+        content: $url,
+        area: ['70%','80%'],
+        closeBtn:1,
+        shadeClose:true,
+        shade:0.5,
+        end:function () {}
+    })
+}
+
+
+
 //画出我的知识图谱
 function myKnowledgeChart_old(jsonstring) {
     var myChart = echarts.init(document.getElementById('chart'));

@@ -7,15 +7,28 @@
                 <div style="height: 1px;background-color: lightgray"></div>
                 <div style="margin: 20px 20px">
                     <div style="width: 90%;display:inline-block;;">
-                        <h4><a style="color: black" href="#"><?=$all_task[$i]['task_name']?></a></h4>
+                        <?php
+                        if(is_group_member($group_id)){?>
+                            <h4><a style="color: black" href="<?php echo site_url().get_page_address('single_task').'&id='.$all_task[$i]['ID'];?>"><?=$all_task[$i]['task_name']?></a></h4>
+                        <?php }else{ ?>
+                            <h4><a style="color: black;cursor: pointer" onclick="layer.msg('还未加入群组,不能查看任务', {time: 2000, icon: 4});"><?=$all_task[$i]['task_name']?></a></h4>
+                        <?php } ?>
                         <div style="margin-top: 10px">
                             <span>发布人:</span>
                             <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$all_task[$i]['task_author'];?>" style="color: #169bd5"><?php echo get_author_name($all_task[$i]['task_author'])?></a>
-                            <span style="margin-left: 40px">80%成员已完成</span>
+                            <?php $per_all = complete_percentage($group_id,$all_task[$i]['ID']);?>
+                            <span style="margin-left: 40px"><?=$per_all?>%成员已完成</span>
                         </div>
                     </div>
                     <div style="display: inline-block;vertical-align: super">
-                        <button class="btn-green" onclick="location.href ='<?php echo site_url().get_page_address('single_task').'&id='.$all_task[$i]['ID'];?>'">去完成</button>
+                        <?php
+                            if(is_group_member($group_id)){
+                                if(!is_overdue($all_task[$i]['ID'])){?>
+                                    <button class="btn-green" onclick="location.href ='<?php echo site_url().get_page_address('single_task').'&id='.$all_task[$i]['ID'];?>'">去完成</button>
+                                <?php } else{ ?>
+                                    <button class="btn-white">已截止</button>
+                                <?php }
+                            } ?>
                     </div>
                 </div>
             <?php } ?>
@@ -26,4 +39,17 @@
         echo '<div class="alert alert-info" style="margin-top: 20px">Oops, 该群组还没有任务</div>';
     }
 ?>
+<style>
+    .btn-white{
+        width: 60px;
+        height: 35px;
+        float: right;
+        font-size: 14px;
+        margin-top: 0px;
+        background-color: transparent;
+        color: #1fbba6;
+        border: 1px solid #1fbba6;
+        border-radius: 5px;
+    }
+</style>
 

@@ -20,7 +20,7 @@ $task_name = isset($_POST["tname"]) ? $_POST["tname"] : '';
 $task_author = isset($_POST["tauthor"]) ? $_POST["tauthor"] : '';
 
 $belong_to = isset($_POST['belong_to']) ? $_POST['belong_to'] : '';
-
+//echo $belong_to;
 $task_content = isset($_POST["tabstract"]) ? $_POST["tabstract"] : '';
 
 $task_type  = isset($_POST["ttype"]) ? $_POST["ttype"] : '';
@@ -28,14 +28,6 @@ $task_type  = isset($_POST["ttype"]) ? $_POST["ttype"] : '';
 $create_date = isset($_POST["tcreatedate"]) ? $_POST["tcreatedate"] : "";
 
 $deadline = isset($_POST["tdeadline"]) ? $_POST["tdeadline"] : "";
-
-echo "task_name: ".$task_name."<br>";
-echo "task_author: ".$task_author."<br>";
-echo "belong_to:".$belong_to."<br>";
-echo "task_content: ".$task_content."<br>";
-echo "task_type: ".$task_type ."<br>";
-echo "create_date: ".$create_date ."<br>";
-echo "deadline: ".$deadline ."<br>";
 
 $sql_fun = "select ID from wp_gp_task ORDER BY ID DESC LIMIT 0,1";
 $result = $wpdb->get_results($sql_fun);
@@ -53,9 +45,13 @@ if ($task_type == "tread"){
 $sql = "INSERT INTO wp_gp_task VALUES ($task_id,'$task_name',$task_author,$belong_to,
                                           '$task_content','publish','$task_type',
                                           '$create_date','$deadline',0)";
-
+//echo $sql;
 if($task_name!="" && $task_content!="" && $task_author!="" && $belong_to !="" &&
     $task_type!="" && $create_date!=""){
     $wpdb->query($sql);
-    echo $sql;
 }
+$url= site_url().get_page_address('single_task').'&id='.$task_id;
+?>
+<script>
+    location.replace("<?=$url?>");
+</script>

@@ -58,20 +58,23 @@
         </div>
         <!--分割线-->
         <div class="sidebar_divline"></div>
-
+        <?php $all_joined_group = get_current_user_group();?>
         <div id="joined_groups" style="word-wrap: break-word; word-break: keep-all;">
             <ul class="list-group">
                 <?php
-                for ($i = 0; $i < 5; $i++) {
-                    ?>
+                $length = min(5,sizeof($all_joined_group));
+                for($i=0;$i<$length;$i++){?>
                     <li class="list-group-item" style="width: 100%">
                         <div style="display: inline-block;width:20%">
-                            <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
+                            <img src="<?=$all_joined_group[$i]['group_cover']?>" style="width: 40px;height: 40px">
                         </div>
                         <div id="li_joined_groups">
-                            <a href="#">造梦空间</a>
+                            <a href="<?php echo site_url().get_page_address('single_group').'&id='.$all_joined_group[$i]['ID'];?>"><?= $all_joined_group[$i]['group_name'] ?></a>
                             <!--                            判断是否是该群群主-->
-                            <span class="badge" id="my_group_badge">我创建的</span>
+                            <?php
+                            if(get_current_user_id() == $all_joined_group[$i]['group_author']){
+                                echo '<span class="badge" id="my_group_badge">我创建的</span>';
+                            } ?>
                         </div>
                     </li>
                     <?php
@@ -83,20 +86,21 @@
         <div id="all_groups" style="display: none;word-wrap: break-word; word-break: keep-all;">
             <ul class="list-group">
                 <?php
-                foreach ($result as $value) {
-                    ?>
+                foreach($all_joined_group as $value){?>
                     <li class="list-group-item">
                         <div style="display: inline-block;vertical-align: baseline">
-                            <img src="<?php bloginfo("template_url") ?>/img/avatar.png" style="margin-top: -15px">
+                            <img src="<?=$value['group_cover']?>" style="width: 40px;height: 40px">
                         </div>
-                        <div style="display: inline-block; vertical-align: baseline">
-                            <a href="personal.php" class="author_link">如影随风</a>
-                            <p>北邮信通院大四学长</p>
+                        <div id="li_joined_groups">
+                            <a href="<?php echo site_url().get_page_address('single_group').'&id='.$value['ID'];?>"><?=$value['group_name'] ?></a>
+                            <!--                            判断是否是该群群主-->
+                            <?php
+                            if(get_current_user_id() == $value['group_author']){
+                                echo '<span class="badge" id="my_group_badge">我创建的</span>';
+                            } ?>
                         </div>
                     </li>
-                    <?php
-                }
-                ?>
+                <?php } ?>
             </ul>
         </div>
     </div>
@@ -111,12 +115,17 @@
 
         <div id="latestJoin">
             <?php
-            for ($j = 0; $j < 5; $j++) { ?>
+            $latest_active = get_latest_active($group_id);
+            for ($j = 0; $j < min(5,sizeof($latest_active)); $j++) { ?>
                 <div style="display: inline-block;margin-top: 10px">
                     <div style="text-align: center;width: 45px">
-                        <?php echo get_avatar(get_current_user_id(), 30, ''); ?>
+                        <?php echo get_avatar($latest_active[$j], 30, ''); ?>
+                        <p style="width: 48px;word-wrap: break-word;margin-bottom: 0px">
+                            <?php
+                            $user_name = get_user_by('ID',$latest_active[$j])->display_name;
+                            echo mb_strimwidth($user_name, 0, 7,".."); ?>
+                        </p>
                     </div>
-                    <?php // echo wp_get_current_user()->display_name; ?>
                 </div>
             <?php } ?>
         </div>
@@ -150,3 +159,18 @@
         </ul>
     </div>
 </div>
+<script>
+    var flag_group = false;
+    function show_all_groups() {
+        var $all_groups=document.getElementById('all_groups');
+        var $joined_groups = document.getElementById('joined_groups');
+        if(flag_group){
+            $all_groups.style.display ="block";
+            $joined_groups.style.display="none";
+        }else{
+            $all_groups.style.display="none";
+            $joined_groups.style.display="block";
+        }
+        flag_group =! flag_group;
+    }
+</script>

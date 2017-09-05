@@ -1515,5 +1515,71 @@ h4 {
 .question-title {
     color: black
 }
+/*加入群组按钮*/
+#group_join_btn{
+    border: 1px solid transparent;
+    background-color: #1fbba6;
+    color: #fff;
+    border-radius: 5px;
+}
+/*群组主页css*/
+#group-ava {
+    display: inline-block;
+    float: left;
+    width: 10%;
+}
 
+#group-info {
+    display: inline-block;
+    width: 55%;
+}
+
+#latest-active {
+    display: inline-block;
+    float: right;
+    /*margin-top: 10px;*/
+}
+
+.group_title h4 {
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
+.group_others {
+    margin-top: 10px;
+}
+
+#member_manage_table{
+    border: 1px solid lightgrey;
+    margin: 20px 20px;
+    width: 95%
+}
+.table,.table-striped,.table-bordered {
+    margin: 20px 0px;
+}
+.table,.table-striped thead {
+    border: 1px solid #f9f9f9;
+}
+.table,.table-bordered thead > tr >th {
+    border-bottom-width: 1px;
+    text-align: center;
+}
+.table,.table-striped thead > tr >th {
+    text-align: center;
+    border-bottom-width: 1px;
+    border-right: 1px solid #f2f2f2;
+}
+.table,.table-striped tbody > tr >td {
+    text-align: center;
+    border: 1px solid #f2f2f2;
+}
+/*任务页面的任务简介*/
+#single-task-abstract p {
+    background: #f9f9f9;
+    padding: 20px 20px;
+    margin-top: 10px;
+}
+#single-task-abstract {
+    margin-top: 20px;
+}
 

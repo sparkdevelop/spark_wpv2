@@ -1,6 +1,6 @@
 <?php
 //获取verify的值
-$group_id = $group[0]['ID'];
+$group_id = $group['ID'];
 $verifyField = get_verify_field($group_id,'group');
 ?>
 <style>
@@ -32,7 +32,7 @@ $verifyField = get_verify_field($group_id,'group');
             var data = {
                 action: 'checkGroupName',
                 groupName: groupName,
-                nowGroupName:'<?=$group[0]['group_name']?>'
+                nowGroupName:'<?=$group['group_name']?>'
             };
             $.ajax({
                 async: false,    //否则永远返回false
@@ -92,7 +92,7 @@ $verifyField = get_verify_field($group_id,'group');
             <label for="gname" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">群组名称<span
                     style="color: red">*</span></label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="gname" id="gname" placeholder="请输入群组名称" value="<?=$group[0]['group_name']?>"
+                <input type="text" class="form-control" name="gname" id="gname" placeholder="请输入群组名称" value="<?=$group['group_name']?>"
                        onblur="checkGroupName(this.value)"/>
             </div>
             <span style="line-height: 30px;height: 30px" id="checkGroupNamebox"></span>
@@ -103,7 +103,7 @@ $verifyField = get_verify_field($group_id,'group');
                     style="color: red">*</span></label>
             <div class="col-sm-6">
                 <textarea class="form-control" rows="5" name="gabstract" id="gabstract" placeholder="请输入群组简介"
-                          onblur="checkGroupAbs(this.value)"><?=$group[0]['group_abstract']?></textarea>
+                          onblur="checkGroupAbs(this.value)"><?=$group['group_abstract']?></textarea>
             </div>
             <span style="line-height: 30px;height: 30px" id="checkGroupAbsbox"></span>
         </div>
@@ -225,7 +225,7 @@ $verifyField = get_verify_field($group_id,'group');
         </script>
         <!--        隐藏信息-->
         <div class="form-group">
-            <input type="hidden" name="group_id" value="<?=$group[0]['ID']?>">
+            <input type="hidden" name="group_id" value="<?=$group['ID']?>">
         </div>
 
         <div class="form-group">

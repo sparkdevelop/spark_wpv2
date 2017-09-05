@@ -17,10 +17,10 @@
 //}
 
 //刷新xml表内容
-    updateContentItem('yada_wiki');
-    updateContentItem('post');
+//    updateContentItem('yada_wiki');
+//    updateContentItem('post');
 
 //插入实体表内容
     //updateInsertEntity();
 
-
+print_r(get_verify_type(3));

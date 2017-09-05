@@ -12,7 +12,7 @@
         setcookie('group_id',$group_id);
         require "single_group_join_sidebar.php";
     }else{
-        if(get_current_user_id() == $group['group_author']){
+        if(is_group_admin($group_id)){
             setcookie('group_id',$group_id);
             require "single_group_join_sidebar.php";
         }else{

@@ -1,6 +1,7 @@
 <?php
 //获取当前群组唯一标识符 id 进而获取所有group信息
 $task_id = isset($_GET['id']) ? $_GET['id'] : "";
+$admin_url=admin_url( 'admin-ajax.php' );
 if($task_id != ""){
     $group_id = get_task_group($task_id);
     $task = get_task($group_id, $task_id);
