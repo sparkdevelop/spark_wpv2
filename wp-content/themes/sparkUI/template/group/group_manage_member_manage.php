@@ -72,7 +72,7 @@ $member_info = get_member_info($group_id);
 <div style="display: inline-block;vertical-align: super;margin-left: 20px">
     <button class="btn-green"  onclick="changeIndentity('<?=$admin_url?>','admin',<?=$group_id?>)">设为管理员</button>
     <button class="btn-green" onclick="changeIndentity('<?=$admin_url?>','member',<?=$group_id?>)">设为普通成员</button>
-    <button class="btn-green" onclick="kick_out_the_group('<?=$admin_url?>',<?=$group_id?>)">提出群组</button>
+    <button class="btn-green" onclick="kick_out_the_group('<?=$admin_url?>',<?=$group_id?>)">踢出群组</button>
 </div>
 
 <script>
