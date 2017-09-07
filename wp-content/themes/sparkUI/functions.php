@@ -2793,6 +2793,24 @@ function verify_ignore_process($user_id,$group_id){
     $wpdb->get_results($sql_delete_tmp);
 }
 
+//判断用户是否多次发送加入申请
+function in_member_tmp($user_id,$group_id){
+    global $wpdb;
+    $sql = "SELECT * FROM wp_gp_member_verify_tmp WHERE user_id = $user_id and group_id=$group_id";
+    $col = $wpdb->query($sql);
+    if ($col==0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+
+
+
+
+
+
 /* 群组管理之成员管理页面
  * 获取成员的基本信息 get_member_info($group_id)
  * 修改成员身份 changeIndentity

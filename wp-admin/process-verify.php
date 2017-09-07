@@ -25,9 +25,15 @@ $user_id = isset($_POST["user_id"]) ? $_POST["user_id"] : '';
 $apply_time = isset($_POST["apply_time"]) ? $_POST["apply_time"] : '';
 
 //存入tmp里等待审核
+
+$sql_insert_tmp = "INSERT INTO wp_gp_member_verify_tmp VALUES ('',$user_id,$group_id,'$apply_time','$verify_info')";
+$sql_update_tmp = "UPDATE wp_gp_member_verify_tmp SET apply_time = '$apply_time', verify_info='$verify_info' WHERE user_id=$user_id and group_id=$group_id";
 if($field_num!=0 && $group_id!="" && $user_id!="" && $apply_time!=""){
-    $sql_insert_tmp = "INSERT INTO wp_gp_member_verify_tmp VALUES ('',$user_id,$group_id,'$apply_time','$verify_info')";
-    $wpdb->get_results($sql_insert_tmp);
+    if(in_member_tmp($user_id,$group_id)){ //tmp表中有这个user和groupid的信息
+        $wpdb->get_results($sql_update_tmp);
+    }else{
+        $wpdb->get_results($sql_insert_tmp);
+    }
 }
 ?>
 <script>

@@ -61,7 +61,7 @@
                                 if ($verify_type == 'verifyjoin') { ?>
                                     <button id="group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
                                 <?php } else { ?>
-                                    <button id="group_join_btn" onclick="join_the_group(<?= $all_group[$i]['ID'] ?>,'<?= $admin_url ?>')">+加入</button>&nbsp;&nbsp;
+                                    <button id="group_join_btn" onclick="join_the_group(<?= $all_group[$i]['ID'] ?>,'<?= $admin_url ?>')">加入</button>&nbsp;&nbsp;
                                 <?php }
                             }
                             ?>
