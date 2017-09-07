@@ -52,7 +52,9 @@ $group = get_group($group_id);
                             <img src="<?=$all_joined_group[$i]['group_cover']?>" style="width: 40px;height: 40px">
                         </div>
                         <div id="li_joined_groups">
-                            <a href="<?php echo site_url().get_page_address('single_group').'&id='.$all_joined_group[$i]['ID'];?>"><?= $all_joined_group[$i]['group_name'] ?></a>
+                            <a href="<?php echo site_url().get_page_address('single_group').'&id='.$all_joined_group[$i]['ID'];?>">
+                                <?php echo mb_strimwidth($all_joined_group[$i]['group_name'] , 0, 16,"..");?>
+                            </a>
                             <!--                            判断是否是该群群主-->
                             <?php
                             if(get_current_user_id() == $all_joined_group[$i]['group_author']){
@@ -73,7 +75,9 @@ $group = get_group($group_id);
                             <img src="<?=$value['group_cover']?>" style="width: 40px;height: 40px">
                         </div>
                         <div id="li_joined_groups">
-                            <a href="<?php echo site_url().get_page_address('single_group').'&id='.$value['ID'];?>"><?=$value['group_name'] ?></a>
+                            <a href="<?php echo site_url().get_page_address('single_group').'&id='.$value['ID'];?>">
+                                <?php echo mb_strimwidth($value['group_name'] , 0, 16,"..");?>
+                            </a>
                             <!--                            判断是否是该群群主-->
                             <?php
                             if(get_current_user_id() == $value['group_author']){
