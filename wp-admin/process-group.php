@@ -64,7 +64,7 @@
                                           '$task_permission','$create_date',1)";
 
     $sql_member = "INSERT INTO wp_gp_member VALUES ('',$group_author,$group_id,'admin','$create_date','',0)";
-echo $sql_member;
+
     if($group_name!="" && $group_abstract!="" && $group_status!="" &&
         $join_permission!="" && $task_permission!=""){
         $wpdb->query($sql_gp);
