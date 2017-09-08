@@ -114,7 +114,7 @@ $per_all = complete_percentage($group_id,$task_id);
             success:function (response) {
                 <?php $url = get_template_directory_uri() . "/img/complete.png";?>
                 $(response).html("<img src='<?=$url?>'>");
-                window.open(link);
+                location.href=link;
             },
             error: function () {
                 alert('error')
