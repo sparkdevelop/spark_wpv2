@@ -102,15 +102,16 @@
         <!--列表内容 需要填写的都用php提取出来就行-->
         <ul class="list-group">
             <?php
-            $task_author= "黄冰瑶";
-            $task_identity= "管理员";
-            $group_name = "造梦空间";
-            $task_name = "学习导论实践课wiki的基础课程";
-            $task_address = "#";
-            for($i=0;$i<5;$i++){
+            $notification = get_gp_notification();
+            for($i=0;$i<min(5,sizeof($notification));$i++){
+                $task_author= $notification[$i]['task_author'];
+                $task_identity= $notification[$i]['task_identity'];
+                $group_name = $notification[$i]['group_name'];
+                $task_name = $notification[$i]['task_name'];
+                $task_address = $notification[$i]['task_address'];
                 ?>
                 <li class="list-group-item">
-                    <span><?=$task_identity.$task_author?>在<?=$group_name?>发布了任务</span>
+                    <span><?=$task_identity.$task_author?>在<span style="font-weight: bolder;"><?=$group_name?></span>发布了任务</span>
                     <span><a href="<?=$task_address?>" style="color: #169bd5"><?=$task_name?></a></span>
                 </li>
                 <?php

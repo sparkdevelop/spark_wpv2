@@ -2471,6 +2471,7 @@ function gp_member_team_table_install()
         dbDelta($sql);
     }
 }
+
 //建立任务完成tmp表,针对reading任务
 function gp_task_complete_tmp_table_install()
 {
@@ -2869,14 +2870,29 @@ function kick_out_the_group()
     global $wpdb;
     $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : "";
     $group_id = isset($_POST['group_id']) ? $_POST['group_id'] : "";
-    if ($group_id != "" and $user_id !="") {
+    $admin = get_group_member($group_id)['admin'];
+    $response_tmp = "notadmin";
+    if(sizeof($admin)==1){
         for($i=0;$i<sizeof($user_id);$i++){
-            $sql_member = "update wp_gp_member set member_status = 1 WHERE user_id = $user_id[$i] and group_id = $group_id";
-            $wpdb->get_results($sql_member);
-            $sql_cut_count = "update wp_gp set member_count = (member_count-1) WHERE ID = $group_id";
-            $wpdb->get_results($sql_cut_count);
+            if($user_id[$i] == $admin[0]['user_id']){
+                $response_tmp = "isadmin";
+            }
         }
     }
+    if($response_tmp=="notadmin"){
+        if ($group_id != "" and $user_id !="") {
+            for($i=0;$i<sizeof($user_id);$i++){
+                $sql_member = "update wp_gp_member set member_status = 1 WHERE user_id = $user_id[$i] and group_id = $group_id";
+                $wpdb->get_results($sql_member);
+                $sql_cut_count = "update wp_gp set member_count = (member_count-1) WHERE ID = $group_id";
+                $wpdb->get_results($sql_cut_count);
+            }
+            $response = "success";
+        }
+    }else{
+        $response = "error";
+    }
+    echo $response;
     die();
 }
 add_action('wp_ajax_kick_out_the_group', 'kick_out_the_group');
@@ -3089,6 +3105,74 @@ function get_latest_active($group_id_tmp){
     //print_r($group_active_id);
     return $group_active_id;
 }
+
+/*群组动态栏（即发布任务的动态）
+ * 返回：包含所有动态信息的数组
+ * 结构：$group_task[$i]['task_author'];
+                        ['task_identity'];
+                        ['group_name'];
+                        ['task_name'];
+                        ['task_address'];
+ */
+function get_gp_notification(){
+    global $wpdb;
+
+    $group_task_info = $wpdb->get_results("select * from wp_gp_task");
+
+    //按照发布日期降序排列
+    usort($group_task_info,function($a,$b){
+        if ($a==$b) return 0;
+
+        return ($a->create_date > $b->create_date)?-1:1;
+    });
+
+    $group_task = array();
+    foreach($group_task_info as $item) {
+        $single_task = array();
+
+        //作者、身份、组名、任务名
+        $task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->task_author);
+        $single_task['task_author'] = $task_author_info[0]->user_login;
+
+        $task_author_iden_info = $wpdb->get_results("select * from wp_gp_member where user_id=".$item->task_author." and group_id=".$item->belong_to);
+        $task_author_iden = $task_author_iden_info[0]->indentity;
+        if(strcmp($task_author_iden,"member") == 0){
+            $single_task['task_identity'] = "成员";
+        }else if(strcmp($task_author_iden,"admin") == 0){
+            $single_task['task_identity'] = "管理员";
+        }
+
+        /*$task_author_iden_info = $wpdb->get_results("select * from wp_gp where group_author=".$item->task_author." and ID=".$item->belong_to);
+        if($task_author_iden_info != null){
+            $single_task['task_identity'] = "管理员";
+        }else{
+            $task_author_iden_info = $wpdb->get_results("select * from wp_gp_member where user_id=".$item->task_author." and group_id=".$item->belong_to);
+            if($task_author_iden_info != null){
+               $single_task['task_identity'] = "成员";}
+        }*/
+
+        $task_group_info = $wpdb->get_results("select * from wp_gp where ID=".$item->belong_to);
+        $single_task['group_name'] = $task_group_info[0]->group_name;
+
+        $single_task['task_name'] = $item->task_name;
+
+        $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_task'),'id'=>$item->ID),get_home_url());
+
+        $group_task[] = $single_task;
+    }
+
+
+    //print_r($group_task);
+    return $group_task;
+}
+
+
+
+
+
+
+
+
 
 //判断用户名输入的是否正确ajax
 function checkUserName(){

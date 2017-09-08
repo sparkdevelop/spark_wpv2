@@ -176,9 +176,15 @@ $member_info = get_member_info($group_id);
             url: url,
             data: data,
             dataType:"text",
-            success: function () {
-                layer.msg('已移除', {time: 2000, icon: 1});
-                location.reload();
+            success: function (response) {
+                alert(response.trim());
+                if(response.trim()=="success") {
+                    layer.msg('已移除', {time: 2000, icon: 1});
+                    location.reload();
+                }else{
+                    layer.msg('不能将唯一的管理员剔出群组', {time: 2000, icon: 2});
+                    location.reload();
+                }
             },
             error:function () {
                 alert("error");

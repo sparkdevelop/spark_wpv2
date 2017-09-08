@@ -13,14 +13,13 @@ $count = count($revisions);
         <td>Date</td>
     </tr>
     <?php
-    for($i = 0; $i < $count; $i++)
-    {
+    for ($i = 0; $i < $count; $i++) {
         ?>
         <tr>
-            <td><?php echo $revisions[$i]->ID?></td>
-            <td><?php echo $revisions[$i]->post_author?></td>
-            <td><?php echo $revisions[$i]->post_title?></td>
-            <td><?php echo $revisions[$i]->post_date?></td>
+            <td><?php echo $revisions[$i]->ID ?></td>
+            <td><?php echo $revisions[$i]->post_author ?></td>
+            <td><?php echo $revisions[$i]->post_title ?></td>
+            <td><?php echo $revisions[$i]->post_date ?></td>
         </tr>
         <?php
     }
