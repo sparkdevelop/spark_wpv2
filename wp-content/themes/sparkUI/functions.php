@@ -2807,11 +2807,6 @@ function in_member_tmp($user_id,$group_id){
 }
 
 
-
-
-
-
-
 /* 群组管理之成员管理页面
  * 获取成员的基本信息 get_member_info($group_id)
  * 修改成员身份 changeIndentity
@@ -3165,13 +3160,6 @@ function get_gp_notification(){
     //print_r($group_task);
     return $group_task;
 }
-
-
-
-
-
-
-
 
 
 //判断用户名输入的是否正确ajax

@@ -32,7 +32,7 @@ $common_list = $member_list['common'];
                 <div style="text-align: center;width: 45px">
                     <?php echo get_avatar($admin_list[$j]['user_id'], 48, ''); ?>
                 </div>
-                <h5 style="text-align:center;width: 48px;word-wrap: break-word"><?php echo mb_strimwidth(get_user_by('ID',$admin_list[$j]['user_id'])->display_name, 0, 7,"..") ?></h5>
+                <h5 style="text-align:center;width: 50px;word-wrap: break-word"><?php echo mb_strimwidth(get_user_by('ID',$admin_list[$j]['user_id'])->display_name, 0, 7,"..") ?></h5>
             </div>
         <?php } ?>
     </div>
@@ -43,7 +43,7 @@ $common_list = $member_list['common'];
                 <div style="text-align: center;width: 45px">
                     <?php echo get_avatar($common_list[$j]['user_id'], 48, ''); ?>
                 </div>
-                <h5 style="text-align:center;width: 48px;word-wrap: break-word"><?php echo get_user_by('ID',$common_list[$j]['user_id'])->display_name ?></h5>
+                <h5 style="text-align:center;width: 50px;word-wrap: break-word"><?php echo get_user_by('ID',$common_list[$j]['user_id'])->display_name ?></h5>
             </div>
         <?php } ?>
     </div>

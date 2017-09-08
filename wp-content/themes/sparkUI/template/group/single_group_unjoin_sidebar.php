@@ -108,7 +108,7 @@
         <div id="latestJoin">
             <?php
             $latest_active = get_latest_active($group_id);
-            for ($j = 0; $j < 5; $j++) { ?>
+            for ($j = 0; $j < min(5,sizeof($latest_active)); $j++) { ?>
                 <div style="display: inline-block;margin-top: 10px">
                     <div style="text-align: center;width: 50px">
                         <?php echo get_avatar($latest_active[$j], 30, ''); ?>
@@ -118,7 +118,6 @@
                             echo mb_strimwidth($user_name, 0, 7,".."); ?>
                         </p>
                     </div>
-
                 </div>
             <?php } ?>
         </div>
