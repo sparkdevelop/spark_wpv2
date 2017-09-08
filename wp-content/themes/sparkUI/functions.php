@@ -3036,15 +3036,22 @@ function complete_all_read($task_id,$user_id){
     return $per;
 }
 
-//群组中完成成员的总百分比 退出群组怎么办——————不用管,仍然保存他的数据
+//群组中完成成员的总百分比 退出群组怎么办——————不用管,仍然保存他的数据但不统计
 function complete_percentage($group_id,$task_id){
     /* step1: 取出本组所有的成员数
      * step2: 取出本组所有完成的成员数
      * */
     global $wpdb;
     $all_member = get_group($group_id)[0]['member_count'];
+    $complete_member = 0;
+    //sql_complete是目前在群组中的成员的完成数量
     $sql_complete = "SELECT * FROM wp_gp_task_member WHERE task_id =$task_id";
-    $complete_member = $wpdb->query($sql_complete);
+    $complete_info = $wpdb->get_results($sql_complete,'ARRAY_A');
+    foreach($complete_info as $value){
+        if(is_group_member($group_id,$value['user_id'])){ //是群组成员才算完成情况
+            $complete_member += 1;
+        }
+    }
     $per = round(($complete_member/$all_member)*100);
     return $per;
 }
