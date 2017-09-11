@@ -6,7 +6,7 @@ $search_word=$_GET['s'];
         <div class="m-search-project-list" style="float: left;">
             <?php
             if ( has_post_thumbnail() ) { ?>
-                <img src="<?php the_post_thumbnail_url('full')?>" style="height:100px;width:180px;display: block"/>
+                <img src="<?php the_post_thumbnail_url('thumbnail')?>" style="height:100px;width:180px;display: block"/>
             <?php } else {?>
                 <img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" height="100" width="180"/>
             <?php } ?>
