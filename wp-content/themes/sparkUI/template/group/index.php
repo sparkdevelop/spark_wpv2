@@ -1,7 +1,11 @@
 <!-- 本页面是群组的主页,按照我的收藏写翻页-->
 <?php $admin_url=admin_url( 'admin-ajax.php' );?>
-<style></style>
+
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
+    <div>
+        <a href="<?php echo site_url() . get_page_address('budao_index')?>">布道师大赛入口!置顶</a>
+    </div>
+
     <h4 class="index_title" style="margin-left: 20px">所有群组</h4>
     <div class="divline"></div>
     <ul class="list-group">

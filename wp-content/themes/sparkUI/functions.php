@@ -2738,6 +2738,14 @@ function verify_pass(){
             }
         }
     }
+    //布道版块审核处理
+    /* 上面已经执行过加入官方群的操作
+     * 首先判断本群是否为官方群,如果是
+     * 创建一个新的群组,
+     * */
+    if($group_id == get_group_id_by_name('布道师大赛')){
+        create_budao_group($user_id);
+    }
     exit();
 }
 add_action('wp_ajax_verify_pass', 'verify_pass');
@@ -3376,8 +3384,52 @@ function change_grade_other(){
 add_action('wp_ajax_change_grade_other', 'change_grade_other');
 add_action('wp_ajax_nopriv_change_grade_other', 'change_grade_other');
 
+/* 布道师大赛所用的模块
+ * */
+function get_group_id_by_name($group_name){
+    global $wpdb;
+    $sql = "SELECT ID FROM wp_gp WHERE group_name = '$group_name'";
+    $res = $wpdb->get_results($sql);
+    return $res[0]->ID;
+}
+
+function create_budao_group($user_id){
+    global $wpdb;
+    $user_name = get_author_name($user_id);
+    $group_name = "布道师".$user_name."的群组";
+    $group_author = $user_id;
+    $group_abstract = "这里为布道师".$user_name."的群组";
+    $group_status = 'open';
+    $join_permission = 'freejoin';
+    $task_permission = 'admin'; //all、admin
+    $create_date = date("Y-m-d H:i:s", time() + 8 * 3600);
+    $upload_path = wp_upload_dir();  //获取wordpress的上传路径。
+
+    $group_cover_address = $upload_path['baseurl'] . "/group-avatars/1/default.png";
+    $new_upload_path = $upload_path['basedir'] . "/group-avatars/1/default.png";
+
+    //处理加入方式
+    //首先获取最后一个group_id;
+    $sql_fun = "select ID from wp_gp ORDER BY ID DESC LIMIT 0,1";
+    $result = $wpdb->get_results($sql_fun);
+    $group_id = $result[0]->ID+1;
 
 
+    $sql_gp = "INSERT INTO wp_gp VALUES ('$group_id','$group_name',$group_author,
+                                          '$group_abstract','$group_status','budao',
+                                          '$group_cover_address','$join_permission',
+                                          '$task_permission','$create_date',1)";
+
+    $sql_member = "INSERT INTO wp_gp_member VALUES ('',$group_author,$group_id,'admin','$create_date','',0)";
+
+    $sql_group_name = "SELECT ID FROM wp_gp WHERE group_name = '$group_name'";
+    $col = $wpdb->query($sql_group_name);
+    if($col == 0 && $group_abstract!="" && $group_status!="" &&
+        $join_permission!="" && $task_permission!=""){
+        $wpdb->query($sql_gp);
+        $wpdb->query($sql_member);
+    }
+}
 
 
 //修改域名  域名要包括http

@@ -177,7 +177,6 @@ $member_info = get_member_info($group_id);
             data: data,
             dataType:"text",
             success: function (response) {
-                alert(response.trim());
                 if(response.trim()=="success") {
                     layer.msg('已移除', {time: 2000, icon: 1});
                     location.reload();

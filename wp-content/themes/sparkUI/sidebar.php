@@ -80,6 +80,11 @@ if (is_page("single_task")){
     }
     require "template/group/single_task_sidebar.php";
 }
+if (is_page("budao_index")){
+    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_groupsidebar')){
+    }
+    require "template/budao/index_sidebar.php";
+}
 //这个判断wiki详情是谁写的，not created by chenli
 if(is_page("wiki详情")) {
     require "template/wiki/wiki_entry_sidebar.php";

@@ -1540,6 +1540,26 @@ h4 {
     /*margin-top: 10px;*/
 }
 
+#my_group_badge{
+    color: #fe642d;
+    border: solid 1px;
+    border-color: #fe642d;
+    float: right;
+    margin-top: 10px;
+}
+
+#li_joined_groups{
+    display: inline-block;
+    width: 80%;
+    float: right
+}
+#li_joined_groups a {
+    margin-left: 20px;
+    font-size: medium;
+    font-weight: bold;
+    height: 40px;
+    line-height: 40px;
+}
 .group_title h4 {
     margin-bottom: 10px;
     margin-top: 0px;

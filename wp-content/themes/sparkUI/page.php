@@ -74,6 +74,12 @@
                     }
                     require "template/group/verify_form.php";
                 }
+                elseif (is_page('budao_index')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/budao/index.php";
+                }
                 elseif (is_page("ask")) {
                     if (is_user_logged_in()) {
                         require "template/qa/QA_ask.php";

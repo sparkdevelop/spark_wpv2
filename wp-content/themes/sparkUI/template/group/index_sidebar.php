@@ -1,27 +1,6 @@
 <?php
 //本页面是群组首页的侧边栏
 ?>
-<style>
-    #my_group_badge{
-        color: #fe642d;
-        border: solid 1px;
-        border-color: #fe642d;
-        float: right;
-        margin-top: 10px;
-    }
-    #li_joined_groups{
-        display: inline-block;
-        width: 80%;
-        float: right
-    }
-    #li_joined_groups a{
-        margin-left:20px;
-        font-size: medium;
-        font-weight: bold;
-        height: 40px;
-        line-height: 40px;
-    }
-</style>
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
     <?php if(is_user_logged_in()){ ?>
         <div class="sidebar_button">
