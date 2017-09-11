@@ -1,4 +1,24 @@
 <style>
+    #myCarousel{
+        background: #f0f0f0;
+        width: 100%;
+        height:520px;
+    }
+
+    .carousel-inner{
+        background: #f0f0f0;
+        width: 100%;
+        height:520px;
+    }
+    .carousel-inner .item{
+        position: absolute;
+        height: 520px;
+        width: 100%;
+        background-position: 55% 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        transition: opacity 200ms ease-in-out;
+    }
     .head-box{
         background: #f0f0f0;
         width: 100%;
@@ -53,13 +73,39 @@ gp_member_team_table_install();
 gp_task_complete_tmp_table_install();
 get_header();
 ?>
+<script>
+    $(document).ready(function () {
+        $("#myCarousel").carousel('cycle');
+    });
 
+</script>
 <div class="container-fluid" style="padding: 0;">
-    <div class="head-box">
-        <div class="banner-background">
-            <img class="m-banner" src="<?php bloginfo("template_url")?>/img/spark_banner_m.jpg" alt=""/>
+    <div id="myCarousel" class="carousel slide">
+        <!-- 轮播（Carousel）指标 -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+        </ol>
+        <!-- 轮播（Carousel）项目 -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="<?php bloginfo("template_url")?>/img/spark_banner.png" alt="First slide"/>
+            </div>
+            <div class="item">
+                <img src="<?php bloginfo("template_url")?>/img/timg.png" alt="Second slide" onclick="location.replace('<?php echo site_url() . get_page_address('budao_index')?>')">
+            </div>
         </div>
+        <!-- 轮播（Carousel）导航 -->
+        <a class="carousel-control left" href="#myCarousel"
+           data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#myCarousel"
+           data-slide="next">&rsaquo;</a>
     </div>
+<!--    <div class="head-box">-->
+<!--        <div class="banner-background">-->
+<!--            <img class="m-banner" src="--><?php //bloginfo("template_url")?><!--/img/spark_banner_m.jpg" alt=""/>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 <!--    <div class="container" style="padding: 0">-->
 <!--        <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0 30px 0 0 ">-->
