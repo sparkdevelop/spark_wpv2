@@ -72,7 +72,7 @@ $author_posts = new WP_Query(array('posts_per_page' => 12, 'paged' => $paged, 'o
                         </span> <!--删除文章-->
                         <?php
                         if ( has_post_thumbnail() ) { ?>
-                            <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php the_post_thumbnail_url('full')?>" class="cover" /></a>
+                            <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php the_post_thumbnail_url('thumbnail')?>" class="cover" /></a>
                         <?php } else {?>
                             <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" class="cover" /></a>
                         <?php } ?>
