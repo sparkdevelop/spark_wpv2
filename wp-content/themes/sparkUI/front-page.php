@@ -92,7 +92,7 @@ get_header();
                 <img src="<?php bloginfo("template_url")?>/img/spark_banner.png" alt="First slide"/>
             </div>
             <div class="item">
-                <img src="<?php bloginfo("template_url")?>/img/timg.png" alt="Second slide" onclick="location.replace('<?php echo site_url() . get_page_address('budao_index')?>')">
+                <img src="<?php bloginfo("template_url")?>/img/budao.jpg" alt="Second slide" onclick="location.replace('<?php echo site_url() . get_page_address('budao_index')?>')">
             </div>
         </div>
         <!-- 轮播（Carousel）导航 -->
