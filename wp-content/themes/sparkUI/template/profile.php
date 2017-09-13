@@ -137,7 +137,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
             <label for="old-password" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">原密码</label>
             <div class="col-sm-6">
                 <input type="password" class="form-control" id="inputPassword"
-                       placeholder="请输入密码" value=""
+                       placeholder="请输入密码(微信登陆用户此项为空即可)" value=""
                        onblur="checkPassword(this.value);">
             </div>
             <span style="line-height: 30px;height: 30px" id="checkpassword"></span>
