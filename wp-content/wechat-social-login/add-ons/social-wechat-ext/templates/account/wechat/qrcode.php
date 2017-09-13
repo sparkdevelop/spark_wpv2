@@ -17,7 +17,7 @@ if ( ! $guessurl = site_url() ){
 	</head>
 	<body>	
 	 <?php
-	    while ( have_posts() ) : 
+	    while ( have_posts() ) :
 	       the_post();
 	       the_content();
 		// End the loop.
