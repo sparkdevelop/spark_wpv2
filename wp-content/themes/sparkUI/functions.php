@@ -9,15 +9,16 @@
 function sparkspace_scripts_with_jquery()
 {
     // Register the script like this for a theme:
-    wp_register_script('custom-script', get_template_directory_uri() . '/bootstrap/js/bootstrap.js', array('jquery'));
+    wp_register_script('custom-script', get_template_directory_uri() . '/bootstrap/jquery-3.2.0.min.js');
+    wp_register_script('custom-script_1', get_template_directory_uri() . '/bootstrap/js/bootstrap.js', array('jquery'));
     wp_register_script('custom-script_2', get_template_directory_uri() . '/layer/layer.js', array('jquery'));
     wp_register_script('custom-script_3', get_template_directory_uri() . '/javascripts/function.js', array('jquery'));
     wp_register_script('custom-script_4', get_template_directory_uri() . '/javascripts/echarts.js', array('jquery'));
     wp_register_script('custom-script_5', get_template_directory_uri() . '/datetimepicker/js/bootstrap-datetimepicker.js', array('jquery'));
     wp_register_script('custom-script_6', get_template_directory_uri() . '/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js');
-
     // For either a plugin or a theme, you can then enqueue the script:
     wp_enqueue_script('custom-script');
+    wp_enqueue_script('custom-script_1');
     wp_enqueue_script('custom-script_2');
     wp_enqueue_script('custom-script_3');
     wp_enqueue_script('custom-script_4');
@@ -3083,7 +3084,7 @@ function is_complete_task($task_id,$user_id){
  * */
 function get_latest_active($group_id_tmp){
     global $wpdb;
-    $group_active_info = $wpdb->get_results("select * from wp_gp_member where group_id=".$group_id_tmp);
+    $group_active_info = $wpdb->get_results("select * from wp_gp_member where group_id=$group_id_tmp and member_status= 0");
 
     $group_active = array();
     foreach($group_active_info as $item) {
