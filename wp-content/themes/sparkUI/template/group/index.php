@@ -2,9 +2,9 @@
 <?php $admin_url=admin_url( 'admin-ajax.php' );?>
 
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
-    <div>
-        <a href="<?php echo site_url() . get_page_address('budao_index')?>">布道师大赛入口!置顶</a>
-    </div>
+<!--    <div>-->
+<!--        <a href="--><?php //echo site_url() . get_page_address('budao_index')?><!--">布道师大赛入口!置顶</a>-->
+<!--    </div>-->
 
     <h4 class="index_title" style="margin-left: 20px">所有群组</h4>
     <div class="divline"></div>
@@ -84,7 +84,7 @@
                             <div style="display: inline-block;margin-top: 15px">
                                 <div style="text-align: center;margin-right: 10px">
                                     <?php echo get_avatar($latest_active[$j], 36, ''); ?>
-                                    <p style="width: 50px;word-wrap: break-word;margin-bottom: 0px">
+                                    <p style="width: 55px;word-wrap: break-word;margin-bottom: 0px">
                                         <?php $user_name = get_user_by('ID',$latest_active[$j])->display_name;
                                         echo mb_strimwidth($user_name, 0, 7,".."); ?>
                                     </p>
