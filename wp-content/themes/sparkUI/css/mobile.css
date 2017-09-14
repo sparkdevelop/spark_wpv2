@@ -9,16 +9,23 @@
     }
 
     /*首页样式*/
-    .banner-background{
-        background-image: none;
-    }
-    .m-banner{
-        display:block;
-    }
-    .banner-background img{
-        width: 100%;
-        height: auto;
-    }
+    /*#webpage{*/
+        /*display: none;*/
+    /*}*/
+    /*#mobile_front{*/
+        /*display: block;*/
+    /*}*/
+
+    /*.banner-background{*/
+        /*background-image: none;*/
+    /*}*/
+    /*.m-banner{*/
+        /*display:block;*/
+    /*}*/
+    /*.banner-background img{*/
+        /*width: 100%;*/
+        /*height: auto;*/
+    /*}*/
     .front-icon{
         width:70%;
         margin-top: 20px;
