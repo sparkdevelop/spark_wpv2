@@ -23,7 +23,7 @@ $title =  get_the_title($id);
             ?>
             <tr>
                 <td><?php echo $revisions[$i]->post_title ?></td>
-                <td><?php echo get_the_author($revisions[$i]->post_author); ?></td>
+                <td><?php echo get_the_author_meta('user_login',$revisions[$i]->post_author); ?></td>
                 <td><a href="<?php echo site_url().get_page_address('wiki_revision').'&revision_id='.$revisions[$i]->ID.'&wiki_id='.$id?>"><?php echo $revisions[$i]->post_date ?></a></td>
             </tr>
             <?php

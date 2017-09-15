@@ -11,7 +11,7 @@ $sql = $wpdb->prepare("select * from $wpdb->posts where ID = %s", $revision_id);
 $revision = $wpdb->get_results($sql);
 $title =  $revision[0]->post_title;
 $author_id =  $revision[0]->post_author;
-$author = get_the_author($author_id);
+$author = get_the_author_meta('user_login',$author_id);
 $content = $revision[0]->post_content;
 $wiki_id = $_REQUEST['wiki_id'];
 $admin_url = admin_url('admin-ajax.php');
