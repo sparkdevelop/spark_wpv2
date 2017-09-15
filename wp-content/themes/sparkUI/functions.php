@@ -2900,7 +2900,14 @@ function kick_out_the_group()
 }
 add_action('wp_ajax_kick_out_the_group', 'kick_out_the_group');
 add_action('wp_ajax_nopriv_kick_out_the_group', 'kick_out_the_group');
-
+//恢复wiki历史版本
+function restore_post_revision(){
+    $revision_id = $_POST['revision_id'];
+    wp_restore_post_revision($revision_id);
+    die();
+}
+add_action('wp_ajax_restore_post_revision', 'restore_post_revision');
+add_action('wp_ajax_nopriv_restore_post_revision', 'restore_post_revision');
 /*task部分*/
 /* 距离任务结束还有多长时间,精确到天或小时 countDown()
  * 判断任务是否截止 is_overdue()
