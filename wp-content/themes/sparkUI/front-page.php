@@ -74,11 +74,24 @@ gp_task_complete_tmp_table_install();
 get_header();
 ?>
 <script>
-    $(document).ready(function () {
-        $("#myCarousel").carousel('cycle');
+    $(function () {
+        $("#myCarousel").carousel({
+            interval:3000
+        });
     });
-
 </script>
+<style>
+    .carousel-control.left {
+        margin-top: 200px;
+        background-image:none;
+    }
+    .carousel-control.right {
+        margin-top: 200px;
+        left: auto;
+        right: 0;
+        background-image:none;
+    }
+</style>
 <div class="container-fluid" style="padding: 0;">
     <div id="myCarousel" class="carousel slide">
         <!-- 轮播（Carousel）指标 -->
@@ -97,9 +110,9 @@ get_header();
         </div>
         <!-- 轮播（Carousel）导航 -->
         <a class="carousel-control left" href="#myCarousel"
-           data-slide="prev">&lsaquo;</a>
+           data-slide="prev" style="font-size: 100px">&lsaquo;</a>
         <a class="carousel-control right" href="#myCarousel"
-           data-slide="next">&rsaquo;</a>
+           data-slide="next" style="font-size: 100px">&rsaquo;</a>
     </div>
 <!--    <div class="head-box">-->
 <!--        <div class="banner-background">-->
