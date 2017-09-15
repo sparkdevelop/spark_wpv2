@@ -147,7 +147,10 @@
                class="author_link"><?php echo get_the_author();?>
             </a>
         </p>
-        <p id="edit_nums"></p><a href="<?php echo site_url().get_page_address('wiki_revisions').'&wiki_id='.$post->ID?>" >查阅</a>
+        <p id="edit_nums"></p>
+        <P>
+            <a href="<?php echo site_url().get_page_address('wiki_revisions').'&wiki_id='.$post->ID?>" class="author_link">查阅历史版本</a>
+        </P>
         <p id="watch_nums"></p>
         <p id="update_time"></p>
         <p id="categories_show"></p>
