@@ -58,10 +58,9 @@ if (isset($_GET['fep_id']) && isset($_GET['fep_action']) && $_GET['fep_action'] 
             <input type="hidden" name="about_the_author" id="fep-about" value="-1">
         <?php endif; ?>
 
-
+            
 
         </div>
-        
         <div class="col-md-3 col-sm-3 col-xs-3 right publish-project-choose" id="col3">
             <div id="fep-featured-image" style="width: 100%;height: 150px">
                 <div id="fep-featured-image-container"><?php echo $featured_img_html; ?></div>
