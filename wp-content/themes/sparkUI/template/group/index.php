@@ -31,9 +31,9 @@
                 ?>
                 <li class="list-group-item">
                     <div id="group-ava">
-                        <img src="<?= $all_group[$i]['group_cover'] ?>" style="width: 85px;height: 85px">
+                        <img  src="<?= $all_group[$i]['group_cover'] ?>" >
                     </div>
-                    <div id="group-info" style="margin-left: 20px">
+                    <div id="group-info">
                         <div class="group_title">
                             <?php
                             if ($all_group[$i]['group_status'] == "close") {
@@ -56,16 +56,16 @@
                         <div class="group_others">
                             <?php
                             if (is_group_member($all_group[$i]['ID'])) {
-                                echo '<span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">已加入</span>&nbsp;&nbsp;';
+                                echo '<span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">已加入</span>';
                             } elseif ($all_group[$i]['group_status'] == "close") {
-                                echo '<span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">已关闭</span>&nbsp;&nbsp;';
+                                echo '<span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">已关闭</span>';
                             } else {
                                 $verify_type = get_verify_type($all_group[$i]['ID']);
                                 $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $all_group[$i]['ID'];
                                 if ($verify_type == 'verifyjoin') { ?>
                                     <button id="group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
                                 <?php } else { ?>
-                                    <button id="group_join_btn" onclick="join_the_group(<?= $all_group[$i]['ID'] ?>,'<?= $admin_url ?>')">加入</button>&nbsp;&nbsp;
+                                    <button id="group_join_btn" onclick="join_the_group(<?= $all_group[$i]['ID'] ?>,'<?= $admin_url ?>')">加入</button>
                                 <?php }
                             }
                             ?>
@@ -74,6 +74,23 @@
                             <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
                                style="color: #169bd5"><?php echo get_author_name($author) ?></a>
                         </div>
+                    </div>
+                    <div id="m-group-btn">
+                        <?php
+                        if (is_group_member($all_group[$i]['ID'])) {
+                            echo '<span class="badge" id="m-my_group_badge" style="float: inherit;margin-top: 0px">已加入</span>';
+                        } elseif ($all_group[$i]['group_status'] == "close") {
+                            echo '<span class="badge" id="m-my_group_badge" style="float: inherit;margin-top: 0px">已关闭</span>';
+                        } else {
+                            $verify_type = get_verify_type($all_group[$i]['ID']);
+                            $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $all_group[$i]['ID'];
+                            if ($verify_type == 'verifyjoin') { ?>
+                                <button id="m-group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
+                            <?php } else { ?>
+                                <button id="m-group_join_btn" onclick="join_the_group(<?= $all_group[$i]['ID'] ?>,'<?= $admin_url ?>')">加入</button>
+                            <?php }
+                        }
+                        ?>
                     </div>
                     <div id="latest-active">
                         <div>最近活跃</div>
@@ -112,4 +129,9 @@
             <?php } ?>
         </div>
     <?php } ?>
+    <div class="side-tool" id="m-side-tool-project">
+        <ul>
+            <li> <a href="<?php echo site_url().get_page_address("creategroup");?>" style="color: white"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+        </ul>
+    </div>
 </div>

@@ -415,6 +415,53 @@
         margin-bottom: 10px;
     }
 
-
-
+/*群组主页*/
+    #latest-active{
+        display: none;
+    }
+    #group-ava > img{
+        width: 70px;
+        height: 70px;
+    }
+    #group-info{
+        margin-left: 45px;
+    }
+    .group_title{
+        margin-top: 0;
+        margin-left: 0;
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+    .group_abs{
+        width: 160px;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+    #my_group_badge{
+        display: none;
+    }
+    #group_join_btn{
+        display: none;
+    }
+    #m-group-btn{
+        display: inline-block;
+        margin-left: 10px;
+        margin-top: 30px;
+        margin-right: auto;
+        margin-bottom: auto;
+    }
+    #m-my_group_badge{
+        color: #fe642d;
+        border: solid 1px;
+        border-color: #fe642d;
+        float: right;
+        margin-top: 10px;
+    }
+    #m-group_join_btn{
+        border: 1px solid transparent;
+        background-color: #1fbba6;
+        color: #fff;
+        border-radius: 5px;
+    }
 }

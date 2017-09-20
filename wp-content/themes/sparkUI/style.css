@@ -1366,7 +1366,7 @@ h4 {
 }
 
 /*手机端增加元素*/
-#m-header, .m_search_box, .m-fa-search, .m-fa-remove, #m-project-views, #m-side-tool-project, .m-left-collapse-menu, .m_search_page_box, .m-qa-count, .m-publish-project, .m-edit-wiki-box, .m-create-wiki-box {
+#m-header, .m_search_box, .m-fa-search, .m-fa-remove, #m-project-views, #m-side-tool-project, .m-left-collapse-menu, .m_search_page_box, .m-qa-count, .m-publish-project, .m-edit-wiki-box, .m-create-wiki-box,#m-group-btn {
     display: none;
 }
 
@@ -1528,12 +1528,15 @@ h4 {
     float: left;
     width: 10%;
 }
-
+#group-ava > img{
+    width: 85px;
+    height: 85px;
+}
 #group-info {
     display: inline-block;
     width: 55%;
+    margin-left: 30px
 }
-
 #latest-active {
     display: inline-block;
     float: right;
