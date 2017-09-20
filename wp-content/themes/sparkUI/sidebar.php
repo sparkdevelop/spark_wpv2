@@ -85,6 +85,11 @@ if (is_page("budao_index")){
     }
     require "template/budao/index_sidebar.php";
 }
+if (is_page("info")){
+    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_infosidebar')){
+    }
+    require "template/info_sidebar.php";
+}
 //这个判断wiki详情是谁写的，not created by chenli
 if(is_page("wiki详情")) {
     require "template/wiki/wiki_entry_sidebar.php";

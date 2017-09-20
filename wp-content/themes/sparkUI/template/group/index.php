@@ -6,8 +6,16 @@
 <!--        <a href="--><?php //echo site_url() . get_page_address('budao_index')?><!--">布道师大赛入口!置顶</a>-->
 <!--    </div>-->
 
+    <div class="alert alert-info">本版块还在开发中, 意见及建议可
+        <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=JRQUEhcSFBUdFBFlVFQLRkpI"
+           style="text-decoration:none;font-weight: bolder;color: #fe642d">
+            联系我们</a>
+    </div>
+
+
     <h4 class="index_title" style="margin-left: 20px">所有群组</h4>
     <div class="divline"></div>
+    
     <ul class="list-group">
         <?php
         $all_group = get_group();

@@ -3131,58 +3131,235 @@ function get_latest_active($group_id_tmp){
                         ['group_name'];
                         ['task_name'];
                         ['task_address'];
+                        ['notice_type']
  */
-function get_gp_notification(){
+function get_gp_notification($group_id = null){
     global $wpdb;
+    if($group_id==null){
+        //1.发布任务
+        $group_task_info = $wpdb->get_results("select * from wp_gp_task");
 
-    $group_task_info = $wpdb->get_results("select * from wp_gp_task");
+        $group_task = array();
+        foreach($group_task_info as $item) {
+            $single_task = array();
 
-    //按照发布日期降序排列
-    usort($group_task_info,function($a,$b){
-        if ($a==$b) return 0;
+            //作者、身份、组名、任务名
+            //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->task_author);
+            $single_task['task_author'] = get_author_name($item->task_author);
+            //$task_author_info[0]->user_login;
 
-        return ($a->create_date > $b->create_date)?-1:1;
-    });
+            $task_author_iden_info = $wpdb->get_results("select * from wp_gp_member where user_id=".$item->task_author." and group_id=".$item->belong_to);
+            $task_author_iden = $task_author_iden_info[0]->indentity;
+            if(strcmp($task_author_iden,"member") == 0){
+                $single_task['task_identity'] = "成员";
+            }else if(strcmp($task_author_iden,"admin") == 0){
+                $single_task['task_identity'] = "管理员";
+            }
 
-    $group_task = array();
-    foreach($group_task_info as $item) {
-        $single_task = array();
+            $task_group_info = $wpdb->get_results("select * from wp_gp where ID=".$item->belong_to);
+            $single_task['group_name'] = $task_group_info[0]->group_name;
 
-        //作者、身份、组名、任务名
-        $task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->task_author);
-        $single_task['task_author'] = $task_author_info[0]->user_login;
+            $single_task['task_name'] = $item->task_name;
 
-        $task_author_iden_info = $wpdb->get_results("select * from wp_gp_member where user_id=".$item->task_author." and group_id=".$item->belong_to);
-        $task_author_iden = $task_author_iden_info[0]->indentity;
-        if(strcmp($task_author_iden,"member") == 0){
-            $single_task['task_identity'] = "成员";
-        }else if(strcmp($task_author_iden,"admin") == 0){
-            $single_task['task_identity'] = "管理员";
+            $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_task'),'id'=>$item->ID),get_home_url());
+
+            $single_task['time'] = $item->create_date;
+
+            $single_task['notice_type'] = 1;
+
+            $group_task[] = $single_task;
         }
 
-        /*$task_author_iden_info = $wpdb->get_results("select * from wp_gp where group_author=".$item->task_author." and ID=".$item->belong_to);
-        if($task_author_iden_info != null){
-            $single_task['task_identity'] = "管理员";
-        }else{
-            $task_author_iden_info = $wpdb->get_results("select * from wp_gp_member where user_id=".$item->task_author." and group_id=".$item->belong_to);
-            if($task_author_iden_info != null){
-               $single_task['task_identity'] = "成员";}
-        }*/
 
-        $task_group_info = $wpdb->get_results("select * from wp_gp where ID=".$item->belong_to);
-        $single_task['group_name'] = $task_group_info[0]->group_name;
+        //2.加入群组
+        $group_join_info = $wpdb->get_results("select * from wp_gp_member");
+        foreach($group_join_info as $item){
+            $single_task = array();
 
-        $single_task['task_name'] = $item->task_name;
+            //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->user_id);
+            $single_task['task_author'] = get_author_name($item->user_id);
 
-        $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_task'),'id'=>$item->ID),get_home_url());
+            //$task_author_info[0]->user_login;
 
-        $group_task[] = $single_task;
+            $task_author_iden_info = $wpdb->get_results("select * from wp_gp where ID=".$item->group_id);
+            $single_task['group_name'] = $task_author_iden_info[0]->group_name;
+
+            $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_group'),'id'=>$item->group_id),get_home_url());
+
+            $single_task['time'] = $item->join_date;
+
+            $single_task['notice_type'] = 2;
+
+            $group_task[] = $single_task;
+        }
+
+        //3.创建群组
+        $group_create_info = $wpdb->get_results("select * from wp_gp");
+        foreach($group_create_info as $item){
+            $single_task = array();
+
+            //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->group_author);
+            $single_task['task_author'] = get_author_name($item->group_author);
+            //$task_author_info[0]->user_login;
+
+            $single_task['group_name'] = $item->group_name;
+
+            $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_group'),'id'=>$item->ID),get_home_url());
+
+            $single_task['time'] = $item->create_date;
+
+            $single_task['notice_type'] = 3;
+
+            $group_task[] = $single_task;
+        }
+
+        //4.完成任务
+        $task_complete_info = $wpdb->get_results("select * from wp_gp_task_member");
+        foreach($task_complete_info as $item){
+            $single_task = array();
+
+            //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->user_id);
+            $single_task['task_author'] = get_author_name($item->user_id);
+            //$task_author_info[0]->user_login;
+
+            $group_task_info = $wpdb->get_results("select * from wp_gp_task where ID=".$item->task_id);
+            $single_task['task_name'] = $group_task_info[0]->task_name;
+
+            $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_task'),'id'=>$item->task_id),get_home_url());
+
+            $single_task['time'] = $item->complete_time;
+
+            $single_task['notice_type'] = 4;
+
+            $group_task[] = $single_task;
+        }
+
+        usort($group_task,function($a,$b){
+            if ($a==$b) return 0;
+            return ($a['time'] > $b['time'])?-1:1;
+        });
+
+
+        //print_r($group_task);
+        return $group_task;
     }
+    else {
+        //1.发布任务
+        $group_task_info = $wpdb->get_results("select * from wp_gp_task WHERE belong_to = $group_id");
+        $group_task = array();
+        foreach ($group_task_info as $item) {
+            $single_task = array();
+
+            //作者、身份、组名、任务名
+            $single_task['task_author'] = get_author_name($item->task_author);
+            $task_author_iden_info = $wpdb->get_results("select * from wp_gp_member where user_id=" . $item->task_author . " and group_id=" . $item->belong_to);
+            $task_author_iden = $task_author_iden_info[0]->indentity;
+            if (strcmp($task_author_iden, "member") == 0) {
+                $single_task['task_identity'] = "成员";
+            } else if (strcmp($task_author_iden, "admin") == 0) {
+                $single_task['task_identity'] = "管理员";
+            }
+
+            /*$task_author_iden_info = $wpdb->get_results("select * from wp_gp where group_author=".$item->task_author." and ID=".$item->belong_to);
+            if($task_author_iden_info != null){
+                $single_task['task_identity'] = "管理员";
+            }else{
+                $task_author_iden_info = $wpdb->get_results("select * from wp_gp_member where user_id=".$item->task_author." and group_id=".$item->belong_to);
+                if($task_author_iden_info != null){
+                   $single_task['task_identity'] = "成员";}
+            }*/
+
+            $task_group_info = $wpdb->get_results("select * from wp_gp where ID=" . $item->belong_to);
+            $single_task['group_name'] = $task_group_info[0]->group_name;
+
+            $single_task['task_name'] = $item->task_name;
+
+            $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_task'), 'id' => $item->ID), get_home_url());
+
+            $single_task['time'] = $item->create_date;
+
+            $single_task['notice_type'] = 1;
+
+            $group_task[] = $single_task;
+        }
 
 
-    //print_r($group_task);
-    return $group_task;
+        //2.加入群组
+        $group_join_info = $wpdb->get_results("select * from wp_gp_member WHERE group_id=$group_id");
+        foreach ($group_join_info as $item) {
+            $single_task = array();
+
+            //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->user_id);
+            $single_task['task_author'] = get_author_name($item->user_id);
+
+            //$task_author_info[0]->user_login;
+
+            $task_author_iden_info = $wpdb->get_results("select * from wp_gp where ID=" . $item->group_id);
+            $single_task['group_name'] = $task_author_iden_info[0]->group_name;
+
+            $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_group'), 'id' => $item->group_id), get_home_url());
+
+            $single_task['time'] = $item->join_date;
+
+            $single_task['notice_type'] = 2;
+
+            $group_task[] = $single_task;
+        }
+
+        //3.创建群组
+//        $group_create_info = $wpdb->get_results("select * from wp_gp");
+//        foreach ($group_create_info as $item) {
+//            $single_task = array();
+//
+//            //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->group_author);
+//            $single_task['task_author'] = get_author_name($item->group_author);
+//            //$task_author_info[0]->user_login;
+//
+//            $single_task['group_name'] = $item->group_name;
+//
+//            $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_group'), 'id' => $item->ID), get_home_url());
+//
+//            $single_task['time'] = $item->create_date;
+//
+//            $single_task['notice_type'] = 3;
+//
+//            $group_task[] = $single_task;
+//        }
+
+        //4.完成任务
+        $tasks = get_task($group_id);
+        $task_complete_info = $wpdb->get_results("select * from wp_gp_task_member where task_id in $tasks");
+
+        foreach ($task_complete_info as $item) {
+            $single_task = array();
+
+            //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->user_id);
+            $single_task['task_author'] = get_author_name($item->user_id);
+            //$task_author_info[0]->user_login;
+
+            $group_task_info = $wpdb->get_results("select * from wp_gp_task where ID=" . $item->task_id);
+            $single_task['task_name'] = $group_task_info[0]->task_name;
+
+            $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_task'), 'id' => $item->task_id), get_home_url());
+
+            $single_task['time'] = $item->complete_time;
+
+            $single_task['notice_type'] = 4;
+
+            $group_task[] = $single_task;
+        }
+
+        usort($group_task, function ($a, $b) {
+            if ($a == $b) return 0;
+            return ($a['time'] > $b['time']) ? -1 : 1;
+        });
+
+
+        //print_r($group_task);
+        return $group_task;
+    }
 }
+
 
 
 //判断用户名输入的是否正确ajax

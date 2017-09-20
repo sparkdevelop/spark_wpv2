@@ -126,6 +126,12 @@
                     }
                     require "template/otherpersonal.php";
                 }
+                elseif (is_page('info')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/info.php";
+                }
 //                elseif (is_page('student_management')){
 //                    if (!is_user_logged_in()) {
 //                        wp_redirect( home_url().'/wp-login.php' );

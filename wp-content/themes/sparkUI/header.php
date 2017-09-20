@@ -10,7 +10,8 @@
           type="text/css" media="screen, projection"/>
     <link rel="stylesheet" type="text/css" media="screen, projection" href="<?php bloginfo('stylesheet_directory')?>/css/mobile.css" />
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php bloginfo('stylesheet_directory')?>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<!--    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
 <!--    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>-->
     <link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo('stylesheet_directory')?>/datetimepicker/css/bootstrap-datetimepicker.min.css" />
     <!--    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.js"></script>-->

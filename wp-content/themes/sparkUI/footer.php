@@ -28,8 +28,13 @@
                 <div class="col-md-3 col-sm-3 col-xs-12" class="foot-link" id="contact-us">
                     <p>联系我们</p>
                     <ul class="list-group">
-                        <li class="list-group-item"><a target="_blank" href="mailto:sparkspace@163.com">sparkspace@163.com</a></li>
-                        <li class="list-group-item"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2038448066&amp;site=qq&amp;menu=yes">QQ：2038448066</a></li>
+                        <li class="list-group-item"><a target="_blank" href="mailto:sparkdevelop@163.com">sparkdevelop@163.com</a></li>
+                        <li class="list-group-item">
+                            <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=JRQUEhcSFBUdFBFlVFQLRkpI" style="text-decoration:none;">
+                                意见反馈
+                            </a>
+                        </li>
+                        <li class="list-group-item"><a href="<?php echo site_url().get_page_address('info').'&tab=about'?>">关于我们</a></li>
                     </ul>
                 </div>
                 <div class="clearfix visible-xs"></div>

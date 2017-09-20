@@ -88,10 +88,26 @@
                 $group_name = $notification[$i]['group_name'];
                 $task_name = $notification[$i]['task_name'];
                 $task_address = $notification[$i]['task_address'];
-                ?>
+//                ?>
+<!--                <li class="list-group-item">-->
+<!--                    <span>--><?//=$task_identity.$task_author?><!--在<span style="font-weight: bolder;">--><?//=$group_name?><!--</span>发布了任务</span>-->
+<!--                    <span><a href="--><?//=$task_address?><!--" style="color: #169bd5">--><?//=$task_name?><!--</a></span>-->
+<!--                </li>-->
                 <li class="list-group-item">
-                    <span><?=$task_identity.$task_author?>在<span style="font-weight: bolder;"><?=$group_name?></span>发布了任务</span>
-                    <span><a href="<?=$task_address?>" style="color: #169bd5"><?=$task_name?></a></span>
+                    <?php if($notification[$i]['notice_type'] == 1){ ?>
+                        <span><?=$task_identity.$task_author?>在<span style="font-weight: bolder;"><?=$group_name?></span>发布了任务</span>
+                        <span><a href="<?=$task_address?>" style="color: #169bd5"><?=$task_name?></a></span>
+                    <?php }else if ($notification[$i]['notice_type'] == 2){ ?>
+                        <span><?=$task_author?>加入了群组</span>
+                        <span><a href="<?=$task_address?>" style="color: #169bd5"><?=$group_name?></a></span>
+                    <?php }else if($notification[$i]['notice_type'] == 3){ ?>
+                        <span><?=$task_author?>创建了群组</span>
+                        <span><a href="<?=$task_address?>" style="color: #169bd5"><?=$group_name?></a></span>
+                    <?PHP } else if($notification[$i]['notice_type'] == 4){?>
+                        <span><?=$task_author?>完成了任务</span>
+                        <span><a href="<?=$task_address?>" style="color: #169bd5"><?=$task_name?></a></span>
+                    <?php }?>
+
                 </li>
                 <?php
             }

@@ -134,7 +134,7 @@
         <!--列表内容 需要填写的都用php提取出来就行-->
         <ul class="list-group">
             <?php
-            $notification = get_gp_notification();
+            $notification = get_gp_notification($group_id);
             for($i=0;$i<min(5,sizeof($notification));$i++){
                 $task_author= $notification[$i]['task_author'];
                 $task_identity= $notification[$i]['task_identity'];
@@ -143,12 +143,17 @@
                 $task_address = $notification[$i]['task_address'];
                 ?>
                 <li class="list-group-item">
-                    <span><?=$task_identity.$task_author?>在<span style="font-weight: bolder;"><?=$group_name?></span>发布了任务</span>
-                    <span><a href="<?=$task_address?>" style="color: #169bd5"><?=$task_name?></a></span>
+                    <?php if($notification[$i]['notice_type'] == 1){ ?>
+                        <span><?=$task_identity.$task_author?>发布了任务</span>
+                        <span><a href="<?=$task_address?>" style="color: #169bd5"><?=$task_name?></a></span>
+                    <?php }else if ($notification[$i]['notice_type'] == 2){ ?>
+                        <span><?=$task_author?>加入了本组</span>
+                    <?php } else if($notification[$i]['notice_type'] == 4){?>
+                        <span><?=$task_author?>完成了任务</span>
+                        <span><a href="<?=$task_address?>" style="color: #169bd5"><?=$task_name?></a></span>
+                    <?php }?>
                 </li>
-                <?php
-            }
-            ?>
+                <?php } ?>
         </ul>
     </div>
 </div>
