@@ -553,4 +553,10 @@
         float: right;
         width:48%;
     }
+    #search-group-btn{
+        width:25px;
+        position: relative;
+        float: right;
+        top: 0px;
+    }
 }

@@ -1744,3 +1744,16 @@ h4 {
 #m-search-group{
     display: none;
 }
+#search-group-btn{
+    border: none;
+    width: 20px;
+    height: 38px;
+    padding: 0px;
+    font-size: 15px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 22px;
+    color: #ccc;
+    position: absolute;
+    right: 1px;
+}

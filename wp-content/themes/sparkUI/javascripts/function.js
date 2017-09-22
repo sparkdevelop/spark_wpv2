@@ -133,7 +133,7 @@ function verify_join_the_group($url) {
 function invitation_the_group($url) {
     layer.open({
         type: 2,
-        title: "填写验证字段",
+        title: "邀请他人加入群组",
         content: $url,
         area: ['75%','80%'],
         closeBtn:1,

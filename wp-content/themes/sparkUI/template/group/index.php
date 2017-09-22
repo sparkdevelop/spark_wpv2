@@ -19,13 +19,12 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                 </button>
             </form>
         </div>
-
         <div class="input-group col-sm-3" id="m-search-group">
             <form class="navbar-form" role="search" method="get"
                   action="<?php echo esc_url(self_admin_url('process-search-group.php')); ?>"
                   style="float: right;padding-left: 0px;padding-right: 0px;margin-top: -3px">
                 <input type="text" class="form-control" id="search-content" style="width: 85%" placeholder="搜索群组" name="sg"/>
-                <button type="submit" class="btn btn-default btn-sm" id="search-btn">
+                <button type="submit" class="btn btn-default btn-sm" id="search-group-btn">
                     <span class="glyphicon glyphicon-search"></span>
                 </button>
             </form>
@@ -181,7 +180,7 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
             <li class="active"><a href="<?php echo site_url() . get_page_address('group') . '&tab=budao' ?>">布道师大赛</a>
             </li>
         </ul>
-        <div class="input-group col-sm-3" style="display:inline-block;float: right">
+        <div class="input-group col-sm-3" id="search-group">
             <form class="navbar-form" role="search" method="get"
                   action="<?php echo esc_url(self_admin_url('process-search-group.php')); ?>"
                   style="width: 120%;float: right;padding-left: 0px;padding-right: 0px;margin-top: -3px">
@@ -191,6 +190,17 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                 </button>
             </form>
         </div>
+        <div class="input-group col-sm-3" id="m-search-group">
+            <form class="navbar-form" role="search" method="get"
+                  action="<?php echo esc_url(self_admin_url('process-search-group.php')); ?>"
+                  style="float: right;padding-left: 0px;padding-right: 0px;margin-top: -3px">
+                <input type="text" class="form-control" id="search-content" style="width: 85%" placeholder="搜索群组" name="sg"/>
+                <button type="submit" class="btn btn-default btn-sm" id="search-group-btn">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </form>
+        </div>
+
         <div id="leftTabContent" class="tab-content" style="margin-top: 42px; border-top:1px solid lightgrey">
             <div class="alert alert-success" style="margin-top: 20px;margin-bottom:10px">了解大赛详情, 请移步
                 <a href="<?php echo site_url() . get_page_address('budao_index') ?>"
@@ -221,38 +231,38 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                             ?>
                             <li class="list-group-item">
                                 <div id="group-ava">
-                                    <img src="<?= $all_group[$i]['group_cover'] ?>" style="width: 85px;height: 85px">
+                                    <img src="<?= $all_budao_group[$i]['group_cover'] ?>">
                                 </div>
-                                <div id="group-info" style="margin-left: 20px">
+                                <div id="group-info">
                                     <div class="group_title">
                                         <?php
-                                        if ($all_group[$i]['group_status'] == "close") {
+                                        if ($all_budao_group[$i]['group_status'] == "close") {
                                             if (get_current_user_id() != $author) { ?>
                                                 <a class="group_name" href="#group-info"><h4><?= $group_name ?></h4></a>
                                             <?php } else { ?>
                                                 <a class="group_name"
-                                                   href="<?php echo site_url() . get_page_address('single_group') . '&id=' . $all_group[$i]['ID']; ?>">
+                                                   href="<?php echo site_url() . get_page_address('single_group') . '&id=' . $all_budao_group[$i]['ID']; ?>">
                                                     <h4><?= $group_name ?></h4>
                                                 </a>
                                             <?php } ?>
                                         <?php } else { ?>
                                             <a class="group_name"
-                                               href="<?php echo site_url() . get_page_address('single_group') . '&id=' . $all_group[$i]['ID']; ?>">
+                                               href="<?php echo site_url() . get_page_address('single_group') . '&id=' . $all_budao_group[$i]['ID']; ?>">
                                                 <h4><?= $group_name ?></h4>
                                             </a>
                                         <?php } ?>
                                     </div>
                                     <div class="group_abs">
-                                        <?php echo $all_group[$i]['group_abstract']; ?>
+                                        <?php echo $all_budao_group[$i]['group_abstract']; ?>
                                     </div>
                                     <div class="group_others">
                                         <?php
-                                        if (is_group_member($all_group[$i]['ID'])) {
+                                        if (is_group_member($all_budao_group[$i]['ID'])) {
                                             echo '<span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">已加入</span>&nbsp;&nbsp;';
-                                        } elseif ($all_group[$i]['group_status'] == "close") {
+                                        } elseif ($all_budao_group[$i]['group_status'] == "close") {
                                             echo '<span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">已关闭</span>&nbsp;&nbsp;';
                                         } else {
-                                            $verify_type = get_verify_type($all_group[$i]['ID']);
+                                            $verify_type = get_verify_type($all_budao_group[$i]['ID']);
                                             $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $all_group[$i]['ID'];
                                             if ($verify_type == 'verifyjoin') { ?>
                                                 <button id="group_join_btn"
@@ -260,7 +270,7 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                                                 </button>
                                             <?php } else { ?>
                                                 <button id="group_join_btn"
-                                                        onclick="join_the_group(<?= $all_group[$i]['ID'] ?>,'<?= $admin_url ?>')">
+                                                        onclick="join_the_group(<?= $all_budao_group[$i]['ID'] ?>,'<?= $admin_url ?>')">
                                                     加入
                                                 </button>&nbsp;&nbsp;
                                             <?php }
@@ -275,20 +285,20 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
 
                                 <div id="m-group-btn">
                                     <?php
-                                    if (is_group_member($all_group[$i]['ID'])) {
+                                    if (is_group_member($all_budao_group[$i]['ID'])) {
                                         echo '<span class="badge" id="m-my_group_badge" style="float: inherit;margin-top: 0px">已加入</span>';
-                                    } elseif ($all_group[$i]['group_status'] == "close") {
+                                    } elseif ($all_budao_group[$i]['group_status'] == "close") {
                                         echo '<span class="badge" id="m-my_group_badge" style="float: inherit;margin-top: 0px">已关闭</span>';
                                     } else {
-                                        $verify_type = get_verify_type($all_group[$i]['ID']);
-                                        $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $all_group[$i]['ID'];
+                                        $verify_type = get_verify_type($all_budao_group[$i]['ID']);
+                                        $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $all_budao_group[$i]['ID'];
                                         if ($verify_type == 'verifyjoin') { ?>
                                             <button id="m-group_join_btn"
                                                     onclick="verify_join_the_group('<?= $verify_url ?>')">加入
                                             </button>
                                         <?php } else { ?>
                                             <button id="m-group_join_btn"
-                                                    onclick="join_the_group(<?= $all_group[$i]['ID'] ?>,'<?= $admin_url ?>')">
+                                                    onclick="join_the_group(<?= $all_budao_group[$i]['ID'] ?>,'<?= $admin_url ?>')">
                                                 加入
                                             </button>
                                         <?php }

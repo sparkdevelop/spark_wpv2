@@ -41,7 +41,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
 <script>
     $(document).on('click', '#addNewFieldBtn', function () {
         var input = '<input type="text" class="form-control" name="team_member[]" id="team_member" ' +
-            'style="margin-left: 29px;margin-bottom:10px;width: 30%" ' +
+            'style="margin-left: 5%px;margin-bottom:10px;width: 25%" ' +
             'placeholder="邀请成员" value="" onblur="checkInUserName(this.value)" />';
         $("#addField").append(input);
     });

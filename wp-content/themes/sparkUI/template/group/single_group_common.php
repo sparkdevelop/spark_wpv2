@@ -30,9 +30,6 @@ $admin_url = admin_url('admin-ajax.php');
                     $invitation_url = site_url() . get_page_address("invitation") . "&user_id=" . get_current_user_id() . "&group_id=" . $group['ID'];
                     if ($verify_type == "freejoin") {
                         ?>
-                        <button id="invitation_join_btn"
-                                onclick="invitation_the_group('<?= $invitation_url ?>')">邀请
-                        </button>
                     <?php } ?>
                 </span>
             </div>
