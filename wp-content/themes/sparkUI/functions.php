@@ -2501,7 +2501,17 @@ function checkGroupName()
         if ($groupName == $nowGroupName) {
             $response = true;
         } else {
-            $response = false;
+            if ($groupName != '') {
+                $sql = "SELECT ID FROM wp_gp WHERE group_name = '$groupName'";
+                $col = $wpdb->query($sql);
+                if ($col == 0) {
+                    $response = true;
+                } else {
+                    $response = false;
+                }
+            } else {
+                $response = false;
+            }
         }
     } elseif ($groupName != '') {
         $sql = "SELECT ID FROM wp_gp WHERE group_name = '$groupName'";
@@ -3362,7 +3372,7 @@ function get_gp_notification($group_id = null){
 
 
 
-//判断用户名输入的是否正确ajax
+//判断用户名输入的是否正确ajax,是否是本组的,是否是系统里的
 function checkUserName(){
     global $wpdb;
     $name = $_POST['name'];
@@ -3386,6 +3396,30 @@ function checkUserName(){
 }
 add_action('wp_ajax_checkUserName', 'checkUserName');
 add_action('wp_ajax_nopriv_checkUserName', 'checkUserName');
+
+//判断用户输入的邀请用户名是否正确,是否已经是本组的
+function checkInUserName(){
+    global $wpdb;
+    $name = $_POST['name'];
+    $group_id = $_POST['group_id'];
+    $sql = "SELECT * FROM $wpdb->users WHERE user_login = '$name'";
+    $col = $wpdb->query($sql);
+    if($col==0){
+        $response = 0;
+    }else{
+        //如果有这个用户判断这个用户是不是该组成员
+        $id = get_the_ID_by_name($name);
+        if(is_group_member($group_id,$id)){   //已经是本组成员的话不行
+            $response = 1;
+        }else{
+            $response = 2;
+        }
+    }
+    echo $response;
+    die();
+}
+add_action('wp_ajax_checkInUserName', 'checkInUserName');
+add_action('wp_ajax_nopriv_checkInUserName', 'checkInUserName');
 
 //通过user_name获取user_id
 function get_the_ID_by_name($user_name)
@@ -3429,7 +3463,7 @@ function get_team_id($task_id, $user_id = NULL){
 
 //专为提交项目类任务表格提供信息的函数返回一个二维数组,一维是team_id,一维是表格信息
 function pro_table($group_id,$task_id){
-    /* step0: 取出本任务的所有team_id 为了控制合并行的数量
+    /* step0: 取出本任务的所有team_id 为了控制合并行的数量 如果没有一个team时?
      * step1: 取出本组的所有成员 为了控制总的行数
      * step2: 对于每一个team_id 取出team中的成员,在本组所有成员的数组中减去他们。最后剩下的就是还未分组的成员
      * step3: 对于每一个team_id 中的每一个成员, 数据有:用户名,验证字段,项目链接,完成情况(completion)  对于管理员? 另算 在循环的td中修改
@@ -3442,6 +3476,7 @@ function pro_table($group_id,$task_id){
     $sql_team_id = "SELECT distinct(team_id) FROM wp_gp_member_team WHERE task_id = $task_id";
     $array_team_id = $wpdb->get_results($sql_team_id,'ARRAY_A');
 
+
     //step1: 格式 Array ( [0] => 22 [1] => 1 )
     $sql_member_id = "SELECT DISTINCT(user_id) FROM wp_gp_member WHERE group_id = $group_id and member_status = 0";
     $array_member_id_tmp = $wpdb->get_results($sql_member_id,'ARRAY_A');
@@ -3452,22 +3487,25 @@ function pro_table($group_id,$task_id){
 
     //step2:
     $array_member_id_ungroup = $array_member_id;
-    foreach($array_team_id as $key =>$value){
-        $tmp_team = [];
-        $uid = get_team_member($task_id,$value['team_id']);
-        $array_member_id_ungroup = array_diff($array_member_id_ungroup,$uid);  //获取未分组的成员
-        foreach($uid as $id){
-            $tmp = [];//存储内层数组
-            $user_id = $id;
-            $user_name = get_author_name($id);
-            $verify_field = get_user_verify_field($group_id,$id);
-            $completion = get_user_task_completion($task_id,$user_id);
-            array_push($tmp,$user_id,$user_name);
-            $tmp = array_merge($tmp,$verify_field,$completion[0]);
-            array_push($tmp_team,$tmp);
+    if(sizeof($array_team_id)!=0){
+        foreach($array_team_id as $key =>$value){
+            $tmp_team = [];
+            $uid = get_team_member($task_id,$value['team_id']);
+            $array_member_id_ungroup = array_diff($array_member_id_ungroup,$uid);  //获取未分组的成员
+            foreach($uid as $id){
+                $tmp = [];//存储内层数组
+                $user_id = $id;
+                $user_name = get_author_name($id);
+                $verify_field = get_user_verify_field($group_id,$id);
+                $completion = get_user_task_completion($task_id,$user_id);
+                array_push($tmp,$user_id,$user_name);
+                $tmp = array_merge($tmp,$verify_field,$completion[0]);
+                array_push($tmp_team,$tmp);
+            }
+            array_push($result,$tmp_team);
         }
-        array_push($result,$tmp_team);
     }
+
     //处理未分组的成员
     $tmp_team_ungroup = [];
     foreach ($array_member_id_ungroup as $key =>$value_ungroup){
@@ -3615,6 +3653,51 @@ function create_budao_group($user_id){
         $wpdb->query($sql_member);
     }
 }
+
+//群组搜索功能
+function get_search_group_ids($search_str){   //需改进
+    global $wpdb;
+    $search_str = trim($search_str);
+    $search_str_arr = explode(" ",$search_str);
+    $sql_pre = "";
+    foreach($search_str_arr as $key => $words){
+        $sql_pre = $sql_pre."group_name LIKE '%$words%' ";
+        if(sizeof($search_str_arr)!=$key+1){
+            $sql_pre = $sql_pre."or ";
+        }
+    }
+
+    $sql = "SELECT ID FROM wp_gp WHERE ".$sql_pre;
+    $results = $wpdb->get_results($sql,'ARRAY_A');
+    $return = [];
+    foreach($results as $value){
+        array_push($return,$value['ID']);
+    }
+    $str =implode(',', $return);
+    return $str;
+}
+
+//布道师大赛群组获取
+function get_budao_group($id = NULL){
+    global $wpdb;
+    if ($id != null) {
+        $sql = "SELECT * FROM wp_gp WHERE ID = $id and publish_status = 'budao' ";
+    } else {
+        $sql = "SELECT * FROM wp_gp WHERE publish_status = 'budao'";
+    }
+    $results = $wpdb->get_results($sql, 'ARRAY_A');
+    return $results;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 //修改域名  域名要包括http

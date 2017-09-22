@@ -132,6 +132,18 @@
                     }
                     require "template/info.php";
                 }
+                elseif (is_page('search_group')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/search_group.php";
+                }
+                elseif (is_page('invitation')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/group/invitation.php";
+                }
 //                elseif (is_page('student_management')){
 //                    if (!is_user_logged_in()) {
 //                        wp_redirect( home_url().'/wp-login.php' );

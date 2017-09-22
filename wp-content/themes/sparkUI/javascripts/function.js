@@ -129,7 +129,19 @@ function verify_join_the_group($url) {
     })
 }
 
-
+//邀请入群
+function invitation_the_group($url) {
+    layer.open({
+        type: 2,
+        title: "填写验证字段",
+        content: $url,
+        area: ['75%','80%'],
+        closeBtn:1,
+        shadeClose:true,
+        shade:0.5,
+        end:function () {}
+    })
+}
 
 //画出我的知识图谱
 function myKnowledgeChart_old(jsonstring) {

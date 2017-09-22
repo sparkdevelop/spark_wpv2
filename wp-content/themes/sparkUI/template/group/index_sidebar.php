@@ -2,6 +2,11 @@
 //本页面是群组首页的侧边栏
 ?>
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
+    <div class="alert alert-info">本版块还在开发中, 意见及建议可
+        <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=JRQUEhcSFBUdFBFlVFQLRkpI"
+           style="text-decoration:none;font-weight: bolder;color: #fe642d">
+            联系我们</a>
+    </div>
     <?php if(is_user_logged_in()){ ?>
         <div class="sidebar_button">
             <a href="<?php echo site_url().get_page_address("creategroup");?>" style="color: white">创建群组</a>

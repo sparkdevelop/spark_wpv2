@@ -1,5 +1,11 @@
 <style>
     .btn-green{ width: 60px;height: 35px;float: right;font-size: 14px;margin-top: 0px  }
+    #invitation_join_btn{
+        border: 1px solid transparent;
+        background-color: #1fbba6;
+        color: #fff;
+        border-radius: 5px;
+    }
 </style>
 <div class="col-md-9 col-sm-9 col-xs-12"  id="col9">
     <div id="single-group-title">
@@ -9,7 +15,17 @@
         <div id="group-info" style="margin-left: 20px">
             <div class="group_title">
                 <span id="h4_name"><?=$group['group_name']?></span>
-                <span style="color: #fe642d;margin-left: 20px">已加入</span>
+                <span style="color: #fe642d;margin-left: 20px">已加入&nbsp;&nbsp;&nbsp;
+                    <?php
+                    $verify_type = get_verify_type($group['ID']);
+                    $invitation_url = site_url() . get_page_address("invitation") . "&user_id=" . get_current_user_id() . "&group_id=" . $group['ID'];
+                    if ($verify_type == "freejoin") {
+                        ?>
+                        <button id="invitation_join_btn"
+                                onclick="invitation_the_group('<?= $invitation_url ?>')">邀请
+                        </button>
+                    <?php } ?>
+                </span>
             </div>
             <div class="group_others">
                 <span><?=$group['member_count']?>个成员</span>&nbsp;&nbsp;

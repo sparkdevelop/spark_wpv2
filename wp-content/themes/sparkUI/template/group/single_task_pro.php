@@ -128,7 +128,6 @@ $group_verify_field = get_verify_field($group_id, 'group');
     <div id="single-task-member-complete" style="margin-top: 30px">
         <?php $per_all = complete_percentage($group_id, $task_id) ?>
         <h4>组员完成情况 : <span style="font-size: 14px"><?= $per_all ?>%组员已完成</span></h4>
-
         <table class="table table-bordered">
             <thead>
             <tr>

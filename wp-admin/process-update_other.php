@@ -14,7 +14,6 @@ $time = date('Y-m-d H:i:s', time() + 8 * 3600);
 $sql_update_tm = "update wp_gp_task_member set completion = 0,complete_time = '$time',apply_content ='$task_content'
                       WHERE user_id = $id and task_id = $task_id";
 
-echo $sql_update_tm;
 if ($id != "" && $task_id != "" && $task_content != "") {
     $wpdb->query($sql_update_tm);
 }

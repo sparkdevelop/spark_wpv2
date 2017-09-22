@@ -1554,7 +1554,7 @@ h4 {
     float: right
 }
 #li_joined_groups a {
-    margin-left: 20px;
+    margin-left: 0px;
     font-size: medium;
     font-weight: bold;
     height: 40px;

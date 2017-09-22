@@ -67,7 +67,6 @@ if(($group[0]['join_permission'] =='freejoin' && $join_permission == 'verifyjoin
 }elseif($group[0]['join_permission'] == $join_permission && $join_permission == 'verifyjoin'){
     //更新字段
     $verify_content = $_POST['g-ver-info'];
-    print_r($verify_content);
     if(sizeof($verify_content)!=0){
         $verify_content = implode(",",$verify_content);
         $sql_verify = "UPDATE wp_gp_verify SET verify_content='$verify_content' WHERE verify_id=$group_id and verify_type='group'";
