@@ -10,12 +10,12 @@
 <div class="col-md-9 col-sm-9 col-xs-12"  id="col9">
     <div id="single-group-title">
         <div id="group-ava">
-            <img src="<?=$group['group_cover']?>" style="width: 85px;height: 85px">
+            <img src="<?=$group['group_cover']?>" >
         </div>
-        <div id="group-info" style="margin-left: 20px">
+        <div id="group-info">
             <div class="group_title">
                 <span id="h4_name"><?=$group['group_name']?></span>
-                <span style="color: #fe642d;margin-left: 20px">已加入&nbsp;&nbsp;&nbsp;
+                <span style="color: #fe642d;margin-left: 10px">已加入&nbsp;&nbsp;&nbsp;
                     <?php
                     $verify_type = get_verify_type($group['ID']);
                     $invitation_url = site_url() . get_page_address("invitation") . "&user_id=" . get_current_user_id() . "&group_id=" . $group['ID'];

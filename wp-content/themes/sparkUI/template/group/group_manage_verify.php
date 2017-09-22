@@ -1,38 +1,5 @@
 <style>
-    #member_verify {
-        margin: 0px 10px;
-    }
 
-    #all_verify {
-        text-align: right;
-        margin-top: 20px;
-        margin-right: 10px;
-    }
-
-    #all_verify a {
-        cursor: pointer;
-    }
-
-    #verify-ava {
-        display: inline-block;
-    }
-
-    #verify-info {
-        display: inline-block;
-        vertical-align: middle;
-        margin-left: 20px;
-    }
-
-    .btn-green {
-        float: none;
-        margin-right: 15px;
-        width: 80px;
-        height: 30px;
-        margin-top: 10px;
-    }
-    #verify-field{
-        margin-top: 10px;
-    }
 </style>
 <script>
     function verify_pass($group_id, $user_id, $admin_url) {

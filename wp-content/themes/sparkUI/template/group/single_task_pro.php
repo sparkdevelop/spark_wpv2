@@ -19,6 +19,18 @@ $group_verify_field = get_verify_field($group_id, 'group');
             ?>
             <span style="color: #fe642d"><?= $countdown ?></span>
         </div>
+        <div id="m-task-info" >
+            <span>群组: <?= $group['group_name'] ?></span><br>
+            <span>截止: <?= $task['deadline'] ?></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+            <?php
+            if ($countdown != 0) {
+                $countdown = "还剩 " . $countdown . " 天";
+            } else {
+                $countdown = "已截止";
+            }
+            ?>
+            <span style="color: #fe642d"><?= $countdown ?></span>
+        </div>
     </div>
     <div class="divline"></div>
     <div id="single-task-abstract">
@@ -54,7 +66,6 @@ $group_verify_field = get_verify_field($group_id, 'group');
                         foreach ($team_member as $value) {
                             ?>
                             <input type="text" class="form-control" name="team_member[]" id="team_member"
-                                   style="margin-right:0px;margin-bottom:10px;display:inline;width: 15%"
                                    value="<?= get_author_name($value) ?>" readonly/>
                         <? } ?>
                     </div>
@@ -69,7 +80,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
                     ?>
                     <div class="form-group" style="margin-bottom: 30px">
                         <div class="col-sm-offset-1 col-sm-10">
-                            <input type="submit" class="btn-green" style="margin-top: 0px" id="apply-btn" value="更新任务">
+                            <input type="submit" class="btn-green" style="margin-top: 0;" id="apply-btn" value="更新任务">
                         </div>
                     </div>
                 <? } ?>
@@ -97,7 +108,6 @@ $group_verify_field = get_verify_field($group_id, 'group');
                     <div class="col-sm-8">
                         <input type="button" id="addNewFieldBtn" value="+" style="display:inline">
                         <input type="text" class="form-control" name="team_member[]" id="team_member"
-                               style="margin-right:0px;margin-bottom:10px;display:inline;width: 15%"
                                placeholder="本组成员" value="" onblur="checkUserName(this.value)"/>
                         <div id="addField" style="display:inline;margin-top: 7px;margin-left: -4px"></div>
                         <div id="ajax-response" style="display: inline;margin-left: 10px"></div>
@@ -128,7 +138,8 @@ $group_verify_field = get_verify_field($group_id, 'group');
     <div id="single-task-member-complete" style="margin-top: 30px">
         <?php $per_all = complete_percentage($group_id, $task_id) ?>
         <h4>组员完成情况 : <span style="font-size: 14px"><?= $per_all ?>%组员已完成</span></h4>
-        <table class="table table-bordered">
+        <div id="task-pro-complete-table" class="table-responsive" >
+        <table id="task-complete-table-border" class="table table-bordered">
             <thead>
             <tr>
                 <th>组号</th>
@@ -229,6 +240,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
             } ?>
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 <script>
@@ -237,8 +249,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
         $("tbody tr td").css("vertical-align", 'middle');
     });
     $(document).on('click', '#addNewFieldBtn', function () {
-        var input = '<input type="text" class="form-control" name="team_member[]" id="team_member" ' +
-            'style="margin-left: 10px;margin-bottom:10px;display:inline;width: 15%" ' +
+        var input = '<input type="text" class="form-control" name="team_member[]" id="team_member" '  +
             'placeholder="本组成员" value="" onblur="checkUserName(this.value)" />';
         $("#addField").append(input);
     });
@@ -246,11 +257,11 @@ $group_verify_field = get_verify_field($group_id, 'group');
         var id = "#" + boxid;
         if (taskname.length == 0) {
             <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
-            $(id).html("<img src='<?=$url?>'><span>该项不能为空</span>");
+            $(id).html("<img src='<?=$url?>' style='margin-left:20px;'><span>该项不能为空</span>");
             return false;
         } else {
             <?php $url = get_template_directory_uri() . "/img/OK.png";?>
-            $(id).html("<img src='<?=$url?>'>");
+            $(id).html("<img src='<?=$url?>' style='margin-left:20px;'>");
             return true;
         }
     }

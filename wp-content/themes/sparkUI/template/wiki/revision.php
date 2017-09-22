@@ -11,13 +11,16 @@ $sql = $wpdb->prepare("select * from $wpdb->posts where ID = %s", $revision_id);
 $revision = $wpdb->get_results($sql);
 $title =  $revision[0]->post_title;
 $author_id =  $revision[0]->post_author;
-$author = get_the_author($author_id);
+$author = get_the_author_meta('user_login',$author_id);
 $content = $revision[0]->post_content;
 $wiki_id = $_REQUEST['wiki_id'];
 $admin_url = admin_url('admin-ajax.php');
+$origin_title =get_the_title($wiki_id);
 ?>
 
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
+    <h2><a href="<?php echo get_permalink($wiki_id);?>"><?php echo $origin_title ;?></a>的历史版本</h2>
+    <div class="divline"></div>
     <h2><b><?php echo $title ;?></b></h2>
     <?php echo $content ; ?>
 </div>
@@ -27,7 +30,7 @@ $admin_url = admin_url('admin-ajax.php');
         <a onclick="restore_revision('<?=$admin_url?>','<?=$revision_id?>')"  class="restore-revision button button-primary" role="button">恢复到此版本</a>
     </div>
     <div class="sidebar-grey-frame" style="margin-top: 30px">
-       <p>当前版本作者：<a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$author_id.'&tab=wiki'?>"
+       <p>此版本作者：<a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$author_id.'&tab=wiki'?>"
                   class="author_link"><?php echo $author?></a>
        </p>
         <p><?php echo $revision[0]->post_date ?></p>

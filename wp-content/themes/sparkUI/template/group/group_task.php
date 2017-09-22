@@ -5,8 +5,8 @@
         <div>
             <?php for($i=0;$i<sizeof($all_task);$i++){  //没有翻页?>
                 <div style="height: 1px;background-color: lightgray"></div>
-                <div style="margin: 20px 20px">
-                    <div style="width: 90%;display:inline-block;;">
+                <div class="group-task">
+                    <div class="group-task-status-info">
                         <?php
                         if(is_group_member($group_id)){?>
                             <h4><a style="color: black" href="<?php echo site_url().get_page_address('single_task').'&id='.$all_task[$i]['ID'];?>"><?=$all_task[$i]['task_name']?></a></h4>
@@ -17,10 +17,11 @@
                             <span>发布人:</span>
                             <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$all_task[$i]['task_author'];?>" style="color: #169bd5"><?php echo get_author_name($all_task[$i]['task_author'])?></a>
                             <?php $per_all = complete_percentage($group_id,$all_task[$i]['ID']);?>
-                            <span style="margin-left: 40px"><?=$per_all?>%成员已完成</span>
+                            <span id="group-task-status-info-status"><?=$per_all?>%成员已完成</span>
                         </div>
+                            <div id="m-group-task-status-info-status"><span><?=$per_all?>%成员已完成</span></div>
                     </div>
-                    <div style="display: inline-block;vertical-align: super">
+                    <div class="group-task-btn">
                         <?php
                             if(is_group_member($group_id)){
                                 if(!is_overdue($all_task[$i]['ID'])){?>
@@ -39,17 +40,4 @@
         echo '<div class="alert alert-info" style="margin-top: 20px">Oops, 该群组还没有任务</div>';
     }
 ?>
-<style>
-    .btn-white{
-        width: 60px;
-        height: 35px;
-        float: right;
-        font-size: 14px;
-        margin-top: 0px;
-        background-color: transparent;
-        color: #1fbba6;
-        border: 1px solid #1fbba6;
-        border-radius: 5px;
-    }
-</style>
 

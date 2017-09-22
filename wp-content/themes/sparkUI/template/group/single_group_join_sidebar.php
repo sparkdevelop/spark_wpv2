@@ -38,6 +38,18 @@
         line-height: 40px;
     }
 </style>
+<div class="side-tool" id="m-side-tool-project">
+
+    <?php if (is_user_logged_in()) { ?>
+        <ul>
+            <li><a href="<?php echo site_url() . get_page_address("createtask"); ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+        </ul>
+            <?php } else { ?>
+        <ul>
+            <li><a href="<?php echo wp_login_url(get_permalink()); ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+        </ul>
+    <?php } ?>
+</div>
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
 
     <?php if (is_user_logged_in()) { ?>
