@@ -176,7 +176,7 @@
                         <a href="<?php echo get_the_permalink(get_page_by_title('项目')); ?>">项目</a>
                     </li>
                     <li>
-                        <img src="<?php bloginfo("template_url") ?>/img/project.png">
+                        <img src="<?php bloginfo("template_url") ?>/img/group.png">
                         <a href="<?php echo get_the_permalink(get_page_by_title('协作')); ?>">协作</a>
                     </li>
                 </ul>

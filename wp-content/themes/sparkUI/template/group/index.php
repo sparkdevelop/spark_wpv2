@@ -6,7 +6,7 @@
 <!--        <a href="--><?php //echo site_url() . get_page_address('budao_index')?><!--">布道师大赛入口!置顶</a>-->
 <!--    </div>-->
 
-    <h4 class="index_title" style="margin-left: 20px">所有群组</h4>
+    <h4 class="index_title">所有群组</h4>
     <div class="divline"></div>
     <ul class="list-group">
         <?php

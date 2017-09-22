@@ -21,6 +21,18 @@ $per_all = complete_percentage($group_id,$task_id);
             ?>
             <span style="color: #fe642d"><?=$countdown?></span>
         </div>
+        <div id="m-task-info" >
+            <span>群组: <?= $group['group_name'] ?></span><br>
+            <span>截止: <?= $task['deadline'] ?></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+            <?php
+            if ($countdown != 0) {
+                $countdown = "还剩 " . $countdown . " 天";
+            } else {
+                $countdown = "已截止";
+            }
+            ?>
+            <span style="color: #fe642d"><?= $countdown ?></span>
+        </div>
     </div>
     <div class="divline"></div>
     <div id="single-task-abstract">
@@ -29,7 +41,8 @@ $per_all = complete_percentage($group_id,$task_id);
     </div>
     <div id="single-task-complete">
         <h4 style="margin-top: 25px">完成情况 : </h4>
-        <table class="table table-striped">
+        <div  id="task-read-complete-table" class="table-responsive" >
+        <table id="task-complete-table-striped" class="table table-striped">
             <thead>
             <tr>
                 <th style="width: 10%">序号</th>
@@ -54,6 +67,7 @@ $per_all = complete_percentage($group_id,$task_id);
             <?php } ?>
             </tbody>
         </table>
+        </div>
     </div>
     <div id="single-task-member-complete">
         <h4>组员完成情况 : </h4>

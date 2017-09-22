@@ -10,12 +10,12 @@ $admin_url=admin_url( 'admin-ajax.php' );
 <div class="col-md-9 col-sm-9 col-xs-12"  id="col9">
     <div id="single-group-title">
         <div id="group-ava">
-            <img src="<?=$group['group_cover']?>" style="width: 85px;height: 85px">
+            <img src="<?=$group['group_cover']?>" >
         </div>
-        <div id="group-info" style="margin-left: 20px">
+        <div id="group-info" >
             <div class="group_title">
                 <span id="h4_name"><?=$group['group_name']?></span>
-                <span style="color: #fe642d;margin-left: 20px">已加入群组&nbsp;&nbsp;<button id="group_join_btn" onclick="quit_the_group(<?=$group['ID']?>,'<?=$admin_url?>')">退出</button></span>
+                <span id="group-info-status" style="color: #fe642d;margin-left: 10px">已加入群组&nbsp;&nbsp;</span><button id="group_join_btn" onclick="quit_the_group(<?=$group['ID']?>,'<?=$admin_url?>')">退出</button><button id="m-group_join_btn" onclick="quit_the_group(<?=$group['ID']?>,'<?=$admin_url?>')">退出</button>
             </div>
             <div class="group_others">
                 <span><?=$group['member_count']?>个成员</span>&nbsp;&nbsp;

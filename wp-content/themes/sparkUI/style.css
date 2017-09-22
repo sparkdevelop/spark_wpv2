@@ -1522,7 +1522,14 @@ h4 {
     color: #fff;
     border-radius: 5px;
 }
+#m-group_join_btn{
+    display: none;
+}
 /*群组主页css*/
+.index_title {
+    margin-left: 20px;
+    margin-bottom:10px;
+}
 #group-ava {
     display: inline-block;
     float: left;
@@ -1535,7 +1542,7 @@ h4 {
 #group-info {
     display: inline-block;
     width: 55%;
-    margin-left: 30px
+    margin-left: 20px
 }
 #latest-active {
     display: inline-block;
@@ -1605,4 +1612,127 @@ h4 {
 #single-task-abstract {
     margin-top: 20px;
 }
+/*creat task页面*/
+#addNewFieldBtn {
+    display:inline;
+    margin-right: 10px
+}
+/*group_manage_verify*/
+#member_verify {
+    margin: 0px 10px;
+}
 
+#all_verify {
+    text-align: right;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+#all_verify a {
+    cursor: pointer;
+}
+
+
+
+.btn-green {
+    float: none;
+    margin-right: 15px;
+    width: 80px;
+    height: 30px;
+    margin-top: 10px;
+}
+#verify-field{
+    margin-top: 10px;
+}
+#verify-ava {
+    display: inline-block;
+}
+
+#verify-info {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 20px;
+}
+/*group_task*/
+.group-task{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+.group-task-status-info{
+    width: 90%;
+    display:inline-block;
+}
+#group-task-status-info-status{
+    margin-left: 40px
+}
+.group-task-btn{
+    display: inline-block;
+    vertical-align: super
+}
+.btn-white{
+    width: 60px;
+    height: 35px;
+    float: right;
+    font-size: 14px;
+    margin-top: 0;
+    background-color: transparent;
+    color: #1fbba6;
+    border: 1px solid #1fbba6;
+    border-radius: 5px;
+}
+#m-group-task-status-info-status{
+    display:none;
+}
+/*single_task_other*/
+#m-task-info{
+    display:none;
+}
+.single-task-member-complete-item{
+    padding-top: 15px;
+    padding-right: 0;
+    padding-bottom: 15px;
+    padding-left: 0;
+    position: relative;
+    border-top: 1px solid #ddd;
+}
+
+.single-task-member-complete-item .dwqa-answer-meta a {
+    position: inherit;
+}
+
+.dwqa-answer-item .avatar {
+    position: absolute;
+    left: 0;
+    top: 20px;
+    border-radius: 48px;
+}
+
+.dwqa-answer-item .dwqa-answer-meta {
+    font-size: small;
+    margin-bottom: 20px;
+}
+/*single_task_pro*/
+#team_member{
+    margin-left: 0;
+    margin-right: 10px;
+    margin-bottom:10px;
+    display:inline;
+    width: 15%
+}
+#task-pro-complete-table{
+    margin-top: 20px;
+}
+#task-complete-table-border{
+    margin-top: 0;
+}
+.form-control{
+    width: 100%;
+}
+/*single_task_read*/
+#task-complete-table-striped{
+    margin-top: 0;
+}
+#task-read-complete-table{
+    margin-top: 20px;
+}

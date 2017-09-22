@@ -17,11 +17,11 @@
         var id = "#"+boxid;
         if(taskname.length == 0){
             <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
-            $(id).html("<img src='<?=$url?>'><span>该项不能为空</span>");
+            $(id).html("<img src='<?=$url?>' style='margin-left:20px;'><span>该项不能为空</span>");
             return false;
         }else{
             <?php $url = get_template_directory_uri() . "/img/OK.png";?>
-            $(id).html("<img src='<?=$url?>'>");
+            $(id).html("<img src='<?=$url?>' style='margin-left:20px;'>");
             return true;
         }
     }
@@ -70,7 +70,7 @@
                             switch ($("input[name=ttype]:checked").attr("id")) {   //根据id判断
                                 case "tread":
                                     var html = '<p>自动检查,仅支持站内文章,请在下框中填写文章链接</p>'+
-                                               '<input type="button" id="addNewFieldBtn" value="+" style="display:inline;margin-right: 10px">'+
+                                               '<input type="button" id="addNewFieldBtn" value="+" >'+
                                                '<input type="text" class="form-control" name="tlink[]" id="tlink" ' +
                                                         'style="margin-bottom:10px;display:inline;width: 90%" placeholder="" value=""/>';
                                     $("#ttype-addon").html('<p style="margin-top: 5px">注:可用于检查组员阅读wiki教程,查看<a href="#">任务示例</a></p>');

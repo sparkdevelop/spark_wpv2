@@ -37,10 +37,10 @@
                 success: function (response) {
                     if (response == false) {
                         <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
-                        $('#checkGroupNamebox').html("<img src='<?=$url?>'><span>该组名已经被占用</span>");
+                        $('#checkGroupNamebox').html("<img src='<?=$url?>' style='margin-left:20px;'><span>该组名已经被占用</span>");
                     } else {
                         <?php $url = get_template_directory_uri() . "/img/OK.png";?>
-                        $('#checkGroupNamebox').html("<img src='<?=$url?>'>");
+                        $('#checkGroupNamebox').html("<img src='<?=$url?>' style='margin-left:20px;'>");
                         flag_name = true;
                     }
                 }
@@ -52,12 +52,12 @@
     function checkGroupAbs(groupAbs) {
         if (groupAbs.length == 0) {
             <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
-            $('#checkGroupAbsbox').html("<img src='<?=$url?>'><span>简介不能为空</span>");
+            $('#checkGroupAbsbox').html("<img src='<?=$url?>' style='margin-left:20px;'><span>简介不能为空</span>");
             return false;
         }
         else {
             <?php $url = get_template_directory_uri() . "/img/OK.png";?>
-            $('#checkGroupAbsbox').html("<img src='<?=$url?>'>");
+            $('#checkGroupAbsbox').html("<img src='<?=$url?>' style='margin-left:20px;'>");
             return true;
         }
     }
@@ -80,7 +80,7 @@
 
 </script>
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
-    <h4 class="index_title" style="margin-left: 20px">填写群组信息</h4>
+    <h4 class="index_title">填写群组信息</h4>
     <div class="divline"></div>
 
     <form class="form-horizontal" role="form" name="profile" method="post" enctype="multipart/form-data"

@@ -17,6 +17,18 @@ $countdown = countDown($task_id);
             ?>
             <span style="color: #fe642d"><?= $countdown ?></span>
         </div>
+        <div id="m-task-info" >
+            <span>群组: <?= $group['group_name'] ?></span><br>
+            <span>截止: <?= $task['deadline'] ?></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+            <?php
+            if ($countdown != 0) {
+                $countdown = "还剩 " . $countdown . " 天";
+            } else {
+                $countdown = "已截止";
+            }
+            ?>
+            <span style="color: #fe642d"><?= $countdown ?></span>
+        </div>
     </div>
     <div class="divline"></div>
     <div id="single-task-abstract">
@@ -84,16 +96,17 @@ $countdown = countDown($task_id);
         <?php $per_all = complete_percentage($group_id, $task_id) ?>
         <h4>组员完成情况 : <span class="pull-right" style="font-size: 14px" ><?=$per_all?>%组员已完成</span> </h4>
     </div><br>
-    <div class="dwqa-answers-list">
+    <div class="single-task-member-complete-list">
         <?php $all_complete = task_complete_other($task_id);
         foreach ($all_complete as $value){ ?>
             <div class="dwqa-answer-item" style="padding: 15px 0px">
                 <!--头像-->
+
                 <div style="display: inline-block;vertical-align: top;margin-left: 30px">
                     <?php echo get_avatar($value['user_id'],36,'');?>
                 </div>
                 <!--内容-->
-                <div style="display: inline-block;vertical-align: top;width: 95%">
+                <div style="display: inline-block;vertical-align: top;width: 90%">
                     <!--审核状态-->
                     <?php
                     if (is_group_admin($group_id)) { ?>
