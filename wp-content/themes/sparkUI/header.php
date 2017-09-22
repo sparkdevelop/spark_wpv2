@@ -223,7 +223,7 @@
                 <ul class="m-left-nav">
                     <li>
                         <img src="<?php bloginfo("template_url") ?>/img/wiki.png">
-                        <a href="<?php echo site_url() . get_page_address('wiki'); ?>">wiki</a>
+                        <a href="<?php echo site_url() . get_page_address('wiki_index'); ?>">wiki</a>
                     </li>
                     <li>
                         <img src="<?php bloginfo("template_url") ?>/img/qa.png">

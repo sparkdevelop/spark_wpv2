@@ -543,6 +543,14 @@
         margin-left: 15px;
     }
     .form-control{
-        width: auto;
+        /*width: auto;*/
+    }
+    #search-group{
+        display: none;
+    }
+    #m-search-group{
+        display:inline-block;
+        float: right;
+        width:48%;
     }
 }

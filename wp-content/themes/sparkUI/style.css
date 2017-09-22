@@ -1736,3 +1736,11 @@ h4 {
 #task-read-complete-table{
     margin-top: 20px;
 }
+
+#search-group{
+    display: inline-block;
+    float: right;
+}
+#m-search-group{
+    display: none;
+}

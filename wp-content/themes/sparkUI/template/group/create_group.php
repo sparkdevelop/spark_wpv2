@@ -93,7 +93,7 @@
                 <input type="text" class="form-control" name="gname" id="gname" placeholder="请输入群组名称" value=""
                        onblur="checkGroupName(this.value)"/>
             </div>
-            <span style="line-height: 30px;height: 30px" id="checkGroupNamebox"></span>
+            <span style="line-height: 30px;height: 30px;margin-left: 20px" id="checkGroupNamebox"></span>
         </div>
         <!--群组简介-->
         <div class="form-group" style="margin: 20px 0px">
