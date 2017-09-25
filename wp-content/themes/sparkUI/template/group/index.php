@@ -273,6 +273,13 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                         <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
                            style="color: #169bd5"><?php echo get_author_name($author) ?></a>
                     </div>
+                    <div class="m-group_others">
+                        <span><?= $member ?>个成员</span>&nbsp;&nbsp;
+                        <span >管理员</span>
+                        <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
+                           style="color: #169bd5"><?php echo get_author_name($author) ?></a>
+
+                    </div>
                 </div>
 
                 <div id="m-group-btn">
@@ -397,6 +404,13 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                                         <span>管理员</span>
                                         <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
                                            style="color: #169bd5"><?php echo get_author_name($author) ?></a>
+                                        <div class="m-group_others">
+                                            <span><?= $member ?>个成员</span>&nbsp;&nbsp;
+                                            <span >管理员</span>
+                                            <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
+                                               style="color: #169bd5"><?php echo get_author_name($author) ?></a>
+
+                                        </div>
                                     </div>
                                 </div>
 
