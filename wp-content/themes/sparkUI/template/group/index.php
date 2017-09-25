@@ -228,15 +228,12 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                     <img src="<?= $official_group['group_cover'] ?>">
                 </div>
                 <div id="group-info">
-                    <div class="group_title">
-                        <a class="group_name" style="color:#333;"
+                    <div class="group_title" style="margin-bottom: 0px">
+                        <a class="group_name" style="color:#333;display: inline-block"
                            href="<?php echo site_url() . get_page_address('single_group') . '&id=' . $official_group['ID']; ?>">
-                            <h4><?= $group_name ?>
-                            <span style="color: #fe642d">
-                                【置顶】
-                            </span>
-                            </h4>
+                            <h4><?= $group_name ?></h4>
                         </a>
+                        <span style="color: #fe642d;">【置顶】</span>
                     </div>
                     <div class="group_abs">
                         <?php echo $official_group['group_abstract']; ?>

@@ -2754,9 +2754,9 @@ function verify_pass(){
      * 首先判断本群是否为官方群,如果是
      * 创建一个新的群组,
      * */
-    if($group_id == get_group_id_by_name('布道师大赛官方群')){
-        create_budao_group($user_id);
-    }
+//    if($group_id == get_group_id_by_name('布道师大赛官方群')){
+//        create_budao_group($user_id);
+//    }
     exit();
 }
 add_action('wp_ajax_verify_pass', 'verify_pass');

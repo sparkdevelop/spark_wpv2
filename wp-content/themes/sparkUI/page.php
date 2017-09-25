@@ -19,6 +19,7 @@
     if(is_page('verify_form')){?>
         <script>
             $(document).ready(function () {
+                $('#m-header').css('display','none');
                 $('#web-header').css('display','none');
                 $('.footer').css('display','none')
             })
