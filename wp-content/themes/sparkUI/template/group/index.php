@@ -83,9 +83,9 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                                     <div class="group_others">
                                         <?php
                                         if (is_group_member($all_group[$i]['ID'])) {
-                                            echo '<span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">已加入</span>&nbsp;&nbsp;';
+                                            echo '<span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0;">已加入</span>&nbsp;&nbsp;';
                                         } elseif ($all_group[$i]['group_status'] == "close") {
-                                            echo '<span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">已关闭</span>&nbsp;&nbsp;';
+                                            echo '<span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0;">已关闭</span>&nbsp;&nbsp;';
                                         } else {
                                             $verify_type = get_verify_type($all_group[$i]['ID']);
                                             $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $all_group[$i]['ID'];
@@ -101,10 +101,19 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                                             <?php }
                                         }
                                         ?>
+
+                                            <span><?= $member ?>个成员</span>&nbsp;&nbsp;
+                                            <span>管理员</span>
+                                            <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
+                                               style="color: #169bd5"><?php echo get_author_name($author) ?></a>
+
+                                    </div>
+                                    <div class="m-group_others">
                                         <span><?= $member ?>个成员</span>&nbsp;&nbsp;
-                                        <span>管理员</span>
+                                        <span >管理员</span>
                                         <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
                                            style="color: #169bd5"><?php echo get_author_name($author) ?></a>
+
                                     </div>
                                 </div>
 

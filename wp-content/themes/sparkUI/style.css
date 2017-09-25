@@ -1578,6 +1578,9 @@ h4 {
 .group_others {
     margin-top: 10px;
 }
+.m-group_others{
+    display: none;
+}
 
 #member_manage_table{
     border: 1px solid lightgrey;

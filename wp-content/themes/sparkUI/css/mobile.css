@@ -441,6 +441,14 @@
     #my_group_badge{
         display: none;
     }
+    .group_others{
+        display: none;
+    }
+    .m-group_others{
+        margin-top: 10px;
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
     #group_join_btn{
         display: none;
     }
@@ -516,10 +524,6 @@
         vertical-align: super;
         margin-left: 40px;
         margin-bottom: 15px;
-    }
-    /*single_group_common*/
-    #group-info-status{
-        display: none;
     }
     /*single_task_other*/
     #m-task-info{
