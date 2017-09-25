@@ -72,7 +72,7 @@
                             $current_user = wp_get_current_user();
                             $person_address=get_page_address('personal');
                             ?>
-                            <div class="btn-group" >
+                            <div class="dropdown btn-group" >
                                 <button type="button" id="user-portrait" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                     <?php echo get_avatar($current_user->ID,30,'');?>
                                 </button>
@@ -88,6 +88,18 @@
                                     </li>
                                 </ul>
                             </div>
+
+<!--                            <script>-->
+<!--                                $(document).ready(function(){-->
+<!--                                    $(document).off('click.bs.dropdown.data-api');-->
+<!--                                    var $dropdownLi = $('.dropdown li');-->
+<!--                                    $dropdownLi.mouseover(function() {-->
+<!--                                        $(this).addClass('open');-->
+<!--                                    }).mouseout(function() {-->
+<!--                                        $(this).removeClass('open');-->
+<!--                                    })-->
+<!--                                })-->
+<!--                            </script>-->
 
                         <?php } else { ?>
                             <!--                             https://codex.wordpress.org/Function_Reference/wp_login_url-->

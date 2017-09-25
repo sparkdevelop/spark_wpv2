@@ -131,6 +131,10 @@ $admin_url=admin_url('admin-ajax.php');
             <img src="<?php bloginfo("template_url")?>/img/project.png">
             <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'project'),remove_query_arg(array('paged','filter'))))?>">我的项目</a></span>
         </li>
+        <li id="group">
+            <img src="<?php bloginfo("template_url")?>/img/project.png">
+            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'group'),remove_query_arg(array('paged','filter'))))?>">我的群组</a></span>
+        </li>
         <li id="favorite">
             <img src="<?php bloginfo("template_url")?>/img/collection.png">
             <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'favorite'),remove_query_arg(array('paged','filter'))))?>">我的收藏</a></span>

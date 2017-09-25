@@ -17,7 +17,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
                     style="color: red">*</span></label>
             <div class="col-sm-8">
                 <input type="button" id="addNewFieldBtn" value="+" style="display:inline">
-                <input type="text" class="form-control" name="team_member[]" id="team_member"
+                <input type="text" class="form-control" name="invitation_member[]" id="invitation_member"
                        style="margin-right:0px;margin-bottom:10px;display:inline;width: 30%"
                        placeholder="邀请成员" value="" onblur="checkInUserName(this.value)"/>
                 <div id="addField" style="display:inline;margin-top: 7px;margin-left: -4px"></div>
@@ -40,7 +40,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
 </div>
 <script>
     $(document).on('click', '#addNewFieldBtn', function () {
-        var input = '<input type="text" class="form-control" name="team_member[]" id="team_member" ' +
+        var input = '<input type="text" class="form-control" name="invitation_member[]" id="invitation_member" ' +
             'style="margin-left: 5%px;margin-bottom:10px;width: 25%" ' +
             'placeholder="邀请成员" value="" onblur="checkInUserName(this.value)" />';
         $("#addField").append(input);
