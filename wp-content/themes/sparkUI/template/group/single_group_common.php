@@ -25,6 +25,9 @@ $admin_url = admin_url('admin-ajax.php');
                     <button id="group_join_btn"
                             onclick="quit_the_group(<?= $group['ID'] ?>,'<?= $admin_url ?>')">退出
                     </button>
+                     <button id="m-group_join_btn"
+                             onclick="quit_the_group(<?= $group['ID'] ?>,'<?= $admin_url ?>')">退出
+                    </button>
                     <?php
                     $verify_type = get_verify_type($group['ID']);
                     $invitation_url = site_url() . get_page_address("invitation") . "&user_id=" . get_current_user_id() . "&group_id=" . $group['ID'];

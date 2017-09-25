@@ -55,7 +55,7 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                             ?>
                             <li class="list-group-item">
                                 <div id="group-ava">
-                                    <img src="<?= $all_group[$i]['group_cover'] ?>" style="width: 85px;height: 85px">
+                                    <img src="<?= $all_group[$i]['group_cover'] ?>">
                                 </div>
                                 <div id="group-info">
                                     <div class="group_title">
