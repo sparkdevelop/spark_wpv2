@@ -2,10 +2,12 @@
 //本页面是群组首页的侧边栏
 ?>
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
-    <div class="alert alert-info">本版块还在开发中, 意见及建议可
+    <div style="font-size: 12px;color: darkgray">
+        协作是在火花空间体验社群学习的板块。<br>
+        你可以在此加入群组，完成管理员布置的任务，在合作与竞争的环境中，督促自己进步，让管理员大神带你飞；还可以创建自己的群组，带领自己的队员共同成长。<br>
+        协作是未来开展布道师大赛等更多有趣活动的重要板块，还在开发中，意见与建议请
         <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=JRQUEhcSFBUdFBFlVFQLRkpI"
-           style="text-decoration:none;font-weight: bolder;color: #fe642d">
-            联系我们</a>
+           style="text-decoration:none;font-weight: bolder;color: #fe642d">联系我们</a>
     </div>
     <?php if(is_user_logged_in()){ ?>
         <div class="sidebar_button">

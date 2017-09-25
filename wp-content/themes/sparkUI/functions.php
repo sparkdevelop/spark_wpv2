@@ -2754,7 +2754,7 @@ function verify_pass(){
      * 首先判断本群是否为官方群,如果是
      * 创建一个新的群组,
      * */
-    if($group_id == get_group_id_by_name('布道师大赛')){
+    if($group_id == get_group_id_by_name('布道师大赛官方群')){
         create_budao_group($user_id);
     }
     exit();
@@ -3689,7 +3689,23 @@ function get_budao_group($id = NULL){
     return $results;
 }
 
-
+//为用户加入的group分类,变成加入和创建的分开
+function group_personal($all_group){
+    $user_id = get_current_user_id();
+    $create=[];
+    $joined=[];
+    if(sizeof($all_group)!=0){
+        foreach ($all_group as $value){
+            if($user_id==$value['group_author']){
+                array_push($create,$value);
+            }else{
+                array_push($joined,$value);
+            }
+        }
+    }
+    $return = array('create'=>$create,'joined'=>$joined);
+    return $return;
+}
 
 
 

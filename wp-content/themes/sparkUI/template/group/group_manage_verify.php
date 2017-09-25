@@ -55,6 +55,7 @@ if ($verify_type == 'freejoin') {
     echo '<div class="alert alert-info" style="margin-top: 20px">本群组自由加入,没有成员需要审核</div>';
 } elseif ($verify_type == 'verify') {
     $member_verify_info = get_member_verify_tmp($group_id);
+
     if (sizeof($member_verify_info) == 0) {
         echo '<div class="alert alert-info" style="margin-top: 20px">没有需要审核的成员</div>';
     } else { ?>

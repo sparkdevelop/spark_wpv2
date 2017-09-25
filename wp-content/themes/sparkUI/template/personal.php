@@ -21,6 +21,9 @@
     if($tab=='project'){
         require "myproject.php";
     }
+    if($tab=='group'){
+        require "mygroup.php";
+    }
     if($tab=='favorite'){
         require "myfavorite.php";
     }

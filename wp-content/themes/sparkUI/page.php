@@ -14,7 +14,18 @@
 //$page_personal_id = get_page_id('personal');
 ?>
 
-<?php get_header(); ?>
+<?php
+    get_header();
+    if(is_page('verify_form')){?>
+        <script>
+            $(document).ready(function () {
+                $('#web-header').css('display','none');
+                $('.footer').css('display','none')
+            })
+        </script>
+    <?php }
+
+ ?>
 <div class="container" style="margin-top: 10px;margin-bottom: 30px;">
     <div class="row" style="width: 100%">
            <!--引入动态模板-->
@@ -81,9 +92,9 @@
                     require "template/group/verify_form.php";
                 }
                 elseif (is_page('budao_index')){
-                    if (!is_user_logged_in()) {
-                        wp_redirect( home_url().'/wp-login.php' );
-                    }
+//                    if (!is_user_logged_in()) {
+//                        wp_redirect( home_url().'/wp-login.php' );
+//                    }
                     require "template/budao/index.php";
                 }
                 elseif (is_page("ask")) {
