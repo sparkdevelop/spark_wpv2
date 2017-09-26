@@ -25,8 +25,8 @@ $user_id =isset($_GET["id"]) ? $_GET["id"] : get_current_user_id();
                 //alert(data.wikis.length);
                 $("#wiki_list").html("");
                 for(var i=0;i<data.wikis.length;i++) {
-                    $("#wiki_list").append("<p>"+"<a href=\"/?yada_wiki="+data.wikis[i].post_name+"\">"+data.wikis[i].post_title+"</a>"+"</p>");
-                    $("#wiki_list").append("<p>"+data.wikis[i].post_content.substring(0, 30)+"..."+"</p>");
+                    $("#wiki_list").append("<p>"+"<a href=\"<?php echo site_url();?>/?yada_wiki="+data.wikis[i].post_name+"\">"+data.wikis[i].post_title+"</a>"+"</p>");
+                  /*  $("#wiki_list").append("<p>"+data.wikis[i].post_content.substring(0, 30)+"..."+"</p>");*/
                     $("#wiki_list").append("<hr>");
                     //alert(data.wikis[i].post_title);
                 }
@@ -56,8 +56,8 @@ $user_id =isset($_GET["id"]) ? $_GET["id"] : get_current_user_id();
                 //alert(data.wikis.length);
                 $("#wiki_list").html("");
                 for(var i=0;i<data.wikis.length;i++) {
-                    $("#wiki_list").append("<p>"+"<a href=\"/?yada_wiki="+data.wikis[i].post_name+"\">"+data.wikis[i].post_title+"</a>"+"</p>");
-                    $("#wiki_list").append("<p>"+data.wikis[i].post_content.substring(0, 50)+"..."+"</p>");
+                    $("#wiki_list").append("<p>"+"<a href=\"<?php echo site_url();?>/?yada_wiki="+data.wikis[i].post_name+"\">"+data.wikis[i].post_title+"</a>"+"</p>");
+                  /*  $("#wiki_list").append("<p>"+data.wikis[i].post_content.substring(0, 50)+"..."+"</p>");*/
                     $("#wiki_list").append("<hr>");
                     //alert(data.wikis[i].post_title);
                 }
