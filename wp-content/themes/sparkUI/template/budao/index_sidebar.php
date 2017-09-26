@@ -2,7 +2,7 @@
 /**
  * 布道师主页侧边栏
  */
-$official_group = get_group(get_group_id_by_name('布道师大赛官方群'))[0];
+$official_group = get_group(get_group_id_by_name($budao_official))[0];
 ?>
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
     <?php if(is_user_logged_in()){

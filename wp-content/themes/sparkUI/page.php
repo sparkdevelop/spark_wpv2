@@ -16,7 +16,7 @@
 
 <?php
     get_header();
-    if(is_page('verify_form')){?>
+    if(is_page('verify_form') || is_page('invitation')){?>
         <script>
             $(document).ready(function () {
                 $('#m-header').css('display','none');
@@ -96,7 +96,8 @@
 //                    if (!is_user_logged_in()) {
 //                        wp_redirect( home_url().'/wp-login.php' );
 //                    }
-                    require "template/budao/index.php";
+                    the_content();
+                    //require "template/budao/index.php";
                 }
                 elseif (is_page("ask")) {
                     if (is_user_logged_in()) {
@@ -204,7 +205,10 @@
             <?php else: ?>
                 <p><?php _e('Sorry, this page does not exist.'); ?></p>
             <?php endif; ?>
-            <?php get_sidebar(); ?>
+            <?php
+            if(!is_page('budao_index')){
+                get_sidebar();
+            } ?>
     </div>
 </div>
 <?php get_footer(); ?>

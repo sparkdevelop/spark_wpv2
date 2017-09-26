@@ -3,7 +3,7 @@
  * 布道大赛的主页
  */
 $admin_url = admin_url('admin-ajax.php');
-$official_group = get_group(get_group_id_by_name('布道师大赛官方群'))[0];
+$official_group = get_group(get_group_id_by_name($budao_official))[0];
 ?>
 <style>
     .group_name {color: #333;}
