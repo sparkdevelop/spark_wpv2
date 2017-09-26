@@ -15,6 +15,10 @@ foreach($term_all_names as $wiki_all_name) {
 <script type="text/javascript">
 
     function create_wiki_entry() {
+        //关闭保存时离开页面提示框
+        $(window).unbind('beforeunload');
+        window.onbeforeunload = null;
+
         entry_content = $(document.getElementById('wiki_content_editor_ifr').contentWindow.document.body).html();
         //var entry_content = $(document.getElementById('wiki_content_editor_ifr').contentWindow.document.body).html();
         //var entry_content = $("#wiki_content_editor").val();
@@ -62,7 +66,7 @@ foreach($term_all_names as $wiki_all_name) {
                 //form.method = 'POST';
                 //document.body.appendChild(form);
                 //form.submit();
-                window.open("/?yada_wiki="+data);
+                window.location.replace("<?php echo site_url();?>/?yada_wiki=" + data);
             },
             error: function() {
                 alert("wiki发布失败!");
