@@ -41,8 +41,11 @@ foreach($term_all_names as $wiki_all_name) {
 $admin_url=admin_url('admin-ajax.php');
 ?>
 <script type="text/javascript">
-
     function update_wiki_entry() {
+        //关闭保存时离开页面提示框
+        $(window).unbind('beforeunload');
+        window.onbeforeunload = null;
+
         entry_content = $(document.getElementById('wiki_content_editor_ifr').contentWindow.document.body).html();
         //var entry_content = $("#wiki_content_editor").val();
         var entry_title = "<?php echo $post_title; ?>";
@@ -82,7 +85,7 @@ $admin_url=admin_url('admin-ajax.php');
             dataType: "json",
             success: function(data){
                 var post_name = "<?php echo $post_name; ?>";
-                window.open("/?yada_wiki="+post_name);
+                window.location.href="/?yada_wiki="+post_name;
                 //window.location.href = " <?php //echo site_url();?>/?yada_wiki=" + post_name;
                 //var form = document.createElement('form');
                 //form.action = "/?yada_wiki=" + post_name;
