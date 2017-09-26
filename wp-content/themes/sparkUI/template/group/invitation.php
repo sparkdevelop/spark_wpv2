@@ -26,10 +26,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
         </div>
         <!--        隐藏信息-->
         <div class="form-group">
-            <input type="hidden" name="user_id" value="<?= get_current_user_id() ?>">
-            <input type="hidden" name="group_id" value="<?= $_GET['group_id'] ?>">
-            <input type="hidden" name="field_num" value="<?= sizeof($verify_field) ?>">
-            <input type="hidden" name="apply_time" value="<?= date("Y-m-d H:i:s", time() + 8 * 3600) ?>">
+            <input type="hidden" name="group_id" value="<?= $group_id?>">
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
@@ -41,7 +38,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
 <script>
     $(document).on('click', '#addNewFieldBtn', function () {
         var input = '<input type="text" class="form-control" name="invitation_member[]" id="invitation_member" ' +
-            'style="margin-left: 5%px;margin-bottom:10px;width: 25%" ' +
+            'style="margin-left: 10%;margin-bottom:10px;width: 30%" ' +
             'placeholder="邀请成员" value="" onblur="checkInUserName(this.value)" />';
         $("#addField").append(input);
     });

@@ -72,11 +72,11 @@ get_header();
 <script>
     $(function () {
         $("#myCarousel").carousel({
-            interval:3000
+            interval:10000
         });
         if(screen.width<480){
             $("#webpage").css("display","none");
-            $("#mobile_front").css("display","block")
+            $("#mobile_front").css("display","block");
             $("#webpage_2").css("display","none");
             $("#mobile_front_2").css("display","block")
         }
@@ -96,14 +96,6 @@ get_header();
         <!-- 轮播（Carousel）项目 -->
         <div class="carousel-inner">
             <div class="item active">
-                <img src="<?php bloginfo("template_url")?>/img/spark_banner.jpg" id="webpage"
-                     style="margin: 0 auto"
-                     onclick="location.replace('<?php echo site_url()?>')"/>
-                <img src="<?php bloginfo("template_url")?>/img/spark_banner_m.jpg" id="mobile_front"
-                     style="margin: 0 auto; display: none"
-                     onclick="location.replace('<?php echo site_url()?>')"/>
-            </div>
-            <div class="item">
                 <img src="<?php bloginfo("template_url")?>/img/budao.jpg" id="webpage_2"
                      style="margin: 0 auto"
                      onclick="location.replace('<?php echo site_url() . get_page_address('budao_index')?>')"/>
@@ -111,6 +103,15 @@ get_header();
                      style="margin: 0 auto;display: none"
                      onclick="location.replace('<?php echo site_url() . get_page_address('budao_index')?>')"/>
             </div>
+            <div class="item">
+                <img src="<?php bloginfo("template_url")?>/img/spark_banner.jpg" id="webpage"
+                     style="margin: 0 auto"
+                     onclick="location.replace('<?php echo site_url()?>')"/>
+                <img src="<?php bloginfo("template_url")?>/img/spark_banner_m.jpg" id="mobile_front"
+                     style="margin: 0 auto; display: none"
+                     onclick="location.replace('<?php echo site_url()?>')"/>
+            </div>
+
         </div>
         <!-- 轮播（Carousel）导航 -->
 <!--        <a class="carousel-control left" href="#myCarousel"-->

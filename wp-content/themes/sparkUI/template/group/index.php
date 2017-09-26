@@ -32,6 +32,107 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
         </div>
 
         <div id="leftTabContent" class="tab-content" style="margin-top: 42px; border-top:1px solid lightgrey">
+
+            <?php
+            //获取布道师群组
+            //global $budao_official;
+            $official_group = get_group(get_group_id_by_name($budao_official))[0];
+            $group_name = $official_group['group_name'];
+            $member = $official_group['member_count'];
+            $author = $official_group['group_author'];
+            ?>
+            <li class="list-group-item">
+                <div id="group-ava">
+                    <img src="<?= $official_group['group_cover'] ?>">
+                </div>
+                <div id="group-info">
+                    <div class="group_title" style="margin-bottom: 0px">
+                        <a class="group_name" style="color:#333;display: inline-block"
+                           href="<?php echo site_url() . get_page_address('single_group') . '&id=' . $official_group['ID']; ?>">
+                            <h4><?= $group_name ?></h4>
+                        </a>
+                        <span style="color: #fe642d;">【置顶】</span>
+                    </div>
+                    <div class="group_abs">
+                        <?php echo $official_group['group_abstract']; ?>
+                    </div>
+                    <div class="group_others">
+                        <?php
+                        if (is_group_member($official_group['ID'])) {
+                            echo '<span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">已加入</span>&nbsp;&nbsp;';
+                        } elseif ($official_group['group_status'] == "close") {
+                            echo '<span class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">已关闭</span>&nbsp;&nbsp;';
+                        } else {
+                            $verify_type = get_verify_type($official_group['ID']);
+                            $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $official_group['ID'];
+                            if ($verify_type == 'verifyjoin') { ?>
+                                <button id="group_join_btn"
+                                        onclick="verify_join_the_group('<?= $verify_url ?>')">加入
+                                </button>
+                            <?php } else { ?>
+                                <button id="group_join_btn"
+                                        onclick="join_the_group(<?= $official_group['ID'] ?>,'<?= $admin_url ?>')">
+                                    加入
+                                </button>&nbsp;&nbsp;
+                            <?php }
+                        }
+                        ?>
+                        <span><?= $member ?>个成员</span>&nbsp;&nbsp;
+                        <span>管理员</span>
+                        <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
+                           style="color: #169bd5"><?php echo get_author_name($author) ?></a>
+                    </div>
+                </div>
+
+                <div id="m-group-btn">
+                    <?php
+                    if (is_group_member($official_group['ID'])) {
+                        echo '<span class="badge" id="m-my_group_badge" style="float: inherit;margin-top: 0px">已加入</span>';
+                    } elseif ($official_group['group_status'] == "close") {
+                        echo '<span class="badge" id="m-my_group_badge" style="float: inherit;margin-top: 0px">已关闭</span>';
+                    } else {
+                        $verify_type = get_verify_type($official_group['ID']);
+                        $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $official_group['ID'];
+                        if ($verify_type == 'verifyjoin') { ?>
+                            <button id="m-group_join_btn"
+                                    onclick="verify_join_the_group('<?= $verify_url ?>')">加入
+                            </button>
+                        <?php } else { ?>
+                            <button id="m-group_join_btn"
+                                    onclick="join_the_group(<?= $official_group['ID'] ?>,'<?= $admin_url ?>')">
+                                加入
+                            </button>
+                        <?php }
+                    }
+                    ?>
+                </div>
+
+                <?php
+                $latest_active = get_latest_active($official_group['ID']); ?>
+                <?php
+                if (sizeof($latest_active) != 0) {
+                    ?>
+                    <div id="latest-active">
+                        <div>最近活跃</div>
+                        <?php
+                        for ($j = 0; $j < sizeof($latest_active); $j++) {
+                            ?>
+                            <div style="display: inline-block;margin-top: 15px">
+                                <div style="text-align: center;margin-right: 10px">
+                                    <?php echo get_avatar($latest_active[$j], 36, ''); ?>
+                                    <p style="width: 55px;word-wrap: break-word;margin-bottom: 0px">
+                                        <?php $user_name = get_user_by('ID', $latest_active[$j])->display_name;
+                                        echo mb_strimwidth($user_name, 0, 7, ".."); ?>
+                                    </p>
+                                </div>
+                            </div>
+                        <?php }
+                        ?>
+                    </div>
+                <?php } ?>
+                <div class="divline"></div>
+            </li>
+
             <div class="tab-pane fade in active" id="allgroups">
                 <ul class="list-group">
                     <?php
@@ -227,7 +328,7 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
             </div>
             <?php
             //获取布道师群组
-            $official_group = get_group(get_group_id_by_name('布道师大赛官方群'))[0];
+            $official_group = get_group(get_group_id_by_name($budao_official))[0];
             $group_name = $official_group['group_name'];
             $member = $official_group['member_count'];
             $author = $official_group['group_author'];

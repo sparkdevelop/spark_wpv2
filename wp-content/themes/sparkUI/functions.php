@@ -3415,6 +3415,9 @@ function checkInUserName(){
             $response = 2;
         }
     }
+    if($name==''){
+        $response = 2;
+    }
     echo $response;
     die();
 }
