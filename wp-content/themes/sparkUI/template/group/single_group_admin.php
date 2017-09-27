@@ -51,14 +51,22 @@
             <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'task','paged'=>1 ) ) )?>">群组任务</a></li>
             <li class="active"><a href="<?php echo esc_url(add_query_arg( array('tab'=>'member','paged'=>1 ) ) )?>">成员列表</a></li>
             <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'manage','paged'=>1 ) ) )?>">群组管理</a></li>
+            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'analyze','paged'=>1 ) ) )?>">统计信息</a></li>
         <?php } elseif(array_search("tab=manage",$query_parse)){?>
             <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'task','paged'=>1 ) ) )?>">群组任务</a></li>
             <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'member','paged'=>1 ) ) )?>">成员列表</a></li>
             <li class="active"><a href="<?php echo esc_url(add_query_arg( array('tab'=>'manage','paged'=>1 ) ) )?>">群组管理</a></li>
+            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'analyze','paged'=>1 ) ) )?>">统计信息</a></li>
+        <?php } elseif(array_search("tab=analyze",$query_parse)){?>
+            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'task','paged'=>1 ) ) )?>">群组任务</a></li>
+            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'member','paged'=>1 ) ) )?>">成员列表</a></li>
+            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'manage','paged'=>1 ) ) )?>">群组管理</a></li>
+            <li class="active"><a href="<?php echo esc_url(add_query_arg( array('tab'=>'analyze','paged'=>1 ) ) )?>">统计信息</a></li>
         <?php } else{ ?>
             <li class="active"><a href="<?php echo esc_url(add_query_arg( array('tab'=>'task','paged'=>1 ) ) )?>">群组任务</a></li>
             <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'member','paged'=>1 ) ) )?>">成员列表</a></li>
             <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'manage','paged'=>1 ) ) )?>">群组管理</a></li>
+            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'analyze','paged'=>1 ) ) )?>">统计信息</a></li>
         <?php } ?>
         </ul>
 
@@ -68,8 +76,10 @@
             require 'group_task.php';
         }elseif ($tab=='member'){
             require 'group_member.php';
-        }else{
+        }elseif($tab=='manage'){
             require 'group_manage.php';
+        }else{
+            require get_stylesheet_directory().'/template/student_management/alert.php';
         }
         ?>
     </div>

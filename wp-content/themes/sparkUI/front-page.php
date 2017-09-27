@@ -80,10 +80,6 @@ get_header();
             $("#webpage_2").css("display","none");
             $("#mobile_front_2").css("display","block")
         }
-//        else{
-//            $("#webpage").css("display","block");
-//            $("#mobile_front").css("display","none")
-//        }
     });
 </script>
 <div class="container-fluid" style="padding: 0;">
@@ -97,7 +93,7 @@ get_header();
         <div class="carousel-inner">
             <div class="item active">
                 <img src="<?php bloginfo("template_url")?>/img/budao.jpg" id="webpage_2"
-                     style="margin: 0 auto"
+                     style="margin: 0 auto;cursor: pointer"
                      onclick="location.replace('<?php echo site_url() . get_page_address('budao_index')?>')"/>
                 <img src="<?php bloginfo("template_url")?>/img/budao_m.jpg" id="mobile_front_2"
                      style="margin: 0 auto;display: none"
@@ -105,7 +101,7 @@ get_header();
             </div>
             <div class="item">
                 <img src="<?php bloginfo("template_url")?>/img/spark_banner.jpg" id="webpage"
-                     style="margin: 0 auto"
+                     style="margin: 0 auto;cursor: pointer"
                      onclick="location.replace('<?php echo site_url()?>')"/>
                 <img src="<?php bloginfo("template_url")?>/img/spark_banner_m.jpg" id="mobile_front"
                      style="margin: 0 auto; display: none"

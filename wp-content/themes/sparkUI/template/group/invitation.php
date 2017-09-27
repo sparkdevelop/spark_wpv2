@@ -17,11 +17,13 @@ $admin_url=admin_url( 'admin-ajax.php' );
                     style="color: red">*</span></label>
             <div class="col-sm-8">
                 <input type="button" id="addNewFieldBtn" value="+" style="display:inline">
-                <input type="text" class="form-control" name="invitation_member[]" id="invitation_member"
-                       style="margin-right:0px;margin-bottom:10px;display:inline;width: 30%"
-                       placeholder="邀请成员" value="" onblur="checkInUserName(this.value)"/>
+                <div>
+                    <input type="text" class="form-control" name="invitation_member[]" id="invitation_member"
+                           style="margin-right:0px;margin-bottom:10px;display:inline;width: 30%"
+                           placeholder="邀请成员" value="" onblur="checkInUserName(this.value,'0')"/>
+                    <div id="ajax-response_0" style="display: inline;margin-left: 10px"></div>
+                </div>
                 <div id="addField" style="display:inline;margin-top: 7px;margin-left: -4px"></div>
-                <div id="ajax-response" style="display: inline;margin-left: 10px"></div>
             </div>
         </div>
         <!--        隐藏信息-->
@@ -36,13 +38,20 @@ $admin_url=admin_url( 'admin-ajax.php' );
     </form>
 </div>
 <script>
+     var i= 0;
     $(document).on('click', '#addNewFieldBtn', function () {
-        var input = '<input type="text" class="form-control" name="invitation_member[]" id="invitation_member" ' +
+        i = i+1;
+        var rid = "ajax-response_"+i.toString();
+        var input = '<div>'+
+            '<input type="text" class="form-control" name="invitation_member[]" id="invitation_member" ' +
             'style="margin-left: 10%;margin-bottom:10px;width: 30%" ' +
-            'placeholder="邀请成员" value="" onblur="checkInUserName(this.value)" />';
+            'placeholder="邀请成员" value="" onblur="checkInUserName(this.value,i.toString())" />'+
+            '<div id='+rid +
+            ' style="display: inline;margin-left: 10px"></div>'+
+            '</div>';
         $("#addField").append(input);
     });
-    function checkInUserName(name) {
+    function checkInUserName(name,seq) {
         var data = {
             action: "checkInUserName",
             name: name,
@@ -55,14 +64,14 @@ $admin_url=admin_url( 'admin-ajax.php' );
             success: function (response) {
                 if (response == 0) {
                     <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
-                    $('#ajax-response').html("<img src='<?=$url?>'><span>用户名错误</span>");
+                    $('#ajax-response_'+seq).html("<img src='<?=$url?>'><span>用户名错误</span>");
                 } else if(response == 1){
                     <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
-                    $('#ajax-response').html("<img src='<?=$url?>'><span>用户已经是组员了</span>");
+                    $('#ajax-response_'+seq).html("<img src='<?=$url?>'><span>用户已经是组员了</span>");
                 }
                 else {
                     <?php $url = get_template_directory_uri() . "/img/OK.png";?>
-                    $('#ajax-response').html("<img src='<?=$url?>'>");
+                    $('#ajax-response_'+seq).html("<img src='<?=$url?>'>");
                 }
             }
         })

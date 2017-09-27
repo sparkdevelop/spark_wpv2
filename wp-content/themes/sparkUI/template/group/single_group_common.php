@@ -9,10 +9,14 @@ $admin_url = admin_url('admin-ajax.php');
         font-size: 14px;
         margin-top: 0px
     }
+    #invitation_join_btn{
+        border: 1px solid transparent;
+        background-color: #1fbba6;
+        color: #fff;
+        border-radius: 5px;
+    }
 </style>
-<script>
 
-</script>
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
     <div id="single-group-title">
         <div id="group-ava">

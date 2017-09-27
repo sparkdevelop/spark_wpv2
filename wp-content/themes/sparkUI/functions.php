@@ -2737,6 +2737,7 @@ function verify_pass(){
     /* 若有user_id, 则把user加入到member表中,gp表member+1,删除当前tmp表中的内容
      * 若没有user_id,则遍历所有的user_id 执行上面的操作。因此把上面的操作写成函数。
      * */
+    global $budao_official;
     $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : "";
     $group_id = isset($_POST['group_id']) ? $_POST['group_id'] : "";
     if($group_id!=""){   //前提
@@ -2754,9 +2755,9 @@ function verify_pass(){
      * 首先判断本群是否为官方群,如果是
      * 创建一个新的群组,
      * */
-//    if($group_id == get_group_id_by_name('布道师大赛官方群')){
-//        create_budao_group($user_id);
-//    }
+    if($group_id == get_group_id_by_name($budao_official)){
+        create_budao_group($user_id);
+    }
     exit();
 }
 add_action('wp_ajax_verify_pass', 'verify_pass');
@@ -3715,7 +3716,7 @@ function group_personal($all_group){
 
 
 
-
+//create_wiki_entry()
 
 
 

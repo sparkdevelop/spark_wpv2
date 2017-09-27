@@ -112,10 +112,17 @@ $verifyField = get_verify_field($group_id,'group');
             <label for="gstatus" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">群组状态<span
                     style="color: red">*</span></label>
             <div class="col-sm-6" style="margin-top: 7px">
-                <input type="radio" id="gopen" name="gstatus" value="open" style="display: inline-block" checked/><span>开启</span>&nbsp;&nbsp;
-                <input type="radio" id="gclose" name="gstatus" value="close"
-                       style="display: inline-block;margin-left: 30px"/><span>关闭</span>
-                <p style="margin-top: 10px">注:关闭群组后仅管理员可见</p>
+                <?php
+                    if($group['group_status']=='open'){?>
+                        <input type="radio" id="gopen" name="gstatus" value="open" style="display: inline-block" checked/><span>开启</span>&nbsp;&nbsp;
+                        <input type="radio" id="gclose" name="gstatus" value="close"
+                               style="display: inline-block;margin-left: 30px"/><span>关闭</span>
+                        <p style="margin-top: 10px">注:关闭群组后仅管理员可见</p>
+                <?php } else { ?>
+                        <input type="radio" id="gopen" name="gstatus" value="open" style="display: inline-block"/><span>开启</span>&nbsp;&nbsp;
+                        <input type="radio" id="gclose" name="gstatus" value="close" style="display: inline-block;margin-left: 30px"  checked /><span>关闭</span>
+                        <p style="margin-top: 10px">注:关闭群组后仅管理员可见</p>
+                <?php }?>
             </div>
         </div>
         <!--加入方式-->
@@ -123,9 +130,23 @@ $verifyField = get_verify_field($group_id,'group');
             <label for="gjoin" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">加入方式<span
                     style="color: red">*</span></label>
             <div class="col-sm-6" style="margin-top: 7px">
-                <input type="radio" id="freejoin" name="gjoin" value="freejoin" style="display: inline-block" checked/><span>自由加入</span>&nbsp;&nbsp;
+                <input type="radio" id="freejoin" name="gjoin" value="freejoin" style="display: inline-block"/><span>自由加入</span>&nbsp;&nbsp;
                 <input type="radio" id="verifyjoin" name="gjoin" value="verifyjoin" style="display: inline-block"/><span>检验审核加入</span>&nbsp;&nbsp;
                 <input type="radio" id="verify" name="gjoin" value="verify" style="display: inline-block"/><span>审核加入</span>
+                <?php
+                if($group['join_permission']=='freejoin'){?>
+                    <script>
+                        $('#freejoin').attr("checked","checked" );
+                    </script>
+                <? }elseif($group['join_permission']=='verifyjoin'){ ?>
+                    <script>
+                        $('#verifyjoin').attr("checked","checked" );
+                    </script>
+                <? }else{?>
+                    <script>
+                        $('#verify').attr("checked","checked" );
+                    </script>
+                <? } ?>
                 <script>
                     $(function () {
                         showAddon();
@@ -171,9 +192,19 @@ $verifyField = get_verify_field($group_id,'group');
             <label for="gstatustask" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">发布任务<span
                     style="color: red">*</span></label>
             <div class="col-sm-6" style="margin-top: 7px">
-                <input type="radio" id="gadmin" name="gstatustask" value="admin" checked style="display: inline-block"/><span>仅管理员</span>
+                <input type="radio" id="gadmin" name="gstatustask" value="admin" style="display: inline-block"/><span>仅管理员</span>
                 <input type="radio" id="gall" name="gstatustask" value="all"
                        style="display: inline-block"/><span>所有组员</span>
+                <?php
+                if($group['task_permission']=='admin'){?>
+                    <script>
+                        $('#gadmin').attr("checked","checked" );
+                    </script>
+                <? } else{?>
+                    <script>
+                        $('#gall').attr("checked","checked" );
+                    </script>
+                <? } ?>
             </div>
         </div>
         <!--群组图标-->
@@ -183,7 +214,7 @@ $verifyField = get_verify_field($group_id,'group');
             <div class="col-sm-6" style="margin-top: 7px">
                 <input type="file" id="gava" name="gava" onchange="checkFile()" style="display:inline;"/>
                 <span id="checkFileBox"></span>
-                <p style="margin-top: 5px">注:文件应小于512KB</p>
+                <p style="margin-top: 5px">注:如不修改, 此项可不上传文件</p>
             </div>
         </div>
         <canvas width="100px" height="100px" id="canvas" style="margin-left: 160px"></canvas>

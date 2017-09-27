@@ -137,6 +137,11 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                 <ul class="list-group">
                     <?php
                     $all_group = get_group();
+                    foreach($all_group as $key => $values){
+                        if($values['group_name']==$budao_official){
+                            array_splice($all_group, $key, 1);
+                        }
+                    }
                     //翻页
                     $total_group = sizeof($all_group);
                     $perpage = 10;

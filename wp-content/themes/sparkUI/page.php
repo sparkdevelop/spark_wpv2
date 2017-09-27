@@ -88,7 +88,7 @@
                 }
                 elseif (is_page('verify_form')){
                     if (!is_user_logged_in()) {
-                        wp_redirect( home_url().'/wp-login.php' );
+                        wp_redirect( home_url().'/wp-login.php?redirect_to='.site_url().get_page_address('budao_index') );
                     }
                     require "template/group/verify_form.php";
                 }
@@ -96,8 +96,8 @@
 //                    if (!is_user_logged_in()) {
 //                        wp_redirect( home_url().'/wp-login.php' );
 //                    }
-                    the_content();
-                    //require "template/budao/index.php";
+//                    the_content();
+                    require "template/budao/index.php";
                 }
                 elseif (is_page("ask")) {
                     if (is_user_logged_in()) {
@@ -157,12 +157,12 @@
                     }
                     require "template/group/invitation.php";
                 }
-//                elseif (is_page('student_management')){
-//                    if (!is_user_logged_in()) {
-//                        wp_redirect( home_url().'/wp-login.php' );
-//                    }
-//                    require "template/student_management/management.php";
-//                }
+                elseif (is_page('student_management')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/student_management/management.php";
+                }
                 elseif (is_page('personal')){
                     if (is_user_logged_in()) {
                         require "template/personal.php";
