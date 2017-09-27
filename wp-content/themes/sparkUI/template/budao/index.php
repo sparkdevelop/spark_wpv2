@@ -119,9 +119,10 @@ $official_group = get_group(get_group_id_by_name($budao_official))[0];
         <br><br>
         ·第三次挑战赛：得分第1名的“布道师”可获得腾讯公司提供的价值343元的腾讯云平台实验代金券(即6个月的云平台服务)；得分第2、3名的“布道师”可获得腾讯公司提供的价值195元的腾讯云平台实验代金券(即3个月的云平台服务)；得分第4、5、6名的“布道师”可获得腾讯公司提供的价值65元的腾讯云平台实验代金券(即1个月的云平台服务)。
     </div>
-
-    <h5 style="color:#fe642d;text-align: center;margin-top: 30px">说明：本次活动最终解释权归火花空间所有。</h5>
-
+    <div class="budao_footer" style="margin-top: 100px;margin-left:114px;">
+        <h5>附件：<?php echo wp_get_attachment_link( 13036, '',False,True ,'布道师大赛活动方案'); ?></h5>
+    <h5 >说明：本次活动最终解释权归火花空间所有。</h5>
+    </div>
 </div>
 
 
