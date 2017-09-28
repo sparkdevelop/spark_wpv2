@@ -93,11 +93,10 @@ if ($verify_type == 'freejoin') {
                             </div>
                         </div>
                     </div>
-
                 <?php } ?>
             </div>
         </div>
-    <?php } ?><?php
+    <?php }
 } else {
     $member_verify_info = get_member_verify_tmp($group_id);     //获取需要审核的成员信息
     $verify_field_tmp = $member_verify_info[0]['verify_info'];     //成员填写的审核信息
