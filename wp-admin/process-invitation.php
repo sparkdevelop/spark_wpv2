@@ -6,6 +6,7 @@ require_once(dirname(__FILE__) . '/admin.php');
 $group_id = isset($_POST["group_id"]) ? $_POST["group_id"] : '';
 $invitation_member = isset($_POST["invitation_member"]) ? $_POST["invitation_member"] : [];
 $invitation_member = array_filter($invitation_member);
+$invitation_member = array_unique($invitation_member);
 
 foreach ($invitation_member as $value){
     $id = get_the_ID_by_name($value);

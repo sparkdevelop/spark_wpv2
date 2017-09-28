@@ -1,6 +1,7 @@
 <?php
     //获取该组的所有任务?未截止的?
     $all_task = get_task($group_id);
+    $all_task = task_order($all_task);
     if (sizeof($all_task) != 0 ){?>
         <div>
             <?php for($i=0;$i<sizeof($all_task);$i++){  //没有翻页?>

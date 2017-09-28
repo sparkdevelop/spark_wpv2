@@ -87,7 +87,7 @@ $admin_url=admin_url('admin-ajax.php');
                 //var form = document.createElement('form');
                 //form.action = "/?yada_wiki=" + post_name;
                 //form.target = '_blank';
-                //form.method = 'POST';
+                //form.method = 'POS T';
                 //document.body.appendChild(form);
                 //form.submit();
             },

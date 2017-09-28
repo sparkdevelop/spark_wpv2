@@ -17,5 +17,4 @@
             <?php require 'group_manage_member_manage.php';?>
         </div>
     </div>
-
 </div>
