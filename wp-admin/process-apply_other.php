@@ -3,7 +3,7 @@ global $wpdb;
 require_once(dirname(__FILE__) . '/admin.php');
 
 //提交内容
-$task_content = isset($_POST["othercontent"]) ? $_POST["othercontent"] : '';
+$task_content = isset($_POST["task_other_editor"]) ? $_POST["task_other_editor"] : '';
 
 //隐藏信息
 $task_id = isset($_POST["task_id"]) ? $_POST["task_id"] : '';

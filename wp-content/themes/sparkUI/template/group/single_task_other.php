@@ -50,7 +50,10 @@ $countdown = countDown($task_id);
         <!--任务内容-->
         <div class="form-group" style="margin: 20px 0px">
             <?php $value = get_user_task_content($task_id); ?>
-            <textarea class="form-control" rows="6" name="othercontent" onblur="checkLength(this.value,'checkLinkbox')"><?= $value['apply_content'] ?></textarea>
+            <?php wp_editor($value['apply_content'], 'task_other_editor', array(
+                    'teeny' => true ,'textarea_rows' => 6)
+            );
+            ?>
         </div>
         <div class="form-group" style="display: none">
             <input type="hidden" name="task_id" value="<?= $task_id ?>"/>
@@ -72,7 +75,10 @@ $countdown = countDown($task_id);
               action="<?php echo esc_url(self_admin_url('process-apply_other.php')); ?>">
             <!--任务内容-->
             <div class="form-group" style="margin: 20px 0px">
-                <textarea class="form-control" rows="6" name="othercontent" onblur="checkLength(this.value,'checkLinkbox')"></textarea>
+                <?php wp_editor( '', 'task_other_editor', array(
+                        'teeny' => true ,'textarea_rows' => 6)
+                );
+                ?>
             </div>
             <div class="form-group" style="display: none">
                 <input type="hidden" name="task_id" value="<?= $task_id ?>"/>
