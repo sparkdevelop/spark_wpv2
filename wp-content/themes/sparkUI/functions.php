@@ -2825,8 +2825,7 @@ function verify_pass_process($user_id, $group_id)
     $wpdb->get_results($sql_delete_tmp);
 }
 
-function verify_ignore_process($user_id, $group_id)
-{
+function verify_ignore_process($user_id, $group_id){
     global $wpdb;
     $sql_delete_tmp = "delete from wp_gp_member_verify_tmp WHERE user_id = $user_id and group_id = $group_id";
     $wpdb->get_results($sql_delete_tmp);
