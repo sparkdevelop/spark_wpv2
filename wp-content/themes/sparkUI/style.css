@@ -1717,11 +1717,11 @@ h4 {
 }
 /*single_task_pro*/
 #team_member{
-    margin-left: 0;
-    margin-right: 10px;
+    margin-left: 39px;
     margin-bottom:10px;
+    width: 30%;
     display:inline;
-    width: 15%
+    margin-right: 10px;
 }
 #task-pro-complete-table{
     margin-top: 20px;

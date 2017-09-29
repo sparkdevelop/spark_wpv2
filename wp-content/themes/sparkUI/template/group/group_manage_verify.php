@@ -55,7 +55,6 @@ if ($verify_type == 'freejoin') {
     echo '<div class="alert alert-info" style="margin-top: 20px">本群组自由加入,没有成员需要审核</div>';
 } elseif ($verify_type == 'verify') {
     $member_verify_info = get_member_verify_tmp($group_id);
-
     if (sizeof($member_verify_info) == 0) {
         echo '<div class="alert alert-info" style="margin-top: 20px">没有需要审核的成员</div>';
     } else { ?>
@@ -79,6 +78,9 @@ if ($verify_type == 'freejoin') {
                                 &nbsp; &nbsp; &nbsp;
                                 <span>(<?= $member_verify_info[$k]['apply_time'] ?>)</span>
                             </div>
+                            <div id="verify-field">
+                                <p>验证信息 : <?= $member_verify_info[$k]['verify_info']?></p>
+                            </div>
                             <div style="display: block">
                                 <button class="btn-green"
                                         onclick="verify_pass(<?= $group_id ?>,<?= $member_verify_info[$k]['user_id'] ?>,'<?= $admin_url ?>')">
@@ -91,11 +93,10 @@ if ($verify_type == 'freejoin') {
                             </div>
                         </div>
                     </div>
-
                 <?php } ?>
             </div>
         </div>
-    <?php } ?><?php
+    <?php }
 } else {
     $member_verify_info = get_member_verify_tmp($group_id);     //获取需要审核的成员信息
     $verify_field_tmp = $member_verify_info[0]['verify_info'];     //成员填写的审核信息
@@ -135,7 +136,6 @@ if ($verify_type == 'freejoin') {
                             </div>
                         </div>
                     </div>
-
                 <?php } ?>
             </div>
         </div>

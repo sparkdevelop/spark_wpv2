@@ -66,14 +66,11 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                             $verify_type = get_verify_type($official_group['ID']);
                             $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $official_group['ID'];
                             if ($verify_type == 'verifyjoin') { ?>
-                                <button id="group_join_btn"
-                                        onclick="verify_join_the_group('<?= $verify_url ?>')">加入
-                                </button>
+                                    <button id="group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
+                            <?php } elseif ($verify_type == 'verify') { ?>
+                                    <button id="group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
                             <?php } else { ?>
-                                <button id="group_join_btn"
-                                        onclick="join_the_group(<?= $official_group['ID'] ?>,'<?= $admin_url ?>')">
-                                    加入
-                                </button>&nbsp;&nbsp;
+                                    <button id="group_join_btn" onclick="join_the_group('<?= $official_group['ID'] ?>','<?= $admin_url ?>')">加入</button>
                             <?php }
                         }
                         ?>
@@ -97,10 +94,13 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                             <button id="m-group_join_btn"
                                     onclick="verify_join_the_group('<?= $verify_url ?>')">加入
                             </button>
+                        <?php } elseif($verify_type == 'verify'){ ?>
+                            <button id="m-group_join_btn"
+                                    onclick="verify_join_the_group('<?= $verify_url ?>')">加入
+                            </button>
                         <?php } else { ?>
                             <button id="m-group_join_btn"
-                                    onclick="join_the_group(<?= $official_group['ID'] ?>,'<?= $admin_url ?>')">
-                                加入
+                                    onclick="join_the_group(<?= $official_group['ID'] ?>,'<?= $admin_url ?>')">加入
                             </button>
                         <?php }
                     }
@@ -137,8 +137,8 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                 <ul class="list-group">
                     <?php
                     $all_group = get_group();
-                    foreach($all_group as $key => $values){
-                        if($values['group_name']==$budao_official){
+                    foreach ($all_group as $key => $values) {
+                        if ($values['group_name'] == $budao_official) {
                             array_splice($all_group, $key, 1);
                         }
                     }
@@ -196,27 +196,24 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                                             $verify_type = get_verify_type($all_group[$i]['ID']);
                                             $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $all_group[$i]['ID'];
                                             if ($verify_type == 'verifyjoin') { ?>
-                                                <button id="group_join_btn"
-                                                        onclick="verify_join_the_group('<?= $verify_url ?>')">加入
-                                                </button>
+                                                <button id="group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
+                                            <?php } elseif ($verify_type == 'verify') { ?>
+                                                <button id="group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
                                             <?php } else { ?>
-                                                <button id="group_join_btn"
-                                                        onclick="join_the_group(<?= $all_group[$i]['ID'] ?>,'<?= $admin_url ?>')">
-                                                    加入
-                                                </button>&nbsp;&nbsp;
+                                                <button id="group_join_btn" onclick="join_the_group(<?= $all_group[$i]['ID'] ?>,'<?= $admin_url ?>')">加入</button>&nbsp;&nbsp;
                                             <?php }
                                         }
                                         ?>
 
-                                            <span><?= $member ?>个成员</span>&nbsp;&nbsp;
-                                            <span>管理员</span>
-                                            <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
-                                               style="color: #169bd5"><?php echo get_author_name($author) ?></a>
+                                        <span><?= $member ?>个成员</span>&nbsp;&nbsp;
+                                        <span>管理员</span>
+                                        <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
+                                           style="color: #169bd5"><?php echo get_author_name($author) ?></a>
 
                                     </div>
                                     <div class="m-group_others">
                                         <span><?= $member ?>个成员</span>&nbsp;&nbsp;
-                                        <span >管理员</span>
+                                        <span>管理员</span>
                                         <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
                                            style="color: #169bd5"><?php echo get_author_name($author) ?></a>
 
@@ -233,14 +230,11 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                                         $verify_type = get_verify_type($all_group[$i]['ID']);
                                         $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $all_group[$i]['ID'];
                                         if ($verify_type == 'verifyjoin') { ?>
-                                            <button id="m-group_join_btn"
-                                                    onclick="verify_join_the_group('<?= $verify_url ?>')">加入
-                                            </button>
+                                            <button id="m-group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
+                                        <?php } elseif($verify_type == 'verify'){?>
+                                            <button id="m-group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
                                         <?php } else { ?>
-                                            <button id="m-group_join_btn"
-                                                    onclick="join_the_group(<?= $all_group[$i]['ID'] ?>,'<?= $admin_url ?>')">
-                                                加入
-                                            </button>
+                                            <button id="m-group_join_btn" onclick="join_the_group(<?= $all_group[$i]['ID'] ?>,'<?= $admin_url ?>')">加入</button>
                                         <?php }
                                     }
                                     ?>
@@ -363,14 +357,11 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                             $verify_type = get_verify_type($official_group['ID']);
                             $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $official_group['ID'];
                             if ($verify_type == 'verifyjoin') { ?>
-                                <button id="group_join_btn"
-                                        onclick="verify_join_the_group('<?= $verify_url ?>')">加入
-                                </button>
+                                <button id="group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
+                            <?php } elseif ($verify_type == 'verify') { ?>
+                                <button id="group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
                             <?php } else { ?>
-                                <button id="group_join_btn"
-                                        onclick="join_the_group(<?= $official_group['ID'] ?>,'<?= $admin_url ?>')">
-                                    加入
-                                </button>&nbsp;&nbsp;
+                                <button id="group_join_btn" onclick="join_the_group(<?= $official_group['ID'] ?>,'<?= $admin_url ?>')">加入</button>&nbsp;&nbsp;
                             <?php }
                         }
                         ?>
@@ -381,10 +372,9 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                     </div>
                     <div class="m-group_others">
                         <span><?= $member ?>个成员</span>&nbsp;&nbsp;
-                        <span >管理员</span>
+                        <span>管理员</span>
                         <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
                            style="color: #169bd5"><?php echo get_author_name($author) ?></a>
-
                     </div>
                 </div>
 
@@ -398,14 +388,11 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                         $verify_type = get_verify_type($official_group['ID']);
                         $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $official_group['ID'];
                         if ($verify_type == 'verifyjoin') { ?>
-                            <button id="m-group_join_btn"
-                                    onclick="verify_join_the_group('<?= $verify_url ?>')">加入
-                            </button>
+                            <button id="m-group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
+                        <?php } elseif ($verify_type == 'verify'){?>
+                            <button id="m-group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
                         <?php } else { ?>
-                            <button id="m-group_join_btn"
-                                    onclick="join_the_group(<?= $official_group['ID'] ?>,'<?= $admin_url ?>')">
-                                加入
-                            </button>
+                            <button id="m-group_join_btn" onclick="join_the_group(<?= $official_group['ID'] ?>,'<?= $admin_url ?>')">加入</button>
                         <?php }
                     }
                     ?>
@@ -495,14 +482,11 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                                             $verify_type = get_verify_type($all_budao_group[$i]['ID']);
                                             $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $all_group[$i]['ID'];
                                             if ($verify_type == 'verifyjoin') { ?>
-                                                <button id="group_join_btn"
-                                                        onclick="verify_join_the_group('<?= $verify_url ?>')">加入
-                                                </button>
-                                            <?php } else { ?>
-                                                <button id="group_join_btn"
-                                                        onclick="join_the_group(<?= $all_budao_group[$i]['ID'] ?>,'<?= $admin_url ?>')">
-                                                    加入
-                                                </button>&nbsp;&nbsp;
+                                                <button id="group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
+                                            <?php } elseif ($verify_type == 'verify'){?>
+                                                <button id="group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
+                                            <?php }else { ?>
+                                                <button id="group_join_btn" onclick="join_the_group(<?= $all_budao_group[$i]['ID'] ?>,'<?= $admin_url ?>')">加入</button>&nbsp;&nbsp;
                                             <?php }
                                         }
                                         ?>
@@ -512,10 +496,9 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                                            style="color: #169bd5"><?php echo get_author_name($author) ?></a>
                                         <div class="m-group_others">
                                             <span><?= $member ?>个成员</span>&nbsp;&nbsp;
-                                            <span >管理员</span>
+                                            <span>管理员</span>
                                             <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
                                                style="color: #169bd5"><?php echo get_author_name($author) ?></a>
-
                                         </div>
                                     </div>
                                 </div>
@@ -530,14 +513,11 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                                         $verify_type = get_verify_type($all_budao_group[$i]['ID']);
                                         $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $all_budao_group[$i]['ID'];
                                         if ($verify_type == 'verifyjoin') { ?>
-                                            <button id="m-group_join_btn"
-                                                    onclick="verify_join_the_group('<?= $verify_url ?>')">加入
-                                            </button>
+                                            <button id="m-group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
+                                        <?php } elseif ($verify_type == 'verify'){ ?>
+                                            <button id="m-group_join_btn" onclick="verify_join_the_group('<?= $verify_url ?>')">加入</button>
                                         <?php } else { ?>
-                                            <button id="m-group_join_btn"
-                                                    onclick="join_the_group(<?= $all_budao_group[$i]['ID'] ?>,'<?= $admin_url ?>')">
-                                                加入
-                                            </button>
+                                            <button id="m-group_join_btn" onclick="join_the_group(<?= $all_budao_group[$i]['ID'] ?>,'<?= $admin_url ?>')">加入</button>
                                         <?php }
                                     }
                                     ?>

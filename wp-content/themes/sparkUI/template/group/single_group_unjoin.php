@@ -24,9 +24,20 @@ $verify_url = site_url().get_page_address("verify_form")."&user_id=".get_current
                 <span id="h4_name"><?= $group['group_name'] ?></span>
                 <?php
                 if ($verify_type == 'verifyjoin') { ?>
-                    <span style="color: #fe642d;margin-left: 20px"><button id="group_join_btn" onclick="verify_join_the_group('<?=$verify_url?>')">加入</button><button id="m-group_join_btn" onclick="verify_join_the_group('<?=$verify_url?>')">加入</button></span>
+                    <span style="color: #fe642d;margin-left: 20px">
+                        <button id="group_join_btn" onclick="verify_join_the_group('<?=$verify_url?>')">加入</button>
+                        <button id="m-group_join_btn" onclick="verify_join_the_group('<?=$verify_url?>')">加入</button>
+                    </span>
+                <?php } elseif ($verify_type == 'verify'){ ?>
+                    <span style="color: #fe642d;margin-left: 20px">
+                        <button id="group_join_btn" onclick="verify_join_the_group('<?=$verify_url?>')">加入</button>
+                        <button id="m-group_join_btn" onclick="verify_join_the_group('<?=$verify_url?>')">加入</button>
+                    </span>
                 <?php } else { ?>
-                    <span style="color: #fe642d;margin-left: 20px"><button id="group_join_btn" onclick="verify_join_the_group('<?=$verify_url?>')">加入</button><button id="m-group_join_btn" onclick="join_the_group(<?=$group['ID'] ?>,'<?= $admin_url ?>')">加入</button></span>
+                    <span style="color: #fe642d;margin-left: 20px">
+                        <button id="group_join_btn" onclick="join_the_group('<?=$group['ID'] ?>','<?= $admin_url ?>')">加入</button>
+                        <button id="m-group_join_btn" onclick="join_the_group(<?=$group['ID'] ?>,'<?= $admin_url ?>')">加入</button>
+                    </span>
                 <?php } ?>
             </div>
             <div class="group_others">

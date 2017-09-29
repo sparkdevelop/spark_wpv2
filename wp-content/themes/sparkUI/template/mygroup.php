@@ -4,7 +4,7 @@ $get_group = get_current_user_group();
 //处理一下,分成创建的和加入的
 $tmp = group_personal($get_group);
 $tab = isset($_GET['tabg']) ? $_GET['tabg'] : "create";
-if ($tab == "create") {?>
+if ($tab == "create") { ?>
     <ul id="leftTab" class="nav nav-pills" style="display: inline-block">
         <li class="active"><a href="<?php echo esc_url(add_query_arg(array('tabg' => 'create', 'paged' => 1))) ?>">我创建的群组</a>
         </li>
@@ -72,7 +72,11 @@ if ($tab == "create") {?>
                                             <button id="group_join_btn"
                                                     onclick="verify_join_the_group('<?= $verify_url ?>')">加入
                                             </button>
-                                        <?php } else { ?>
+                                        <?php } elseif ($verify_type == 'verify') { ?>
+                                            <button id="group_join_btn"
+                                                    onclick="verify_join_the_group('<?= $verify_url ?>')">加入
+                                            </button>
+                                        <? } else { ?>
                                             <button id="group_join_btn"
                                                     onclick="join_the_group(<?= $all_group[$i]['ID'] ?>,'<?= $admin_url ?>')">
                                                 加入
@@ -87,7 +91,7 @@ if ($tab == "create") {?>
                                 </div>
                                 <div class="m-group_others">
                                     <span><?= $member ?>个成员</span>&nbsp;&nbsp;
-                                    <span >管理员</span>
+                                    <span>管理员</span>
                                     <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
                                        style="color: #169bd5"><?php echo get_author_name($author) ?></a>
 
@@ -104,6 +108,10 @@ if ($tab == "create") {?>
                                     $verify_type = get_verify_type($all_group[$i]['ID']);
                                     $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $all_group[$i]['ID'];
                                     if ($verify_type == 'verifyjoin') { ?>
+                                        <button id="m-group_join_btn"
+                                                onclick="verify_join_the_group('<?= $verify_url ?>')">加入
+                                        </button>
+                                    <?php } elseif ($verify_type == 'verify') { ?>
                                         <button id="m-group_join_btn"
                                                 onclick="verify_join_the_group('<?= $verify_url ?>')">加入
                                         </button>
@@ -223,7 +231,11 @@ if ($tab == "create") {?>
                                             <button id="group_join_btn"
                                                     onclick="verify_join_the_group('<?= $verify_url ?>')">加入
                                             </button>
-                                        <?php } else { ?>
+                                        <?php } elseif ($verify_type == 'verify') { ?>
+                                            <button id="group_join_btn"
+                                                    onclick="verify_join_the_group('<?= $verify_url ?>')">加入
+                                            </button>
+                                        <? } else { ?>
                                             <button id="group_join_btn"
                                                     onclick="join_the_group(<?= $all_group[$i]['ID'] ?>,'<?= $admin_url ?>')">
                                                 加入
@@ -238,7 +250,7 @@ if ($tab == "create") {?>
                                 </div>
                                 <div class="m-group_others">
                                     <span><?= $member ?>个成员</span>&nbsp;&nbsp;
-                                    <span >管理员</span>
+                                    <span>管理员</span>
                                     <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
                                        style="color: #169bd5"><?php echo get_author_name($author) ?></a>
 
@@ -255,6 +267,10 @@ if ($tab == "create") {?>
                                     $verify_type = get_verify_type($all_group[$i]['ID']);
                                     $verify_url = site_url() . get_page_address("verify_form") . "&user_id=" . get_current_user_id() . "&group_id=" . $all_group[$i]['ID'];
                                     if ($verify_type == 'verifyjoin') { ?>
+                                        <button id="m-group_join_btn"
+                                                onclick="verify_join_the_group('<?= $verify_url ?>')">加入
+                                        </button>
+                                    <?php } elseif ($verify_type == 'verify') { ?>
                                         <button id="m-group_join_btn"
                                                 onclick="verify_join_the_group('<?= $verify_url ?>')">加入
                                         </button>

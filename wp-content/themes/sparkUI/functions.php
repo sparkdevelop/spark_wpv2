@@ -266,7 +266,8 @@ function checkPass()
 add_action('wp_ajax_checkPass', 'checkPass');
 add_action('wp_ajax_nopriv_checkPass', 'checkPass');
 
-function checkLoginPass($user_login,$user_pwd){
+function checkLoginPass($user_login, $user_pwd)
+{
     global $wpdb;
     $sql = "SELECT user_pass FROM $wpdb->users WHERE user_login='$user_login'";
     $user_pass = $wpdb->get_var($sql);
@@ -277,6 +278,7 @@ function checkLoginPass($user_login,$user_pwd){
         return false;
     }
 }
+
 //删除我的问题
 function deleteMyQuestion()
 {
@@ -2527,6 +2529,7 @@ function checkGroupName()
     echo $response;
     exit();
 }
+
 add_action('wp_ajax_checkGroupName', 'checkGroupName');
 add_action('wp_ajax_nopriv_checkGroupName', 'checkGroupName');
 
@@ -2572,10 +2575,12 @@ function get_group_avatar()
 }
 
 //判断用户是否为群组管理员  在显示管理员哪里用?
-function is_group_admin($group_id,$user_id=NULL)
+function is_group_admin($group_id, $user_id = NULL)
 {
     global $wpdb;
-    if($user_id == NULL){ $user_id = get_current_user_id(); }
+    if ($user_id == NULL) {
+        $user_id = get_current_user_id();
+    }
     $sql = "SELECT * from wp_gp_member 
             WHERE user_id = $user_id and group_id = $group_id and indentity='admin' and member_status=0";
     $col = $wpdb->query($sql);
@@ -2587,10 +2592,12 @@ function is_group_admin($group_id,$user_id=NULL)
 }
 
 //判断成员是否是这个群组的成员
-function is_group_member($group_id,$user_id = Null)
+function is_group_member($group_id, $user_id = Null)
 {
     global $wpdb;
-    if($user_id == NULL){ $user_id = get_current_user_id();}
+    if ($user_id == NULL) {
+        $user_id = get_current_user_id();
+    }
     $sql = "SELECT indentity from wp_gp_member WHERE user_id = $user_id and group_id = $group_id and member_status=0";
     $col = $wpdb->query($sql);
     if ($col != 0) {
@@ -2625,26 +2632,26 @@ function join_the_group()
     //判断验证方式
     if ($group_id != "") {
         $verify_type = get_verify_type($group_id);
-        if($verify_type == "freejoin"){
+        if ($verify_type == "freejoin") {
             //看这个人是第几次加入了,初次加入,执行insert,退出又加入,执行update
-            $sql_count ="Select * From wp_gp_member WHERE user_id=$user_id and group_id=$group_id";
+            $sql_count = "Select * From wp_gp_member WHERE user_id=$user_id and group_id=$group_id";
             $col = $wpdb->query($sql_count);
-            if($col == 0){
+            if ($col == 0) {
                 $sql_member = "INSERT INTO wp_gp_member VALUES ('',$user_id,$group_id,'member','$current_time','',0)";
                 $wpdb->get_results($sql_member);
-            }else{
+            } else {
                 $sql_member = "update wp_gp_member set member_status = 0 WHERE user_id = $user_id and group_id = $group_id";
                 $wpdb->get_results($sql_member);
             }
             $sql_add_count = "update wp_gp set member_count = (member_count+1) WHERE ID = $group_id";
             $wpdb->get_results($sql_add_count);
             $response = "freejoin";
-        }elseif ($verify_type == "verify"){
+        } elseif ($verify_type == "verify") {
             //等待验证即可,将其存入tmp表
             $sql_member = "INSERT INTO wp_gp_member_verify_tmp VALUES ('',$user_id,$group_id,'$current_time','')";
             $wpdb->get_results($sql_member);
             $response = "verify";
-        }else{
+        } else {
             //先弹出框框,填写好字段,然后将字段值存入tmp表
             $response = "verifyjoin";
         }
@@ -2652,6 +2659,7 @@ function join_the_group()
     echo $response;
     die();
 }
+
 add_action('wp_ajax_join_the_group', 'join_the_group');
 add_action('wp_ajax_nopriv_join_the_group', 'join_the_group');
 
@@ -2669,6 +2677,7 @@ function quit_the_group()
     }
     die();
 }
+
 add_action('wp_ajax_quit_the_group', 'quit_the_group');
 add_action('wp_ajax_nopriv_quit_the_group', 'quit_the_group');
 
@@ -2680,8 +2689,8 @@ function get_verify_field($id, $type)
     $sql = "SELECT verify_content FROM wp_gp_verify WHERE verify_id=$id and verify_type='$type'";
     $result = $wpdb->get_results($sql, 'ARRAY_A');
     $verifyField = explode(',', $result[0]['verify_content']);
-    foreach($verifyField as $key => $value){
-        if($value==''){
+    foreach ($verifyField as $key => $value) {
+        if ($value == '') {
             unset($verifyField[$key]);
         }
     }
@@ -2689,7 +2698,8 @@ function get_verify_field($id, $type)
 }
 
 //获取验证方式
-function get_verify_type($group_id){
+function get_verify_type($group_id)
+{
     global $wpdb;
     $sql = "SELECT join_permission FROM wp_gp WHERE ID=$group_id";
     $result = $wpdb->get_results($sql, 'ARRAY_A');
@@ -2700,20 +2710,21 @@ function get_verify_type($group_id){
  * 获取所有成员信息 返回带成员身份的数组 get_group_member($group_id)
  * */
 //获取成员信息 返回所有成员分身份的数组
-function get_group_member($group_id){
+function get_group_member($group_id)
+{
     global $wpdb;
     $m_admin = array();
     $m_common = array();
     $sql = "SELECT * FROM wp_gp_member WHERE group_id = $group_id and member_status = 0";
-    $results = $wpdb->get_results($sql,'ARRAY_A');
-    foreach ($results as $value){
-        if($value['indentity']=='admin'){
-            array_push($m_admin,$value);
-        }else{
-            array_push($m_common,$value);
+    $results = $wpdb->get_results($sql, 'ARRAY_A');
+    foreach ($results as $value) {
+        if ($value['indentity'] == 'admin') {
+            array_push($m_admin, $value);
+        } else {
+            array_push($m_common, $value);
         }
     }
-    $m = array('admin'=>$m_admin,'common'=>$m_common);
+    $m = array('admin' => $m_admin, 'common' => $m_common);
     return $m;
 }
 
@@ -2725,28 +2736,30 @@ function get_group_member($group_id){
  * 忽略后台处理 verify_ignore_process($user_id,$group_id)
  * */
 //获取成员的验证信息   取一个成员的最后申请信息
-function get_member_verify_tmp($group_id){
+function get_member_verify_tmp($group_id)
+{
     global $wpdb;
-    $sql= "select * from wp_gp_member_verify_tmp WHERE group_id = $group_id";
-    $results = $wpdb->get_results($sql,'ARRAY_A');
+    $sql = "select * from wp_gp_member_verify_tmp WHERE group_id = $group_id";
+    $results = $wpdb->get_results($sql, 'ARRAY_A');
     return $results;
 }
 
 //通过
-function verify_pass(){
+function verify_pass()
+{
     /* 若有user_id, 则把user加入到member表中,gp表member+1,删除当前tmp表中的内容
      * 若没有user_id,则遍历所有的user_id 执行上面的操作。因此把上面的操作写成函数。
      * */
     global $budao_official;
     $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : "";
     $group_id = isset($_POST['group_id']) ? $_POST['group_id'] : "";
-    if($group_id!=""){   //前提
-        if($user_id != ""){
-            verify_pass_process($user_id,$group_id);
-        }else{
+    if ($group_id != "") {   //前提
+        if ($user_id != "") {
+            verify_pass_process($user_id, $group_id);
+        } else {
             $all_verify_info = get_member_verify_tmp($group_id);
-            foreach ($all_verify_info as $tmp){
-                verify_pass_process($tmp['user_id'],$group_id);
+            foreach ($all_verify_info as $tmp) {
+                verify_pass_process($tmp['user_id'], $group_id);
             }
         }
     }
@@ -2755,48 +2768,52 @@ function verify_pass(){
      * 首先判断本群是否为官方群,如果是
      * 创建一个新的群组,
      * */
-    if($group_id == get_group_id_by_name($budao_official)){
+    if ($group_id == get_group_id_by_name($budao_official)) {
         create_budao_group($user_id);
     }
     exit();
 }
+
 add_action('wp_ajax_verify_pass', 'verify_pass');
 add_action('wp_ajax_nopriv_verify_pass', 'verify_pass');
 
 //忽略
-function verify_ignore(){
+function verify_ignore()
+{
     $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : "";
     $group_id = isset($_POST['group_id']) ? $_POST['group_id'] : "";
-    if($group_id!=""){   //前提
-        if($user_id != ""){
-            verify_ignore_process($user_id,$group_id);
-        }else{
+    if ($group_id != "") {   //前提
+        if ($user_id != "") {
+            verify_ignore_process($user_id, $group_id);
+        } else {
             $all_verify_info = get_member_verify_tmp($group_id);
-            foreach ($all_verify_info as $tmp){
-                verify_ignore_process($tmp['user_id'],$group_id);
+            foreach ($all_verify_info as $tmp) {
+                verify_ignore_process($tmp['user_id'], $group_id);
             }
         }
     }
     exit();
 }
+
 add_action('wp_ajax_verify_ignore', 'verify_ignore');
 add_action('wp_ajax_nopriv_verify_ignore', 'verify_ignore');
 
 //审核通过(忽略)处理
-function verify_pass_process($user_id,$group_id){
+function verify_pass_process($user_id, $group_id)
+{
     global $wpdb;
     $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
     //首先获取验证信息
     $sql = "SELECT verify_info FROM wp_gp_member_verify_tmp WHERE user_id = $user_id and group_id=$group_id";
-    $result = $wpdb->get_results($sql,"ARRAY_A");
+    $result = $wpdb->get_results($sql, "ARRAY_A");
     $verify_info = $result[0]['verify_info'];
     //看他是第几次加入
-    $sql_count ="Select * From wp_gp_member WHERE user_id=$user_id and group_id=$group_id";
+    $sql_count = "Select * From wp_gp_member WHERE user_id=$user_id and group_id=$group_id";
     $col = $wpdb->query($sql_count);
-    if($col == 0){ //如果没加入过,那么进行插入
+    if ($col == 0) { //如果没加入过,那么进行插入
         $sql_member = "INSERT INTO wp_gp_member VALUES ('',$user_id,$group_id,'member','$current_time','$verify_info',0)";
         $wpdb->get_results($sql_member);
-    }else{  //如果插入过,进行更新
+    } else {  //如果插入过,进行更新
         $sql_member = "update wp_gp_member set member_status = 0 , verify_info = '$verify_info' , join_date='$current_time' WHERE user_id = $user_id and group_id = $group_id";
         $wpdb->get_results($sql_member);
     }
@@ -2808,18 +2825,20 @@ function verify_pass_process($user_id,$group_id){
     $wpdb->get_results($sql_delete_tmp);
 }
 
-function verify_ignore_process($user_id,$group_id){
+function verify_ignore_process($user_id, $group_id)
+{
     global $wpdb;
     $sql_delete_tmp = "delete from wp_gp_member_verify_tmp WHERE user_id = $user_id and group_id = $group_id";
     $wpdb->get_results($sql_delete_tmp);
 }
 
 //判断用户是否多次发送加入申请
-function in_member_tmp($user_id,$group_id){
+function in_member_tmp($user_id, $group_id)
+{
     global $wpdb;
     $sql = "SELECT * FROM wp_gp_member_verify_tmp WHERE user_id = $user_id and group_id=$group_id";
     $col = $wpdb->query($sql);
-    if ($col==0) {
+    if ($col == 0) {
         return false;
     } else {
         return true;
@@ -2832,51 +2851,54 @@ function in_member_tmp($user_id,$group_id){
  * 修改成员身份 changeIndentity
  * */
 //获取成员的基本信息
-function get_member_info($group_id){
+function get_member_info($group_id)
+{
     global $wpdb;
     $ret = array();
     $sql = "SELECT * FROM wp_gp_member WHERE group_id = $group_id and member_status = 0";
-    $results = $wpdb->get_results($sql,'ARRAY_A');
-    foreach ($results as $value){
+    $results = $wpdb->get_results($sql, 'ARRAY_A');
+    foreach ($results as $value) {
         $arr_tmp = array();
         //返回的数组格式[id,用户名,验证字段切分,身份]
-        array_push($arr_tmp,$value['user_id']);
+        array_push($arr_tmp, $value['user_id']);
         $user_name = get_author_name($value['user_id']);
-        array_push($arr_tmp,$user_name);
+        array_push($arr_tmp, $user_name);
         $verifyInfo = explode(',', $value['verify_info']);
-        $len = sizeof(get_verify_field($group_id,'group'));
-        if($len == sizeof($verifyInfo)){  //没填的写空
-            for($i=0;$i<$len;$i++){
-                array_push($arr_tmp,$verifyInfo[$i]);
+        $len = sizeof(get_verify_field($group_id, 'group'));
+        if ($len == sizeof($verifyInfo)) {  //没填的写空
+            for ($i = 0; $i < $len; $i++) {
+                array_push($arr_tmp, $verifyInfo[$i]);
             }
-        }else{
-            for($i=0;$i<$len;$i++){
-                array_push($arr_tmp,'');
+        } else {
+            for ($i = 0; $i < $len; $i++) {
+                array_push($arr_tmp, '');
             }
         }
-        if($value['indentity'] =='admin'){    # 可改进
+        if ($value['indentity'] == 'admin') {    # 可改进
             $indentity = '管理员';
-        }else{
+        } else {
             $indentity = '普通成员';
         }
-        array_push($arr_tmp,$indentity);
-        array_push($ret,$arr_tmp);
+        array_push($arr_tmp, $indentity);
+        array_push($ret, $arr_tmp);
     }
     return $ret;
 }
 
 //修改成员身份  可改进的部分就是判断群有几个管理员,还有默认群主不能修改身份
-function changeIndentity(){
+function changeIndentity()
+{
     global $wpdb;
     $user_id = $_POST['user_id'];
     $indentity = $_POST['indentity'];
     $group_id = $_POST['group_id'];
-    for($i=0;$i<sizeof($user_id);$i++){
+    for ($i = 0; $i < sizeof($user_id); $i++) {
         $sql_indentity = "update wp_gp_member set indentity ='$indentity' WHERE user_id = $user_id[$i] and group_id = $group_id";
         $wpdb->get_results($sql_indentity);
     }
     exit();
 }
+
 add_action('wp_ajax_changeIndentity', 'changeIndentity');
 add_action('wp_ajax_nopriv_changeIndentity', 'changeIndentity');
 
@@ -2887,16 +2909,16 @@ function kick_out_the_group()
     $group_id = isset($_POST['group_id']) ? $_POST['group_id'] : "";
     $admin = get_group_member($group_id)['admin'];
     $response_tmp = "notadmin";
-    if(sizeof($admin)==1){
-        for($i=0;$i<sizeof($user_id);$i++){
-            if($user_id[$i] == $admin[0]['user_id']){
+    if (sizeof($admin) == 1) {
+        for ($i = 0; $i < sizeof($user_id); $i++) {
+            if ($user_id[$i] == $admin[0]['user_id']) {
                 $response_tmp = "isadmin";
             }
         }
     }
-    if($response_tmp=="notadmin"){
-        if ($group_id != "" and $user_id !="") {
-            for($i=0;$i<sizeof($user_id);$i++){
+    if ($response_tmp == "notadmin") {
+        if ($group_id != "" and $user_id != "") {
+            for ($i = 0; $i < sizeof($user_id); $i++) {
                 $sql_member = "update wp_gp_member set member_status = 1 WHERE user_id = $user_id[$i] and group_id = $group_id";
                 $wpdb->get_results($sql_member);
                 $sql_cut_count = "update wp_gp set member_count = (member_count-1) WHERE ID = $group_id";
@@ -2904,20 +2926,23 @@ function kick_out_the_group()
             }
             $response = "success";
         }
-    }else{
+    } else {
         $response = "error";
     }
     echo $response;
     die();
 }
+
 add_action('wp_ajax_kick_out_the_group', 'kick_out_the_group');
 add_action('wp_ajax_nopriv_kick_out_the_group', 'kick_out_the_group');
 //恢复wiki历史版本
-function restore_post_revision(){
+function restore_post_revision()
+{
     $revision_id = $_POST['revision_id'];
     wp_restore_post_revision($revision_id);
     die();
 }
+
 add_action('wp_ajax_restore_post_revision', 'restore_post_revision');
 add_action('wp_ajax_nopriv_restore_post_revision', 'restore_post_revision');
 /*task部分*/
@@ -2938,50 +2963,53 @@ add_action('wp_ajax_nopriv_restore_post_revision', 'restore_post_revision');
  *
  *
  * */
-function countDown($task_id){
+function countDown($task_id)
+{
     global $wpdb;
     $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
-    $deadline = $wpdb->get_var($wpdb->prepare("SELECT deadline FROM wp_gp_task WHERE ID=$task_id",""),0,0);
+    $deadline = $wpdb->get_var($wpdb->prepare("SELECT deadline FROM wp_gp_task WHERE ID=$task_id", ""), 0, 0);
     $current_time = strtotime($current_time);
     $deadline = strtotime($deadline);
-    $day_time =  $deadline-$current_time;
-    if($day_time>0){  //未到截止日期
-        $day =  ceil($day_time/(24*3600));
+    $day_time = $deadline - $current_time;
+    if ($day_time > 0) {  //未到截止日期
+        $day = ceil($day_time / (24 * 3600));
         return $day;
-    }else{
+    } else {
         return 0;
     }
 }
 
 //判断任务是否截止
-function is_overdue($task_id){
+function is_overdue($task_id)
+{
     global $wpdb;
     $current_time = strtotime(date('Y-m-d H:i:s', time() + 8 * 3600));
-    $deadline = strtotime($wpdb->get_var($wpdb->prepare("SELECT deadline FROM wp_gp_task WHERE ID=$task_id",""),0,0));
-    $day_time =  $deadline-$current_time;
-    if($day_time>0){  //未到截止日期
+    $deadline = strtotime($wpdb->get_var($wpdb->prepare("SELECT deadline FROM wp_gp_task WHERE ID=$task_id", ""), 0, 0));
+    $day_time = $deadline - $current_time;
+    if ($day_time > 0) {  //未到截止日期
         return false;
-    }else{
+    } else {
         return true;
     }
 }
 
 //获取本组的所有未截止项目且未完成任务!!
-function get_unfinish_task($group_id){
+function get_unfinish_task($group_id)
+{
     $task = get_task($group_id);
     $user_id = get_current_user_id();
-    foreach($task as $key =>$value){
-        if($value['task_type']=='tread'){
-            $per = complete_all_read($value['ID'],$user_id);
-            if(is_overdue($value['ID']) || $per == 100){
+    foreach ($task as $key => $value) {
+        if ($value['task_type'] == 'tread') {
+            $per = complete_all_read($value['ID'], $user_id);
+            if (is_overdue($value['ID']) || $per == 100) {
                 unset($task[$key]);
             }
-        }elseif ($value['task_type']=='tpro'){
-            if(is_overdue($value['ID'])||is_complete_task($value['ID'],$user_id)){ //已完成
+        } elseif ($value['task_type'] == 'tpro') {
+            if (is_overdue($value['ID']) || is_complete_task($value['ID'], $user_id)) { //已完成
                 unset($task[$key]);
             }
-        }else{
-            if(is_overdue($value['ID'])||is_complete_task($value['ID'],$user_id)){
+        } else {
+            if (is_overdue($value['ID']) || is_complete_task($value['ID'], $user_id)) {
                 unset($task[$key]);
             }
         }
@@ -2990,7 +3018,8 @@ function get_unfinish_task($group_id){
 }
 
 //为了自动检测阅读任务的完成情况
-function complete_read_task(){
+function complete_read_task()
+{
     global $wpdb;
     $user_id = get_current_user_id();
     $task_id = $_POST['task_id'];
@@ -3005,19 +3034,21 @@ function complete_read_task(){
     $sql_1 = "SELECT * FROM wp_gp_task_complete_tmp 
                     WHERE user_id = $user_id and task_id = $task_id and complete_content = '$complete_content'";
     $col = $wpdb->query($sql_1);
-    if($col==0){
+    if ($col == 0) {
         $sql_insert = "INSERT INTO wp_gp_task_complete_tmp VALUES ('','$user_id','$task_id','$complete_content')";
         $wpdb->get_results($sql_insert);
-        $per = complete_all_read($task_id,$user_id);
+        $per = complete_all_read($task_id, $user_id);
     }
-    echo '#'.$id;
+    echo '#' . $id;
     die();
 }
+
 add_action('wp_ajax_complete_read_task', 'complete_read_task');
 add_action('wp_ajax_nopriv_complete_read_task', 'complete_read_task');
 
 //打开时完成度的显示
-function complete_single($task_id){
+function complete_single($task_id)
+{
     /* 返回值是一个数组,按顺序的返回完成ornot 格式[0,1],0表示完成,1表示未完成
      * step:1 取出验证字段,即,link的字段
      * step:2 对于每一个link,搜索该用户是否在tmp表中有过。
@@ -3025,46 +3056,48 @@ function complete_single($task_id){
      * */
     global $wpdb;
     $result = array();
-    $verify_field = get_verify_field($task_id,'task');
+    $verify_field = get_verify_field($task_id, 'task');
     $user_id = get_current_user_id();
-    foreach ($verify_field as $key =>$value){
+    foreach ($verify_field as $key => $value) {
         $sql_1 = "SELECT * FROM wp_gp_task_complete_tmp 
                     WHERE user_id = $user_id and task_id = $task_id and complete_content = '$value'";
         $col = $wpdb->query($sql_1);
-        if($col==0){
-            array_push($result,'<span>未完成</span>');
-        }else{
+        if ($col == 0) {
+            array_push($result, '<span>未完成</span>');
+        } else {
             $url = get_template_directory_uri() . "/img/complete.png";
-            array_push($result,"<img src=".$url.">");
+            array_push($result, "<img src=" . $url . ">");
         }
     }
     return $result;
 }
 
 //在成员-任务表中添加成员的完成情况 read
-function complete_all_read($task_id,$user_id){
+function complete_all_read($task_id, $user_id)
+{
     global $wpdb;
     $time = date('Y-m-d H:i:s', time() + 8 * 3600);
     $sql_all = "SELECT * FROM wp_gp_task_complete_tmp WHERE user_id = $user_id and task_id = $task_id";
     $col_all = $wpdb->query($sql_all);
-    $verify_size = sizeof(get_verify_field($task_id,'task'));
-    if($col_all == $verify_size){   //完成了
+    $verify_size = sizeof(get_verify_field($task_id, 'task'));
+    if ($col_all == $verify_size) {   //完成了
         //加判断是否已经插入过了
         $sql_exist = "SELECT * FROM wp_gp_task_member WHERE user_id = $user_id and task_id = $task_id";
         $col_exist_in_task_member = $wpdb->query($sql_exist);
-        if($col_exist_in_task_member==0){  //如果没有插入过
+        if ($col_exist_in_task_member == 0) {  //如果没有插入过
             $sql_insert = "INSERT INTO wp_gp_task_member VALUES ('',$user_id,$task_id,1,'$time','','')";
             $sql_update_task = "UPDATE wp_gp_task SET complete_count = (complete_count + 1) WHERE ID = $task_id";
             $wpdb->get_results($sql_insert);
             $wpdb->get_results($sql_update_task);
         }
     }
-    $per = round(($col_all/$verify_size) * 100);
+    $per = round(($col_all / $verify_size) * 100);
     return $per;
 }
 
 //群组中完成成员的总百分比 退出群组怎么办——————不用管,仍然保存他的数据但不统计
-function complete_percentage($group_id,$task_id){
+function complete_percentage($group_id, $task_id)
+{
     /* step1: 取出本组所有的成员数
      * step2: 取出本组所有完成的成员数
      * */
@@ -3073,24 +3106,25 @@ function complete_percentage($group_id,$task_id){
     $complete_member = 0;
     //sql_complete是目前在群组中的成员的完成数量
     $sql_complete = "SELECT * FROM wp_gp_task_member WHERE task_id =$task_id";
-    $complete_info = $wpdb->get_results($sql_complete,'ARRAY_A');
-    foreach($complete_info as $value){
-        if(is_group_member($group_id,$value['user_id'])){ //是群组成员才算完成情况
+    $complete_info = $wpdb->get_results($sql_complete, 'ARRAY_A');
+    foreach ($complete_info as $value) {
+        if (is_group_member($group_id, $value['user_id'])) { //是群组成员才算完成情况
             $complete_member += 1;
         }
     }
-    $per = round(($complete_member/$all_member)*100);
+    $per = round(($complete_member / $all_member) * 100);
     return $per;
 }
 
 //项目任务是否完成
-function is_complete_task($task_id,$user_id){
+function is_complete_task($task_id, $user_id)
+{
     global $wpdb;
     $sql = "SELECT * FROM wp_gp_task_member WHERE user_id=$user_id and task_id = $task_id";
     $col = $wpdb->query($sql);
-    if($col!=0){
+    if ($col != 0) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
@@ -3100,12 +3134,13 @@ function is_complete_task($task_id,$user_id){
  * 参数：group的id
  * 返回：三个成员或更少成员（当加入人数小于3）的id
  * */
-function get_latest_active($group_id_tmp){
+function get_latest_active($group_id_tmp)
+{
     global $wpdb;
     $group_active_info = $wpdb->get_results("select * from wp_gp_member where group_id=$group_id_tmp and member_status= 0");
 
     $group_active = array();
-    foreach($group_active_info as $item) {
+    foreach ($group_active_info as $item) {
         $group_active[$item->user_id] = $item->join_date;
     }
 
@@ -3113,18 +3148,17 @@ function get_latest_active($group_id_tmp){
     arsort($group_active);
 
     //如果只有小于3个成员加入，只存入1或2个人
-    if(sizeof($group_active) >= 3) {
+    if (sizeof($group_active) >= 3) {
         $i = 0;
-        foreach ($group_active as $key=>$value) {
+        foreach ($group_active as $key => $value) {
             $group_active_id[] = $key;
             $i++;
             if ($i == 3)
                 break;
         }
-    }
-    else {
+    } else {
         $i = 0;
-        foreach ($group_active as $key=>$value) {
+        foreach ($group_active as $key => $value) {
             $group_active_id[] = $key;
             $i++;
             if ($i == sizeof($group_active))
@@ -3144,14 +3178,15 @@ function get_latest_active($group_id_tmp){
                         ['task_address'];
                         ['notice_type']
  */
-function get_gp_notification($group_id = null){
+function get_gp_notification($group_id = null)
+{
     global $wpdb;
-    if($group_id==null){
+    if ($group_id == null) {
         //1.发布任务
         $group_task_info = $wpdb->get_results("select * from wp_gp_task");
 
         $group_task = array();
-        foreach($group_task_info as $item) {
+        foreach ($group_task_info as $item) {
             $single_task = array();
 
             //作者、身份、组名、任务名
@@ -3159,20 +3194,20 @@ function get_gp_notification($group_id = null){
             $single_task['task_author'] = get_author_name($item->task_author);
             //$task_author_info[0]->user_login;
 
-            $task_author_iden_info = $wpdb->get_results("select * from wp_gp_member where user_id=".$item->task_author." and group_id=".$item->belong_to);
+            $task_author_iden_info = $wpdb->get_results("select * from wp_gp_member where user_id=" . $item->task_author . " and group_id=" . $item->belong_to);
             $task_author_iden = $task_author_iden_info[0]->indentity;
-            if(strcmp($task_author_iden,"member") == 0){
+            if (strcmp($task_author_iden, "member") == 0) {
                 $single_task['task_identity'] = "成员";
-            }else if(strcmp($task_author_iden,"admin") == 0){
+            } else if (strcmp($task_author_iden, "admin") == 0) {
                 $single_task['task_identity'] = "管理员";
             }
 
-            $task_group_info = $wpdb->get_results("select * from wp_gp where ID=".$item->belong_to);
+            $task_group_info = $wpdb->get_results("select * from wp_gp where ID=" . $item->belong_to);
             $single_task['group_name'] = $task_group_info[0]->group_name;
 
             $single_task['task_name'] = $item->task_name;
 
-            $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_task'),'id'=>$item->ID),get_home_url());
+            $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_task'), 'id' => $item->ID), get_home_url());
 
             $single_task['time'] = $item->create_date;
 
@@ -3184,7 +3219,7 @@ function get_gp_notification($group_id = null){
 
         //2.加入群组
         $group_join_info = $wpdb->get_results("select * from wp_gp_member");
-        foreach($group_join_info as $item){
+        foreach ($group_join_info as $item) {
             $single_task = array();
 
             //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->user_id);
@@ -3192,10 +3227,10 @@ function get_gp_notification($group_id = null){
 
             //$task_author_info[0]->user_login;
 
-            $task_author_iden_info = $wpdb->get_results("select * from wp_gp where ID=".$item->group_id);
+            $task_author_iden_info = $wpdb->get_results("select * from wp_gp where ID=" . $item->group_id);
             $single_task['group_name'] = $task_author_iden_info[0]->group_name;
 
-            $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_group'),'id'=>$item->group_id),get_home_url());
+            $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_group'), 'id' => $item->group_id), get_home_url());
 
             $single_task['time'] = $item->join_date;
 
@@ -3206,7 +3241,7 @@ function get_gp_notification($group_id = null){
 
         //3.创建群组
         $group_create_info = $wpdb->get_results("select * from wp_gp");
-        foreach($group_create_info as $item){
+        foreach ($group_create_info as $item) {
             $single_task = array();
 
             //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->group_author);
@@ -3215,7 +3250,7 @@ function get_gp_notification($group_id = null){
 
             $single_task['group_name'] = $item->group_name;
 
-            $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_group'),'id'=>$item->ID),get_home_url());
+            $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_group'), 'id' => $item->ID), get_home_url());
 
             $single_task['time'] = $item->create_date;
 
@@ -3226,17 +3261,17 @@ function get_gp_notification($group_id = null){
 
         //4.完成任务
         $task_complete_info = $wpdb->get_results("select * from wp_gp_task_member");
-        foreach($task_complete_info as $item){
+        foreach ($task_complete_info as $item) {
             $single_task = array();
 
             //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->user_id);
             $single_task['task_author'] = get_author_name($item->user_id);
             //$task_author_info[0]->user_login;
 
-            $group_task_info = $wpdb->get_results("select * from wp_gp_task where ID=".$item->task_id);
+            $group_task_info = $wpdb->get_results("select * from wp_gp_task where ID=" . $item->task_id);
             $single_task['task_name'] = $group_task_info[0]->task_name;
 
-            $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_task'),'id'=>$item->task_id),get_home_url());
+            $single_task['task_address'] = add_query_arg(array('page_id' => get_page_id('single_task'), 'id' => $item->task_id), get_home_url());
 
             $single_task['time'] = $item->complete_time;
 
@@ -3245,16 +3280,15 @@ function get_gp_notification($group_id = null){
             $group_task[] = $single_task;
         }
 
-        usort($group_task,function($a,$b){
-            if ($a==$b) return 0;
-            return ($a['time'] > $b['time'])?-1:1;
+        usort($group_task, function ($a, $b) {
+            if ($a == $b) return 0;
+            return ($a['time'] > $b['time']) ? -1 : 1;
         });
 
 
         //print_r($group_task);
         return $group_task;
-    }
-    else {
+    } else {
         //1.发布任务
         $group_task_info = $wpdb->get_results("select * from wp_gp_task WHERE belong_to = $group_id");
         $group_task = array();
@@ -3372,56 +3406,61 @@ function get_gp_notification($group_id = null){
 }
 
 
-
 //判断用户名输入的是否正确ajax,是否是本组的,是否是系统里的
-function checkUserName(){
+function checkUserName()
+{
     global $wpdb;
     $name = $_POST['name'];
     $group_id = $_POST['group_id'];
     $sql = "SELECT * FROM $wpdb->users WHERE user_login = '$name'";
     $col = $wpdb->query($sql);
-    if($col==0){
-        $response =  false;
-    }else{
-        //如果有这个用户判断这个用户是不是该组成员
-        $id = get_the_ID_by_name($name);
-        if(is_group_member($group_id,$id)){
-            $response = true;
-        }else{
-            $response = false;
-        }
-
-    }
-    echo $response;
-    die();
-}
-add_action('wp_ajax_checkUserName', 'checkUserName');
-add_action('wp_ajax_nopriv_checkUserName', 'checkUserName');
-
-//判断用户输入的邀请用户名是否正确,是否已经是本组的
-function checkInUserName(){
-    global $wpdb;
-    $name = $_POST['name'];
-    $group_id = $_POST['group_id'];
-    $sql = "SELECT * FROM $wpdb->users WHERE user_login = '$name'";
-    $col = $wpdb->query($sql);
-    if($col==0){
+    if ($col == 0) {
         $response = 0;
-    }else{
+    } else {
         //如果有这个用户判断这个用户是不是该组成员
         $id = get_the_ID_by_name($name);
-        if(is_group_member($group_id,$id)){   //已经是本组成员的话不行
+        if (!is_group_member($group_id, $id)) {   //已经是本组成员的话不行
             $response = 1;
-        }else{
+        } else {
             $response = 2;
         }
     }
-    if($name==''){
+    if ($name == '') {
         $response = 2;
     }
     echo $response;
     die();
 }
+
+add_action('wp_ajax_checkUserName', 'checkUserName');
+add_action('wp_ajax_nopriv_checkUserName', 'checkUserName');
+
+//判断用户输入的邀请用户名是否正确,是否已经是本组的
+function checkInUserName()
+{
+    global $wpdb;
+    $name = $_POST['name'];
+    $group_id = $_POST['group_id'];
+    $sql = "SELECT * FROM $wpdb->users WHERE user_login = '$name'";
+    $col = $wpdb->query($sql);
+    if ($col == 0) {
+        $response = 0;
+    } else {
+        //如果有这个用户判断这个用户是不是该组成员
+        $id = get_the_ID_by_name($name);
+        if (is_group_member($group_id, $id)) {   //已经是本组成员的话不行
+            $response = 1;
+        } else {
+            $response = 2;
+        }
+    }
+    if ($name == '') {
+        $response = 2;
+    }
+    echo $response;
+    die();
+}
+
 add_action('wp_ajax_checkInUserName', 'checkInUserName');
 add_action('wp_ajax_nopriv_checkInUserName', 'checkInUserName');
 
@@ -3430,43 +3469,53 @@ function get_the_ID_by_name($user_name)
 {
     global $wpdb;
     $sql = "SELECT ID FROM $wpdb->users WHERE user_login = '$user_name'";
-    $id = $wpdb->get_var($wpdb->prepare($sql,""),0,0);
+    $id = $wpdb->get_var($wpdb->prepare($sql, ""), 0, 0);
     return $id;
 }
 
 //获取user提交的任务内容
-function get_user_task_content($task_id,$user_id = NULL){
+function get_user_task_content($task_id, $user_id = NULL)
+{
     global $wpdb;
-    if($user_id==NULL){ $user_id = get_current_user_id(); }
+    if ($user_id == NULL) {
+        $user_id = get_current_user_id();
+    }
     $sql = "SELECT * from wp_gp_task_member WHERE user_id=$user_id and task_id = $task_id";
-    $result = $wpdb->get_results($sql,'ARRAY_A');
+    $result = $wpdb->get_results($sql, 'ARRAY_A');
     return $result[0];
 }
 
 //获取本team的成员
-function get_team_member($task_id,$team_id = NULL){
+function get_team_member($task_id, $team_id = NULL)
+{
     global $wpdb;
     $result = [];
-    if($team_id==NULL){ $team_id = get_team_id($task_id); }
+    if ($team_id == NULL) {
+        $team_id = get_team_id($task_id);
+    }
     $sql_id = "SELECT user_id from wp_gp_member_team WHERE team_id=$team_id and task_id = $task_id";
-    $uid = $wpdb->get_results($sql_id,'ARRAY_N');
-    foreach ($uid as $value){
-        array_push($result,$value[0]);
+    $uid = $wpdb->get_results($sql_id, 'ARRAY_N');
+    foreach ($uid as $value) {
+        array_push($result, $value[0]);
     }
     return $result;
 }
 
 //获取team_id  (当前用户或指定用户的team_id)
-function get_team_id($task_id, $user_id = NULL){
+function get_team_id($task_id, $user_id = NULL)
+{
     global $wpdb;
-    if($user_id==NULL){ $user_id = get_current_user_id(); }
+    if ($user_id == NULL) {
+        $user_id = get_current_user_id();
+    }
     $sql = "SELECT team_id from wp_gp_member_team WHERE user_id=$user_id and task_id = $task_id";
-    $team_id = $wpdb->get_results($sql,'ARRAY_A')[0]['team_id'];
+    $team_id = $wpdb->get_results($sql, 'ARRAY_A')[0]['team_id'];
     return $team_id;
 }
 
 //专为提交项目类任务表格提供信息的函数返回一个二维数组,一维是team_id,一维是表格信息
-function pro_table($group_id,$task_id){
+function pro_table($group_id, $task_id)
+{
     /* step0: 取出本任务的所有team_id 为了控制合并行的数量 如果没有一个team时?
      * step1: 取出本组的所有成员 为了控制总的行数
      * step2: 对于每一个team_id 取出team中的成员,在本组所有成员的数组中减去他们。最后剩下的就是还未分组的成员
@@ -3478,71 +3527,72 @@ function pro_table($group_id,$task_id){
     $result = [];  //存储返回数组
     //step0:
     $sql_team_id = "SELECT distinct(team_id) FROM wp_gp_member_team WHERE task_id = $task_id";
-    $array_team_id = $wpdb->get_results($sql_team_id,'ARRAY_A');
+    $array_team_id = $wpdb->get_results($sql_team_id, 'ARRAY_A');
 
 
     //step1: 格式 Array ( [0] => 22 [1] => 1 )
     $sql_member_id = "SELECT DISTINCT(user_id) FROM wp_gp_member WHERE group_id = $group_id and member_status = 0";
-    $array_member_id_tmp = $wpdb->get_results($sql_member_id,'ARRAY_A');
+    $array_member_id_tmp = $wpdb->get_results($sql_member_id, 'ARRAY_A');
     $array_member_id = [];
-    foreach ($array_member_id_tmp as $value){
-        array_push($array_member_id,$value['user_id']);
+    foreach ($array_member_id_tmp as $value) {
+        array_push($array_member_id, $value['user_id']);
     }
 
     //step2:
     $array_member_id_ungroup = $array_member_id;
-    if(sizeof($array_team_id)!=0){
-        foreach($array_team_id as $key =>$value){
+    if (sizeof($array_team_id) != 0) {
+        foreach ($array_team_id as $key => $value) {
             $tmp_team = [];
-            $uid = get_team_member($task_id,$value['team_id']);
-            $array_member_id_ungroup = array_diff($array_member_id_ungroup,$uid);  //获取未分组的成员
-            foreach($uid as $id){
+            $uid = get_team_member($task_id, $value['team_id']);
+            $array_member_id_ungroup = array_diff($array_member_id_ungroup, $uid);  //获取未分组的成员
+            foreach ($uid as $id) {
                 $tmp = [];//存储内层数组
                 $user_id = $id;
                 $user_name = get_author_name($id);
-                $verify_field = get_user_verify_field($group_id,$id);
-                $completion = get_user_task_completion($task_id,$user_id);
-                array_push($tmp,$user_id,$user_name);
-                $tmp = array_merge($tmp,$verify_field,$completion[0]);
-                array_push($tmp_team,$tmp);
+                $verify_field = get_user_verify_field($group_id, $id);
+                $completion = get_user_task_completion($task_id, $user_id);
+                array_push($tmp, $user_id, $user_name);
+                $tmp = array_merge($tmp, $verify_field, $completion[0]);
+                array_push($tmp_team, $tmp);
             }
-            array_push($result,$tmp_team);
+            array_push($result, $tmp_team);
         }
     }
 
     //处理未分组的成员
     $tmp_team_ungroup = [];
-    foreach ($array_member_id_ungroup as $key =>$value_ungroup){
+    foreach ($array_member_id_ungroup as $key => $value_ungroup) {
         $tmp = [];//存储内层数组
         $user_id = $value_ungroup;
         $user_name = get_author_name($value_ungroup);
-        $verify_field = get_user_verify_field($group_id,$value_ungroup);
-        $completion = array('completion'=>'','apply_content'=>'');
-        array_push($tmp,$user_id,$user_name);
-        $tmp = array_merge($tmp,$verify_field,$completion);
-        array_push($tmp_team_ungroup,$tmp);
+        $verify_field = get_user_verify_field($group_id, $value_ungroup);
+        $completion = array('completion' => '', 'apply_content' => '');
+        array_push($tmp, $user_id, $user_name);
+        $tmp = array_merge($tmp, $verify_field, $completion);
+        array_push($tmp_team_ungroup, $tmp);
     }
-    $result  = array("ungroup"=>$tmp_team_ungroup,"team"=>$result);
+    $result = array("ungroup" => $tmp_team_ungroup, "team" => $result);
     return $result;
 }
 
 //根据用户id获取验证字段
-function get_user_verify_field($group_id,$user_id){
+function get_user_verify_field($group_id, $user_id)
+{
     global $wpdb;
     $sql = "SELECT * FROM wp_gp_member WHERE group_id = $group_id and user_id = $user_id and member_status = 0";
-    $results = $wpdb->get_results($sql,'ARRAY_A');
+    $results = $wpdb->get_results($sql, 'ARRAY_A');
 
-    foreach ($results as $value){
-        $arr_tmp =[];
+    foreach ($results as $value) {
+        $arr_tmp = [];
         $verifyInfo = explode(',', $value['verify_info']);
-        $len = sizeof(get_verify_field($group_id,'group'));
-        if($len == sizeof($verifyInfo)){  //没填的写空
-            for($i=0;$i<$len;$i++){
-                array_push($arr_tmp,$verifyInfo[$i]);
+        $len = sizeof(get_verify_field($group_id, 'group'));
+        if ($len == sizeof($verifyInfo)) {  //没填的写空
+            for ($i = 0; $i < $len; $i++) {
+                array_push($arr_tmp, $verifyInfo[$i]);
             }
-        }else{
-            for($i=0;$i<$len;$i++){
-                array_push($arr_tmp,'');
+        } else {
+            for ($i = 0; $i < $len; $i++) {
+                array_push($arr_tmp, '');
             }
         }
         return $arr_tmp;
@@ -3550,82 +3600,91 @@ function get_user_verify_field($group_id,$user_id){
 }
 
 //根据用户id获取任务内容和完成情况
-function get_user_task_completion($task_id,$user_id){
+function get_user_task_completion($task_id, $user_id)
+{
     global $wpdb;
     $sql = "SELECT completion,apply_content FROM wp_gp_task_member WHERE task_id = $task_id and user_id = $user_id";
-    $results = $wpdb->get_results($sql,'ARRAY_A');
+    $results = $wpdb->get_results($sql, 'ARRAY_A');
     return $results;
 }
 
 //判断用户名输入的是否正确ajax
-function change_grade(){
+function change_grade()
+{
     global $wpdb;
     $completion = $_POST['grade'];
     $task_id = $_POST['task_id'];
     $team_id = $_POST['team_id'] + 1;
-    $team_member = get_team_member($task_id,$team_id);
-    foreach ($team_member as $member){
+    $team_member = get_team_member($task_id, $team_id);
+    foreach ($team_member as $member) {
         $sql = "update wp_gp_task_member set completion = $completion WHERE user_id=$member and task_id=$task_id";
-        try{
+        try {
             $wpdb->get_results($sql);
-        }catch (Exception $e){
-            return [ 'code' => $e->getCode(), 'msg' => $e->getMessage() ];
+        } catch (Exception $e) {
+            return ['code' => $e->getCode(), 'msg' => $e->getMessage()];
         }
     }
     echo $sql;
     echo $team_id;
     die();
 }
+
 add_action('wp_ajax_change_grade', 'change_grade');
 add_action('wp_ajax_nopriv_change_grade', 'change_grade');
 
 //成绩的数字和文字转换
-function transform_grade($rank){
-    $map = ['pending','pass','good','great','perfect'];
+function transform_grade($rank)
+{
+    $map = ['pending', 'pass', 'good', 'great', 'perfect'];
     return $map[$rank];
 }
 
 //获取本other项目完成的成员和信息
-function task_complete_other($task_id){
+function task_complete_other($task_id)
+{
     global $wpdb;
     $sql = "SELECT * FROM wp_gp_task_member WHERE task_id = $task_id";
-    $results = $wpdb->get_results($sql,'ARRAY_A');
+    $results = $wpdb->get_results($sql, 'ARRAY_A');
     return $results;
 }
 
 //审核other项目结果
-function change_grade_other(){
+function change_grade_other()
+{
     global $wpdb;
     $completion = $_POST['grade'];
     $task_id = $_POST['task_id'];
     $user_id = $_POST['user_id'];
     $sql = "update wp_gp_task_member set completion = $completion WHERE user_id=$user_id and task_id=$task_id";
-    try{
+    try {
         $wpdb->get_results($sql);
-    }catch (Exception $e){
-        return [ 'code' => $e->getCode(), 'msg' => $e->getMessage() ];
+    } catch (Exception $e) {
+        return ['code' => $e->getCode(), 'msg' => $e->getMessage()];
     }
     //echo $sql;
     die();
 }
+
 add_action('wp_ajax_change_grade_other', 'change_grade_other');
 add_action('wp_ajax_nopriv_change_grade_other', 'change_grade_other');
 
 /* 布道师大赛所用的模块
  * */
-function get_group_id_by_name($group_name){
+function get_group_id_by_name($group_name)
+{
     global $wpdb;
     $sql = "SELECT ID FROM wp_gp WHERE group_name = '$group_name'";
     $res = $wpdb->get_results($sql);
     return $res[0]->ID;
 }
 
-function create_budao_group($user_id){
+function create_budao_group($user_id)
+{
     global $wpdb;
     $user_name = get_author_name($user_id);
-    $group_name = "布道师".$user_name."的群组";
+    $group_name = "布道师" . $user_name . "的群组";
     $group_author = $user_id;
-    $group_abstract = "这里为布道师".$user_name."的群组";
+    $group_abstract = "这里为布道师" . $user_name . "的群组";
     $group_status = 'open';
     $join_permission = 'freejoin';
     $task_permission = 'admin'; //all、admin
@@ -3639,7 +3698,7 @@ function create_budao_group($user_id){
     //首先获取最后一个group_id;
     $sql_fun = "select ID from wp_gp ORDER BY ID DESC LIMIT 0,1";
     $result = $wpdb->get_results($sql_fun);
-    $group_id = $result[0]->ID+1;
+    $group_id = $result[0]->ID + 1;
 
 
     $sql_gp = "INSERT INTO wp_gp VALUES ('$group_id','$group_name',$group_author,
@@ -3651,38 +3710,41 @@ function create_budao_group($user_id){
 
     $sql_group_name = "SELECT ID FROM wp_gp WHERE group_name = '$group_name'";
     $col = $wpdb->query($sql_group_name);
-    if($col == 0 && $group_abstract!="" && $group_status!="" &&
-        $join_permission!="" && $task_permission!=""){
+    if ($col == 0 && $group_abstract != "" && $group_status != "" &&
+        $join_permission != "" && $task_permission != ""
+    ) {
         $wpdb->query($sql_gp);
         $wpdb->query($sql_member);
     }
 }
 
 //群组搜索功能
-function get_search_group_ids($search_str){   //需改进
+function get_search_group_ids($search_str)
+{   //需改进
     global $wpdb;
     $search_str = trim($search_str);
-    $search_str_arr = explode(" ",$search_str);
+    $search_str_arr = explode(" ", $search_str);
     $sql_pre = "";
-    foreach($search_str_arr as $key => $words){
-        $sql_pre = $sql_pre."group_name LIKE '%$words%' ";
-        if(sizeof($search_str_arr)!=$key+1){
-            $sql_pre = $sql_pre."or ";
+    foreach ($search_str_arr as $key => $words) {
+        $sql_pre = $sql_pre . "group_name LIKE '%$words%' ";
+        if (sizeof($search_str_arr) != $key + 1) {
+            $sql_pre = $sql_pre . "or ";
         }
     }
 
-    $sql = "SELECT ID FROM wp_gp WHERE ".$sql_pre;
-    $results = $wpdb->get_results($sql,'ARRAY_A');
+    $sql = "SELECT ID FROM wp_gp WHERE " . $sql_pre;
+    $results = $wpdb->get_results($sql, 'ARRAY_A');
     $return = [];
-    foreach($results as $value){
-        array_push($return,$value['ID']);
+    foreach ($results as $value) {
+        array_push($return, $value['ID']);
     }
-    $str =implode(',', $return);
+    $str = implode(',', $return);
     return $str;
 }
 
 //布道师大赛群组获取
-function get_budao_group($id = NULL){
+function get_budao_group($id = NULL)
+{
     global $wpdb;
     if ($id != null) {
         $sql = "SELECT * FROM wp_gp WHERE ID = $id and publish_status = 'budao' ";
@@ -3694,30 +3756,70 @@ function get_budao_group($id = NULL){
 }
 
 //为用户加入的group分类,变成加入和创建的分开
-function group_personal($all_group){
+function group_personal($all_group)
+{
     $user_id = get_current_user_id();
-    $create=[];
-    $joined=[];
-    if(sizeof($all_group)!=0){
-        foreach ($all_group as $value){
-            if($user_id==$value['group_author']){
-                array_push($create,$value);
-            }else{
-                array_push($joined,$value);
+    $create = [];
+    $joined = [];
+    if (sizeof($all_group) != 0) {
+        foreach ($all_group as $value) {
+            if ($user_id == $value['group_author']) {
+                array_push($create, $value);
+            } else {
+                array_push($joined, $value);
             }
         }
     }
-    $return = array('create'=>$create,'joined'=>$joined);
+    $return = array('create' => $create, 'joined' => $joined);
     return $return;
 }
 
+//任务页面任务排序
+function task_order($all_task)
+{
+    /* 以当前的时间为分界线
+     * 没有截止的按deadline正序排列
+     * 截止了的按createdate倒序排列
+     * */
+    //step1: 分类
+    $overdue = [];  //存储截止了的任务
+    $goingon = []; //存储未截止的任务
+    foreach ($all_task as $key => $value) {
+        if (is_overdue($value['ID'])) {
+            array_push($overdue, $value);
+        } else {
+            array_push($goingon, $value);
+        }
+    }
+    //step2: 分别排序
+    if (sizeof($overdue) != 0) {
+        $overdue = multiArrSort($overdue, 'create_date', SORT_DESC);
+    }
+    if (sizeof($goingon) != 0) {
+        $goingon = multiArrSort($goingon, 'deadline', SORT_ASC);
+    }
 
+    //step3: merge到一起 $goingon在前
+    $return = array_merge($goingon, $overdue);
+    return $return;
+}
 
-
-
-
-//create_wiki_entry()
-
+//二维数组排序函数
+/* 参数: 要排序的数组, 按那个字段排序,升序or降序(SORT_DESC or SORT_ASC)
+ * return 排序后的数组
+ * ex: $result = multiArrSort($array,'create_date',SORT_DESC)
+ * */
+function multiArrSort($array, $field, $order)
+{
+    $arrSort = array();
+    foreach ($array as $uniqid => $row) {
+        foreach ($row as $key => $value) {
+            $arrSort[$key][$uniqid] = $value;
+        }
+    }
+    array_multisort($arrSort[$field], $order, $array);
+    return $array;
+}
 
 
 //修改域名  域名要包括http

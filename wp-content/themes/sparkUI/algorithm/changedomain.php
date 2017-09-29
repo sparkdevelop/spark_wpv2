@@ -6,4 +6,4 @@
  * Time: 下午1:35
  */
 
-changeDomain('http://www.ourspark.space','http://112.74.62.56');
+changeDomain('http://112.74.62.56','http://oursparkspace.cn');
