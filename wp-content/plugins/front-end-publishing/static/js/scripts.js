@@ -92,6 +92,15 @@ jQuery(document).ready(function ($) {
         }
         else{}
     });
+    //取消发布
+    $("#m-close").on('click',function(){
+        if (confirm("您确定要关闭本页吗？")){
+            window.opener=null;
+            window.open('','_self');
+            window.close();
+        }
+        else{}
+    });
 
     // Delete a post
     $(".post-delete a").click(function (event) {
@@ -240,6 +249,36 @@ jQuery(document).ready(function ($) {
         custom_uploader.on('select', function () {
             attachment = custom_uploader.state().get('selection').first().toJSON();
             jQuery('input#fep-featured-image-id', $('#fep-featured-image')).val(attachment.id);
+            $.ajax({
+                type: 'POST',
+                url: fepajaxhandler.ajaxurl,
+                data: {
+                    action: 'fep_fetch_featured_image',
+                    img: attachment.id
+                },
+                success: function (data) {
+                    $('#fep-featured-image-container').html(data);
+                    has_changed = true;
+                },
+                error: function (MLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        });
+        custom_uploader.open();
+    });
+    $('a#m-fep-featured-image-link', $('#m-fep-featured-image')).click(function (e) {
+        e.preventDefault();
+        custom_uploader = wp.media.frames.file_frame = wp.media({
+            title: fep_messages.media_lib_string,
+            button: {
+                text: fep_messages.media_lib_string
+            },
+            multiple: false
+        });
+        custom_uploader.on('select', function () {
+            attachment = custom_uploader.state().get('selection').first().toJSON();
+            jQuery('input#fep-featured-image-id', $('#m-fep-featured-image')).val(attachment.id);
             $.ajax({
                 type: 'POST',
                 url: fepajaxhandler.ajaxurl,
