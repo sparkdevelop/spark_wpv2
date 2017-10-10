@@ -1,6 +1,6 @@
 <!-- 本页面是群组的主页,按照我的收藏写翻页-->
 <?php $admin_url = admin_url('admin-ajax.php');
-$tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
+$tab = isset($_GET['tab']) ? $_GET['tab'] : 'all';
 ?>
 
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
@@ -43,7 +43,7 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
             ?>
             <li class="list-group-item">
                 <div id="group-ava">
-                    <img src="<?= $official_group['group_cover'] ?>">
+                    <?php get_group_ava($official_group['ID'],85)?>
                 </div>
                 <div id="group-info">
                     <div class="group_title" style="margin-bottom: 0px">
@@ -162,7 +162,7 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                             ?>
                             <li class="list-group-item">
                                 <div id="group-ava">
-                                    <img src="<?= $all_group[$i]['group_cover'] ?>">
+                                    <?php get_group_ava($all_group[$i]['ID'],85)?>
                                 </div>
                                 <div id="group-info">
                                     <div class="group_title">
@@ -291,7 +291,8 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                 </div>
             </div>
         </div>
-    <?php } else { ?>
+    <?php }
+    else { ?>
         <ul id="leftTab" class="nav nav-pills">
             <li><a href="<?php echo site_url() . get_page_address('group') . '&tab=all' ?>">所有群组</a></li>
             <li class="active"><a href="<?php echo site_url() . get_page_address('group') . '&tab=budao' ?>">布道师大赛</a>
@@ -334,7 +335,7 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
             ?>
             <li class="list-group-item">
                 <div id="group-ava">
-                    <img src="<?= $official_group['group_cover'] ?>">
+                    <?php get_group_ava($official_group['ID'],85)?>
                 </div>
                 <div id="group-info">
                     <div class="group_title" style="margin-bottom: 0;display: inline-block">
@@ -448,7 +449,7 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : 'all'
                             ?>
                             <li class="list-group-item">
                                 <div id="group-ava">
-                                    <img src="<?= $all_budao_group[$i]['group_cover'] ?>">
+                                    <?php get_group_ava($all_budao_group[$i]['ID'],85)?>
                                 </div>
                                 <div id="group-info">
                                     <div class="group_title">

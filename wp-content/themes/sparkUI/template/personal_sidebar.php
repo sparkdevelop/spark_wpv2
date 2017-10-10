@@ -70,6 +70,7 @@ $admin_url=admin_url('admin-ajax.php');
                     var ctx = document.getElementById('canvas').getContext('2d');
                     var imageObj = new Image();
                     imageObj.onload = function() {
+                        console.log(this);
                         var img_w =this.width;
                         var img_h =this.height;
                         if(img_w>=img_h){

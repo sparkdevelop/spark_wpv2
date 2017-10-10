@@ -139,6 +139,24 @@
                     }
                     require "template/otherpersonal.php";
                 }
+                elseif (is_page('otherpersonal')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/otherpersonal.php";
+                }
+                elseif (is_page('cnu')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/multi-university/CNU.php";
+                }
+                elseif (is_page('bupt')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/multi-university/BUPT.php";
+                }
                 elseif (is_page('info')){
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );

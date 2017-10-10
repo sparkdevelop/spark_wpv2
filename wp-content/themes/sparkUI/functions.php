@@ -2750,7 +2750,6 @@ function verify_pass()
     /* 若有user_id, 则把user加入到member表中,gp表member+1,删除当前tmp表中的内容
      * 若没有user_id,则遍历所有的user_id 执行上面的操作。因此把上面的操作写成函数。
      * */
-    global $budao_official;
     $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : "";
     $group_id = isset($_POST['group_id']) ? $_POST['group_id'] : "";
     if ($group_id != "") {   //前提
@@ -2763,13 +2762,15 @@ function verify_pass()
             }
         }
     }
+
     //布道版块审核处理
     /* 上面已经执行过加入官方群的操作
      * 首先判断本群是否为官方群,如果是
      * 创建一个新的群组,
      * */
+    $budao_official = isset($_POST['budao_official']) ? $_POST['budao_official'] : "";
     if ($group_id == get_group_id_by_name($budao_official)) {
-        create_budao_group($user_id);
+        //create_budao_group($user_id);
     }
     exit();
 }
@@ -2825,7 +2826,8 @@ function verify_pass_process($user_id, $group_id)
     $wpdb->get_results($sql_delete_tmp);
 }
 
-function verify_ignore_process($user_id, $group_id){
+function verify_ignore_process($user_id, $group_id)
+{
     global $wpdb;
     $sql_delete_tmp = "delete from wp_gp_member_verify_tmp WHERE user_id = $user_id and group_id = $group_id";
     $wpdb->get_results($sql_delete_tmp);
@@ -3821,27 +3823,58 @@ function multiArrSort($array, $field, $order)
 }
 
 
+function get_group_ava($group_id, $size)
+{
+    $url = get_group($group_id)[0]['group_cover'];
+    $canvar_id = 'gp_canvas_'.$group_id;
+    ?>
+    <div id="gp_avatar">
+        <canvas width="<?=$size?>px" height="<?=$size?>px" id="<?=$canvar_id?>"></canvas>
+    </div>
+    <script>
+        $(function () {
+            var ctx = document.getElementById('<?=$canvar_id?>').getContext('2d');
+            var imageObj = new Image();
+            imageObj.onload = function () {
+                var img_w = this.width;
+                var img_h = this.height;
+                if (img_w >= img_h) {
+                    ctx.drawImage(imageObj, ((img_w - img_h) / 2), 0, img_h, img_h, 0, 0, <?=$size?>, <?=$size?>);
+                    $("#<?=$canvar_id?>").css("-webkit-border-radius","10px");
+                }
+                else {
+                    ctx.drawImage(imageObj, 0, ((img_h - img_w) / 2), img_w, img_w, 0, 0, <?=$size?>, <?=$size?>);
+                    $("#<?=$canvar_id?>").css("-webkit-border-radius","10px");
+                }
+            };
+            imageObj.src = '<?=$url?>';
+            $("#<?=$canvar_id?>").show();
+        })
+    </script>
+<?php }
+
+
 //修改域名  域名要包括http
 function changeDomain($old_domain, $new_domain)
 {
-    global $wpdb;
-    //usermeta表中meta_key  meta_value 变更
-    //post表中post_content变更
-    $sql_meta = "select * from $wpdb->usermeta WHERE meta_key='simple_local_avatar'";
-    $results = $wpdb->get_results($sql_meta);
-    foreach ($results as $key => $value) {
-        $new_value = str_replace($old_domain, $new_domain, $value->meta_value);
-        $sql_update = "update $wpdb->usermeta set meta_value='$new_value' WHERE meta_key='simple_local_avatar' and umeta_id = $value->umeta_id";
-        $wpdb->get_results($sql_update);
-    }
-    $sql_post = "select ID, post_content from $wpdb->posts ORDER BY 'ID' ASC";
-    $results_post = $wpdb->get_results($sql_post);
-    foreach ($results_post as $key => $value) {
-        $new_value = addslashes(str_replace($old_domain, $new_domain, $value->post_content));
-        $sql_update = "update $wpdb->posts set post_content ='$new_value' WHERE ID = $value->ID";
-        $wpdb->get_results($sql_update);
-    }
-    echo "<h4>已将域名由" . $old_domain . "变更为" . $new_domain . "</h4>";
+global $wpdb;
+//usermeta表中meta_key  meta_value 变更
+//post表中post_content变更
+$sql_meta = "select * from $wpdb->usermeta WHERE meta_key='simple_local_avatar'";
+$results = $wpdb->get_results($sql_meta);
+foreach ($results as $key => $value) {
+$new_value = str_replace($old_domain, $new_domain, $value->meta_value);
+$sql_update = "update $wpdb->usermeta set meta_value='$new_value' WHERE meta_key='simple_local_avatar' and umeta_id = $value->umeta_id";
+$wpdb->get_results($sql_update);
+}
+$sql_post = "select ID, post_content from $wpdb->posts ORDER BY 'ID' ASC";
+$results_post = $wpdb->get_results($sql_post);
+foreach ($results_post as $key => $value) {
+$new_value = addslashes(str_replace($old_domain, $new_domain, $value->post_content));
+$sql_update = "update $wpdb->posts set post_content ='$new_value' WHERE ID = $value->ID";
+$wpdb->get_results($sql_update);
+}
+echo "<h4>已将域名由" . $old_domain . "变更为" . $new_domain . "</h4>";
 }
 
 //温故
@@ -3854,27 +3887,27 @@ function wikiReview($id)
 //        exec("python wp-content/themes/sparkUI/algorithm/wenguzhixin.py 2>&1",$output,$ret);
 //        return $output;
 //    }
-    global $wpdb;
-    $result_arr = array();
-    $sql = "SELECT review_old FROM wp_user_review WHERE ID=$id";
-    $result = $wpdb->get_results($sql, 'ARRAY_A');
-    if (sizeof($result) != 0) {
-        $result_arr = explode(",", $result[0]['review_old']);
-    }
-    return $result_arr;
+global $wpdb;
+$result_arr = array();
+$sql = "SELECT review_old FROM wp_user_review WHERE ID=$id";
+$result = $wpdb->get_results($sql, 'ARRAY_A');
+if (sizeof($result) != 0) {
+$result_arr = explode(",", $result[0]['review_old']);
+}
+return $result_arr;
 }
 
 //知新  参数用户id
 function wikiRecommend($id)
 {
-    global $wpdb;
-    $result_arr = array();
-    $sql = "SELECT know_new FROM wp_user_review WHERE ID=$id";
-    $result = $wpdb->get_results($sql, 'ARRAY_A');
-    if (sizeof($result) != 0) {
-        $result_arr = explode(",", $result[0]['know_new']);
-    }
-    return $result_arr;
+global $wpdb;
+$result_arr = array();
+$sql = "SELECT know_new FROM wp_user_review WHERE ID=$id";
+$result = $wpdb->get_results($sql, 'ARRAY_A');
+if (sizeof($result) != 0) {
+$result_arr = explode(",", $result[0]['know_new']);
+}
+return $result_arr;
 }
 
 

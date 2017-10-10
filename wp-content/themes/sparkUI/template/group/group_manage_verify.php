@@ -59,8 +59,6 @@ elseif ($verify_type == 'verify') {
 }
 else {
     $member_verify_info = get_member_verify_tmp($group_id);     //获取需要审核的成员信息
-    $verify_field_tmp = $member_verify_info[0]['verify_info'];     //成员填写的审核信息
-    $verify_arr = explode(',', $verify_field_tmp);             //拆分成为数组
     if (sizeof($member_verify_info) == 0) {                     //如果没有需要审核的成员
         echo '<div class="alert alert-info" style="margin-top: 20px">没有需要审核的成员</div>';
     } else {        //显示审核信息  ?>
@@ -72,8 +70,12 @@ else {
         <div id="member_verify">
             <div style="display: block">
                 <?php
-                for ($k = 0; $k < sizeof($member_verify_info); $k++) { ?>
-                    <div id="verify-display" style="display: block">
+                for ($k = 0; $k < sizeof($member_verify_info); $k++) {
+                    $verify_field_tmp = $member_verify_info[$k]['verify_info'];     //成员填写的审核信息
+                    $verify_arr = explode(',', $verify_field_tmp);             //拆分成为数组
+                    $display_id = "verify-display_".$k;
+                    ?>
+                    <div id='<?=$display_id?>' style="display: block">
                         <hr style="height:1px;border:none;border-top:1px dashed lightgrey;"/>
                         <div id="verify-ava">
                             <?php echo get_avatar($member_verify_info[$k]['user_id'], 48, '') ?>
@@ -91,8 +93,8 @@ else {
                                     <?php } ?>
                             </div>
                             <div style="display: block">
-                                <button class="btn-green" onclick="verify_pass(<?= $group_id ?>,<?=$k?>,<?= $member_verify_info[$k]['user_id'] ?>,'<?= $admin_url ?>')">通过</button>
-                                <button class="btn-green" onclick="verify_ignore(<?= $group_id ?>,<?=$k?>,<?= $member_verify_info[$k]['user_id'] ?>,'<?= $admin_url ?>')">忽略</button>
+                                <button class="btn-green" onclick="verify_pass(<?= $group_id ?>,'<?=$k?>',<?= $member_verify_info[$k]['user_id'] ?>,'<?= $admin_url ?>')">通过</button>
+                                <button class="btn-green" onclick="verify_ignore(<?= $group_id ?>,'<?=$k?>',<?= $member_verify_info[$k]['user_id'] ?>,'<?= $admin_url ?>')">忽略</button>
                             </div>
                         </div>
                     </div>
@@ -106,7 +108,8 @@ else {
         var data = {
             action: 'verify_pass',
             group_id: $group_id,
-            user_id: $user_id
+            user_id: $user_id,
+            budao_official:'<?=$budao_official;?>'
         };
         $.ajax({
             type: "POST",
@@ -118,7 +121,8 @@ else {
                     var tmp_id = '#verify-display_'+$did.toString();
                     $(tmp_id).css('display', 'none');
                 }else{
-                    for(var k=0;k<<?=sizeof($member_verify_info)?>;k++){
+                    var info_size = <?=sizeof($member_verify_info)?>;
+                    for(var k=0;k<info_size;k++){
                         var all_id = '#verify-display_'+k.toString();
                         $(all_id).css('display', 'none');
                     }

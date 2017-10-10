@@ -80,6 +80,16 @@ if (is_page("single_task")){
     }
     require "template/group/single_task_sidebar.php";
 }
+if (is_page("cnu")){
+    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_cnusidebar')){
+    }
+    require "template/multi-university/CNU_sidebar.php";
+}
+if (is_page("bupt")){
+    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_buptsidebar')){
+    }
+    require "template/multi-university/BUPT_sidebar.php";
+}
 if (is_page("budao_index")){
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_groupsidebar')){
     }
