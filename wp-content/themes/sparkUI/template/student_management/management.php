@@ -156,7 +156,7 @@ if($type == 'int'){
 <div class="col-md-9 col-sm-9 col-xs-12">
     <!--    学生管理导航栏 开始-->
     <div class="archive-nav">
-        <ul id="leftTab" class="nav nav-pills" style="float: left;height: 42px;">
+        <ul id="leftTab" class="nav nav-tabs" style="float: left;height: 42px;">
             <li class="<?php echo $type == 'fre' ? 'active' : ''; ?>" id="project"><a
                     href="<?php echo esc_url(add_query_arg(array('type' => 'fre'), remove_query_arg(array('start', 'end', 'words', 'tags')))); ?>">词条频度</a>
             </li>

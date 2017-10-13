@@ -20,7 +20,7 @@ $admin_url = admin_url('admin-ajax.php');
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
     <div id="single-group-title">
         <div id="group-ava">
-            <img src="<?=$group['group_cover']?>" >
+            <?php get_group_ava($group['ID'],85)?>
         </div>
         <div id="group-info" >
             <div class="group_title">
