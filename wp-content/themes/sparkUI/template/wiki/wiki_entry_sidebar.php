@@ -109,6 +109,7 @@
     ?>
     <script type="text/javascript">
         $(function(){
+            var revision_url = "<?php echo site_url().get_page_address('wiki_revisions').'&wiki_id='.$post->ID;?>";
             var get_post_info = {
                 action: "get_post_info",
                 post_id: <?php echo $post->ID; ?>
@@ -127,7 +128,7 @@
                     for (var i=0;i<data.tags.length;i++) {
                         tags_show = tags_show + data.tags[i] + "  ";
                     }
-                    $("#edit_nums").html("编辑: "+data.edit_author_nums+"人&nbsp;&nbsp;&nbsp;&nbsp;"+data.revision_nums+"个版本");
+                    $("#edit_nums").html("编辑: "+data.edit_author_nums+"人&nbsp;&nbsp;&nbsp;&nbsp;"+"<a href='"+revision_url+"' style='color: #fe642d;'>"+data.revision_nums+"个版本"+"</a>");
                     //$("#watch_nums").html("浏览: "+data);
                     $("#update_time").html("更新: "+data.time+"天前");
                     $("#categories_show").html("分类: "+categories_show);
@@ -148,9 +149,6 @@
             </a>
         </p>
         <p id="edit_nums"></p>
-        <P>
-            <a href="<?php echo site_url().get_page_address('wiki_revisions').'&wiki_id='.$post->ID?>" class="author_link">查阅历史版本</a>
-        </P>
         <p id="watch_nums"></p>
         <p id="update_time"></p>
         <p id="categories_show"></p>
