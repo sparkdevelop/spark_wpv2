@@ -3854,6 +3854,7 @@ function get_group_ava($group_id, $size)
 <?php }
 
 
+
 //修改域名  域名要包括http
 function changeDomain($old_domain, $new_domain)
 {

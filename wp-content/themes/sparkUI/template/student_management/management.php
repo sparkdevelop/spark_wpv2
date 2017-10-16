@@ -256,7 +256,7 @@ if($type == 'int'){
                         end = end.toLocaleDateString();
                     }
                     if (start == null) {
-                        start = new Date(Date.parse(end) - 3600 * 1000 * 24 * 6).toLocaleDateString();
+                         start = new Date(Date.parse(end) - 3600 * 1000 * 24 * 6).toLocaleDateString();
                     } else {
                         start = start.toLocaleDateString();
                     }

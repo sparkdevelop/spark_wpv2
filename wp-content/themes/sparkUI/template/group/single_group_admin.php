@@ -7,6 +7,9 @@
         border-radius: 5px;
     }
 </style>
+<?php
+    $tab = isset($_GET['tab']) ? $_GET['tab'] : 'task';
+?>
 <div class="col-md-9 col-sm-9 col-xs-12"  id="col9">
     <div id="single-group-title">
         <div id="group-ava">
@@ -43,33 +46,19 @@
     </div>
     <div id="single-group-tab">
         <ul id="single-group-leftTab" class="nav nav-pills">
-        <?php
-        $current_url = curPageURL();
-        $url_array=parse_url($current_url);
-        $query_parse=explode("&",$url_array['query']);
-        if(array_search("tab=member",$query_parse)){?>
-            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'task','paged'=>1 ) ) )?>">群组任务</a></li>
-            <li class="active"><a href="<?php echo esc_url(add_query_arg( array('tab'=>'member','paged'=>1 ) ) )?>">成员列表</a></li>
-            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'manage','paged'=>1 ) ) )?>">群组管理</a></li>
-            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'analyze','paged'=>1 ) ) )?>">统计信息</a></li>
-        <?php } elseif(array_search("tab=manage",$query_parse)){?>
-            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'task','paged'=>1 ) ) )?>">群组任务</a></li>
-            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'member','paged'=>1 ) ) )?>">成员列表</a></li>
-            <li class="active"><a href="<?php echo esc_url(add_query_arg( array('tab'=>'manage','paged'=>1 ) ) )?>">群组管理</a></li>
-            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'analyze','paged'=>1 ) ) )?>">统计信息</a></li>
-        <?php } elseif(array_search("tab=analyze",$query_parse)){?>
-            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'task','paged'=>1 ) ) )?>">群组任务</a></li>
-            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'member','paged'=>1 ) ) )?>">成员列表</a></li>
-            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'manage','paged'=>1 ) ) )?>">群组管理</a></li>
-            <li class="active"><a href="<?php echo esc_url(add_query_arg( array('tab'=>'analyze','paged'=>1 ) ) )?>">统计信息</a></li>
-        <?php } else{ ?>
-            <li class="active"><a href="<?php echo esc_url(add_query_arg( array('tab'=>'task','paged'=>1 ) ) )?>">群组任务</a></li>
-            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'member','paged'=>1 ) ) )?>">成员列表</a></li>
-            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'manage','paged'=>1 ) ) )?>">群组管理</a></li>
-            <li><a href="<?php echo esc_url(add_query_arg( array('tab'=>'analyze','paged'=>1 ) ) )?>">统计信息</a></li>
-        <?php } ?>
+            <li class="<?php echo $tab == 'task' ? 'active' : ''; ?>">
+                <a href="<?php echo esc_url(add_query_arg(array('tab' => 'task'), remove_query_arg(array('paged')))); ?>">群组任务</a>
+            </li>
+            <li class="<?php echo $tab == 'member' ? 'active' : ''; ?>">
+                <a href="<?php echo esc_url(add_query_arg(array('tab' => 'member'), remove_query_arg(array('paged')))); ?>">成员列表</a>
+            </li>
+            <li class="<?php echo $tab == 'manage' ? 'active' : ''; ?>">
+                <a href="<?php echo esc_url(add_query_arg(array('tab' => 'manage'), remove_query_arg(array('paged')))); ?>">群组管理</a>
+            </li>
+            <li class="<?php echo $tab == 'analyze' ? 'active' : ''; ?>">
+                <a href="<?php echo esc_url(add_query_arg(array('tab' => 'analyze'), remove_query_arg(array('paged')))); ?>">统计信息</a>
+            </li>
         </ul>
-
         <?php
         $tab = isset($_GET['tab']) && !empty($_GET['tab']) ? $_GET['tab'] : 'task';
         if($tab=='task'){
