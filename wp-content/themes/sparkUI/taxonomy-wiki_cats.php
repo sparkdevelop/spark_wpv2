@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: zylbl
+ * User: zyl
  * Date: 2017/10/16
  * Time: 16:19
  */
@@ -16,7 +16,7 @@ $cat_name = $wpdb->get_var("SELECT name FROM $wpdb->terms WHERE slug = '$cat_slu
         <div class="row" style="width: 100%">
             <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
                 <ul id="leftTab" class="nav nav-pills" style="height: 42px;margin-top: 10px">
-                    <li class="active" style="margin-left: 0px;font-size:larger"><p>分类目录： <?php echo $cat_name; ?></p></li>
+                    <li class="active" style="margin-left: 0;font-size:larger"><p>分类目录：<h style="color:#fe642d"><?php echo $cat_name; ?></h></p></li>
                 </ul>
 
                 <div id="rightTabContent" class="tab-content">
@@ -26,8 +26,7 @@ $cat_name = $wpdb->get_var("SELECT name FROM $wpdb->terms WHERE slug = '$cat_slu
                             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                                 <!-- 文章 -->
                                 <div class="wiki-title">
-                                    <a class="wiki-title" href="<?php the_permalink(); ?>"
-                                       style="color: black;font-size:large"><?php echo get_the_title(); ?></a>
+                                    <a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a>
                                 </div>
                                 <div class="wiki-excerpt">
                                     <p style="word-wrap: break-word;"><?php echo get_the_excerpt(); ?>
@@ -36,6 +35,7 @@ $cat_name = $wpdb->get_var("SELECT name FROM $wpdb->terms WHERE slug = '$cat_slu
                                 </div>
                                 <div class="wiki-info">
                                     <span class="fa fa-clock-o"> <?php echo date('y年n月j日 G:i', get_the_time('U')); ?> &nbsp;&nbsp; </span>
+                                    <span class="fa fa-eye " id="web-project-views">&nbsp;<?php echo getWikiViews(get_the_ID()); ?>&nbsp;&nbsp;</span>
                                     <span class="fa fa-bookmark-o " >&nbsp;<?php the_terms('0','wiki_cats','','，',''); ?></span>
                                 </div>
 

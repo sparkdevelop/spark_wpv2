@@ -1,9 +1,10 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: zylbl
+ * User: zyl
  * Date: 2017/10/16
  * Time: 16:20
+ * wiki标签页
  */
 get_header() ?>
 <?php $tag = $_GET['wiki_tags']; ?>
@@ -11,7 +12,7 @@ get_header() ?>
         <div class="row" style="width: 100%">
             <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
                 <ul id="leftTab" class="nav nav-pills" style="height: 42px;margin-top: 10px">
-                    <li class="active" style="margin-left: 0px;font-size:larger"><p>标签：<?php echo $tag; ?></p></li>
+                    <li class="active" style="margin-left: 0;font-size:larger"><p>标签：<h style="color:#fe642d"><?php echo $tag; ?></h></p></li>
                 </ul>
 
                 <div id="rightTabContent" class="tab-content">
@@ -21,7 +22,7 @@ get_header() ?>
                             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                                 <!-- 文章 -->
                                 <div class="wiki-title">
-                                    <a class="wiki-title" href="<?php the_permalink(); ?>"
+                                    <a  href="<?php the_permalink(); ?>"
                                        style="color: black;font-size:large"><?php echo get_the_title(); ?></a> </div>
                                 <div class="wiki-excerpt">
                                     <p style="word-wrap: break-word;"><?php echo get_the_excerpt(); ?>
@@ -30,6 +31,7 @@ get_header() ?>
                                 </div>
                                 <div class="wiki-info">
                                     <span class="fa fa-clock-o"> <?php echo date('y年n月j日 G:i', get_the_time('U')); ?> &nbsp;&nbsp; </span>
+                                    <span class="fa fa-eye " id="web-project-views">&nbsp;<?php echo getWikiViews(get_the_ID()); ?>&nbsp;&nbsp;</span>
                                     <span class="fa fa-bookmark-o" >&nbsp;<?php the_terms('0','wiki_tags','','，',''); ?></span>
                                 </div>
                                 <div style="height: 1px;background-color: lightgray;"></div>

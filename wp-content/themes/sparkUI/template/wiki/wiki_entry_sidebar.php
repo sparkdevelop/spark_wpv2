@@ -154,8 +154,8 @@
         <p id="edit_nums"></p>
         <p id="watch_nums"></p>
         <p id="update_time"></p>
-        <p id="categories_show" >分类：<?php the_terms( $post->ID, 'wiki_cats', '', ' ', '' ); ?></p>
-        <p id="tags_show">标签：<?php the_terms( $post->ID, 'wiki_tags', '', ' ', '' ); ?></p>
+        <p id="categories_show" >分类：<?php the_terms( $post->ID, 'wiki_cats', '', ',', '' ); ?></p>
+        <p id="tags_show">标签：<?php the_terms( $post->ID, 'wiki_tags', '', ',', '' ); ?></p>
     </div>
     <!--    --><?php /*echo $post_id= $post->ID;
     $tags=get_the_terms($post_id,'wiki_tags');

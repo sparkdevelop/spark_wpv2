@@ -968,6 +968,7 @@ h4 {
     overflow: hidden;
     width: 100%;
     text-align: center;
+    padding: 20px 0 10px 0;
 }
 
 .pagenavi a {
@@ -1770,14 +1771,29 @@ h4 {
 /*wiki列表*/
 .wiki-title {
     color: #262626;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
-    margin:10px 0 10px 0;
+    margin:10px 0 10px 10px;
+}
+.wiki-title a{
+    color: #262626;
+}
+.wiki-title a:hover{
+    text-decoration: none;
+    color: #fe642d;
+}
+.wiki-excerpt{
+    margin-left: 10px;
 }
 .wiki-info{
-    margin-bottom: 10px;
+    margin:0 0 10px 10px;
     font-size: 13px;
+    color: gray;
 }
 .wiki-info a{
-    color: #fe642d;font-weight:bold;
+    color: #333;
+}
+.wiki-info a:hover{
+    text-decoration: none;
+    color: #fe642d;
 }
