@@ -22,11 +22,15 @@ body {
 }
 
 /*a,a:hover{color:#1a2026;}*/
-
+.customize-support{
+    position:relative;
+    width:100%;
+    min-height:100%;
+    padding-bottom: 400px;
+}
 .container .container-fluid {
     padding: 0;
 }
-
 #col9 {
     padding-left: 0;
     padding-right: 0;
@@ -1317,6 +1321,10 @@ h4 {
 .footer {
     height: 200px;
     background-color: #fafafa;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    position:absolute;
 }
 
 #spark-foot-logo {
