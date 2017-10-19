@@ -60,6 +60,9 @@
         color: #333;
         font-size: 14px;
     }
+    .wiki_entry_info a{
+        color: #fe642d;
+    }
     .wiki_entry_score {
         border: 1px solid #eee;
         margin-top: 30px;
@@ -131,8 +134,8 @@
                     $("#edit_nums").html("编辑: "+data.edit_author_nums+"人&nbsp;&nbsp;&nbsp;&nbsp;"+"<a href='"+revision_url+"' style='color: #fe642d;'>"+data.revision_nums+"个版本"+"</a>");
                     //$("#watch_nums").html("浏览: "+data);
                     $("#update_time").html("更新: "+data.time+"天前");
-                    $("#categories_show").html("分类: "+categories_show);
-                    $("#tags_show").html("标签: "+tags_show);
+                    //$("#categories_show").html("分类: "+categories_show);
+                    //$("#tags_show").html("标签: "+tags_show);
                     $("#watch_nums").html("浏览: "+data.watch_count+"次");
                 },
                 error: function() {
@@ -145,16 +148,19 @@
     <div class="wiki_entry_info">
         <p>创建:
             <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.get_post()->post_author.'&tab=wiki'?>"
-               class="author_link"><?php echo get_the_author();?>
+               class="author_link" style="color: #5e5e5e"><?php echo get_the_author();?>
             </a>
         </p>
         <p id="edit_nums"></p>
         <p id="watch_nums"></p>
         <p id="update_time"></p>
-        <p id="categories_show"></p>
-        <p id="tags_show"></p>
+        <p id="categories_show" >分类：<?php the_terms( $post->ID, 'wiki_cats', '', ' ', '' ); ?></p>
+        <p id="tags_show">标签：<?php the_terms( $post->ID, 'wiki_tags', '', ' ', '' ); ?></p>
     </div>
-
+    <!--    --><?php /*echo $post_id= $post->ID;
+    $tags=get_the_terms($post_id,'wiki_tags');
+    echo $tags[0]->name;
+    print_r($tags);*/?>
 <!--    <div class="wiki_entry_score">-->
 <!--        <p>学到好多: 有20人评分</p>-->
 <!--    </div>-->

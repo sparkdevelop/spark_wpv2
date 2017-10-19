@@ -1767,3 +1767,17 @@ h4 {
     background-repeat: no-repeat;
     -webkit-background-size: 100% auto;
 }
+/*wiki列表*/
+.wiki-title {
+    color: #262626;
+    font-size: 16px;
+    font-weight: bold;
+    margin:10px 0 10px 0;
+}
+.wiki-info{
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+.wiki-info a{
+    color: #fe642d;font-weight:bold;
+}
