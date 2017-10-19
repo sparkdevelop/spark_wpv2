@@ -12,7 +12,7 @@ get_header(); ?>
 <?php
 $cat_slug = $_GET['wiki_cats'];
 $cat_name = $wpdb->get_var("SELECT name FROM $wpdb->terms WHERE slug = '$cat_slug'"); ?>
-    <div class="container" style="margin-top: 10px">
+    <div class="container" style="margin-top: 10px;flex: 1 0 auto">
         <div class="row" style="width: 100%">
             <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
                 <ul id="leftTab" class="nav nav-pills" style="height: 42px;margin-top: 10px">

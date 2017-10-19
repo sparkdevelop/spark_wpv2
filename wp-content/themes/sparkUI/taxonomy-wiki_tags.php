@@ -8,7 +8,7 @@
  */
 get_header() ?>
 <?php $tag = $_GET['wiki_tags']; ?>
-    <div class="container" style="margin-top: 10px">
+    <div class="container" style="margin-top: 10px;flex: 1 0 auto;">
         <div class="row" style="width: 100%">
             <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
                 <ul id="leftTab" class="nav nav-pills" style="height: 42px;margin-top: 10px">

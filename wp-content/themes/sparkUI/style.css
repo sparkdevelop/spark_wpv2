@@ -16,18 +16,21 @@ This theme was built using the example Bootstrap theme "WP bootstrap" found on t
 *:active, *:visited {
     outline: 0 !important;
 }
+html{
+    height: 100%;
+}
 
 body {
     font-family: "PingFang SC", "微软雅黑", "Microsoft YaHei", Helvetica, "Helvetica Neue", Tahoma, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.header{
+    flex: 0 0 auto;
 }
 
 /*a,a:hover{color:#1a2026;}*/
-.customize-support{
-    position:relative;
-    width:100%;
-    min-height:100%;
-    padding-bottom: 400px;
-}
 .container .container-fluid {
     padding: 0;
 }
@@ -1321,10 +1324,7 @@ h4 {
 .footer {
     height: 200px;
     background-color: #fafafa;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    position:absolute;
+    flex: 0 0 auto;
 }
 
 #spark-foot-logo {

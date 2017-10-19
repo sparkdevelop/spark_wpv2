@@ -50,9 +50,9 @@
     //?>
 
 </head>
-<body>
+<div class="header">
     <div class="container">
-        <div class="row" id="web-header" style="width: 100%">
+        <div class="row" id="web-header" style="width: 100%;">
             <nav class="navbar navbar-default " role="navigation">
 
                 <div class="container-fluid">
@@ -134,7 +134,7 @@
             </nav>
         </div>
 
-        <div class="row" id="m-header" style="width: 100%">
+        <div class="row" id="m-header" style="width: 100%;flex: 0 0 auto;">
             <nav class="navbar navbar-default " role="navigation">
                 <div class="container-fluid">
                     <div class="col-md-9 col-sm-9 col-xs-12" id="col9" style="height: 60px;">
@@ -163,7 +163,7 @@
     </div>
     <div style="height: 2px;background-color: #fe642d"></div>
     <div style="height: 4px;background-color: #ffe9e1"></div>
-
+</div>
     <?php if(is_user_logged_in()){?>
     <div class="m-left-collapse-overlayer">
         <div class="m-left-collapse-menu">

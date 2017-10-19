@@ -27,7 +27,7 @@
     <?php }
 
  ?>
-<div class="container" style="margin-top: 10px;margin-bottom: 30px;">
+<div class="container" style="margin-top: 10px;margin-bottom: 30px;flex: 1 0 auto;">
     <div class="row" style="width: 100%">
            <!--引入动态模板-->
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
