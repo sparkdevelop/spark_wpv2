@@ -234,7 +234,7 @@ function get_dwqa_cat_ID($cat_name)
     return $cat_id;
 }
 
-//验证原密码是否正确
+/*//验证原密码是否正确
 function checkPass()
 {
     global $wpdb;
@@ -264,9 +264,9 @@ function checkPass()
 }
 
 add_action('wp_ajax_checkPass', 'checkPass');
-add_action('wp_ajax_nopriv_checkPass', 'checkPass');
+add_action('wp_ajax_nopriv_checkPass', 'checkPass');*/
 
-function checkLoginPass($user_login, $user_pwd)
+/*function checkLoginPass($user_login, $user_pwd)
 {
     global $wpdb;
     $sql = "SELECT user_pass FROM $wpdb->users WHERE user_login='$user_login'";
@@ -277,7 +277,7 @@ function checkLoginPass($user_login, $user_pwd)
     } else {
         return false;
     }
-}
+}*/
 
 //删除我的问题
 function deleteMyQuestion()
