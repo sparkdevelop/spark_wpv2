@@ -234,7 +234,7 @@ function get_dwqa_cat_ID($cat_name)
     return $cat_id;
 }
 
-//验证原密码是否正确
+/*//验证原密码是否正确
 function checkPass()
 {
     global $wpdb;
@@ -264,9 +264,9 @@ function checkPass()
 }
 
 add_action('wp_ajax_checkPass', 'checkPass');
-add_action('wp_ajax_nopriv_checkPass', 'checkPass');
+add_action('wp_ajax_nopriv_checkPass', 'checkPass');*/
 
-function checkLoginPass($user_login, $user_pwd)
+/*function checkLoginPass($user_login, $user_pwd)
 {
     global $wpdb;
     $sql = "SELECT user_pass FROM $wpdb->users WHERE user_login='$user_login'";
@@ -277,7 +277,7 @@ function checkLoginPass($user_login, $user_pwd)
     } else {
         return false;
     }
-}
+}*/
 
 //删除我的问题
 function deleteMyQuestion()
@@ -416,7 +416,6 @@ function getProjectViews($postID)
     }
     return $count . '';
 }
-
 function setProjectViews($postID)
 {
     $count_key = 'project_views'; //自定义域
@@ -430,7 +429,18 @@ function setProjectViews($postID)
         update_post_meta($postID, $count_key, $count);
     }
 }
-
+//获取wiki词条浏览量
+function getWikiViews($postID)
+{
+    $count_key = 'count'; //自定义域
+    $count = get_post_meta($postID, $count_key, true);
+    if ($count == '') {
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+        return "0";
+    }
+    return $count . '';
+}
 //给投稿者上传文件的权限
 if (current_user_can('contributor') && !current_user_can('upload_files'))
     add_action('init', 'allow_contributor_uploads');

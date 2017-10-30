@@ -30,7 +30,7 @@ function wp_signon( $credentials = array(), $secure_cookie = '' ) {
 	// add by chenli, checkout if user in mediawiki
 	// password: www.ourspark.space  逻辑有问题,当mediawiki的用户修改密码后,应该先用wordpress的密码
     // 输入 $_POST['log'] & $_POST['pwd']  输出 $_POST['pwd']
-	if(!empty($_POST['log']) && !empty($_POST['pwd'])) {
+/*	if(!empty($_POST['log']) && !empty($_POST['pwd'])) {
 	    //若在数据库中有该用户,判断pwd是否正确 直接输出$_POST['pwd']
         $if_user_in_wp = checkLoginPass($_POST['log'],$_POST['pwd']);
         if(!$if_user_in_wp){ //否则才发送post
@@ -43,7 +43,7 @@ function wp_signon( $credentials = array(), $secure_cookie = '' ) {
                 $_POST['pwd'] = "www.ourspark.space";
             }
         }
-	}
+	}*/
 
 	if ( empty($credentials) ) {
 		$credentials = array(); // Back-compat for plugins passing an empty string.
@@ -2555,7 +2555,7 @@ function _wp_get_current_user() {
  * create by chenli
  * 发送http请求到mediawiki用户系统,检查该用户在mediawiki中是否为合法用户
  */
-function send_post_to_mediawiki($url, $post_data) {
+/*function send_post_to_mediawiki($url, $post_data) {
 
 	$postdata = http_build_query($post_data);
 	$options = array(
@@ -2570,4 +2570,4 @@ function send_post_to_mediawiki($url, $post_data) {
 	$result = file_get_contents($url, false, $context);
 
 	return $result;
-}
+}*/
