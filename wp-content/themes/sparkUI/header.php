@@ -106,7 +106,7 @@
 
                         <?php } else { ?>
                             <!--                             https://codex.wordpress.org/Function_Reference/wp_login_url-->
-                            <a class="navbar-text" href="<?php echo wp_login_url($url_this); ?>">登陆</a>
+                            <a class="navbar-text" href="<?php echo wp_login_url($url_this); ?>">登录</a>
                             <a class="navbar-text" href="<?php echo site_url(); ?>/wp-login.php?action=register">注册</a>
                         <?php } ?>
                     </div>

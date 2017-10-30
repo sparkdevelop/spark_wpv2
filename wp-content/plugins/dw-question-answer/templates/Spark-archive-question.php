@@ -295,6 +295,7 @@ foreach($tags as $key => $temp){
 
 <?php
 function Spark_question_paginate_link(){
+    global $wp_query;
     $current_url= curPageURL();//设当前页面为archive页面
     //翻页所需参数
     $page_text = dwqa_is_front_page() ? 'page' : 'paged';
@@ -304,6 +305,7 @@ function Spark_question_paginate_link(){
         'format' => '',
         'current' => $page,
         'show_all' => false,
+        'total' => $wp_query->dwqa_questions->max_num_pages
     );
     $paginate = paginate_links($args);
     echo '<div class="dwqa-pagination">';
