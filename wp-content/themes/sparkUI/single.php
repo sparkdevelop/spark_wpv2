@@ -72,7 +72,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
     }
 </script>
 
-<div class="container" style="margin-top: 10px">
+<div class="container" style="margin-top: 10px;flex: 1 0 auto">
     <div class="row" style="width: 100%">
         <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
             <!--引入动态模板-->

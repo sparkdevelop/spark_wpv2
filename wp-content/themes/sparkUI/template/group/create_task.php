@@ -1,4 +1,3 @@
-<?php ?>
 <script>
     function checkSubmitTask() {
         var tname = document.getElementById('tname');

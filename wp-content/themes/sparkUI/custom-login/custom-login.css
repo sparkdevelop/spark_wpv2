@@ -64,4 +64,20 @@ a:focus{
 .login .message{
     display: none;
 }
-
+/*通知框*/
+.notice{
+    text-align: center;
+    border:1px dotted #ccc;
+    padding:10px;
+    border-radius: 8px;
+    background-color: #fbfbfb;
+}
+.notice p{
+    color: #000000;
+    font-size: 13px;
+    text-align: left;
+}.notice a{
+     text-decoration: none;
+     font-weight: bolder;
+     color: #fe642d;
+ }

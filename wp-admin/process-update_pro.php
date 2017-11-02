@@ -8,7 +8,6 @@ $pro_link = isset($_POST["prolink"]) ? $_POST["prolink"] : '';
 $team_member = isset($_POST["team_member"]) ? $_POST["team_member"] : [];
 //隐藏信息
 $task_id = isset($_POST["task_id"]) ? $_POST["task_id"] : '';
-
 $team_id = isset($_POST["team_id"]) ? $_POST["team_id"] : '';
 
 foreach ($team_member as $value) {

@@ -36,37 +36,37 @@
 ?>
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
     <div class="index_content_show">
-<!--        <div class="wiki_category">-->
-<!--            <p><b>高校主页</b></p>-->
-<!--            <div class="row">-->
-<!--                <div class="col-md-4 col-sm-4 col-xs-4 wiki_category_item">-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-md-3 m-wiki-index-icon">-->
-<!--                            <img src="--><?php //bloginfo("template_url")?><!--/img/wiki/bupt.png" class="wiki-index-icon">-->
-<!--                        </div>-->
-<!--                        <div class="col-md-9 m-wiki-index">-->
-<!--                            <a class="wiki-index-title" href="--><?php //echo site_url().get_page_address('BUPT')?><!--">北京邮电大学</a>-->
-<!--                            <!--                            <div class="wiki-index-info">-->-->
-<!--                            <!--                                <span>基础</span><span> · </span><span>-->--><?php ////echo $watch_nums[444]; ?><!--<!--次学习</span>-->-->
-<!--                            <!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-4 col-sm-4 col-xs-4 wiki_category_item">-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-md-3 m-wiki-index-icon">-->
-<!--                            <img src="--><?php //bloginfo("template_url")?><!--/img/wiki/cnu.png" class="wiki-index-icon">-->
-<!--                        </div>-->
-<!--                        <div class="col-md-9 m-wiki-index">-->
-<!--                            <a class="wiki-index-title" href="--><?php //echo site_url().get_page_address('CNU')?><!--">首都师范大学</a>-->
-<!--<!--                            <div class="wiki-index-info">-->
-<!--<!--                                <span>入门</span><span> · </span><span>--><?php ////echo $watch_nums[235]; ?><!--<!--次学习</span>-->-->
-<!--<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
+        <div class="wiki_category">
+            <p><b>高校主页</b></p>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4 wiki_category_item">
+                    <div class="row">
+                        <div class="col-md-3 m-wiki-index-icon">
+                            <img src="<?php bloginfo("template_url")?>/img/wiki/bupt.png" class="wiki-index-icon">
+                        </div>
+                        <div class="col-md-9 m-wiki-index">
+                            <a class="wiki-index-title" href="<?php echo site_url().get_page_address('BUPT')?>">北京邮电大学</a>
+                            <!--                            <div class="wiki-index-info">
+                            <!--                                <span>基础</span><span> · </span><span><?php //echo $watch_nums[444]; ?><!--次学习</span>
+                            <!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4 wiki_category_item">
+                    <div class="row">
+                        <div class="col-md-3 m-wiki-index-icon">
+                            <img src="<?php bloginfo("template_url")?>/img/wiki/cnu.png" class="wiki-index-icon">
+                        </div>
+                        <div class="col-md-9 m-wiki-index">
+                            <a class="wiki-index-title" href="<?php echo site_url().get_page_address('CNU')?>">首都师范大学</a>
+<!--                            <div class="wiki-index-info">
+<!--                                <span>入门</span><span> · </span><span><?php //echo $watch_nums[235]; ?><!--次学习</span>
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="wiki_category">
             <p><b>创客教育</b></p>
             <div class="row">

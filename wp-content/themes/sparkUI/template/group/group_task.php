@@ -1,7 +1,17 @@
+<style>
+    .btn-green {
+        width: 60px;
+        height: 35px;
+        float: right;
+        font-size: 14px;
+        margin-top: 0px
+    }
+</style>
 <?php
     //获取该组的所有任务?未截止的?
     $all_task = get_task($group_id);
     $all_task = task_order($all_task);
+    $admin_url = admin_url( 'admin-ajax.php' );
     if (sizeof($all_task) != 0 ){?>
         <div>
             <?php for($i=0;$i<sizeof($all_task);$i++){  //没有翻页?>
@@ -24,13 +34,27 @@
                     </div>
                     <div class="group-task-btn">
                         <?php
-                            if(is_group_member($group_id)){
-                                if(!is_overdue($all_task[$i]['ID'])){?>
-                                    <button class="btn-green" onclick="location.href ='<?php echo site_url().get_page_address('single_task').'&id='.$all_task[$i]['ID'];?>'">去完成</button>
-                                <?php } else{ ?>
-                                    <button class="btn-white">已截止</button>
-                                <?php }
-                            } ?>
+                        if (is_group_member($group_id)) {
+                            if (!is_overdue($all_task[$i]['ID'])) {
+                                ?>
+                                <button class="btn-green"
+                                        onclick="location.href ='<?php echo site_url() . get_page_address('single_task') . '&id=' . $all_task[$i]['ID']; ?>'">
+                                    去完成
+                                </button>
+                            <?php } else { ?>
+                                <button class="btn-white">已截止</button>
+                            <?php }
+                        }
+                        if(is_group_admin($group_id)){?>
+                            <button class="btn-green" style="width: 80px"
+                                    onclick="location.href ='<?php echo site_url() . get_page_address('update_task') . '&group_id='.$group_id.'&id=' . $all_task[$i]['ID']; ?>'">
+                                设置任务
+                            </button>
+                            <button class="btn-green" style="width: 80px"
+                                    onclick="deleteTask(<?=$all_task[$i]['ID']?>)">
+                                删除任务
+                            </button>
+                        <?php } ?>
                     </div>
                 </div>
             <?php } ?>
@@ -41,4 +65,23 @@
         echo '<div class="alert alert-info" style="margin-top: 20px">Oops, 该群组还没有任务</div>';
     }
 ?>
+<script>
+    function deleteTask($task_id) {
+        var data = {
+            action: 'delete_task',
+            task_id: $task_id,
+        };
+        $.ajax({
+            //async: false,    //否则永远返回false
+            type: "POST",
+            url: '<?=$admin_url?>',
+            data: data,
+            dataType:"text",
+            success: function () {
+                layer.msg('已删除', {time: 2000, icon: 1});
+                location.reload();
+            }
+        });
+    }
+</script>
 

@@ -61,7 +61,7 @@ $member_info = get_member_info($group_id);
 </table>
 <style>
     .btn-green{
-        width: 100px;
+        width: 110px;
         height: 35px;;
     }
 </style>

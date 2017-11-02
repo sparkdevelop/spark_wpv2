@@ -234,7 +234,7 @@ function get_dwqa_cat_ID($cat_name)
     return $cat_id;
 }
 
-//验证原密码是否正确
+/*//验证原密码是否正确
 function checkPass()
 {
     global $wpdb;
@@ -264,9 +264,9 @@ function checkPass()
 }
 
 add_action('wp_ajax_checkPass', 'checkPass');
-add_action('wp_ajax_nopriv_checkPass', 'checkPass');
+add_action('wp_ajax_nopriv_checkPass', 'checkPass');*/
 
-function checkLoginPass($user_login, $user_pwd)
+/*function checkLoginPass($user_login, $user_pwd)
 {
     global $wpdb;
     $sql = "SELECT user_pass FROM $wpdb->users WHERE user_login='$user_login'";
@@ -277,7 +277,7 @@ function checkLoginPass($user_login, $user_pwd)
     } else {
         return false;
     }
-}
+}*/
 
 //删除我的问题
 function deleteMyQuestion()
@@ -416,7 +416,6 @@ function getProjectViews($postID)
     }
     return $count . '';
 }
-
 function setProjectViews($postID)
 {
     $count_key = 'project_views'; //自定义域
@@ -430,7 +429,18 @@ function setProjectViews($postID)
         update_post_meta($postID, $count_key, $count);
     }
 }
-
+//获取wiki词条浏览量
+function getWikiViews($postID)
+{
+    $count_key = 'count'; //自定义域
+    $count = get_post_meta($postID, $count_key, true);
+    if ($count == '') {
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+        return "0";
+    }
+    return $count . '';
+}
 //给投稿者上传文件的权限
 if (current_user_can('contributor') && !current_user_can('upload_files'))
     add_action('init', 'allow_contributor_uploads');
@@ -2551,9 +2561,9 @@ function get_task($group_id, $id = null)
 {
     global $wpdb;
     if ($id != null) {   //
-        $sql = "SELECT * FROM wp_gp_task WHERE ID = $id AND belong_to = $group_id";
+        $sql = "SELECT * FROM wp_gp_task WHERE ID = $id AND belong_to = $group_id and task_status = 'publish'";
     } else {
-        $sql = "SELECT * FROM wp_gp_task WHERE belong_to=$group_id";
+        $sql = "SELECT * FROM wp_gp_task WHERE belong_to=$group_id and task_status = 'publish'";
     }
     $results = $wpdb->get_results($sql, 'ARRAY_A');
     return $results;
@@ -3853,6 +3863,25 @@ function get_group_ava($group_id, $size)
     </script>
 <?php }
 
+function get_recommand_task($task_id){
+    global $wpdb;
+    $sql = "SELECT * FROM wp_gp_task_member WHERE task_id = $task_id and completion > 3";
+    $results = $wpdb->get_results($sql, 'ARRAY_A');
+    return $results;
+}
+
+function delete_task(){
+    global $wpdb;
+    $task_id = $_POST['task_id'];
+    $sql_update = "UPDATE wp_gp_task SET task_status = 'trash' WHERE ID = $task_id";
+    $wpdb->query($sql_update);
+    die();
+}
+add_action('wp_ajax_delete_task', 'delete_task');
+add_action('wp_ajax_nopriv_delete_task', 'delete_task');
+
+
+
 
 
 //修改域名  域名要包括http
@@ -3910,7 +3939,6 @@ $result_arr = explode(",", $result[0]['know_new']);
 }
 return $result_arr;
 }
-
 
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
