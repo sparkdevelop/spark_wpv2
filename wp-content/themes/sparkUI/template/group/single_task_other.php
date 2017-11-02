@@ -1,6 +1,7 @@
 <?php
 $group = get_group($group_id)[0];
 $countdown = countDown($task_id);
+wp_enqueue_media();
 ?>
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
     <div id="single-task-title">
@@ -75,7 +76,7 @@ $countdown = countDown($task_id);
               action="<?php echo esc_url(self_admin_url('process-apply_other.php')); ?>">
             <!--任务内容-->
             <div class="form-group" style="margin: 20px 0px">
-                <?php wp_editor( '', 'task_other_editor', array(
+                <?php wp_editor( '', 'task_other_editor', $settings=array(
                         'teeny' => true ,'textarea_rows' => 6)
                 );
                 ?>

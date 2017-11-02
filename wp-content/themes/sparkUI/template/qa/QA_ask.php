@@ -3,6 +3,7 @@
 本页面是我要提问页面的content
  */
 global $post;
+wp_enqueue_media();
 ?>
 <div class="col-md-9 col-sm-9 col-xs-12"  id="col9">
 <h4 class="ask_topic">提 问</h4>

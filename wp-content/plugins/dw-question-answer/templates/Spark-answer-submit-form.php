@@ -6,7 +6,7 @@
  * @since DW Question & Answer 1.4.3
  */
 ?>
-
+<?php wp_enqueue_media();?>
 <div class="dwqa-answer-form">
     <?php do_action( 'dwqa_before_answer_submit_form' ); ?>
     <div class="dwqa-answer-form-title"><?php _e( 'Your Answer', 'dwqa' ) ?></div>
