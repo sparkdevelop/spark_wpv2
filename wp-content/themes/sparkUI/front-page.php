@@ -82,24 +82,27 @@ get_header();
         }
     });
 </script>
+<!--此处若想还是显示到边上的banner,则将div class="container-fluid" 移到此处-->
 <div class="container-fluid" style="padding: 0;">
     <div id="myCarousel" class="carousel slide">
         <!-- 轮播（Carousel）指标 -->
         <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+<!--            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
             <li data-target="#myCarousel" data-slide-to="1"></li>
         </ol>
         <!-- 轮播（Carousel）项目 -->
         <div class="carousel-inner">
+<!--            <div class="item active">-->
+<!--                <img src="--><?php ////bloginfo("template_url")?><!--/img/budao.jpg" id="webpage_2"-->
+<!--                     style="margin: 0 auto;cursor: pointer"-->
+<!--                     onclick="location.replace('--><?php ////echo site_url() . get_page_address('budao_index')?>
+<!--                ')"/>-->
+<!--                <img src="--><?php ////bloginfo("template_url")?><!--/img/budao_m.jpg" id="mobile_front_2"-->
+<!--                     style="margin: 0 auto;display: none"-->
+<!--                     onclick="location.replace('--><?php ////echo site_url() . get_page_address('budao_index')?>
+<!--                ')"/>-->
+<!--            </div>-->
             <div class="item active">
-                <img src="<?php bloginfo("template_url")?>/img/budao.jpg" id="webpage_2"
-                     style="margin: 0 auto;cursor: pointer"
-                     onclick="location.replace('<?php echo site_url() . get_page_address('budao_index')?>')"/>
-                <img src="<?php bloginfo("template_url")?>/img/budao_m.jpg" id="mobile_front_2"
-                     style="margin: 0 auto;display: none"
-                     onclick="location.replace('<?php echo site_url() . get_page_address('budao_index')?>')"/>
-            </div>
-            <div class="item">
                 <img src="<?php bloginfo("template_url")?>/img/spark_banner.jpg" id="webpage"
                      style="margin: 0 auto;cursor: pointer"
                      onclick="location.replace('<?php echo site_url()?>')"/>
@@ -109,17 +112,7 @@ get_header();
             </div>
 
         </div>
-        <!-- 轮播（Carousel）导航 -->
-<!--        <a class="carousel-control left" href="#myCarousel"-->
-<!--           data-slide="prev" style="font-size: 100px">&lsaquo;</a>-->
-<!--        <a class="carousel-control right" href="#myCarousel"-->
-<!--           data-slide="next" style="font-size: 100px">&rsaquo;</a>-->
     </div>
-<!--    <div class="head-box">-->
-<!--        <div class="banner-background">-->
-<!--            <img class="m-banner" src="--><?php //bloginfo("template_url")?><!--/img/spark_banner_m.jpg" alt=""/>-->
-<!--        </div>-->
-<!--    </div>-->
 </div>
 <div class="container" id="front-page" style="padding: 50px 0; text-align: center;">
     <div class="col-md-4 col-sm-4 col-xs-12">

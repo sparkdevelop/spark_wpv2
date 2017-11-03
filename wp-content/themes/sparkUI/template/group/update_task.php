@@ -29,7 +29,6 @@
 $group_id = isset($_GET['group_id']) ? $_GET['group_id'] : '';
 $task_id = isset($_GET['id']) ? $_GET['id'] : '';
 $task_info = get_task($group_id,$task_id)[0];
-print_r($task_info);
 ?>
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
     <h4 class="index_title" style="margin-left: 20px">更新任务信息</h4>
