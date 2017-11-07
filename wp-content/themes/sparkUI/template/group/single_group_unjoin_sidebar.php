@@ -112,7 +112,7 @@
                 <div style="display: inline-block;margin-top: 10px">
                     <div style="text-align: center;width: 50px">
                         <?php echo get_avatar($latest_active[$j], 30, ''); ?>
-                        <p style="width:55px;word-wrap: break-word;margin-bottom: 0px">
+                        <p style="width:70px;word-wrap: break-word;margin-bottom: 0px">
                             <?php
                             $user_name = get_user_by('ID',$latest_active[$j])->display_name;
                             echo mb_strimwidth($user_name, 0, 7,".."); ?>
