@@ -6,6 +6,9 @@
         font-size: 14px;
         margin-top: 0px
     }
+    .btn-white{
+        margin-right: 15px;
+    }
 </style>
 <?php
     //获取该组的所有任务?未截止的?
