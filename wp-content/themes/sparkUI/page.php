@@ -139,6 +139,12 @@
                     }
                     require "template/otherpersonal.php";
                 }
+                elseif (is_page('update_task')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/group/update_task.php";
+                }
                 elseif (is_page('otherpersonal')){
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );

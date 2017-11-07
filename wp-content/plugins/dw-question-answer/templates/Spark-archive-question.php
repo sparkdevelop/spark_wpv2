@@ -130,6 +130,11 @@ foreach($tags as $key => $temp){
 
         <?php do_action( 'dwqa_after_questions_archive' ); ?>
     </div>
+
+    <?php
+    wp_reset_query();
+    wp_reset_postdata();
+    ?>
 </div>
 <style>
     .label-default[href]:focus,
@@ -311,6 +316,11 @@ function Spark_question_paginate_link(){
     echo '<div class="dwqa-pagination">';
     echo $paginate;
     echo '</div>';
+
+
+
+
+
 }
 ?>
 

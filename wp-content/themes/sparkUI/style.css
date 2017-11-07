@@ -1149,7 +1149,7 @@ h4 {
     border: none;
     font-size: 16px;
     margin-bottom: 10px;
-
+    cursor: pointer;
 }
 
 .comment-form-comment > label {
@@ -1550,7 +1550,7 @@ h4 {
 }
 #group-info {
     display: inline-block;
-    width: 55%;
+    width: 85%;
     margin-left: 20px
 }
 #latest-active {
@@ -1672,7 +1672,7 @@ h4 {
     margin-bottom: 20px;
 }
 .group-task-status-info{
-    width: 90%;
+    width: 65%;
     display:inline-block;
 }
 #group-task-status-info-status{
@@ -1680,7 +1680,10 @@ h4 {
 }
 .group-task-btn{
     display: inline-block;
-    vertical-align: super
+    /*vertical-align: super;*/
+    float:right;
+    margin-right: 10px;
+    margin-top: 12px;
 }
 .btn-white{
     width: 60px;
@@ -1752,7 +1755,7 @@ h4 {
 #team_member{
     margin-left: 39px;
     margin-bottom:10px;
-    width: 30%;
+    width: 48%;
     display:inline;
     margin-right: 10px;
 }

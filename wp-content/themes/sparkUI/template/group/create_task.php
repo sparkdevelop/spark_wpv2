@@ -1,4 +1,3 @@
-<?php ?>
 <script>
     function checkSubmitTask() {
         var tname = document.getElementById('tname');
@@ -130,7 +129,7 @@
                            value="<?= date("Y-m-d", time() + 3600 * 24) ?>">
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-remove" style="margin-right: 0px;"></span>
-                </span>
+                    </span>
                 </div>
                 <input type="hidden" id="dtp_input1" value=""/><br/>
             </div>

@@ -20,63 +20,63 @@
     <?php } ?>
 
 <!--    我加入了群组-->
-    <div class="sidebar_list">
-        <div class="sidebar_list_header">
-            <p>我加入的群组</p>
-            <a id="sidebar_list_link" onclick="show_all_groups()">全部群组</a>
-        </div>
-        <!--分割线-->
-        <div class="sidebar_divline"></div>
-    <?php $all_joined_group = get_current_user_group();?>
-        <div id="joined_groups" style="word-wrap: break-word; word-break: keep-all;">
-            <ul class="list-group">
-                <?php
-                $length = min(5,sizeof($all_joined_group));
-                for($i=0;$i<$length;$i++){?>
-                    <li class="list-group-item" style="width: 100%">
-                        <div style="display: inline-block;width:20%">
-                            <img src="<?=$all_joined_group[$i]['group_cover']?>" style="width: 40px;height: 40px">
-                        </div>
-                        <div id="li_joined_groups">
-                            <a href="<?php echo site_url().get_page_address('single_group').'&id='.$all_joined_group[$i]['ID'];?>">
-                                <?php echo mb_strimwidth($all_joined_group[$i]['group_name'] , 0, 16,"..");?>
-                            </a>
-<!--                            判断是否是该群群主-->
-                            <?php
-                                if(get_current_user_id() == $all_joined_group[$i]['group_author']){
-                                    echo '<span class="badge" id="my_group_badge">我创建的</span>';
-                                } ?>
-                        </div>
-                    </li>
-                <?php
-                }
-                ?>
-            </ul>
-        </div>
-
-        <div id="all_groups" style="display: none;word-wrap: break-word; word-break: keep-all;">
-            <ul class="list-group">
-                <?php
-                foreach($all_joined_group as $value){?>
-                    <li class="list-group-item">
-                        <div style="display: inline-block;vertical-align: baseline">
-                            <img src="<?=$value['group_cover']?>" style="width: 40px;height: 40px">
-                        </div>
-                        <div id="li_joined_groups">
-                            <a href="<?php echo site_url().get_page_address('single_group').'&id='.$value['ID'];?>">
-                                <?php echo mb_strimwidth($value['group_name'] , 0, 16,"..");?>
-                            </a>
-                            <!--                            判断是否是该群群主-->
-                            <?php
-                            if(get_current_user_id() == $value['group_author']){
-                                echo '<span class="badge" id="my_group_badge">我创建的</span>';
-                            } ?>
-                        </div>
-                    </li>
-                    <?php } ?>
-            </ul>
-        </div>
-    </div>
+<!--    <div class="sidebar_list">-->
+<!--        <div class="sidebar_list_header">-->
+<!--            <p>我加入的群组</p>-->
+<!--            <a id="sidebar_list_link" onclick="show_all_groups()">全部群组</a>-->
+<!--        </div>-->
+<!--        <!--分割线-->
+<!--        <div class="sidebar_divline"></div>-->
+<!--    --><?php //$all_joined_group = get_current_user_group();?>
+<!--        <div id="joined_groups" style="word-wrap: break-word; word-break: keep-all;">-->
+<!--            <ul class="list-group">-->
+<!--                --><?php
+//                $length = min(5,sizeof($all_joined_group));
+//                for($i=0;$i<$length;$i++){?>
+<!--                    <li class="list-group-item" style="width: 100%">-->
+<!--                        <div style="display: inline-block;width:20%">-->
+<!--                            <img src="--><?//=$all_joined_group[$i]['group_cover']?><!--" style="width: 40px;height: 40px">-->
+<!--                        </div>-->
+<!--                        <div id="li_joined_groups">-->
+<!--                            <a href="--><?php //echo site_url().get_page_address('single_group').'&id='.$all_joined_group[$i]['ID'];?><!--">-->
+<!--                                --><?php //echo mb_strimwidth($all_joined_group[$i]['group_name'] , 0, 16,"..");?>
+<!--                            </a>-->
+<!--<!--                            判断是否是该群群主-->
+<!--                            --><?php
+//                                if(get_current_user_id() == $all_joined_group[$i]['group_author']){
+//                                    echo '<span class="badge" id="my_group_badge">我创建的</span>';
+//                                } ?>
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                --><?php
+//                }
+//                ?>
+<!--            </ul>-->
+<!--        </div>-->
+<!---->
+<!--        <div id="all_groups" style="display: none;word-wrap: break-word; word-break: keep-all;">-->
+<!--            <ul class="list-group">-->
+<!--                --><?php
+//                foreach($all_joined_group as $value){?>
+<!--                    <li class="list-group-item">-->
+<!--                        <div style="display: inline-block;vertical-align: baseline">-->
+<!--                            <img src="--><?//=$value['group_cover']?><!--" style="width: 40px;height: 40px">-->
+<!--                        </div>-->
+<!--                        <div id="li_joined_groups">-->
+<!--                            <a href="--><?php //echo site_url().get_page_address('single_group').'&id='.$value['ID'];?><!--">-->
+<!--                                --><?php //echo mb_strimwidth($value['group_name'] , 0, 16,"..");?>
+<!--                            </a>-->
+<!--                            <!--                            判断是否是该群群主-->
+<!--                            --><?php
+//                            if(get_current_user_id() == $value['group_author']){
+//                                echo '<span class="badge" id="my_group_badge">我创建的</span>';
+//                            } ?>
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    --><?php //} ?>
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
 
 <!--    群组动态-->
     <div class="sidebar_list">
