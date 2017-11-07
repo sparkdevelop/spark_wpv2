@@ -224,12 +224,12 @@ get_header();
         <div class="divline" style="margin-top: 0px"></div>
         <!--推荐列表-->
         <?php
-        $pro_item = array([4267,'创客兴趣项目',getProjectViews(4267)],
+        $pro_item = array([248,'猫·车 —— 一种新型的逗猫方式',getProjectViews(248)],
+                          [5,'手语翻译手套',getProjectViews(5)],
+                          [1270,'自动倒桩入库小车',getProjectViews(1270)],
                           [258,'小学期创新课开放项目',getProjectViews(258)],
                           [265,'2016年导论课线上创新作品展',getProjectViews(265)],
-                          [271,'2016年导论课创新作品汇报展',getProjectViews(271)],
-                          [248,'猫·车 —— 一种新型的逗猫方式',getProjectViews(248)],
-                          [5,'手语翻译手套',getProjectViews(5)])
+                          [271,'2016年导论课创新作品汇报展',getProjectViews(271)])
         ?>
         <ul class="list-group" style="margin-bottom: 0px">
             <?php
@@ -250,3 +250,4 @@ get_header();
         </ul>
     </div>
 </div>
+<?php get_footer(); ?>
