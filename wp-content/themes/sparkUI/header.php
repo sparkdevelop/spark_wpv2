@@ -21,6 +21,11 @@
 <!--    --><?php //wp_enqueue_style('sparkUI',get_stylesheet_uri());//加载jquery?>
     <?php wp_enqueue_script("jquery");//加载jquery?>
     <?php wp_head(); //加载js?>
+    <style>
+        html {
+            margin-top: 0px !important;
+        }
+    </style>
     <?php $url_this = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"]; ?>
 
     <?php
