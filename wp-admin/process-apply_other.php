@@ -11,7 +11,7 @@ $id = isset($_POST["user_id"]) ? $_POST["user_id"] : '';
 
 $time = date('Y-m-d H:i:s', time() + 8 * 3600);
 
-$sql_insert_tm = "INSERT INTO wp_gp_task_member VALUES ('',$id,$task_id,0,'$time','$task_content',0)";
+$sql_insert_tm = "INSERT INTO wp_gp_task_member VALUES ('',$id,$task_id,0,'$time','$task_content',0,'')";
 
 if ($id != "" && $task_id != "" && $task_content != "") {
     $wpdb->query($sql_insert_tm);

@@ -2461,6 +2461,7 @@ function gp_task_member_table_install()
           completion int NOT NULL default 0,
           complete_time datetime NOT NULL,
           apply_content text,
+          remark text,
           team_id int 
           ) character set utf8";
         require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
@@ -3679,6 +3680,32 @@ function change_grade_other()
 add_action('wp_ajax_change_grade_other', 'change_grade_other');
 add_action('wp_ajax_nopriv_change_grade_other', 'change_grade_other');
 
+//点评任务结果
+function task_remark_submit(){
+    global $wpdb;
+    $remark = $_POST['remark'];
+    $task_id = $_POST['task_id'];
+    $user_id = $_POST['user_id'];
+    echo $remark;
+    $sql = "update wp_gp_task_member set remark = '$remark' WHERE user_id=$user_id and task_id=$task_id";
+    $wpdb->query($sql);
+    //echo $sql;
+    die();
+}
+add_action('wp_ajax_task_remark_submit', 'task_remark_submit');
+add_action('wp_ajax_nopriv_task_remark_submit', 'task_remark_submit');
+//判断是否有点评
+function has_remark($task_id,$user_id){
+    global $wpdb;
+    $sql = "SELECT remark from wp_gp_task_member WHERE user_id = $user_id and task_id = $task_id";
+    $remarks = $wpdb->get_results($sql);
+    foreach ($remarks as $remark)
+    if ($remark->remark != null) {
+        return true;
+    } else {
+        return false;
+    }
+}
 /* 布道师大赛所用的模块
  * */
 function get_group_id_by_name($group_name)

@@ -2,6 +2,7 @@
 $group = get_group($group_id)[0];
 $countdown = countDown($task_id);
 wp_enqueue_media();
+$admin_url = admin_url('admin-ajax.php');
 ?>
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
     <div id="single-task-title">
@@ -132,6 +133,12 @@ wp_enqueue_media();
                             <option value="3">great</option>
                             <option value="4">perfect</option>
                         </select>
+                        <script>
+                            $(function () {
+                            document.getElementById("remark-text_<?=$value['user_id']?>").value="<?=$value['remark']?>";
+                            })
+                        </script>
+                        <button class="btn btn-default" id="btn-remark" onclick="task_remark(<?=$value['user_id']?>)">点评</button>
                     </div>
                     <?php } else {
                         $grade = transform_grade($value['completion']) //将数字转化为文字?>
@@ -151,11 +158,25 @@ wp_enqueue_media();
                     <div style="color: gray;margin-left: 20px;font-size: 16px;">
                         <p><?=$value['apply_content']?></p>
                     </div>
+                    <!--任务点评编辑框-->
+                    <div id="remark_window_<?=$value['user_id']?>" style="display: none; margin: 10px 0 0 15px;" >
+                        <div class="task-remark-form">
+                            <textarea id="remark-text_<?=$value['user_id']?>" name="remark-text" placeholder="点评" rows="3" aria-required="true" style="height: 100%;width: 100%"></textarea>
+                            <button name="remark-submit" id="btn-remark-submit" value="发表点评" class="btn-green" onclick="remark_submit(<?=$value['user_id']?>)">发表点评</button>
+                        </div>
+                    </div>
+                    <!--任务点评内容-->
+                    <div id="task_remark_<?=$value['user_id']?>">
+                    <?php if(has_remark($task_id,$value['user_id'])){
+                        echo '<div class="remark" id="remark_'.$value['user_id'].'">点评：';
+                        echo $value['remark'];
+                        echo '</div>';
+                    } ?>
+                    </div>
                 </div>
             </div>
         <?php } ?>
     </div>
-
 </div>
 <script>
     function change_grade_other(grade, user_id) {
@@ -188,5 +209,47 @@ wp_enqueue_media();
             $(id).html("<img src='<?=$url?>'>");
             return true;
         }
+    }
+    function task_remark(user_id) {
+        var temp = document.getElementById('remark_window_'+user_id);
+
+        if(temp.style.display=="block"){
+            temp.style.display="none";
+        }else{
+            temp.style.display="block";
+        }
+    }
+    function remark_submit(user_id){
+        var temp = document.getElementById('remark_window_'+user_id);
+        var remark =$("#remark-text_"+user_id).val();
+        var temp2 =document.getElementById('remark_'+user_id);
+        var temp3 =document.getElementById('task_remark_'+user_id);
+        var data = {
+            action: "task_remark_submit",
+            remark: remark,
+            task_id: '<?=$task_id?>',
+            user_id:user_id
+        };
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: "<?php echo $admin_url;?>",
+            success: function (data) {
+                layer.msg("点评成功", {time: 1000, icon: 1});
+                temp.style.display="none";
+                if(!temp2){
+                    var newremark=document.createElement("div");
+                    newremark.id = 'remark_'+user_id;
+                    newremark.innerHTML = '点评：'+data;
+                    newremark.className = 'remark';
+                    temp3.appendChild(newremark);
+                }else{
+                    temp2.innerHTML ='点评：'+data;
+                }
+            },
+            error: function () {
+                layer.msg("点评失败", {time: 1000, icon: 2});
+            }
+        })
     }
 </script>

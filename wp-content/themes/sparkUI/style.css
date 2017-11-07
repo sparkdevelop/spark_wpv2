@@ -1724,6 +1724,30 @@ h4 {
     font-size: small;
     margin-bottom: 20px;
 }
+/*点评按钮*/
+#btn-remark {
+    width: 100%;
+    border-radius: 5px;
+    color: #000000;
+    border-color: #ccc;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+#btn-remark:hover {
+    color: #fff;
+    background-color: #fe642d;
+    border-color: #fe642d;
+}
+.task-remark-form{
+    padding: 10px;
+    background: #f9f9f9;
+}
+.remark{
+    padding: 10px;
+    background: #f9f9f9;
+    margin: 10px 0 0 15px;"
+}
 /*single_task_pro*/
 #team_member{
     margin-left: 39px;
