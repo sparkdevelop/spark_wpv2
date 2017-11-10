@@ -25,7 +25,7 @@ foreach ($team_member as $value) {
     $id = get_the_ID_by_name($value);
     $time = date('Y-m-d H:i:s', time() + 8 * 3600);
     $sql_insert_mt = "INSERT INTO wp_gp_member_team VALUES ('',$id,$task_id,$team_id)";
-    $sql_insert_tm = "INSERT INTO wp_gp_task_member VALUES ('',$id,$task_id,0,'$time','$task_content',$team_id)";
+    $sql_insert_tm = "INSERT INTO wp_gp_task_member VALUES ('',$id,$task_id,0,'$time','$task_content',$team_id,'')";
 
     if ($id != "" && $task_id != "" && $team_id != "" && $task_content != "") {
         $wpdb->query($sql_insert_mt);
