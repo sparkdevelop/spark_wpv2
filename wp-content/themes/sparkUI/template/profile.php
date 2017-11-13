@@ -75,7 +75,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
         if(checkemail(email.value)){
             return true;
         }else{
-            alert ("请修正错误");
+            layer.msg("请修正错误", {time: 2000, icon: 2});
             return false;
         }
     }
@@ -85,7 +85,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
         if(checkNewPassword(newPassword.value) &&checkRepeatPassword(repectPassword.value)){
             return true;
         }else{
-            alert ("请修正错误");
+            layer.msg("请修正错误", {time: 2000, icon: 2});
             return false;
         }
     }

@@ -150,7 +150,61 @@ $admin_url = admin_url('admin-ajax.php');
     </div>
     <br>
     <div class="single-task-member-complete-list">
-        <?php
+        <?
+        //置顶自己的作业
+        $user_complete = task_complete_other($task_id,get_current_user_id())[0];
+        if(is_complete_task($task_id,get_current_user_id())){?>
+            <div class="dwqa-answer-item" style="padding: 15px 0px">
+                <!--头像-->
+                <div style="display: inline-block;vertical-align: top;margin-left: 30px">
+                    <?php echo get_avatar($user_complete['user_id'], 36, ''); ?>
+                </div>
+                <!--内容-->
+                <div style="display: inline-block;vertical-align: top;width: 90%">
+                    <!--审核状态-->
+                    <?php $grade = transform_grade($user_complete['completion']) //将数字转化为文字
+                    ?>
+                    <div class="dropdown" style="float: right" id="grade"><?= $grade ?></div>
+                    <div style="color:gray">
+                        <div style="margin-bottom: 10px">
+                            <!--提交者信息--->
+                            <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $user_complete['user_id']; ?>"
+                               class="ask-author" style="margin-left: 20px;">
+                                <?php echo get_author_name($user_complete['user_id']) ?>
+                            </a>
+                        </div>
+                        <!--提交时间-->
+                        <p class="ask_date" style="margin-left: 20px;"><?= $user_complete['complete_time'] ?></p>
+                    </div>
+                    <!--任务内容-->
+                    <div style="color: gray;margin-left: 20px;font-size: 16px;">
+                        <p><?= $user_complete['apply_content'] ?></p>
+                    </div>
+                    <!--任务点评编辑框-->
+                    <div id="remark_window_<?= $user_complete['user_id'] ?>" style="display: none; margin: 10px 0 0 15px;">
+                        <div class="task-remark-form">
+                                <textarea id="remark-text_<?= $user_complete['user_id'] ?>" name="remark-text" placeholder="点评"
+                                          rows="3" aria-required="true" style="height: 100%;width: 100%"></textarea>
+                            <button name="remark-submit" id="btn-remark-submit" value="发表点评" class="btn-green"
+                                    onclick="remark_submit(<?= $user_complete['user_id'] ?>)">发表点评
+                            </button>
+                        </div>
+                    </div>
+                    <!--任务点评内容-->
+                    <div id="task_remark_<?= $user_complete['user_id'] ?>">
+                        <?php if (has_remark($task_id, $user_complete['user_id'])) {
+                            echo '<div class="remark" id="remark_' . $user_complete['user_id'] . '">点评：';
+                            echo $user_complete['remark'];
+                            echo '</div>';
+                        } ?>
+                    </div>
+                </div>
+            </div>
+        <?php }
+        else{
+            echo '<div class="divline" style="margin-top: 0px"></div>';
+            echo '<div class="alert alert-info" style="margin-top: 20px">你还没有提交任务,请尽快提交</div>';
+        }
         if (is_group_admin($group_id)) {
             $all_complete = task_complete_other($task_id);
             foreach ($all_complete as $value) { ?>
@@ -228,60 +282,62 @@ $admin_url = admin_url('admin-ajax.php');
                     </div>
                 </div>
             <?php }
-        } else {
+        }
+        else {
             $all_recommand = get_recommand_task($task_id);
-            foreach ($all_recommand as $value) { ?>
-                <div class="dwqa-answer-item" style="padding: 15px 0px">
-                    <!--头像-->
-                    <div style="display: inline-block;vertical-align: top;margin-left: 30px">
-                        <?php echo get_avatar($value['user_id'], 36, ''); ?>
-                    </div>
-                    <!--内容-->
-                    <div style="display: inline-block;vertical-align: top;width: 90%">
-                        <!--审核状态-->
-                        <?php $grade = transform_grade($value['completion']) //将数字转化为文字
-                        ?>
-                        <div class="dropdown" style="float: right" id="grade"><?= $grade ?></div>
-                        <?php //}
-                        ?>
-                        <div style="color:gray">
-                            <div style="margin-bottom: 10px">
-                                <!--提交者信息--->
-                                <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $value['user_id']; ?>"
-                                   class="ask-author" style="margin-left: 20px;">
-                                    <?php echo get_author_name($value['user_id']) ?>
-                                </a>
+            foreach ($all_recommand as $value) {
+                if($value['user_id'] != get_current_user_id()){ ?>
+                    <div class="dwqa-answer-item" style="padding: 15px 0px">
+                        <!--头像-->
+                        <div style="display: inline-block;vertical-align: top;margin-left: 30px">
+                            <?php echo get_avatar($value['user_id'], 36, ''); ?>
+                        </div>
+                        <!--内容-->
+                        <div style="display: inline-block;vertical-align: top;width: 90%">
+                            <!--审核状态-->
+                            <?php $grade = transform_grade($value['completion']) //将数字转化为文字
+                            ?>
+                            <div class="dropdown" style="float: right" id="grade"><?= $grade ?></div>
+                            <?php //}
+                            ?>
+                            <div style="color:gray">
+                                <div style="margin-bottom: 10px">
+                                    <!--提交者信息--->
+                                    <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $value['user_id']; ?>"
+                                       class="ask-author" style="margin-left: 20px;">
+                                        <?php echo get_author_name($value['user_id']) ?>
+                                    </a>
+                                </div>
+                                <!--提交时间-->
+                                <p class="ask_date" style="margin-left: 20px;"><?= $value['complete_time'] ?></p>
                             </div>
-                            <!--提交时间-->
-                            <p class="ask_date" style="margin-left: 20px;"><?= $value['complete_time'] ?></p>
-                        </div>
-                        <!--任务内容-->
-                        <div style="color: gray;margin-left: 20px;font-size: 16px;">
-                            <p><?= $value['apply_content'] ?></p>
-                        </div>
-                        <!--任务点评编辑框-->
-                        <div id="remark_window_<?= $value['user_id'] ?>" style="display: none; margin: 10px 0 0 15px;">
-                            <div class="task-remark-form">
+                            <!--任务内容-->
+                            <div style="color: gray;margin-left: 20px;font-size: 16px;">
+                                <p><?= $value['apply_content'] ?></p>
+                            </div>
+                            <!--任务点评编辑框-->
+                            <div id="remark_window_<?= $value['user_id'] ?>" style="display: none; margin: 10px 0 0 15px;">
+                                <div class="task-remark-form">
                                 <textarea id="remark-text_<?= $value['user_id'] ?>" name="remark-text" placeholder="点评"
                                           rows="3" aria-required="true" style="height: 100%;width: 100%"></textarea>
-                                <button name="remark-submit" id="btn-remark-submit" value="发表点评" class="btn-green"
-                                        onclick="remark_submit(<?= $value['user_id'] ?>)">发表点评
-                                </button>
+                                    <button name="remark-submit" id="btn-remark-submit" value="发表点评" class="btn-green"
+                                            onclick="remark_submit(<?= $value['user_id'] ?>)">发表点评
+                                    </button>
+                                </div>
+                            </div>
+                            <!--任务点评内容-->
+                            <div id="task_remark_<?= $value['user_id'] ?>">
+                                <?php if (has_remark($task_id, $value['user_id'])) {
+                                    echo '<div class="remark" id="remark_' . $value['user_id'] . '">点评：';
+                                    echo $value['remark'];
+                                    echo '</div>';
+                                } ?>
                             </div>
                         </div>
-                        <!--任务点评内容-->
-                        <div id="task_remark_<?= $value['user_id'] ?>">
-                            <?php if (has_remark($task_id, $value['user_id'])) {
-                                echo '<div class="remark" id="remark_' . $value['user_id'] . '">点评：';
-                                echo $value['remark'];
-                                echo '</div>';
-                            } ?>
-                        </div>
                     </div>
-                </div>
+                <?php } ?>
             <?php }
         } ?>
-
     </div>
 </div>
 <script>

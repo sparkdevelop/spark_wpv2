@@ -211,7 +211,7 @@ get_header();
         </ul>
     </div>
 </div>
-<div class="container" id="front-page" style="padding: 50px 0 0 0;">
+<div class="container" id="front-page" style="padding: 50px 0 50px 0;">
     <div class="col-md-4 col-sm-4 col-xs-12">
         <div><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/project_icon.png"/></div>
     </div>

@@ -3652,11 +3652,17 @@ function transform_grade($rank)
 }
 
 //获取本other项目完成的成员和信息
-function task_complete_other($task_id)
+function task_complete_other($task_id,$user_id = NULL)
 {
     global $wpdb;
-    $sql = "SELECT * FROM wp_gp_task_member WHERE task_id = $task_id";
-    $results = $wpdb->get_results($sql, 'ARRAY_A');
+    if ($user_id != NULL){
+        $sql = "SELECT * FROM wp_gp_task_member WHERE task_id = $task_id and user_id = $user_id";
+        $results = $wpdb->get_results($sql, 'ARRAY_A');
+    }
+    else{
+        $sql = "SELECT * FROM wp_gp_task_member WHERE task_id = $task_id";
+        $results = $wpdb->get_results($sql, 'ARRAY_A');
+    }
     return $results;
 }
 
