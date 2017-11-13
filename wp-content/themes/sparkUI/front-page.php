@@ -151,15 +151,22 @@ get_header();
             [1191,'Unit2：计算机和微机实验',get_wiki_watched_nums(1191)],
             [540,'Unit3：电路基础实验',get_wiki_watched_nums(540)],
             [1202,'Unit4：网络基础实验',get_wiki_watched_nums(1202)],
-            [979,'复杂工程进阶实验',get_wiki_watched_nums(979)])
+            [979,'Unit5: 复杂工程进阶实验',get_wiki_watched_nums(979)],
+            [13476,'Unit6: 工程认知与创新素质培养',get_wiki_watched_nums(13476)]
+            )
         ?>
         <ul class="list-group" style="margin-bottom: 0px">
             <?php
-                foreach ($wiki_item as $value){?>
+                foreach ($wiki_item as $key => $value){?>
                     <li class="list-group-item">
                         <div style="display: inline-block; vertical-align: baseline;">
                             <a href="<?php the_permalink($value[0]); ?>" style="color: #4e4e4e;">
                                 <span style="color: #fe642d">【导论实验课】</span><?=$value[1]?>
+                                <? if ($key==4){?>
+                                    <span>
+                                        &nbsp;->&nbsp;<a href="http://sice.owvlab.net/openlab/jsj">网络虚拟仿真实验平台入口</a>
+                                    </span>
+                                <?php } ?>
                             </a>
                             <!--传浏览量-->
                         </div>
