@@ -25,6 +25,7 @@
         }
     }
 </script>
+<?php wp_enqueue_media();?>
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
     <h4 class="index_title" style="margin-left: 20px">填写任务信息</h4>
     <div class="divline"></div>
