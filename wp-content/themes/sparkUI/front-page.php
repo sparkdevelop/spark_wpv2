@@ -133,8 +133,9 @@ get_header();
         </div>
     </div>
 </div>
+<br style="clear:both;" />
 <div class="container">
-    <div class="wiki_block" id="front-page_1" style="margin: 50px 0 0 0;display: table">
+    <div class="container_1" id="front-page_1" style="margin: 50px 0 0 0;display: table">
         <div class="col-md-4 col-sm-4 col-xs-12">
             <div><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/wiki_icon.png"/></div>
         </div>
@@ -259,6 +260,5 @@ get_header();
         </div>
     </div>
 </div>
-
-
+<br style="clear:both;" />
 <?php get_footer(); ?>
