@@ -46,8 +46,10 @@
             <label for="tabstract" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">任务详情<span
                     style="color: red">*</span></label>
             <div class="col-sm-8">
-                <textarea class="form-control" rows="5" name="tabstract" id="tabstract" placeholder=""
-                          onblur="checkLength(this.value,'checkGroupAbsbox')"></textarea>
+                <?php wp_editor('', 'tabstract', $settings = array(
+                    'teeny' => true, 'textarea_rows' => 6)
+                );
+                ?>
             </div>
             <span style="line-height: 30px;height: 30px" id="checkGroupAbsbox"></span>
         </div>

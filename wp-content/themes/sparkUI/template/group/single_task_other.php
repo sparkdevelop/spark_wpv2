@@ -51,7 +51,6 @@ $admin_url = admin_url('admin-ajax.php');
     </div>
     <?php
     //控制截止
-
     if (is_complete_task($task_id, get_current_user_id())) { //更新
         ?>
         <form class="form-horizontal" role="form" name="profile" method="post" onsubmit="return checkSubmitOther()"
@@ -86,6 +85,7 @@ $admin_url = admin_url('admin-ajax.php');
                 <input type="hidden" name="task_id" value="<?= $task_id ?>"/>
                 <input type="hidden" name="team_id" value="<?= $team_id ?>"/>
             </div>
+
             <div class="form-group" style="margin-bottom: 30px">
                 <div class="col-sm-10">
                     <?php if (!is_overdue($task_id)) {
@@ -96,7 +96,8 @@ $admin_url = admin_url('admin-ajax.php');
                 </div>
             </div>
         </form>
-    <?php } else { //首次插入 ?>
+    <?php }
+    else { //首次插入 ?>
         <form class="form-horizontal" role="form" name="profile" method="post" onsubmit="return checkSubmitOther()"
               action="<?php echo esc_url(self_admin_url('process-apply_other.php')); ?>">
             <!--任务内容-->
@@ -112,11 +113,11 @@ $admin_url = admin_url('admin-ajax.php');
                        style="float: left;text-align: left;width: 11%">任务成员<span
                         style="color: red">*</span></label>
                 <div class="col-sm-8">
-                    <input type="button" id="addNewFieldBtn" value="+" style="display:inline">
+<!--                    <input type="button" id="addNewFieldBtn" value="+" style="display:inline">-->
                     <div style="display: inline">
                         <input type="text" class="form-control" name="team_member[]" id="team_member"
                                style="margin-left: 0px;margin-right: 5px"
-                               placeholder="必填项, 填写所有参与任务的成员用户名" value="" onblur="checkUserName(this.value)"
+                               placeholder="必填项, 填写任务小组组长用户名" value="" onblur="checkUserName(this.value)"
                                onfocus="saveid(this)"
                         />
                         <div id="ajax-response_0" style="display: inline;margin-left: 10px"></div>
@@ -218,7 +219,10 @@ $admin_url = admin_url('admin-ajax.php');
                         <!--审核状态-->
                         <?php
                         if (is_group_admin($group_id)) { ?>
-                            <div class="dropdown" style="float: right">
+                            <button class="btn btn-default" id="btn-remark" style="display: inline-block;float: right"
+                                    onclick="task_remark(<?= $value['user_id'] ?>)">点评
+                            </button>
+                            <div class="dropdown" style="float: right;margin-right: 20px">
                                 <script>
                                     $(function () {
                                         var sel_id = '<?=$value['completion']?>';
@@ -238,9 +242,6 @@ $admin_url = admin_url('admin-ajax.php');
                                         document.getElementById("remark-text_<?=$value['user_id']?>").value = "<?=$value['remark']?>";
                                     })
                                 </script>
-                                <button class="btn btn-default" id="btn-remark"
-                                        onclick="task_remark(<?= $value['user_id'] ?>)">点评
-                                </button>
                             </div>
                         <?php } else {
                             $grade = transform_grade($value['completion']) //将数字转化为文字?>
