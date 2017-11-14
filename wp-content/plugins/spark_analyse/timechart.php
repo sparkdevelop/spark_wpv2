@@ -5,6 +5,7 @@
  * Date: 2017/3/27
  * Time: 22:56
  */
+header("Content-type:text/html;charset=utf-8");
 global $c;
 global $textlist1;
 global $m;

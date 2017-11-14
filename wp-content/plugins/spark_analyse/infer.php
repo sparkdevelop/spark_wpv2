@@ -5,6 +5,7 @@
  * Date: 2017/4/13
  * Time: 20:09
  */
+header("Content-type:text/html;charset=utf-8");
 wp_register_style('fep-style', plugins_url('bootstrap.min.css', __FILE__), array(), '1.6', 'all');
 wp_register_style('datepicker-style', plugins_url('dateRange.css', __FILE__), array(), '1.6', 'all');
 wp_register_style('main-style', plugins_url('main.css', __FILE__), array(), '1.0', 'all');
@@ -20,7 +21,7 @@ wp_register_script("fep-script", plugins_url('js/bootstrap.min.js', __FILE__), a
 wp_register_script("collapse-script", plugins_url('js/collapse.js', __FILE__), array('jquery'));
 wp_register_script("high-script", plugins_url('js/highcharts.js', __FILE__), array('jquery'));
 wp_register_script("highm-script", plugins_url('js/highcharts-more.js', __FILE__), array('jquery'));
-wp_register_script("increment-script", plugins_url('js/user_increment.js', __FILE__),array('jquery'));
+//wp_register_script("increment-script", plugins_url('js/user_increment.js', __FILE__),array('jquery'));
 wp_register_script("transition-script", plugins_url('js/transition.js', __FILE__), array('jquery'));
 if ( is_admin() ) {
     wp_enqueue_script("jquery-script");
@@ -31,7 +32,7 @@ if ( is_admin() ) {
     wp_enqueue_script("high-script");
     wp_enqueue_script("transition-script");
     wp_enqueue_script("highm-script");
-    wp_enqueue_script("increment-script");
+//    wp_enqueue_script("increment-script");
     wp_enqueue_script("collapse-script");
     wp_enqueue_script("date-script");
     wp_enqueue_script("ui-script");
@@ -44,101 +45,115 @@ if ( is_admin() ) {
     wp_enqueue_style('tag-style');
 }
 require_once('model_drawing.php');
+require_once ('userhistory.php');
+require_once ('all_rank.php');
 function spark_settings_submenu_page2(){
+//    $history_key=array_keys(history());
+//    $c=count($history_key);
+    $history_value=history_value();
+    $timelong1=$history_value[0]; $timelong2=$history_value[1]; $timelong3=$history_value[2]; $timelong4=$history_value[3];
+    $history=history();
+    $history0=$history[0]; $history1=$history[1]; $history2=$history[2]; $history3=$history[3]; $history4=$history[4];
+    $history5=$history[5]; $history6=$history[6]; $history7=$history[7]; $history8=$history[8]; $history9=$history[9];
     $socre=explode(",",getinterest());
-    $phpcount=$socre[0];
-    $htmlcount=$socre[1];
-    $jscount=$socre[2];
-    $mycookiecount=$socre[3];
+    $jiqixuexicount=$socre[0];
+    $jisuanjishijuecount=$socre[1];
+    $tuijiancount=$socre[2];
+    $dianlufenxicount=$socre[3];
     $danpianjicount=$socre[4];
-    $csscount=$socre[5];
-    $sqlcount=$socre[6];
-    $duinocount=$socre[7];
-    $androidcount=$socre[8];
-    $ioscount=$socre[9];
-    $pingtaicount=$socre[10];
+    $shuzidianlucount=$socre[5];
+    $tongyuancount=$socre[6];
+    $tongxincount=$socre[7];
+    $diancicount=$socre[8];
+    $bianchengcount=$socre[9];
+    $jisuanjijichucount=$socre[10];
     $webcount=$socre[11];
-    $matlabcount=$socre[12];
-    $socredesire=explode(",",getdesire());
-    $phpcountdesire=$socredesire[0];
-    $htmlcountdesire=$socredesire[1];
-    $jscountdesire=$socredesire[2];
-    $mycookiecountdesire=$socredesire[3];
-    $danpianjicountdesire=$socredesire[4];
-    $csscountdesire=$socredesire[5];
-    $sqlcountdesire=$socredesire[6];
-    $duinocountdesire=$socredesire[7];
-    $androidcountdesire=$socredesire[8];
-    $ioscountdesire=$socredesire[9];
-    $pingtaicountdesire=$socredesire[10];
-    $webcountdesire=$socredesire[11];
-    $matlabcountdesire=$socredesire[12];
+    $socred=explode(",",getdesire());
+    $jiqixuexicountd=$socred[0];
+    $jisuanjishijuecountd=$socred[1];
+    $tuijiancountd=$socred[2];
+    $dianlufenxicountd=$socred[3];
+    $danpianjicountd=$socred[4];
+    $shuzidianlucountd=$socred[5];
+    $tongyuancountd=$socred[6];
+    $tongxincountd=$socred[7];
+    $diancicountd=$socred[8];
+    $bianchengcountd=$socred[9];
+    $jisuanjijichucountd=$socred[10];
+    $webcountd=$socred[11];
     $c=get_option('spark_search_user_copy_right');
     $sql=0;
     global $wpdb;
     $sql =$wpdb->get_var( "SELECT COUNT(*) FROM ".COUNT_TABLE." WHERE `user` = '$c'");
-    // echo $sql;
-    $table_name = $wpdb->prefix . "counts";
+//     echo $sql;
+
     if ($sql!=0){
-        $wpdb->update( 'wp_count' , array( 'phpcount' => $phpcount, 'htmlcount' => $htmlcount, 'jscount' => $jscount
-        , 'mycookiecount' => $mycookiecount, 'danpianjicount' => $danpianjicount, 'csscount' => $csscount
-        , 'sqlcount' => $sqlcount, 'duinocount' => $duinocount, 'androidcount' => $androidcount, 'ioscount' => $ioscount
-        , 'pingtaicount' => $pingtaicount, 'webcount' => $webcount, 'matlabcount' => $matlabcount), array( 'user' => $c ));
+        $wpdb->update( 'wp_count_sec' , array( 'jiqixuexicount' => $jiqixuexicount, 'jisuanjishijuecount' => $jisuanjishijuecount, 'tuijiancount' => $tuijiancount
+        , 'dianlufenxicount' => $dianlufenxicount, 'danpianjicount' => $danpianjicount, 'shuzidianlucount' => $shuzidianlucount
+        , 'tongyuancount' => $tongyuancount, 'tongxincount' => $tongxincount, 'diancicount' => $diancicount, 'bianchengcount' => $bianchengcount
+        , 'jisuanjijichucount' => $jisuanjijichucount, 'webcount' => $webcount), array( 'user' => $c ));
     }
     else{
-        $wpdb->insert('wp_count', array('user'=>$c, 'phpcount' => $phpcount, 'htmlcount' => $htmlcount, 'jscount' => $jscount
-        , 'mycookiecount' => $mycookiecount, 'danpianjicount' => $danpianjicount, 'csscount' => $csscount
-        , 'sqlcount' => $sqlcount, 'duinocount' => $duinocount, 'androidcount' => $androidcount, 'ioscount' => $ioscount
-        , 'pingtaicount' => $pingtaicount, 'webcount' => $webcount, 'matlabcount' => $matlabcount));
+        $wpdb->insert('wp_count_sec', array('user'=>$c,  'jiqixuexicount' => $jiqixuexicount, 'jisuanjishijuecount' => $jisuanjishijuecount, 'tuijiancount' => $tuijiancount
+        , 'dianlufenxicount' => $dianlufenxicount, 'danpianjicount' => $danpianjicount, 'shuzidianlucount' => $shuzidianlucount
+        , 'tongyuancount' => $tongyuancount, 'tongxincount' => $tongxincount, 'diancicount' => $diancicount, 'bianchengcount' => $bianchengcount
+        , 'jisuanjijichucount' => $jisuanjijichucount, 'webcount' => $webcount));
     }
     $s=0;
     $s =$wpdb->get_var( "SELECT COUNT(*) FROM ".COUNTD_TABLE." WHERE `user` = '$c'");
     // echo $sql;
     if ($s!=0){
-        $wpdb->update( 'wp_countdesire', array( 'phpcount' => $phpcountdesire, 'htmlcount' => $htmlcountdesire, 'jscount' => $jscountdesire
-        , 'mycookiecount' => $mycookiecountdesire, 'danpianjicount' => $danpianjicountdesire, 'csscount' => $csscountdesire
-        , 'sqlcount' => $sqlcountdesire, 'duinocount' => $duinocountdesire, 'androidcount' => $androidcountdesire, 'ioscount' => $ioscountdesire
-        , 'pingtaicount' => $pingtaicountdesire, 'webcount' => $webcountdesire, 'matlabcount' => $matlabcountdesire), array( 'user' => $c ));
+        $wpdb->update( 'wp_countdesire_sec', array( 'jiqixuexicount' => $jiqixuexicountd, 'jisuanjishijuecount' => $jisuanjishijuecountd, 'tuijiancount' => $tuijiancountd
+        , 'dianlufenxicount' => $dianlufenxicountd, 'danpianjicount' => $danpianjicountd, 'shuzidianlucount' => $shuzidianlucountd
+        , 'tongyuancount' => $tongyuancountd, 'tongxincount' => $tongxincountd, 'diancicount' => $diancicountd, 'bianchengcount' => $bianchengcountd
+        , 'jisuanjijichucount' => $jisuanjijichucountd, 'webcount' => $webcountd), array( 'user' => $c ));
     }
     else{
-        $wpdb->insert('wp_countdesire', array('user'=>$c, 'phpcount' => $phpcountdesire, 'htmlcount' => $htmlcountdesire, 'jscount' => $jscountdesire
-        , 'mycookiecount' => $mycookiecountdesire, 'danpianjicount' => $danpianjicountdesire, 'csscount' => $csscountdesire
-        , 'sqlcount' => $sqlcountdesire, 'duinocount' => $duinocountdesire, 'androidcount' => $androidcountdesire, 'ioscount' => $ioscountdesire
-        , 'pingtaicount' => $pingtaicountdesire, 'webcount' => $webcountdesire, 'matlabcount' => $matlabcountdesire));
+        $wpdb->insert("wp_countdesire_sec", array('user'=>$c, 'jiqixuexicount' => $jiqixuexicountd, 'jisuanjishijuecount' => $jisuanjishijuecountd, 'tuijiancount' => $tuijiancountd
+        , 'dianlufenxicount' => $dianlufenxicountd, 'danpianjicount' => $danpianjicountd, 'shuzidianlucount' => $shuzidianlucountd
+        , 'tongyuancount' => $tongyuancountd, 'tongxincount' => $tongxincountd, 'diancicount' => $diancicountd, 'bianchengcount' => $bianchengcountd
+        , 'jisuanjijichucount' => $jisuanjijichucountd, 'webcount' => $webcountd));
     }
 
-    $phpaverage=$wpdb->get_var( "SELECT round(avg(phpcount),2) FROM ".COUNT_TABLE." ");
-    $htmlaverage=$wpdb->get_var( "SELECT round(avg(htmlcount),2) FROM ".COUNT_TABLE." ");
-    $jsaverage=$wpdb->get_var( "SELECT round(avg(jscount),2) FROM ".COUNT_TABLE." ");
-    $mycookieaverage=$wpdb->get_var( "SELECT round(avg(mycookiecount),2) FROM ".COUNT_TABLE." ");
+    $jiqixuexiaverage=$wpdb->get_var( "SELECT round(avg(jiqixuexicount),2) FROM ".COUNT_TABLE." ");
+    $jisuanjishijueaverage=$wpdb->get_var( "SELECT round(avg(jisuanjishijuecount),2) FROM ".COUNT_TABLE." ");
+    $tuijianaverage=$wpdb->get_var( "SELECT round(avg(tuijiancount),2) FROM ".COUNT_TABLE." ");
+    $dianlufenxiaverage=$wpdb->get_var( "SELECT round(avg(dianlufenxicount),2) FROM ".COUNT_TABLE." ");
     $danpianjiaverage=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM ".COUNT_TABLE." ");
-    $cssaverage=$wpdb->get_var( "SELECT round(avg(csscount),2) FROM ".COUNT_TABLE." ");
-    $sqlaverage=$wpdb->get_var( "SELECT round(avg(sqlcount),2) FROM ".COUNT_TABLE." ");
-    $duinoaverage=$wpdb->get_var( "SELECT round(avg(duinocount),2) FROM ".COUNT_TABLE." ");
-    $androidaverage=$wpdb->get_var( "SELECT round(avg(androidcount),2) FROM ".COUNT_TABLE." ");
-    $iosaverage=$wpdb->get_var( "SELECT round(avg(ioscount),2) FROM ".COUNT_TABLE." ");
-    $pingtaiaverage=$wpdb->get_var( "SELECT round(avg(pingtaicount),2) FROM ".COUNT_TABLE." ");
+    $shuzidianluaverage=$wpdb->get_var( "SELECT round(avg(shuzidianlucount),2) FROM ".COUNT_TABLE." ");
+    $tongyuanaverage=$wpdb->get_var( "SELECT round(avg(tongyuancount),2) FROM ".COUNT_TABLE." ");
+    $tongxinaverage=$wpdb->get_var( "SELECT round(avg(tongxincount),2) FROM ".COUNT_TABLE." ");
+    $dianciaverage=$wpdb->get_var( "SELECT round(avg(diancicount),2) FROM ".COUNT_TABLE." ");
+    $bianchengaverage=$wpdb->get_var( "SELECT round(avg(bianchengcount),2) FROM ".COUNT_TABLE." ");
+    $jisuanjijichuaverage=$wpdb->get_var( "SELECT round(avg(jisuanjijichucount),2) FROM ".COUNT_TABLE." ");
     $webaverage=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM ".COUNT_TABLE." ");
-    $matlabaverage=$wpdb->get_var( "SELECT round(avg(matlabcount),2) FROM ".COUNT_TABLE." ");
 
 
-    $phpdesireaverage=$wpdb->get_var( "SELECT round(avg(phpcount),2) FROM ".COUNTD_TABLE." ");
-    $htmldesireaverage=$wpdb->get_var( "SELECT round(avg(htmlcount),2) FROM ".COUNTD_TABLE." ");
-    $jsdesireaverage=$wpdb->get_var( "SELECT round(avg(jscount),2) FROM ".COUNTD_TABLE." ");
-    $mycookiedesireaverage=$wpdb->get_var( "SELECT round(avg(mycookiecount),2) FROM ".COUNTD_TABLE." ");
-    $danpianjidesireaverage=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM ".COUNTD_TABLE." ");
-    $cssdesireaverage=$wpdb->get_var( "SELECT round(avg(csscount),2) FROM ".COUNTD_TABLE." ");
-    $sqldesireaverage=$wpdb->get_var( "SELECT round(avg(sqlcount),2) FROM ".COUNTD_TABLE." ");
-    $duinodesireaverage=$wpdb->get_var( "SELECT round(avg(duinocount),2) FROM ".COUNTD_TABLE." ");
-    $androiddesireaverage=$wpdb->get_var( "SELECT round(avg(androidcount),2) FROM ".COUNTD_TABLE." ");
-    $iosdesireaverage=$wpdb->get_var( "SELECT round(avg(ioscount),2) FROM ".COUNTD_TABLE." ");
-    $pingtaidesireaverage=$wpdb->get_var( "SELECT round(avg(pingtaicount),2) FROM ".COUNTD_TABLE." ");
-    $webdesireaverage=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM ".COUNTD_TABLE." ");
-    $matlabdesireaverage=$wpdb->get_var( "SELECT round(avg(matlabcount),2) FROM ".COUNTD_TABLE." ");
+    $jiqixuexiaveraged=$wpdb->get_var( "SELECT round(avg(jiqixuexicount),2) FROM ".COUNTD_TABLE." ");
+    $jisuanjishijueaveraged=$wpdb->get_var( "SELECT round(avg(jisuanjishijuecount),2) FROM ".COUNTD_TABLE." ");
+    $tuijianaveraged=$wpdb->get_var( "SELECT round(avg(tuijiancount),2) FROM ".COUNTD_TABLE." ");
+    $dianlufenxiaveraged=$wpdb->get_var( "SELECT round(avg(dianlufenxicount),2) FROM ".COUNTD_TABLE." ");
+    $danpianjiaveraged=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM ".COUNTD_TABLE." ");
+    $shuzidianluaveraged=$wpdb->get_var( "SELECT round(avg(shuzidianlucount),2) FROM ".COUNTD_TABLE." ");
+    $tongyuanaveraged=$wpdb->get_var( "SELECT round(avg(tongyuancount),2) FROM ".COUNTD_TABLE." ");
+    $tongxinaveraged=$wpdb->get_var( "SELECT round(avg(tongxincount),2) FROM ".COUNTD_TABLE." ");
+    $dianciaveraged=$wpdb->get_var( "SELECT round(avg(diancicount),2) FROM ".COUNTD_TABLE." ");
+    $bianchengaveraged=$wpdb->get_var( "SELECT round(avg(bianchengcount),2) FROM ".COUNTD_TABLE." ");
+    $jisuanjijichuaveraged=$wpdb->get_var( "SELECT round(avg(jisuanjijichucount),2) FROM ".COUNTD_TABLE." ");
+    $webaveraged=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM ".COUNTD_TABLE." ");
     $tag=tag();
+//    $data=history_value();
+//    $datajson=json_encode($data)
     ?>
-<html>
+
+
+<html lang="en">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="css-folder/aristo/jquery-ui-1.8.5.custom.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css-folder/Timeglider.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <script src="/your_js_folder/jquery.js" type='text/javascript'></script>
+        <script src="your_js_folder/timeglider.min.js" type='text/javascript'></script>
 <script type="text/javascript">
     $(function () {
         tagcloud({
@@ -150,6 +165,147 @@ function spark_settings_submenu_page2(){
             direction: 135,     //初始滚动方向
             keep: true          //鼠标移出组件后是否继续随鼠标滚动
         });
+        $('#containerb').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '用户浏览量占比'
+            },
+            tooltip: {
+                headerFormat: '{series.name}<br>',
+                pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '用户浏览量占比',
+                data: [
+                    ['<?php echo $history0 ?>',   <?php echo $history5?>],
+                    ['<?php echo $history1 ?>',   <?php echo $history6?>],
+                    ['<?php echo $history2 ?>',   <?php echo $history7?>],
+                    ['<?php echo $history3 ?>',   <?php echo $history8?>],
+                    ['<?php echo $history4 ?>',   <?php echo $history9?>]
+                ]
+            }]
+        });
+        var timelong1 = <?php echo json_encode($timelong1);?>;
+        var timelong2=<?php echo json_encode($timelong2);?>;
+        var timelong3=<?php echo json_encode($timelong3);?>;
+        var timelong4=<?php echo json_encode($timelong4);?>;
+        $('#containerzx').highcharts(
+{
+
+            chart: {
+                zoomType: 'x'
+            },
+            title: {
+                text: '用户兴趣变化图'
+            },
+            subtitle: {
+                text: document.ontouchstart === undefined ?
+                    '鼠标拖动可以进行缩放' : '手势操作进行缩放'
+            },
+            xAxis: {
+                type: 'datetime',
+                dateTimeLabelFormats: {
+                    millisecond: '%H:%M:%S.%L',
+                    second: '%H:%M:%S',
+                    minute: '%H:%M',
+                    hour: '%H:%M',
+                    day: '%m-%d',
+                    week: '%m-%d',
+                    month: '%Y-%m',
+                    year: '%Y'
+                }
+            },
+            tooltip: {
+                dateTimeLabelFormats: {
+                    millisecond: '%H:%M:%S.%L',
+                    second: '%H:%M:%S',
+                    minute: '%H:%M',
+                    hour: '%H:%M',
+                    day: '%Y-%m-%d',
+                    week: '%m-%d',
+                    month: '%Y-%m',
+                    year: '%Y'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: '次数'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+            plotOptions: {
+                area: {
+                    fillColor: {
+                        linearGradient: {
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops: [
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                        ]
+                    },
+                    marker: {
+                        radius: 2
+                    },
+                    lineWidth: 1,
+                    states: {
+                        hover: {
+                            lineWidth: 1
+                        }
+                    },
+                    threshold: null
+                }
+            },
+            series: [{
+            name: '计算机',
+            data: timelong4,
+            pointInterval: 24 * 3600 * 1000,
+                pointStart: Date.UTC(2017, 5, 1),
+        }, {
+            name: '电子',
+            data: timelong2,
+            pointInterval: 24 * 3600 * 1000,
+                pointStart: Date.UTC(2017, 5, 1),
+        }, {
+            name: '人工智能',
+            data: timelong1,
+                pointInterval: 24 * 3600 * 1000,
+                pointStart: Date.UTC(2017, 5, 1),
+        }, {
+            name: '通信',
+            data: timelong3,
+                pointInterval: 24 * 3600 * 1000,
+                pointStart: Date.UTC(2017, 5, 1),
+        }],
+
+
+        });
+
         $('#containersc').highcharts({
             chart: {
                 polar: true,
@@ -166,8 +322,8 @@ function spark_settings_submenu_page2(){
                 size: '80%'
             },
             xAxis: {
-                categories: ['php', 'html', 'js', 'mycookie',
-                    '单片机', 'css','sql','microduino','android','ios','平台','web','matlab'],
+                categories: ['机器学习', '计算机视觉', '推荐系统', '电路分析',
+                    '单片机', '数字电路','通信原理','移动通信','电磁波','编程语言','计算机基础','网络'],
                 tickmarkPlacement: 'on',
                 lineWidth: 0
             },
@@ -188,11 +344,11 @@ function spark_settings_submenu_page2(){
             },
             series: [{
                 name: '用户擅长方向',
-                data: [ <?php echo $phpcount?>,<?php echo $htmlcount?>, <?php echo $jscount?>, <?php echo $mycookiecount ?>,<?php echo $danpianjicount ?>, <?php echo $csscount ?>,<?php echo $sqlcount ?>,<?php echo $duinocount ?>,<?php echo $androidcount ?>,<?php echo $ioscount ?>, <?php echo $pingtaicount ?>,<?php echo $webcount ?>,<?php echo $matlabcount ?>],
+                data: [ <?php echo $jiqixuexicount?>,<?php echo $jisuanjishijuecount?>, <?php echo $tuijiancount?>, <?php echo $dianlufenxicount ?>,<?php echo $danpianjicount ?>, <?php echo $shuzidianlucount ?>,<?php echo $tongyuancount ?>,<?php echo $tongxincount ?>,<?php echo $diancicount ?>,<?php echo $bianchengcount ?>, <?php echo $jisuanjijichucount ?>,<?php echo $webcount ?>],
                 pointPlacement: 'on',
             }, {
                 name: '平均值',
-                data: [ <?php echo $phpaverage?>,<?php echo $htmlaverage?>, <?php echo $jsaverage?>, <?php echo $mycookieaverage ?>,<?php echo $danpianjiaverage ?>, <?php echo $cssaverage ?>,<?php echo $sqlaverage ?>,<?php echo $duinoaverage ?>,<?php echo $androidaverage ?>,<?php echo $iosaverage ?>, <?php echo $pingtaiaverage ?>,<?php echo $webaverage ?>,<?php echo $matlabaverage ?>],
+                data: [ <?php echo $jiqixuexiaverage?>,<?php echo $jisuanjishijueaverage?>, <?php echo $tuijianaverage?>, <?php echo $dianlufenxiaverage ?>,<?php echo $danpianjiaverage ?>, <?php echo $shuzidianluaverage ?>,<?php echo $tongyuanaverage ?>,<?php echo $tongxinaverage ?>,<?php echo $dianciaverage ?>,<?php echo $bianchengaverage ?>, <?php echo $jisuanjijichuaverage ?>,<?php echo $webaverage ?>],
                 pointPlacement: 'on',
             }]
         });
@@ -213,8 +369,8 @@ function spark_settings_submenu_page2(){
                 size: '80%'
             },
             xAxis: {
-                categories: ['php', 'html', 'js', 'mycookie',
-                    '单片机', 'css','sql','microduino','android','ios','web','平台','matlab'],
+                categories: ['机器学习', '计算机视觉', '推荐系统', '电路分析',
+                '单片机', '数字电路','通信原理','移动通信','电磁波','编程语言','计算机基础','网络'],
                 tickmarkPlacement: 'on',
                 lineWidth: 0
             },
@@ -235,11 +391,11 @@ function spark_settings_submenu_page2(){
             },
             series: [{
                 name: '用户兴趣方向',
-                data: [ <?php echo $phpcountdesire?>,<?php echo $htmlcountdesire?>, <?php echo $jscountdesire?>, <?php echo $mycookiecountdesire ?>,<?php echo $danpianjicountdesire ?>, <?php echo $csscountdesire ?>,<?php echo $sqlcountdesire ?>,<?php echo $duinocountdesire ?>,<?php echo $androidcountdesire ?>,<?php echo $ioscountdesire ?>, <?php echo $pingtaicountdesire ?>,<?php echo $webcountdesire ?>,<?php echo $matlabcountdesire ?>],
+                data: [ <?php echo $jiqixuexicountd?>,<?php echo $jisuanjishijuecountd?>, <?php echo $tuijiancountd?>, <?php echo $dianlufenxicountd ?>,<?php echo $danpianjicountd ?>, <?php echo $shuzidianlucountd ?>,<?php echo $tongyuancountd ?>,<?php echo $tongxincountd ?>,<?php echo $diancicountd ?>,<?php echo $bianchengcountd ?>, <?php echo $jisuanjijichucountd ?>,<?php echo $webcountd ?>],
                 pointPlacement: 'on'
             },{
                 name: '平均值',
-                data: [ <?php echo $phpdesireaverage?>,<?php echo $htmldesireaverage?>, <?php echo $jsdesireaverage?>, <?php echo $mycookiedesireaverage ?>,<?php echo $danpianjidesireaverage ?>, <?php echo $cssdesireaverage ?>,<?php echo $sqldesireaverage ?>,<?php echo $duinodesireaverage ?>,<?php echo $androiddesireaverage ?>,<?php echo $iosdesireaverage ?>, <?php echo $pingtaidesireaverage ?>,<?php echo $webdesireaverage ?>,<?php echo $matlabdesireaverage ?>],
+                data: [ <?php echo $jiqixuexiaveraged?>,<?php echo $jisuanjishijueaveraged?>, <?php echo $tuijianaveraged?>, <?php echo $dianlufenxiaveraged ?>,<?php echo $danpianjiaveraged ?>, <?php echo $shuzidianluaveraged ?>,<?php echo $tongyuanaveraged ?>,<?php echo $tongxinaveraged ?>,<?php echo $dianciaveraged ?>,<?php echo $bianchengaveraged ?>, <?php echo $jisuanjijichuaveraged ?>,<?php echo $webaveraged ?>],
                 pointPlacement: 'on'
             }]
         });
@@ -475,6 +631,15 @@ function spark_settings_submenu_page2(){
         sc = Math.sin(c * dtr);
         cc = Math.cos(c * dtr);
     }
+        $(document).ready(function () {
+                    var data=[1,2,3,4,5];
+            data=JSON.stringify( data );
+            var tg1 = $("#placement").timeline({
+                "data_source":data,
+                "min_zoom ":15,
+                "max_zoom ":60,
+            });
+        });
    </script>
     </head>
     <STYLE TYPE="text/css">
@@ -543,13 +708,13 @@ function spark_settings_submenu_page2(){
     <div class="row">
         <!--            <div class="col-md-6" style="background-color: white;box-shadow:-->
         <!--         inset 1px -1px 1px #444, inset -1px 1px 1px #444;">-->
-        <div class="col-md-6" style="background-color: white;width: 47%">
+        <div class="col-md-6" style="background-color: white;width: 48%">
             <div style="text-align:center;background-color:rgb(100,201,202);margin-top: 22px;width: 93px;height: 93px;margin-left: 40%;border-radius: 50%;border: solid 1px rgb(100,201,202)"><i class="fa fa-user fa-5x " style="color:white;"></i></div>
             <div ><p style="position:relative;text-align:center;font-size:40px;top:20px"><?php echo get_option('spark_search_user_copy_right') ?></p></div>
             <br/>
             <br/>
         </div>
-        <div id="mokuai" class="col-md-6" style="background-color: white;width: 47%">
+        <div id="mokuai" class="col-md-6" style="background-color: white;width: 48%">
             <p style="    margin-top: 20px;
     margin-left: 10px;">用户标签云</p>
             <a class="red"><?php good()?></a>
@@ -566,12 +731,12 @@ function spark_settings_submenu_page2(){
     </div>
     <div class="row">
 
-        <div   class="col-md-6" style="background-color: white;width: 47%">
+        <div   class="col-md-6" style="background-color: white;width: 48%">
             <p>用户擅长</p>
         </div>
 
-        <div  class="col-md-6" style="background-color: white;width: 47%;">
-       <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div   class="col-md-6" style="background-color: white;margin-left: 30px;width: 48%;">
+       <p>
 
            用户兴趣</p>
 
@@ -582,18 +747,17 @@ function spark_settings_submenu_page2(){
     </div>
     <div class="row">
 
-        <div   class="col-md-6" style="background-color: white;width: 47%">
+        <div   class="col-md-6" style="background-color: white;width: 48%">
             <div id="containersc" style="min-width:400px;height:400px"></div>
         </div>
 
-        <div  class="col-md-6" style="background-color: white;width: 47%;position: absolute;height: 400px;left: 626px;top: 362px;">
-            <div   class="col-md-6" style="background-color: white;width: 47%
-               ">
+<!--        <div  class="col-md-6" style="background-color: white;width: 47%;position: absolute;height: 400px;left: 626px;top: 362px;">-->
+            <div   class="col-md-6" style="background-color: white;margin-left: 30px;width: 48%">
                 <div id="containerxq" style="min-width:400px;height:400px"></div>
             </div>
 
 
-        </div>
+<!--        </div>-->
 
 
     </div>
@@ -611,34 +775,24 @@ function spark_settings_submenu_page2(){
                     <th>平均分</th>
                 </tr>
                 <tr>
-                    <td>php</td>
-                    <td><?php echo $phpcount?></td>
-                    <td><?php echo $phpaverage?></td>
+                    <td>机器学习</td>
+                    <td><?php echo $jiqixuexicount?></td>
+                    <td><?php echo $jiqixuexiaverage?></td>
                 </tr>
                 <tr>
-                    <td>html</td>
-                    <td><?php echo $htmlcount?></td>
-                    <td><?php echo $htmlaverage?></td>
+                    <td>计算机视觉</td>
+                    <td><?php echo $jisuanjishijuecount?></td>
+                    <td><?php echo $jisuanjishijueaverage?></td>
                 </tr>
                 <tr>
-                    <td>js</td>
-                    <td><?php echo $jscount?></td>
-                    <td><?php echo $jsaverage?></td>
+                    <td>推荐系统</td>
+                    <td><?php echo $tuijiancount?></td>
+                    <td><?php echo $tuijianaverage?></td>
                 </tr>
                 <tr>
-                    <td>microduino</td>
-                    <td><?php echo $duinocount ?></td>
-                    <td><?php echo $duinoaverage?></td>
-                </tr>
-                <tr>
-                    <td>平台</td>
-                    <td><?php echo $pingtaicount ?></td>
-                    <td><?php echo $pingtaiaverage?></td>
-                </tr>
-                <tr>
-                    <td>mycookie</td>
-                    <td><?php echo $mycookiecount ?></td>
-                    <td><?php echo $mycookieaverage?></td>
+                    <td>电路分析</td>
+                    <td><?php echo $dianlufenxicount ?></td>
+                    <td><?php echo $dianlufenxiaverage?></td>
                 </tr>
                 <tr>
                     <td>单片机</td>
@@ -646,34 +800,39 @@ function spark_settings_submenu_page2(){
                     <td><?php echo $danpianjiaverage?></td>
                 </tr>
                 <tr>
-                    <td>css</td>
-                    <td><?php echo $csscount ?></td>
-                    <td><?php echo $cssaverage?></td>
+                    <td>数字电路</td>
+                    <td><?php echo $shuzidianlucount ?></td>
+                    <td><?php echo $shuzidianluaverage?></td>
                 </tr>
                 <tr>
-                    <td>sql</td>
-                    <td><?php echo $sqlcount ?></td>
-                    <td><?php echo $sqlaverage?></td>
+                    <td>通信原理</td>
+                    <td><?php echo $tongyuancount ?></td>
+                    <td><?php echo $tongyuanaverage?></td>
                 </tr>
                 <tr>
-                    <td>ios</td>
-                    <td><?php echo $ioscount ?></td>
-                    <td><?php echo $iosaverage?></td>
+                    <td>移动通信</td>
+                    <td><?php echo $tongxincount ?></td>
+                    <td><?php echo $tongxinaverage?></td>
                 </tr>
                 <tr>
-                    <td>andriod</td>
-                    <td><?php echo $androidcount ?></td>
-                    <td><?php echo $androidaverage?></td>
+                    <td>电磁波</td>
+                    <td><?php echo $diancicount ?></td>
+                    <td><?php echo $dianciaverage?></td>
                 </tr>
                 <tr>
-                    <td>web</td>
+                    <td>编程语言</td>
+                    <td><?php echo $bianchengcount ?></td>
+                    <td><?php echo $bianchengaverage?></td>
+                </tr>
+                <tr>
+                    <td>计算机基础</td>
+                    <td><?php echo $jisuanjijichucount ?></td>
+                    <td><?php echo $jisuanjijichuaverage?></td>
+                </tr>
+                <tr>
+                    <td>网络</td>
                     <td><?php echo $webcount ?></td>
                     <td><?php echo $webaverage?></td>
-                </tr>
-                <tr>
-                    <td>matlab</td>
-                    <td><?php echo $matlabcount ?></td>
-                    <td><?php echo $matlabaverage?></td>
                 </tr>
             </table>
         </div>
@@ -687,75 +846,82 @@ function spark_settings_submenu_page2(){
                     <th>平均分</th>
                 </tr>
                 <tr>
-                    <td>php</td>
-                    <td><?php echo $phpcountdesire?></td>
-                    <td><?php echo $phpdesireaverage?></td>
+                    <td>机器学习</td>
+                    <td><?php echo $jiqixuexicountd?></td>
+                    <td><?php echo $jiqixuexiaveraged?></td>
                 </tr>
                 <tr>
-                    <td>html</td>
-                    <td><?php echo $htmlcountdesire?></td>
-                    <td><?php echo $htmldesireaverage?></td>
+                    <td>计算机视觉</td>
+                    <td><?php echo $jisuanjishijuecountd?></td>
+                    <td><?php echo $jisuanjishijueaveraged?></td>
                 </tr>
                 <tr>
-                    <td>js</td>
-                    <td><?php echo $jscountdesire?></td>
-                    <td><?php echo $jsdesireaverage?></td>
+                    <td>推荐系统</td>
+                    <td><?php echo $tuijiancountd?></td>
+                    <td><?php echo $tuijianaveraged?></td>
                 </tr>
                 <tr>
-                    <td>microduino</td>
-                    <td><?php echo $duinocountdesire ?></td>
-                    <td><?php echo $duinodesireaverage?></td>
-                </tr>
-                <tr>
-                    <td>平台</td>
-                    <td><?php echo $pingtaicountdesire ?></td>
-                    <td><?php echo $pingtaidesireaverage?></td>
-                </tr>
-                <tr>
-                    <td>mycookie</td>
-                    <td><?php echo $mycookiecountdesire ?></td>
-                    <td><?php echo $mycookiedesireaverage?></td>
+                    <td>电路分析</td>
+                    <td><?php echo $dianlufenxicountd ?></td>
+                    <td><?php echo $dianlufenxiaveraged?></td>
                 </tr>
                 <tr>
                     <td>单片机</td>
-                    <td><?php echo $danpianjicountdesire ?></td>
-                    <td><?php echo $danpianjidesireaverage?></td>
+                    <td><?php echo $danpianjicountd ?></td>
+                    <td><?php echo $danpianjiaveraged?></td>
                 </tr>
                 <tr>
-                    <td>css</td>
-                    <td><?php echo $csscountdesire ?></td>
-                    <td><?php echo $cssdesireaverage?></td>
+                    <td>数字电路</td>
+                    <td><?php echo $shuzidianlucountd ?></td>
+                    <td><?php echo $shuzidianluaveraged?></td>
                 </tr>
                 <tr>
-                    <td>sql</td>
-                    <td><?php echo $sqlcountdesire ?></td>
-                    <td><?php echo $sqldesireaverage?></td>
+                    <td>通信原理</td>
+                    <td><?php echo $tongyuancountd ?></td>
+                    <td><?php echo $tongyuanaveraged?></td>
                 </tr>
                 <tr>
-                    <td>ios</td>
-                    <td><?php echo $ioscountdesire ?></td>
-                    <td><?php echo $iosdesireaverage?></td>
+                    <td>移动通信</td>
+                    <td><?php echo $tongxincountd ?></td>
+                    <td><?php echo $tongxinaveraged?></td>
                 </tr>
                 <tr>
-                    <td>andriod</td>
-                    <td><?php echo $androidcountdesire ?></td>
-                    <td><?php echo $androiddesireaverage?></td>
+                    <td>电磁波</td>
+                    <td><?php echo $diancicountd ?></td>
+                    <td><?php echo $dianciaveraged?></td>
                 </tr>
                 <tr>
-                    <td>web</td>
-                    <td><?php echo $webcountdesire ?></td>
-                    <td><?php echo $webdesireaverage?></td>
+                    <td>编程语言</td>
+                    <td><?php echo $bianchengcountd ?></td>
+                    <td><?php echo $bianchengaveraged?></td>
                 </tr>
                 <tr>
-                    <td>matlab</td>
-                    <td><?php echo $matlabcountdesire ?></td>
-                    <td><?php echo $matlabdesireaverage?></td>
+                    <td>计算机基础</td>
+                    <td><?php echo $jisuanjijichucountd ?></td>
+                    <td><?php echo $jisuanjijichuaveraged?></td>
+                </tr>
+                <tr>
+                    <td>网络</td>
+                    <td><?php echo $webcountd ?></td>
+                    <td><?php echo $webaveraged?></td>
                 </tr>
             </table>
         </div>
     </div>
+    <div class="row">
+
+        <div   class="col-md-6" style="background-color: white;width: 48%">
+            <div id="containerb" style="min-width:400px;height:400px"></div>
+        </div>
+        <div   class="col-md-6" style="background-color: white;margin-left: 30px;width: 48%">
+            <div id="containerzx" style="min-width:400px;height:400px"></div>
+        </div>
 
 
+        <!--        </div>-->
+
+
+    </div>
 
 
 
@@ -789,21 +955,23 @@ function getinterest(){
         $m++;
         $c--;
     }
-    $phpnum1=substr_count($articul,'php')+substr_count($articul,'PHP')+substr_count($articul,'Php');
-    $htmlnum1=substr_count($articul,'html')+substr_count($articul,'HTML')+substr_count($articul,'Html');
-    $jsnum1=substr_count($articul,'javascript')+substr_count($articul,'js')+substr_count($articul,'JS')+substr_count($articul,'JavaScript')+substr_count($articul,'Javascript');
-    $mycookienum1=substr_count($articul,'mycookie')+substr_count($articul,'Mycookie');
-    $danpianjinum1=substr_count($articul,'单片机');
-    $cssnum1=substr_count($articul,'css')+substr_count($articul,'CSS');
-    $sqlnum1=substr_count($articul,'mysql')+substr_count($articul,'数据库')+substr_count($articul,'Mysql')+substr_count($articul,'phpmyadmin')
-        +substr_count($articul,'Phpmyadmin')+substr_count($articul,'phpMyAdmin')+substr_count($articul,'sql')+substr_count($articul,'SQL')
-        +substr_count($articul,'access')+substr_count($articul,'Access')+substr_count($articul,'oracle')+substr_count($articul,'Oracle')+substr_count($articul,'MySQL');
-    $duinonum1=substr_count($articul,'duino');
-    $android1=substr_count($articul,'android')+substr_count($articul,'Android');
-    $iosnum1=substr_count($articul,'IOS')+substr_count($articul,'ios');
-    $pingtainum1=substr_count($articul,'开放平台')+substr_count($articul,'硬件平台')+substr_count($articul,'开发平台');
-    $webnum1=substr_count($articul,'web')+substr_count($articul,'Web')+substr_count($articul,'前端')+substr_count($articul,'后端');
-    $matlabnum1=substr_count($articul,'matlab')+substr_count($articul,'MATLAB')+substr_count($articul,'Matlab');
+    $jiqixuexinum1=substr_count($articul,'聚类')+substr_count($articul,'算法')+substr_count($articul,'贝叶斯')+substr_count($articul,'神经网络')+substr_count($articul,'决策树');
+    $jisuanjishijuenum1=substr_count($articul,'图像')+substr_count($articul,'识别')+substr_count($articul,'监督')+substr_count($articul,'特征');
+    $tuijiannum1=substr_count($articul,'用户')+substr_count($articul,'属性')+substr_count($articul,'冷启动')+substr_count($articul,'推荐')+substr_count($articul,'画像');
+    $danpianjinum1=substr_count($articul,'引脚')+substr_count($articul,'mCookie')+substr_count($articul,'Arduino')+substr_count($articul,'pin')+substr_count($articul,'串口')+substr_count($articul,'单片机')+substr_count($articul,'led');
+    $dianlufenxinum1=substr_count($articul,'电路')+substr_count($articul,'电流')+substr_count($articul,'电阻')+substr_count($articul,'戴维南')+substr_count($articul,'电极')+substr_count($articul,'等效');
+    $shuzidianlunum1=substr_count($articul,'MOS')+substr_count($articul,'半导体')+substr_count($articul,'三极管')+substr_count($articul,'电平')+substr_count($articul,'译码器')+substr_count($articul,'场效应管');
+    $tongyuannum1=substr_count($articul,'卷积')+substr_count($articul,'互信息')+substr_count($articul,'傅里叶')+substr_count($articul,'傅立叶')
+        +substr_count($articul,'信道')+substr_count($articul,'信源')+substr_count($articul,'香农')+substr_count($articul,'噪声')
+        +substr_count($articul,'滤波')+substr_count($articul,'IIR')+substr_count($articul,'量化')+substr_count($articul,'FIR')+substr_count($articul,'载波');
+    $tongxinnum1=substr_count($articul,'以太网')+substr_count($articul,'衰落')+substr_count($articul,'复用')+substr_count($articul,'GSM')+substr_count($articul,'4G')+substr_count($articul,'5G')+substr_count($articul,'蜂窝')+substr_count($articul,'基站')
+        +substr_count($articul,'多径')+substr_count($articul,'扩频');
+    $diancinum1=substr_count($articul,'电荷')+substr_count($articul,'磁场')+substr_count($articul,'线圈')+substr_count($articul,'电势')+substr_count($articul,'麦克斯韦')+substr_count($articul,'通量')+substr_count($articul,'库伦');
+    $bianchengnum1=substr_count($articul,'指针')+substr_count($articul,'变量')+substr_count($articul,'类型')+substr_count($articul,'数组')+substr_count($articul,'PHP')+substr_count($articul,'php')+substr_count($articul,'Pyhton')+substr_count($articul,'python')
+        +substr_count($articul,'html')+substr_count($articul,'Html')+substr_count($articul,'js')+substr_count($articul,'JS')+substr_count($articul,'javascript')+substr_count($articul,'css')+substr_count($articul,'chart');
+    $jisuanjijichunum1=substr_count($articul,'操作系统')+substr_count($articul,'Linux')+substr_count($articul,'DOS')+substr_count($articul,'微软')+substr_count($articul,'CPU')+substr_count($articul,'磁场');
+    $webnum1=substr_count($articul,'路由器')+substr_count($articul,'网络拓扑')+substr_count($articul,'OSPFv2')+substr_count($articul,'SFC')+substr_count($articul,'组播');
+
 
     //回答模块
     ////
@@ -829,39 +997,39 @@ function getinterest(){
         $m++;
         $c--;
     }
-    $phpnum2=substr_count($articul,'php')+substr_count($articul,'PHP')+substr_count($articul,'Php');
-    $htmlnum2=substr_count($articul,'html')+substr_count($articul,'HTML')+substr_count($articul,'Html');
-    $jsnum2=substr_count($articul,'javascript')+substr_count($articul,'js')+substr_count($articul,'JS')+substr_count($articul,'JavaScript')+substr_count($articul,'Javascript');
-    $mycookienum2=substr_count($articul,'mycookie')+substr_count($articul,'Mycookie');
-    $danpianjinum2=substr_count($articul,'单片机');
-    $cssnum2=substr_count($articul,'css')+substr_count($articul,'CSS');
-    $sqlnum2=substr_count($articul,'mysql')+substr_count($articul,'数据库')+substr_count($articul,'Mysql')+substr_count($articul,'phpmyadmin')
-        +substr_count($articul,'Phpmyadmin')+substr_count($articul,'phpMyAdmin')+substr_count($articul,'sql')+substr_count($articul,'SQL')
-        +substr_count($articul,'access')+substr_count($articul,'Access')+substr_count($articul,'oracle')+substr_count($articul,'Oracle')+substr_count($articul,'MySQL');
-    $duinonum2=substr_count($articul,'duino');
-    $android2=substr_count($articul,'android')+substr_count($articul,'Android');
-    $iosnum2=substr_count($articul,'IOS')+substr_count($articul,'ios');
-    $pingtainum2=substr_count($articul,'开放平台')+substr_count($articul,'硬件平台')+substr_count($articul,'开发平台');
-    $webnum2=substr_count($articul,'web')+substr_count($articul,'Web')+substr_count($articul,'前端')+substr_count($articul,'后端');
-    $matlabnum2=substr_count($articul,'matlab')+substr_count($articul,'MATLAB')+substr_count($articul,'Matlab');
+    $jiqixuexinum2=substr_count($articul,'聚类')+substr_count($articul,'算法')+substr_count($articul,'贝叶斯')+substr_count($articul,'神经网络')+substr_count($articul,'决策树');
+    $jisuanjishijuenum2=substr_count($articul,'图像')+substr_count($articul,'识别')+substr_count($articul,'监督')+substr_count($articul,'特征');
+    $tuijiannum2=substr_count($articul,'用户')+substr_count($articul,'属性')+substr_count($articul,'冷启动')+substr_count($articul,'推荐')+substr_count($articul,'画像');
+    $danpianjinum2=substr_count($articul,'引脚')+substr_count($articul,'mCookie')+substr_count($articul,'Arduino')+substr_count($articul,'pin')+substr_count($articul,'串口')+substr_count($articul,'单片机')+substr_count($articul,'led');
+    $dianlufenxinum2=substr_count($articul,'电路')+substr_count($articul,'电流')+substr_count($articul,'电阻')+substr_count($articul,'戴维南')+substr_count($articul,'电极')+substr_count($articul,'等效');
+    $shuzidianlunum2=substr_count($articul,'MOS')+substr_count($articul,'半导体')+substr_count($articul,'三极管')+substr_count($articul,'电平')+substr_count($articul,'译码器')+substr_count($articul,'场效应管');
+    $tongyuannum2=substr_count($articul,'卷积')+substr_count($articul,'互信息')+substr_count($articul,'傅里叶')+substr_count($articul,'傅立叶')
+        +substr_count($articul,'信道')+substr_count($articul,'信源')+substr_count($articul,'香农')+substr_count($articul,'噪声')
+        +substr_count($articul,'滤波')+substr_count($articul,'IIR')+substr_count($articul,'量化')+substr_count($articul,'FIR')+substr_count($articul,'载波');
+    $tongxinnum2=substr_count($articul,'以太网')+substr_count($articul,'衰落')+substr_count($articul,'复用')+substr_count($articul,'GSM')+substr_count($articul,'4G')+substr_count($articul,'5G')+substr_count($articul,'蜂窝')+substr_count($articul,'基站')
+        +substr_count($articul,'多径')+substr_count($articul,'扩频');
+    $diancinum2=substr_count($articul,'电荷')+substr_count($articul,'磁场')+substr_count($articul,'线圈')+substr_count($articul,'电势')+substr_count($articul,'麦克斯韦')+substr_count($articul,'通量')+substr_count($articul,'库伦');
+    $bianchengnum2=substr_count($articul,'指针')+substr_count($articul,'变量')+substr_count($articul,'类型')+substr_count($articul,'数组')+substr_count($articul,'PHP')+substr_count($articul,'php')+substr_count($articul,'Pyhton')+substr_count($articul,'python')
+        +substr_count($articul,'html')+substr_count($articul,'Html')+substr_count($articul,'js')+substr_count($articul,'JS')+substr_count($articul,'javascript')+substr_count($articul,'css')+substr_count($articul,'chart');
+    $jisuanjijichunum2=substr_count($articul,'操作系统')+substr_count($articul,'Linux')+substr_count($articul,'DOS')+substr_count($articul,'微软')+substr_count($articul,'CPU')+substr_count($articul,'磁场');
+    $webnum2=substr_count($articul,'路由器')+substr_count($articul,'网络拓扑')+substr_count($articul,'OSPFv2')+substr_count($articul,'SFC')+substr_count($articul,'组播');
     //计算加权值
-    global $phpcount,$htmlcount,$jscount,$mycookiecount,$danpianjicount,$csscount,$sqlcount,$duinocount,$androidcount,
-           $ioscount,$pingtaicount,$webcount;
-    $phpcount=$phpnum1*0.3+$phpnum2;
-    $htmlcount=$htmlnum1*0.3+$htmlnum2;
-    $jscount=$jsnum1*0.3+$jsnum2;
-    $mycookiecount=$mycookienum1*0.3+$mycookienum2;
+    global $jiqixuexicount,$jisuanjishijuecount,$tuijiancount,$danpianjicount,$dianlufenxicount,$shuzidianlucount,$tongyuancount,$tongxincount,$diancicount,
+           $bianchengcount,$jisuanjijichucount,$webcount;
+    $jiqixuexicount=$jiqixuexinum1*0.3+$jiqixuexinum2;
+    $jisuanjishijuecount=$jisuanjishijuenum1*0.3+$jisuanjishijuenum2;
+    $tuijiancount=$tuijiannum1*0.3+$tuijiannum2;
+    $dianlufenxicount=$dianlufenxinum1*0.3+$dianlufenxinum2;
     $danpianjicount=$danpianjinum1*0.3+$danpianjinum2;
-    $csscount=$cssnum1*0.3+$cssnum2;
-    $sqlcount=$sqlnum1*0.3+$sqlnum2;
-    $duinocount=$duinonum1*0.3+$duinonum2;
-    $androidcount=$android1*0.3+$android2;
-    $ioscount=$iosnum1*0.3+$iosnum2;
-    $pingtaicount=$pingtainum1*0.3+$pingtainum2;
+    $shuzidianlucount=$shuzidianlunum1*0.3+$shuzidianlunum2;
+    $tongyuancount=$tongyuannum1*0.3+$tongyuannum2;
+    $tongxincount=$tongxinnum1*0.3+$tongxinnum2;
+    $diancicount=$diancinum1*0.3+$diancinum2;
+    $bianchengcount=$bianchengnum1*0.3+$bianchengnum2;
+    $jisuanjijichucount=$jisuanjijichunum1*0.3+$jisuanjijichunum2;
     $webcount=$webnum1*0.3+$webnum2;
-    $matlabcount=$matlabnum1*0.3+$matlabnum2;
 
-    return $score="$phpcount,$htmlcount,$jscount,$mycookiecount,$danpianjicount,$csscount,$sqlcount,$duinocount,$androidcount,$ioscount,$pingtaicount,$webcount,$matlabcount";
+    return $score="$jiqixuexicount,$jisuanjishijuecount,$tuijiancount,$dianlufenxicount,$danpianjicount,$shuzidianlucount,$tongyuancount,$tongxincount,$diancicount,$bianchengcount,$jisuanjijichucount,$webcount";
 
 }
 function getdesire(){
@@ -890,21 +1058,23 @@ function getdesire(){
         $m++;
         $c--;
     }
-    $phpnum1=substr_count($articul,'php')+substr_count($articul,'PHP')+substr_count($articul,'Php');
-    $htmlnum1=substr_count($articul,'html')+substr_count($articul,'HTML')+substr_count($articul,'Html');
-    $jsnum1=substr_count($articul,'javascript')+substr_count($articul,'js')+substr_count($articul,'JS')+substr_count($articul,'JavaScript')+substr_count($articul,'Javascript');
-    $mycookienum1=substr_count($articul,'mycookie')+substr_count($articul,'Mycookie');
-    $danpianjinum1=substr_count($articul,'单片机');
-    $cssnum1=substr_count($articul,'css')+substr_count($articul,'CSS');
-    $sqlnum1=substr_count($articul,'mysql')+substr_count($articul,'数据库')+substr_count($articul,'Mysql')+substr_count($articul,'phpmyadmin')
-        +substr_count($articul,'Phpmyadmin')+substr_count($articul,'phpMyAdmin')+substr_count($articul,'sql')+substr_count($articul,'SQL')
-        +substr_count($articul,'access')+substr_count($articul,'Access')+substr_count($articul,'oracle')+substr_count($articul,'Oracle')+substr_count($articul,'MySQL');
-    $duinonum1=substr_count($articul,'duino');
-    $android1=substr_count($articul,'android')+substr_count($articul,'Android');
-    $iosnum1=substr_count($articul,'IOS')+substr_count($articul,'ios');
-    $pingtainum1=substr_count($articul,'开放平台')+substr_count($articul,'硬件平台')+substr_count($articul,'开发平台');
-    $webnum1=substr_count($articul,'web')+substr_count($articul,'Web')+substr_count($articul,'前端')+substr_count($articul,'后端');
-    $matlabnum1=substr_count($articul,'matlab')+substr_count($articul,'MATLAB')+substr_count($articul,'Matlab');
+    $jiqixuexinum1=substr_count($articul,'聚类')+substr_count($articul,'算法')+substr_count($articul,'贝叶斯')+substr_count($articul,'神经网络')+substr_count($articul,'决策树');
+    $jisuanjishijuenum1=substr_count($articul,'图像')+substr_count($articul,'识别')+substr_count($articul,'监督')+substr_count($articul,'特征');
+    $tuijiannum1=substr_count($articul,'用户')+substr_count($articul,'属性')+substr_count($articul,'冷启动')+substr_count($articul,'推荐')+substr_count($articul,'画像');
+    $danpianjinum1=substr_count($articul,'引脚')+substr_count($articul,'mCookie')+substr_count($articul,'Arduino')+substr_count($articul,'pin')+substr_count($articul,'串口')+substr_count($articul,'单片机')+substr_count($articul,'led');
+    $dianlufenxinum1=substr_count($articul,'电路')+substr_count($articul,'电流')+substr_count($articul,'电阻')+substr_count($articul,'戴维南')+substr_count($articul,'电极')+substr_count($articul,'等效');
+    $shuzidianlunum1=substr_count($articul,'MOS')+substr_count($articul,'半导体')+substr_count($articul,'三极管')+substr_count($articul,'电平')+substr_count($articul,'译码器')+substr_count($articul,'场效应管');
+    $tongyuannum1=substr_count($articul,'卷积')+substr_count($articul,'互信息')+substr_count($articul,'傅里叶')+substr_count($articul,'傅立叶')
+        +substr_count($articul,'信道')+substr_count($articul,'信源')+substr_count($articul,'香农')+substr_count($articul,'噪声')
+        +substr_count($articul,'滤波')+substr_count($articul,'IIR')+substr_count($articul,'量化')+substr_count($articul,'FIR')+substr_count($articul,'载波');
+    $tongxinnum1=substr_count($articul,'以太网')+substr_count($articul,'衰落')+substr_count($articul,'复用')+substr_count($articul,'GSM')+substr_count($articul,'4G')+substr_count($articul,'5G')+substr_count($articul,'蜂窝')+substr_count($articul,'基站')
+        +substr_count($articul,'多径')+substr_count($articul,'扩频');
+    $diancinum1=substr_count($articul,'电荷')+substr_count($articul,'磁场')+substr_count($articul,'线圈')+substr_count($articul,'电势')+substr_count($articul,'麦克斯韦')+substr_count($articul,'通量')+substr_count($articul,'库伦');
+    $bianchengnum1=substr_count($articul,'指针')+substr_count($articul,'变量')+substr_count($articul,'类型')+substr_count($articul,'数组')+substr_count($articul,'PHP')+substr_count($articul,'php')+substr_count($articul,'Pyhton')+substr_count($articul,'python')
+        +substr_count($articul,'html')+substr_count($articul,'Html')+substr_count($articul,'js')+substr_count($articul,'JS')+substr_count($articul,'javascript')+substr_count($articul,'css')+substr_count($articul,'chart');
+    $jisuanjijichunum1=substr_count($articul,'操作系统')+substr_count($articul,'Linux')+substr_count($articul,'DOS')+substr_count($articul,'微软')+substr_count($articul,'CPU')+substr_count($articul,'磁场');
+    $webnum1=substr_count($articul,'路由器')+substr_count($articul,'网络拓扑')+substr_count($articul,'OSPFv2')+substr_count($articul,'SFC')+substr_count($articul,'组播');
+
 
     //搜索模块
     ////
@@ -936,86 +1106,83 @@ function getdesire(){
         $c--;
     }
     //echo $articul;
-    $phpnum2=substr_count($articul,'php')+substr_count($articul,'PHP')+substr_count($articul,'Php');
-    $htmlnum2=substr_count($articul,'html')+substr_count($articul,'HTML')+substr_count($articul,'Html');
-    $jsnum2=substr_count($articul,'javascript')+substr_count($articul,'js')+substr_count($articul,'JS')+substr_count($articul,'JavaScript')+substr_count($articul,'Javascript');
-    $mycookienum2=substr_count($articul,'mycookie')+substr_count($articul,'Mycookie');
-    $danpianjinum2=substr_count($articul,'单片机');
-    $cssnum2=substr_count($articul,'css')+substr_count($articul,'CSS');
-    $sqlnum2=substr_count($articul,'mysql')+substr_count($articul,'数据库')+substr_count($articul,'Mysql')+substr_count($articul,'phpmyadmin')
-        +substr_count($articul,'Phpmyadmin')+substr_count($articul,'phpMyAdmin')+substr_count($articul,'sql')+substr_count($articul,'SQL')
-        +substr_count($articul,'access')+substr_count($articul,'Access')+substr_count($articul,'oracle')+substr_count($articul,'Oracle')+substr_count($articul,'MySQL');
-    $duinonum2=substr_count($articul,'duino');
-    $android2=substr_count($articul,'android')+substr_count($articul,'Android');
-    $iosnum2=substr_count($articul,'IOS')+substr_count($articul,'ios');
-    $pingtainum2=substr_count($articul,'开放平台')+substr_count($articul,'硬件平台')+substr_count($articul,'开发平台');
-    $webnum2=substr_count($articul,'web')+substr_count($articul,'Web')+substr_count($articul,'前端')+substr_count($articul,'后端');
-    $matlabnum2=substr_count($articul,'matlab')+substr_count($articul,'MATLAB')+substr_count($articul,'Matlab');
-    //计算加权值
-    global $phpcount,$htmlcount,$jscount,$mycookiecount,$danpianjicount,$csscount,$sqlcount,$duinocount,$androidcount,
-           $ioscount,$pingtaicount,$webcount,$matlabcount;
-    $phpcount=$phpnum1*2+$phpnum2;
-    $htmlcount=$htmlnum1*2+$htmlnum2;
-    $jscount=$jsnum1*2+$jsnum2;
-    $mycookiecount=$mycookienum1*2+$mycookienum2;
+    $jiqixuexinum2=substr_count($articul,'聚类')+substr_count($articul,'算法')+substr_count($articul,'贝叶斯')+substr_count($articul,'神经网络')+substr_count($articul,'决策树');
+    $jisuanjishijuenum2=substr_count($articul,'图像')+substr_count($articul,'识别')+substr_count($articul,'监督')+substr_count($articul,'特征');
+    $tuijiannum2=substr_count($articul,'用户')+substr_count($articul,'属性')+substr_count($articul,'冷启动')+substr_count($articul,'推荐')+substr_count($articul,'画像');
+    $danpianjinum2=substr_count($articul,'引脚')+substr_count($articul,'mCookie')+substr_count($articul,'Arduino')+substr_count($articul,'pin')+substr_count($articul,'串口')+substr_count($articul,'单片机')+substr_count($articul,'led');
+    $dianlufenxinum2=substr_count($articul,'电路')+substr_count($articul,'电流')+substr_count($articul,'电阻')+substr_count($articul,'戴维南')+substr_count($articul,'电极')+substr_count($articul,'等效');
+    $shuzidianlunum2=substr_count($articul,'MOS')+substr_count($articul,'半导体')+substr_count($articul,'三极管')+substr_count($articul,'电平')+substr_count($articul,'译码器')+substr_count($articul,'场效应管');
+    $tongyuannum2=substr_count($articul,'卷积')+substr_count($articul,'互信息')+substr_count($articul,'傅里叶')+substr_count($articul,'傅立叶')
+        +substr_count($articul,'信道')+substr_count($articul,'信源')+substr_count($articul,'香农')+substr_count($articul,'噪声')
+        +substr_count($articul,'滤波')+substr_count($articul,'IIR')+substr_count($articul,'量化')+substr_count($articul,'FIR')+substr_count($articul,'载波');
+    $tongxinnum2=substr_count($articul,'以太网')+substr_count($articul,'衰落')+substr_count($articul,'复用')+substr_count($articul,'GSM')+substr_count($articul,'4G')+substr_count($articul,'5G')+substr_count($articul,'蜂窝')+substr_count($articul,'基站')
+        +substr_count($articul,'多径')+substr_count($articul,'扩频');
+    $diancinum2=substr_count($articul,'电荷')+substr_count($articul,'磁场')+substr_count($articul,'线圈')+substr_count($articul,'电势')+substr_count($articul,'麦克斯韦')+substr_count($articul,'通量')+substr_count($articul,'库伦');
+    $bianchengnum2=substr_count($articul,'指针')+substr_count($articul,'变量')+substr_count($articul,'类型')+substr_count($articul,'数组')+substr_count($articul,'PHP')+substr_count($articul,'php')+substr_count($articul,'Pyhton')+substr_count($articul,'python')
+        +substr_count($articul,'html')+substr_count($articul,'Html')+substr_count($articul,'js')+substr_count($articul,'JS')+substr_count($articul,'javascript')+substr_count($articul,'css')+substr_count($articul,'chart');
+    $jisuanjijichunum2=substr_count($articul,'操作系统')+substr_count($articul,'Linux')+substr_count($articul,'DOS')+substr_count($articul,'微软')+substr_count($articul,'CPU')+substr_count($articul,'磁场');
+    $webnum2=substr_count($articul,'路由器')+substr_count($articul,'网络拓扑')+substr_count($articul,'OSPFv2')+substr_count($articul,'SFC')+substr_count($articul,'组播');
+    global $jiqixuexicount,$jisuanjishijuecount,$tuijiancount,$danpianjicount,$dianlufenxicount,$shuzidianlucount,$tongyuancount,$tongxincount,$diancicount,
+           $bianchengcount,$jisuanjijichucount,$webcount;
+    $jiqixuexicount=$jiqixuexinum1*2+$jiqixuexinum2;
+    $jisuanjishijuecount=$jisuanjishijuenum1*2+$jisuanjishijuenum2;
+    $tuijiancount=$tuijiannum1*2+$tuijiannum2;
+    $dianlufenxicount=$dianlufenxinum1*2+$dianlufenxinum2;
     $danpianjicount=$danpianjinum1*2+$danpianjinum2;
-    $csscount=$cssnum1*2+$cssnum2;
-    $sqlcount=$sqlnum1*2+$sqlnum2;
-    $duinocount=$duinonum1*2+$duinonum2;
-    $androidcount=$android1*2+$android2;
-    $ioscount=$iosnum1*2+$iosnum2;
-    $pingtaicount=$pingtainum1*2+$pingtainum2;
+    $shuzidianlucount=$shuzidianlunum1*2+$shuzidianlunum2;
+    $tongyuancount=$tongyuannum1*2+$tongyuannum2;
+    $tongxincount=$tongxinnum1*2+$tongxinnum2;
+    $diancicount=$diancinum1*2+$diancinum2;
+    $bianchengcount=$bianchengnum1*2+$bianchengnum2;
+    $jisuanjijichucount=$jisuanjijichunum1*2+$jisuanjijichunum2;
     $webcount=$webnum1*2+$webnum2;
-    $matlabcount=$matlabnum1*2+$matlabnum2;
 
-    return $score="$phpcount,$htmlcount,$jscount,$mycookiecount,$danpianjicount,$csscount,$sqlcount,$duinocount,$androidcount,$ioscount,$pingtaicount,$webcount,$matlabcount";
+    return $score="$jiqixuexicount,$jisuanjishijuecount,$tuijiancount,$dianlufenxicount,$danpianjicount,$shuzidianlucount,$tongyuancount,$tongxincount,$diancicount,$bianchengcount,$jisuanjijichucount,$webcount";
 
 }
 function good(){
     $socre=explode(",",getinterest());
-    $phpcount=$socre[0];
-    $htmlcount=$socre[1];
-    $jscount=$socre[2];
-    $mycookiecount=$socre[3];
+    $jiqixuexicount=$socre[0];
+    $jisuanjishijuecount=$socre[1];
+    $tuijiancount=$socre[2];
+    $dianlufenxicount=$socre[3];
     $danpianjicount=$socre[4];
-    $csscount=$socre[5];
-    $sqlcount=$socre[6];
-    $duinocount=$socre[7];
-    $androidcount=$socre[8];
-    $ioscount=$socre[9];
-    $pingtaicount=$socre[10];
+    $shuzidianlucount=$socre[5];
+    $tongyuancount=$socre[6];
+    $tongxincount=$socre[7];
+    $diancicount=$socre[8];
+    $bianchengcount=$socre[9];
+    $jisuanjijichucount=$socre[10];
     $webcount=$socre[11];
-    $matlabcount=$socre[12];
     global $wpdb;
-    $phpaverage=$wpdb->get_var( "SELECT round(avg(phpcount),2) FROM ".COUNT_TABLE." ");
-    $htmlaverage=$wpdb->get_var( "SELECT round(avg(htmlcount),2) FROM ".COUNT_TABLE." ");
-    $jsaverage=$wpdb->get_var( "SELECT round(avg(jscount),2) FROM ".COUNT_TABLE." ");
-    $mycookieaverage=$wpdb->get_var( "SELECT round(avg(mycookiecount),2) FROM ".COUNT_TABLE." ");
+    $jiqixuexiaverage=$wpdb->get_var( "SELECT round(avg(jiqixuexicount),2) FROM ".COUNT_TABLE." ");
+    $jisuanjishijueaverage=$wpdb->get_var( "SELECT round(avg(jisuanjishijuecount),2) FROM ".COUNT_TABLE." ");
+    $tuijianaverage=$wpdb->get_var( "SELECT round(avg(tuijiancount),2) FROM ".COUNT_TABLE." ");
+    $dianlufenxiaverage=$wpdb->get_var( "SELECT round(avg(dianlufenxicount),2) FROM ".COUNT_TABLE." ");
     $danpianjiaverage=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM ".COUNT_TABLE." ");
-    $cssaverage=$wpdb->get_var( "SELECT round(avg(csscount),2) FROM ".COUNT_TABLE." ");
-    $sqlaverage=$wpdb->get_var( "SELECT round(avg(sqlcount),2) FROM ".COUNT_TABLE." ");
-    $duinoaverage=$wpdb->get_var( "SELECT round(avg(duinocount),2) FROM ".COUNT_TABLE." ");
-    $androidaverage=$wpdb->get_var( "SELECT round(avg(androidcount),2) FROM ".COUNT_TABLE." ");
-    $iosaverage=$wpdb->get_var( "SELECT round(avg(ioscount),2) FROM ".COUNT_TABLE." ");
-    $pingtaiaverage=$wpdb->get_var( "SELECT round(avg(pingtaicount),2) FROM ".COUNT_TABLE." ");
+    $shuzidianluaverage=$wpdb->get_var( "SELECT round(avg(shuzidianlucount),2) FROM ".COUNT_TABLE." ");
+    $tongyuanaverage=$wpdb->get_var( "SELECT round(avg(tongyuancount),2) FROM ".COUNT_TABLE." ");
+    $tongxinaverage=$wpdb->get_var( "SELECT round(avg(tongxincount),2) FROM ".COUNT_TABLE." ");
+    $dianciaverage=$wpdb->get_var( "SELECT round(avg(diancicount),2) FROM ".COUNT_TABLE." ");
+    $bianchengaverage=$wpdb->get_var( "SELECT round(avg(bianchengcount),2) FROM ".COUNT_TABLE." ");
+    $jisuanjijichuaverage=$wpdb->get_var( "SELECT round(avg(jisuanjijichucount),2) FROM ".COUNT_TABLE." ");
     $webaverage=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM ".COUNT_TABLE." ");
-    $matlabaverage=$wpdb->get_var( "SELECT round(avg(matlabcount),2) FROM ".COUNT_TABLE." ");
-    $average[0]=$phpaverage;$average[1]=$htmlaverage;$average[2]=$jsaverage;$average[3]=$mycookieaverage;$average[4]=$danpianjiaverage;
-    $average[5]=$cssaverage;$average[6]=$sqlaverage;$average[7]=$duinoaverage;$average[8]=$androidaverage;$average[9]=$iosaverage;
-    ;$average[10]=$pingtaiaverage;$average[11]=$webaverage;$average[12]=$matlabaverage;
-    for ($i=0;$i<13;$i++){
+    $average[0]=$jiqixuexiaverage;$average[1]=$jisuanjishijueaverage;$average[2]=$tuijianaverage;$average[3]=$dianlufenxiaverage;$average[4]=$danpianjiaverage;
+    $average[5]=$shuzidianluaverage;$average[6]=$tongyuanaverage;$average[7]=$tongxinaverage;$average[8]=$dianciaverage;$average[9]=$bianchengaverage;
+    ;$average[10]=$jisuanjijichuaverage;$average[11]=$webaverage;
+    for ($i=0;$i<12;$i++){
         if ($socre[$i]>$average[$i])
             $strength[$i]=1;
         else
             $strength[$i]=0;
     }
     $strcount=0;
-    for ($i=0;$i<13;$i++){
+    for ($i=0;$i<12;$i++){
         if ($strength[$i]==1)
             $strcount++;
     }
     $des=0;
-    for ($i=0;$i<13;$i++){
+    for ($i=0;$i<12;$i++){
         if ($socre[$i]!=0)
             $des++;
     }
@@ -1031,50 +1198,47 @@ function good(){
 }
 function goodornot(){
     $socre=explode(",",getinterest());
-    $phpcount=$socre[0];
-    $htmlcount=$socre[1];
-    $jscount=$socre[2];
-    $mycookiecount=$socre[3];
+    $jiqixuexicount=$socre[0];
+    $jisuanjishijuecount=$socre[1];
+    $tuijiancount=$socre[2];
+    $dianlufenxicount=$socre[3];
     $danpianjicount=$socre[4];
-    $csscount=$socre[5];
-    $sqlcount=$socre[6];
-    $duinocount=$socre[7];
-    $androidcount=$socre[8];
-    $ioscount=$socre[9];
-    $pingtaicount=$socre[10];
+    $shuzidianlucount=$socre[5];
+    $tongyuancount=$socre[6];
+    $tongxincount=$socre[7];
+    $diancicount=$socre[8];
+    $bianchengcount=$socre[9];
+    $jisuanjijichucount=$socre[10];
     $webcount=$socre[11];
-    $matlabcount=$socre[12];
     $good = array_search(max($socre), $socre);
     $notgood=array_search(min($socre), $socre);
     switch($good)
-    {   case 0:    $goodat="php";    break;
-        case 1:    $goodat="html";    break;
-        case 2:    $goodat="js";      break;
-        case 3:    $goodat="mycookie";      break;
-        case 4:    $goodat="danpianji";      break;
-        case 5:    $goodat="css";        break;
-        case 6:    $goodat="sql";      break;
-        case 7:    $goodat="duino类";      break;
-        case 8:    $goodat="android";      break;
-        case 9:    $goodat="ios";      break;
-        case 10:    $goodat="pingtai";      break;
-        case 11:    $goodat="web";      break;
-        case 12:    $goodat="matlab";      break;
+    {   case 0:    $goodat="机器学习";    break;
+        case 1:    $goodat="计算机视觉";    break;
+        case 2:    $goodat="推荐系统";      break;
+        case 3:    $goodat="电路分析";      break;
+        case 4:    $goodat="单片机";      break;
+        case 5:    $goodat="数字电路";        break;
+        case 6:    $goodat="通信原理";      break;
+        case 7:    $goodat="移动通信";      break;
+        case 8:    $goodat="电磁波";      break;
+        case 9:    $goodat="编程语言";      break;
+        case 10:    $goodat="计算机基础";      break;
+        case 11:    $goodat="网络";      break;
        }
     switch($notgood)
-    {   case 0:    $ngoodat="php";    break;
-        case 1:    $ngoodat="html";    break;
-        case 2:    $ngoodat="js";      break;
-        case 3:    $ngoodat="mycookie";      break;
-        case 4:    $ngoodat="danpianji";      break;
-        case 5:    $ngoodat="css";        break;
-        case 6:    $ngoodat="sql";      break;
-        case 7:    $ngoodat="duino类";      break;
-        case 8:    $ngoodat="android";      break;
-        case 9:    $ngoodat="ios";      break;
-        case 10:    $ngoodat="pingtai";      break;
-        case 11:    $ngoodat="web";      break;
-        case 12:    $ngoodat="matlab";      break;
+    {   case 0:    $ngoodat="机器学习";    break;
+        case 1:    $ngoodat="计算机视觉";    break;
+        case 2:    $ngoodat="推荐系统";      break;
+        case 3:    $ngoodat="电路分析";      break;
+        case 4:    $ngoodat="单片机";      break;
+        case 5:    $ngoodat="数字电路";        break;
+        case 6:    $ngoodat="通信原理";      break;
+        case 7:    $ngoodat="移动通信";      break;
+        case 8:    $ngoodat="电磁波";      break;
+        case 9:    $ngoodat="编程语言";      break;
+        case 10:    $ngoodat="计算机基础";      break;
+        case 11:    $ngoodat="网络";      break;
     }
     $goodornot[0]=$goodat;
     $goodornot[1]=$ngoodat;
@@ -1083,36 +1247,34 @@ function goodornot(){
 function desire(){
     $socredesire=explode(",",getdesire());
     global $wpdb;
-    $phpdesireaverage=$wpdb->get_var( "SELECT round(avg(phpcount),2) FROM ".COUNTD_TABLE." ");
-    $htmldesireaverage=$wpdb->get_var( "SELECT round(avg(htmlcount),2) FROM ".COUNTD_TABLE." ");
-    $jsdesireaverage=$wpdb->get_var( "SELECT round(avg(jscount),2) FROM ".COUNTD_TABLE." ");
-    $mycookiedesireaverage=$wpdb->get_var( "SELECT round(avg(mycookiecount),2) FROM ".COUNTD_TABLE." ");
-    $danpianjidesireaverage=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM ".COUNTD_TABLE." ");
-    $cssdesireaverage=$wpdb->get_var( "SELECT round(avg(csscount),2) FROM ".COUNTD_TABLE." ");
-    $sqldesireaverage=$wpdb->get_var( "SELECT round(avg(sqlcount),2) FROM ".COUNTD_TABLE." ");
-    $duinodesireaverage=$wpdb->get_var( "SELECT round(avg(duinocount),2) FROM ".COUNTD_TABLE." ");
-    $androiddesireaverage=$wpdb->get_var( "SELECT round(avg(androidcount),2) FROM ".COUNTD_TABLE." ");
-    $iosdesireaverage=$wpdb->get_var( "SELECT round(avg(ioscount),2) FROM ".COUNTD_TABLE." ");
-    $pingtaidesireaverage=$wpdb->get_var( "SELECT round(avg(pingtaicount),2) FROM ".COUNTD_TABLE." ");
-    $webdesireaverage=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM ".COUNTD_TABLE." ");
-    $matlabdesireaverage=$wpdb->get_var( "SELECT round(avg(matlabcount),2) FROM ".COUNTD_TABLE." ");
-    $desire[0]=$phpdesireaverage;$desire[1]=$htmldesireaverage;$desire[2]=$jsdesireaverage;$desire[3]=$mycookiedesireaverage;
-    $desire[4]=$danpianjidesireaverage;$desire[5]=$cssdesireaverage;$desire[6]=$sqldesireaverage;$desire[7]=$duinodesireaverage;
-    $desire[8]=$androiddesireaverage;$desire[9]=$iosdesireaverage;$desire[10]=$pingtaidesireaverage;$desire[11]=$webdesireaverage;
-    $desire[12]=$matlabdesireaverage;
-    for ($i=0;$i<13;$i++){
-        if ($socredesire[$i]>$desire[$i])
+    $jiqixuexiaverage=$wpdb->get_var( "SELECT round(avg(jiqixuexicount),2) FROM ".COUNT_TABLE." ");
+    $jisuanjishijueaverage=$wpdb->get_var( "SELECT round(avg(jisuanjishijuecount),2) FROM ".COUNT_TABLE." ");
+    $tuijianaverage=$wpdb->get_var( "SELECT round(avg(tuijiancount),2) FROM ".COUNT_TABLE." ");
+    $dianlufenxiaverage=$wpdb->get_var( "SELECT round(avg(dianlufenxicount),2) FROM ".COUNT_TABLE." ");
+    $danpianjiaverage=$wpdb->get_var( "SELECT round(avg(danpianjicount),2) FROM ".COUNT_TABLE." ");
+    $shuzidianluaverage=$wpdb->get_var( "SELECT round(avg(shuzidianlucount),2) FROM ".COUNT_TABLE." ");
+    $tongyuanaverage=$wpdb->get_var( "SELECT round(avg(tongyuancount),2) FROM ".COUNT_TABLE." ");
+    $tongxinaverage=$wpdb->get_var( "SELECT round(avg(tongxincount),2) FROM ".COUNT_TABLE." ");
+    $dianciaverage=$wpdb->get_var( "SELECT round(avg(diancicount),2) FROM ".COUNT_TABLE." ");
+    $bianchengaverage=$wpdb->get_var( "SELECT round(avg(bianchengcount),2) FROM ".COUNT_TABLE." ");
+    $jisuanjijichuaverage=$wpdb->get_var( "SELECT round(avg(jisuanjijichucount),2) FROM ".COUNT_TABLE." ");
+    $webaverage=$wpdb->get_var( "SELECT round(avg(webcount),2) FROM ".COUNT_TABLE." ");
+    $average[0]=$jiqixuexiaverage;$average[1]=$jisuanjishijueaverage;$average[2]=$tuijianaverage;$average[3]=$dianlufenxiaverage;$average[4]=$danpianjiaverage;
+    $average[5]=$shuzidianluaverage;$average[6]=$tongyuanaverage;$average[7]=$tongxinaverage;$average[8]=$dianciaverage;$average[9]=$bianchengaverage;
+    ;$average[10]=$jisuanjijichuaverage;$average[11]=$webaverage;
+    for ($i=0;$i<12;$i++){
+        if ($socredesire[$i]>$average[$i])
             $strength[$i]=1;
         else
             $strength[$i]=0;
     }
     $des=0;
-    for ($i=0;$i<13;$i++){
+    for ($i=0;$i<12;$i++){
         if ($socredesire[$i]!=0)
             $des++;
     }
     $strcount=0;
-    for ($i=0;$i<13;$i++){
+    for ($i=0;$i<12;$i++){
         if ($strength[$i]==1)
             $strcount++;
     }
@@ -1144,34 +1306,32 @@ function desireornot(){
     $desire = array_search(max($socre), $socre);
     $notdesire=array_search(min($socre), $socre);
     switch($desire)
-    {   case 0:    $goodat="php";    break;
-        case 1:    $goodat="html";    break;
-        case 2:    $goodat="js";      break;
-        case 3:    $goodat="mycookie";      break;
-        case 4:    $goodat="danpianji";      break;
-        case 5:    $goodat="css";        break;
-        case 6:    $goodat="sql";      break;
-        case 7:    $goodat="duino类";      break;
-        case 8:    $goodat="android";      break;
-        case 9:    $goodat="ios";      break;
-        case 10:    $goodat="pingtai";      break;
-        case 11:    $goodat="web";      break;
-        case 12:    $goodat="matlab";      break;
+    {   case 0:    $goodat="机器学习";    break;
+        case 1:    $goodat="计算机视觉";    break;
+        case 2:    $goodat="推荐系统";      break;
+        case 3:    $goodat="电路分析";      break;
+        case 4:    $goodat="单片机";      break;
+        case 5:    $goodat="数字电路";        break;
+        case 6:    $goodat="通信原理";      break;
+        case 7:    $goodat="移动通信";      break;
+        case 8:    $goodat="电磁波";      break;
+        case 9:    $goodat="编程语言";      break;
+        case 10:    $goodat="计算机基础";      break;
+        case 11:    $goodat="网络";      break;
     }
     switch($notdesire)
-    {   case 0:    $ngoodat="php";    break;
-        case 1:    $ngoodat="html";    break;
-        case 2:    $ngoodat="js";      break;
-        case 3:    $ngoodat="mycookie";      break;
-        case 4:    $ngoodat="danpianji";      break;
-        case 5:    $ngoodat="css";        break;
-        case 6:    $ngoodat="sql";      break;
-        case 7:    $ngoodat="duino类";      break;
-        case 8:    $ngoodat="android";      break;
-        case 9:    $ngoodat="ios";      break;
-        case 10:    $ngoodat="pingtai";      break;
-        case 11:    $ngoodat="web";      break;
-        case 12:    $ngoodat="matlab";      break;
+    {   case 0:    $ngoodat="机器学习";    break;
+        case 1:    $ngoodat="计算机视觉";    break;
+        case 2:    $ngoodat="推荐系统";      break;
+        case 3:    $ngoodat="电路分析";      break;
+        case 4:    $ngoodat="单片机";      break;
+        case 5:    $ngoodat="数字电路";        break;
+        case 6:    $ngoodat="通信原理";      break;
+        case 7:    $ngoodat="移动通信";      break;
+        case 8:    $ngoodat="电磁波";      break;
+        case 9:    $ngoodat="编程语言";      break;
+        case 10:    $ngoodat="计算机基础";      break;
+        case 11:    $ngoodat="网络";      break;
     }
     $goodornot[0]=$goodat;
     $goodornot[1]=$ngoodat;

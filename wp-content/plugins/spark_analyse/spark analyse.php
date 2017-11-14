@@ -7,14 +7,17 @@ Author: Mr.Zhang
 Version: 1.0
 Author URI: http://ma.tt/
  */
+header("Content-type:text/html;charset=utf-8");
 if ( ! function_exists( 'spark_settings_submenu_page' ) ) {
     require_once('analyseview.php');
 }
 require_once('infer.php');
+require_once('all_statistic.php');
 
      add_action( 'admin_menu', 'spark_create_menu1' );
      add_action('admin_menu', 'spark_create_submenu_page1');
      add_action('admin_menu', 'spark_create_submenu_page2');
+     add_action('admin_menu', 'spark_create_submenu_page3');
     // add_filter('the_content','addContent');
     // add_filter('get_comment_author','authorUpperCase');
          function spark_create_menu1()
@@ -54,8 +57,21 @@ require_once('infer.php');
                  'spark_settings_submenu_page2' );
     //add_action('admin_enqueue_scripts', 'wpjam_normal_script');
          }
-define('COUNT_TABLE', $wpdb->prefix . 'count');
-define('COUNTD_TABLE', $wpdb->prefix . 'countdesire');
+         function spark_create_submenu_page3()
+         {
+
+              add_submenu_page(
+                   'spark analyse',
+                   '系统用户统计',
+                   '系统用户统计',
+                   'administrator',
+                   'spark_analyse-submenu-page3',
+                   'spark_settings_submenu_page3' );
+    //add_action('admin_enqueue_scripts', 'wpjam_normal_script');
+         }
+
+define('COUNT_TABLE', $wpdb->prefix . 'count_sec');
+define('COUNTD_TABLE', $wpdb->prefix . 'countdesire_sec');
 register_activation_hook(__FILE__,'install_table1');
          function install_table1 ()
          {
@@ -66,19 +82,18 @@ register_activation_hook(__FILE__,'install_table1');
                  $sql = "CREATE TABLE IF NOT EXISTS " . COUNT_TABLE . " (
                 id bigint(20) NOT NULL AUTO_INCREMENT,
                 user varchar(60) DEFAULT '0' NOT NULL,
-                phpcount float NOT NULL,
-                htmlcount float NOT NULL,
-                jscount float NOT NULL,
-                mycookiecount float NOT NULL,
+                jiqixuexicount float NOT NULL,
+                jisuanjishijuecount float NOT NULL,
+                tuijiancount float NOT NULL,
+                dianlufenxicount float NOT NULL,
                 danpianjicount float NOT NULL,
-                csscount float NOT NULL,
-                sqlcount float NOT NULL,
-                duinocount float NOT NULL,
-                androidcount float NOT NULL,
-                ioscount float NOT NULL,
-                pingtaicount float NOT NULL,
+                shuzidianlucount float NOT NULL,
+                tongyuancount float NOT NULL,
+                tongxincount float NOT NULL,
+                diancicount float NOT NULL,
+                bianchengcount float NOT NULL,
+                jisuanjijichucount float NOT NULL,
                 webcount float NOT NULL,
-                matlabcount float NOT NULL,
                 UNIQUE KEY id (id) );";
                  require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
                  dbDelta($sql);
@@ -93,19 +108,18 @@ function install_table2 ()
         $sql = "CREATE TABLE IF NOT EXISTS " . COUNTD_TABLE . " (
                 id bigint(20) NOT NULL AUTO_INCREMENT,
                 user varchar(60) DEFAULT '0' NOT NULL,
-                phpcount float NOT NULL,
-                htmlcount float NOT NULL,
-                jscount float NOT NULL,
-                mycookiecount float NOT NULL,
+                 jiqixuexicount float NOT NULL,
+                jisuanjishijuecount float NOT NULL,
+                tuijiancount float NOT NULL,
+                dianlufenxicount float NOT NULL,
                 danpianjicount float NOT NULL,
-                csscount float NOT NULL,
-                sqlcount float NOT NULL,
-                duinocount float NOT NULL,
-                androidcount float NOT NULL,
-                ioscount float NOT NULL,
-                pingtaicount float NOT NULL,
+                shuzidianlucount float NOT NULL,
+                tongyuancount float NOT NULL,
+                tongxincount float NOT NULL,
+                diancicount float NOT NULL,
+                bianchengcount float NOT NULL,
+                jisuanjijichucount float NOT NULL,
                 webcount float NOT NULL,
-                matlabcount float NOT NULL,
                 UNIQUE KEY id (id) );";
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);
@@ -139,7 +153,7 @@ function install_table2 ()
              ?>
 
              <html>
-         <body style="background-color: #f1f2f7" onload="document.all['me'].selectall = 'true';">
+         <body style="background-color: #f1f2f7" >
          <div style="text-align:center;background-color:rgb(100,201,202);margin-top: 22px;width: 93px;height: 93px;margin-left: 46%;border-radius: 50%;border: solid 1px rgb(100,201,202)"><i class="fa fa-user fa-5x " style="color:white;"></i></div>
          <h2 style="    text-align: center;margin: 20px;font-size: 20px;">火花空间用户画像查询</h2>
                          <form method="post" name="spark_search_user" id="spark_search_user">

@@ -24,7 +24,7 @@ jQuery(document).ready( function($) {
 
                  var b=new Array();
 
-                b[0]=0;b[1]=x2;b[2]=x3;b[3]=x4;b[4]=x5;b[5]=x6;b[6]=x7;
+                b[0]=x1;b[1]=x2;b[2]=x3;b[3]=x4;b[4]=x5;b[5]=x6;b[6]=x7;
 
 
                 var chart2 = new Highcharts.Chart('container2', {
