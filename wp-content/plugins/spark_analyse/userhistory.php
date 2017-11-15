@@ -293,9 +293,9 @@ function history_value()
 //    print_r($timelong1);echo '</br>';print_r($timelong2);echo '</br>';print_r($timelong3);echo '</br>';print_r($timelong4);
 //    print_r($timelong4);
     //timelong1是人工智能  timelong2是电子  timelong3是通信  timelong4计算机
-    $c=count($his_num);
-    $avg=array_sum($his_num_f)/$c;
-    $var=getVariance($avg,$his_num_f);
+//    $c=count($his_num);
+//    $avg=array_sum($his_num_f)/$c;
+//    $var=getVariance($avg,$his_num_f);
 //    echo $var;//方差
 //    echo '</br>';
     return $timelong=array($timelong1,$timelong2,$timelong3,$timelong4);

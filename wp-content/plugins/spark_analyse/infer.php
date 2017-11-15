@@ -5,7 +5,7 @@
  * Date: 2017/4/13
  * Time: 20:09
  */
-header("Content-type:text/html;charset=utf-8");
+//header("Content-type:text/html;charset=utf-8");
 wp_register_style('fep-style', plugins_url('bootstrap.min.css', __FILE__), array(), '1.6', 'all');
 wp_register_style('datepicker-style', plugins_url('dateRange.css', __FILE__), array(), '1.6', 'all');
 wp_register_style('main-style', plugins_url('main.css', __FILE__), array(), '1.0', 'all');

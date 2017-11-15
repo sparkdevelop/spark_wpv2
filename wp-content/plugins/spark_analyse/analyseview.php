@@ -107,24 +107,17 @@ function time_check()
     global $wpdb;
     $c = get_option('spark_search_user_copy_right');
     $sql = $wpdb->get_var("SELECT ID FROM `$wpdb->users` WHERE `user_login` = '$c'");
-    $time = $wpdb->get_results("SELECT post_date FROM `$wpdb->posts` WHERE `post_author` = '$sql'");
-    $articulnum = $wpdb->get_var("SELECT COUNT(*) FROM `$wpdb->posts` WHERE `post_author` = '$sql'");
-    $searchtime= $wpdb->get_results("SELECT query_date FROM " . SS_TABLE . " WHERE `user` = '$sql'");
-    $searchnum=$wpdb->get_var("SELECT COUNT(*) FROM " . SS_TABLE . " WHERE `user` = '$sql'");
+    $acttime = $wpdb->get_results("SELECT action_time FROM `wp_user_history` WHERE `user_id` = '$sql'");
+    $artnum = $wpdb->get_var("SELECT COUNT(*) FROM `wp_user_history` WHERE `user_id` = '$sql'");
     $m = 0;
-    foreach ($time as $a) {
-        $textlist[$m] = $a->post_date;
+    foreach ($acttime as $a) {
+        $textlist[$m] = $a->action_time;
         $textlist1[$m] = substr($textlist[$m], 0, 10);
         $m++;
     }
     $m=0;
-    foreach ($searchtime as $ab) {
-        $searchlist[$m] = $ab->query_date;
-        $searchlist1[$m] = substr($searchlist[$m], 0, 8);
-        $m++;
-    }
     $result = array(0, 0, 0, 0, 0, 0, 0);
-    for ($i = 0; $i < $articulnum; $i++) {
+    for ($i = 0; $i < $artnum; $i++) {
 
     if ($time1 == $textlist1[$i])
         $result[0]++;
@@ -141,23 +134,7 @@ function time_check()
     else if ($time7 == $textlist1[$i])
         $result[6]++;
     }
-    for ($i = 0; $i < $searchnum; $i++) {
 
-        if ($timegeshi1 == $searchlist1[$i])
-            $result[0]++;
-        else if ($timegeshi2 == $searchlist1[$i])
-            $result[1]++;
-        else if ($timegeshi3 == $searchlist1[$i])
-            $result[2]++;
-        else if ($timegeshi4 == $searchlist1[$i])
-            $result[3]++;
-        else if ($timegeshi5 == $searchlist1[$i])
-            $result[4]++;
-        else if ($timegeshi6 == $searchlist1[$i])
-            $result[5]++;
-        else if ($timegeshi7 == $searchlist1[$i])
-            $result[6]++;
-    }
     $resulttime="$result[0] $result[1] $result[2] $result[3] $result[4] $result[5] $result[6]";
 
     echo $resulttime;

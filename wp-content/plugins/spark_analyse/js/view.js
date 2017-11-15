@@ -69,7 +69,7 @@ jQuery(document).ready( function($) {
                     }]
                 });
             },
-            error:function(xhr){alert('动态页出错\n\n'+xhr.responseText);}
+
         });
 
     });
