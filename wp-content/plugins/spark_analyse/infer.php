@@ -6,44 +6,51 @@
  * Time: 20:09
  */
 //header("Content-type:text/html;charset=utf-8");
-wp_register_style('fep-style', plugins_url('bootstrap.min.css', __FILE__), array(), '1.6', 'all');
-wp_register_style('datepicker-style', plugins_url('dateRange.css', __FILE__), array(), '1.6', 'all');
-wp_register_style('main-style', plugins_url('main.css', __FILE__), array(), '1.0', 'all');
-wp_register_style('table-style', plugins_url('table.css', __FILE__), array(), '1.6', 'all');
-wp_register_style('user-style', plugins_url('user.css', __FILE__), array(), '1.6', 'all');
-wp_register_style('tag-style', plugins_url('tagcloud.css', __FILE__), array(), '1.6', 'all');
-wp_register_script("jquery-script", plugins_url('js/jquery-3.2.1.js', __FILE__), array('jquery'));
-wp_register_script("date-script", plugins_url('js/dateRange.js', __FILE__), array('jquery'));
-wp_register_script("tag-script", plugins_url('js/tagcloud.min.js', __FILE__), array('jquery'));
-wp_register_script("ui-script", plugins_url('js/jquery-ui.js', __FILE__), array('jquery'));
-wp_register_script("time-script", plugins_url('js/active.js', __FILE__), array('jquery'));
-wp_register_script("fep-script", plugins_url('js/bootstrap.min.js', __FILE__), array('jquery'));
-wp_register_script("collapse-script", plugins_url('js/collapse.js', __FILE__), array('jquery'));
-wp_register_script("high-script", plugins_url('js/highcharts.js', __FILE__), array('jquery'));
-wp_register_script("highm-script", plugins_url('js/highcharts-more.js', __FILE__), array('jquery'));
-//wp_register_script("increment-script", plugins_url('js/user_increment.js', __FILE__),array('jquery'));
-wp_register_script("transition-script", plugins_url('js/transition.js', __FILE__), array('jquery'));
-if ( is_admin() ) {
-    wp_enqueue_script("jquery-script");
-    wp_enqueue_script("fep-script");
+require_once( ABSPATH . 'wp-admin/includes/admin.php' );
+//function plugin3()
+//{
+//    wp_register_style('zhyfep-style', plugins_url('bootstrap.min.css', __FILE__), array(), '1.6', 'all');
+//    wp_register_style('zhydatepicker-style', plugins_url('dateRange.css', __FILE__), array(), '1.6', 'all');
+//    wp_register_style('zhymain-style', plugins_url('main.css', __FILE__), array(), '1.0', 'all');
+//    wp_register_style('zhytable-style', plugins_url('table.css', __FILE__), array(), '1.6', 'all');
+//    wp_register_style('zhyuser-style', plugins_url('user.css', __FILE__), array(), '1.6', 'all');
+//    wp_register_style('zhytag-style', plugins_url('tagcloud.css', __FILE__), array(), '1.6', 'all');
+//    wp_register_script("zhyjquery-script", plugins_url('js/jquery-3.2.1.js', __FILE__), array('jquery'));
+//    wp_register_script("zhydate-script", plugins_url('js/dateRange.js', __FILE__), array('jquery'));
+//    wp_register_script("zhytag-script", plugins_url('js/tagcloud.min.js', __FILE__), array('jquery'));
+//    wp_register_script("zhyui-script", plugins_url('js/jquery-ui.js', __FILE__), array('jquery'));
+//    wp_register_script("zhytime-script", plugins_url('js/active.js', __FILE__), array('jquery'));
+//    wp_register_script("zhyfep-script", plugins_url('js/bootstrap.min.js', __FILE__), array('jquery'));
+//    wp_register_script("zhyview-script", plugins_url('js/view.js', __FILE__), array('jquery'));
+//    wp_register_script("zhycollapse-script", plugins_url('js/collapse.js', __FILE__), array('jquery'));
+//    wp_register_script("zhyhigh-script", plugins_url('js/highcharts.js', __FILE__), array('jquery'));
+//    wp_register_script("zhyhighm-script", plugins_url('js/highcharts-more.js', __FILE__), array('jquery'));
+////wp_register_script("increment-script", plugins_url('js/user_increment.js', __FILE__),array('jquery'));
+//    wp_register_script("zhytransition-script", plugins_url('js/transition.js', __FILE__), array('jquery'));
+//
+//    wp_enqueue_script("zhyjquery-script");
+//    wp_enqueue_script("zhyfep-script");
+//
+//    wp_enqueue_script("zhytag-script");
+//    wp_enqueue_script("zhytime-script");
+//    wp_enqueue_script("zhyview-script");
+//    wp_enqueue_script("zhyhigh-script");
+//    wp_enqueue_script("zhytransition-script");
+//    wp_enqueue_script("zhyhighm-script");
+////    wp_enqueue_script("increment-script");
+//    wp_enqueue_script("zhycollapse-script");
+//    wp_enqueue_script("zhydate-script");
+//    wp_enqueue_script("zhyui-script");
+//
+//    wp_enqueue_style('zhyfep-style');
+//    wp_enqueue_style('zhydatepicker-style');
+//    wp_enqueue_style('zhymain-style');
+//    wp_enqueue_style('zhytable-style');
+//    wp_enqueue_style('zhyuser-style');
+//    wp_enqueue_style('zhytag-style');
+//}
 
-    wp_enqueue_script("tag-script");
-    wp_enqueue_script("time-script");
-    wp_enqueue_script("high-script");
-    wp_enqueue_script("transition-script");
-    wp_enqueue_script("highm-script");
-//    wp_enqueue_script("increment-script");
-    wp_enqueue_script("collapse-script");
-    wp_enqueue_script("date-script");
-    wp_enqueue_script("ui-script");
-
-    wp_enqueue_style('fep-style');
-    wp_enqueue_style('datepicker-style');
-    wp_enqueue_style('main-style');
-    wp_enqueue_style('table-style');
-    wp_enqueue_style('user-style');
-    wp_enqueue_style('tag-style');
-}
+//add_action( 'admin_enqueue_scripts', 'plugin3' );
 require_once('model_drawing.php');
 require_once ('userhistory.php');
 require_once ('all_rank.php');

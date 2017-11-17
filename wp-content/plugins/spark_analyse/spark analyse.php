@@ -3,14 +3,59 @@
 Plugin Name: spark_analyse
 Plugin URI: http://wordpress.org/plugins/spark_analyse/
 Description: This is a plugin for spark analyse
-Author: Mr.Zhang
-Version: 1.0
+Author: ruler
+Version: 2.0
 Author URI: http://ma.tt/
  */
 header("Content-type:text/html;charset=utf-8");
-if ( ! function_exists( 'spark_settings_submenu_page' ) ) {
-    require_once('analyseview.php');
+//require_once( ABSPATH . 'wp-admin/includes/admin.php' );
+function plugin2()
+{
+    wp_register_style('zhyfep-style', plugins_url('bootstrap.min.css', __FILE__), array(), '1.6', 'all');
+    wp_register_style('zhydatepicker-style', plugins_url('dateRange.css', __FILE__), array(), '1.6', 'all');
+    wp_register_style('zhymain-style', plugins_url('main.css', __FILE__), array(), '1.0', 'all');
+    wp_register_style('zhytable-style', plugins_url('table.css', __FILE__), array(), '1.6', 'all');
+    wp_register_style('zhyuser-style', plugins_url('user.css', __FILE__), array(), '1.6', 'all');
+    wp_register_style('zhytag-style', plugins_url('tagcloud.css', __FILE__), array(), '1.6', 'all');
+    wp_register_script("zhyjquery-script", plugins_url('js/jquery-3.2.1.js', __FILE__), array('jquery'));
+    wp_register_script("zhydate-script", plugins_url('js/dateRange.js', __FILE__), array('jquery'));
+    wp_register_script("zhytag-script", plugins_url('js/tagcloud.min.js', __FILE__), array('jquery'));
+    wp_register_script("zhyui-script", plugins_url('js/jquery-ui.js', __FILE__), array('jquery'));
+    wp_register_script("zhytime-script", plugins_url('js/active.js', __FILE__), array('jquery'));
+    wp_register_script("zhyfep-script", plugins_url('js/bootstrap.min.js', __FILE__), array('jquery'));
+    wp_register_script("zhyview-script", plugins_url('js/view.js', __FILE__), array('jquery'));
+    wp_register_script("zhycollapse-script", plugins_url('js/collapse.js', __FILE__), array('jquery'));
+    wp_register_script("zhyhigh-script", plugins_url('js/highcharts.js', __FILE__), array('jquery'));
+    wp_register_script("zhyhighm-script", plugins_url('js/highcharts-more.js', __FILE__), array('jquery'));
+//wp_register_script("increment-script", plugins_url('js/user_increment.js', __FILE__),array('jquery'));
+    wp_register_script("zhytransition-script", plugins_url('js/transition.js', __FILE__), array('jquery'));
+
+    wp_enqueue_script("zhyjquery-script");
+    wp_enqueue_script("zhyfep-script");
+
+    wp_enqueue_script("zhytag-script");
+    wp_enqueue_script("zhytime-script");
+    wp_enqueue_script("zhyview-script");
+    wp_enqueue_script("zhyhigh-script");
+    wp_enqueue_script("zhytransition-script");
+    wp_enqueue_script("zhyhighm-script");
+//    wp_enqueue_script("increment-script");
+    wp_enqueue_script("zhycollapse-script");
+    wp_enqueue_script("zhydate-script");
+    wp_enqueue_script("zhyui-script");
+
+    wp_enqueue_style('zhyfep-style');
+    wp_enqueue_style('zhydatepicker-style');
+    wp_enqueue_style('zhymain-style');
+    wp_enqueue_style('zhytable-style');
+    wp_enqueue_style('zhyuser-style');
+    wp_enqueue_style('zhytag-style');
 }
+
+add_action( 'admin_enqueue_scripts', 'plugin2' );
+
+    require_once('analyseview.php');
+
 require_once('infer.php');
 require_once('all_statistic.php');
 
