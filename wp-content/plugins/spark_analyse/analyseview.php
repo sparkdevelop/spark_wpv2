@@ -550,7 +550,7 @@ $(function () {
 
     <STYLE TYPE="text/css">
         body {background:blue;}
-        #mokuai {position: absolute;height: 217px;left: 626px;top: 104px;}
+        #mokuai {position: absolute;height: 217px;left: 626px;margin-top: 0px;}
         #mokuai a {position:absolute; top:0px; left:0px; font-family: Microsoft YaHei; color:#fff; font-weight:bold; text-decoration:none; padding: 3px 6px; }
         #mokuai a:hover {border: 1px solid #eee; background: #000; }
         #mokuai .blue {color:blue;}

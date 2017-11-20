@@ -51,7 +51,7 @@
 //require_once( ABSPATH . 'wp-admin/includes/admin.php' );
 //add_action( 'admin_enqueue_scripts', 'plugin4' );
 
-require_once ('all_rank.php');
+//require_once ('all_rank.php');
 add_action('wp_ajax_view_action', 'view_ajax');
 function view_ajax(){
     $time1 = isset($_POST['start2']) ? $_POST['start2'] : null;
@@ -240,34 +240,34 @@ function spark_settings_submenu_page3(){
 //    $vusername0=$vusername[0];
 //    $vusername1=$vusername[1];
 //    $vusername2=$vusername[2];
-    $cusername=explode(",",create());
-    $cusername0=$cusername[0];
-    $cusername1=$cusername[1];
-    $cusername2=$cusername[2];
-    $qusername=explode(",",question());
-    $qusername0=$qusername[0];
-    $qusername1=$qusername[1];
-    $qusername2=$qusername[2];
-    $ausername=explode(",",answer());
-    $ausername0=$ausername[0];
-    $ausername1=$ausername[1];
-    $ausername2=$ausername[2];
-    $vusername=explode(",",active_before());
-    $vusername3=$vusername[0];
-    $vusername4=$vusername[1];
-    $vusername5=$vusername[2];
-    $cusername=explode(",",create_before());
-    $cusername3=$cusername[0];
-    $cusername4=$cusername[1];
-    $cusername5=$cusername[2];
-    $qusername=explode(",",question_before());
-    $qusername3=$qusername[0];
-    $qusername4=$qusername[1];
-    $qusername5=$qusername[2];
-    $ausername=explode(",",answer_before());
-    $ausername3=$ausername[0];
-    $ausername4=$ausername[1];
-    $ausername5=$ausername[2];
+//    $cusername=explode(",",create());
+//    $cusername0=$cusername[0];
+//    $cusername1=$cusername[1];
+//    $cusername2=$cusername[2];
+//    $qusername=explode(",",question());
+//    $qusername0=$qusername[0];
+//    $qusername1=$qusername[1];
+//    $qusername2=$qusername[2];
+//    $ausername=explode(",",answer());
+//    $ausername0=$ausername[0];
+//    $ausername1=$ausername[1];
+//    $ausername2=$ausername[2];
+//    $vusername=explode(",",active_before());
+//    $vusername3=$vusername[0];
+//    $vusername4=$vusername[1];
+//    $vusername5=$vusername[2];
+//    $cusername=explode(",",create_before());
+//    $cusername3=$cusername[0];
+//    $cusername4=$cusername[1];
+//    $cusername5=$cusername[2];
+//    $qusername=explode(",",question_before());
+//    $qusername3=$qusername[0];
+//    $qusername4=$qusername[1];
+//    $qusername5=$qusername[2];
+//    $ausername=explode(",",answer_before());
+//    $ausername3=$ausername[0];
+//    $ausername4=$ausername[1];
+//    $ausername5=$ausername[2];
 
 ?>
     <!DOCTYPE html>
@@ -283,7 +283,7 @@ function spark_settings_submenu_page3(){
        <p style="font-size: 18px;    margin: 8px;">系统统计</p>
        <div class="row">
            <div class="col-md-6" style="background-color: white;width: 47%">
-               <p style="margin-top: 20px; margin-left: 10px;">全网活跃统计</p>
+               <p style="margin-top: 20px; margin-left: 10px;">全网活跃统计(有待开发)</p>
                <table class="table ">
                    <tr>
                        <th>总计</th>
@@ -295,28 +295,37 @@ function spark_settings_submenu_page3(){
                    <tr>
                        <td>第一名</td>
 <!--                       <td>--><?php //echo $vusername0?><!--</td>-->
-                       <td><?php echo $cusername0?></td>
-                       <td><?php echo $qusername0?></td>
-                       <td><?php echo $ausername0?></td>
+<!--                       <td>--><?php //echo $cusername0?><!--</td>-->
+<!--                       <td>--><?php //echo $qusername0?><!--</td>-->
+<!--                       <td>--><?php //echo $ausername0?><!--</td>-->
+                       <td>spark_admin</td>
+                       <td>spark_admin</td>
+                       <td>spark_admin</td>
                    </tr>
                    <tr>
                        <td>第二名</td>
 <!--                       <td>--><?php //echo $vusername1?><!--</td>-->
-                       <td><?php echo $cusername1?></td>
-                       <td><?php echo $qusername1?></td>
-                       <td><?php echo $ausername1?></td>
+<!--                       <td>--><?php //echo $cusername1?><!--</td>-->
+<!--                       <td>--><?php //echo $qusername1?><!--</td>-->
+<!--                       <td>--><?php //echo $ausername1?><!--</td>-->
+                       <td>Test1</td>
+                       <td>Test1</td>
+                       <td>Test1</td>
                    </tr>
                    <tr>
                        <td>第三名</td>
 <!--                       <td>--><?php //echo $vusername2?><!--</td>-->
-                       <td><?php echo $cusername2?></td>
-                       <td><?php echo $qusername2?></td>
-                       <td><?php echo $ausername2?></td>
+<!--                       <td>--><?php //echo $cusername2?><!--</td>-->
+<!--                       <td>--><?php //echo $qusername2?><!--</td>-->
+<!--                       <td>--><?php //echo $ausername2?><!--</td>-->
+                       <td>Cherie</td>
+                       <td>Cherie</td>
+                       <td>Cherie</td>
                    </tr>
                </table>
                </div>
            <div class="col-md-6" style="background-color: white;width: 47%">
-               <p style="margin-top: 20px; margin-left: 10px;">近期三天活跃统计</p>
+               <p style="margin-top: 20px; margin-left: 10px;">近期三天活跃统计(有待开发)</p>
                <table class="table ">
                    <tr>
                        <th>总计</th>
@@ -327,24 +336,37 @@ function spark_settings_submenu_page3(){
                    </tr>
                    <tr>
                        <td>第一名</td>
-                       <td><?php echo $vusername3?></td>
-                       <td><?php echo $cusername3?></td>
-                       <td><?php echo $qusername3?></td>
-                       <td><?php echo $ausername3?></td>
+<!--                       <td>--><?php //echo $vusername3?><!--</td>-->
+<!--                       <td>--><?php //echo $cusername3?><!--</td>-->
+<!--                       <td>--><?php //echo $qusername3?><!--</td>-->
+<!--                       <td>--><?php //echo $ausername3?><!--</td>-->
+                       <td>zyl</td>
+                       <td>zyl</td>
+                       <td>zyl</td>
+                       <td>zyl</td>
                    </tr>
                    <tr>
                        <td>第二名</td>
-                       <td><?php echo $vusername4?></td>
-                       <td><?php echo $cusername4?></td>
-                       <td><?php echo $qusername4?></td>
-                       <td><?php echo $ausername4?></td>
+<!--                       <td>--><?php //echo $vusername4?><!--</td>-->
+<!--                       <td>--><?php //echo $cusername4?><!--</td>-->
+<!--                       <td>--><?php //echo $qusername4?><!--</td>-->
+<!--                       <td>--><?php //echo $ausername4?><!--</td>-->
+                       <td>YANSHUAI</td>
+                       <td>YANSHUAI</td>
+                       <td>YANSHUAI</td>
+                       <td>YANSHUAI</td>
                    </tr>
                    <tr>
                        <td>第三名</td>
-                       <td><?php echo $vusername5?></td>
-                       <td><?php echo $cusername5?></td>
-                       <td><?php echo $qusername5?></td>
-                       <td><?php echo $ausername5?></td>
+<!--                       <td>--><?php //echo $vusername5?><!--</td>-->
+<!--                       <td>--><?php //echo $cusername5?><!--</td>-->
+<!--                       <td>--><?php //echo $qusername5?><!--</td>-->
+<!--                       <td>--><?php //echo $ausername5?><!--</td>-->
+                       <td>haoyi</td>
+                       <td>haoyi</td>
+                       <td>haoyi</td>
+                       <td>haoyi</td>
+
                    </tr>
                </table>
            </div>
