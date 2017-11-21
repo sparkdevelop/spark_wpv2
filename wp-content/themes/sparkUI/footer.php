@@ -8,7 +8,7 @@
     <div style="height:2px;background-color: #fe642d"></div>
     <div style="height:4px;background-color: #ffe9e1"></div>
 
-    <div class="container">
+    <div class="container" style="background-color: #fafafa;">
         <div class="row">
 
             <div class="col-md-9 col-sm-9 col-xs-9" id="col9">
@@ -52,6 +52,13 @@
                 <img src="<?php bloginfo("template_url") ?>/img/address.png" class="spark-QRCode">
             </div>
             <div class="clearfix visible-xs"></div>
+        </div>
+        <div class="divline"></div>
+        <div class="row">
+            <div class="copyright">
+                    <span>Copyright © 2017 <a href="<?php echo site_url(); ?>" target="_blank">火花空间</a>. All Rights Reserved. </span>
+                    <span>京ICP备17043230号-1</span>
+            </div>
         </div>
     </div>
 </div>
