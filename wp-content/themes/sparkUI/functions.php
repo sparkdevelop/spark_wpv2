@@ -3913,47 +3913,6 @@ function delete_task(){
 add_action('wp_ajax_delete_task', 'delete_task');
 add_action('wp_ajax_nopriv_delete_task', 'delete_task');
 
-function get_wiki_watched_nums($post_id){
-    global $wpdb;
-    $watch_count = 0;
-    $if_has_watched = $wpdb->get_results("select meta_value, meta_id from $wpdb->postmeta where meta_key=\"count\" and post_id=" . $post_id);
-    $is_watched = false;
-    $watch_nums = 0;
-    $meta_id = 0;
-    foreach ($if_has_watched as $item) {
-        $watch_nums = $item->meta_value;
-        if (!empty($watch_nums)) {
-            $is_watched = true;
-            $meta_id = $item->meta_id;
-        }
-    }
-    if ($is_watched) {
-        $wpdb->update($wpdb->postmeta, array(
-            "meta_value" => ++$watch_nums
-        ), array(
-            meta_id => $meta_id
-        ));
-
-        $watch_count = $watch_nums;
-    } else {
-        $wpdb->insert($wpdb->postmeta, array(
-            "meta_id" => 0,
-            "post_id" => $post_id,
-            "meta_key" => "count",
-            "meta_value" => 1
-        ));
-        $watch_count = 1;
-    }
-    return $watch_count;
-}
-
-
-
-
-
-
-
-
 
 //修改域名  域名要包括http
 function changeDomain($old_domain, $new_domain)
