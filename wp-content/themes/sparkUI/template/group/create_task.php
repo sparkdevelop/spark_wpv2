@@ -1,14 +1,13 @@
 <script>
     function checkSubmitTask() {
         var tname = document.getElementById('tname');
-        var tabstract = document.getElementById('tabstract');
         var tprolink = document.getElementById('tprolink');
         var tproabstract = document.getElementById('tproabstract');
-        if(checkLength(tname.value,'checkTaskNamebox')&&checkLength(tabstract.value,'checkGroupAbsbox')
+        if(checkLength(tname.value,'checkTaskNamebox')
             &&checkLength(tprolink.value,'checkProNamebox')&&checkLength(tproabstract.value,'checkProAbsbox')){
             return true;
         }else{
-            layer.alert("请修正错误");
+            layer.msg("请修正错误", {time: 2000, icon: 2});
             return false;
         }
     }
@@ -52,7 +51,7 @@
                 );
                 ?>
             </div>
-            <span style="line-height: 30px;height: 30px" id="checkGroupAbsbox"></span>
+<!--            <span style="line-height: 30px;height: 30px" id="checkGroupAbsbox"></span>-->
         </div>
         <!--任务类型-->
         <div class="form-group" style="margin: 20px 0px">
