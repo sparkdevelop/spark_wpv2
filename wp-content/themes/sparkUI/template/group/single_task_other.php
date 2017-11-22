@@ -14,7 +14,7 @@ $admin_url = admin_url('admin-ajax.php');
     <div id="single-task-title">
         <h3>任务 : <?= $task['task_name'] ?></h3>
         <div id="task-info" style="margin-top: 20px">
-            <span>群组: <?= $group['group_name'] ?></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+            <span>群组: <a href="<?php echo site_url().get_page_address('single_group').'&id='.$group['ID']?>"><?= $group['group_name'] ?></a></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
             <span>截止: <?= $task['deadline'] ?></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
             <?php
             if ($countdown != 0) {
