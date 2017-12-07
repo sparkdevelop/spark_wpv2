@@ -85,6 +85,7 @@ gp_member_verify_tmp_table_install();
 gp_task_member_table_install();
 gp_member_team_table_install();
 gp_task_complete_tmp_table_install();
+gp_notice_table_install();
 get_header();
 ?>
 <script>
@@ -133,7 +134,7 @@ get_header();
         </div>
     </div>
 </div>
-<br style="clear:both;" />
+<div style="clear:both;"></div>
 <div class="container">
     <div class="container_1" id="front-page_1" style="margin: 50px 0 0 0;display: table">
         <div class="col-md-4 col-sm-4 col-xs-12">
@@ -148,13 +149,13 @@ get_header();
             <div class="divline" style="margin-top: 0px"></div>
             <!--推荐列表-->
             <?php
-            $wiki_item = array([235,'导论实验课',get_wiki_watched_nums(235)],
-                [239,'Unit1：开源硬件与Web编程入门',get_wiki_watched_nums(239)],
-                [1191,'Unit2：计算机和微机实验',get_wiki_watched_nums(1191)],
-                [540,'Unit3：电路基础实验',get_wiki_watched_nums(540)],
-                [1202,'Unit4：网络基础实验',get_wiki_watched_nums(1202)],
-                [979,'Unit5: 复杂工程进阶实验',get_wiki_watched_nums(979)],
-                [13476,'Unit6: 工程认知与创新素质培养',get_wiki_watched_nums(13476)]
+            $wiki_item = array([235,'导论实验课',getWikiViews(235)],
+                [239,'Unit1：开源硬件与Web编程入门',getWikiViews(239)],
+                [1191,'Unit2：计算机和微机实验',getWikiViews(1191)],
+                [540,'Unit3：电路基础实验',getWikiViews(540)],
+                [1202,'Unit4：网络基础实验',getWikiViews(1202)],
+                [979,'Unit5: 复杂工程进阶实验',getWikiViews(979)],
+                [13476,'Unit6: 工程认知与创新素质培养',getWikiViews(13476)]
             )
             ?>
             <ul class="list-group" style="margin-bottom: 0px">
@@ -260,5 +261,5 @@ get_header();
         </div>
     </div>
 </div>
-<br style="clear:both;" />
+<div style="clear:both;"></div>
 <?php get_footer(); ?>

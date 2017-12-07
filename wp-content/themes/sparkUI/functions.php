@@ -2503,6 +2503,26 @@ function gp_task_complete_tmp_table_install()
     }
 }
 
+//建立群组通知表
+function gp_notice_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "gp_notice";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+          group_id int NOT NULL,
+          notice_type int NOT NULL,
+          notice_content text NOT NULL,
+          notice_status int NOT NULL,
+          modified_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
 
 //判断群组是否重名
 function checkGroupName()
@@ -2579,12 +2599,6 @@ function get_task_group($id)
     return $results[0]['belong_to'];
 }
 
-//写头像适配大小函数
-function get_group_avatar()
-{
-    //返回值为<img>
-}
-
 //判断用户是否为群组管理员  在显示管理员哪里用?
 function is_group_admin($group_id, $user_id = NULL)
 {
@@ -2640,6 +2654,7 @@ function join_the_group()
     $group_id = isset($_POST['group_id']) ? $_POST['group_id'] : "";
     $user_id = get_current_user_id();
     $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+    $admin_id_arr =get_group_member($group_id)['admin'];
     //判断验证方式
     if ($group_id != "") {
         $verify_type = get_verify_type($group_id);
@@ -2650,12 +2665,28 @@ function join_the_group()
             if ($col == 0) {
                 $sql_member = "INSERT INTO wp_gp_member VALUES ('',$user_id,$group_id,'member','$current_time','',0)";
                 $wpdb->get_results($sql_member);
+
+                //==============notice================
+                foreach($admin_id_arr as $admin){
+                    $admin_id = $admin['user_id'];
+                    $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,1,'$user_id',0,'$current_time')";
+                    $wpdb->get_results($sql_add_notice);
+                }
             } else {
                 $sql_member = "update wp_gp_member set member_status = 0 WHERE user_id = $user_id and group_id = $group_id";
                 $wpdb->get_results($sql_member);
+
+                //==============notice================
+                foreach($admin_id_arr as $admin){
+                    $admin_id = $admin['user_id'];
+                    $sql_add_notice = "UPDATE wp_gp_notice SET notice_status = 0 WHERE user_id = $admin_id and group_id = $group_id and notice_content = '$user_id'";
+                    $wpdb->get_results($sql_add_notice);
+                }
             }
+
             $sql_add_count = "update wp_gp set member_count = (member_count+1) WHERE ID = $group_id";
             $wpdb->get_results($sql_add_count);
+
             $response = "freejoin";
         } elseif ($verify_type == "verify") {
             //等待验证即可,将其存入tmp表
@@ -2679,12 +2710,21 @@ function quit_the_group()
 {
     global $wpdb;
     $group_id = isset($_POST['group_id']) ? $_POST['group_id'] : "";
+    $admin_id_arr =get_group_member($group_id)['admin'];
+    $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
     if ($group_id != "") {
         $user_id = get_current_user_id();
         $sql_member = "update wp_gp_member set member_status = 1 WHERE user_id = $user_id and group_id = $group_id";
         $wpdb->get_results($sql_member);
         $sql_cut_count = "update wp_gp set member_count = (member_count-1) WHERE ID = $group_id";
         $wpdb->get_results($sql_cut_count);
+
+        //==============notice================
+        foreach ($admin_id_arr as $admin) {
+            $admin_id = $admin['user_id'];
+            $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,2,'$user_id',0,'$current_time')";
+            $wpdb->get_results($sql_add_notice);
+        }
     }
     die();
 }
@@ -3913,39 +3953,6 @@ function delete_task(){
 add_action('wp_ajax_delete_task', 'delete_task');
 add_action('wp_ajax_nopriv_delete_task', 'delete_task');
 
-function get_wiki_watched_nums($post_id){
-    global $wpdb;
-    $watch_count = 0;
-    $if_has_watched = $wpdb->get_results("select meta_value, meta_id from $wpdb->postmeta where meta_key=\"count\" and post_id=" . $post_id);
-    $is_watched = false;
-    $watch_nums = 0;
-    $meta_id = 0;
-    foreach ($if_has_watched as $item) {
-        $watch_nums = $item->meta_value;
-        if (!empty($watch_nums)) {
-            $is_watched = true;
-            $meta_id = $item->meta_id;
-        }
-    }
-    if ($is_watched) {
-        $wpdb->update($wpdb->postmeta, array(
-            "meta_value" => ++$watch_nums
-        ), array(
-            meta_id => $meta_id
-        ));
-
-        $watch_count = $watch_nums;
-    } else {
-        $wpdb->insert($wpdb->postmeta, array(
-            "meta_id" => 0,
-            "post_id" => $post_id,
-            "meta_key" => "count",
-            "meta_value" => 1
-        ));
-        $watch_count = 1;
-    }
-    return $watch_count;
-}
 
 
 

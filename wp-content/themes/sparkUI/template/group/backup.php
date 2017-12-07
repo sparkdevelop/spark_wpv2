@@ -340,3 +340,19 @@ else if($tab == 'budao'){ ?>
 </div>
 </div>
 </div>
+
+
+
+跳转到<input type="text" width="3px" name="jumpToPage" id="jumpToPage"/>页
+<a href="" onclick="jumpToPage()">跳转</a>
+<script>
+    function jumpToPage() {
+        var pagenum = document.getElementById("jumpToPage").value;
+        if (!empty(pagenum)) {
+            var url = "<?=site_url() . get_page_address('personal') . '&tab=notification&paged='?>"+pagenum;
+            alert(url);
+            window.location.href = url;
+        }
+    }
+</script>
+当前第<?= $current_page ?>页<br/>
