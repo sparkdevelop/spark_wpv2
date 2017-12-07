@@ -25,7 +25,6 @@ if ($verify_type == 'verifyjoin') {
             array_push($verify_info_tmp, $field_content);
         }
         $verify_info = implode(",", $verify_info_tmp);
-        echo $verify_info;
     }
 } else {
     //获取验证信息
@@ -40,6 +39,13 @@ if ($group_id != "" && $user_id != "" && $apply_time != "") {
     } else {
         $wpdb->get_results($sql_insert_tmp);
     }
+}
+//==============notice================
+$admin_id_arr =get_group_member($group_id)['admin'];
+foreach($admin_id_arr as $admin){
+    $admin_id = $admin['user_id'];
+    $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,3,'$user_id',0,'$apply_time')";
+    $wpdb->get_results($sql_add_notice);
 }
 ?>
 <script>

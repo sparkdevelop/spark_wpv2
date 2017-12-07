@@ -1,7 +1,6 @@
 <?php $current_user = wp_get_current_user();
       $user_description = get_user_meta($current_user->ID,'description',true);
 ?>
-
 <?php
 $admin_url=admin_url('admin-ajax.php');
 ?>
@@ -106,7 +105,7 @@ $admin_url=admin_url('admin-ajax.php');
                 aim.val( name );
             });
         </script>
-        <p style="font-size: large;margin-top: 20px"><?php echo $current_user->data->display_name;?></p>
+        <p style="font-size: large;margin-top: 20px"><?php echo $current_user->data->user_login;?></p>
         <p style="margin-top: 10px;color: gray"><?php echo $user_description;?></p>
     </div>
     <ul id="personal_nav" class="nav nav-pills nav-stacked">
