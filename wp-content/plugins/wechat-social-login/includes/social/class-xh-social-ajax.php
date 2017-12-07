@@ -55,7 +55,7 @@ class XH_Social_Ajax {
 	    }
 	     
 	    //清楚session 数据
-	    XH_Social::instance()->session->cleanup_sessions();
+ 	    XH_Social::instance()->session->cleanup_sessions();
 	  
 	    $plugin_options = XH_Social_Install::instance()->get_plugin_options();
 	    $version = $plugin_options&&isset($plugin_options['version'])?$plugin_options['version']:'1.0.0';
@@ -90,13 +90,19 @@ class XH_Social_Ajax {
              $action=>null
         ), stripslashes_deep($_REQUEST));
 	    
+	    if(isset($_REQUEST['social_key'])){
+	        $params['social_key'] =$_REQUEST['social_key'];
+	    }else{
+	        $params['social_key'] ='social_captcha';
+	    }
+	    
 	    if(!XH_Social::instance()->WP->ajax_validate($params,isset($_REQUEST['hash'])?$_REQUEST['hash']:null,true)){
             XH_Social::instance()->WP->wp_die(XH_Social_Error::err_code(701)->errmsg);
             exit;
 	    }
 	    
 	    $builder = Gregwar\Captcha\CaptchaBuilder::create() ->build();
-	    XH_Social::instance()->session->set('social_captcha', $builder->getPhrase());
+	    XH_Social::instance()->session->set($params['social_key'], $builder->getPhrase());
 	    
 	    echo XH_Social_Error::success($builder ->inline())->to_json();
 	    exit;
