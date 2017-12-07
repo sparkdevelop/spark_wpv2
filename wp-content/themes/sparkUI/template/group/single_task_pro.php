@@ -112,7 +112,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
                         <div style="display: inline">
                             <input type="text" class="form-control" name="team_member[]" id="team_member"
                                    style="margin-left: 0px;margin-right: 5px"
-                                   placeholder="本组成员" value="" onblur="checkUserName(this.value)"
+                                   placeholder="请填写本组成员火花用户名(请注意填写后不可更改!!)" value="" onblur="checkUserName(this.value)"
                                    onfocus="saveid(this)"
                             />
                             <div id="ajax-response_0" style="display: inline;margin-left: 10px"></div>
@@ -189,11 +189,13 @@ $group_verify_field = get_verify_field($group_id, 'group');
                                             </script>
                                             <select class="form-control" id="change_grade_<?= $key ?>"
                                                     onchange="change_grade(this.value,'<?= $key ?>')">
-                                                <option value="0">pending</option>
-                                                <option value="1">pass</option>
-                                                <option value="2">good</option>
-                                                <option value="3">great</option>
-                                                <option value="4">perfect</option>
+                                                <option value="0">待审核</option>
+                                                <option value="1">不合格</option>
+                                                <option value="2">合格</option>
+                                                <option value="3">一般</option>
+                                                <option value="4">良好</option>
+                                                <option value="5">优秀</option>
+                                                <option value="6">特优</option>
                                             </select>
                                         </td>
                                     <?php } else {
@@ -302,7 +304,8 @@ $group_verify_field = get_verify_field($group_id, 'group');
         var data = {
             action: "checkUserName",
             name: name,
-            group_id: '<?=$group_id?>'
+            group_id: '<?=$group_id?>',
+            task_id : '<?=$task_id?>'
         };
         $.ajax({
             type: 'POST',
@@ -315,6 +318,9 @@ $group_verify_field = get_verify_field($group_id, 'group');
                 } else if (response == 1) {
                     <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
                     $('#ajax-response_' + j.toString()).html("<img src='<?=$url?>'><span>用户不是本组组员</span>");
+                } else if (response == 3){
+                    <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
+                    $('#ajax-response_' + j.toString()).html("<img src='<?=$url?>'><span>用户已经组队了</span>");
                 }
                 else {
                     <?php $url = get_template_directory_uri() . "/img/OK.png";?>

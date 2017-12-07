@@ -13,7 +13,7 @@ $verifyField = get_verify_field($group_id,'group');
     function checkSubmitGroup() {
         var gname = document.getElementById('gname');
         var gabstract = document.getElementById('gabstract');
-        if (checkGroupName(gname.value) && checkGroupAbs(gabstract.value) && checkFile()) {
+        if (checkGroupName(gname.value) && checkFile()) {
             return true;
         } else {
             layer.alert('请修正错误');
@@ -101,9 +101,11 @@ $verifyField = get_verify_field($group_id,'group');
         <div class="form-group" style="margin: 20px 0px">
             <label for="gabstract" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">群组简介<span
                     style="color: red">*</span></label>
-            <div class="col-sm-6">
-                <textarea class="form-control" rows="5" name="gabstract" id="gabstract" placeholder="请输入群组简介"
-                          onblur="checkGroupAbs(this.value)"><?=$group['group_abstract']?></textarea>
+            <div class="col-sm-8">
+                <?php wp_editor($group['group_abstract'], 'gabstract', $settings = array(
+                    'teeny' => true, 'textarea_rows' => 6)
+                );
+                ?>
             </div>
             <span style="line-height: 30px;height: 30px" id="checkGroupAbsbox"></span>
         </div>
@@ -111,7 +113,7 @@ $verifyField = get_verify_field($group_id,'group');
         <div class="form-group" style="margin: 20px 0px;margin-bottom: 0px">
             <label for="gstatus" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">群组状态<span
                     style="color: red">*</span></label>
-            <div class="col-sm-6" style="margin-top: 7px">
+            <div class="col-sm-10" style="margin-top: 7px">
                 <?php
                     if($group['group_status']=='open'){?>
                         <input type="radio" id="gopen" name="gstatus" value="open" style="display: inline-block" checked/><span>开启</span>&nbsp;&nbsp;

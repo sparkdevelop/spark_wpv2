@@ -9,7 +9,7 @@
     function checkSubmitGroup() {
         var gname = document.getElementById('gname');
         var gabstract = document.getElementById('gabstract');
-        if (checkGroupName(gname.value) && checkGroupAbs(gabstract.value) && checkFile()) {
+        if (checkGroupName(gname.value) && checkFile()) {
             return true;
         } else {
             layer.alert('请修正错误');
@@ -99,9 +99,11 @@
         <div class="form-group" style="margin: 20px 0px">
             <label for="gabstract" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">群组简介<span
                     style="color: red">*</span></label>
-            <div class="col-sm-6">
-                <textarea class="form-control" rows="5" name="gabstract" id="gabstract" placeholder="请输入群组简介"
-                          onblur="checkGroupAbs(this.value)"></textarea>
+            <div class="col-sm-10">
+                <?php wp_editor('', 'gabstract', $settings = array(
+                    'teeny' => true, 'textarea_rows' => 6)
+                );
+                ?>
             </div>
             <span style="line-height: 30px;height: 30px" id="checkGroupAbsbox"></span>
         </div>

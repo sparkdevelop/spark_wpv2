@@ -2679,7 +2679,7 @@ function join_the_group()
                 //==============notice================
                 foreach($admin_id_arr as $admin){
                     $admin_id = $admin['user_id'];
-                    $sql_add_notice = "UPDATE wp_gp_notice SET notice_status = 0 WHERE user_id = $admin_id and group_id = $group_id and notice_content = '$user_id'";
+                    $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,1,'$user_id',0,'$current_time')";
                     $wpdb->get_results($sql_add_notice);
                 }
             }
@@ -2688,13 +2688,22 @@ function join_the_group()
             $wpdb->get_results($sql_add_count);
 
             $response = "freejoin";
-        } elseif ($verify_type == "verify") {
+        }
+        elseif ($verify_type == "verify") {
             //等待验证即可,将其存入tmp表
             $sql_member = "INSERT INTO wp_gp_member_verify_tmp VALUES ('',$user_id,$group_id,'$current_time','')";
             $wpdb->get_results($sql_member);
+
             $response = "verify";
         } else {
             //先弹出框框,填写好字段,然后将字段值存入tmp表
+
+            //==============notice================
+            foreach($admin_id_arr as $admin){
+                $admin_id = $admin['user_id'];
+                $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,3,'$user_id',0,'$current_time')";
+                $wpdb->get_results($sql_add_notice);
+            }
             $response = "verifyjoin";
         }
     }
@@ -3464,7 +3473,8 @@ function checkUserName()
     global $wpdb;
     $name = $_POST['name'];
     $group_id = $_POST['group_id'];
-    $sql = "SELECT * FROM $wpdb->users WHERE user_login = '$name'";
+    $task_id = $_POST['task_id'];
+    $sql = "SELECT * FROM $wpdb->users WHERE user_login = '$name' or display_name = '$name'";
     $col = $wpdb->query($sql);
     if ($col == 0) {
         $response = 0;
@@ -3474,7 +3484,11 @@ function checkUserName()
         if (!is_group_member($group_id, $id)) {   //已经是本组成员的话不行
             $response = 1;
         } else {
-            $response = 2;
+            if (!is_ungroup($id,$group_id,$task_id)){  //如果已经分组了,不可以
+                $response = 3;
+            }else{
+                $response = 2;
+            }
         }
     }
     if ($name == '') {
@@ -3487,13 +3501,28 @@ function checkUserName()
 add_action('wp_ajax_checkUserName', 'checkUserName');
 add_action('wp_ajax_nopriv_checkUserName', 'checkUserName');
 
+//用户是否组队
+function is_ungroup($id,$group_id,$task_id){
+    $ungroup_member = pro_table($group_id, $task_id)['ungroup'];
+    if(!empty($ungroup_member)){
+        foreach($ungroup_member as $value){
+            if($value[0] == $id) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+
 //判断用户输入的邀请用户名是否正确,是否已经是本组的
 function checkInUserName()
 {
     global $wpdb;
     $name = $_POST['name'];
     $group_id = $_POST['group_id'];
-    $sql = "SELECT * FROM $wpdb->users WHERE user_login = '$name'";
+    $sql = "SELECT * FROM $wpdb->users WHERE user_login = '$name' or display_name = '$name'";
     $col = $wpdb->query($sql);
     if ($col == 0) {
         $response = 0;
@@ -3676,8 +3705,6 @@ function change_grade()
             return ['code' => $e->getCode(), 'msg' => $e->getMessage()];
         }
     }
-    echo $sql;
-    echo $team_id;
     die();
 }
 
@@ -3687,7 +3714,7 @@ add_action('wp_ajax_nopriv_change_grade', 'change_grade');
 //成绩的数字和文字转换
 function transform_grade($rank)
 {
-    $map = ['pending', 'pass', 'good', 'great', 'perfect'];
+    $map = ['待审核', '不合格', '合格', '一般', '良好','优秀','特优'];
     return $map[$rank];
 }
 
