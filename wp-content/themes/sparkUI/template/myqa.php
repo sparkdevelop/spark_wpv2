@@ -44,17 +44,12 @@ $args = array(
 $paginate = paginate_links($args);
 ?>
     <ul id="personalTab" class="nav nav-pills">
-        <?php
-        $current_url = curPageURL();
-        $url_array=parse_url($current_url);
-        $query_parse=explode("&",$url_array['query']);
-        if(array_search("filter=my-answers",$query_parse)){?>
-            <li><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-questions','paged'=>1 ) ) )?>">我的提问</a></li>
-            <li class="active"><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-answers','paged'=>1) ) )?>">我的回答</a></li>
-        <?php }else{ ?>
-            <li class="active"><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-questions','paged'=>1 ) ) )?>">我的提问</a></li>
-            <li><a href="<?php echo esc_url(add_query_arg( array('filter'=>'my-answers','paged'=>1 ) ) )?>">我的回答</a></li>
-        <?php } ?>
+        <li class="<?php echo $qa_filter == 'my-questions' ? 'active' : ''; ?>">
+            <a href="<?php echo esc_url(add_query_arg(array('filter' => 'my-questions'), remove_query_arg(array('paged')))); ?>">我的提问</a>
+        </li>
+        <li class="<?php echo $qa_filter == 'my-answers' ? 'active' : ''; ?>">
+            <a href="<?php echo esc_url(add_query_arg(array('filter' => 'my-answers'), remove_query_arg(array('paged')))); ?>">我的回答</a>
+        </li>
     </ul>
     <div class="dwqa-questions-list">
         <?php if ( $qa_query->have_posts() ) : ?>

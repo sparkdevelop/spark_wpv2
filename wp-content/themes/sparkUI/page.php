@@ -145,6 +145,12 @@
                     }
                     require "template/group/update_task.php";
                 }
+                elseif (is_page('user_action')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "../../plugins/spark_analyse/spark analyse.php";
+                }
                 elseif (is_page('otherpersonal')){
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );

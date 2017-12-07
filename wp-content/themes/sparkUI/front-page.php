@@ -85,6 +85,7 @@ gp_member_verify_tmp_table_install();
 gp_task_member_table_install();
 gp_member_team_table_install();
 gp_task_complete_tmp_table_install();
+gp_notice_table_install();
 get_header();
 ?>
 <script>
@@ -133,7 +134,7 @@ get_header();
         </div>
     </div>
 </div>
-<br style="clear:both;" />
+<div style="clear:both;"></div>
 <div class="container">
     <div class="container_1" id="front-page_1" style="margin: 50px 0 0 0;display: table">
         <div class="col-md-4 col-sm-4 col-xs-12">
@@ -260,5 +261,5 @@ get_header();
         </div>
     </div>
 </div>
-<br style="clear:both;" />
+<div style="clear:both;"></div>
 <?php get_footer(); ?>
