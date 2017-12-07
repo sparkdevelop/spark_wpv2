@@ -3954,14 +3954,6 @@ add_action('wp_ajax_delete_task', 'delete_task');
 add_action('wp_ajax_nopriv_delete_task', 'delete_task');
 
 
-
-
-
-
-
-
-
-
 //修改域名  域名要包括http
 function changeDomain($old_domain, $new_domain)
 {

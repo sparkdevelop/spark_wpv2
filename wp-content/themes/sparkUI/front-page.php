@@ -149,13 +149,13 @@ get_header();
             <div class="divline" style="margin-top: 0px"></div>
             <!--推荐列表-->
             <?php
-            $wiki_item = array([235,'导论实验课',getWikiViews(235)],
-                [239,'Unit1：开源硬件与Web编程入门',getWikiViews(239)],
-                [1191,'Unit2：计算机和微机实验',getWikiViews(1191)],
-                [540,'Unit3：电路基础实验',getWikiViews(540)],
-                [1202,'Unit4：网络基础实验',getWikiViews(1202)],
-                [979,'Unit5: 复杂工程进阶实验',getWikiViews(979)],
-                [13476,'Unit6: 工程认知与创新素质培养',getWikiViews(13476)]
+            $wiki_item = array([235,'导论实验课', getWikiViews(235)],
+                [239,'Unit1：开源硬件与Web编程入门', getWikiViews(239)],
+                [1191,'Unit2：计算机和微机实验', getWikiViews(1191)],
+                [540,'Unit3：电路基础实验', getWikiViews(540)],
+                [1202,'Unit4：网络基础实验', getWikiViews(1202)],
+                [979,'Unit5: 复杂工程进阶实验', getWikiViews(979)],
+                [13476,'Unit6: 工程认知与创新素质培养', getWikiViews(13476)]
             )
             ?>
             <ul class="list-group" style="margin-bottom: 0px">

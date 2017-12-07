@@ -1398,6 +1398,13 @@ h4 {
     text-decoration: none;
     color: #fe642d;
 }
+/*插入链接时底部提示*/
+#wp-a11y-speak-polite{
+    display: none;
+}
+.ui-helper-hidden-accessible{
+    display: none;
+}
 /*手机端增加元素*/
 #m-header, .m_search_box, .m-fa-search, .m-fa-remove, #m-project-views, #m-side-tool-project, .m-left-collapse-menu, .m_search_page_box, .m-qa-count, .m-publish-project, .m-edit-wiki-box, .m-create-wiki-box,#m-group-btn {
     display: none;
