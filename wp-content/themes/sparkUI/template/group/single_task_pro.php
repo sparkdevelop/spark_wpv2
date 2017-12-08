@@ -171,11 +171,11 @@ $group_verify_field = get_verify_field($group_id, 'group');
                                 <tr>
                                     <td id="team_id" rowspan="<?= $team_size ?>"><?= $key + 1 ?>组</td>
                                     <td style="display: none"><?= $team[$i][0] ?></td>
-                                    <td><?= $team[$i][1] ?></td>
+                                    <td><?php echo the_author_meta('display_name',$team[$i][0]) ?></td>
                                     <?php for ($j = 2; $j < sizeof($team[$i]) - 2; $j++) { ?>
                                         <td><?= $team[$i][$j] ?></td>
                                     <?php } ?>
-                                    <td id="pro_link" rowspan="<?= $team_size ?>"><a
+                                    <td id="pro_link" rowspan="<?= $team_size ?>"><a target="_blank"
                                             href="<?= $team[$i]['apply_content'] ?>"><?= $team[$i]['apply_content'] ?></a>
                                     </td>
                                     <?php
@@ -224,11 +224,11 @@ $group_verify_field = get_verify_field($group_id, 'group');
                             <tr>
                                 <td id="team_id" rowspan="<?= sizeof($ungroup) ?>">未分组</td>
                                 <td style="display: none"><?= $ungroup[$i][0] ?></td>
-                                <td><?= $ungroup[$i][1] ?></td>
+                                <td><?php echo the_author_meta('display_name',$ungroup[$i][0]) ?></td>
                                 <?php for ($j = 2; $j < sizeof($ungroup[$i]) - 2; $j++) { ?>
                                     <td><?= $ungroup[$i][$j] ?></td>
                                 <?php } ?>
-                                <td id="pro_link" rowspan="<?= sizeof($ungroup) ?>"><a
+                                <td id="pro_link" rowspan="<?= sizeof($ungroup) ?>"><a target="_blank"
                                         href="<?= $ungroup[$i]['apply_content'] ?>"><?= $ungroup[$i]['apply_content'] ?></a>
                                 </td>
                                 <td id="grade" rowspan="<?= sizeof($ungroup) ?>"><?= $ungroup[$i]['completion'] ?></td>
