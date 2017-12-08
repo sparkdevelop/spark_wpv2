@@ -1,35 +1,39 @@
-﻿=== Wechat Social login 微信登录插件===
+﻿=== Wechat Social login 微信QQ钉钉登录插件===
 Contributors: XunhuWeb
 Donate link: https://www.wpweixin.net/product/1067.html
-Tags:微信,微信登录,weixin,wechat, wechat social, QQ social,Weibo social,wordpress social plugin, wechat login, wechat sign in, woocommerce wechat sign in
+Tags:weixin,wechat, wechat social, QQ social,Weibo social,wordpress social plugin, wechat login, wechat sign in,微信,微信登录,钉钉登录,钉钉,注册,登录
 Requires at least: 4.0
 Stable tag: 1.0
-Tested up to: 4.8
+Tested up to: 4.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-微信登录插件,支持微信,QQ,微博,手机注册登录,支持账户绑定解绑,支持WooCommerce微信登录,整合Ultimate Member,兼容Buddypress,
+微信登录插件,支持微信,QQ,钉钉,微博,手机注册登录,支持账户绑定解绑,支持WooCommerce微信登录,整合Ultimate Member,兼容Buddypress,
 兼容Open Social,微信高级登录,不需要微信开放平台认证。
 
 == Description ==
-一款适合中国人，功能强大的社会化登录插件，支持微信,QQ,微博,手机注册登录,支持账户绑定解绑,支持WooCommerce微信登录,整合Ultimate Member,兼容Buddypress,
+一款适合中国人，功能强大的社会化登录插件，支持微信,QQ,钉钉,微博,手机注册登录,支持账户绑定解绑,支持WooCommerce微信登录,整合Ultimate Member,兼容Buddypress,
 兼容Open Social,支持微信登录直接关注公众号，微信高级扩展不需要微信开放平台认证。
 
-插件采用Addon模式，每一个功能都是一个扩展，方便用户根据需求选择需要的功能。了解详情：<a href="http://www.weixinsocial.com" target="_blank">WordPress微信登录插件</a>
+插件采用Addon模式，每一个功能都是一个扩展，方便用户根据需求选择需要的功能。了解详情：<a href="https://www.wpweixin.net/product/1067.html" target="_blank">WordPress 微信/QQ/钉钉/手机登录插件</a>
 
 = Features = 
-* 支持微信,QQ,微博登录中国最流行的社交软件登录
+* 支持微信,QQ,钉钉,微博登录中国最流行的社交软件登录
 * 支持手机+验证码快速登录（高级扩展）
 * 支持与WordPress账号绑定和解绑，可以同时绑定多个社交账号（高级扩展）
 * 自带全新的注册和登录页面替换WordPress原生登录界面
 * 整合Ultimate Member会员插件（高级扩展）
 * 整合WooCommerce购物车插件实现第三方登录和绑定（高级扩展）
-* 支持微信、QQ、微博、QQ空间分享，微信高级分享采用微信JSSDK
+* 支持微信、QQ、微博、QQ空间分享，微信分享支持缩略图
+* 全新找回密码页面，支持邮箱和手机验证码找回密码
 * WooCommerce产品分享
+* 手机登陆支持国外手机（国内+国际）短信支持
 * 兼容Buddypress
+* 代理登录URL改为https
+* 新增SMTP邮件发送
 * 兼容Open Social老用户登录
 * 微信登录高级扩展，不需要开放平台认证，微信扫码登录关注公众号
-* 更多登录插件信息请访问官网<a href="http://www.weixinsocial.com" target="_blank">WordPress微信登录</a>
+* 更多登录插件信息请访问官网<a href="https://www.wpweixin.net/product/1067.html" target="_blank">WordPress QQ/微博/微信/手机登录插件</a>
 
 = GitHub: =
 
@@ -72,6 +76,32 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 * Updated once a month
 
 == Changelog ==
+
+= v1.2.2 （2017-11-27）
+* 重大更新，更新后请重启插件
+* 新增钉钉登录（移动端+PC端）
+* 新增找回密码：
+* 用户名/邮箱找回密码
+* 手机找回密码 （手机登陆扩展必须升级到v1.0.9）
+* buddypress 默认昵称的显示
+* 内部bug修复。
+* 去除多余定时服务(避免造成系统加载缓慢)
+* 新增[wsocial_wechat]短代码，获取用户微信信息
+* 修复微信分享，部分文章因为内容结构导致分享失败的异常
+* 优化“登录页面(新)”设置界面，分栏：登录、注册、找回密码
+* 新增国际短信服务商
+* 修改open social扩展命名
+* 新增SMTP邮件发送
+
+= v1.2.1 （2017-09-15）
+* 手机登录时，评论不显示手机号
+
+= v1.2.1 （2017-09-03）
+* 修复bug: xh_social_loginbar 短代码加载异常
+* 修复，停用/启用插件时，系统会自动退出登录
+
+= v1.2.0 （2017-08-30）
+* wordpress默认以登录名作为cookie key，但是遇到中文或部分特殊字符等登录名时会出现无法登录的错误。现更新为以用户ID 作为cookie key
 
 = v1.1.9 （2017-08-25）=
 * 解决老用户，登录名含乱码空格等特殊字符无法登录的bug

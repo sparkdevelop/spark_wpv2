@@ -8,7 +8,8 @@ $group_verify_field = get_verify_field($group_id, 'group');
     <div id="single-task-title">
         <h3>任务 : <?= $task['task_name'] ?></h3>
         <div id="task-info" style="margin-top: 20px">
-            <span>群组: <a href="<?php echo site_url().get_page_address('single_group').'&id='.$group['ID']?>"><?= $group['group_name'] ?></a></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+            <span>群组: <a
+                        href="<?php echo site_url() . get_page_address('single_group') . '&id=' . $group['ID'] ?>"><?= $group['group_name'] ?></a></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
             <span>截止: <?= $task['deadline'] ?></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
             <?php
             if ($countdown != 0) {
@@ -44,14 +45,27 @@ $group_verify_field = get_verify_field($group_id, 'group');
         <?php if (is_complete_task($task_id, get_current_user_id())) { //更新 ?>
             <form class="form-horizontal" role="form" name="profile" method="post" onsubmit="return checkSubmitPro()"
                   action="<?php echo esc_url(self_admin_url('process-update_pro.php')); ?>">
+                <?php $value = get_user_task_content($task_id);
+                list($pro_name, $pro_link) = split(',', $value['apply_content']);
+                ?>
+                <!--项目名称-->
+                <div class="form-group" style="margin: 20px 0px">
+                    <label for="proname" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">项目名称<span
+                                style="color: red">*</span></label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="proname" id="proname" placeholder="请输入项目名称"
+                               value="<?= $pro_name ?>"
+                               onblur="checkLength(this.value,'checkNamebox')"/>
+                    </div>
+                    <span style="line-height: 30px;height: 30px" id="checkNamebox"></span>
+                </div>
                 <!--项目链接-->
                 <div class="form-group" style="margin: 20px 0px">
-                    <label for="proname" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">项目链接<span
-                            style="color: red">*</span></label>
+                    <label for="prolink" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">项目链接<span
+                                style="color: red">*</span></label>
                     <div class="col-sm-5">
-                        <?php $value = get_user_task_content($task_id); ?>
                         <input type="text" class="form-control" name="prolink" id="prolink" placeholder="请输入项目链接"
-                               value="<?= $value['apply_content'] ?>"
+                               value="<?= $pro_link ?>"
                                onblur="checkLength(this.value,'checkLinkbox')"/>
                     </div>
                     <span style="line-height: 30px;height: 30px" id="checkLinkbox"></span>
@@ -60,7 +74,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
                 <div class="form-group" style="margin: 20px 0px">
                     <label for="tabstract" class="col-sm-2 col-md-2 col-xs-12 control-label"
                            style="float: left">项目成员<span
-                            style="color: red">*</span></label>
+                                style="color: red">*</span></label>
                     <div class="col-sm-8">
                         <?php $team_member = get_team_member($task_id);
                         foreach ($team_member as $value) {
@@ -91,10 +105,21 @@ $group_verify_field = get_verify_field($group_id, 'group');
         <?php } else { // 首次插入?>
             <form class="form-horizontal" role="form" name="profile" method="post" onsubmit="return checkSubmitPro()"
                   action="<?php echo esc_url(self_admin_url('process-apply_pro.php')); ?>">
+                <!--项目名称-->
+                <div class="form-group" style="margin: 20px 0px">
+                    <label for="proname" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">项目名称<span
+                                style="color: red">*</span></label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="proname" id="proname" placeholder="请输入项目名称"
+                               value=""
+                               onblur="checkLength(this.value,'checkNamebox')"/>
+                    </div>
+                    <span style="line-height: 30px;height: 30px" id="checkNamebox"></span>
+                </div>
                 <!--项目链接-->
                 <div class="form-group" style="margin: 20px 0px">
-                    <label for="proname" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">项目链接<span
-                            style="color: red">*</span></label>
+                    <label for="prolink" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">项目链接<span
+                                style="color: red">*</span></label>
                     <div class="col-sm-5">
                         <input type="text" class="form-control" name="prolink" id="prolink" placeholder="请输入项目链接"
                                value=""
@@ -106,7 +131,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
                 <div class="form-group" style="margin: 20px 0px">
                     <label for="tabstract" class="col-sm-2 col-md-2 col-xs-12 control-label"
                            style="float: left">项目成员<span
-                            style="color: red">*</span></label>
+                                style="color: red">*</span></label>
                     <div class="col-sm-8">
                         <input type="button" id="addNewFieldBtn" value="+" style="display:inline">
                         <div style="display: inline">
@@ -175,8 +200,10 @@ $group_verify_field = get_verify_field($group_id, 'group');
                                     <?php for ($j = 2; $j < sizeof($team[$i]) - 2; $j++) { ?>
                                         <td><?= $team[$i][$j] ?></td>
                                     <?php } ?>
+                                    <?php list($pro_name, $pro_link) = split(',', $team[$i]['apply_content']);
+                                    ?>
                                     <td id="pro_link" rowspan="<?= $team_size ?>"><a target="_blank"
-                                            href="<?= $team[$i]['apply_content'] ?>"><?= $team[$i]['apply_content'] ?></a>
+                                                href="<?= $pro_link ?>"><?= $pro_name ?></a>
                                     </td>
                                     <?php
                                     if (is_group_admin($group_id)) { ?>
@@ -229,7 +256,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
                                     <td><?= $ungroup[$i][$j] ?></td>
                                 <?php } ?>
                                 <td id="pro_link" rowspan="<?= sizeof($ungroup) ?>"><a target="_blank"
-                                        href="<?= $ungroup[$i]['apply_content'] ?>"><?= $ungroup[$i]['apply_content'] ?></a>
+                                            href="<?= $ungroup[$i]['apply_content'] ?>"><?= $ungroup[$i]['apply_content'] ?></a>
                                 </td>
                                 <td id="grade" rowspan="<?= sizeof($ungroup) ?>"><?= $ungroup[$i]['completion'] ?></td>
                             </tr>
@@ -276,6 +303,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
 //            'placeholder="本组成员" value="" onblur="checkUserName(this.value)" />';
 //        $("#addField").append(input);
     });
+
     function saveid(obj) {
         var nextNode = obj.nextSibling.nextSibling;  //ajax-response_0
         console.log(nextNode);
@@ -288,6 +316,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
         console.log(j);
 
     }
+
     function checkLength(taskname, boxid) {
         var id = "#" + boxid;
         if (taskname.length == 0) {
@@ -300,6 +329,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
             return true;
         }
     }
+
     function checkUserName(name) {
         var data = {
             action: "checkUserName",
@@ -329,6 +359,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
             }
         })
     }
+
     function checkSubmitPro() {
         var result = [];
         for (var k = 0; k < i; k++) {
@@ -360,6 +391,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
 //            return false;
 //        }
     }
+
     function change_grade(grade, team_id) {
         var data = {
             action: "change_grade",

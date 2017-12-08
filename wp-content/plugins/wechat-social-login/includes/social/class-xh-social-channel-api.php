@@ -78,7 +78,7 @@ class XH_Social_Channel_Api{
         }
         
         if(strpos($redirect_to, 'wp-login.php')!==false){
-            $redirect_to= home_url('/');
+            $redirect_to= admin_url('/');
         }
         
         $redirect_to= apply_filters('xh_social_log_on_callback_uri', $redirect_to,$channel_id);
@@ -116,7 +116,7 @@ class XH_Social_Channel_Api{
         }
     
         if(strpos($redirect_to, 'wp-login.php')!==false){
-            $redirect_to= home_url('/');
+            $redirect_to= admin_url('/');
         }
     
         $redirect_to= apply_filters('xh_social_log_on_callback_uri', $redirect_to,$channel_id);
