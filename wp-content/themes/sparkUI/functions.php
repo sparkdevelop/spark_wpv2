@@ -3629,7 +3629,7 @@ function pro_table($group_id, $task_id)
             foreach ($uid as $id) {
                 $tmp = [];//存储内层数组
                 $user_id = $id;
-                $user_name = get_author_name($id);
+                $user_name = get_the_author_meta('user_login',$id);
                 $verify_field = get_user_verify_field($group_id, $id);
                 $completion = get_user_task_completion($task_id, $user_id);
                 array_push($tmp, $user_id, $user_name);
@@ -3645,7 +3645,7 @@ function pro_table($group_id, $task_id)
     foreach ($array_member_id_ungroup as $key => $value_ungroup) {
         $tmp = [];//存储内层数组
         $user_id = $value_ungroup;
-        $user_name = get_author_name($value_ungroup);
+        $user_name = get_the_author_meta('user_login',$value_ungroup);
         $verify_field = get_user_verify_field($group_id, $value_ungroup);
         $completion = array('completion' => '', 'apply_content' => '');
         array_push($tmp, $user_id, $user_name);
