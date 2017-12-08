@@ -3549,7 +3549,7 @@ add_action('wp_ajax_nopriv_checkInUserName', 'checkInUserName');
 function get_the_ID_by_name($user_name)
 {
     global $wpdb;
-    $sql = "SELECT ID FROM $wpdb->users WHERE user_login = '$user_name'";
+    $sql = "SELECT ID FROM $wpdb->users WHERE user_login = '$user_name' or display_name = '$user_name'";
     $id = $wpdb->get_var($wpdb->prepare($sql, ""), 0, 0);
     return $id;
 }
