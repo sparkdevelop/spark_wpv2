@@ -3474,7 +3474,7 @@ function checkUserName()
     $name = $_POST['name'];
     $group_id = $_POST['group_id'];
     $task_id = $_POST['task_id'];
-    $sql = "SELECT * FROM $wpdb->users WHERE user_login = '$name' or display_name = '$name'";
+    $sql = "SELECT * FROM $wpdb->users WHERE user_login = '$name'";
     $col = $wpdb->query($sql);
     if ($col == 0) {
         $response = 0;
@@ -3549,7 +3549,7 @@ add_action('wp_ajax_nopriv_checkInUserName', 'checkInUserName');
 function get_the_ID_by_name($user_name)
 {
     global $wpdb;
-    $sql = "SELECT ID FROM $wpdb->users WHERE user_login = '$user_name' or display_name = '$user_name'";
+    $sql = "SELECT ID FROM $wpdb->users WHERE user_login = '$user_name'";
     $id = $wpdb->get_var($wpdb->prepare($sql, ""), 0, 0);
     return $id;
 }
