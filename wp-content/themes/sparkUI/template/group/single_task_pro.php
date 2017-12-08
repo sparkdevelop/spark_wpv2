@@ -198,7 +198,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
                                 <tr>
                                     <td id="team_id" rowspan="<?= $team_size ?>"><?= $key + 1 ?>组</td>
                                     <td style="display: none"><?= $team[$i][0] ?></td>
-                                    <td><?php echo the_author_meta('display_name',$team[$i][0]) ?></td>
+                                    <td><?php echo the_author_meta('',$team[$i][0]) ?></td>
                                     <?php for ($j = 2; $j < sizeof($team[$i]) - 2; $j++) { ?>
                                         <td><?= $team[$i][$j] ?></td>
                                     <?php } ?>
@@ -253,7 +253,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
                             <tr>
                                 <td id="team_id" rowspan="<?= sizeof($ungroup) ?>">未分组</td>
                                 <td style="display: none"><?= $ungroup[$i][0] ?></td>
-                                <td><?php echo the_author_meta('display_name',$ungroup[$i][0]) ?></td>
+                                <td><?php echo the_author_meta('user_login',$ungroup[$i][0]) ?></td>
                                 <?php for ($j = 2; $j < sizeof($ungroup[$i]) - 2; $j++) { ?>
                                     <td><?= $ungroup[$i][$j] ?></td>
                                 <?php } ?>
