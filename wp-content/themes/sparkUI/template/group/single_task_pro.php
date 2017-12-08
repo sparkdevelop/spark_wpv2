@@ -44,6 +44,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
         </h4>
         <?php if (is_complete_task($task_id, get_current_user_id())) { //更新 ?>
             <form class="form-horizontal" role="form" name="profile" method="post" onsubmit="return checkSubmitPro()"
+                  onkeydown="if(event.keyCode==13)return false;"
                   action="<?php echo esc_url(self_admin_url('process-update_pro.php')); ?>">
                 <?php $value = get_user_task_content($task_id);
                 list($pro_name, $pro_link) = split(',', $value['apply_content']);
@@ -104,6 +105,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
             </form>
         <?php } else { // 首次插入?>
             <form class="form-horizontal" role="form" name="profile" method="post" onsubmit="return checkSubmitPro()"
+                  onkeydown="if(event.keyCode==13) return false;"
                   action="<?php echo esc_url(self_admin_url('process-apply_pro.php')); ?>">
                 <!--项目名称-->
                 <div class="form-group" style="margin: 20px 0px">
