@@ -107,3 +107,4 @@ require_once(ABSPATH . 'wp-settings.php');
 define("FS_METHOD", "direct");
 define("FS_CHMOD_DIR", 0777);
 define("FS_CHMOD_FILE", 0777);
+//error_reporting(E_ALL^E_NOTICE^E_WARNING);

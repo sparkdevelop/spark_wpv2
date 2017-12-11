@@ -3606,10 +3606,10 @@ function pro_table($group_id, $task_id)
      * */
     global $wpdb;
     $result = [];  //存储返回数组
+
     //step0:
     $sql_team_id = "SELECT distinct(team_id) FROM wp_gp_member_team WHERE task_id = $task_id";
     $array_team_id = $wpdb->get_results($sql_team_id, 'ARRAY_A');
-
 
     //step1: 格式 Array ( [0] => 22 [1] => 1 )
     $sql_member_id = "SELECT DISTINCT(user_id) FROM wp_gp_member WHERE group_id = $group_id and member_status = 0";
@@ -3618,14 +3618,15 @@ function pro_table($group_id, $task_id)
     foreach ($array_member_id_tmp as $value) {
         array_push($array_member_id, $value['user_id']);
     }
-
     //step2:
     $array_member_id_ungroup = $array_member_id;
-    if (sizeof($array_team_id) != 0) {
+    if (sizeof($array_team_id) != 0) {    //$array_team_id数组的大小是有多少组
+        //如果有组队成功的
         foreach ($array_team_id as $key => $value) {
             $tmp_team = [];
-            $uid = get_team_member($task_id, $value['team_id']);
-            $array_member_id_ungroup = array_diff($array_member_id_ungroup, $uid);  //获取未分组的成员
+            $uid = get_team_member($task_id, $value['team_id']); //获得本小组的成员id
+            $array_member_id_ungroup = array_diff($array_member_id_ungroup, $uid);  //获取未分组的成员,每一轮减去一个team的成员,但索引不变
+
             foreach ($uid as $id) {
                 $tmp = [];//存储内层数组
                 $user_id = $id;
@@ -3634,9 +3635,14 @@ function pro_table($group_id, $task_id)
                 $completion = get_user_task_completion($task_id, $user_id);
                 array_push($tmp, $user_id, $user_name);
                 $tmp = array_merge($tmp, $verify_field, $completion[0]);
+//                if(sizeof($verify_field)!=0){
+//                    $tmp = array_merge($tmp, $verify_field, $completion[0]);
+//                }else{
+//                    $tmp = array_merge($tmp, array(), $completion[0]);
+//                }
                 array_push($tmp_team, $tmp);
             }
-            array_push($result, $tmp_team);
+            $result += array($value['team_id'] => $tmp_team);
         }
     }
 
@@ -3695,7 +3701,7 @@ function change_grade()
     global $wpdb;
     $completion = $_POST['grade'];
     $task_id = $_POST['task_id'];
-    $team_id = $_POST['team_id'] + 1;
+    $team_id = $_POST['team_id'];
     $team_member = get_team_member($task_id, $team_id);
     foreach ($team_member as $member) {
         $sql = "update wp_gp_task_member set completion = $completion WHERE user_id=$member and task_id=$task_id";

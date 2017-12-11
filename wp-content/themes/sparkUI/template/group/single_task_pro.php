@@ -82,7 +82,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
                             ?>
                             <div>
                                 <input type="text" class="form-control" name="team_member[]" id="team_member"
-                                       value="<?= get_author_name($value) ?>"
+                                       value="<?= get_the_author_meta('user_login',$value) ?>"
                                        style="margin-left: 0px;" readonly/>
                             </div>
                         <? } ?>
@@ -139,9 +139,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
                         <div style="display: inline">
                             <input type="text" class="form-control" name="team_member[]" id="team_member"
                                    style="margin-left: 0px;margin-right: 5px"
-                                   placeholder="请填写本组成员火花用户名(请注意填写后不可更改!!)" value="" onblur="checkUserName(this.value)"
-                                   onfocus="saveid(this)"
-                            />
+                                   placeholder="请填写本组成员火花用户名(请注意填写后不可更改!!)" value="" onblur="checkUserName(this.value,this)" />
                             <div id="ajax-response_0" style="display: inline;margin-left: 10px"></div>
                         </div>
                         <div id="addField" style="display:inline;margin-top: 7px;margin-left: -4px"></div>
@@ -196,7 +194,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
                             if ($i == 0) {  //每个team的第一行要显示更多的东西,比如组号,链接和评价
                                 ?>
                                 <tr>
-                                    <td id="team_id" rowspan="<?= $team_size ?>"><?= $key + 1 ?>组</td>
+                                    <td id="team_id" rowspan="<?= $team_size ?>"><?= $key ?>组</td>
                                     <td style="display: none"><?= $team[$i][0] ?></td>
                                     <td><?= $team[$i][1] ?> </td>
                                     <?php for ($j = 2; $j < sizeof($team[$i]) - 2; $j++) { ?>
@@ -204,8 +202,8 @@ $group_verify_field = get_verify_field($group_id, 'group');
                                     <?php } ?>
                                     <?php list($pro_name, $pro_link) = split(',', $team[$i]['apply_content']);
                                     ?>
-                                    <td id="pro_link" rowspan="<?= $team_size ?>"><a target="_blank"
-                                                href="<?= $pro_link ?>"><?= $pro_name ?></a>
+                                    <td id="pro_link" rowspan="<?= $team_size ?>" style="width: 200px">
+                                        <a target="_blank" href="<?= $pro_link ?>"><?= $pro_name ?></a>
                                     </td>
                                     <?php
                                     if (is_group_admin($group_id)) { ?>
@@ -254,7 +252,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
                                 <td id="team_id" rowspan="<?= sizeof($ungroup) ?>">未分组</td>
                                 <td style="display: none"><?= $ungroup[$i][0] ?></td>
                                 <td><?= $ungroup[$i][1] ?></td>
-                                <?php for ($j = 2; $j < sizeof($ungroup[$i]) - 2; $j++) { ?>
+                      <?php for ($j = 2; $j < sizeof($ungroup[$i]) - 2; $j++) { ?>
                                     <td><?= $ungroup[$i][$j] ?></td>
                                 <?php } ?>
                                 <td id="pro_link" rowspan="<?= sizeof($ungroup) ?>"><a target="_blank"
@@ -293,8 +291,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
         var rid = "ajax-response_" + i.toString();
         var input = '<div>' +
             '<input type="text" class="form-control" name="team_member[]" id="team_member" ' +
-            'placeholder="本组成员" value="" onblur="checkUserName(this.value)" ' +
-            'onfocus="saveid(this)"/>' +
+            'placeholder="本组成员" value="" onblur="checkUserName(this.value,this)" />' +
             '<div style="display: inline;margin-left: 10px" id=' + rid + '>' +
             '</div>' +
             '</div>';
@@ -308,15 +305,13 @@ $group_verify_field = get_verify_field($group_id, 'group');
 
     function saveid(obj) {
         var nextNode = obj.nextSibling.nextSibling;  //ajax-response_0
-        console.log(nextNode);
         if (nextNode == null) {   //1……
             var nextNode = obj.nextSibling;
         }
         var tmp = nextNode.id;
         var id = tmp.charAt(tmp.length - 1);
         j = id;
-        console.log(j);
-
+        return j;
     }
 
     function checkLength(taskname, boxid) {
@@ -332,7 +327,8 @@ $group_verify_field = get_verify_field($group_id, 'group');
         }
     }
 
-    function checkUserName(name) {
+    function checkUserName(name,obj) {
+        var k = saveid(obj);
         var data = {
             action: "checkUserName",
             name: name,
@@ -346,17 +342,17 @@ $group_verify_field = get_verify_field($group_id, 'group');
             success: function (response) {
                 if (response == 0) {
                     <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
-                    $('#ajax-response_' + j.toString()).html("<img src='<?=$url?>'><span>用户名错误</span>");
+                    $('#ajax-response_' + k.toString()).html("<img src='<?=$url?>'><span>用户名错误</span>");
                 } else if (response == 1) {
                     <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
-                    $('#ajax-response_' + j.toString()).html("<img src='<?=$url?>'><span>用户不是本组组员</span>");
+                    $('#ajax-response_' + k.toString()).html("<img src='<?=$url?>'><span>用户不是本组组员</span>");
                 } else if (response == 3){
                     <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
-                    $('#ajax-response_' + j.toString()).html("<img src='<?=$url?>'><span>用户已经组队了</span>");
+                    $('#ajax-response_' + k.toString()).html("<img src='<?=$url?>'><span>用户已经组队了</span>");
                 }
                 else {
                     <?php $url = get_template_directory_uri() . "/img/OK.png";?>
-                    $('#ajax-response_' + j.toString()).html("<img src='<?=$url?>'>");
+                    $('#ajax-response_' + k.toString()).html("<img src='<?=$url?>'>");
                 }
             }
         })

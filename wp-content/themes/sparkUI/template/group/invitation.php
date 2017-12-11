@@ -21,7 +21,7 @@ $admin_url = admin_url('admin-ajax.php');
                 <input type="button" id="addNewFieldBtn" value="+" style="display:none">
                 <div style="display: inline">
                     <input type="text" class="form-control" name="invitation_member[]" id="invitation_member"
-                           style="margin-right:0px;margin-bottom:10px;display:inline;width: 30%"
+                           style="margin-right:0px;margin-bottom:10px;display:inline;width: 60%"
                            placeholder="邀请成员" value="" onblur="checkInUserName(this.value)"
                            />
                     <div id="ajax-response_0" style="display: inline;margin-left: 10px"></div>
@@ -59,7 +59,7 @@ $admin_url = admin_url('admin-ajax.php');
         var rid = "ajax-response_" + i.toString();
         var input = '<div>' +
                         '<input type="text" class="form-control" name="invitation_member[]" id="invitation_member" ' +
-                                'style="margin-left: 10%;margin-bottom:10px;width: 30%;display:inline" ' +
+                                'style="margin-left: 14%;margin-bottom:10px;width: 60%;display:inline" ' +
                                 'placeholder="邀请成员" value="" onblur="checkInUserName(this.value)" ' +
                                 'onfocus="saveid(this)"/>' +
                         '<div style="display: inline;margin-left: 10px" id=' + rid + '>' +

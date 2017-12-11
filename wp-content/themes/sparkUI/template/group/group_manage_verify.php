@@ -82,7 +82,7 @@ else {
                         </div>
                         <div id="verify-info">
                             <div>
-                                <span><?php echo get_user_by('ID', $member_verify_info[$k]['user_id'])->display_name ?></span>
+                                <span><?php echo get_user_by('ID', $member_verify_info[$k]['user_id'])->user_login ?></span>
                                 &nbsp; &nbsp; &nbsp;
                                 <span>(<?= $member_verify_info[$k]['apply_time'] ?>)</span>
                             </div>
