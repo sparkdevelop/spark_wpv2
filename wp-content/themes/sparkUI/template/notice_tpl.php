@@ -243,7 +243,7 @@ if (!$_GET['paged']) {
                     <?php }
                     else if ($allMsg[$i]->msg_type == 3){ //在wiki或项目中提问
                         $ask_author_id = $allMsg[$i]->post_author;  //提问人ID
-                        $ask_author_name = get_author_name($ask_author_id);
+                        $ask_author_name = get_the_author_meta('user_login',$ask_author_id);
                         $parent_post_title = get_the_title($allMsg[$i]->post_id);
                         $parent_post_link = get_permalink($allMsg[$i]->post_id);
                         $parent_post_type = get_post_type($allMsg[$i]->post_id);
@@ -283,7 +283,7 @@ if (!$_GET['paged']) {
                     <?php }
                     else if ($allMsg[$i]->msg_type == 4) {
                         $ans_author_id = $allMsg[$i]->post_author;  //回答人ID
-                        $ans_author_name = get_author_name($ans_author_id); //回答人姓名
+                        $ans_author_name = get_the_author_meta('user_login',$ans_author_id); //回答人姓名
                         $parent_post_title = get_the_title($allMsg[$i]->post_parent);  //问题名称
                         $parent_post_link = get_permalink($allMsg[$i]->post_parent);   //问题链接
                         $ans_content = $allMsg[$i]->post_content;
@@ -359,11 +359,10 @@ if (!$_GET['paged']) {
                     <?php } ?>
                     <div class="divline"></div>
                 </li>
-
             <?php }
         } else { ?>
             <div style="height: 1px;background-color: lightgray;"></div>
-            <strong>Oops!!还没有收到消息。</strong>
+            <div class="alert alert-info" style="margin-top: 20px">Oops,还没有收到消息</div>
         <?php } ?>
     </ul>
     <?php if ($total_page > 1) { ?>

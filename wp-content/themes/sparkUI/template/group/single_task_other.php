@@ -73,7 +73,7 @@ $admin_url = admin_url('admin-ajax.php');
                         <?php foreach ($team_member as $value) { ?>
                             <div>
                                 <input type="text" class="form-control" name="team_member[]" id="team_member"
-                                       value="<?= get_author_name($value) ?>"
+                                       value="<?= get_the_author_meta('user_login',$value) ?>"
                                        style="margin-left: 0px;" readonly/>
                             </div>
                         <? } ?>
@@ -171,7 +171,7 @@ $admin_url = admin_url('admin-ajax.php');
                             <!--提交者信息--->
                             <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $user_complete['user_id']; ?>"
                                class="ask-author" style="margin-left: 20px;">
-                                <?php echo get_author_name($user_complete['user_id']) ?>
+                                <?php echo get_the_author_meta('user_login',$user_complete['user_id']) ?>
                             </a>
                         </div>
                         <!--提交时间-->
@@ -232,10 +232,12 @@ $admin_url = admin_url('admin-ajax.php');
                                 <select class="form-control" id="other_<?= $value['user_id'] ?>"
                                         onchange="change_grade_other(this.value,<?= $value['user_id'] ?>)">
                                     <option value="0">待审核</option>
-                                    <option value="1">pass</option>
-                                    <option value="2">good</option>
-                                    <option value="3">great</option>
-                                    <option value="4">perfect</option>
+                                    <option value="1">不合格</option>
+                                    <option value="2">合格</option>
+                                    <option value="3">一般</option>
+                                    <option value="4">良好</option>
+                                    <option value="5">优秀</option>
+                                    <option value="6">特优</option>
                                 </select>
                                 <script>
                                     $(function () {
@@ -252,7 +254,7 @@ $admin_url = admin_url('admin-ajax.php');
                                 <!--提交者信息--->
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $value['user_id']; ?>"
                                    class="ask-author" style="margin-left: 20px;">
-                                    <?php echo get_author_name($value['user_id']) ?>
+                                    <?php echo get_the_author_meta('user_login',$value['user_id']) ?>
                                 </a>
                             </div>
                             <!--提交时间-->
@@ -306,7 +308,7 @@ $admin_url = admin_url('admin-ajax.php');
                                     <!--提交者信息--->
                                     <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $value['user_id']; ?>"
                                        class="ask-author" style="margin-left: 20px;">
-                                        <?php echo get_author_name($value['user_id']) ?>
+                                        <?php echo get_the_author_meta('user_login',$value['user_id']) ?>
                                     </a>
                                 </div>
                                 <!--提交时间-->
@@ -372,6 +374,7 @@ $admin_url = admin_url('admin-ajax.php');
         var data = {
             action: "change_grade_other",
             grade: grade,
+            group_id:'<?=$group_id?>',
             task_id: '<?=$task_id?>',
             user_id: user_id
         };

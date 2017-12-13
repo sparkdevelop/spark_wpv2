@@ -154,7 +154,7 @@
         <div class="form-group">
             <input type="hidden" name="belong_to" value="<?=$_COOKIE['group_id']?>"/>
             <input type="hidden" name="tauthor" value="<?=get_current_user_id()?>">
-            <input type="hidden" name="tcreatedate" value="<?=date("Y-m-d")?>">
+            <input type="hidden" name="tcreatedate" value="<?=date("Y-m-d H:i:s",time()+8*3600)?>">
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">

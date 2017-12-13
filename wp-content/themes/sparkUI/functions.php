@@ -416,6 +416,7 @@ function getProjectViews($postID)
     }
     return $count . '';
 }
+
 function setProjectViews($postID)
 {
     $count_key = 'project_views'; //自定义域
@@ -429,6 +430,7 @@ function setProjectViews($postID)
         update_post_meta($postID, $count_key, $count);
     }
 }
+
 //获取wiki词条浏览量
 function getWikiViews($postID)
 {
@@ -441,6 +443,7 @@ function getWikiViews($postID)
     }
     return $count . '';
 }
+
 //给投稿者上传文件的权限
 if (current_user_can('contributor') && !current_user_can('upload_files'))
     add_action('init', 'allow_contributor_uploads');
@@ -1841,8 +1844,6 @@ function wikiSideJsonGenerate($post_id)
 }
 
 
-
-
 //node加工,加链接
 function addUrl($jsonString)
 {
@@ -2657,7 +2658,7 @@ function join_the_group()
     $group_id = isset($_POST['group_id']) ? $_POST['group_id'] : "";
     $user_id = get_current_user_id();
     $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
-    $admin_id_arr =get_group_member($group_id)['admin'];
+    $admin_id_arr = get_group_member($group_id)['admin'];
     //判断验证方式
     if ($group_id != "") {
         $verify_type = get_verify_type($group_id);
@@ -2670,7 +2671,7 @@ function join_the_group()
                 $wpdb->get_results($sql_member);
 
                 //==============notice================
-                foreach($admin_id_arr as $admin){
+                foreach ($admin_id_arr as $admin) {
                     $admin_id = $admin['user_id'];
                     $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,1,'$user_id',0,'$current_time')";
                     $wpdb->get_results($sql_add_notice);
@@ -2680,7 +2681,7 @@ function join_the_group()
                 $wpdb->get_results($sql_member);
 
                 //==============notice================
-                foreach($admin_id_arr as $admin){
+                foreach ($admin_id_arr as $admin) {
                     $admin_id = $admin['user_id'];
                     $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,1,'$user_id',0,'$current_time')";
                     $wpdb->get_results($sql_add_notice);
@@ -2691,8 +2692,7 @@ function join_the_group()
             $wpdb->get_results($sql_add_count);
 
             $response = "freejoin";
-        }
-        elseif ($verify_type == "verify") {
+        } elseif ($verify_type == "verify") {
             //等待验证即可,将其存入tmp表
             $sql_member = "INSERT INTO wp_gp_member_verify_tmp VALUES ('',$user_id,$group_id,'$current_time','')";
             $wpdb->get_results($sql_member);
@@ -2702,7 +2702,7 @@ function join_the_group()
             //先弹出框框,填写好字段,然后将字段值存入tmp表
 
             //==============notice================
-            foreach($admin_id_arr as $admin){
+            foreach ($admin_id_arr as $admin) {
                 $admin_id = $admin['user_id'];
                 $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,3,'$user_id',0,'$current_time')";
                 $wpdb->get_results($sql_add_notice);
@@ -2722,7 +2722,7 @@ function quit_the_group()
 {
     global $wpdb;
     $group_id = isset($_POST['group_id']) ? $_POST['group_id'] : "";
-    $admin_id_arr =get_group_member($group_id)['admin'];
+    $admin_id_arr = get_group_member($group_id)['admin'];
     $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
     if ($group_id != "") {
         $user_id = get_current_user_id();
@@ -2837,7 +2837,6 @@ function verify_pass()
     }
     exit();
 }
-
 add_action('wp_ajax_verify_pass', 'verify_pass');
 add_action('wp_ajax_nopriv_verify_pass', 'verify_pass');
 
@@ -2858,7 +2857,6 @@ function verify_ignore()
     }
     exit();
 }
-
 add_action('wp_ajax_verify_ignore', 'verify_ignore');
 add_action('wp_ajax_nopriv_verify_ignore', 'verify_ignore');
 
@@ -2925,7 +2923,7 @@ function get_member_info($group_id)
         $arr_tmp = array();
         //返回的数组格式[id,用户名,验证字段切分,身份]
         array_push($arr_tmp, $value['user_id']);
-        $user_name = get_author_name($value['user_id']);
+        $user_name = get_the_author_meta('user_login',$value['user_id']);
         array_push($arr_tmp, $user_name);
         $verifyInfo = explode(',', $value['verify_info']);
         $len = sizeof(get_verify_field($group_id, 'group'));
@@ -2960,11 +2958,25 @@ function changeIndentity()
         $sql_indentity = "update wp_gp_member set indentity ='$indentity' WHERE user_id = $user_id[$i] and group_id = $group_id";
         $wpdb->get_results($sql_indentity);
     }
+
+    //notice
+    $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+    $notice_content = get_current_user_id();
+    foreach($user_id as $value){
+        $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$value,$group_id,6,'$notice_content',0,'$current_time')";
+        $wpdb->get_results($sql_add_notice);
+    }
     exit();
 }
-
 add_action('wp_ajax_changeIndentity', 'changeIndentity');
 add_action('wp_ajax_nopriv_changeIndentity', 'changeIndentity');
+
+function get_member_identity($group_id,$user_id){
+    global $wpdb;
+    $sql = "SELECT indentity FROM wp_gp_member WHERE group_id = $group_id and user_id = $user_id";
+    $result = $wpdb->get_results($sql)[0]->indentity;
+    return $result;
+}
 
 function kick_out_the_group()
 {
@@ -2989,6 +3001,14 @@ function kick_out_the_group()
                 $wpdb->get_results($sql_cut_count);
             }
             $response = "success";
+
+            //notice
+            $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+            $notice_content = get_current_user_id();
+            foreach($user_id as $value){
+                $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$value,$group_id,7,'$notice_content',0,'$current_time')";
+                $wpdb->get_results($sql_add_notice);
+            }
         }
     } else {
         $response = "error";
@@ -2996,9 +3016,10 @@ function kick_out_the_group()
     echo $response;
     die();
 }
-
 add_action('wp_ajax_kick_out_the_group', 'kick_out_the_group');
 add_action('wp_ajax_nopriv_kick_out_the_group', 'kick_out_the_group');
+
+
 //恢复wiki历史版本
 function restore_post_revision()
 {
@@ -3255,7 +3276,7 @@ function get_gp_notification($group_id = null)
 
             //作者、身份、组名、任务名
             //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->task_author);
-            $single_task['task_author'] = get_author_name($item->task_author);
+            $single_task['task_author'] = get_the_author_meta('user_login',$item->task_author);
             //$task_author_info[0]->user_login;
 
             $task_author_iden_info = $wpdb->get_results("select * from wp_gp_member where user_id=" . $item->task_author . " and group_id=" . $item->belong_to);
@@ -3287,7 +3308,7 @@ function get_gp_notification($group_id = null)
             $single_task = array();
 
             //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->user_id);
-            $single_task['task_author'] = get_author_name($item->user_id);
+            $single_task['task_author'] = get_the_author_meta('user_login',$item->user_id);
 
             //$task_author_info[0]->user_login;
 
@@ -3309,7 +3330,7 @@ function get_gp_notification($group_id = null)
             $single_task = array();
 
             //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->group_author);
-            $single_task['task_author'] = get_author_name($item->group_author);
+            $single_task['task_author'] = get_the_author_meta('user_login',$item->group_author);
             //$task_author_info[0]->user_login;
 
             $single_task['group_name'] = $item->group_name;
@@ -3329,7 +3350,7 @@ function get_gp_notification($group_id = null)
             $single_task = array();
 
             //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->user_id);
-            $single_task['task_author'] = get_author_name($item->user_id);
+            $single_task['task_author'] = get_the_author_meta('user_login',$item->user_id);
             //$task_author_info[0]->user_login;
 
             $group_task_info = $wpdb->get_results("select * from wp_gp_task where ID=" . $item->task_id);
@@ -3360,7 +3381,7 @@ function get_gp_notification($group_id = null)
             $single_task = array();
 
             //作者、身份、组名、任务名
-            $single_task['task_author'] = get_author_name($item->task_author);
+            $single_task['task_author'] = get_the_author_meta('user_login',$item->task_author);
             $task_author_iden_info = $wpdb->get_results("select * from wp_gp_member where user_id=" . $item->task_author . " and group_id=" . $item->belong_to);
             $task_author_iden = $task_author_iden_info[0]->indentity;
             if (strcmp($task_author_iden, "member") == 0) {
@@ -3399,7 +3420,7 @@ function get_gp_notification($group_id = null)
             $single_task = array();
 
             //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->user_id);
-            $single_task['task_author'] = get_author_name($item->user_id);
+            $single_task['task_author'] = get_the_author_meta('user_login',$item->user_id);
 
             //$task_author_info[0]->user_login;
 
@@ -3443,7 +3464,7 @@ function get_gp_notification($group_id = null)
             $single_task = array();
 
             //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->user_id);
-            $single_task['task_author'] = get_author_name($item->user_id);
+            $single_task['task_author'] = get_the_author_meta('user_login',$item->user_id);
             //$task_author_info[0]->user_login;
 
             $group_task_info = $wpdb->get_results("select * from wp_gp_task where ID=" . $item->task_id);
@@ -3487,9 +3508,9 @@ function checkUserName()
         if (!is_group_member($group_id, $id)) {   //已经是本组成员的话不行
             $response = 1;
         } else {
-            if (!is_ungroup($id,$group_id,$task_id)){  //如果已经分组了,不可以
+            if (!is_ungroup($id, $group_id, $task_id)) {  //如果已经分组了,不可以
                 $response = 3;
-            }else{
+            } else {
                 $response = 2;
             }
         }
@@ -3505,18 +3526,18 @@ add_action('wp_ajax_checkUserName', 'checkUserName');
 add_action('wp_ajax_nopriv_checkUserName', 'checkUserName');
 
 //用户是否组队
-function is_ungroup($id,$group_id,$task_id){
+function is_ungroup($id, $group_id, $task_id)
+{
     $ungroup_member = pro_table($group_id, $task_id)['ungroup'];
-    if(!empty($ungroup_member)){
-        foreach($ungroup_member as $value){
-            if($value[0] == $id) {
+    if (!empty($ungroup_member)) {
+        foreach ($ungroup_member as $value) {
+            if ($value[0] == $id) {
                 return true;
             }
         }
     }
     return false;
 }
-
 
 
 //判断用户输入的邀请用户名是否正确,是否已经是本组的
@@ -3633,7 +3654,7 @@ function pro_table($group_id, $task_id)
             foreach ($uid as $id) {
                 $tmp = [];//存储内层数组
                 $user_id = $id;
-                $user_name = get_the_author_meta('user_login',$id);
+                $user_name = get_the_author_meta('user_login', $id);
                 $verify_field = get_user_verify_field($group_id, $id);
                 $completion = get_user_task_completion($task_id, $user_id);
                 array_push($tmp, $user_id, $user_name);
@@ -3654,7 +3675,7 @@ function pro_table($group_id, $task_id)
     foreach ($array_member_id_ungroup as $key => $value_ungroup) {
         $tmp = [];//存储内层数组
         $user_id = $value_ungroup;
-        $user_name = get_the_author_meta('user_login',$value_ungroup);
+        $user_name = get_the_author_meta('user_login', $value_ungroup);
         $verify_field = get_user_verify_field($group_id, $value_ungroup);
         $completion = array('completion' => '', 'apply_content' => '');
         array_push($tmp, $user_id, $user_name);
@@ -3698,7 +3719,7 @@ function get_user_task_completion($task_id, $user_id)
     return $results;
 }
 
-//判断用户名输入的是否正确ajax
+//项目审核增加成绩ajax
 function change_grade()
 {
     global $wpdb;
@@ -3714,6 +3735,15 @@ function change_grade()
             return ['code' => $e->getCode(), 'msg' => $e->getMessage()];
         }
     }
+
+    //notice
+    $group_id = $_POST['group_id'];
+    foreach ($team_member as $value) {
+        $notice_id = $value;   //被通知人ID
+        $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+        $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$notice_id,$group_id,5,'$task_id',0,'$current_time')";
+        $wpdb->get_results($sql_add_notice);
+    }
     die();
 }
 
@@ -3723,19 +3753,18 @@ add_action('wp_ajax_nopriv_change_grade', 'change_grade');
 //成绩的数字和文字转换
 function transform_grade($rank)
 {
-    $map = ['待审核', '不合格', '合格', '一般', '良好','优秀','特优'];
+    $map = ['待审核', '不合格', '合格', '一般', '良好', '优秀', '特优'];
     return $map[$rank];
 }
 
 //获取本other项目完成的成员和信息
-function task_complete_other($task_id,$user_id = NULL)
+function task_complete_other($task_id, $user_id = NULL)
 {
     global $wpdb;
-    if ($user_id != NULL){
+    if ($user_id != NULL) {
         $sql = "SELECT * FROM wp_gp_task_member WHERE task_id = $task_id and user_id = $user_id";
         $results = $wpdb->get_results($sql, 'ARRAY_A');
-    }
-    else{
+    } else {
         $sql = "SELECT * FROM wp_gp_task_member WHERE task_id = $task_id";
         $results = $wpdb->get_results($sql, 'ARRAY_A');
     }
@@ -3755,15 +3784,20 @@ function change_grade_other()
     } catch (Exception $e) {
         return ['code' => $e->getCode(), 'msg' => $e->getMessage()];
     }
-    //echo $sql;
+
+    //notice
+    $group_id = $_POST['group_id'];
+    $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+    $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$user_id,$group_id,5,'$task_id',0,'$current_time')";
+    $wpdb->get_results($sql_add_notice);
     die();
 }
-
 add_action('wp_ajax_change_grade_other', 'change_grade_other');
 add_action('wp_ajax_nopriv_change_grade_other', 'change_grade_other');
 
 //点评任务结果
-function task_remark_submit(){
+function task_remark_submit()
+{
     global $wpdb;
     $remark = $_POST['remark'];
     $task_id = $_POST['task_id'];
@@ -3774,20 +3808,23 @@ function task_remark_submit(){
     //echo $sql;
     die();
 }
+
 add_action('wp_ajax_task_remark_submit', 'task_remark_submit');
 add_action('wp_ajax_nopriv_task_remark_submit', 'task_remark_submit');
 //判断是否有点评
-function has_remark($task_id,$user_id){
+function has_remark($task_id, $user_id)
+{
     global $wpdb;
     $sql = "SELECT remark from wp_gp_task_member WHERE user_id = $user_id and task_id = $task_id";
     $remarks = $wpdb->get_results($sql);
     foreach ($remarks as $remark)
-    if ($remark->remark != null) {
-        return true;
-    } else {
-        return false;
-    }
+        if ($remark->remark != null) {
+            return true;
+        } else {
+            return false;
+        }
 }
+
 /* 布道师大赛所用的模块
  * */
 function get_group_id_by_name($group_name)
@@ -3801,7 +3838,7 @@ function get_group_id_by_name($group_name)
 function create_budao_group($user_id)
 {
     global $wpdb;
-    $user_name = get_author_name($user_id);
+    $user_name = get_the_author_meta('user_login',$user_id);
     $group_name = "布道师" . $user_name . "的群组";
     $group_author = $user_id;
     $group_abstract = "这里为布道师" . $user_name . "的群组";
@@ -3945,10 +3982,10 @@ function multiArrSort($array, $field, $order)
 function get_group_ava($group_id, $size)
 {
     $url = get_group($group_id)[0]['group_cover'];
-    $canvar_id = 'gp_canvas_'.$group_id;
+    $canvar_id = 'gp_canvas_' . $group_id;
     ?>
     <div id="gp_avatar">
-        <canvas width="<?=$size?>px" height="<?=$size?>px" id="<?=$canvar_id?>"></canvas>
+        <canvas width="<?= $size ?>px" height="<?= $size ?>px" id="<?= $canvar_id ?>"></canvas>
     </div>
     <script>
         $(function () {
@@ -3959,11 +3996,11 @@ function get_group_ava($group_id, $size)
                 var img_h = this.height;
                 if (img_w >= img_h) {
                     ctx.drawImage(imageObj, ((img_w - img_h) / 2), 0, img_h, img_h, 0, 0, <?=$size?>, <?=$size?>);
-                    $("#<?=$canvar_id?>").css("-webkit-border-radius","10px");
+                    $("#<?=$canvar_id?>").css("-webkit-border-radius", "10px");
                 }
                 else {
                     ctx.drawImage(imageObj, 0, ((img_h - img_w) / 2), img_w, img_w, 0, 0, <?=$size?>, <?=$size?>);
-                    $("#<?=$canvar_id?>").css("-webkit-border-radius","10px");
+                    $("#<?=$canvar_id?>").css("-webkit-border-radius", "10px");
                 }
             };
             imageObj.src = '<?=$url?>';
@@ -3972,45 +4009,61 @@ function get_group_ava($group_id, $size)
     </script>
 <?php }
 
-function get_recommand_task($task_id){
+function get_recommand_task($task_id)
+{
     global $wpdb;
     $sql = "SELECT * FROM wp_gp_task_member WHERE task_id = $task_id and completion > 3";
     $results = $wpdb->get_results($sql, 'ARRAY_A');
     return $results;
 }
 
-function delete_task(){
+function delete_task()
+{
     global $wpdb;
     $task_id = $_POST['task_id'];
     $sql_update = "UPDATE wp_gp_task SET task_status = 'trash' WHERE ID = $task_id";
     $wpdb->query($sql_update);
     die();
 }
+
 add_action('wp_ajax_delete_task', 'delete_task');
 add_action('wp_ajax_nopriv_delete_task', 'delete_task');
+
+function get_group_member_id($group_id){
+    global $wpdb;
+    $sql = "SELECT user_id FROM wp_gp_member WHERE group_id = $group_id";
+    $result = $wpdb->get_results($sql);
+    return $result;
+}
+
+
+
+
+
+
 
 
 //修改域名  域名要包括http
 function changeDomain($old_domain, $new_domain)
 {
-global $wpdb;
+    global $wpdb;
 //usermeta表中meta_key  meta_value 变更
 //post表中post_content变更
-$sql_meta = "select * from $wpdb->usermeta WHERE meta_key='simple_local_avatar'";
-$results = $wpdb->get_results($sql_meta);
-foreach ($results as $key => $value) {
-$new_value = str_replace($old_domain, $new_domain, $value->meta_value);
-$sql_update = "update $wpdb->usermeta set meta_value='$new_value' WHERE meta_key='simple_local_avatar' and umeta_id = $value->umeta_id";
-$wpdb->get_results($sql_update);
-}
-$sql_post = "select ID, post_content from $wpdb->posts ORDER BY 'ID' ASC";
-$results_post = $wpdb->get_results($sql_post);
-foreach ($results_post as $key => $value) {
-$new_value = addslashes(str_replace($old_domain, $new_domain, $value->post_content));
-$sql_update = "update $wpdb->posts set post_content ='$new_value' WHERE ID = $value->ID";
-$wpdb->get_results($sql_update);
-}
-echo "<h4>已将域名由" . $old_domain . "变更为" . $new_domain . "</h4>";
+    $sql_meta = "select * from $wpdb->usermeta WHERE meta_key='simple_local_avatar'";
+    $results = $wpdb->get_results($sql_meta);
+    foreach ($results as $key => $value) {
+        $new_value = str_replace($old_domain, $new_domain, $value->meta_value);
+        $sql_update = "update $wpdb->usermeta set meta_value='$new_value' WHERE meta_key='simple_local_avatar' and umeta_id = $value->umeta_id";
+        $wpdb->get_results($sql_update);
+    }
+    $sql_post = "select ID, post_content from $wpdb->posts ORDER BY 'ID' ASC";
+    $results_post = $wpdb->get_results($sql_post);
+    foreach ($results_post as $key => $value) {
+        $new_value = addslashes(str_replace($old_domain, $new_domain, $value->post_content));
+        $sql_update = "update $wpdb->posts set post_content ='$new_value' WHERE ID = $value->ID";
+        $wpdb->get_results($sql_update);
+    }
+    echo "<h4>已将域名由" . $old_domain . "变更为" . $new_domain . "</h4>";
 }
 
 //温故
@@ -4023,27 +4076,27 @@ function wikiReview($id)
 //        exec("python wp-content/themes/sparkUI/algorithm/wenguzhixin.py 2>&1",$output,$ret);
 //        return $output;
 //    }
-global $wpdb;
-$result_arr = array();
-$sql = "SELECT review_old FROM wp_user_review WHERE ID=$id";
-$result = $wpdb->get_results($sql, 'ARRAY_A');
-if (sizeof($result) != 0) {
-$result_arr = explode(",", $result[0]['review_old']);
-}
-return $result_arr;
+    global $wpdb;
+    $result_arr = array();
+    $sql = "SELECT review_old FROM wp_user_review WHERE ID=$id";
+    $result = $wpdb->get_results($sql, 'ARRAY_A');
+    if (sizeof($result) != 0) {
+        $result_arr = explode(",", $result[0]['review_old']);
+    }
+    return $result_arr;
 }
 
 //知新  参数用户id
 function wikiRecommend($id)
 {
-global $wpdb;
-$result_arr = array();
-$sql = "SELECT know_new FROM wp_user_review WHERE ID=$id";
-$result = $wpdb->get_results($sql, 'ARRAY_A');
-if (sizeof($result) != 0) {
-$result_arr = explode(",", $result[0]['know_new']);
-}
-return $result_arr;
+    global $wpdb;
+    $result_arr = array();
+    $sql = "SELECT know_new FROM wp_user_review WHERE ID=$id";
+    $result = $wpdb->get_results($sql, 'ARRAY_A');
+    if (sizeof($result) != 0) {
+        $result_arr = explode(",", $result[0]['know_new']);
+    }
+    return $result_arr;
 }
 
 ////wiki和项目内容处理 去标签化 暂时无用

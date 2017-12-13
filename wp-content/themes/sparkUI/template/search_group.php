@@ -76,7 +76,7 @@ if ($group_ids == '') {
                             <span><?= $group['member_count'] ?>个成员</span>&nbsp;&nbsp;
                             <span>管理员</span>
                             <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $group['group_author']; ?>"
-                               style="color: #169bd5"><?php echo get_author_name($group['group_author']) ?></a>
+                               style="color: #169bd5"><?php echo get_the_author_meta('user_login',$group['group_author']) ?></a>
                         </div>
                     </div>
                     <div id="latest-active">

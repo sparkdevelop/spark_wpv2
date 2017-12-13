@@ -10,7 +10,7 @@
         <div id="avatar">
             <?php echo get_avatar($user_id,100);?>
         </div>
-        <p style="font-size: large;margin-top: 20px"><?php echo get_userdata($user_id)->data->display_name;?></p>
+        <p style="font-size: large;margin-top: 20px"><?php echo get_the_author_meta('user_login',$user_id);?></p>
         <p style="margin-top: 10px;color: gray"><?php echo $user_description;?></p>
     </div>
     <ul id="personal_nav" class="nav nav-pills nav-stacked">

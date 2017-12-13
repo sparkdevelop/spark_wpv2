@@ -83,7 +83,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
                             <div>
                                 <input type="text" class="form-control" name="team_member[]" id="team_member"
                                        value="<?= get_the_author_meta('user_login',$value) ?>"
-                                       style="margin-left: 0px;" readonly/>
+                                       style="margin-left: 0px;"/>
                             </div>
                         <? } ?>
                     </div>
@@ -395,6 +395,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
             action: "change_grade",
             grade: grade,
             task_id: '<?=$task_id?>',
+            group_id: '<?=$group_id?>',
             team_id: team_id
         };
         $.ajax({
