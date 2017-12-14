@@ -86,24 +86,23 @@ wp_enqueue_media();
             <label for="tdeadline" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">截止时间<span
                     style="color: red">*</span></label>
             <div class="col-sm-9" id="tcheckways" style="margin-top: 7px">
-                <div id="form_datetime" class="input-group date form_datetime col-md-4" style="width:40%" data-link-field="dtp_input1">
+                <div id="form_datetime" class="input-group date form_datetime col-md-4" style="width:40%" >
                     <input class="form-control" size="16" name="tdeadline" type="text"
                            value="<?=$task_info['deadline']?>">
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-remove" style="margin-right: 0px;"></span>
                     </span>
                 </div>
-                <input type="hidden" id="dtp_input1" value=""/><br/>
             </div>
             <script>
                 jQuery('#form_datetime').datetimepicker({
-                    format: "yyyy-mm-dd",
-                    weekStart: 7,
+                    format: "yyyy-mm-dd hh:00:00",
+                    weekStart: 0,
                     startDate: new Date(),
                     autoclose: 1,
                     startView: 2,
-                    minView: 2,         //日期时间选择器所能够提供的最精确的时间选择视图。
-                    todayBtn: 1,
+                    minView: 1,         //日期时间选择器所能够提供的最精确的时间选择视图。
+                    todayBtn: 0,
                     todayHighlight: 1,
                     forceParse: 0,      //默认值
                     showMeridian: 0,

@@ -47,7 +47,7 @@ $sql = "INSERT INTO wp_gp_task VALUES ($task_id,'$task_name',$task_author,$belon
                                           '$create_date','$deadline',0)";
 
 if ($task_name != "" && $task_content != "" && $task_author != "" && $belong_to != "" &&
-    $task_type != "" && $create_date != "") {
+    $task_type != "" && $create_date != "" && $deadline != "") {
     $wpdb->query($sql);
 }
 

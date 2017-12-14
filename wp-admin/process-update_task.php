@@ -30,7 +30,7 @@ $sql_update = "UPDATE wp_gp_task SET task_name = '$task_name',
                                      deadline = '$deadline'
                                  WHERE ID = $task_id and belong_to = $belong_to";
 
-if($task_name!="" && $task_content!="" && $belong_to !=""){
+if($task_name!="" && $task_content!="" && $belong_to !="" && $deadline != ""){
     $wpdb->query($sql_update);
 }
 
