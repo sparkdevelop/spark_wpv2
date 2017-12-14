@@ -3525,6 +3525,46 @@ function checkUserName()
 add_action('wp_ajax_checkUserName', 'checkUserName');
 add_action('wp_ajax_nopriv_checkUserName', 'checkUserName');
 
+//判断用户名输入的是否正确ajax,是否是本组的,是否是系统里的
+function checkUpdateUserName()
+{
+    global $wpdb;
+    $name = $_POST['name'];
+    $group_id = $_POST['group_id'];
+    $task_id = $_POST['task_id'];
+    $team_id = $_POST['team_id'];
+    $sql = "SELECT * FROM $wpdb->users WHERE user_login = '$name'";
+    $col = $wpdb->query($sql);
+    if ($col == 0) {
+        $response = 0;  //用户不存在
+    } else {
+        //如果有这个用户判断这个用户是不是该组成员
+        $id = get_the_ID_by_name($name);
+        if (!is_group_member($group_id, $id)) {   //如果不是本群组的成员
+            $response = 1;
+        } else {   //用户存在且是本组成员,判断是否分组
+            if (!is_ungroup($id, $group_id, $task_id)) {  //如果不是未分组的,即已经分组了
+                //判断是否是当前小组的
+                if(!in_array($id,get_team_member($task_id,$team_id))){
+                    $response = 3;
+                }else{
+                    $response = 2;
+                }
+            } else {  //未分组的
+                $response = 2;   //可以加入群组
+            }
+        }
+    }
+    if ($name == '') {
+        $response = 2;  //名字为空,可以加入群组
+    }
+    echo $response;
+    die();
+}
+
+add_action('wp_ajax_checkUpdateUserName', 'checkUpdateUserName');
+add_action('wp_ajax_nopriv_checkUpdateUserName', 'checkUpdateUserName');
+
 //用户是否组队
 function is_ungroup($id, $group_id, $task_id)
 {
@@ -3632,7 +3672,7 @@ function pro_table($group_id, $task_id)
     $result = [];  //存储返回数组
 
     //step0:
-    $sql_team_id = "SELECT distinct(team_id) FROM wp_gp_member_team WHERE task_id = $task_id";
+    $sql_team_id = "SELECT distinct(team_id) FROM wp_gp_member_team WHERE task_id = $task_id ORDER BY team_id";
     $array_team_id = $wpdb->get_results($sql_team_id, 'ARRAY_A');
 
     //step1: 格式 Array ( [0] => 22 [1] => 1 )

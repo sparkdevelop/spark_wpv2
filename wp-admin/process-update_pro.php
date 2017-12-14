@@ -14,19 +14,32 @@ $team_member = isset($_POST["team_member"]) ? $_POST["team_member"] : [];
 $task_id = isset($_POST["task_id"]) ? $_POST["task_id"] : '';
 $team_id = isset($_POST["team_id"]) ? $_POST["team_id"] : '';
 
-foreach ($team_member as $value) {
+print_r($team_member);
+//先把原来的表中的信息删除
+if($team_id != '' && $task_id != ''){
+    $sql_delete_mt = "DELETE FROM wp_gp_member_team WHERE task_id = $task_id and team_id = $team_id";
+    $sql_delete_tm = "DELETE FROM wp_gp_task_member WHERE task_id = $task_id and team_id = $team_id";
+    $wpdb->query($sql_delete_mt);
+    $wpdb->query($sql_delete_tm);
+}
+
+//再更新内容。
+//在把member传过来的时候已经检查过是否在member表中或者是否组队了
+foreach ($team_member as $value){
     $id = get_the_ID_by_name($value);
     $time = date('Y-m-d H:i:s', time() + 8 * 3600);
-    $sql_update_tm = "update wp_gp_task_member set completion = 0,complete_time = '$time',apply_content ='$apply_content'
-                      WHERE user_id = $id and task_id = $task_id and team_id = $team_id";
+    $sql_insert_mt = "INSERT INTO wp_gp_member_team VALUES ('',$id,$task_id,$team_id)";
+    $sql_insert_tm = "INSERT INTO wp_gp_task_member VALUES ('',$id,$task_id,0,'$time','$apply_content',$team_id,'')";
 
     if ($id != "" && $task_id != "" && $team_id != "" && $apply_content != "") {
-        $wpdb->query($sql_update_tm);
+        $wpdb->query($sql_insert_mt);
+        $wpdb->query($sql_insert_tm);
     }
 }
+
 //step3:
 $url= site_url().get_page_address('single_task').'&id='.$task_id;
 ?>
 <script>
-    location.replace("<?= $url?>");
+    location.replace("<?=$url?>");
 </script>

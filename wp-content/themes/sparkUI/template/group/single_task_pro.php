@@ -77,15 +77,25 @@ $group_verify_field = get_verify_field($group_id, 'group');
                            style="float: left">项目成员<span
                                 style="color: red">*</span></label>
                     <div class="col-sm-8">
-                        <?php $team_member = get_team_member($task_id);
-                        foreach ($team_member as $value) {
-                            ?>
-                            <div>
-                                <input type="text" class="form-control" name="team_member[]" id="team_member"
-                                       value="<?= get_the_author_meta('user_login',$value) ?>"
-                                       style="margin-left: 0px;"/>
+                        <?php $team_member = get_team_member($task_id);?>
+                        <input type="button" id="UpdateFieldBtn" value="+" style="display:inline" onclick="updateFieldBtn(<?=sizeof($team_member)?>)">
+                        <?php
+                        foreach ($team_member as $key =>$value) { ?>
+                            <div style="display: inline">
+                                <?php
+                                if ($key == 0){ ?>
+                                    <input type="text" class="form-control" name="team_member[]" id="team_member"
+                                           value="<?= get_the_author_meta('user_login',$value) ?>"
+                                           style="margin-left: 0px" onblur="checkUpdateUserName(this.value,this)" />
+                                <?php }else{ ?>
+                                    <input type="text" class="form-control" name="team_member[]" id="team_member"
+                                           value="<?= get_the_author_meta('user_login',$value) ?>"
+                                           style="margin-left: 39px" onblur="checkUpdateUserName(this.value,this)" />
+                                <?php } ?>
+                                <div id="ajax-response_<?=$key?>" style="display: inline;margin-left: 10px"></div>
                             </div>
                         <? } ?>
+                        <div id="addField" style="display:inline;margin-top: 7px;margin-left: -4px"></div>
                     </div>
                 </div>
                 <div class="form-group" style="display: none">
@@ -284,7 +294,6 @@ $group_verify_field = get_verify_field($group_id, 'group');
     });
 
     var i = 0; //response名字系统
-    var j = 0; //response 显示
 
     $(document).on('click', '#addNewFieldBtn', function () {
         i = i + 1;
@@ -310,8 +319,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
         }
         var tmp = nextNode.id;
         var id = tmp.charAt(tmp.length - 1);
-        j = id;
-        return j;
+        return id;
     }
 
     function checkLength(taskname, boxid) {
@@ -345,10 +353,10 @@ $group_verify_field = get_verify_field($group_id, 'group');
                     $('#ajax-response_' + k.toString()).html("<img src='<?=$url?>'><span>用户名错误</span>");
                 } else if (response == 1) {
                     <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
-                    $('#ajax-response_' + k.toString()).html("<img src='<?=$url?>'><span>用户不是本组组员</span>");
+                    $('#ajax-response_' + k.toString()).html("<img src='<?=$url?>'><span>非本组组员</span>");
                 } else if (response == 3){
                     <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
-                    $('#ajax-response_' + k.toString()).html("<img src='<?=$url?>'><span>用户已经组队了</span>");
+                    $('#ajax-response_' + k.toString()).html("<img src='<?=$url?>'><span>已经组队</span>");
                 }
                 else {
                     <?php $url = get_template_directory_uri() . "/img/OK.png";?>
@@ -410,4 +418,52 @@ $group_verify_field = get_verify_field($group_id, 'group');
             }
         })
     }
+
+    function checkUpdateUserName(name,obj) {
+        console.log(name);
+        var k = saveid(obj);
+        var data = {
+            action: "checkUpdateUserName",
+            name: name,
+            group_id: '<?=$group_id?>',
+            task_id : '<?=$task_id?>',
+            team_id:'<?=$team_id?>'
+        };
+        $.ajax({
+            type: 'POST',
+            url: '<?=$admin_url?>',
+            data: data,
+            success: function (response) {
+                console.log(response);
+                if (response == 0) {
+                    <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
+                    $('#ajax-response_' + k.toString()).html("<img src='<?=$url?>'><span>用户名错误</span>");
+                } else if (response == 1) {
+                    <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
+                    $('#ajax-response_' + k.toString()).html("<img src='<?=$url?>'><span>非本组组员</span>");
+                } else if (response == 3){
+                    <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
+                    $('#ajax-response_' + k.toString()).html("<img src='<?=$url?>'><span>已经组队</span>");
+                }
+                else {
+                    <?php $url = get_template_directory_uri() . "/img/OK.png";?>
+                    $('#ajax-response_' + k.toString()).html("<img src='<?=$url?>'>");
+                }
+            }
+        })
+    }
+
+    var update_i =<?=sizeof(get_team_member($task_id))-1?>;
+    function updateFieldBtn() {
+        update_i = update_i+1;
+        var rid = "ajax-response_" + update_i.toString();
+        var input = '<div>' +
+            '<input type="text" class="form-control" name="team_member[]" id="team_member" ' +
+            'placeholder="本组成员" value="" onblur="checkUpdateUserName(this.value,this)" />' +
+            '<div style="display: inline;margin-left: 15px" id=' + rid + '>' +
+            '</div>' +
+            '</div>';
+        $("#addField").append(input);
+    }
+
 </script>
