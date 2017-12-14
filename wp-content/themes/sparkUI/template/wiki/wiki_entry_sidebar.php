@@ -275,7 +275,6 @@
 
 <!--知识图谱-->
     <?php $jsonString = wikiSideJsonGenerate(get_the_title());
-    echo $jsonString;
     if($jsonString!=''){?>
         <div class="wikiknowledge">
             <div class="sidebar_list_header">
