@@ -25,7 +25,6 @@
             })
         </script>
     <?php }
-
  ?>
 <div class="container" style="margin-top: 10px;margin-bottom: 30px;flex: 1 0 auto;">
     <div class="row" style="width: 100%">
@@ -219,10 +218,16 @@
                     require "template/group/single_group.php";
                 }
                 elseif (is_page('single_task')){
+                    $id = $_GET['id'];
+                    $group_id = get_task_group($id);
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );
                     }
-                    require "template/group/single_task.php";
+                    if (is_group_member($group_id,get_current_user_id())){
+                        require "template/group/single_task.php";
+                    }else{
+                        require '404.php';
+                    }
                 }
                 else{
                     if (!is_user_logged_in()) {

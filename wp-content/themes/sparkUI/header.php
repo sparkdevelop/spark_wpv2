@@ -84,6 +84,9 @@
                                         <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address;?>"><span class="glyphicon glyphicon-user"></span>个人主页</a>
                                     </li>
                                     <li role="presentation" style="height:35px;">
+                                        <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address.'&tab=notification'?>"><span class="glyphicon glyphicon-bell"></span>消息通知</a>
+                                    </li>
+                                    <li role="presentation" style="height:35px;">
                                         <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address;?>&tab=profile"><span class="glyphicon glyphicon-cog"></span> 设置</a>
                                     </li>
                                     <li role="presentation" style="height:35px;">

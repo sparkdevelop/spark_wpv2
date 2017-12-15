@@ -14,7 +14,6 @@ $team_member = isset($_POST["team_member"]) ? $_POST["team_member"] : [];
 $task_id = isset($_POST["task_id"]) ? $_POST["task_id"] : '';
 $team_id = isset($_POST["team_id"]) ? $_POST["team_id"] : '';
 
-print_r($team_member);
 //先把原来的表中的信息删除
 if($team_id != '' && $task_id != ''){
     $sql_delete_mt = "DELETE FROM wp_gp_member_team WHERE task_id = $task_id and team_id = $team_id";

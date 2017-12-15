@@ -159,6 +159,11 @@ if (!$_GET['paged']) {
         margin-top: 4px;
         margin-left: 10px
     }
+    #notice-info {
+        display: inline-block;
+        margin-left: 3%;
+        width: 75%;
+    }
 </style>
 <div class="divline" style="margin-top: 0px"></div>
 <div id="rightTabContent" class="tab-content">
@@ -181,7 +186,7 @@ if (!$_GET['paged']) {
                         <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
                     </div>
                     <div id="notice-content" style="display: inline-block;width:92%;">
-                        <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                        <div id="notice-info">
                             <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $comment_author_id; ?>"
                                style="color: #169bd5"><?= $comment_author ?></a>
                             <?php
@@ -217,7 +222,7 @@ if (!$_GET['paged']) {
                             <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
                         </div>
                         <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                            <div id="notice-info">
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $comment_author_id; ?>"
                                    style="color: #169bd5"><?= $comment_author ?></a>
                                 <?php
@@ -255,7 +260,7 @@ if (!$_GET['paged']) {
                             <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
                         </div>
                         <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                            <div id="notice-info">
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $ask_author_id; ?>"
                                    style="color: #169bd5"><?= $ask_author_name ?></a>
                                 <?php
@@ -292,7 +297,7 @@ if (!$_GET['paged']) {
                             <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
                         </div>
                         <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                            <div id="notice-info">
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $ans_author_id; ?>"
                                    style="color: #169bd5"><?= $ans_author_name ?></a>
                                 <span>&nbsp;<span style="font-weight: bolder">回答</span>了您的问题</span>
@@ -317,7 +322,7 @@ if (!$_GET['paged']) {
                             <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
                         </div>
                         <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                            <div id="notice-info">
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $question_author_id; ?>"
                                    style="color: #169bd5"><?= $question_author ?></a>
                                 <span>&nbsp;在问题</span>
@@ -345,10 +350,10 @@ if (!$_GET['paged']) {
                             <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
                         </div>
                         <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                            <div id="notice-info">
                                 <span>&nbsp;有人在问题</span>
                                 <a href="<?= $parent_post_link ?>" style="color:#169bd5"><?= $parent_post_title ?></a>
-                                <span>中<span style="font-weight: bolder">赞同了</span>了您的答案</span>
+                                <span>中<span style="font-weight: bolder">赞同了</span>您的答案</span>
                                 <div style="margin-top: 5px"><?= $ans_content ?></div>
                             </div>
                             <div id="notice-time" style="display: inline-block;float: right">
