@@ -21,7 +21,7 @@ jQuery(document).ready( function($) {
                 var x1=parseInt(strs[0]);var x2=parseInt(strs[1]);var x3=parseInt(strs[2]);
                 var x4=parseInt(strs[3]);var x5=parseInt(strs[4]);var x6=parseInt(strs[5]);
                 var x7=parseInt(strs[6]);
-
+                console.log(data);
                  var b=new Array();
 
                 b[0]=x1;b[1]=x2;b[2]=x3;b[3]=x4;b[4]=x5;b[5]=x6;b[6]=x7;

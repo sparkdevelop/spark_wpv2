@@ -862,3 +862,206 @@ function getcomment(){
     }
     echo $count;
 }
+function live(){
+    global $wpdb;
+    global $m;
+    global $textlist;
+    global $textlist3;
+    $m=0;
+    $flag=0;
+    $c=get_option('spark_search_user_copy_right');
+    $sql =$wpdb->get_var( "SELECT ID FROM `$wpdb->users` WHERE `user_login` = '$c'");
+    $vnum =$wpdb->get_var( "SELECT COUNT(*) FROM wp_user_history WHERE user_id='$sql'");
+    $anum=$wpdb->get_var( "SELECT COUNT(*) FROM wp_user_history WHERE user_id='$sql' and user_action='answer'");
+    if($anum>2){
+        $flag=1;
+    }
+    else if($vnum>75){
+        $flag=2;
+    }
+    else if($vnum>20){
+        $flag=3;
+    }
+    else if($vnum<20){
+        $flag=4;
+    }
+    return $flag;
+}
+function active_before_7(){
+    global $wpdb;
+    global $m;
+    global $textlist;
+    global $textlist3;
+    $m=0;
+    $c=get_option('spark_search_user_copy_right');
+    $now=time();
+    $time = strtotime('-6 day', $now);
+    $beginTime = date('Y-m-d 00:00:00', $time);
+    $sql =$wpdb->get_var( "SELECT ID FROM `$wpdb->users` WHERE `user_login` = '$c'");
+    $timelis = $wpdb->get_results("SELECT action_time,ID FROM `wp_user_history` where user_id='$sql'");
+    $m=0;
+    foreach ($timelis as $a) {
+        $timelist[$m] = $a->action_time;
+        $time_ID_list[$m]=$a->ID;
+        $m++;
+    }
+    $c=count($timelis);
+    $m=0;
+    $a=0;
+    while($c>0){
+        if(strtotime($timelist[$m])>strtotime($beginTime)){
+            $a = $time_ID_list[$m];
+            break;
+        }
+        $m++;
+        $c--;
+    }
+    if ($a){
+
+    $num=$wpdb->get_results("SELECT ID FROM `wp_user_history` where user_id='$sql' and ID>'$a'");
+    $m=0;
+    foreach ($num as $a) {
+        $num[$m]=$a->ID;
+        $m++;
+    }
+    $c=count($num);
+    }
+    else
+        $c=0;
+    return  round($c/7,2);
+}
+function active_history(){
+    global $wpdb;
+    global $m;
+    global $textlist;
+    global $textlist3;
+    $m=0;
+    $c=get_option('spark_search_user_copy_right');
+    $sql =$wpdb->get_var( "SELECT ID FROM `$wpdb->users` WHERE `user_login` = '$c'");
+    $timelis = $wpdb->get_results("SELECT action_time FROM `wp_user_history` where user_id='$sql' order by action_time");
+    $m=0;
+    foreach ($timelis as $a) {
+        $timelist[$m] = $a->action_time;
+        $m++;
+    }
+    $historytime=$timelist[0];
+    $m=0;
+    $historytime=strtotime($historytime);
+    $now=time();
+    $betweentime=($now-$historytime)/86400;
+    $num=$wpdb->get_var("SELECT COUNT(*) FROM `wp_user_history` where user_id='$sql'");
+    return  round($num/$betweentime,2);
+}
+function mood(){
+    $live=live();
+    $active_before_7=active_before_7();
+    $active_history=active_history();
+    if ($live==1){
+        if ($active_before_7<$active_history/2)
+            $mood="繁忙(之前相当活跃，但是最近不是很活跃)";
+        else
+            $mood="活跃（一直很活跃，处于第一梯队）";
+    }
+    else if($live==4){
+        $mood=" 放弃：一直不活跃，处于第四梯队";
+    }
+    else {
+        if ($active_before_7>$active_history*1.5)
+            $mood="努力：之前不活跃，目前活跃，努力奋进中";
+        else if ($active_before_7<$active_history*0.66)
+            $mood="暂时搁置：之前活跃，现在不活跃";
+        else
+            $mood="平稳：活跃程度无大变化";
+    }
+echo $mood;
+}
+function attention(){
+    global $wpdb;
+    $c=get_option('spark_search_user_copy_right');
+    $sql =$wpdb->get_var( "SELECT ID FROM `$wpdb->users` WHERE `user_login` = '$c'");
+    $time = $wpdb->get_results("SELECT ID ,action_time FROM `wp_user_history` WHERE `user_id` ='$sql'and `action_post_type`!='page' and `action_post_id`!='0' ");
+    $n = 0;
+    foreach ($time as $time_a) {
+        $idlist[$n] = $time_a->ID;
+        $historytime[$n] = $time_a->action_time;
+        $n++;
+    }
+    $now=time();
+    $time = strtotime('-6 day', $now);
+    $begintime = date('Y-m-d 00:00:00', $time);
+    $c=count($historytime);
+    $m=0;
+    $a=0;
+    while($c>0){
+        if(strtotime($historytime[$m])>strtotime($begintime)){
+            $a = $idlist[$m];
+            break;
+        }
+        $m++;
+        $c--;
+    }
+    if ($a){
+        $num=$wpdb->get_results("SELECT action_post_id FROM `wp_user_history` where user_id='$sql' and ID>'$a'and `action_post_type`!='page' and `action_post_id`!='0'");
+        $m=0;
+        foreach ($num as $a) {
+            $num[$m]=$a->action_post_id;
+            $m++;
+        }
+        $num=array_count_values ($num);
+        arsort($num);
+        $num_val=array_values($num);
+        $num_key=array_keys($num);
+        $idcount1=$num_val[0];$idcount2=$num_val[1];$idcount3=$num_val[2];
+        $id1=$num_key[0];$id2=$num_key[1];$id3=$num_key[2];
+        $idname1 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id1'");
+        $idname2 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id2'");
+        $idname3 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id3'");
+//        echo $id1;
+        echo "</br>"."<p style='color:#FF0000;'>$idname1</p>"."  浏览了".$idcount1."次</br>"."<p style='color:#FF0000;'>$idname2</p>"."  浏览了".$idcount2."次</br>"."<p style='color:#FF0000;'>$idname3</p>"."  浏览了".$idcount3."次";
+    }
+    else
+       echo "该用户七天内没有浏览";
+}
+function stay(){
+    global $wpdb;
+    $c=get_option('spark_search_user_copy_right');
+    $sql =$wpdb->get_var( "SELECT ID FROM `$wpdb->users` WHERE `user_login` = '$c'");
+    $viewart=$wpdb->get_results("SELECT action_post_id FROM `wp_user_history` where user_id='$sql' and `action_post_type`!='page' and `action_post_id`!='0'");
+    $m=0;
+    foreach ($viewart as $a) {
+        $viewart[$m]=$a->action_post_id;
+        $m++;
+    }
+    $infor=$wpdb->get_results("SELECT action_post_id,ID,action_time FROM `wp_user_history` where user_id='$sql' order by ID");
+    $m=0;
+    foreach ($infor as $a) {
+        $IDinfor[$m]=$a->ID;
+        $timeinfor[$m]=$a->action_time;
+        $viewall[$m]=$a->action_post_id;
+        $m++;
+    }
+    $m=0;
+    $result=array();
+    $c=count($viewall);
+    while($c>0){
+        if(in_array($viewall[$m],$viewart)){
+            $stay=strtotime($timeinfor[$m+1])-strtotime($timeinfor[$m]);
+            if($stay>3600)
+                $stay=0;
+            $result[$viewall[$m]]+=$stay;
+        }
+        $m++;
+        $c--;
+    }
+//    print_r($result);
+    arsort($result);
+    $num_val=array_values($result);
+    $num_key=array_keys($result);
+    $idcount1=$num_val[0];$idcount2=$num_val[1];$idcount3=$num_val[2];
+    $id1=$num_key[0];$id2=$num_key[1];$id3=$num_key[2];
+    $idname1 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id1'");
+    $idname2 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id2'");
+    $idname3 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id3'");
+    echo "</br>"."<p style='color:#FF0000;'>$idname1</p>"."  停留了".$idcount1."秒</br>"."<p style='color:#FF0000;'>$idname2</p>"."  停留了".$idcount2."秒</br>"."<p style='color:#FF0000;'>$idname3</p>"."  停留了".$idcount3."秒";
+//        echo $id1;
+}

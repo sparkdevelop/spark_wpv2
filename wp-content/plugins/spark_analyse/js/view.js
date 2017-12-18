@@ -3,11 +3,10 @@
  */
 jQuery(document).ready( function($) {
 
-    $("button").click( function() {
+    $("#button_view").click( function() {
         $.ajax({
             type: "POST",
-            //data: {"start2": $("#start2").val()+"&action=view_action"},
-            data: "start2=" +$("#start2").val() + "&action=view_action"+"&number="+$("#number").val()+"&action=view_action",
+            data: "start2=" +$("#start2").val() + "&action=view_action"+"&number="+$("#number").val()+"&action=view_action"+"&rank="+$("#rank").val()+"&action=view_action",
             url: ajaxurl,
             async:true,
 
@@ -64,7 +63,7 @@ jQuery(document).ready( function($) {
                     },
 
                     series: [{
-                        name: '浏览量',
+                        name: '当天浏览量',
                         data: b
                     }]
                 });

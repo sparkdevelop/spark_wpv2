@@ -103,6 +103,7 @@ require 'infer.php';
 add_action('wp_ajax_time_action', 'time_check');
 function time_check()
 {
+
     $time1 = isset($_POST['start']) ? $_POST['start'] : null;
     $time1 = date("Y-m-d", strtotime($time1));
     $time2 = date("Y-m-d", strtotime('+1 day', strtotime($time1)));
@@ -153,7 +154,99 @@ function time_check()
 
     echo $resulttime;
 
-   // die();
+    die();
+}
+
+add_action('wp_ajax_tidui_action', 'tidui_check');
+function tidui_check()
+{
+    $tidui = isset($_POST['tidui']) ? $_POST['tidui'] : null;
+    $zhuangtai= isset($_POST['zhuangtai']) ? $_POST['zhuangtai'] : null;
+
+    global $wpdb;
+    if($tidui==1){
+        if($zhuangtai==0) {
+            $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='繁忙'");
+            $m = 0;
+            foreach ($user1 as $a) {
+                $user1list[$m] = $a->user_name;
+                $m++;
+            }
+        }
+        elseif($zhuangtai==1) {
+            $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='活跃'");
+            $m = 0;
+            foreach ($user1 as $a) {
+                $user1list[$m] = $a->user_name;
+                $m++;
+            }
+        }
+    }
+    elseif($tidui==4){
+        $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='放弃'");
+        $m = 0;
+        foreach ($user1 as $a) {
+            $user1list[$m] = $a->user_name;
+            $m++;
+        }
+    }
+    elseif($tidui==2){
+        if($zhuangtai==0) {
+            $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='暂时搁置' and `rank1`=2");
+            $m = 0;
+            foreach ($user1 as $a) {
+                $user1list[$m] = $a->user_name;
+                $m++;
+            }
+        }
+        elseif($zhuangtai==1) {
+            $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='努力' and `rank1`=2");
+            $m = 0;
+            foreach ($user1 as $a) {
+                $user1list[$m] = $a->user_name;
+                $m++;
+            }
+        }
+        elseif($zhuangtai==2) {
+            $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='平稳' and `rank1`=2");
+            $m = 0;
+            foreach ($user1 as $a) {
+                $user1list[$m] = $a->user_name;
+                $m++;
+            }
+        }
+    }
+    else{
+        if($zhuangtai==0) {
+            $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='暂时搁置' and `rank1`=3");
+            $m = 0;
+            foreach ($user1 as $a) {
+                $user1list[$m] = $a->user_name;
+                $m++;
+            }
+        }
+        elseif($zhuangtai==1) {
+            $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='努力' and `rank1`=3");
+            $m = 0;
+            foreach ($user1 as $a) {
+                $user1list[$m] = $a->user_name;
+                $m++;
+            }
+        }
+        elseif($zhuangtai==2) {
+            $user1 = $wpdb->get_results("SELECT user_name FROM `user_rank` where `rank2`='平稳' and `rank1`=3");
+            $m = 0;
+            foreach ($user1 as $a) {
+                $user1list[$m] = $a->user_name;
+                $m++;
+            }
+        }
+    }
+    shuffle($user1list);
+    $c=count($user1list);
+    $user1list=array_slice($user1list,0,20);
+    echo $c." ".implode(" ",$user1list);
+    die();
 }
 
 function spark_settings_submenu_page()
@@ -174,7 +267,7 @@ function spark_settings_submenu_page()
 <!--        <script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 <!--        <link rel="stylesheet" type="text/css" href="--><?php //echo plugins_url('miaov_style.css')?><!--" />-->
 <!--       <script type="text/javascript" src="--><?php //echo site_url('wp-content/plugins/spark_analyse/miaov.js')?><!--"></script>-->
-       <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+<!--       <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>-->
 <!---->
 
        <script type="text/javascript">
@@ -774,6 +867,41 @@ $(function () {
               </table>
           </div>
       </div>
+
+          <div class="row" style="    margin-top: 15px;">
+              <div  class="col-md-6" style="background-color: white;width: 47%;">
+                  <p>用户状况预测</p>
+                     <p>用户最近七天的活跃度为：<?php echo active_before_7()?></p>
+                  </br>
+                  <p>用户注册至今平均活跃度为：<?php echo active_history()?></p>
+                  </br>
+                  <p>据评估该用户处于第<?php echo live()?>梯队</p>
+                  </br>
+                  <p>据评估该用户目前状态:<?php mood()?></p>
+                  </br>
+                  <p>该用户最近浏览的页面有：<?php attention()?></p>
+                  <p>该用户停留时间较长的页面有：<?php stay()?></p>
+              </div>
+              <div  class="col-md-6" style="background-color: white;width: 47%;margin-left: 40px;">
+                  <p>用户状况统计</p>
+                  <select id="tidui" onchange="change()">
+                      <option  value="1">第一梯队</option>
+                      <option  value="2">第二梯队</option>
+                      <option  value="3">第三梯队</option>
+                      <option  value="4">第四梯队</option>
+                  </select>
+                  <select id="zhuangtai">
+                      <option  value="0">轻松</option>
+                      <option  value="1">繁忙</option>
+
+                  </select>
+                  <button id="button_tidui">查询</button><p>因为用户过多，故每次只随机显示20个</p>
+                  <div id="tiduinum">该类用户共有：</div>
+                  <div id="container_tidui" style="min-width:400px;height:400px;"></div>
+              </div>
+
+          </div>
+          </div>
 
     </div>
 

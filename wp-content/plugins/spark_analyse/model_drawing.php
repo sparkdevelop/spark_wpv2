@@ -158,7 +158,8 @@ function tag(){
         $m++;
     }
     $m=0;
-    $a=0;
+
+    $repeat=array();
     global $textlist3;
     global $articul;
     $articul=array(
@@ -168,14 +169,36 @@ function tag(){
     {
         $count=$wpdb->get_var("SELECT repeat_count FROM " . SS_TABLE . " WHERE `id` ='$textlist2[$m]'");
         //echo $count;
-        while($count>=0) {
-            $articul[$a] = $wpdb->get_var("SELECT keywords FROM " . SS_TABLE . " WHERE `id` ='$textlist2[$m]'");
-            $count--;
-            $a++;
-        }
+        $repeat[$textlist2[$m]]=$count;
         $m++;
         $c--;
     }
+    if(count($repeat)) {
+        $c = 10;
+        $m = 0;
+        while ($c > 0) {
+            if(count($repeat)) {
+                $key[$m] = array_search(max($repeat), $repeat);
+                unset($repeat[$key[$m]]);
+                $m++;
+                $c--;
+            }
+            else
+                break;
+        }
+        $c = 10;
+        $m = 0;
+        while ($c > 0) {
+            if(count($key)) {
+                $articul[$m] = $wpdb->get_var("SELECT keywords FROM " . SS_TABLE . " WHERE `id` ='$key[$m]'");
+                $m++;
+                $c--;
+            }
+            else
+                break;
+        }
+    }
+
     return $articul;
 }
 function qatag(){

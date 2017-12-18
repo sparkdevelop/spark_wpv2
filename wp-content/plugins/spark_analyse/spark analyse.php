@@ -25,24 +25,38 @@ function plugin2()
     wp_register_script("zhyfep-script", plugins_url('js/bootstrap.min.js', __FILE__), array('jquery'));
     wp_register_script("zhyview-script", plugins_url('js/view.js', __FILE__), array('jquery'));
     wp_register_script("zhycollapse-script", plugins_url('js/collapse.js', __FILE__), array('jquery'));
-    wp_register_script("zhyhigh-script", plugins_url('js/highcharts.js', __FILE__), array('jquery'));
-    wp_register_script("zhyhighm-script", plugins_url('js/highcharts-more.js', __FILE__), array('jquery'));
+    wp_register_script("zhyhigh-script", plugins_url('js/Highcharts-6.0.3/code/highcharts.js', __FILE__), array('jquery'));
+    wp_register_script("zhyhighm-script", plugins_url('js/Highcharts-6.0.3/code/highcharts-more.js', __FILE__), array('jquery'));
 //wp_register_script("increment-script", plugins_url('js/user_increment.js', __FILE__),array('jquery'));
+    wp_register_script("zhyexp-script", plugins_url('js/Highcharts-6.0.3/code/modules/exporting.js', __FILE__), array('jquery'));
+    wp_register_script("zhywor-script", plugins_url('js/Highcharts-6.0.3/code/modules/wordcloud.js', __FILE__), array('jquery'));
+    wp_register_script("zhyold-script", plugins_url('js/Highcharts-6.0.3/code/modules/oldie.js', __FILE__), array('jquery'));
     wp_register_script("zhytransition-script", plugins_url('js/transition.js', __FILE__), array('jquery'));
+    wp_register_script("zhytidui-script", plugins_url('js/tidui.js', __FILE__), array('jquery'));
+    wp_register_script("zhystay-script", plugins_url('js/stay.js', __FILE__), array('jquery'));
+    wp_register_script("zhyteamview-script", plugins_url('js/team_view.js', __FILE__), array('jquery'));
 
     wp_enqueue_script("zhyjquery-script");
     wp_enqueue_script("zhyfep-script");
 
+    wp_enqueue_script("zhyhigh-script");
+    wp_enqueue_script("zhyhighm-script");
     wp_enqueue_script("zhytag-script");
     wp_enqueue_script("zhytime-script");
     wp_enqueue_script("zhyview-script");
-    wp_enqueue_script("zhyhigh-script");
     wp_enqueue_script("zhytransition-script");
-    wp_enqueue_script("zhyhighm-script");
+
 //    wp_enqueue_script("increment-script");
     wp_enqueue_script("zhycollapse-script");
     wp_enqueue_script("zhydate-script");
     wp_enqueue_script("zhyui-script");
+    wp_enqueue_script("zhytidui-script");
+    wp_enqueue_script("zhyteamview-script");
+    wp_enqueue_script("zhystay-script");
+    wp_enqueue_script("zhyexp-script");
+    wp_enqueue_script("zhywor-script");
+    wp_enqueue_script("zhyold-script");
+
 
     wp_enqueue_style('zhyfep-style');
     wp_enqueue_style('zhydatepicker-style');
@@ -71,7 +85,7 @@ require_once('all_statistic.php');
              add_menu_page(
                  'My Plugin1',
                  '用户画像',
-                 'administrator',
+                 'read',
                  'spark analyse',
                  'spark_settings_menu1'
              );
@@ -85,7 +99,7 @@ require_once('all_statistic.php');
                   'spark analyse',
                   '查看用户画像',
                   '查看用户画像',
-                  'administrator',
+                  'read',
                   'spark_analyse-submenu-page',
                   'spark_settings_submenu_page' );
           //add_action('admin_enqueue_scripts', 'wpjam_normal_script');
@@ -97,7 +111,7 @@ require_once('all_statistic.php');
                   'spark analyse',
                   '用户画像推测',
                   '用户画像推测',
-                 'administrator',
+                 'read',
                  'spark_analyse-submenu-page2',
                  'spark_settings_submenu_page2' );
     //add_action('admin_enqueue_scripts', 'wpjam_normal_script');
@@ -109,7 +123,7 @@ require_once('all_statistic.php');
                    'spark analyse',
                    '系统用户统计',
                    '系统用户统计',
-                   'administrator',
+                   'read',
                    'spark_analyse-submenu-page3',
                    'spark_settings_submenu_page3' );
     //add_action('admin_enqueue_scripts', 'wpjam_normal_script');
@@ -179,7 +193,7 @@ function install_table2 ()
              $option =$_POST['option_save'];;//获取选项
              if( $option == '' ){
                  //设置默认数据
-                $option = 'root';
+                $option = 'spark_admin';
                  update_option('spark_search_user_copy_right', $option);//更新选项
              }
              if(isset($_POST['option_save'])){

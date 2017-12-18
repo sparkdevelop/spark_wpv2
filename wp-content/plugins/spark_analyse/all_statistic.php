@@ -5,57 +5,12 @@
  * Date: 2017/10/10
  * Time: 15:23
  */
-//function plugin4()
-//{
-//    wp_register_style('fep-style', plugins_url('bootstrap.min.css', __FILE__), array(), '1.6', 'all');
-//    wp_register_style('datepicker-style', plugins_url('dateRange.css', __FILE__), array(), '1.6', 'all');
-//    wp_register_style('main-style', plugins_url('main.css', __FILE__), array(), '1.0', 'all');
-//    wp_register_style('table-style', plugins_url('table.css', __FILE__), array(), '1.6', 'all');
-//    wp_register_style('user-style', plugins_url('user.css', __FILE__), array(), '1.6', 'all');
-//    wp_register_style('tag-style', plugins_url('tagcloud.css', __FILE__), array(), '1.6', 'all');
-//    wp_register_script("jquery-script", plugins_url('js/jquery-3.2.1.js', __FILE__), array('jquery'));
-//    wp_register_script("date-script", plugins_url('js/dateRange.js', __FILE__), array('jquery'));
-//    wp_register_script("tag-script", plugins_url('js/tagcloud.min.js', __FILE__), array('jquery'));
-//    wp_register_script("ui-script", plugins_url('js/jquery-ui.js', __FILE__), array('jquery'));
-//    wp_register_script("time-script", plugins_url('js/active.js', __FILE__), array('jquery'));
-//    wp_register_script("view-script", plugins_url('js/view.js', __FILE__), array('jquery'));
-//    wp_register_script("fep-script", plugins_url('js/bootstrap.min.js', __FILE__), array('jquery'));
-//    wp_register_script("collapse-script", plugins_url('js/collapse.js', __FILE__), array('jquery'));
-//    wp_register_script("high-script", plugins_url('js/highcharts.js', __FILE__), array('jquery'));
-//    wp_register_script("highm-script", plugins_url('js/highcharts-more.js', __FILE__), array('jquery'));
-////wp_register_script("increment-script", plugins_url('js/user_increment.js', __FILE__),array('jquery'));
-//    wp_register_script("transition-script", plugins_url('js/transition.js', __FILE__), array('jquery'));
-//    if (is_admin()) {
-//        wp_enqueue_script("jquery-script");
-//        wp_enqueue_script("fep-script");
-//
-//        wp_enqueue_script("tag-script");
-//        wp_enqueue_script("time-script");
-//        wp_enqueue_script("view-script");
-//        wp_enqueue_script("high-script");
-//        wp_enqueue_script("transition-script");
-//        wp_enqueue_script("highm-script");
-////    wp_enqueue_script("increment-script");
-//        wp_enqueue_script("collapse-script");
-//        wp_enqueue_script("date-script");
-//        wp_enqueue_script("ui-script");
-//
-//        wp_enqueue_style('fep-style');
-//        wp_enqueue_style('datepicker-style');
-//        wp_enqueue_style('main-style');
-//        wp_enqueue_style('table-style');
-//        wp_enqueue_style('user-style');
-//        wp_enqueue_style('tag-style');
-//    }
-//}
-//require_once( ABSPATH . 'wp-admin/includes/admin.php' );
-//add_action( 'admin_enqueue_scripts', 'plugin4' );
 
-//require_once ('all_rank.php');
 add_action('wp_ajax_view_action', 'view_ajax');
 function view_ajax(){
     $time1 = isset($_POST['start2']) ? $_POST['start2'] : null;
     $id= isset($_POST['number']) ? $_POST['number'] : null;
+    $rank= isset($_POST['rank']) ? $_POST['rank'] : 1;
     $time1 = date("Y-m-d", strtotime($time1));
     $time2 = date("Y-m-d", strtotime('+1 day', strtotime($time1)));
     $time3 = date("Y-m-d", strtotime('+2 day', strtotime($time1)));
@@ -147,20 +102,108 @@ function view_ajax(){
         arsort($idview1);arsort($idview2);arsort($idview3);arsort($idview4);arsort($idview5);arsort($idview6);arsort($idview7);
         $idview_val1=array_values($idview1);$idview_val2=array_values($idview2);$idview_val3=array_values($idview3);$idview_val4=array_values($idview4);
         $idview_val5=array_values($idview5);$idview_val6=array_values($idview6);$idview_val7=array_values($idview7);
-        $idmax1=$idview_val1[0];$idmax2=$idview_val2[0];$idmax3=$idview_val3[0];$idmax4=$idview_val4[0];$idmax5=$idview_val5[0];$idmax6=$idview_val6[0];$idmax7=$idview_val7[0];
         $idview_key1=array_keys($idview1);$idview_key2=array_keys($idview2);$idview_key3=array_keys($idview3);$idview_key4=array_keys($idview4);
         $idview_key5=array_keys($idview5);$idview_key6=array_keys($idview6);$idview_key7=array_keys($idview7);
-        $id1=$idview_key1[0];$id2=$idview_key2[0];$id3=$idview_key3[0];$id4=$idview_key4[0];$id5=$idview_key5[0];$id6=$idview_key6[0];$id7=$idview_key7[0];
-        //需要更改匹配线上服务器
-        $idname1=$wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id1'");
-        $idname2=$wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id2'");
-        $idname3=$wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id3'");
-        $idname4=$wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id4'");
-        $idname5=$wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id5'");
-        $idname6=$wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id6'");
-        $idname7=$wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id7'");
-        $resulttime="$idmax1 $idmax2 $idmax3 $idmax4 $idmax5 $idmax6 $idmax7 $idname1 $idname2 $idname3 $idname4 $idname5 $idname6 $idname7";
-
+        if($rank==1) {
+            $idmax1 = $idview_val1[0];
+            $idmax2 = $idview_val2[0];
+            $idmax3 = $idview_val3[0];
+            $idmax4 = $idview_val4[0];
+            $idmax5 = $idview_val5[0];
+            $idmax6 = $idview_val6[0];
+            $idmax7 = $idview_val7[0];
+            $id1 = $idview_key1[0];
+            $id2 = $idview_key2[0];
+            $id3 = $idview_key3[0];
+            $id4 = $idview_key4[0];
+            $id5 = $idview_key5[0];
+            $id6 = $idview_key6[0];
+            $id7 = $idview_key7[0];
+            //需要更改匹配线上服务器
+            $idname1 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id1'");
+            $idname2 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id2'");
+            $idname3 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id3'");
+            $idname4 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id4'");
+            $idname5 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id5'");
+            $idname6 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id6'");
+            $idname7 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id7'");
+            $resulttime = "$idmax1 $idmax2 $idmax3 $idmax4 $idmax5 $idmax6 $idmax7 $idname1 $idname2 $idname3 $idname4 $idname5 $idname6 $idname7";
+        }
+        else if($rank==2){
+            $idmax1 = $idview_val1[1];
+            $idmax2 = $idview_val2[1];
+            $idmax3 = $idview_val3[1];
+            $idmax4 = $idview_val4[1];
+            $idmax5 = $idview_val5[1];
+            $idmax6 = $idview_val6[1];
+            $idmax7 = $idview_val7[1];
+            $id1 = $idview_key1[1];
+            $id2 = $idview_key2[1];
+            $id3 = $idview_key3[1];
+            $id4 = $idview_key4[1];
+            $id5 = $idview_key5[1];
+            $id6 = $idview_key6[1];
+            $id7 = $idview_key7[1];
+            //需要更改匹配线上服务器
+            $idname1 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id1'");
+            $idname2 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id2'");
+            $idname3 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id3'");
+            $idname4 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id4'");
+            $idname5 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id5'");
+            $idname6 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id6'");
+            $idname7 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id7'");
+            $resulttime = "$idmax1 $idmax2 $idmax3 $idmax4 $idmax5 $idmax6 $idmax7 $idname1 $idname2 $idname3 $idname4 $idname5 $idname6 $idname7";
+        }
+        else if($rank==3){
+            $idmax1 = $idview_val1[2];
+            $idmax2 = $idview_val2[2];
+            $idmax3 = $idview_val3[2];
+            $idmax4 = $idview_val4[2];
+            $idmax5 = $idview_val5[2];
+            $idmax6 = $idview_val6[2];
+            $idmax7 = $idview_val7[2];
+            $id1 = $idview_key1[2];
+            $id2 = $idview_key2[2];
+            $id3 = $idview_key3[2];
+            $id4 = $idview_key4[2];
+            $id5 = $idview_key5[2];
+            $id6 = $idview_key6[2];
+            $id7 = $idview_key7[2];
+            //需要更改匹配线上服务器
+            $idname1 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id1'");
+            $idname2 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id2'");
+            $idname3 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id3'");
+            $idname4 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id4'");
+            $idname5 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id5'");
+            $idname6 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id6'");
+            $idname7 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id7'");
+            $resulttime = "$idmax1 $idmax2 $idmax3 $idmax4 $idmax5 $idmax6 $idmax7 $idname1 $idname2 $idname3 $idname4 $idname5 $idname6 $idname7";
+        }
+        else if($rank==4){
+            $idmax1 = $idview_val1[3];
+            $idmax2 = $idview_val2[3];
+            $idmax3 = $idview_val3[3];
+            $idmax4 = $idview_val4[3];
+            $idmax5 = $idview_val5[3];
+            $idmax6 = $idview_val6[3];
+            $idmax7 = $idview_val7[3];
+            $id1 = $idview_key1[3];
+            $id2 = $idview_key2[3];
+            $id3 = $idview_key3[3];
+            $id4 = $idview_key4[3];
+            $id5 = $idview_key5[3];
+            $id6 = $idview_key6[3];
+            $id7 = $idview_key7[3];
+            //需要更改匹配线上服务器
+            $idname1 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id1'");
+            $idname2 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id2'");
+            $idname3 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id3'");
+            $idname4 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id4'");
+            $idname5 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id5'");
+            $idname6 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id6'");
+            $idname7 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id7'");
+            $resulttime = "$idmax1 $idmax2 $idmax3 $idmax4 $idmax5 $idmax6 $idmax7 $idname1 $idname2 $idname3 $idname4 $idname5 $idname6 $idname7";
+        }
         echo $resulttime;
     }
     else {
@@ -216,58 +259,153 @@ function view_ajax(){
         arsort($idview1);arsort($idview2);arsort($idview3);arsort($idview4);arsort($idview5);arsort($idview6);arsort($idview7);
         $idview_val1=array_values($idview1);$idview_val2=array_values($idview2);$idview_val3=array_values($idview3);$idview_val4=array_values($idview4);
         $idview_val5=array_values($idview5);$idview_val6=array_values($idview6);$idview_val7=array_values($idview7);
-        $idmax1=$idview_val1[0];$idmax2=$idview_val2[0];$idmax3=$idview_val3[0];$idmax4=$idview_val4[0];$idmax5=$idview_val5[0];$idmax6=$idview_val6[0];$idmax7=$idview_val7[0];
         $idview_key1=array_keys($idview1);$idview_key2=array_keys($idview2);$idview_key3=array_keys($idview3);$idview_key4=array_keys($idview4);
         $idview_key5=array_keys($idview5);$idview_key6=array_keys($idview6);$idview_key7=array_keys($idview7);
-        $id1=$idview_key1[0];$id2=$idview_key2[0];$id3=$idview_key3[0];$id4=$idview_key4[0];$id5=$idview_key5[0];$id6=$idview_key6[0];$id7=$idview_key7[0];
-        //需要更改匹配线上服务器
-        $idname1=$wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id1'");
-        $idname2=$wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id2'");
-        $idname3=$wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id3'");
-        $idname4=$wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id4'");
-        $idname5=$wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id5'");
-        $idname6=$wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id6'");
-        $idname7=$wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id7'");
-        $resulttime="$idmax1 $idmax2 $idmax3 $idmax4 $idmax5 $idmax6 $idmax7 $idname1 $idname2 $idname3 $idname4 $idname5 $idname6 $idname7";
+        if($rank==1) {
+            $idmax1 = $idview_val1[0];
+            $idmax2 = $idview_val2[0];
+            $idmax3 = $idview_val3[0];
+            $idmax4 = $idview_val4[0];
+            $idmax5 = $idview_val5[0];
+            $idmax6 = $idview_val6[0];
+            $idmax7 = $idview_val7[0];
+            $id1 = $idview_key1[0];
+            $id2 = $idview_key2[0];
+            $id3 = $idview_key3[0];
+            $id4 = $idview_key4[0];
+            $id5 = $idview_key5[0];
+            $id6 = $idview_key6[0];
+            $id7 = $idview_key7[0];
+            //需要更改匹配线上服务器
+            $idname1 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id1'");
+            $idname2 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id2'");
+            $idname3 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id3'");
+            $idname4 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id4'");
+            $idname5 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id5'");
+            $idname6 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id6'");
+            $idname7 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id7'");
+            $resulttime = "$idmax1 $idmax2 $idmax3 $idmax4 $idmax5 $idmax6 $idmax7 $idname1 $idname2 $idname3 $idname4 $idname5 $idname6 $idname7";
+        }
+        else if($rank==2){
+            $idmax1 = $idview_val1[1];
+            $idmax2 = $idview_val2[1];
+            $idmax3 = $idview_val3[1];
+            $idmax4 = $idview_val4[1];
+            $idmax5 = $idview_val5[1];
+            $idmax6 = $idview_val6[1];
+            $idmax7 = $idview_val7[1];
+            $id1 = $idview_key1[1];
+            $id2 = $idview_key2[1];
+            $id3 = $idview_key3[1];
+            $id4 = $idview_key4[1];
+            $id5 = $idview_key5[1];
+            $id6 = $idview_key6[1];
+            $id7 = $idview_key7[1];
+            //需要更改匹配线上服务器
+            $idname1 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id1'");
+            $idname2 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id2'");
+            $idname3 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id3'");
+            $idname4 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id4'");
+            $idname5 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id5'");
+            $idname6 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id6'");
+            $idname7 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id7'");
+            $resulttime = "$idmax1 $idmax2 $idmax3 $idmax4 $idmax5 $idmax6 $idmax7 $idname1 $idname2 $idname3 $idname4 $idname5 $idname6 $idname7";
+        }
+        else if($rank==3){
+            $idmax1 = $idview_val1[2];
+            $idmax2 = $idview_val2[2];
+            $idmax3 = $idview_val3[2];
+            $idmax4 = $idview_val4[2];
+            $idmax5 = $idview_val5[2];
+            $idmax6 = $idview_val6[2];
+            $idmax7 = $idview_val7[2];
+            $id1 = $idview_key1[2];
+            $id2 = $idview_key2[2];
+            $id3 = $idview_key3[2];
+            $id4 = $idview_key4[2];
+            $id5 = $idview_key5[2];
+            $id6 = $idview_key6[2];
+            $id7 = $idview_key7[2];
+            //需要更改匹配线上服务器
+            $idname1 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id1'");
+            $idname2 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id2'");
+            $idname3 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id3'");
+            $idname4 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id4'");
+            $idname5 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id5'");
+            $idname6 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id6'");
+            $idname7 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id7'");
+            $resulttime = "$idmax1 $idmax2 $idmax3 $idmax4 $idmax5 $idmax6 $idmax7 $idname1 $idname2 $idname3 $idname4 $idname5 $idname6 $idname7";
+        }
+        else if($rank==4){
+            $idmax1 = $idview_val1[3];
+            $idmax2 = $idview_val2[3];
+            $idmax3 = $idview_val3[3];
+            $idmax4 = $idview_val4[3];
+            $idmax5 = $idview_val5[3];
+            $idmax6 = $idview_val6[3];
+            $idmax7 = $idview_val7[3];
+            $id1 = $idview_key1[3];
+            $id2 = $idview_key2[3];
+            $id3 = $idview_key3[3];
+            $id4 = $idview_key4[3];
+            $id5 = $idview_key5[3];
+            $id6 = $idview_key6[3];
+            $id7 = $idview_key7[3];
+            //需要更改匹配线上服务器
+            $idname1 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id1'");
+            $idname2 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id2'");
+            $idname3 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id3'");
+            $idname4 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id4'");
+            $idname5 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id5'");
+            $idname6 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id6'");
+            $idname7 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id7'");
+            $resulttime = "$idmax1 $idmax2 $idmax3 $idmax4 $idmax5 $idmax6 $idmax7 $idname1 $idname2 $idname3 $idname4 $idname5 $idname6 $idname7";
+        }
 
         echo $resulttime;
+
     }
+    die();
 
 }
-function spark_settings_submenu_page3(){
+add_action('wp_ajax_team_action', 'team_ajax');
+function team_ajax(){
+    $team = isset($_POST['team_number']) ? $_POST['team_number'] : null;
+    global $wpdb;
+    $team1=$team;
+        $n=0;
+        $project = $wpdb->get_results("SELECT user_id FROM `wp_gp_task_member`  where  `task_id`=35  and `team_id`='$team1'");
+        foreach ($project as $a) {
+            $user[$n] = $a->user_id;
+            $n++;
+        }
 
-//    $vusername=explode(",",active_p());
-//    $vusername0=$vusername[0];
-//    $vusername1=$vusername[1];
-//    $vusername2=$vusername[2];
-//    $cusername=explode(",",create());
-//    $cusername0=$cusername[0];
-//    $cusername1=$cusername[1];
-//    $cusername2=$cusername[2];
-//    $qusername=explode(",",question());
-//    $qusername0=$qusername[0];
-//    $qusername1=$qusername[1];
-//    $qusername2=$qusername[2];
-//    $ausername=explode(",",answer());
-//    $ausername0=$ausername[0];
-//    $ausername1=$ausername[1];
-//    $ausername2=$ausername[2];
-//    $vusername=explode(",",active_before());
-//    $vusername3=$vusername[0];
-//    $vusername4=$vusername[1];
-//    $vusername5=$vusername[2];
-//    $cusername=explode(",",create_before());
-//    $cusername3=$cusername[0];
-//    $cusername4=$cusername[1];
-//    $cusername5=$cusername[2];
-//    $qusername=explode(",",question_before());
-//    $qusername3=$qusername[0];
-//    $qusername4=$qusername[1];
-//    $qusername5=$qusername[2];
-//    $ausername=explode(",",answer_before());
-//    $ausername3=$ausername[0];
-//    $ausername4=$ausername[1];
-//    $ausername5=$ausername[2];
+        $c=count($user);
+        $n=0;
+        while($c>0) {
+            $view[$n] = $wpdb->get_var("SELECT count(ID) FROM `wp_user_history`  where user_id='$user[$n]' and ID>250000");
+            $c--;
+            $n++;
+        }
+        $n=0;
+        $c=count($user);
+        while($c>0) {
+        $name[$n] = $wpdb->get_var("SELECT user_login FROM `wp_users`  where ID='$user[$n]'");
+        $c--;
+        $n++;
+    }
+       $view=implode(" ",$view);
+       $name=implode(" ",$name);
+    $result="$view $name";
+    echo $result;
+    die();
+}
+
+
+function spark_settings_submenu_page3(){
+//
+$viewper=process();
+$team=team();
 
 ?>
     <!DOCTYPE html>
@@ -275,8 +413,155 @@ function spark_settings_submenu_page3(){
    <head>
        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>用户统计</title>
+       <script>
+           $(function () {
+               var text = "<?php lowtime()?>";
+               var data = text.split(" ")
+                   .reduce(function (arr, word) {
+                       var obj = arr.find(function (obj) {
+                           return obj.name === word;
+                       });
+                       if (obj) {
+                           obj.weight += 1;
+                       } else {
+                           obj = {
+                               name: word,
+                               weight: 1
+                           };
+                           arr.push(obj);
+                       }
+                       return arr;
+                   }, []);
+               var chart_low = new Highcharts.Chart('container_low', {
+                   series: [{
+                       type: 'wordcloud',
+                       data: data
+                   }],
+                   title: {
+                       text: '用户云图'
+                   }
+               });
 
-     </head>
+               $('#container_process').highcharts({
+                   chart: {
+                       type: 'bar'
+                   },
+                   title: {
+                       text: '近七天学习进度分布'
+                   },
+                   xAxis: {
+                       categories: ['unit1', 'unit2', 'unit3', 'unit4', 'unit5']
+                   },
+                   yAxis: {
+                       min: 0,
+                       title: {
+                           text: '浏览量占比'
+                       }
+                   },
+                   legend: {
+                       reversed: true
+                   },
+                   plotOptions: {
+                       series: {
+                           stacking: 'normal'
+                       }
+                   },
+                   series: [{
+                       name: '<?php echo $viewper[0]?>',
+                       data: [<?php echo $viewper[3]?>]
+                   },  {
+                       name: '<?php echo $viewper[1]?>',
+                       data: [<?php echo $viewper[4]?>]
+                   },{
+                       name: '<?php echo $viewper[2]?>',
+                       data: [<?php echo $viewper[5]?>]
+                   },{
+                       name: '其他',
+                       data: [<?php echo $viewper[6]?>]
+                   },{
+                       name: '<?php echo $viewper[7]?>',
+                       data: [0,<?php echo $viewper[10]?>]
+                   },  {
+                       name: '<?php echo $viewper[8]?>',
+                       data: [0,<?php echo $viewper[11]?>]
+                   },{
+                       name: '<?php echo $viewper[9]?>',
+                       data: [0,<?php echo $viewper[12]?>]
+                   },{
+                       name: '其他',
+                       data: [0,<?php echo $viewper[13]?>]
+                   },
+                       {
+                           name: '<?php echo $viewper[14]?>',
+                           data: [0,0,<?php echo $viewper[17]?>]
+                       },  {
+                           name: '<?php echo $viewper[15]?>',
+                           data: [0,0,<?php echo $viewper[18]?>]
+                       },{
+                           name: '<?php echo $viewper[16]?>',
+                           data: [0,0,<?php echo $viewper[19]?>]
+                       },{
+                           name: '其他',
+                           data: [0,0,<?php echo $viewper[20]?>]
+                       },
+                       {
+                           name: '<?php echo $viewper[21]?>',
+                           data: [0,0,0,<?php echo $viewper[24]?>]
+                       },  {
+                           name: '<?php echo $viewper[22]?>',
+                           data: [0,0,0,<?php echo $viewper[25]?>]
+                       },{
+                           name: '<?php echo $viewper[23]?>',
+                           data: [0,0,0,<?php echo $viewper[26]?>]
+                       },{
+                           name: '其他',
+                           data: [0,0,0,<?php echo $viewper[27]?>]
+                       },
+                       {
+                           name: '<?php echo $viewper[28]?>',
+                           data: [0,0,0,0,<?php echo $viewper[31]?>]
+                       },  {
+                           name: '<?php echo $viewper[29]?>',
+                           data: [0,0,0,0,<?php echo $viewper[32]?>]
+                       },{
+                           name: '<?php echo $viewper[30]?>',
+                           data: [0,0,0,0,<?php echo $viewper[33]?>]
+                       },{
+                           name: '其他',
+                           data: [0,0,0,0,<?php echo $viewper[34]?>]
+                       }]
+               });
+               var text_que = "<?php team_question()?>";
+               var data_que = text_que.split(" ")
+                   .reduce(function (arr, word) {
+                       var obj_que = arr.find(function (obj) {
+                           return obj.name === word;
+                       });
+                       if (obj_que) {
+                           obj_que.weight += 1;
+                       } else {
+                           obj_que = {
+                               name: word,
+                               weight: 1
+                           };
+                           arr.push(obj_que);
+                       }
+                       return arr;
+                   }, []);
+               var chart_question = new Highcharts.Chart('container_question', {
+                   series: [{
+                       type: 'wordcloud',
+                       data: data_que
+                   }],
+                   title: {
+                       text: '小组云图'
+                   }
+               });
+           })
+       </script>
+
+   </head>
+
    <body style=" background-color: #f1f2f7; ">
 
    <div class="container">
@@ -374,10 +659,42 @@ function spark_settings_submenu_page3(){
        <div class="row">
            <label for="start2">起始日期：</label><input id="start2" name="start2" type="date" />
            <label for="id">用户id：</label><input id="number" name="text" multiple="multiple"type="text" />
+           <select id="rank">
+               <option  value="1">最多浏览</option>
+               <option  value="2">第二浏览</option>
+               <option  value="3">第三浏览</option>
+               <option  value="4">第四浏览</option>
+               </select>
            <label>可以输入五位用户的id,之间用逗号隔开；若不输入则默认全网用户</label>
            <div id="viewInfo">请输入起始日期和用户id,查询用户七天的浏览量变化</div>
-           <button id="button">查询</button><p id="button1"></p>
+           <button id="button_view">查询</button><p id="button1"></p>
            <div id="container_view" style="min-width:400px;height:400px;"></div>
+       </div>
+       <div class="row">
+           <div class="col-md-6" style="background-color: white;width: 47%">
+           <p>成长性用户</p>
+               <div id="container_low"></div>
+           </div>
+           <div class="col-md-6" style="background-color: white;width: 47%">
+               <p>学习进度</p>
+               <div id="container_process"></div>
+           </div>
+       </div>
+       <div class="row" style="    margin-top: 15px;">
+           <div class="col-md-6" style="background-color: white;width: 47%">
+               <p style="font-size: 18px;    margin: 8px;">群组分析</p>
+               <p>目前完成最多的组是：第<?php echo $team[0]?>组，他们的题目是：<?php echo $team[1]?></p>
+               <p>目前完成最少的组是：第<?php echo $team[2]?>组，他们的题目是：<?php echo $team[3]?></p>
+               <p>估测存在问题的小组（小组内最少浏览量还不足小组内最多浏览量的五分之一）</p>
+               <p>总共有：<?php $a=team_question_sta(); echo $a[0]?>个组，有问题的组有：<?php echo $a[1]?>个</p>
+               <div id="container_question"></div>
+           </div>
+           <div class="col-md-6" style="background-color: white;width: 47%">
+              <label for="id">小组id：</label><input id="team_number" name="text" multiple="multiple"type="text" />
+               <p id="team_info">请输入小组id,查询小组成员的浏览量变化</p>
+               <button id="button_team">查询</button>
+               <div id="container_team" ></div>
+           </div>
        </div>
        </div>
 
