@@ -44,7 +44,11 @@ $type = isset($_GET['type']) ? $_GET['type'] : 'notice';
 <!--        <a href="--><?php //echo esc_url(add_query_arg(array('type' => 'message'), remove_query_arg(array('paged')))); ?><!--">私信</a>-->
 <!--    </li>-->
     <li class="<?php echo $type == 'gpmessage' ? 'active' : ''; ?>">
-        <a href="<?php echo esc_url(add_query_arg(array('type' => 'gpmessage'), remove_query_arg(array('paged')))); ?>">群消息</a>
+        <a href="<?php echo esc_url(add_query_arg(array('type' => 'gpmessage'), remove_query_arg(array('paged')))); ?>">群消息
+            <? if(hasNotice()){?>
+                <i id="red-point" style="right: 5px;top: 5px;"></i>
+            <? } ?>
+        </a>
     </li>
 </ul>
 <?php

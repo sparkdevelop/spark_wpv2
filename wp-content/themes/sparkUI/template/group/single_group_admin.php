@@ -52,7 +52,11 @@
                 <a href="<?php echo esc_url(add_query_arg(array('tab' => 'member'), remove_query_arg(array('paged')))); ?>">成员列表</a>
             </li>
             <li class="<?php echo $tab == 'manage' ? 'active' : ''; ?>">
-                <a href="<?php echo esc_url(add_query_arg(array('tab' => 'manage'), remove_query_arg(array('paged')))); ?>">群组管理</a>
+                <a href="<?php echo esc_url(add_query_arg(array('tab' => 'manage'), remove_query_arg(array('paged')))); ?>">群组管理
+                    <? if(hasNotice($group['ID'])){?>
+                        <i id="red-point" style="right: 5px;top: 5px;"></i>
+                    <? } ?>
+                </a>
             </li>
             <li class="<?php echo $tab == 'analyze' ? 'active' : ''; ?>">
                 <a href="<?php echo esc_url(add_query_arg(array('tab' => 'analyze'), remove_query_arg(array('paged')))); ?>">统计信息</a>

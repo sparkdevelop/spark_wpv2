@@ -4076,12 +4076,63 @@ function get_group_member_id($group_id){
     return $result;
 }
 
+//获取所有群组消息
+function get_allMsg()
+{
+    global $wpdb;
+    $current_user_id = get_current_user_id();
+    $sql = "SELECT * FROM wp_gp_notice WHERE user_id = $current_user_id  ORDER BY notice_status,modified_time DESC";
+    $result = $wpdb->get_results($sql);
+    return $result;
+}
 
+//全部设为已读
+function all_set_as_read()
+{
+    global $wpdb;
+    $user_id = get_current_user_id();
+    $sql_update = "UPDATE wp_gp_notice SET notice_status = 1 WHERE user_id = $user_id";
+    $wpdb->query($sql_update);
+    die();
+}
+add_action('wp_ajax_all_set_as_read', 'all_set_as_read');
+add_action('wp_ajax_nopriv_all_set_as_read', 'all_set_as_read');
 
+//设为已读
+function set_as_read()
+{
+    global $wpdb;
+    $user_id = get_current_user_id();
+    $group_id = $_POST['group_id'];
+    $notice_type = $_POST['notice_type'];
+    $notice_content = $_POST['notice_content'];
+    $sql_update = "UPDATE wp_gp_notice SET notice_status = 1 
+                   WHERE user_id = $user_id and group_id =$group_id and
+                   notice_type = $notice_type and notice_content = '$notice_content'";
+    $wpdb->query($sql_update);
+    die();
+}
+add_action('wp_ajax_set_as_read', 'set_as_read');
+add_action('wp_ajax_nopriv_set_as_read', 'set_as_read');
 
-
-
-
+//有消息通知
+function hasNotice($group_id = NULL){
+    global $wpdb;
+    $user_id = get_current_user_id();
+    if($group_id==null){
+        $sql = "SELECT ID FROM wp_gp_notice WHERE user_id = $user_id and notice_status = 0";
+        $col = $wpdb->query($sql);
+    }else{
+        $sql = "SELECT ID FROM wp_gp_notice WHERE user_id = $user_id and group_id = $group_id 
+                and notice_type = 3 and notice_status = 0";
+        $col = $wpdb->query($sql);
+    }
+    if ($col != 0) { //有未读消息
+        return true;
+    }else{
+        return false;
+    }
+}
 
 //修改域名  域名要包括http
 function changeDomain($old_domain, $new_domain)

@@ -134,7 +134,7 @@ get_header();
         </div>
     </div>
 </div>
-<div style="clear:both;"></div>
+
 <div class="container">
     <div class="container_1" id="front-page_1" style="margin: 50px 0 0 0;display: table">
         <div class="col-md-4 col-sm-4 col-xs-12">

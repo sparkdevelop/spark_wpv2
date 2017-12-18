@@ -68,7 +68,6 @@
                                 ?>
                             </ul>
                         </div>
-
                         <!--登录注册用户头像-->
                         <?php
                         if(is_user_logged_in()){
@@ -78,13 +77,25 @@
                             <div class="dropdown btn-group" >
                                 <button type="button" id="user-portrait" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                     <?php echo get_avatar($current_user->ID,30,'');?>
+                                    <?
+                                    if(hasNotice()){?>
+                                        <i id="red-point"></i>
+                                    <? } ?>
                                 </button>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="margin-top: 14px">
                                     <li role="presentation" style="height:35px;">
                                         <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address;?>"><span class="glyphicon glyphicon-user"></span>个人主页</a>
                                     </li>
                                     <li role="presentation" style="height:35px;">
-                                        <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address.'&tab=notification'?>"><span class="glyphicon glyphicon-bell"></span>消息通知</a>
+                                        <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address.'&tab=notification'?>"
+                                           style="position:relative;">
+                                            <span class="glyphicon glyphicon-bell"></span>
+                                            <span>消息通知</span>
+                                            <? if(hasNotice()){?>
+                                                <i id="red-point" style="right: 25px;top: 12px"></i>
+                                            <? } ?>
+                                        </a>
+
                                     </li>
                                     <li role="presentation" style="height:35px;">
                                         <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address;?>&tab=profile"><span class="glyphicon glyphicon-cog"></span> 设置</a>

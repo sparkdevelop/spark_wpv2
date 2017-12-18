@@ -1863,3 +1863,14 @@ h4 {
     text-decoration: none;
     color: #fe642d;
 }
+/*小红点*/
+#red-point{
+    display:block;
+    background:#f00;
+    border-radius:50%;
+    width:8px;
+    height:8px;
+    top:0px;
+    right:0px;
+    position:absolute;
+}
