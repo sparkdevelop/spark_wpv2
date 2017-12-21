@@ -28,6 +28,38 @@ if (!$_GET['paged']) {
     }
 </style>
 <script>
+    function all_read_delete() {
+        layer.confirm('确定删除所有已读群消息?', {
+            icon: 3,
+            resize:false,
+            move:false,
+            title:false,
+            btnAlign: 'c',
+            btn: ['确认', '取消'],
+            btn2: function (index) {   //取消的回调
+                layer.close(index);
+            },
+            btn1: function () {   //确认的回调
+                var data = {
+                    action: 'all_read_delete'
+                };
+                $.ajax({
+                    type: "POST",
+                    url: '<?=admin_url('admin-ajax.php')?>',
+                    data: data,
+                    dataType: "text",
+                    success: function () {
+                        layer.msg('删除成功!', {time: 2000, icon: 1});
+                        location.reload();
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+            }
+        })
+    }
+
     function all_set_as_read() {
         var data = {
             action: 'all_set_as_read'
@@ -67,11 +99,19 @@ if (!$_GET['paged']) {
     }
 
 </script>
-<div class="badge" id="my_group_badge"
-     style="cursor:pointer;float: right;margin-top: -27px;margin-right: 5px"
-     onclick="all_set_as_read()">
-    全部设为已读
+<div>
+    <div class="badge" id="my_group_badge"
+         style="cursor:pointer;float: right;margin-top: -27px;margin-right: 5px"
+         onclick="all_set_as_read()">
+        全部设为已读
+    </div>
+    <div class="badge" id="my_group_badge"
+         style="cursor:pointer;float: right;margin-top: -27px;margin-right: 110px"
+         onclick="all_read_delete()">
+        删除全部已读
+    </div>
 </div>
+
 <div class="divline" style="margin-top: 0px;margin-bottom: -11px"></div>
 <div id="rightTabContent" class="tab-content">
     <ul class="list-group">
@@ -219,7 +259,7 @@ if (!$_GET['paged']) {
                         </div>
                     <?php }
                     else if ($allMsg[$i]->notice_type == 4) {
-                        // XX发布在群XX中发布了任务XX
+                        // XX发布在群XX中发布了任务XX  //无需更新
                         $group_id = $allMsg[$i]->group_id;      //相关群组的id
                         $group_name = get_group($group_id)[0]['group_name']; //相关群组的名称
                         $group_ava = get_group($group_id)[0]['group_cover']; //相关群组的头像
@@ -263,7 +303,7 @@ if (!$_GET['paged']) {
                         </div>
                     <?php }
                     else if ($allMsg[$i]->notice_type == 5) {
-                        //你在群XX的任务XX已被审核,请查看!
+                        //你在群XX的任务XX已被审核,请查看!  //更新合并已经完成
                         $group_id = $allMsg[$i]->group_id;      //相关群组的id
                         $group_name = get_group($group_id)[0]['group_name']; //相关群组的名称
                         $group_ava = get_group($group_id)[0]['group_cover']; //相关群组的头像
@@ -304,7 +344,7 @@ if (!$_GET['paged']) {
                         </div>
                     <?php }
                     else if ($allMsg[$i]->notice_type == 6) {
-                        //管理员XX将你在群XX的权限变更为XX
+                        //管理员XX将你在群XX的权限变更为XX  //多条信息合并
                         $group_id = $allMsg[$i]->group_id;      //相关群组的id
                         $group_name = get_group($group_id)[0]['group_name']; //相关群组的名称
                         $group_ava = get_group($group_id)[0]['group_cover']; //相关群组的头像
@@ -351,7 +391,7 @@ if (!$_GET['paged']) {
                         </div>
                     <?php }
                     else if ($allMsg[$i]->notice_type == 7) {
-                        //管理员XX将你移出了群XX
+                        //管理员XX将你移出了群XX   //不需要消息合并
                         $group_id = $allMsg[$i]->group_id;      //相关群组的id
                         $group_name = get_group($group_id)[0]['group_name']; //相关群组的名称
                         $group_ava = get_group($group_id)[0]['group_cover']; //相关群组的头像
@@ -392,7 +432,7 @@ if (!$_GET['paged']) {
                         </div>
                     <?php }
                     else if ($allMsg[$i]->notice_type == 8) {
-                        // XX修改了群XX的设置
+                        // XX修改了群XX的设置  //已完成多消息合并
                         $group_id = $allMsg[$i]->group_id;      //相关群组的id
                         $group_name = get_group($group_id)[0]['group_name']; //相关群组的名称
                         $group_ava = get_group($group_id)[0]['group_cover']; //相关群组的头像
@@ -432,7 +472,7 @@ if (!$_GET['paged']) {
                         </div>
                     <?php }
                     else if ($allMsg[$i]->notice_type == 9) {
-                        // 你加入的群XX的任务XX信息被修改,请查看
+                        // 你加入的群XX的任务XX信息被修改,请查看 //多次合并已做
                         $group_id = $allMsg[$i]->group_id;      //相关群组的id
                         $group_name = get_group($group_id)[0]['group_name']; //相关群组的名称
                         $group_ava = get_group($group_id)[0]['group_cover']; //相关群组的头像

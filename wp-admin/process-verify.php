@@ -44,8 +44,18 @@ if ($group_id != "" && $user_id != "" && $apply_time != "") {
 $admin_id_arr =get_group_member($group_id)['admin'];
 foreach($admin_id_arr as $admin){
     $admin_id = $admin['user_id'];
-    $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,3,'$user_id',0,'$apply_time')";
-    $wpdb->get_results($sql_add_notice);
+    //判断是否有这个通知
+    $sql_has_notice = "SELECT ID FROM wp_gp_notice WHERE user_id = $admin_id and group_id = $group_id
+                        and notice_type = 3 and notice_content = '$user_id'";
+    $col =  $wpdb->query($sql_has_notice);
+    if($col==0){
+        $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,3,'$user_id',0,'$apply_time')";
+        $wpdb->get_results($sql_add_notice);
+    }else{
+        $sql_update_notice = "update wp_gp_notice set modified_time = '$apply_time',notice_status = 0 
+                                    WHERE user_id = $admin_id and group_id = $group_id and notice_type = 3 and notice_content = '$user_id'";
+        $wpdb->get_results($sql_update_notice);
+    }
 }
 ?>
 <script>

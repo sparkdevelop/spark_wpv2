@@ -173,7 +173,8 @@ if (!$_GET['paged']) {
             $min_temp = $pro_length < $perpage * $current_page ? $pro_length : $perpage * $current_page;
             for ($i = $perpage * ($current_page - 1); $i < $min_temp; $i++) { ?>
                 <li class="list-group-item">
-                    <?php if ($allMsg[$i]->msg_type == 1) {  //有人给我评论
+                    <?php if ($allMsg[$i]->msg_type == 1) {
+                        //有人给我评论
                     $comment_author_id = $allMsg[$i]->user_id;   //评论人id
                     $comment_author = $allMsg[$i]->comment_author; //评论人name
                     $parent_post_link = get_permalink($allMsg[$i]->comment_post_ID); //被评论的词条或项目链接
@@ -183,7 +184,7 @@ if (!$_GET['paged']) {
                     $comment_date = $allMsg[$i]->comment_date; //日期
                     ?>
                     <div id="notice-ava">
-                        <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
+                        <?php echo  get_avatar($comment_author_id,40)?>
                     </div>
                     <div id="notice-content" style="display: inline-block;width:92%;">
                         <div id="notice-info">
@@ -210,6 +211,7 @@ if (!$_GET['paged']) {
                     </div>
                     <?php }
                     else if ($allMsg[$i]->msg_type == 2) {
+                        //在词条中回复
                         $comment_author_id = $allMsg[$i]->user_id;
                         $comment_author = $allMsg[$i]->comment_author;
                         $parent_post_link = get_permalink($allMsg[$i]->comment_post_ID);
@@ -219,7 +221,7 @@ if (!$_GET['paged']) {
                         $comment_date = $allMsg[$i]->comment_date;
                         ?>
                         <div id="notice-ava">
-                            <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
+                            <?php echo  get_avatar($comment_author_id,40)?>
                         </div>
                         <div id="notice-content" style="display: inline-block;width:92%;">
                             <div id="notice-info">
@@ -246,7 +248,8 @@ if (!$_GET['paged']) {
                             </div>
                         </div>
                     <?php }
-                    else if ($allMsg[$i]->msg_type == 3){ //在wiki或项目中提问
+                    else if ($allMsg[$i]->msg_type == 3){
+                        //在wiki或项目中提问
                         $ask_author_id = $allMsg[$i]->post_author;  //提问人ID
                         $ask_author_name = get_the_author_meta('user_login',$ask_author_id);
                         $parent_post_title = get_the_title($allMsg[$i]->post_id);
@@ -257,7 +260,7 @@ if (!$_GET['paged']) {
                         $ask_date = $allMsg[$i]->post_date;
                         ?>
                         <div id="notice-ava">
-                            <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
+                            <?php echo  get_avatar($ask_author_id,40)?>
                         </div>
                         <div id="notice-content" style="display: inline-block;width:92%;">
                             <div id="notice-info">
@@ -294,7 +297,7 @@ if (!$_GET['paged']) {
                         $ans_content = $allMsg[$i]->post_content;
                         $ans_date = $allMsg[$i]->post_date;?>
                         <div id="notice-ava">
-                            <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
+                            <?php echo  get_avatar($ans_author_id,40)?>
                         </div>
                         <div id="notice-content" style="display: inline-block;width:92%;">
                             <div id="notice-info">
@@ -319,7 +322,7 @@ if (!$_GET['paged']) {
                         $ans_date = $allMsg[$i]->post_date;
                         ?>
                         <div id="notice-ava">
-                            <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
+                            <?php echo  get_avatar($question_author,40)?>
                         </div>
                         <div id="notice-content" style="display: inline-block;width:92%;">
                             <div id="notice-info">

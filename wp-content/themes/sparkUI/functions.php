@@ -2704,8 +2704,18 @@ function join_the_group()
             //==============notice================
             foreach ($admin_id_arr as $admin) {
                 $admin_id = $admin['user_id'];
-                $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,3,'$user_id',0,'$current_time')";
-                $wpdb->get_results($sql_add_notice);
+                //判断是否有这个通知
+                $sql_has_notice = "SELECT ID FROM wp_gp_notice WHERE user_id = $admin_id and group_id = $group_id
+                        and notice_type = 1 and notice_content = '$user_id'";
+                $col =  $wpdb->query($sql_has_notice);
+                if($col==0){
+                    $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,1,'$user_id',0,'$current_time')";
+                    $wpdb->get_results($sql_add_notice);
+                }else{
+                    $sql_update_notice = "update wp_gp_notice set modified_time = '$current_time',notice_status = 0 
+                                    WHERE user_id = $admin_id and group_id = $group_id and notice_type = 1 and notice_content = '$user_id'";
+                    $wpdb->get_results($sql_update_notice);
+                }
             }
             $response = "verifyjoin";
         }
@@ -2734,8 +2744,18 @@ function quit_the_group()
         //==============notice================
         foreach ($admin_id_arr as $admin) {
             $admin_id = $admin['user_id'];
-            $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,2,'$user_id',0,'$current_time')";
-            $wpdb->get_results($sql_add_notice);
+            //判断是否有这个通知
+            $sql_has_notice = "SELECT ID FROM wp_gp_notice WHERE user_id = $admin_id and group_id = $group_id
+                        and notice_type = 2 and notice_content = '$user_id'";
+            $col =  $wpdb->query($sql_has_notice);
+            if($col==0){
+                $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,2,'$user_id',0,'$current_time')";
+                $wpdb->get_results($sql_add_notice);
+            }else{
+                $sql_update_notice = "update wp_gp_notice set modified_time = '$current_time',notice_status = 0 
+                                    WHERE user_id = $admin_id and group_id = $group_id and notice_type = 2 and notice_content = '$user_id'";
+                $wpdb->get_results($sql_update_notice);
+            }
         }
     }
     die();
@@ -2963,8 +2983,19 @@ function changeIndentity()
     $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
     $notice_content = get_current_user_id();
     foreach($user_id as $value){
-        $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$value,$group_id,6,'$notice_content',0,'$current_time')";
-        $wpdb->get_results($sql_add_notice);
+        //多次变更只显示最后一次
+        $sql_has_notice = "SELECT ID FROM wp_gp_notice WHERE user_id = $value and group_id = $group_id
+                        and notice_type = 6 ";
+        $col =  $wpdb->query($sql_has_notice);
+        if($col==0){
+            $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$value,$group_id,6,'$notice_content',0,'$current_time')";
+            $wpdb->get_results($sql_add_notice);
+        }else{
+            $sql_update_notice = "update wp_gp_notice set notice_content = '$notice_content',modified_time = '$current_time',notice_status = 0 
+                                  WHERE user_id = $value and group_id = $group_id
+                                  and notice_type = 6 ";
+            $wpdb->get_results($sql_update_notice);
+        }
     }
     exit();
 }
@@ -3781,8 +3812,18 @@ function change_grade()
     foreach ($team_member as $value) {
         $notice_id = $value;   //被通知人ID
         $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
-        $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$notice_id,$group_id,5,'$task_id',0,'$current_time')";
-        $wpdb->get_results($sql_add_notice);
+
+        $sql_has_notice = "SELECT ID FROM wp_gp_notice WHERE user_id = $notice_id and group_id = $group_id
+                        and notice_type = 5 and notice_content = '$task_id'";
+        $col =  $wpdb->query($sql_has_notice);
+        if($col==0){
+            $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$notice_id,$group_id,5,'$task_id',0,'$current_time')";
+            $wpdb->get_results($sql_add_notice);
+        }else{
+            $sql_update_notice = "update wp_gp_notice set modified_time = '$current_time',notice_status = 0 WHERE user_id = $notice_id and group_id = $group_id
+                        and notice_type = 5 and notice_content = '$task_id'";
+            $wpdb->get_results($sql_update_notice);
+        }
     }
     die();
 }
@@ -4133,6 +4174,20 @@ function hasNotice($group_id = NULL){
         return false;
     }
 }
+
+//删除所有已读群消息
+function all_read_delete(){
+    global $wpdb;
+    $user_id = get_current_user_id();
+    $sql_update = "DELETE FROM wp_gp_notice WHERE user_id = $user_id and notice_status = 1";
+    $wpdb->query($sql_update);
+    die();
+}
+add_action('wp_ajax_all_read_delete', 'all_read_delete');
+add_action('wp_ajax_nopriv_all_read_delete', 'all_read_delete');
+
+
+
 
 //修改域名  域名要包括http
 function changeDomain($old_domain, $new_domain)
