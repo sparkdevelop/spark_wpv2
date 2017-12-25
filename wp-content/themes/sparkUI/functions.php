@@ -2673,8 +2673,18 @@ function join_the_group()
                 //==============notice================
                 foreach ($admin_id_arr as $admin) {
                     $admin_id = $admin['user_id'];
-                    $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,1,'$user_id',0,'$current_time')";
-                    $wpdb->get_results($sql_add_notice);
+
+                    $sql_has_notice = "SELECT ID FROM wp_gp_notice WHERE user_id = $admin_id and group_id = $group_id
+                        and notice_type = 1 and notice_content = '$user_id'";
+                    $col =  $wpdb->query($sql_has_notice);
+                    if($col==0){
+                        $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,1,'$user_id',0,'$current_time')";
+                        $wpdb->get_results($sql_add_notice);
+                    }else{
+                        $sql_update_notice = "update wp_gp_notice set modified_time = '$current_time',notice_status = 0 
+                                    WHERE user_id = $admin_id and group_id = $group_id and notice_type = 1 and notice_content = '$user_id'";
+                        $wpdb->get_results($sql_update_notice);
+                    }
                 }
             } else {
                 $sql_member = "update wp_gp_member set member_status = 0 WHERE user_id = $user_id and group_id = $group_id";
@@ -2683,8 +2693,19 @@ function join_the_group()
                 //==============notice================
                 foreach ($admin_id_arr as $admin) {
                     $admin_id = $admin['user_id'];
-                    $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,1,'$user_id',0,'$current_time')";
-                    $wpdb->get_results($sql_add_notice);
+
+                    $sql_has_notice = "SELECT ID FROM wp_gp_notice WHERE user_id = $admin_id and group_id = $group_id
+                        and notice_type = 1 and notice_content = '$user_id'";
+
+                    $col =  $wpdb->query($sql_has_notice);
+                    if($col==0){
+                        $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,1,'$user_id',0,'$current_time')";
+                        $wpdb->get_results($sql_add_notice);
+                    }else{
+                        $sql_update_notice = "update wp_gp_notice set modified_time = '$current_time',notice_status = 0 
+                                    WHERE user_id = $admin_id and group_id = $group_id and notice_type = 1 and notice_content = '$user_id'";
+                        $wpdb->get_results($sql_update_notice);
+                    }
                 }
             }
 
@@ -2706,14 +2727,14 @@ function join_the_group()
                 $admin_id = $admin['user_id'];
                 //判断是否有这个通知
                 $sql_has_notice = "SELECT ID FROM wp_gp_notice WHERE user_id = $admin_id and group_id = $group_id
-                        and notice_type = 1 and notice_content = '$user_id'";
+                        and notice_type = 3 and notice_content = '$user_id'";
                 $col =  $wpdb->query($sql_has_notice);
                 if($col==0){
-                    $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,1,'$user_id',0,'$current_time')";
+                    $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,3,'$user_id',0,'$current_time')";
                     $wpdb->get_results($sql_add_notice);
                 }else{
                     $sql_update_notice = "update wp_gp_notice set modified_time = '$current_time',notice_status = 0 
-                                    WHERE user_id = $admin_id and group_id = $group_id and notice_type = 1 and notice_content = '$user_id'";
+                                    WHERE user_id = $admin_id and group_id = $group_id and notice_type = 3 and notice_content = '$user_id'";
                     $wpdb->get_results($sql_update_notice);
                 }
             }
@@ -4123,7 +4144,7 @@ function get_allMsg()
     global $wpdb;
     $current_user_id = get_current_user_id();
     $sql = "SELECT * FROM wp_gp_notice WHERE user_id = $current_user_id  ORDER BY notice_status,modified_time DESC";
-    $result = $wpdb->get_results($sql);
+    $result = $wpdb->get_results($sql,'ARRAY_A');
     return $result;
 }
 
@@ -4147,10 +4168,14 @@ function set_as_read()
     $group_id = $_POST['group_id'];
     $notice_type = $_POST['notice_type'];
     $notice_content = $_POST['notice_content'];
-    $sql_update = "UPDATE wp_gp_notice SET notice_status = 1 
+    $notice_content_arr = explode(',',$notice_content);
+    foreach ($notice_content_arr as $value){
+        $sql_update = "UPDATE wp_gp_notice SET notice_status = 1 
                    WHERE user_id = $user_id and group_id =$group_id and
-                   notice_type = $notice_type and notice_content = '$notice_content'";
-    $wpdb->query($sql_update);
+                   notice_type = $notice_type and notice_content = '$value'";
+        $wpdb->query($sql_update);
+    }
+
     die();
 }
 add_action('wp_ajax_set_as_read', 'set_as_read');
@@ -4185,6 +4210,57 @@ function all_read_delete(){
 }
 add_action('wp_ajax_all_read_delete', 'all_read_delete');
 add_action('wp_ajax_nopriv_all_read_delete', 'all_read_delete');
+
+
+function processMsg($allMsg){
+    $result = [];
+    if(!empty($allMsg)){
+        foreach($allMsg as $value){
+            if($value['notice_type'] !=1 && $value['notice_type']!=2 && $value['notice_type']!=3){
+                array_push($result,$value);   //正常处理
+            }
+            else{   //需要合并的话
+                if(!empty($result)){
+                    $flag = 0; //判断是否push的标志;
+                    foreach($result as &$tmp){
+                        //拼接notice_content,
+                        //将value['notice_content']合并到$tmp['notice_content']
+                        if($value['group_id'] == $tmp['group_id'] && $value['notice_type']==1
+                            && $value['notice_type']==$tmp['notice_type']){
+                            $tmp['notice_content'] .= ','.$value['notice_content'];
+                            $flag = 1;
+                            break;
+                        }else if ($value['group_id'] == $tmp['group_id'] && $value['notice_type']==2
+                            && $value['notice_type']==$tmp['notice_type']){
+                            $tmp['notice_content'] .= ','.$value['notice_content'];
+                            $flag = 1;
+                            break;
+                        }else if($value['group_id'] == $tmp['group_id'] && $value['notice_type']==3
+                            && $value['notice_type']==$tmp['notice_type']){
+                            $tmp['notice_content'] .= ','.$value['notice_content'];
+                            $flag = 1;
+                            break;
+                        }
+                        else {
+                            //push进result
+                            continue;
+                        }
+                    }
+                    if($flag == 0){
+                        array_push($result,$value);   //正常处理
+                    }
+                }else{
+                    array_push($result,$value);   //正常处理
+                }
+            }
+        }
+    }
+    return $result;
+}
+
+
+
+
 
 
 
