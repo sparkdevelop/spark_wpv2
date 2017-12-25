@@ -80,7 +80,6 @@ function join_the_group($group_id,$admin_url) {
         dataType:"text",
         success: function (response) {
             if(response.trim()=='freejoin'){
-                alert(response);
                 layer.msg("您已成功加入", {time: 2000, icon: 1});
                 location.reload();
             }else if(response.trim()=='verify'){
