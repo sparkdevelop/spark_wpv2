@@ -32,8 +32,7 @@
     $page_project_id =get_page_id('project');
     $student_management_id =get_page_id('student_management');
     $page_group_id =get_page_id('group');
-    $page_budao_id =get_page_id('budao_index');
-    $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id,$page_budao_id);
+    $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id);
     ?>
 
     <?php
@@ -62,6 +61,9 @@
                         </div>
                         <div>
                             <ul class="nav navbar-nav">
+                                <li class="page_item page-item-235">
+                                    <a href="<?php the_permalink(235); ?>">导论实验课</a>
+                                </li>
                                 <?php
                                 //列出用户添加的页面 不列出Home页//问题是如何加特效?
                                 wp_list_pages(array('include'=> $page_all_id,'title_li' => '','depth'=>1));//,'exclude' => 38
