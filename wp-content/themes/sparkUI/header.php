@@ -80,7 +80,7 @@
                                 <button type="button" id="user-portrait" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                     <?php echo get_avatar($current_user->ID,30,'');?>
                                     <?
-                                    if(hasNotice()){?>
+                                    if(hasNotice() || hasPrivateMessage()){?>
                                         <i id="red-point"></i>
                                     <? } ?>
                                 </button>

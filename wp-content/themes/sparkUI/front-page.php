@@ -86,6 +86,7 @@ gp_task_member_table_install();
 gp_member_team_table_install();
 gp_task_complete_tmp_table_install();
 gp_notice_table_install();
+pmessage_table_install();
 get_header();
 ?>
 <script>

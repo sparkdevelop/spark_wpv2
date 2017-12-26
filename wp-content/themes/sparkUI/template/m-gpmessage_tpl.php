@@ -130,7 +130,8 @@ if (!$_GET['paged']) {
                             padding-bottom: 0px;
                         }
                     </style>
-                <?php } else {
+                <?php }
+                else {
                     ?>
                     <style>
                         #notice-li-<?=$i?> {

@@ -16,7 +16,7 @@
 
 <?php
     get_header();
-    if(is_page('verify_form') || is_page('invitation')){?>
+    if(is_page('verify_form') || is_page('invitation') || is_page('private_message')){?>
         <script>
             $(document).ready(function () {
                 $('#m-header').css('display','none');
@@ -216,6 +216,12 @@
                         wp_redirect( home_url().'/wp-login.php' );
                     }
                     require "template/group/single_group.php";
+                }
+                elseif (is_page('private_message')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/m-message-form.php";
                 }
                 elseif (is_page('single_task')){
                     $id = $_GET['id'];

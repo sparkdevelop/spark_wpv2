@@ -12,6 +12,12 @@
         </div>
         <p style="font-size: large;margin-top: 20px"><?php echo get_the_author_meta('user_login',$user_id);?></p>
         <p style="margin-top: 10px;color: gray"><?php echo $user_description;?></p>
+        <?php
+        $message_url = site_url() . get_page_address("private_message") . "&ruser_id=" . $user_id ;
+        ?>
+        <div class="p-message">
+            <button class="btn-green" style="margin-right: 0px" onclick="send_private_message('<?=$message_url?>')">+ 私信</button>
+        </div>
     </div>
     <ul id="personal_nav" class="nav nav-pills nav-stacked">
         <li id="wiki">
