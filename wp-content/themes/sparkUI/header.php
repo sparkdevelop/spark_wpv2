@@ -86,14 +86,17 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="margin-top: 14px">
                                     <li role="presentation" style="height:35px;">
-                                        <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address;?>"><span class="glyphicon glyphicon-user"></span>个人主页</a>
+                                        <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address;?>">
+                                            <span class="glyphicon glyphicon-user"></span>
+                                            <span>个人主页</span>
+                                        </a>
                                     </li>
                                     <li role="presentation" style="height:35px;">
                                         <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address.'&tab=notification'?>"
                                            style="position:relative;">
                                             <span class="glyphicon glyphicon-bell"></span>
                                             <span>消息通知</span>
-                                            <? if(hasNotice()){?>
+                                            <? if(hasNotice() || hasPrivateMessage() ){?>
                                                 <i id="red-point" style="right: 25px;top: 12px"></i>
                                             <? } ?>
                                         </a>
