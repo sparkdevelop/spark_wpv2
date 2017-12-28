@@ -254,7 +254,7 @@ if (isset($_GET['tab'])){
                             ?>
                             <li class="list-group-item">
                                 <div id="group-ava" style="position: relative">
-                                    <? if(hasNotice($all_my_group[$i]['ID'])){?>
+                                    <? if(hasGPNotice($all_my_group[$i]['ID'])){?>
                                         <i id="red-point" style="width: 12px;height: 12px;"></i>
                                     <? } ?>
                                     <?php get_group_ava($all_my_group[$i]['ID'],85)?>

@@ -366,6 +366,15 @@ class DWQA_Status {
 				}
 			}
 		}
+		//add notice type4:
+		global $wpdb;
+		$qid = dwqa_get_question_from_answer_id($answer_id);
+		$noticeuser_id = get_post($qid)->post_author;
+		$current_time = date('Y-m-d H:i:s',time() + 8 * 3600);
+		$notice_type = 4;
+		$sql_add_notice = "INSERT INTO wp_notification VALUES ('',$noticeuser_id,$notice_type,'$answer_id',0,'$current_time')";
+		$wpdb->get_results($sql_add_notice);
+		//========================================
 	}
 }
 

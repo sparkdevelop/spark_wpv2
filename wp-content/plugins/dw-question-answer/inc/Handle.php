@@ -97,7 +97,6 @@ class DWQA_Handle {
 		}
 
 		$answer_id = wp_insert_post( $answers );
-
 		if ( !is_wp_error( $answer_id ) ) {
 			if ( $answers['post_status'] != 'draft' ) {
 				update_post_meta( $question_id, '_dwqa_status', 'answered' );

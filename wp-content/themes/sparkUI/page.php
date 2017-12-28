@@ -16,7 +16,8 @@
 
 <?php
     get_header();
-    if(is_page('verify_form') || is_page('invitation') || is_page('private_message')){?>
+    if(is_page('verify_form') || is_page('invitation') || is_page('private_message')
+        || is_page('ask_tiny') ){?>
         <script>
             $(document).ready(function () {
                 $('#m-header').css('display','none');

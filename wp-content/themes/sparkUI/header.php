@@ -80,7 +80,7 @@
                                 <button type="button" id="user-portrait" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                     <?php echo get_avatar($current_user->ID,30,'');?>
                                     <?
-                                    if(hasNotice() || hasPrivateMessage()){?>
+                                    if(hasGPNotice() || hasPrivateMessage() || hasNotice()){?>
                                         <i id="red-point"></i>
                                     <? } ?>
                                 </button>
@@ -96,7 +96,7 @@
                                            style="position:relative;">
                                             <span class="glyphicon glyphicon-bell"></span>
                                             <span>消息通知</span>
-                                            <? if(hasNotice() || hasPrivateMessage() ){?>
+                                            <? if(hasGPNotice() || hasPrivateMessage() || hasNotice()){?>
                                                 <i id="red-point" style="right: 25px;top: 12px"></i>
                                             <? } ?>
                                         </a>

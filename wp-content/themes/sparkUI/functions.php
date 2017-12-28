@@ -1267,6 +1267,13 @@ function writePWQA($post_id, $post_type, $related_id, $related_post_type)
     if ($col === 0) {  //如果没有这个pro<->wiki对
         $sql_2 = "INSERT INTO wp_relation VALUES ('',$post_id,'$post_type',$related_id,'$related_post_type')";
         $wpdb->get_results($sql_2);
+
+        //add notice type3
+        $noticeuser_id = get_post($post_id)->post_author;
+        $notice_type = 3;
+        $current_time = date('Y-m-d H:i:s',time() + 8 * 3600);
+        $sql_add_notice = "INSERT INTO wp_notification VALUES ('',$noticeuser_id,$notice_type,'$related_id',0,'$current_time')";
+        $wpdb->get_results($sql_add_notice);
     }
 }
 
@@ -2539,6 +2546,25 @@ function pmessage_table_install()
           to_id int NOT NULL,
           content text NOT NULL,
           message_status int NOT NULL,
+          modified_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+//建立通知表
+function notice_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "notification";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+          notice_type int NOT NULL,
+          notice_content text NOT NULL,
+          notice_status int NOT NULL,
           modified_time datetime NOT NULL
           ) character set utf8";
         require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
@@ -4157,6 +4183,8 @@ function get_group_member_id($group_id){
     return $result;
 }
 
+
+//===============群组消息===========
 //获取所有群组消息
 function get_allMsg()
 {
@@ -4179,18 +4207,6 @@ function all_set_as_read()
 add_action('wp_ajax_all_set_as_read', 'all_set_as_read');
 add_action('wp_ajax_nopriv_all_set_as_read', 'all_set_as_read');
 
-//私信全部设为已读
-function all_message_set_as_read()
-{
-    global $wpdb;
-    $user_id = get_current_user_id();
-    $sql_update = "UPDATE wp_pmessage SET message_status = 1 WHERE to_id = $user_id";
-    $wpdb->query($sql_update);
-    die();
-}
-add_action('wp_ajax_all_message_set_as_read', 'all_message_set_as_read');
-add_action('wp_ajax_nopriv_all_message_set_as_read', 'all_message_set_as_read');
-
 //删除所有已读群消息
 function all_read_delete(){
     global $wpdb;
@@ -4201,18 +4217,6 @@ function all_read_delete(){
 }
 add_action('wp_ajax_all_read_delete', 'all_read_delete');
 add_action('wp_ajax_nopriv_all_read_delete', 'all_read_delete');
-
-//删除所有已读私信
-function all_message_read_delete(){
-    global $wpdb;
-    $user_id = get_current_user_id();
-    $sql_update = "DELETE FROM wp_pmessage WHERE to_id = $user_id and message_status = 1";
-    $wpdb->query($sql_update);
-    die();
-}
-add_action('wp_ajax_all_message_read_delete', 'all_message_read_delete');
-add_action('wp_ajax_nopriv_all_message_read_delete', 'all_message_read_delete');
-
 
 //群消息设为已读
 function set_as_read()
@@ -4235,23 +4239,8 @@ function set_as_read()
 add_action('wp_ajax_set_as_read', 'set_as_read');
 add_action('wp_ajax_nopriv_set_as_read', 'set_as_read');
 
-//私信设为已读
-function message_set_as_read()
-{
-    global $wpdb;
-    $id = $_POST['id'];
-    $sql_update = "UPDATE wp_pmessage SET message_status = 1 WHERE ID = $id";
-    echo $sql_update;
-    $wpdb->query($sql_update);
-    die();
-}
-add_action('wp_ajax_message_set_as_read', 'message_set_as_read');
-add_action('wp_ajax_nopriv_message_set_as_read', 'message_set_as_read');
-
-
-
-//有消息通知
-function hasNotice($group_id = NULL){
+//有群消息通知
+function hasGPNotice($group_id = NULL){
     global $wpdb;
     $user_id = get_current_user_id();
     if($group_id==null){
@@ -4269,8 +4258,7 @@ function hasNotice($group_id = NULL){
     }
 }
 
-
-//合并一些消息
+//合并一些群消息
 function processMsg($allMsg){
     $result = [];
     if(!empty($allMsg)){
@@ -4317,6 +4305,7 @@ function processMsg($allMsg){
     return $result;
 }
 
+//=============私信===========
 //获取当前用户全部私信
 function get_allPrivateMsg(){
     global $wpdb;
@@ -4325,6 +4314,42 @@ function get_allPrivateMsg(){
     $result = $wpdb->get_results($sql,'ARRAY_A');
     return $result;
 }
+
+//私信全部设为已读
+function all_message_set_as_read()
+{
+    global $wpdb;
+    $user_id = get_current_user_id();
+    $sql_update = "UPDATE wp_pmessage SET message_status = 1 WHERE to_id = $user_id";
+    $wpdb->query($sql_update);
+    die();
+}
+add_action('wp_ajax_all_message_set_as_read', 'all_message_set_as_read');
+add_action('wp_ajax_nopriv_all_message_set_as_read', 'all_message_set_as_read');
+
+//删除所有已读私信
+function all_message_read_delete(){
+    global $wpdb;
+    $user_id = get_current_user_id();
+    $sql_update = "DELETE FROM wp_pmessage WHERE to_id = $user_id and message_status = 1";
+    $wpdb->query($sql_update);
+    die();
+}
+add_action('wp_ajax_all_message_read_delete', 'all_message_read_delete');
+add_action('wp_ajax_nopriv_all_message_read_delete', 'all_message_read_delete');
+
+//私信设为已读
+function message_set_as_read()
+{
+    global $wpdb;
+    $id = $_POST['id'];
+    $sql_update = "UPDATE wp_pmessage SET message_status = 1 WHERE ID = $id";
+    echo $sql_update;
+    $wpdb->query($sql_update);
+    die();
+}
+add_action('wp_ajax_message_set_as_read', 'message_set_as_read');
+add_action('wp_ajax_nopriv_message_set_as_read', 'message_set_as_read');
 
 //有私信通知
 function hasPrivateMessage(){
@@ -4339,6 +4364,101 @@ function hasPrivateMessage(){
         return false;
     }
 }
+
+//=============普通通知===========
+function get_allNotice(){
+    global $wpdb;
+    $current_user_id = get_current_user_id();
+    $sql = "SELECT * FROM wp_notification WHERE user_id = $current_user_id  ORDER BY notice_status,modified_time DESC";
+    $result = $wpdb->get_results($sql,'ARRAY_A');
+    return $result;
+}
+
+//点击采纳,添加通知
+//add notice type5:
+function click_accept(){
+    global $wpdb;
+    $answer_id = isset($_POST['ans_id']) ? $_POST['ans_id'] : '';
+    if($answer_id!=''){
+        $qid = dwqa_get_question_from_answer_id($answer_id);
+        $noticeuser_id = get_post($qid)->post_author;
+        $current_time = date('Y-m-d H:i:s',time() + 8 * 3600);
+        $notice_type = 5;
+        $sql_add_notice = "INSERT INTO wp_notification VALUES ('',$noticeuser_id,$notice_type,'$answer_id',0,'$current_time')";
+        $wpdb->get_results($sql_add_notice);
+    }
+}
+add_action('wp_ajax_click_accept', 'click_accept');
+add_action('wp_ajax_nopriv_click_accept', 'click_accept');
+
+//点击赞同,添加通知
+//add notice type5:
+function click_vote(){
+    global $wpdb;
+    $answer_id = isset($_POST['ans_id']) ? $_POST['ans_id'] : '';
+    if($answer_id!=''){
+        $qid = dwqa_get_question_from_answer_id($answer_id);
+        $noticeuser_id = get_post($qid)->post_author;
+        $current_time = date('Y-m-d H:i:s',time() + 8 * 3600);
+        $notice_type = 6;
+        $sql_add_notice = "INSERT INTO wp_notification VALUES ('',$noticeuser_id,$notice_type,'$answer_id',0,'$current_time')";
+        $wpdb->get_results($sql_add_notice);
+    }
+}
+add_action('wp_ajax_click_vote', 'click_vote');
+add_action('wp_ajax_nopriv_click_vote', 'click_vote');
+
+//私信全部设为已读
+function all_notice_set_as_read()
+{
+    global $wpdb;
+    $user_id = get_current_user_id();
+    $sql_update = "UPDATE wp_notification SET notice_status = 1 WHERE user_id = $user_id";
+    $wpdb->query($sql_update);
+    die();
+}
+add_action('wp_ajax_all_notice_set_as_read', 'all_notice_set_as_read');
+add_action('wp_ajax_nopriv_all_notice_set_as_read', 'all_notice_set_as_read');
+
+//删除所有已读私信
+function all_notice_read_delete(){
+    global $wpdb;
+    $user_id = get_current_user_id();
+    $sql_update = "DELETE FROM wp_notification WHERE user_id = $user_id and notice_status = 1";
+    $wpdb->query($sql_update);
+    die();
+}
+add_action('wp_ajax_all_notice_read_delete', 'all_notice_read_delete');
+add_action('wp_ajax_nopriv_all_notice_read_delete', 'all_notice_read_delete');
+
+//普通通知设为已读
+function notice_set_as_read()
+{
+    global $wpdb;
+    $id = $_POST['id'];
+    $sql_update = "UPDATE wp_notification SET notice_status = 1 WHERE ID = $id";
+    $wpdb->query($sql_update);
+    die();
+}
+add_action('wp_ajax_notice_set_as_read', 'notice_set_as_read');
+add_action('wp_ajax_nopriv_notice_set_as_read', 'notice_set_as_read');
+
+//有普通通知
+function hasNotice(){
+    global $wpdb;
+    $user_id = get_current_user_id();
+    $sql = "SELECT ID FROM wp_notification WHERE user_id = $user_id and notice_status = 0";
+    $col = $wpdb->query($sql);
+
+    if ($col != 0) { //有未读消息
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
+
 
 
 

@@ -53,7 +53,7 @@
             </li>
             <li class="<?php echo $tab == 'manage' ? 'active' : ''; ?>">
                 <a href="<?php echo esc_url(add_query_arg(array('tab' => 'manage'), remove_query_arg(array('paged')))); ?>">群组管理
-                    <? if(hasNotice($group['ID'])){?>
+                    <? if(hasGPNotice($group['ID'])){?>
                         <i id="red-point" style="right: 5px;top: 5px;"></i>
                     <? } ?>
                 </a>
