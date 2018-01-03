@@ -7,8 +7,8 @@
  */
 ?>
 <?php
-      $post_id =$_COOKIE["post_id"];
-      $post_type = $_COOKIE["post_type"];
+      $post_id =$_COOKIE["post_id"];   //相关的项目或者wikiid
+      $post_type = $_COOKIE["post_type"];  //相关的post类型
       $related_id = get_the_ID();
       $related_post_type = get_post_type($related_id);
 if(empty($post_id)){

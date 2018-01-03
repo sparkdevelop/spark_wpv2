@@ -58,7 +58,6 @@
             dataType: 'json',
             data: data,
             success: function( data ) {
-            	console.log(data);
             	if (data.success) {
                     parent.find('.dwqa-vote-count').text(data.data.vote);
                 }

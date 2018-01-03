@@ -32,6 +32,12 @@
 </div>
 <script>
     function actionAnswer() {
+        var data = {
+            action: 'add_notice_type4'
+        }
+        $.ajax({
+
+        })
         document.cookie = "action=answer";
     }
 </script>

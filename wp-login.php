@@ -159,12 +159,12 @@ function login_header( $title = 'Log In', $message = '', $wp_error = '' ) {
 	?>
 	<div id="login">
 		<h1><a href="<?php echo esc_url( $login_header_url ); ?>" title="<?php echo esc_attr( $login_header_title ); ?>" tabindex="-1"><?php bloginfo( 'name' ); ?></a></h1>
-        <div class="notice">
-            <p>登录遇到问题的用户请注意：</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因数据库迁移，在旧版火花空间注册的用户请使用<b>原用户名</b>和初始密码<b>www.ourspark.space</b>登录;</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登录成功后请点击头像到<b>个人主页->个人资料</b>处<b>修改密码</b>;</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;还有其他问题请<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=JRQUEhcSFBUdFBFlVFQLRkpI">联系我们。</a></p>
-        </div>
+<!--        <div class="notice">-->
+<!--            <p>登录遇到问题的用户请注意：</p>-->
+<!--            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因数据库迁移，在旧版火花空间注册的用户请使用<b>原用户名</b>和初始密码<b>www.ourspark.space</b>登录;</p>-->
+<!--            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登录成功后请点击头像到<b>个人主页->个人资料</b>处<b>修改密码</b>;</p>-->
+<!--            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;还有其他问题请<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=JRQUEhcSFBUdFBFlVFQLRkpI">联系我们。</a></p>-->
+<!--        </div>-->
 	<?php
 
 	unset( $login_header_url, $login_header_title );

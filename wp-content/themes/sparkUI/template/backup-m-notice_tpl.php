@@ -3,6 +3,7 @@ global $wpdb;
 $current_user = wp_get_current_user();
 $current_user_id = $current_user->ID;
 
+
 $allMsg = array();
 $allMsgIndex = 0;
 
@@ -124,6 +125,7 @@ foreach ($user_answer_favors as $key => $value) {
 
 usort($allMsg, 'sortByTime');
 
+//print_r($allMsg);
 function sortByTime($a, $b)
 {
     if ($a->msg_type == 1 || $a->msg_type == 2) {
@@ -159,6 +161,11 @@ if (!$_GET['paged']) {
         margin-top: 4px;
         margin-left: 10px
     }
+    #notice-info {
+        display: inline-block;
+        margin-left: 3%;
+        width: 75%;
+    }
 </style>
 <div class="divline" style="margin-top: 0px"></div>
 <div id="rightTabContent" class="tab-content">
@@ -168,7 +175,8 @@ if (!$_GET['paged']) {
             $min_temp = $pro_length < $perpage * $current_page ? $pro_length : $perpage * $current_page;
             for ($i = $perpage * ($current_page - 1); $i < $min_temp; $i++) { ?>
                 <li class="list-group-item">
-                    <?php if ($allMsg[$i]->msg_type == 1) {  //有人给我评论
+                    <?php if ($allMsg[$i]->msg_type == 1) {
+                        //有人给我评论
                     $comment_author_id = $allMsg[$i]->user_id;   //评论人id
                     $comment_author = $allMsg[$i]->comment_author; //评论人name
                     $parent_post_link = get_permalink($allMsg[$i]->comment_post_ID); //被评论的词条或项目链接
@@ -178,10 +186,10 @@ if (!$_GET['paged']) {
                     $comment_date = $allMsg[$i]->comment_date; //日期
                     ?>
                     <div id="notice-ava">
-                        <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
+                        <?php echo  get_avatar($comment_author_id,40)?>
                     </div>
                     <div id="notice-content" style="display: inline-block;width:92%;">
-                        <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                        <div id="notice-info">
                             <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $comment_author_id; ?>"
                                style="color: #169bd5"><?= $comment_author ?></a>
                             <?php
@@ -205,6 +213,7 @@ if (!$_GET['paged']) {
                     </div>
                     <?php }
                     else if ($allMsg[$i]->msg_type == 2) {
+                        //在词条中回复
                         $comment_author_id = $allMsg[$i]->user_id;
                         $comment_author = $allMsg[$i]->comment_author;
                         $parent_post_link = get_permalink($allMsg[$i]->comment_post_ID);
@@ -214,10 +223,10 @@ if (!$_GET['paged']) {
                         $comment_date = $allMsg[$i]->comment_date;
                         ?>
                         <div id="notice-ava">
-                            <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
+                            <?php echo  get_avatar($comment_author_id,40)?>
                         </div>
                         <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                            <div id="notice-info">
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $comment_author_id; ?>"
                                    style="color: #169bd5"><?= $comment_author ?></a>
                                 <?php
@@ -241,7 +250,8 @@ if (!$_GET['paged']) {
                             </div>
                         </div>
                     <?php }
-                    else if ($allMsg[$i]->msg_type == 3){ //在wiki或项目中提问
+                    else if ($allMsg[$i]->msg_type == 3){
+                        //在wiki或项目中提问
                         $ask_author_id = $allMsg[$i]->post_author;  //提问人ID
                         $ask_author_name = get_the_author_meta('user_login',$ask_author_id);
                         $parent_post_title = get_the_title($allMsg[$i]->post_id);
@@ -252,10 +262,10 @@ if (!$_GET['paged']) {
                         $ask_date = $allMsg[$i]->post_date;
                         ?>
                         <div id="notice-ava">
-                            <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
+                            <?php echo  get_avatar($ask_author_id,40)?>
                         </div>
                         <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                            <div id="notice-info">
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $ask_author_id; ?>"
                                    style="color: #169bd5"><?= $ask_author_name ?></a>
                                 <?php
@@ -289,10 +299,10 @@ if (!$_GET['paged']) {
                         $ans_content = $allMsg[$i]->post_content;
                         $ans_date = $allMsg[$i]->post_date;?>
                         <div id="notice-ava">
-                            <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
+                            <?php echo  get_avatar($ans_author_id,40)?>
                         </div>
                         <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                            <div id="notice-info">
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $ans_author_id; ?>"
                                    style="color: #169bd5"><?= $ans_author_name ?></a>
                                 <span>&nbsp;<span style="font-weight: bolder">回答</span>了您的问题</span>
@@ -314,10 +324,10 @@ if (!$_GET['paged']) {
                         $ans_date = $allMsg[$i]->post_date;
                         ?>
                         <div id="notice-ava">
-                            <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
+                            <?php echo  get_avatar($question_author,40)?>
                         </div>
                         <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                            <div id="notice-info">
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $question_author_id; ?>"
                                    style="color: #169bd5"><?= $question_author ?></a>
                                 <span>&nbsp;在问题</span>
@@ -345,10 +355,10 @@ if (!$_GET['paged']) {
                             <img src="<?php bloginfo("template_url") ?>/img/avatar.png">
                         </div>
                         <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                            <div id="notice-info">
                                 <span>&nbsp;有人在问题</span>
                                 <a href="<?= $parent_post_link ?>" style="color:#169bd5"><?= $parent_post_title ?></a>
-                                <span>中<span style="font-weight: bolder">赞同了</span>了您的答案</span>
+                                <span>中<span style="font-weight: bolder">赞同了</span>您的答案</span>
                                 <div style="margin-top: 5px"><?= $ans_content ?></div>
                             </div>
                             <div id="notice-time" style="display: inline-block;float: right">

@@ -253,20 +253,22 @@ if (isset($_GET['tab'])){
                             $author = $all_my_group[$i]['group_author'];
                             ?>
                             <li class="list-group-item">
-                                <div id="group-ava">
+                                <div id="group-ava" style="position: relative">
+                                    <? if(hasGPNotice($all_my_group[$i]['ID'])){?>
+                                        <i id="red-point" style="width: 12px;height: 12px;"></i>
+                                    <? } ?>
                                     <?php get_group_ava($all_my_group[$i]['ID'],85)?>
                                 </div>
                                 <div id="group-info">
                                     <div class="group_title">
                                         <?php
-                                        if ($all_my_group[$i]['group_status'] == "close") {
-                                            if (get_current_user_id() != $author) { ?>
+                                        if ($all_my_group[$i]['group_status'] == "close") {   //如果群组是关闭状态
+                                            if (get_current_user_id() != $author) { //普通人?>
                                                 <a class="group_name" href="#group-info"><h4><?= $group_name ?></h4></a>
-                                            <?php } else { ?>
+                                            <?php } else { // 创建者 ?>
                                                 <a class="group_name"
                                                    href="<?php echo site_url() . get_page_address('single_group') . '&id=' . $all_my_group[$i]['ID']; ?>">
-                                                    <h4><?= $group_name ?></h4>
-                                                </a>
+                                                    <h4><?= $group_name ?></h4></a>
                                             <?php } ?>
                                         <?php } else { ?>
                                             <a class="group_name"

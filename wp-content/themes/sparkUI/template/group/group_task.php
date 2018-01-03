@@ -70,19 +70,32 @@
 ?>
 <script>
     function deleteTask($task_id) {
-        var data = {
-            action: 'delete_task',
-            task_id: $task_id,
-        };
-        $.ajax({
-            //async: false,    //否则永远返回false
-            type: "POST",
-            url: '<?=$admin_url?>',
-            data: data,
-            dataType:"text",
-            success: function () {
-                layer.msg('已删除', {time: 2000, icon: 1});
-                location.reload();
+        layer.confirm('确定删除当前任务?', {
+            icon: 3,
+            resize: false,
+            move: false,
+            title: false,
+            btnAlign: 'c',
+            btn: ['确认', '取消'],
+            btn2: function (index) {   //取消的回调
+                layer.close(index);
+            },
+            btn1: function () {   //确认的回调
+                var data = {
+                    action: 'delete_task',
+                    task_id: $task_id,
+                };
+                $.ajax({
+                    //async: false,    //否则永远返回false
+                    type: "POST",
+                    url: '<?=$admin_url?>',
+                    data: data,
+                    dataType: "text",
+                    success: function () {
+                        layer.msg('已删除', {time: 2000, icon: 1});
+                        location.reload();
+                    }
+                });
             }
         });
     }

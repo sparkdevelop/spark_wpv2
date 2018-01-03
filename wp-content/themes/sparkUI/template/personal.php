@@ -10,7 +10,7 @@
 <div class="col-md-9 col-sm-9 col-xs-12"  id="col9" style="background-color: white">
     <?php
     if($tab=='notification'){
-        require "mynotification-update.php";
+        require "mynotification.php";
     }
     if($tab=='wiki'){
         require "mywiki.php";

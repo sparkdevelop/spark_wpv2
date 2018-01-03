@@ -94,6 +94,7 @@ function join_the_group($group_id,$admin_url) {
         }
     });
 }
+
 //退群
 function quit_the_group($group_id,$admin_url) {
     //ajax
@@ -115,6 +116,7 @@ function quit_the_group($group_id,$admin_url) {
         }
     });
 }
+
 //验证加群
 function verify_join_the_group($url) {
     layer.open({
@@ -580,3 +582,18 @@ function sideChart(id,jsonstring) {
     //     myChart.setOption(option);
     // });
 }
+
+//发私信
+function send_private_message($url){
+    layer.open({
+        type: 2,
+        title: false,
+        content: $url,
+        area: ['60%','66%'],
+        closeBtn:1,
+        shadeClose:true,
+        shade:0.5,
+        end:function () {}
+    })
+}
+

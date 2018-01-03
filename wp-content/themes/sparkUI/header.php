@@ -32,8 +32,7 @@
     $page_project_id =get_page_id('project');
     $student_management_id =get_page_id('student_management');
     $page_group_id =get_page_id('group');
-    $page_budao_id =get_page_id('budao_index');
-    $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id,$page_budao_id);
+    $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id);
     ?>
 
     <?php
@@ -62,13 +61,15 @@
                         </div>
                         <div>
                             <ul class="nav navbar-nav">
+                                <li class="page_item page-item-235">
+                                    <a href="<?php the_permalink(235); ?>">导论实验课</a>
+                                </li>
                                 <?php
                                 //列出用户添加的页面 不列出Home页//问题是如何加特效?
                                 wp_list_pages(array('include'=> $page_all_id,'title_li' => '','depth'=>1));//,'exclude' => 38
                                 ?>
                             </ul>
                         </div>
-
                         <!--登录注册用户头像-->
                         <?php
                         if(is_user_logged_in()){
@@ -78,10 +79,28 @@
                             <div class="dropdown btn-group" >
                                 <button type="button" id="user-portrait" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                     <?php echo get_avatar($current_user->ID,30,'');?>
+                                    <?
+                                    if(hasGPNotice() || hasPrivateMessage() || hasNotice()){?>
+                                        <i id="red-point"></i>
+                                    <? } ?>
                                 </button>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="margin-top: 14px">
                                     <li role="presentation" style="height:35px;">
-                                        <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address;?>"><span class="glyphicon glyphicon-user"></span>个人主页</a>
+                                        <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address;?>">
+                                            <span class="glyphicon glyphicon-user"></span>
+                                            <span>个人主页</span>
+                                        </a>
+                                    </li>
+                                    <li role="presentation" style="height:35px;">
+                                        <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address.'&tab=notification'?>"
+                                           style="position:relative;">
+                                            <span class="glyphicon glyphicon-bell"></span>
+                                            <span>消息通知</span>
+                                            <? if(hasGPNotice() || hasPrivateMessage() || hasNotice()){?>
+                                                <i id="red-point" style="right: 25px;top: 12px"></i>
+                                            <? } ?>
+                                        </a>
+
                                     </li>
                                     <li role="presentation" style="height:35px;">
                                         <a role="menuitem" tabindex="-1" href="<?php echo site_url().$person_address;?>&tab=profile"><span class="glyphicon glyphicon-cog"></span> 设置</a>
