@@ -346,7 +346,6 @@ if (!$_GET['paged']) {
                 </li>
             <?php }
         } else { ?>
-            <div style="height: 1px;background-color: lightgray;"></div>
             <div class="alert alert-info" style="margin-top: 20px">Oops,还没有收到消息</div>
         <?php } ?>
     </ul>
