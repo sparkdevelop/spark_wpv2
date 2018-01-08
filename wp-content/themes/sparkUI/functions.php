@@ -1869,6 +1869,36 @@ function addUrl($jsonString)
     return $jsonString;
 }
 
+//侧边栏路径生成
+function wiki_path_select($name){
+    $file_name = "example";
+    $file_url = "wp-content/themes/sparkUI/algorithm/" . $file_name . ".json";
+    $jsonString = file_get_contents($file_url);
+    $jsonString = json_decode($jsonString,true);
+
+    $nodes = array();
+    $links = array();
+    $path_part_result = new stdClass();
+
+    array_push($nodes, array("name" => $name));
+    foreach ($jsonString["links"] as $key => $value) {
+        if ($value["source"] == $name) {
+            array_push($links, $value);
+            array_push($nodes, array("name" => $value["target"]));
+        } else if ($value["target"] == $name) {
+            array_push($links, $value);
+            array_push($nodes, array("name" => $value["source"]));
+        }
+    }
+    $path_part_result -> nodes = $nodes;
+    $path_part_result -> links = $links;
+
+    $path_part_result = json_encode($path_part_result);
+    $path_part_result = addUrl($path_part_result);
+
+    return $path_part_result;
+}
+
 //处理wiki和项目内容,请求API的版本
 function keywordHighlight()
 {
@@ -1926,8 +1956,6 @@ function keywordHighlight()
         $new_content = get_the_content();
     }
     echo $new_content;
-
-
 //        $url = get_template_directory_uri()."/highlight.xml";
 //        $xml = simplexml_load_file($url); //创建 SimpleXML对象
 //        print_r($xml);
@@ -4456,6 +4484,9 @@ function hasNotice(){
         return false;
     }
 }
+
+
+
 
 
 
