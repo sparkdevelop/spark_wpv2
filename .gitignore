@@ -29,6 +29,7 @@ out/
 
 #过滤整个文件夹
 /wp-content/uploads/2017/
+/wp-content/uploads/2018/
 /friends
 
 #过滤某个具体文件
