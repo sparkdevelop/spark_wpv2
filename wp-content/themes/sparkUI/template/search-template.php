@@ -42,6 +42,8 @@ $query = array(
 $result = new WP_Query($query);
 $QA_found = $result->found_posts;
 
+//标签结果
+
 
 //======================
 $post_type = isset($_GET['post_type']) && !empty($_GET['post_type']) ? sanitize_text_field($_GET['post_type']) : "all";

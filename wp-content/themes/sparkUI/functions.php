@@ -2279,12 +2279,12 @@ function get_the_content_by_id($post_id)
 function get_the_ID_by_title($post_title)
 {
     global $wpdb;
-    $sql = "SELECT ID FROM $wpdb->posts WHERE post_title='$post_title' AND post_status = 'publish' AND post_type='yada_wiki'";
+    $sql = "SELECT ID FROM $wpdb->posts WHERE post_title='$post_title' AND post_status = 'publish' AND (post_type='yada_wiki' or post_type='page')";
     $result = $wpdb->get_results($sql);
     if (sizeof($result) != 0) {
         return $result[0]->ID;
     } else {
-        $sql_m = "SELECT ID FROM $wpdb->posts WHERE post_title like '%$post_title%' AND post_status = 'publish' AND post_type='yada_wiki'";
+        $sql_m = "SELECT ID FROM $wpdb->posts WHERE post_title like '%$post_title%' AND post_status = 'publish' AND (post_type='yada_wiki' or post_type='page')";
 //        return $sql;
         $result_m = $wpdb->get_results($sql_m);
         if (sizeof($result_m) != 0) {
@@ -4187,7 +4187,7 @@ function get_group_ava($group_id, $size)
 function get_recommand_task($task_id)
 {
     global $wpdb;
-    $sql = "SELECT * FROM wp_gp_task_member WHERE task_id = $task_id and completion > 3";
+    $sql = "SELECT * FROM wp_gp_task_member WHERE task_id = $task_id and completion >=5";
     $results = $wpdb->get_results($sql, 'ARRAY_A');
     return $results;
 }

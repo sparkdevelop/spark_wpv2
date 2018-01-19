@@ -61,8 +61,8 @@
                         </div>
                         <div>
                             <ul class="nav navbar-nav">
-                                <li class="page_item page-item-235">
-                                    <a href="<?php the_permalink(235); ?>">导论实验课</a>
+                                <li class="page_item page-item-20548">
+                                    <a href="<?php the_permalink(get_the_ID_by_title('认知工委会')); ?>">认知工委会</a>
                                 </li>
                                 <?php
                                 //列出用户添加的页面 不列出Home页//问题是如何加特效?
