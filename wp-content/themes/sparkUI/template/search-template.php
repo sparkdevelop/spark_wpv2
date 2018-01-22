@@ -42,6 +42,20 @@ $query = array(
 $result = new WP_Query($query);
 $QA_found = $result->found_posts;
 
+//标签结果
+$arg = array('search'=>get_search_query());
+$tags = get_tags($arg);
+if(!empty($tags)){
+    echo '<div class="tag-items">';
+    foreach( $tags as $tag ){
+        echo '
+<a class="tag-item" title="浏览和' . $tag->name .'有关的文章" href="'. attribute_escape( get_tag_link( $tag->term_id ) ) .'">
+<span>' . $tag->name .'</span>
+</a>';
+    }
+    echo '</div>';
+}
+
 
 //======================
 $post_type = isset($_GET['post_type']) && !empty($_GET['post_type']) ? sanitize_text_field($_GET['post_type']) : "all";

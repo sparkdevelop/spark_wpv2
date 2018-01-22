@@ -50,7 +50,6 @@ $project= new WP_Query($query);
             <?php while ($project->have_posts()) : $project->the_post(); ?>
                 <li style="list-style-type: none;">
                     <div class="col-md-4 col-sm-4 col-xs-6" id="project-fluid">
-
                         <div class="thumbnail" id="project-div-fluid">
                             <?php
                             if ( has_post_thumbnail() ) { ?>

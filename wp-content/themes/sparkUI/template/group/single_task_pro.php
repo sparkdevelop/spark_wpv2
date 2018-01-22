@@ -236,7 +236,11 @@ $group_verify_field = get_verify_field($group_id, 'group');
                                             </select>
                                         </td>
                                     <?php } else {
-                                        $grade = transform_grade($team[$i]['completion']) //将数字转化为文字?>
+                                        $grade = transform_grade($team[$i]['completion']); //将数字转化为文字
+                                        if(!in_array(get_current_user_id(),get_team_member($task_id,$key) )){
+                                            $grade = '已评分';
+                                        }
+                                        ?>
                                         <td id="grade" rowspan="<?= $team_size ?>"><?= $grade ?></td>
                                     <?php } ?>
                                 </tr>

@@ -17,7 +17,7 @@
 <?php
     get_header();
     if(is_page('verify_form') || is_page('invitation') || is_page('private_message')
-        || is_page('ask_tiny') ){?>
+        || is_page('ask_tiny') || is_page('join_ms') ){?>
         <script>
             $(document).ready(function () {
                 $('#m-header').css('display','none');
@@ -212,6 +212,9 @@
                     }
                     require "template/group/create_task.php";
                 }
+                elseif (is_page('join_ms')){
+                    require "template/multi-university/join_ms.php";
+                }
                 elseif (is_page('single_group')){
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );
@@ -223,6 +226,12 @@
                         wp_redirect( home_url().'/wp-login.php' );
                     }
                     require "template/m-message-form.php";
+                }
+                elseif (is_page('community')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/multi-university/community.php";
                 }
                 elseif (is_page('single_task')){
                     $id = $_GET['id'];
@@ -248,7 +257,7 @@
                 <p><?php _e('Sorry, this page does not exist.'); ?></p>
             <?php endif; ?>
             <?php
-            if(!is_page('budao_index')){
+            if(!is_page('budao_index') || !is_page('community')){
                 get_sidebar();
             } ?>
     </div>

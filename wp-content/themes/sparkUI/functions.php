@@ -1871,6 +1871,36 @@ function addUrl($jsonString)
     return $jsonString;
 }
 
+//侧边栏路径生成
+function wiki_path_select($name){
+    $file_name = "example";
+    $file_url = "wp-content/themes/sparkUI/algorithm/" . $file_name . ".json";
+    $jsonString = file_get_contents($file_url);
+    $jsonString = json_decode($jsonString,true);
+
+    $nodes = array();
+    $links = array();
+    $path_part_result = new stdClass();
+
+    array_push($nodes, array("name" => $name));
+    foreach ($jsonString["links"] as $key => $value) {
+        if ($value["source"] == $name) {
+            array_push($links, $value);
+            array_push($nodes, array("name" => $value["target"]));
+        } else if ($value["target"] == $name) {
+            array_push($links, $value);
+            array_push($nodes, array("name" => $value["source"]));
+        }
+    }
+    $path_part_result -> nodes = $nodes;
+    $path_part_result -> links = $links;
+
+    $path_part_result = json_encode($path_part_result);
+    $path_part_result = addUrl($path_part_result);
+
+    return $path_part_result;
+}
+
 //处理wiki和项目内容,请求API的版本
 function keywordHighlight()
 {
@@ -1928,8 +1958,6 @@ function keywordHighlight()
         $new_content = get_the_content();
     }
     echo $new_content;
-
-
 //        $url = get_template_directory_uri()."/highlight.xml";
 //        $xml = simplexml_load_file($url); //创建 SimpleXML对象
 //        print_r($xml);
@@ -2253,12 +2281,12 @@ function get_the_content_by_id($post_id)
 function get_the_ID_by_title($post_title)
 {
     global $wpdb;
-    $sql = "SELECT ID FROM $wpdb->posts WHERE post_title='$post_title' AND post_status = 'publish' AND post_type='yada_wiki'";
+    $sql = "SELECT ID FROM $wpdb->posts WHERE post_title='$post_title' AND post_status = 'publish' AND (post_type='yada_wiki' or post_type='page')";
     $result = $wpdb->get_results($sql);
     if (sizeof($result) != 0) {
         return $result[0]->ID;
     } else {
-        $sql_m = "SELECT ID FROM $wpdb->posts WHERE post_title like '%$post_title%' AND post_status = 'publish' AND post_type='yada_wiki'";
+        $sql_m = "SELECT ID FROM $wpdb->posts WHERE post_title like '%$post_title%' AND post_status = 'publish' AND (post_type='yada_wiki' or post_type='page')";
 //        return $sql;
         $result_m = $wpdb->get_results($sql_m);
         if (sizeof($result_m) != 0) {
@@ -4161,7 +4189,7 @@ function get_group_ava($group_id, $size)
 function get_recommand_task($task_id)
 {
     global $wpdb;
-    $sql = "SELECT * FROM wp_gp_task_member WHERE task_id = $task_id and completion > 3";
+    $sql = "SELECT * FROM wp_gp_task_member WHERE task_id = $task_id and completion >=5";
     $results = $wpdb->get_results($sql, 'ARRAY_A');
     return $results;
 }
@@ -4458,6 +4486,26 @@ function hasNotice(){
         return false;
     }
 }
+
+//建立多校表
+function multischool_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "ms";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          uvs_name text NOT NULL,
+          uvs_short text NOT NULL,
+          post_id int NOT NULL,
+          parent_id int ,
+          modified_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
 
 
 

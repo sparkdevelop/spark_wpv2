@@ -7,12 +7,18 @@
  * wiki标签页
  */
 get_header() ?>
-<?php $tag = $_GET['wiki_tags']; ?>
+<?php $tag = isset($_GET['wiki_tags']) ? $_GET['wiki_tags'] : "";
+
+?>
     <div class="container" style="margin-top: 10px;flex: 1 0 auto;">
         <div class="row" style="width: 100%">
             <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
                 <ul id="leftTab" class="nav nav-pills" style="height: 42px;margin-top: 10px">
-                    <li class="active" style="margin-left: 0;font-size:larger"><p>标签：<h style="color:#fe642d"><?php echo $tag; ?></h></p></li>
+                    <li class="active" style="margin-left: 0;font-size:larger">
+                        <p>标签：
+                            <h style="color:#fe642d"><?php echo $tag; ?></h>
+                        </p>
+                    </li>
                 </ul>
 
                 <div id="rightTabContent" class="tab-content">
@@ -22,17 +28,21 @@ get_header() ?>
                             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                                 <!-- 文章 -->
                                 <div class="wiki-title">
-                                    <a  href="<?php the_permalink(); ?>"
-                                       style="color: black;font-size:large"><?php echo get_the_title(); ?></a> </div>
+                                    <a href="<?php the_permalink(); ?>"
+                                       style="color: black;font-size:large"><?php echo get_the_title(); ?></a></div>
                                 <div class="wiki-excerpt">
                                     <p style="word-wrap: break-word;"><?php echo get_the_excerpt(); ?>
-                                        <a href="<?php the_permalink(); ?>" class="button right" style="color: #fe642d;font-weight:bold;">阅读全文</a>
+                                        <a href="<?php the_permalink(); ?>" class="button right"
+                                           style="color: #fe642d;font-weight:bold;">阅读全文</a>
                                     </p>
                                 </div>
                                 <div class="wiki-info">
-                                    <span class="fa fa-clock-o"> <?php echo date('y年n月j日 G:i', get_the_time('U')); ?> &nbsp;&nbsp; </span>
-                                    <span class="fa fa-eye " id="web-project-views">&nbsp;<?php echo getWikiViews(get_the_ID()); ?>&nbsp;&nbsp;</span>
-                                    <span class="fa fa-bookmark-o" >&nbsp;<?php the_terms('0','wiki_tags','','，',''); ?></span>
+                                    <span class="fa fa-clock-o"> <?php echo date('y年n月j日 G:i', get_the_time('U')); ?>
+                                        &nbsp;&nbsp; </span>
+                                    <span class="fa fa-eye "
+                                          id="web-project-views">&nbsp;<?php echo getWikiViews(get_the_ID()); ?>&nbsp;&nbsp;</span>
+                                    <span
+                                        class="fa fa-bookmark-o">&nbsp;<?php the_terms('0', 'wiki_tags', '', '，', ''); ?></span>
                                 </div>
                                 <div style="height: 1px;background-color: lightgray;"></div>
                                 <!-- 文章end -->
@@ -41,7 +51,6 @@ get_header() ?>
                         </ul>
                     </div>
                 </div>
-
             </div>
             <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
                 <div class="wiki_sidebar_wrap">
