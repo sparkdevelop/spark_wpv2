@@ -17,7 +17,7 @@
 <?php
     get_header();
     if(is_page('verify_form') || is_page('invitation') || is_page('private_message')
-        || is_page('ask_tiny') ){?>
+        || is_page('ask_tiny') || is_page('join_ms') ){?>
         <script>
             $(document).ready(function () {
                 $('#m-header').css('display','none');
@@ -211,6 +211,9 @@
                         wp_redirect( home_url().'/wp-login.php' );
                     }
                     require "template/group/create_task.php";
+                }
+                elseif (is_page('join_ms')){
+                    require "template/multi-university/join_ms.php";
                 }
                 elseif (is_page('single_group')){
                     if (!is_user_logged_in()) {

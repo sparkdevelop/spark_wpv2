@@ -4485,7 +4485,24 @@ function hasNotice(){
     }
 }
 
-
+//建立多校表
+function multischool_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "ms";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          uvs_name text NOT NULL,
+          uvs_short text NOT NULL,
+          post_id int NOT NULL,
+          parent_id int ,
+          modified_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
 
 
 
