@@ -630,6 +630,7 @@ function update_wiki_entry()
 
     }
     foreach ($wiki_tags as $wiki_tag) {
+        $wiki_tag_slug = urlencode($wiki_tag);
         $is_continue = false;
         $if_has_tag = $wpdb->get_results("select count(*) as has_tag from ($wpdb->term_taxonomy tt left join $wpdb->term_relationships tr on tt.term_taxonomy_id=tr.term_taxonomy_id) left join $wpdb->terms t on t.term_id=tt.term_id where tr.object_id=" . $post_id . " and t.`name`=\"" . $wiki_tag . "\" and tt.taxonomy=\"wiki_tags\"");
         foreach ($if_has_tag as $item) {
@@ -659,7 +660,7 @@ function update_wiki_entry()
                     "term_order" => 0
                 ));
             } else {
-                $wpdb->query("insert into $wpdb->terms values (0, " . "\"" . $wiki_tag . "\", \"" . $wiki_tag . "\", 0)");
+                $wpdb->query("insert into $wpdb->terms values (0, " . "\"" . $wiki_tag . "\", \"" . $wiki_tag_slug . "\", 0)");
                 $last_insert = $wpdb->insert_id;
                 $wpdb->query("insert into $wpdb->term_taxonomy values (0, " . $last_insert . ", \"wiki_tags\", \"wiki_tags\", 0, 1)");
                 $last_insert_t_t_id = $wpdb->insert_id;
@@ -808,6 +809,7 @@ function create_wiki_entry()
 
     //处理tag
     foreach ($wiki_tags as $wiki_tag) {
+        $wiki_tag_slug = urlencode($wiki_tag);
         $if_tag_exist = $wpdb->get_results("select count(*) as tag_nums, t.term_id from $wpdb->terms t left join $wpdb->term_taxonomy tt on t.term_id = tt.term_id where tt.taxonomy=\"wiki_tags\" and t.name = " . "\"" . $wiki_tag . "\"");
         foreach ($if_tag_exist as $if_tag_exist_item) {
             if ($if_tag_exist_item->tag_nums > 0) {
@@ -827,7 +829,7 @@ function create_wiki_entry()
                     "term_order" => 0
                 ));
             } else {
-                $wpdb->query("insert into $wpdb->terms values (0, " . "\"" . $wiki_tag . "\", \"" . $wiki_tag . "\", 0)");
+                $wpdb->query("insert into $wpdb->terms values (0, " . "\"" . $wiki_tag . "\", \"" . $wiki_tag_slug . "\", 0)");
                 $last_insert = $wpdb->insert_id;
                 $wpdb->query("insert into $wpdb->term_taxonomy values (0, " . $last_insert . ", \"wiki_tags\", \"wiki_tags\", 0, 1)");
                 $last_insert_t_t_id = $wpdb->insert_id;
