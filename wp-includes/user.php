@@ -2313,12 +2313,15 @@ function register_new_user( $user_login, $user_email ) {
 	// Check the email address
 	if ( $user_email == '' ) {
 		$errors->add( 'empty_email', __( '<strong>ERROR</strong>: Please type your email address.' ) );
-	} elseif ( ! is_email( $user_email ) ) {
+	} elseif ( ! is_email( $user_email) ) {
 		$errors->add( 'invalid_email', __( '<strong>ERROR</strong>: The email address isn&#8217;t correct.' ) );
 		$user_email = '';
 	} elseif ( email_exists( $user_email ) ) {
 		$errors->add( 'email_exists', __( '<strong>ERROR</strong>: This email is already registered, please choose another one.' ) );
-	}
+	} elseif ( in_ban_email_list( $user_email ) ) {
+        $errors->add( 'invalid_email', __( '<strong>ERROR</strong>: The email address isn&#8217;t correct.' ) );
+        $user_email = '';
+    }
 
 	/**
 	 * Fires when submitting registration form data, before the user is created.
@@ -2374,6 +2377,20 @@ function register_new_user( $user_login, $user_email ) {
 
 	return $user_id;
 }
+
+/*
+ * 屏蔽俄罗斯的广告邮件注册
+ * */
+function in_ban_email_list( $email ) {
+    $ban_list = ['mail.ru'];
+    $email_suffix = explode('@',$email)[1];
+    if ( in_array($email_suffix,$ban_list) ) {
+        return true;
+    }
+    return false;
+}
+
+
 
 /**
  * Initiates email notifications related to the creation of new users.
