@@ -478,111 +478,6 @@ function openNodeOnce(links,node,nodesOption){  //可以考虑展开一层
 }
 
 //画出项目页面的知识图谱
-// function sideChart(id,jsonstring) {
-//     var myChart = echarts.init(document.getElementById(id));
-//     option = null;
-//     myChart.showLoading();
-//     myChart.hideLoading();
-//     //处理json数据
-//     var jsondata = JSON.parse(jsonstring);
-//     jsondata.nodes.forEach(function (node) {
-//         // if (node.value > 50) {
-//         //     node.symbolSize = node.value / 25;
-//         // } else if (node.value < 10) {
-//         //     node.symbolSize = node.value * 5;
-//         // } else {
-//         //     node.symbolSize = node.value;
-//         // }
-//         node.symbolSize = node.value;
-//         node.label = {
-//             normal: {
-//                 show: true
-//             }
-//         };
-//     });
-//
-//     myChart.setOption({
-//         title: {
-//             //text: 'My Knowledge'
-//             //top: 'bottom',
-//             //left: 'right'
-//         },
-//         tooltip: {},
-//         legend: [
-//             // {
-//             //     data: jsondata.categories.map(function(a) {
-//             //         return a.name;
-//             //     })
-//             // }
-//         ],
-//         series: [{
-//             type: 'graph',      //关系图
-//             //name: 'My Knowledge',  //tooltip显示
-//             layout: 'force',  //布局怎么显示,
-//             animationDuration: 500,
-//             animationEasingUpdate: 'quinticInOut',
-//             draggable: true,
-//             roam: 'move',     //是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
-//             focusNodeAdjacency: 'true',  //是否在鼠标移到节点上的时候突出显示节点以及节点的边和邻接节点。
-//             smybol: 'circle',          //节点的形状'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
-//             nodes: jsondata.nodes,
-//             links: jsondata.links,
-//             //categories: jsondata.categories,
-//             force: {
-//                 edgeLength: 80,//连线的长度
-//                 repulsion: 80  //子节点之间的间距
-//             },
-//             label: {
-//                 normal: {
-//                     position: 'top',
-//                     formatter: '{b}'
-//                 }
-//             },
-//             lineStyle: {
-//                 normal: {
-//                     curveness: 0.3
-//                 }
-//             }
-//         }]
-//     });
-//
-//     myChart.on('dblclick', function (params) {
-//         var data = params.data;
-//         //判断节点的相关数据是否正确
-//         if (data != null && data != undefined) {
-//             if (data.url != null && data.url != undefined) {
-//                 //根据节点的扩展属性url打开新页面
-//                 location.replace(data.url);
-//             }
-//         }
-//     });
-//
-//     // myChart.on('click',function (param) {
-//     //     var option = myChart.getOption();           //获取所有option
-//     //     var nodesOption = option.series[0].nodes;   //获取node中的数据
-//     //     var linksOption = option.series[0].links;   //获取target,source信息
-//     //     var data = param.data;                      //点谁获取谁的node中对应的数据。是node中的子集
-//     //
-//     //     if (data != null && data != undefined) {    //如果有这个节点
-//     //         /*
-//     //          * step1:查找所有下一级节点以及迭代下一级节点(how)
-//     //          * step2:若下一级节点的itemStyle.normal.opacity为0,则将下一级节点的itemStyle.normal.opacity设为1
-//     //          * step3:反之设为0.
-//     //          * */
-//     //         //如果下一级节点的状态是1,那么调用fold,反之
-//     //
-//     //         if(nodeStatus(linksOption,data,nodesOption)==1){
-//     //             foldNode(linksOption,data,nodesOption);
-//     //         }
-//     //         else{
-//     //             openNode(linksOption,data,nodesOption);
-//     //             //openNodeOnce(linksOption,data,nodesOption);  //只打开一层
-//     //         }
-//     //     }
-//     //     myChart.setOption(option);
-//     // });
-// }
-
 function sideChart(id,jsonstring) {
     var myChart = echarts.init(document.getElementById(id));
     option = null;
@@ -590,63 +485,67 @@ function sideChart(id,jsonstring) {
     myChart.hideLoading();
     //处理json数据
     var jsondata = JSON.parse(jsonstring);
-
     jsondata.nodes.forEach(function (node) {
-        //node.symbolSize = node.value;
+        // if (node.value > 50) {
+        //     node.symbolSize = node.value / 25;
+        // } else if (node.value < 10) {
+        //     node.symbolSize = node.value * 5;
+        // } else {
+        //     node.symbolSize = node.value;
+        // }
+        node.symbolSize = node.value;
         node.label = {
             normal: {
-                show: true,
-                color: "#000"
+                show: true
             }
         };
     });
 
-    var option = {
+    myChart.setOption({
         title: {
-            //text: 'Graph 简单示例'
+            //text: 'My Knowledge'
+            //top: 'bottom',
+            //left: 'right'
         },
         tooltip: {},
-        series: [
-            {
-                type: 'graph',
-                layout: 'circular', //布局模式
-                symbolSize: 50,     //点的大小
-                roam: false,        //鼠标缩放和平移漫游
-                label: {
-                    normal: {
-                        show: true,  //节点名称
-                        color: "#000"
-                    }
-                },
-                itemStyle: {
-                    normal: {
-                        //color: "#000"
-                    }
-                },
-                edgeSymbol: ['circle', 'arrow'],  //边两端的标记
-                edgeSymbolSize: [4, 10],          //边两端标记的大小
-                edgeLabel: {
-                    normal: {
-                        textStyle: {
-                            fontSize: 20          //边上的字大小
-                        }
-                    }
-                },
-
-                //data: [{"name":"1"},{"name":"2"}],
-                data: jsondata.nodes,
-                links: jsondata.links,
-                lineStyle: {
-                    normal: {
-                        opacity: 0.9,
-                        width: 2,
-                        curveness: 0
-                    }
+        legend: [
+            // {
+            //     data: jsondata.categories.map(function(a) {
+            //         return a.name;
+            //     })
+            // }
+        ],
+        series: [{
+            type: 'graph',      //关系图
+            //name: 'My Knowledge',  //tooltip显示
+            layout: 'force',  //布局怎么显示,
+            animationDuration: 500,
+            animationEasingUpdate: 'quinticInOut',
+            draggable: true,
+            roam: 'move',     //是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
+            focusNodeAdjacency: 'true',  //是否在鼠标移到节点上的时候突出显示节点以及节点的边和邻接节点。
+            smybol: 'circle',          //节点的形状'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
+            nodes: jsondata.nodes,
+            links: jsondata.links,
+            //categories: jsondata.categories,
+            force: {
+                edgeLength: 80,//连线的长度
+                repulsion: 80  //子节点之间的间距
+            },
+            label: {
+                normal: {
+                    position: 'top',
+                    formatter: '{b}'
+                }
+            },
+            lineStyle: {
+                normal: {
+                    curveness: 0.3
                 }
             }
-        ]
-    };
-    myChart.setOption(option);
+        }]
+    });
+
     myChart.on('dblclick', function (params) {
         var data = params.data;
         //判断节点的相关数据是否正确
@@ -657,7 +556,108 @@ function sideChart(id,jsonstring) {
             }
         }
     });
+
+    // myChart.on('click',function (param) {
+    //     var option = myChart.getOption();           //获取所有option
+    //     var nodesOption = option.series[0].nodes;   //获取node中的数据
+    //     var linksOption = option.series[0].links;   //获取target,source信息
+    //     var data = param.data;                      //点谁获取谁的node中对应的数据。是node中的子集
+    //
+    //     if (data != null && data != undefined) {    //如果有这个节点
+    //         /*
+    //          * step1:查找所有下一级节点以及迭代下一级节点(how)
+    //          * step2:若下一级节点的itemStyle.normal.opacity为0,则将下一级节点的itemStyle.normal.opacity设为1
+    //          * step3:反之设为0.
+    //          * */
+    //         //如果下一级节点的状态是1,那么调用fold,反之
+    //
+    //         if(nodeStatus(linksOption,data,nodesOption)==1){
+    //             foldNode(linksOption,data,nodesOption);
+    //         }
+    //         else{
+    //             openNode(linksOption,data,nodesOption);
+    //             //openNodeOnce(linksOption,data,nodesOption);  //只打开一层
+    //         }
+    //     }
+    //     myChart.setOption(option);
+    // });
 }
+
+// function sideChart(id,jsonstring) {
+//     var myChart = echarts.init(document.getElementById(id));
+//     option = null;
+//     myChart.showLoading();
+//     myChart.hideLoading();
+//     //处理json数据
+//     var jsondata = JSON.parse(jsonstring);
+//
+//     jsondata.nodes.forEach(function (node) {
+//         //node.symbolSize = node.value;
+//         node.label = {
+//             normal: {
+//                 show: true,
+//                 color: "#000"
+//             }
+//         };
+//     });
+//
+//     var option = {
+//         title: {
+//             //text: 'Graph 简单示例'
+//         },
+//         tooltip: {},
+//         series: [
+//             {
+//                 type: 'graph',
+//                 layout: 'circular', //布局模式
+//                 symbolSize: 50,     //点的大小
+//                 roam: false,        //鼠标缩放和平移漫游
+//                 label: {
+//                     normal: {
+//                         show: true,  //节点名称
+//                         color: "#000"
+//                     }
+//                 },
+//                 itemStyle: {
+//                     normal: {
+//                         //color: "#000"
+//                     }
+//                 },
+//                 edgeSymbol: ['circle', 'arrow'],  //边两端的标记
+//                 edgeSymbolSize: [4, 10],          //边两端标记的大小
+//                 edgeLabel: {
+//                     normal: {
+//                         textStyle: {
+//                             fontSize: 20          //边上的字大小
+//                         }
+//                     }
+//                 },
+//
+//                 //data: [{"name":"1"},{"name":"2"}],
+//                 data: jsondata.nodes,
+//                 links: jsondata.links,
+//                 lineStyle: {
+//                     normal: {
+//                         opacity: 0.9,
+//                         width: 2,
+//                         curveness: 0
+//                     }
+//                 }
+//             }
+//         ]
+//     };
+//     myChart.setOption(option);
+//     myChart.on('dblclick', function (params) {
+//         var data = params.data;
+//         //判断节点的相关数据是否正确
+//         if (data != null && data != undefined) {
+//             if (data.url != null && data.url != undefined) {
+//                 //根据节点的扩展属性url打开新页面
+//                 location.replace(data.url);
+//             }
+//         }
+//     });
+// }
 
 
 
