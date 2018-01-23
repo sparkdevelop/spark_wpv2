@@ -3,7 +3,6 @@ global $wpdb;
 $sql = "select post_id,uvs_short from wp_ms";
 $result = $wpdb->get_results($sql);
 $url = site_url().get_page_address('join_ms');
-get_search_query()
 ?>
 <style>
     .school-entry-class img {
@@ -53,7 +52,7 @@ get_search_query()
             <?php } ?>
             <li class="list-group-item col-md-4 col-sm-4 col-xs-6 school-entry-class" id="school-entry-<?=$i?>">
                 <img src="<?=bloginfo('template_url')."/img/univerisity-logo/".strtoupper($result[$i]->uvs_short).".png"?>"
-                onclick="window.open('<?php the_permalink($result[$i]->post_id)?>')">
+                onclick="window.open('<?php the_permalink($result[$i]->post_id)?>')" style="cursor: pointer">
             </li>
         <?php } ?>
         <style>
