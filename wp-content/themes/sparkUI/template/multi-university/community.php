@@ -1,6 +1,6 @@
 <?php
 global $wpdb;
-$sql = "select post_id,uvs_short from wp_ms WHERE ID IN (1,9,15,16,17,18,19)";
+$sql = "select post_id,uvs_short from wp_ms WHERE ID IN (1,15,16,17,18,19,20)";
 $result = $wpdb->get_results($sql);
 $url = site_url().get_page_address('join_ms');
 ?>
