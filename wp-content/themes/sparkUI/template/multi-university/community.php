@@ -41,7 +41,8 @@ $url = site_url().get_page_address('join_ms');
     <? } ?>
     <ul class="list-group">
         <?php
-        $size = sizeof($result);
+        //$size = sizeof($result);
+        $size = 2;
         for ($i = 0; $i < $size; $i++) {
             if ($i >= 9){?>
                 <style>
@@ -67,8 +68,7 @@ $url = site_url().get_page_address('join_ms');
             }
         </style>
         <div style="clear: both"></div>
-        <div class="more">显示全部高校</div>
-
+<!--        <div class="more">显示全部高校</div>-->
     </ul>
 
 <!--    <h3>联盟简介</h3>-->
