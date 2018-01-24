@@ -1,6 +1,6 @@
 <?php
 global $wpdb;
-$sql = "select post_id,uvs_short from wp_ms";
+$sql = "select post_id,uvs_short from wp_ms WHERE ID IN (1,9,15,16,17,18,19)";
 $result = $wpdb->get_results($sql);
 $url = site_url().get_page_address('join_ms');
 ?>
@@ -34,15 +34,17 @@ $url = site_url().get_page_address('join_ms');
     <h3 style="display:inline;margin-top: 10px">入驻高校</h3>
     <?php
     if(current_user_can( 'manage_options' )){
-        /* 加入一个学校要先建立对应学校的wiki,手动,然后加入到ms表,在这里添加
-         * */
+        /* 加入一个学校要先建立对应学校的wiki,手动,然后加入到ms表,在这里添加*/
         ?>
         <button class="btn btn-green" style="display: inline;height:33px;margin:0 20px;vertical-align: bottom" onclick="join_ms()">加入</button>
-    <? } ?>
+    <? }
+    $url_experiment = get_permalink(get_the_ID_by_title('精简版端到端实验'));
+    ?>
+    <a style="display: block;font-size: 20px;margin: 20px 0px;cursor: pointer" onclick="window.open('<?=$url_experiment?>')">精简版端到端实验</a>
     <ul class="list-group">
         <?php
-        //$size = sizeof($result);
-        $size = 2;
+        $size = sizeof($result);
+        //$size = 0;
         for ($i = 0; $i < $size; $i++) {
             if ($i >= 9){?>
                 <style>
