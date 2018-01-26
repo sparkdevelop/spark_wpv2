@@ -274,7 +274,9 @@
     </div>
 
 <!--知识图谱-->
-    <?php $jsonString = wiki_path_select(get_the_title());
+    <?php
+    $jsonString = wikiSideJsonGenerate(get_the_title());
+    //$jsonString = wiki_path_select(get_the_title());
     if($jsonString!=''){?>
         <div class="wikiknowledge">
             <div class="sidebar_list_header">
