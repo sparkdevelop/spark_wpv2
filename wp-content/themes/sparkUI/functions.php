@@ -1177,13 +1177,12 @@ add_action('wp_ajax_nopriv_get_notice', 'get_notice');
 function my_login_redirect($redirect_to, $request)
 {
     if (empty($redirect_to) || $redirect_to == 'wp-admin/' || $redirect_to == admin_url())
-        return get_bloginfo('url');
+        return home_url();
     else
         return $redirect_to;
 }
 
 add_filter('login_redirect', 'my_login_redirect', 10, 3);
-
 // 在编辑器中启用字体和字体大小选择
 if (!function_exists('wpex_mce_buttons')) {
     function wpex_mce_buttons($buttons)
