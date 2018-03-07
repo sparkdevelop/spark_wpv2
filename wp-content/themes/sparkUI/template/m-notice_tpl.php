@@ -1,4 +1,5 @@
 <?php
+//通知
 $allMsg = get_allNotice();
 $pro_length = count($allMsg);
 $perpage = 10;
@@ -136,6 +137,16 @@ if (!$_GET['paged']) {
                     <?php if ($allMsg[$i]['notice_type'] == 1) {
                         //有人给我评论
                         $comment_info = get_comment($allMsg[$i]['notice_content']);
+                        //是否是垃圾信息
+                        if($comment_info->comment_approved=='spam'){
+                            delete_spam_comment($comment_info->comment_post_ID);
+                            ?>
+                            <style>
+                                #message-li-<?= $i ?>{
+                                    display: none;
+                                }
+                            </style>
+                        <?php }
                         $comment_author_id = get_the_ID_by_name($comment_info->comment_author);   //评论人id
                         $comment_author = $comment_info->comment_author; //评论人name
                         $parent_post_link = get_permalink($comment_info->comment_post_ID); //被评论的词条或项目链接

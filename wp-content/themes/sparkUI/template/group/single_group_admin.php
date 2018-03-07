@@ -71,8 +71,8 @@
         }elseif($tab=='manage'){
             require 'group_manage.php';
         }else{
-            //require get_stylesheet_directory().'/template/student_management/management.php';
-            require get_stylesheet_directory().'/template/student_management/alert.php';
+            require get_stylesheet_directory().'/template/student_management/management.php';
+            //require get_stylesheet_directory().'/template/student_management/alert.php';
         }
         ?>
     </div>

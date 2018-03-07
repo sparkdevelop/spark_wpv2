@@ -130,7 +130,6 @@ $member_info = get_member_info($group_id);
             });
         }
         initTableCheckbox();
-
     });
     function saveChecked(td) {
         var user_id = [];

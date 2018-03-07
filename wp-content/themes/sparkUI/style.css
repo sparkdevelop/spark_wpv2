@@ -1648,8 +1648,8 @@ h4 {
 }
 /*任务页面的任务简介*/
 #single-task-abstract p {
-    background: #f9f9f9;
-    padding: 20px 20px;
+    /*background: #f9f9f9;*/
+    /*padding: 20px 20px;*/
     margin-top: 10px;
 }
 #single-task-abstract {
@@ -1873,4 +1873,14 @@ h4 {
     top:0px;
     right:0px;
     position:absolute;
+}
+
+/*橙色确认按钮*/
+.btn-orange{
+    background-color: #fe642d;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 5px 40%;
 }

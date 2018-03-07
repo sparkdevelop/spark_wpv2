@@ -212,6 +212,15 @@
                     }
                     require "template/group/create_task.php";
                 }
+                elseif (is_page('rbac')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    if (!current_user_can( 'manage_options' )){
+                        require "404.php";
+                    }
+                    require "template/rbac/index.php";
+                }
                 elseif (is_page('join_ms')){
                     require "template/multi-university/join_ms.php";
                 }

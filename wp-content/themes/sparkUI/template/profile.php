@@ -35,7 +35,6 @@ $admin_url=admin_url( 'admin-ajax.php' );
                   );
         });
     }
-
     function checkemail(email){
         var hint = document.getElementById('checkemailbox');
         if (email.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1) {
@@ -69,7 +68,6 @@ $admin_url=admin_url( 'admin-ajax.php' );
             return false;
         }
     }
-
     function checkSubmitprofile() {
         var email = document.getElementById("email");
         if(checkemail(email.value)){
