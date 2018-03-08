@@ -416,6 +416,23 @@
     }
 
 /*群组主页*/
+    #search-group{
+        display: none;
+    }
+    #m-search-group{
+        display:inline-block;
+        float: right;
+        width:40%;
+    }
+    #search-group-btn{
+        width:15%;
+        position: relative;
+        float: right;
+        top: 0px;
+    }
+    #search-content{
+        width: 80%;
+    }
     #latest-active{
         display: none;
     }
@@ -549,19 +566,5 @@
     }
     .form-control{
         /*width: auto;*/
-    }
-    #search-group{
-        display: none;
-    }
-    #m-search-group{
-        display:inline-block;
-        float: right;
-        width:48%;
-    }
-    #search-group-btn{
-        width:25px;
-        position: relative;
-        float: right;
-        top: 0px;
     }
 }

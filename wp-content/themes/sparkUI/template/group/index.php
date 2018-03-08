@@ -33,7 +33,7 @@ if (isset($_GET['tab'])){
             <form class="navbar-form" role="search" method="get"
                   action="<?php echo esc_url(self_admin_url('process-search-group.php')); ?>"
                   style="float: right;padding-left: 0px;padding-right: 0px;margin-top: -3px">
-                <input type="text" class="form-control" id="search-content" style="width: 85%" placeholder="搜索群组"
+                <input type="text" class="form-control" id="search-content"  placeholder="搜索群组"
                        name="sg"/>
                 <button type="submit" class="btn btn-default btn-sm" id="search-group-btn">
                     <span class="glyphicon glyphicon-search"></span>
@@ -221,7 +221,7 @@ if (isset($_GET['tab'])){
             <form class="navbar-form" role="search" method="get"
                   action="<?php echo esc_url(self_admin_url('process-search-group.php')); ?>"
                   style="float: right;padding-left: 0px;padding-right: 0px;margin-top: -3px">
-                <input type="text" class="form-control" id="search-content" style="width: 85%" placeholder="搜索群组"
+                <input type="text" class="form-control" id="search-content"  placeholder="搜索群组"
                        name="sg"/>
                 <button type="submit" class="btn btn-default btn-sm" id="search-group-btn">
                     <span class="glyphicon glyphicon-search"></span>
