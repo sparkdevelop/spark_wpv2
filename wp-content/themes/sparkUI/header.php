@@ -32,7 +32,13 @@
     $page_project_id =get_page_id('project');
     $student_management_id =get_page_id('student_management');
     $page_group_id =get_page_id('group');
-    $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id);
+    $page_rbac_id = get_page_id('rbac');
+    if (current_user_can( 'manage_options' )){
+        $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id,$page_rbac_id);
+    }else{
+        $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id);
+
+    }
     ?>
 
     <?php

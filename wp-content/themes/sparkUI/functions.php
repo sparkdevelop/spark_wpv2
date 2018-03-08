@@ -4402,6 +4402,12 @@ function get_allNotice(){
     $result = $wpdb->get_results($sql,'ARRAY_A');
     return $result;
 }
+//删除垃圾评论
+function delete_spam_comment($comment_id){
+    global $wpdb;
+    $sql = "DELETE FROM wp_comments WHERE comment_ID = $comment_id";
+    $wpdb->query($sql);
+}
 
 //点击采纳,添加通知
 //add notice type5:
@@ -4506,6 +4512,32 @@ function multischool_table_install()
 }
 
 
+//权限管理系统
+function get_all_permissions(){
+
+    $result = ['北邮','北师大','北工大','华科'];
+
+    return $result;
+}
+function autocomplete_permission(){
+    //为了联想
+    $all_permission = get_all_permissions();   //json串
+    $word = $_POST['word'];
+    $tmp = '';
+    if($word!=''){
+        $pattern = "/".$word."/i";
+        foreach($all_permission as $value){
+            if(preg_match($pattern, $value)){   //如果搜到
+                $tmp .= $value;
+                $tmp .='|';
+            }
+        }
+    }
+    echo $tmp;
+    die();
+}
+add_action('wp_ajax_autocomplete_permission', 'autocomplete_permission');
+add_action('wp_ajax_nopriv_autocomplete_permission', 'autocomplete_permission');
 
 
 
@@ -4568,6 +4600,16 @@ function wikiRecommend($id)
     }
     return $result_arr;
 }
+
+
+
+
+
+
+
+
+
+
 
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){

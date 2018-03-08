@@ -70,6 +70,11 @@ if (is_page("group")){
     }
     require "template/group/index_sidebar.php";
 }
+if (is_page("rbac")){
+    if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_rbacsidebar')){
+    }
+    require "template/rbac/sidebar.php";
+}
 if (is_page("single_group")){
     if (function_exists('dynamic_sidebar') && dynamic_sidebar('widget_singlegroupsidebar')){
     }
