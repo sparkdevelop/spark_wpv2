@@ -59,6 +59,30 @@
                             </button>
                         <?php } ?>
                     </div>
+                    <div class="m-group-task-btn">
+                        <?php
+                        if (is_group_member($group_id)) {
+                            if (!is_overdue($all_task[$i]['ID'])) {
+                                ?>
+                                <button class="m-btn-green"
+                                        onclick="location.href ='<?php echo site_url() . get_page_address('single_task') . '&id=' . $all_task[$i]['ID']; ?>'">
+                                    去完成
+                                </button>
+                            <?php } else { ?>
+                                <button class="m-btn-white">已截止</button>
+                            <?php }
+                        }
+                        if(is_group_admin($group_id)){?>
+                            <button class="m-btn-green" style="width: 80px"
+                                    onclick="location.href ='<?php echo site_url() . get_page_address('update_task') . '&group_id='.$group_id.'&id=' . $all_task[$i]['ID']; ?>'">
+                                设置任务
+                            </button>
+                            <button class="m-btn-green" style="width: 80px"
+                                    onclick="deleteTask(<?=$all_task[$i]['ID']?>)">
+                                删除任务
+                            </button>
+                        <?php } ?>
+                    </div>
                 </div>
             <?php } ?>
         </div>

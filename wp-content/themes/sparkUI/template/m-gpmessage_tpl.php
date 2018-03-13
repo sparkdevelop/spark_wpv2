@@ -14,21 +14,6 @@ if (!$_GET['paged']) {
     $current_page = $page_num;
 }
 ?>
-<style>
-    #notice-ava {
-        display: inline-block;
-        vertical-align: top;
-        margin-top: 4px;
-        margin-left: 10px
-    }
-
-    #ava-img {
-        width: 40px;
-        height: 40px;
-        -webkit-border-radius: 10px;
-        margin-left: 5px;
-    }
-</style>
 <script>
     function all_read_delete() {
         layer.confirm('确定删除所有已读群消息?', {
@@ -160,8 +145,8 @@ if (!$_GET['paged']) {
                         <div id="notice-ava">
                             <img src="<?= $group_ava ?>" id="ava-img">
                         </div>
-                        <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                        <div id="notice-content">
+                            <div id="notice-info">
                                 <a style="color: #169bd5;cursor: pointer"
                                    onclick="set_as_read('<?=$person_url?>',<?= $group_id ?>,<?= $allMsg[$i]['notice_type'] ?>,'<?= $allMsg[$i]['notice_content'] ?>')">
                                     <?= $joiner_name ?>
@@ -175,7 +160,7 @@ if (!$_GET['paged']) {
                                 <span><a style="color:#169bd5;cursor: pointer"
                                          onclick="set_as_read('<?=$group_url?>',<?= $group_id ?>,<?= $allMsg[$i]['notice_type'] ?>,'<?= $allMsg[$i]['notice_content'] ?>')"><?= $group_name ?></a></span>
                             </div>
-                            <div id="notice-time" style="display: inline-block;float: right;margin-right: 5px">
+                            <div id="notice-time">
                                 <div style="text-align: right">
                                     <?
                                     if (time() - strtotime($time) > 24 * 3600) {
@@ -207,8 +192,8 @@ if (!$_GET['paged']) {
                         <div id="notice-ava">
                             <img src="<?= $group_ava ?>" id="ava-img">
                         </div>
-                        <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                        <div id="notice-content">
+                            <div id="notice-info">
                                 <a onclick="set_as_read('<?=$person_url?>',<?= $group_id ?>,<?= $allMsg[$i]['notice_type'] ?>,'<?= $allMsg[$i]['notice_content'] ?>')"
                                    style="color: #169bd5;cursor: pointer"><?= $joiner_name ?></a>
                                 <?
@@ -221,7 +206,7 @@ if (!$_GET['paged']) {
                                         onclick="set_as_read('<?=$group_url?>',<?= $group_id ?>,<?= $allMsg[$i]['notice_type'] ?>,'<?= $allMsg[$i]['notice_content']?>')"
                                         style="color:#169bd5;cursor: pointer"><?= $group_name ?></a></span>
                             </div>
-                            <div id="notice-time" style="display: inline-block;float: right;margin-right: 5px">
+                            <div id="notice-time">
                                 <div style="text-align: right">
                                     <?
                                     if (time() - strtotime($time) > 24 * 3600) {
@@ -254,8 +239,8 @@ if (!$_GET['paged']) {
                         <div id="notice-ava">
                             <img src="<?= $group_ava ?>" id="ava-img">
                         </div>
-                        <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                        <div id="notice-content">
+                            <div id="notice-info">
                                 <a onclick="set_as_read('<?=$person_url?>',<?= $group_id ?>,<?= $allMsg[$i]['notice_type'] ?>,'<?= $allMsg[$i]['notice_content']?>')"
                                    style="color: #169bd5;cursor: pointer"><?= $joiner_name ?></a>
                                 <?
@@ -268,7 +253,7 @@ if (!$_GET['paged']) {
                                         onclick="set_as_read('<?=$group_url?>',<?= $group_id ?>,<?= $allMsg[$i]['notice_type'] ?>,'<?= $allMsg[$i]['notice_content']?>')"
                                         style="color: #169bd5;cursor: pointer"><?= $group_name ?></a></span>
                             </div>
-                            <div id="notice-time" style="display: inline-block;float: right;margin-right: 5px">
+                            <div id="notice-time">
                                 <div style="text-align: right">
                                     <?
                                     if (time() - strtotime($time) > 24 * 3600) {
@@ -301,8 +286,8 @@ if (!$_GET['paged']) {
                         <div id="notice-ava">
                             <img src="<?= $group_ava ?>" id="ava-img">
                         </div>
-                        <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                        <div id="notice-content">
+                            <div id="notice-info">
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $task_author_id; ?>"
                                    style="color: #169bd5"><?= $task_author_name ?></a>
                                 <span>在群</span>
@@ -312,7 +297,7 @@ if (!$_GET['paged']) {
                                 <span><a onclick="set_as_read('<?=$task_url?>',<?= $group_id ?>,<?= $allMsg[$i]['notice_type'] ?>,'<?= $allMsg[$i]['notice_content']?>')"
                                          style="color: #169bd5;cursor: pointer"><?= $task_name ?></a></span>
                             </div>
-                            <div id="notice-time" style="display: inline-block;float: right;margin-right: 5px">
+                            <div id="notice-time">
                                 <div style="text-align: right">
                                     <?
                                     if (time() - strtotime($time) > 24 * 3600) {
@@ -343,8 +328,8 @@ if (!$_GET['paged']) {
                         <div id="notice-ava">
                             <img src="<?= $group_ava ?>" id="ava-img">
                         </div>
-                        <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                        <div id="notice-content">
+                            <div id="notice-info">
                                 <span>你在群</span>
                                 <span><a onclick="set_as_read('<?=$group_url?>',<?= $group_id ?>,<?= $allMsg[$i]['notice_type'] ?>,'<?= $allMsg[$i]['notice_content']?>')"
                                          style="color: #169bd5;cursor: pointer"><?= $group_name ?></a></span>
@@ -353,7 +338,7 @@ if (!$_GET['paged']) {
                                          style="color: #169bd5;cursor: pointer"><?= $task_name ?></a></span>
                                 <span>已被<span style="font-weight: bolder">审核</span>,请查看!</span>
                             </div>
-                            <div id="notice-time" style="display: inline-block;float: right;margin-right: 5px">
+                            <div id="notice-time">
                                 <div style="text-align: right">
                                     <?
                                     if (time() - strtotime($time) > 24 * 3600) {
@@ -389,8 +374,8 @@ if (!$_GET['paged']) {
                         <div id="notice-ava">
                             <img src="<?= $group_ava ?>" id="ava-img">
                         </div>
-                        <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                        <div id="notice-content">
+                            <div id="notice-info">
                                 <span>管理员</span>
                                 <a style="color: #169bd5;cursor: pointer"
                                    onclick="set_as_read('<?=$person_url?>',<?= $group_id ?>,<?= $allMsg[$i]['notice_type'] ?>,'<?= $allMsg[$i]['notice_content']?>')">
@@ -430,8 +415,8 @@ if (!$_GET['paged']) {
                         <div id="notice-ava">
                             <img src="<?= $group_ava ?>" id="ava-img">
                         </div>
-                        <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                        <div id="notice-content">
+                            <div id="notice-info">
                                 <span>管理员</span>
                                 <a style="color: #169bd5;cursor: pointer"
                                    onclick="set_as_read('<?=$person_url?>',<?= $group_id ?>,<?= $allMsg[$i]['notice_type'] ?>,'<?= $allMsg[$i]['notice_content']?>')">
@@ -471,8 +456,8 @@ if (!$_GET['paged']) {
                         <div id="notice-ava">
                             <img src="<?= $group_ava ?>" id="ava-img">
                         </div>
-                        <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                        <div id="notice-content">
+                            <div id="notice-info">
                                 <a style="color: #169bd5;cursor: pointer"
                                    onclick="set_as_read('<?=$person_url?>',<?= $group_id ?>,<?= $allMsg[$i]['notice_type'] ?>,'<?= $allMsg[$i]['notice_content']?>')">
                                     <?= $admin_name ?>
@@ -482,7 +467,7 @@ if (!$_GET['paged']) {
                                          style="color: #169bd5;cursor: pointer"><?= $group_name ?></a></span>
                                 <span>的设置</span>
                             </div>
-                            <div id="notice-time" style="display: inline-block;float: right;margin-right: 5px">
+                            <div id="notice-time">
                                 <div style="text-align: right">
                                     <?
                                     if (time() - strtotime($time) > 24 * 3600) {
@@ -512,8 +497,8 @@ if (!$_GET['paged']) {
                         <div id="notice-ava">
                             <img src="<?= $group_ava ?>" id="ava-img">
                         </div>
-                        <div id="notice-content" style="display: inline-block;width:92%;">
-                            <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                        <div id="notice-content">
+                            <div id="notice-info">
                                 <span>你加入的群</span>
                                 <span><a onclick="set_as_read('<?=$group_url?>',<?= $group_id ?>,<?= $allMsg[$i]['notice_type'] ?>,'<?= $allMsg[$i]['notice_content']?>')"
                                          style="color: #169bd5;cursor: pointer"><?= $group_name ?></a></span>
@@ -522,7 +507,7 @@ if (!$_GET['paged']) {
                                          style="color: #169bd5;cursor: pointer"><?= $task_name ?></a></span>
                                 <span>信息已被<span style="font-weight: bolder">更新</span>,请查看!</span>
                             </div>
-                            <div id="notice-time" style="display: inline-block;float: right;margin-right: 5px">
+                            <div id="notice-time">
                                 <div style="text-align: right">
                                     <?
                                     if (time() - strtotime($time) > 24 * 3600) {

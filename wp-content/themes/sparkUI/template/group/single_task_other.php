@@ -67,8 +67,8 @@ $admin_url = admin_url('admin-ajax.php');
             <?php $team_member = get_team_member($task_id);
             if (sizeof($team_member) != 0) { ?>
                 <div class="form-group" style="margin: 20px 0px">
-                    <label for="tabstract" class="col-sm-2 col-md-2 col-xs-12 control-label"
-                           style="float: left;text-align: left;width: 11%">项目成员</label>
+                    <label for="tabstract" class="col-sm-2 col-md-2 col-xs-4 control-label"
+                           style="float: left;text-align: left;">项目成员</label>
                     <div class="col-sm-8">
                         <?php foreach ($team_member as $value) { ?>
                             <div>

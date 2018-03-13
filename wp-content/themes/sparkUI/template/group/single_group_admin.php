@@ -1,11 +1,3 @@
-<style>
-    #invitation_join_btn{
-        border: 1px solid transparent;
-        background-color: #1fbba6;
-        color: #fff;
-        border-radius: 5px;
-    }
-</style>
 <?php
     $tab = isset($_GET['tab']) ? $_GET['tab'] : 'task';
 ?>
@@ -14,7 +6,7 @@
         <div id="group-ava">
             <?php get_group_ava($group['ID'],85)?>
         </div>
-        <div id="group-info">
+        <div id="single-group-info">
             <div class="group_title">
                 <span id="h4_name"><?=$group['group_name']?></span>
                 <span style="color: #fe642d;margin-left: 10px">已加入&nbsp;&nbsp;&nbsp;
@@ -34,6 +26,11 @@
                 <span>创建者</span>
                 <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$group['group_author'];?>" style="color: #169bd5"><?php echo get_the_author_meta('user_login',$group['group_author'])?></a>
             </div>
+            <div class="m-group_others">
+                <span><?=$group['member_count']?>个成员</span>&nbsp;&nbsp;
+                <span>创建者</span>
+                <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$group['group_author'];?>" style="color: #169bd5"><?php echo get_the_author_meta('user_login',$group['group_author'])?></a>
+            </div>
             <div class="group_create_time">
                 <span>创建于:&nbsp;</span>
                 <span><?=$group['create_date']?></span>
@@ -45,7 +42,7 @@
     </div>
     <div id="single-group-tab">
         <ul id="single-group-leftTab" class="nav nav-pills">
-            <li class="<?php echo $tab == 'task' ? 'active' : ''; ?>">
+            <li class="<?php echo $tab == 'task' ? 'active' : ''; ?>" >
                 <a href="<?php echo esc_url(add_query_arg(array('tab' => 'task'), remove_query_arg(array('paged')))); ?>">群组任务</a>
             </li>
             <li class="<?php echo $tab == 'member' ? 'active' : ''; ?>">
