@@ -127,6 +127,9 @@
                 elseif (is_page('timer')){
                     require "algorithm/timer.php";
                 }
+                elseif (is_page('gettoken')){
+                    require "algorithm/server-sdk/API/gettoken.php";
+                }
                 elseif (is_page('changedomain')){
                     require "algorithm/changedomain.php";
                 }
@@ -220,6 +223,24 @@
                         require "404.php";
                     }
                     require "template/rbac/index.php";
+                }
+                elseif (is_page('create_role')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    if (!current_user_can( 'manage_options' )){
+                        require "404.php";
+                    }
+                    require "template/rbac/create_role.php";
+                }
+                elseif (is_page('create_permission')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    if (!current_user_can( 'manage_options' )){
+                        require "404.php";
+                    }
+                    require "template/rbac/create_permission.php";
                 }
                 elseif (is_page('join_ms')){
                     require "template/multi-university/join_ms.php";

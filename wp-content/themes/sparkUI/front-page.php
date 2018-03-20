@@ -52,6 +52,9 @@
     .front-icon {
         width: 85%;
     }
+    .container_1{
+        margin:50px 0 0 0;
+    }
 
     .col-md-4 .col-sm-4 .col-xs-4 {
         display: inline-block;
@@ -89,6 +92,7 @@ gp_notice_table_install();
 pmessage_table_install();
 notice_table_install();
 multischool_table_install();
+token_table_install();
 get_header();
 ?>
 <script>
@@ -139,9 +143,9 @@ get_header();
 </div>
 
 <div class="container">
-    <div class="container_1" id="front-page_1" style="margin: 50px 0 0 0;display: table">
+    <div class="container_1" id="front-page_1" style="display: table">
         <div class="col-md-4 col-sm-4 col-xs-12">
-            <div><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/wiki_icon.png"/></div>
+            <div id="front-img"><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/wiki_icon.png"/></div>
         </div>
         <div class="wiki_list col-md-8 col-sm-8 col-xs-12" style="display: inline-block">
             <div class="wiki_list_header">
@@ -187,7 +191,7 @@ get_header();
     </div>
     <div class="container_2" id="front-page_2" style="margin: 50px 0 0 0;display: table">
         <div class="col-md-4 col-sm-4 col-xs-12">
-            <div><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/qa_icon.png"/></div>
+            <div id="front-img"><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/qa_icon.png"/></div>
         </div>
         <div class="wiki_list col-md-8 col-sm-8 col-xs-12" style="display: inline-block">
             <div class="wiki_list_header">
@@ -226,7 +230,7 @@ get_header();
     </div>
     <div class="container_3" id="front-page_3" style="padding: 50px 0 50px 0;display: table">
         <div class="col-md-4 col-sm-4 col-xs-12">
-            <div><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/project_icon.png"/></div>
+            <div id="front-img"><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/project_icon.png"/></div>
         </div>
         <div class="wiki_list col-md-8 col-sm-8 col-xs-12" style="display: inline-block">
             <div class="wiki_list_header">
