@@ -33,7 +33,7 @@ if (isset($_GET['tab'])){
             <form class="navbar-form" role="search" method="get"
                   action="<?php echo esc_url(self_admin_url('process-search-group.php')); ?>"
                   style="float: right;padding-left: 0px;padding-right: 0px;margin-top: -3px">
-                <input type="text" class="form-control" id="search-content" style="width: 80%" placeholder="搜索群组"
+                <input type="text" class="form-control" id="search-content"  placeholder="搜索群组"
                        name="sg"/>
                 <button type="submit" class="btn btn-default btn-sm" id="search-group-btn">
                     <span class="glyphicon glyphicon-search"></span>
@@ -221,7 +221,7 @@ if (isset($_GET['tab'])){
             <form class="navbar-form" role="search" method="get"
                   action="<?php echo esc_url(self_admin_url('process-search-group.php')); ?>"
                   style="float: right;padding-left: 0px;padding-right: 0px;margin-top: -3px">
-                <input type="text" class="form-control" id="search-content" style="width: 85%" placeholder="搜索群组"
+                <input type="text" class="form-control" id="search-content"  placeholder="搜索群组"
                        name="sg"/>
                 <button type="submit" class="btn btn-default btn-sm" id="search-group-btn">
                     <span class="glyphicon glyphicon-search"></span>
@@ -253,7 +253,7 @@ if (isset($_GET['tab'])){
                             $author = $all_my_group[$i]['group_author'];
                             ?>
                             <li class="list-group-item">
-                                <div id="group-ava" style="position: relative">
+                                <div id="group-ava" >
                                     <? if(hasGPNotice($all_my_group[$i]['ID'])){?>
                                         <i id="red-point" style="width: 12px;height: 12px;"></i>
                                     <? } ?>
@@ -302,12 +302,12 @@ if (isset($_GET['tab'])){
                                         <span>管理员</span>
                                         <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
                                            style="color: #169bd5"><?php echo get_the_author_meta('user_login',$author) ?></a>
-                                        <div class="m-group_others">
-                                            <span><?= $member ?>个成员</span>&nbsp;&nbsp;
-                                            <span>管理员</span>
-                                            <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
-                                               style="color: #169bd5"><?php echo get_the_author_meta('user_login',$author) ?></a>
-                                        </div>
+                                    </div>
+                                    <div class="m-group_others">
+                                        <span><?= $member ?>个成员</span>&nbsp;&nbsp;
+                                        <span>管理员</span>
+                                        <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $author; ?>"
+                                           style="color: #169bd5"><?php echo get_the_author_meta('user_login',$author) ?></a>
                                     </div>
                                 </div>
 
@@ -386,3 +386,4 @@ if (isset($_GET['tab'])){
         </div>
     <?php }?>
 </div>
+>>>>>>> 22811d1707493cce94cc97aa5590927502e8a754

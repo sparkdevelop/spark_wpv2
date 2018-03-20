@@ -12,19 +12,6 @@ if (!$_GET['paged']) {
     $current_page = $page_num;
 }
 ?>
-<style>
-    #notice-ava {
-        display: inline-block;
-        vertical-align: top;
-        margin-top: 4px;
-        margin-left: 10px
-    }
-    #notice-info {
-        display: inline-block;
-        margin-left: 3%;
-        width: 75%;
-    }
-</style>
 <script>
     function all_message_read_delete() {
         layer.confirm('确定删除所有已读私信?', {
@@ -131,8 +118,8 @@ if (!$_GET['paged']) {
                     <div id="notice-ava">
                         <?php echo get_avatar($from_id, 40) ?>
                     </div>
-                    <div id="notice-content" style="display: inline-block;width:92%;">
-                        <div id="notice-info" style="display: inline-block;margin-left: 3%">
+                    <div id="notice-content">
+                        <div id="notice-info">
                             <a style="color: #169bd5;cursor: pointer"
                                href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $from_id; ?>">
                                 <?= $sender_name ?>
@@ -140,7 +127,7 @@ if (!$_GET['paged']) {
                             <span>给你发了一条消息: </span>
                             <div style="margin-top: 5px"><?= $message ?></div>
                         </div>
-                        <div id="notice-time" style="display: inline-block;float: right;margin-right: 5px">
+                        <div id="notice-time">
                             <div style="text-align: right">
                                 <?
                                 if (time() - strtotime($time) > 24 * 3600) {

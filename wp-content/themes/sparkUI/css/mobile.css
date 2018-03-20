@@ -7,7 +7,10 @@
     .row{
         margin: 0;
     }
-
+    .container{
+    margin-left: 0;
+    margin-right: 0;
+    }
     /*首页样式*/
     /*#webpage{*/
         /*display: none;*/
@@ -28,17 +31,8 @@
     /*}*/
     .front-icon{
         width:70%;
-        margin: 0 auto;
+        margin-top: 20px;
     }
-    .container_1{
-        margin:0 auto;
-    }
-    #front-img{
-        text-align: center;
-    }
-
-
-
 
     .head-box{
         height:auto !important;
@@ -425,6 +419,23 @@
     }
 
 /*群组主页*/
+    #search-group{
+        display: none;
+    }
+    #m-search-group{
+        display:inline-block;
+        float: right;
+        width:40%;
+    }
+    #search-group-btn{
+        width:15%;
+        position: relative;
+        float: right;
+        top: 0px;
+    }
+    #search-content{
+        width: 80%;
+    }
     #latest-active{
         display: none;
     }
@@ -433,7 +444,9 @@
         height: 80px;
     }
     #group-info{
-        margin-left: 50px;
+        display: inline-block;
+        margin-left: 5px;
+        width: 50%;
     }
     .group_title{
         margin-top: 0;
@@ -513,9 +526,11 @@
     }
     /*group_task*/
     .group-task{
+        display: inline-block;
         margin-top: 10px;
         margin-left: 10px;
         margin-bottom: 10px;
+        width: 100%;
     }
     .group-task-status-info{
         width: 60%;
@@ -530,10 +545,37 @@
         margin-top: 10px;
     }
     .group-task-btn{
-        display: inline-block;
-        vertical-align: super;
-        margin-left: 40px;
-        margin-bottom: 15px;
+        display: none;
+    }
+    .m-group-task-btn{
+        display: block;
+        float: right;
+        margin-right: 10px;
+        margin-top: 5px;
+        width:30%
+    }
+    .m-btn-green{
+        width: 60px;
+        height: 30px;
+        float: right;
+        font-size: 14px;
+        background-color: #1fbba6;
+        color: #fff;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        margin-top: 5px;
+    }
+    .m-btn-white{
+        width: 60px;
+        height: 30px;
+        float: right;
+        font-size: 14px;
+        margin-top: 0;
+        margin-right: 15px;
+        background-color: transparent;
+        color: #1fbba6;
+        border: 1px solid #1fbba6;
+        border-radius: 5px;
     }
     /*single_task_other*/
     #m-task-info{
@@ -559,22 +601,31 @@
     .form-control{
         /*width: auto;*/
     }
-    #search-group{
-        display: none;
+    /*single_group*/
+    #single-group-info{
+        display: inline-block;
+        margin-left: 5px;
+        width: 70%;
     }
-    #m-search-group{
-        display:inline-block;
+    /*通知*/
+    #notice-content{
+        display: inline-block;
+        width:80%;
+    }
+    #notice-info{
+        display: inline-block;
+        margin-left: 0;
+        width: 60%;
+    }
+    #notice-time{
+        display: inline-block;
         float: right;
-        width:44%;
+        margin-right: 0;
+        width: 40%;
     }
-    #search-group-btn{
-        width:25px;
-        position: relative;
+    #notice-date{
+        margin-top: 0;
+        width: 80%;
         float: right;
-        top: 0px;
     }
-
-
-
-
 }

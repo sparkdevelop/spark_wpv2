@@ -12,19 +12,6 @@ if (!$_GET['paged']) {
     $current_page = $page_num;
 }
 ?>
-<style>
-    #notice-ava {
-        display: inline-block;
-        vertical-align: top;
-        margin-top: 4px;
-        margin-left: 10px
-    }
-    #notice-info {
-        display: inline-block;
-        margin-left: 3%;
-        width: 75%;
-    }
-</style>
 <script>
     function all_notice_read_delete() {
         layer.confirm('确定删除所有已读通知?', {
@@ -158,7 +145,7 @@ if (!$_GET['paged']) {
                         <div id="notice-ava">
                             <?php echo  get_avatar($comment_author_id,40)?>
                         </div>
-                        <div id="notice-content" style="display: inline-block;width:92%;">
+                        <div id="notice-content">
                             <div id="notice-info">
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $comment_author_id; ?>"
                                    style="color: #169bd5"><?= $comment_author ?></a>
@@ -171,14 +158,14 @@ if (!$_GET['paged']) {
                                 <span><a onclick="notice_set_as_read('<?= $parent_post_link ?>',<?=$allMsg[$i]['ID']?>)" style="color:#169bd5;cursor: pointer"><?= $parent_post_title ?></a></span>
                                 <div style="margin-top: 5px"><?= $comment_content ?></div>
                             </div>
-                            <div id="notice-time" style="display: inline-block;float: right">
+                            <div id="notice-time">
                                 <?php
                                 if ($parent_post_type == "yada_wiki") {
                                     echo "<div class=\"badge\" id=\"my_group_badge\" style=\"float: inherit;margin-top: 0px\">wiki</div>";
                                 } else {
                                     echo "<span class=\"badge\" id=\"my_group_badge\" style=\"float: inherit;margin-top: 0px\">项目</span>";
                                 } ?>
-                                <div style="margin-top: 30px"><?= $comment_date ?></div>
+                                <div id="notice-date"><?= $comment_date ?></div>
                             </div>
                         </div>
                     <?php }
@@ -196,7 +183,7 @@ if (!$_GET['paged']) {
                         <div id="notice-ava">
                             <?php echo  get_avatar($comment_author_id,40)?>
                         </div>
-                        <div id="notice-content" style="display: inline-block;width:92%;">
+                        <div id="notice-content">
                             <div id="notice-info">
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $comment_author_id; ?>"
                                    style="color: #169bd5"><?= $comment_author ?></a>
@@ -210,14 +197,14 @@ if (!$_GET['paged']) {
                                 <span>中<span style="font-weight: bolder">回复</span>了你</span>
                                 <div style="margin-top: 5px"><?= $comment_content ?></div>
                             </div>
-                            <div id="notice-time" style="display: inline-block;float: right">
+                            <div id="notice-time">
                                 <?php
                                 if ($parent_post_type == "yada_wiki") {
                                     echo "<div class=\"badge\" id=\"my_group_badge\" style=\"float: inherit;margin-top: 0px\">wiki</div>";
                                 } else {
                                     echo "<span class=\"badge\" id=\"my_group_badge\" style=\"float: inherit;margin-top: 0px\">项目</span>";
                                 } ?>
-                                <div style="margin-top: 30px"><?= $comment_date ?></div>
+                                <div id="notice-date"><?= $comment_date ?></div>
                             </div>
                         </div>
                     <?php }
@@ -240,7 +227,7 @@ if (!$_GET['paged']) {
                         <div id="notice-ava">
                             <?php echo  get_avatar($ask_author_id,40)?>
                         </div>
-                        <div id="notice-content" style="display: inline-block;width:92%;">
+                        <div id="notice-content">
                             <div id="notice-info">
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $ask_author_id; ?>"
                                    style="color: #169bd5"><?= $ask_author_name ?></a>
@@ -256,14 +243,14 @@ if (!$_GET['paged']) {
                                     <a onclick="notice_set_as_read('<?=$question_link?>',<?=$allMsg[$i]['ID']?>)" style="color: #169bd5;cursor: pointer"><?= $question_title ?></a>
                                 </div>
                             </div>
-                            <div id="notice-time" style="display: inline-block;float: right">
+                            <div id="notice-time">
                                 <?php
                                 if ($parent_post_type == "yada_wiki") {
                                     echo "<div class=\"badge\" id=\"my_group_badge\" style=\"float: inherit;margin-top: 0px\">wiki</div>";
                                 } else {
                                     echo "<span class=\"badge\" id=\"my_group_badge\" style=\"float: inherit;margin-top: 0px\">项目</span>";
                                 } ?>
-                                <div style="margin-top: 30px"><?= $ask_date ?></div>
+                                <div id="notice-date"><?= $ask_date ?></div>
                             </div>
                         </div>
                     <?php }
@@ -281,7 +268,7 @@ if (!$_GET['paged']) {
                         <div id="notice-ava">
                             <?php echo  get_avatar($ans_author_id,40)?>
                         </div>
-                        <div id="notice-content" style="display: inline-block;width:92%;">
+                        <div id="notice-content">
                             <div id="notice-info">
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $ans_author_id; ?>"
                                    style="color: #169bd5"><?= $ans_author_name ?></a>
@@ -289,9 +276,9 @@ if (!$_GET['paged']) {
                                 <span><a onclick="notice_set_as_read('<?= $parent_post_link ?>',<?=$allMsg[$i]['ID']?>)" style="color:#169bd5;cursor: pointer"><?= $parent_post_title ?></a></span>
                                 <div style="margin-top: 5px"><?= $ans_content ?></div>
                             </div>
-                            <div id="notice-time" style="display: inline-block;float: right">
+                            <div id="notice-time">
                                 <div class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">问答</div>
-                                <div style="margin-top: 30px"><?= $ans_date ?></div>
+                                <div id="notice-date"><?= $ans_date ?></div>
                             </div>
                         </div>
                     <?php }
@@ -312,7 +299,7 @@ if (!$_GET['paged']) {
                         <div id="notice-ava">
                             <?php echo  get_avatar($question_author_id,40)?>
                         </div>
-                        <div id="notice-content" style="display: inline-block;width:92%;">
+                        <div id="notice-content">
                             <div id="notice-info">
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $question_author_id; ?>"
                                    style="color: #169bd5"><?= $question_author ?></a>
@@ -324,9 +311,9 @@ if (!$_GET['paged']) {
                                     <?= $ans_content ?>
                                 </div>
                             </div>
-                            <div id="notice-time" style="display: inline-block;float: right">
+                            <div id="notice-time">
                                 <div class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">问答</div>
-                                <div style="margin-top: 30px"><?= $ans_date ?></div>
+                                <div id="notice-date"><?= $ans_date ?></div>
                             </div>
                         </div>
                     <?php }
@@ -340,16 +327,16 @@ if (!$_GET['paged']) {
                         <div id="notice-ava">
                             <img src="<?php bloginfo("template_url") ?>/img/vote.png">
                         </div>
-                        <div id="notice-content" style="display: inline-block;width:92%;">
+                        <div id="notice-content">
                             <div id="notice-info">
                                 <span>有人在问题</span>
                                 <a onclick="notice_set_as_read('<?= $parent_post_link ?>',<?=$allMsg[$i]['ID']?>)" style="color:#169bd5;cursor: pointer"><?= $parent_post_title ?></a>
                                 <span>中<span style="font-weight: bolder">赞同了</span>您的答案</span>
                                 <div style="margin-top: 5px"><?= $ans_content ?></div>
                             </div>
-                            <div id="notice-time" style="display: inline-block;float: right">
+                            <div id="notice-time">
                                 <div class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">问答</div>
-                                <div style="margin-top: 30px"><?= $ans_date ?></div>
+                                <div id="notice-date"><?= $ans_date ?></div>
                             </div>
                         </div>
                     <?php } ?>
