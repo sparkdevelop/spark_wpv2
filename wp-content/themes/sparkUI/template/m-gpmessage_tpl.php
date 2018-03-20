@@ -99,7 +99,7 @@ if (!$_GET['paged']) {
     </div>
 </div>
 
-<div class="divline" style="margin-top: 0px;margin-bottom: -11px"></div>
+<div class="divline" style="margin-top: 0px"></div>
 <div id="rightTabContent" class="tab-content">
     <ul class="list-group">
         <?php if (count($allMsg) > 0) {
@@ -111,7 +111,7 @@ if (!$_GET['paged']) {
                     <style>
                         #notice-li-<?=$i?> {
                             background-color: #fafbe9;
-                            margin-top: 11px;
+                            /*margin-top: 11px;*/
                             padding-bottom: 0px;
                         }
                     </style>
@@ -121,7 +121,7 @@ if (!$_GET['paged']) {
                     <style>
                         #notice-li-<?=$i?> {
                             background-color: transparent;
-                            margin-top: 11px;
+                            /*margin-top: 11px;*/
                             padding-bottom: 0px;
                         }
                     </style>

@@ -116,6 +116,7 @@
 	//发送消息
 	var sendMessage = function(msg,callback){
 		var targetId = conversation.id; // 目标 Id
+		console.log("targetId"+targetId);
 		RongIMClient.getInstance().sendMessage(conversation.targetType, targetId, msg, {
             // 发送消息成功
             onSuccess: function (message) {
@@ -160,6 +161,8 @@
 
 	//显示新消息
 	var updateMessage = function(message){
+		console.log("update:");
+		console.log(message);
 		if (message.messageType == 'ReadReceiptMessage') {
 			return;//ReadReceiptMessage的messageType
 		}
@@ -186,6 +189,8 @@
 
 	//web push message
 	var pushMessage = function(msg){
+		console.log('pushMessage:');
+		console.log(msg);
 		if (terminal == 'pc') {
 			var title = '消息提醒';
 			var options = {
@@ -378,7 +383,7 @@
 		  	callbacks(list,hasMsg);
 		  },
 		  onError: function(error) {
-		    console.log("GetHistoryMessages,errorcode:" + error);
+		    console.log("GetHistoryMessages, errorcode:" + error);
 		  }
 		});
 	}
@@ -766,13 +771,13 @@
 		var msg = new RongIMLib.TextMessage(content);
 
 		var conversationType = RongIMLib.ConversationType.PRIVATE; // 私聊
-		var targetId = "bb";
+		var targetId = 22;
 		instance.sendMessage(conversationType, targetId, msg, {
 	        onSuccess: function (message) {
 	        	console.log(message);
 	        },
 	        onError: function (errorCode,message) {
-				console.log(errorCode);	        
+				console.log(errorCode+message);
 			}
 	    });
 	}
@@ -795,7 +800,7 @@
 				createButton(config);
 
 				//发送一条消息，为了确保有会话，实际使用时请删除
-				//sendTextMessage(instance);
+				sendTextMessage(instance);
 			},
 			getCurrentUser: function(userId){
 				showInfo(userId);
@@ -815,9 +820,9 @@
 	//页面显示当前用户信息
 	var showInfo = function(userId){
 		var dialog = document.createElement('h2');
-		dialog.innerText = '当前用户：';
+		//dialog.innerText = '当前用户：';
 		var userInfo = document.createElement('span');
-		userInfo.innerText = userId;
+		//userInfo.innerText = userId;
 		dialog.appendChild(userInfo);
 		document.body.appendChild(dialog);
 	}

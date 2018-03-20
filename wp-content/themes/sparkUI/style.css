@@ -2068,3 +2068,9 @@ h4 {
 #notice-date{
     margin-top: 30px
 }
+
+
+.rcs-chat-im-wrapper{
+    z-index: 1
+}
+

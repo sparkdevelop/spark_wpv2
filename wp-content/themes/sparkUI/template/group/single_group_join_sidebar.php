@@ -15,17 +15,6 @@
         flag = !flag;
     }
 </script>
-<script src="//cdn.ronghub.com/RongIMLib-2.2.8.min.js"></script>
-<!-- <script src="./libs/RongEmoji.js"></script> -->
-<script src="//cdn.ronghub.com/RongEmoji-2.2.6.min.js"></script>
-
-<script src="<?php bloginfo("template_url")?>/template/group/im/libs/utils.js"></script>
-<script src="<?php bloginfo("template_url")?>/template/group/im/libs/qiniu-upload.js"></script>
-
-<script src="<?php bloginfo("template_url")?>/template/group/im/template.js"></script>
-<script src="<?php bloginfo("template_url")?>/template/group/im/emoji.js"></script>
-<script src="<?php bloginfo("template_url")?>/template/group/im/im.js"></script>
-
 
 <style>
     #my_group_badge {
@@ -192,78 +181,4 @@
                 <?php } ?>
         </ul>
     </div>
-<!--    IM-->
-    <div id="rcs-app"></div>
 </div>
-<!-- 实例化 -->
-<script>
-    /*
-    具体使用时：
-    1：切换到自己的 key 和 token
-    2：移除 im.js 里的 sendTextMessage(instance); 这行代码
-    3：自行二次开发
-    4：参考
-        - 用户数据处理 http://support.rongcloud.cn/kb/NjQ5
-        - 消息状态 http://support.rongcloud.cn/kb/NjMz
-        - 集成指南 https://rongcloud.github.io/websdk-demo/integrate/guide.html
-        - 其他 demo https://github.com/rongcloud/websdk-demo
-    */
-    (function(){
-        var appKey = "3argexb6r934e";
-        var token = "b/jvjEFD41TIVT0nsf9+L3ryPPkHsvRwWZV8SVI5ICcZ2I5Nl4OdNO01OjZxjjmVlD2dmk4RZ90=";
-
-        RCS.init({
-            appKey: appKey,
-            token: token,
-            target: document.getElementById('rcs-app'),
-            showConversitionList: true,
-            templates: {
-                button: ['<div class="rongcloud-consult rongcloud-im-consult">',
-                    '   <button onclick="RCS.showCommon()"><span class="rongcloud-im-icon">进入 IM</span></button>',
-                    '</div>',
-                    '<div class="customer-service" style="display: none;"></div>'].join('')//"templates/button.html",
-                // chat: "templates/chat.html",
-                // closebefore: 'templates/closebefore.html',
-                // conversation: 'templates/conversation.html',
-                // endconversation: 'templates/endconversation.html',
-                // evaluate: 'templates/evaluate.html',
-                // imageView: 'templates/imageView.html',
-                // leaveword: 'templates/leaveword.html',
-                // main: 'templates/main.html',
-                // message: 'templates/message.html',
-                // messageTemplate: 'templates/messageTemplate.html',
-                // userInfo: 'templates/userInfo.html',
-            },
-            extraInfo: {
-                // 当前登陆用户信息
-                userInfo: {
-                    name: "游客",
-                    grade: "VIP"
-                },
-                // 产品信息
-                requestInfo: {
-                    productId: "123",
-                    referrer: "10001",
-                    define: "" // 自定义信息
-                }
-            }
-        });
-    })()
-
-
-</script>
-<script>
-    var flag_group = false;
-    function show_all_groups() {
-        var $all_groups=document.getElementById('all_groups');
-        var $joined_groups = document.getElementById('joined_groups');
-        if(flag_group){
-            $all_groups.style.display ="block";
-            $joined_groups.style.display="none";
-        }else{
-            $all_groups.style.display="none";
-            $joined_groups.style.display="block";
-        }
-        flag_group =! flag_group;
-    }
-</script>
