@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo('stylesheet_directory')?>/datetimepicker/css/bootstrap-datetimepicker.min.css" />
     <!--    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.js"></script>-->
 <!--    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <link rel="stylesheet" href="<?php bloginfo("template_url")?>/template/group/im/im.css">
     <meta charset="UTF-8">
     <title>火花空间</title>
 <!--    --><?php //wp_enqueue_style('sparkUI',get_stylesheet_uri());//加载jquery?>
