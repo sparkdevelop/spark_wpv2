@@ -38,7 +38,7 @@
 <div id="rl-search-box">
     <input type="text" id="rl-text" class="form-control" placeholder="请输入角色名称/ID">
     <button class="btn btn-green">搜索</button>
-    <button class="btn btn-green">新建角色</button>
+    <button class="btn btn-green" onclick="window.open('<?=site_url().get_page_address('create_role')?>')">新建角色</button>
 </div>
 <div id="rl-table" style="margin-top: 30px">
 

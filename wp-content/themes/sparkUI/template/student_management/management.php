@@ -102,6 +102,7 @@ if($type == 'int'){
     }
     $presults = getTagInfo($start,$end,$wpdb,'post',$xData);
     $qresults = getTagInfo($start,$end,$wpdb,'dwqa-question',$xData);
+
 }
 ?>
 
@@ -262,8 +263,8 @@ if($type == 'int'){
                     }
                     var current_url = '<?php echo esc_url(add_query_arg(array(), remove_query_arg(array('start', 'end', 'words', 'type')))); ?>';
                     var words = $('#tags').val();
-                    console.info(current_url)
-                    location.href = current_url + '&type=fre' + '&start=' + start + '&end=' + end + '&words=' + words;
+                    console.log(current_url);
+                    //location.href = current_url + '\&type=fre' + '\&start=' + start + '\&end=' + end + '\&words=' + words;
                 })
                 $("#datepicker1").datepicker({
                     maxDate: "+0D",

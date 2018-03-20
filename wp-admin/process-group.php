@@ -70,6 +70,7 @@
         $wpdb->query($sql_gp);
         $wpdb->query($sql_member);
     }
+    getGroupToken($group_author,$group_id,$group_name);
 
 $url= site_url().get_page_address('group');
 ?>

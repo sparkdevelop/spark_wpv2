@@ -80,17 +80,38 @@ function join_the_group($group_id,$admin_url) {
         dataType:"text",
         success: function (response) {
             if(response.trim()=='freejoin'){
+                // var rongData = {
+                //     action: 'rongCloudJoinGroup',
+                //     group_id: $group_id
+                // };
+                // $.ajax({
+                //     type: "POST",
+                //     url: $admin_url,
+                //     data: rongData,
+                //     dataType:"json",
+                //     success: function (res) {},
+                //     error:function (XMLHttpRequest, textStatus, errorThrown) {
+                //         // 状态码
+                //         console.log(XMLHttpRequest.status);
+                //         // 状态
+                //         console.log(XMLHttpRequest.readyState);
+                //         // 错误信息
+                //         console.log(errorThrown);
+                //     }
+                // });
                 layer.msg("您已成功加入", {time: 2000, icon: 1});
                 location.reload();
-            }else if(response.trim()=='verify'){
-                layer.msg("申请已发送,等待管理员审核", {time: 3000, icon: 1});
-                // location.reload();
-            }else{
+            }else {
                 layer.msg("申请已发送,等待管理员审核", {time: 3000, icon: 1});
             }
         },
-        error:function () {
-            alert("error");
+        error:function (XMLHttpRequest, textStatus, errorThrown) {
+            // 状态码
+            console.log(XMLHttpRequest.status);
+            // 状态
+            console.log(XMLHttpRequest.readyState);
+            // 错误信息
+            console.log(errorThrown);
         }
     });
 }
@@ -108,11 +129,36 @@ function quit_the_group($group_id,$admin_url) {
         url: $admin_url,
         data: data,
         success: function () {
+            // var rongData = {
+            //     action: 'rongCloudQuitGroup',
+            //     group_id: $group_id
+            // };
+            // $.ajax({
+            //     type: "POST",
+            //     url: $admin_url,
+            //     data: rongData,
+            //     dataType:"json",
+            //     success: function (res) {
+            //     },
+            //     error:function (XMLHttpRequest, textStatus, errorThrown) {
+            //         // 状态码
+            //         console.log(XMLHttpRequest.status);
+            //         // 状态
+            //         console.log(XMLHttpRequest.readyState);
+            //         // 错误信息
+            //         console.log(errorThrown);
+            //     }
+            // });
             layer.msg("您已成功退群", {time: 2000, icon: 1});
             location.reload();
         },
-        error: function () {
-            alert("error");
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            // 状态码
+            console.log(XMLHttpRequest.status);
+            // 状态
+            console.log(XMLHttpRequest.readyState);
+            // 错误信息
+            console.log(errorThrown);
         }
     });
 }
@@ -676,50 +722,106 @@ function send_private_message($url){
 }
 
 
-//加复选框
-function initTableCheckbox($table_id) {
-    var $thr = $($table_id+' thead tr');
-    var $checkAllTh = $('<th><input type="checkbox" id="checkAll" name="checkAll" /></th>');
-    /*将全选/反选复选框添加到表头最前，即增加一列*/
-    $thr.prepend($checkAllTh);
-    /*全选框*/
-    var $checkAll = $thr.find('input'); //checkbox
-    $checkAll.click(function (event) {
-        /*将所有行的选中状态设成全选框的选中状态*/
-        $tbr.find('input').prop('checked', $(this).prop('checked'));
-        /*并调整所有选中行的CSS样式*/
-        if ($(this).prop('checked')) {
-            $tbr.find('input').parent().parent().addClass('warning');
-        } else {
-            $tbr.find('input').parent().parent().removeClass('warning');
-        }
-        /*保存选中行的数据  每点击一次,push 一个id进来*/
-//                var td = new Array();
-//                td.push($('.warning'));
-//                saveChecked(td);
-        /*阻止向上冒泡，以防再次触发点击操作*/
-        event.stopPropagation();
-    });
-    /*点击全选框所在单元格时也触发全选框的点击操作*/
-    $checkAllTh.click(function () {
-        $(this).find('input').click();
-    });
-    var $tbr = $($table_id+' tbody tr');
-    var $checkItemTd = $('<td><input type="checkbox" name="checkItem" /></td>');
-    /*每一行都在最前面插入一个选中复选框的单元格*/
-    $tbr.prepend($checkItemTd);
-    /*点击每一行的选中复选框时*/
-    $tbr.find('input').click(function (event) {
-        /*调整选中行的CSS样式*/
-        $(this).parent().parent().toggleClass('warning');
-        /*如果已经被选中行的行数等于表格的数据行数，将全选框设为选中状态，否则设为未选中状态*/
-        $checkAll.prop('checked', $tbr.find('input:checked').length == $tbr.find('input').length ? true : false);
-        /*阻止向上冒泡，以防再次触发点击操作*/
-        event.stopPropagation();
-    });
-    /*点击每一行时也触发该行的选中操作*/
-    $tbr.click(function () {
-        $(this).find('input').click();
-    });
-}
 
+//联想查询
+function autoComplete(response, tab, part) {
+    var arr = response.split("|");
+    arr.pop();
+    var li = "";
+    var ac_id = "#autocomplete-" + part;
+    if (arr.length != 0) {
+        $.each(arr, function (i, val) {
+            li += "<li class='list-group-item'>" + val + "</li>";
+        });
+        $(ac_id + " ul").html(li);
+        $(ac_id).slideDown('fast');
+        //鼠标经过元素的背景颜色改变
+        $(ac_id + " ul li").bind('mouseenter', function () {
+            $(this).css({'background': '#e9e8e9'})
+        });
+        $(ac_id + " ul li").bind('mouseleave', function () {
+            $(this).css({'background': 'transparent'})
+        });
+        $(ac_id + " ul li").bind('click', function () {
+            $("#" + tab + "-" + part + "-input").val($(this).html());
+            $(ac_id).slideUp('fast');
+        });
+    }
+    else {
+        $(ac_id).slideUp('fast');
+    }
+}
+//添加到选择table
+function addToChosen(tab,type,url) {
+
+    var input_id = '#'+tab+'-'+type+'-input';
+    var name = $(input_id).val();
+    var data = {
+        action: 'rbac_hasItem',
+        part:type,
+        word: name
+    };
+    $.ajax({
+        type: 'post',
+        url: url,
+        data: data,
+        dataType: 'text',
+        success: function (response) {
+            if (response.trim() == 1) {  // 如果没有
+                if (type == 'permission') {
+                    layer.msg("无此权限", {time: 2000, icon: 2})
+                }else if(type == 'user'){
+                    layer.msg("无此用户", {time: 2000, icon: 2})
+                }else{
+                    layer.msg("无此角色", {time: 2000, icon: 2})
+                }
+            }
+            else {
+                //step1:执行逻辑是先加入一行,包括一个多选框和一个数据
+                var tr = '<tr><td>' + name + '</td></tr>';
+                $('#' + type + '-choose-table-border tbody:last').append(tr);    //添加数据
+                var $tbr = $('#' + type + '-choose-table-border tbody tr:last');
+                var $checkItemTd = $('<td><input type="checkbox" name="checkItem" checked/></td>');   //添加复选框
+                $tbr.prepend($checkItemTd);
+                $tbr.find('input').click(function (event) {
+                    /*调整选中行的CSS样式*/
+                    $(this).parent().parent().toggleClass('warning');
+                    /*阻止向上冒泡，以防再次触发点击操作*/
+                    event.stopPropagation();
+                });
+                /*点击每一行时也触发该行的选中操作*/
+                // $tbr.click(function () {
+                //     $(this).find('input').click();
+                // });
+                //step2:将事件绑定到刚刚添加的元素上
+                var choose_table_id ='#' + type + '-choose-table-border';
+                var show_table_id = '#'+type+'-info-table-border';
+                addClickEvent(choose_table_id,type,show_table_id,url);
+            }
+        }
+    })
+}
+//添加table中的data点击事件
+function addClickEvent(choose_table_id,type,show_table_id,url) {
+    $(choose_table_id+' tbody tr td').bind('click', function () {
+        var name = this.innerText;
+        var data = {
+            action: 'rbac_get_info',
+            part: type,
+            word: name
+        };
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: data,
+            dataType: 'json',
+            success: function (response) {
+                var info = $(show_table_id +' tbody tr');
+                for (var i=0;i<info.length;i++){
+                    var tmp = info[i].childNodes[3].innerText;
+                    info[i].childNodes[3].innerText = response[i];
+                }
+            }
+        })
+    })
+}

@@ -28,8 +28,17 @@
     /*}*/
     .front-icon{
         width:70%;
-        margin-top: 20px;
+        margin: 0 auto;
     }
+    .container_1{
+        margin:0 auto;
+    }
+    #front-img{
+        text-align: center;
+    }
+
+
+
 
     .head-box{
         height:auto !important;
@@ -556,7 +565,7 @@
     #m-search-group{
         display:inline-block;
         float: right;
-        width:48%;
+        width:44%;
     }
     #search-group-btn{
         width:25px;
@@ -564,4 +573,8 @@
         float: right;
         top: 0px;
     }
+
+
+
+
 }

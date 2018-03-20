@@ -27,6 +27,8 @@
     //控制导航栏显示哪几个page
     global $budao_official;
     $budao_official = "腾讯云@沙邮-布道师大赛";
+    global $appKey;
+    global $appSecret;
     $page_wiki_id = get_page_id('wiki_index');
     $page_qa_id = get_page_id('qa');
     $page_project_id =get_page_id('project');

@@ -2785,6 +2785,7 @@ function join_the_group()
             $sql_add_count = "update wp_gp set member_count = (member_count+1) WHERE ID = $group_id";
             $wpdb->get_results($sql_add_count);
 
+            rongCloudJoinGroup2($user_id,$group_id);
             $response = "freejoin";
         }
         elseif ($verify_type == "verify") {
@@ -2836,6 +2837,7 @@ function quit_the_group()
         $sql_cut_count = "update wp_gp set member_count = (member_count-1) WHERE ID = $group_id";
         $wpdb->get_results($sql_cut_count);
 
+        rongCloudQuitGroup2($user_id,$group_id);
         //==============notice================
         foreach ($admin_id_arr as $admin) {
             $admin_id = $admin['user_id'];
@@ -2933,10 +2935,13 @@ function verify_pass()
     if ($group_id != "") {   //前提
         if ($user_id != "") {
             verify_pass_process($user_id, $group_id);
+            //融云
+            //rongCloudJoinGroup($user_id,$group_id,get_group($group_id)[0]['group_name']);
         } else {
             $all_verify_info = get_member_verify_tmp($group_id);
             foreach ($all_verify_info as $tmp) {
                 verify_pass_process($tmp['user_id'], $group_id);
+                //rongCloudJoinGroup($tmp['user_id'],$group_id,get_group($group_id)[0]['group_name']);
             }
         }
     }
@@ -2946,10 +2951,10 @@ function verify_pass()
      * 首先判断本群是否为官方群,如果是
      * 创建一个新的群组,
      * */
-    $budao_official = isset($_POST['budao_official']) ? $_POST['budao_official'] : "";
-    if ($group_id == get_group_id_by_name($budao_official)) {
-        //create_budao_group($user_id);
-    }
+//    $budao_official = isset($_POST['budao_official']) ? $_POST['budao_official'] : "";
+//    if ($group_id == get_group_id_by_name($budao_official)) {
+//        //create_budao_group($user_id);
+//    }
     exit();
 }
 add_action('wp_ajax_verify_pass', 'verify_pass');
@@ -3000,6 +3005,8 @@ function verify_pass_process($user_id, $group_id)
 
     $sql_delete_tmp = "delete from wp_gp_member_verify_tmp WHERE user_id = $user_id and group_id = $group_id";
     $wpdb->get_results($sql_delete_tmp);
+
+    rongCloudJoinGroup2($user_id,$group_id);
 }
 
 function verify_ignore_process($user_id, $group_id)
@@ -3125,7 +3132,9 @@ function kick_out_the_group()
                 $wpdb->get_results($sql_member);
                 $sql_cut_count = "update wp_gp set member_count = (member_count-1) WHERE ID = $group_id";
                 $wpdb->get_results($sql_cut_count);
+                rongCloudQuitGroup2($user_id[$i],$group_id);
             }
+
             $response = "success";
 
             //notice
@@ -4513,31 +4522,229 @@ function multischool_table_install()
 
 
 //权限管理系统
-function get_all_permissions(){
 
-    $result = ['北邮','北师大','北工大','华科'];
-
-    return $result;
+//获取所有type=permission、role、user
+function rbac_get_all_items($type){
+    if($type == 'permission'){
+        $result = ['北邮','北师大','北工大','华科'];
+        return $result;
+    }elseif($type == 'user'){
+        $result = ['zhang','zhangxue','park','piaoning'];
+        return $result;
+    }else{
+        $result = ['学生','北邮','大一','大二'];
+        return $result;
+    }
 }
-function autocomplete_permission(){
+
+//联想功能
+function rbac_autocomplete()
+{
     //为了联想
-    $all_permission = get_all_permissions();   //json串
+    $type = $_POST['part'];
     $word = $_POST['word'];
+    $all_items = rbac_get_all_items($type);   //json串
     $tmp = '';
-    if($word!=''){
-        $pattern = "/".$word."/i";
-        foreach($all_permission as $value){
-            if(preg_match($pattern, $value)){   //如果搜到
+    if ($word != '') {
+        $pattern = "/" . $word . "/i";
+        foreach ($all_items as $value) {
+            if (preg_match($pattern, $value)) {   //如果搜到
                 $tmp .= $value;
-                $tmp .='|';
+                $tmp .= '|';
             }
         }
     }
     echo $tmp;
     die();
 }
-add_action('wp_ajax_autocomplete_permission', 'autocomplete_permission');
-add_action('wp_ajax_nopriv_autocomplete_permission', 'autocomplete_permission');
+add_action('wp_ajax_rbac_autocomplete', 'rbac_autocomplete');
+add_action('wp_ajax_nopriv_rbac_autocomplete', 'rbac_autocomplete');
+
+//判断是否有权限、用户、角色
+function rbac_hasItem(){
+    //为了联想
+    $type = $_POST['part'];
+    $word = $_POST['word'];
+    $all_items = rbac_get_all_items($type);   //数组
+    if (in_array($word,$all_items)){echo 0;}
+    else{echo 1;}
+    die();
+}
+add_action('wp_ajax_rbac_hasItem', 'rbac_hasItem');
+add_action('wp_ajax_nopriv_rbac_hasItem', 'rbac_hasItem');
+
+//获取用户、角色、权限表格中的信息
+function rbac_get_info(){
+    $type = $_POST['part'];
+    $word = $_POST['word'];
+    if($type == 'user'){
+        //有数据库有变为查询语句
+        if($word == 'piaoning'){
+            $tmp =['朴宁',10000,'北邮','男','2017-10-14','学生|管理员|北邮|','查看所有wiki|查看北邮项目'];
+        }elseif($word=='zhangxue'){
+            $tmp =['张雪',999,'北邮','女','2016-09-14','管理员|北邮|','查看所有wiki'];
+        }else{
+            $tmp = [1,2,3,4,5,6,7];
+        }
+        echo json_encode($tmp);
+        die();
+    }elseif ($type == 'permission'){
+        if($word == '北邮'){
+            $tmp =['北邮','2018-2-12','学生|大一','说明'];
+        }elseif($word=='北师大'){
+            $tmp =['北师大','2018-2-14','教师|大二','说明'];
+        }else{
+            $tmp = [1,2,3,4,5,6,7];
+        }
+        echo json_encode($tmp);
+        die();
+    }else{
+        if($word == '北邮'){
+            $tmp =['北邮','2018-2-12','学生|大一'];
+        }elseif($word=='北师大'){
+            $tmp =['北师大','2018-2-14','教师|大二'];;
+        }else{
+            $tmp = [1,2,3,4,5,6,7];
+        }
+        echo json_encode($tmp);
+        die();
+    }
+}
+add_action('wp_ajax_rbac_get_info', 'rbac_get_info');
+add_action('wp_ajax_nopriv_rbac_get_info', 'rbac_get_info');
+
+//建立token表
+function token_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "token";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          kID int AUTO_INCREMENT PRIMARY KEY,
+          id int NOT NULL,
+          t_type text NOT NULL,
+          token text NOT NULL,
+          modified_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+function getUserToken($user_id,$user_name,$avatar_url){ //注册用户
+    global $wpdb;
+    $appKey = '82hegw5u8y3bx';
+    $appSecret= '3xiNmMC4VLWKr7';
+    include 'algorithm/server-sdk/API/rongcloud.php';
+    // 获取 Token 方法
+    $RongCloud = new RongCloud($appKey,$appSecret);;
+    $result = $RongCloud->user()->getToken($user_id, $user_name, $avatar_url);
+    $token_array = json_decode($result);
+    if ($token_array->code ==200){
+        $sql = "select id from wp_token WHERE id = $token_array->userId and t_type = 'user'";
+        $col = $wpdb->query($sql);
+        $modified_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+        if ($col == 0 ){   //未注册过
+            $sql_insert = "insert into wp_token VALUES ('',$token_array->userId,'user','$token_array->token','$modified_time')";
+            $wpdb->query($sql_insert);
+            //            echo "user:".$token_array->userId."注册成功";
+        }else{  //已注册过,刷新
+            $sql_update = "update wp_token set token = '$token_array->token',modified_time = '$modified_time' WHERE id=$token_array->userId";
+            $wpdb->query($sql_update);
+        }
+    }
+}
+function getGroupToken($user_array,$group_id,$group_name){
+    $appKey = '82hegw5u8y3bx';
+    $appSecret= '3xiNmMC4VLWKr7';
+    include 'algorithm/server-sdk/API/rongcloud.php';
+    // 获取 Token 方法   group没有token
+    $RongCloud = new RongCloud($appKey,$appSecret);;
+    $result = $RongCloud->group()->create($user_array, $group_id, $group_name);
+    $token_array = json_decode($result);
+    if ($token_array->code !=200){
+        echo "error".$token_array->code;
+    }
+}
+
+function hasToken($user_id){
+    global $wpdb;
+    $sql = "select id from wp_token WHERE id =$user_id";
+    $col = $wpdb->query($sql);
+    if($col!=0) return true;
+    else return false;
+}
+
+
+function rongCloudJoinGroup(){
+    global $wpdb;
+    include 'algorithm/server-sdk/API/rongcloud.php';
+    $group_id = $_POST['group_id'];
+    $user_id = get_current_user_id();
+    $group_name = get_group($group_id)[0]['group_name'];
+    $appKey = '82hegw5u8y3bx';
+    $appSecret= '3xiNmMC4VLWKr7';
+    $RongCloud = new RongCloud($appKey,$appSecret);
+    if(!hasToken($user_id)){
+        $avatar_url =  site_url()."/wp-content/themes/sparkUI/img/rongcloud-avatar.png";
+        $user_name = get_the_author_meta('user_login', $user_id);
+        getUserToken($user_id,$user_name,$avatar_url);
+    }
+
+    $result = $RongCloud->group()->join([$user_id], $group_id, $group_name);
+    $token_array = json_decode($result);
+    if ($token_array->code !=200){
+        echo "error";
+    }
+    echo $result;
+    die();
+}
+add_action('wp_ajax_rongCloudJoinGroup', 'rongCloudJoinGroup');
+add_action('wp_ajax_nopriv_rongCloudJoinGroup', 'rongCloudJoinGroup');
+
+function rongCloudQuitGroup(){
+    include 'algorithm/server-sdk/API/rongcloud.php';
+    $group_id = $_POST['group_id'];
+    $user_id = get_current_user_id();
+    $appKey = '82hegw5u8y3bx';
+    $appSecret= '3xiNmMC4VLWKr7';
+    $RongCloud = new RongCloud($appKey,$appSecret);
+    $result = $RongCloud->group()->quit([$user_id], $group_id);
+    $token_array = json_decode($result);
+    if ($token_array->code !=200){
+        echo "error";
+    }
+    echo $result;
+    die();
+}
+add_action('wp_ajax_rongCloudQuitGroup', 'rongCloudQuitGroup');
+add_action('wp_ajax_nopriv_rongCloudQuitGroup', 'rongCloudQuitGroup');
+
+
+function rongCloudJoinGroup2($user_id,$group_id){
+    global $wpdb;
+    include 'algorithm/server-sdk/API/rongcloud.php';
+    $group_name = get_group($group_id)[0]['group_name'];
+    $appKey = '82hegw5u8y3bx';
+    $appSecret= '3xiNmMC4VLWKr7';
+    $RongCloud = new RongCloud($appKey,$appSecret);
+    if(!hasToken($user_id)){
+        $avatar_url =  site_url()."/wp-content/themes/sparkUI/img/rongcloud-avatar.png";
+        $user_name = get_the_author_meta('user_login', $user_id);
+        getUserToken($user_id,$user_name,$avatar_url);
+    }
+
+    $result = $RongCloud->group()->join([$user_id], $group_id, $group_name);
+}
+function rongCloudQuitGroup2($user_id,$group_id){
+    include 'algorithm/server-sdk/API/rongcloud.php';
+    $appKey = '82hegw5u8y3bx';
+    $appSecret= '3xiNmMC4VLWKr7';
+    $RongCloud = new RongCloud($appKey,$appSecret);
+    $result = $RongCloud->group()->quit([$user_id], $group_id);
+}
+
+
 
 
 
