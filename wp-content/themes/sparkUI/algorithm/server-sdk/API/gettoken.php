@@ -4,7 +4,7 @@
  */
 
 global $wpdb;
-include 'rongcloud.php';
+include_once 'rongcloud.php';
 $appKey = '82hegw5u8y3bx';
 $appSecret= '3xiNmMC4VLWKr7';
 $sql_user = "select ID,user_login from wp_users ORDER BY ID ASC limit 0,10";

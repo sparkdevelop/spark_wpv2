@@ -4635,7 +4635,7 @@ function getUserToken($user_id,$user_name,$avatar_url){ //注册用户
     global $wpdb;
     $appKey = '82hegw5u8y3bx';
     $appSecret= '3xiNmMC4VLWKr7';
-    include 'algorithm/server-sdk/API/rongcloud.php';
+    include_once 'algorithm/server-sdk/API/rongcloud.php';
     // 获取 Token 方法
     $RongCloud = new RongCloud($appKey,$appSecret);;
     $result = $RongCloud->user()->getToken($user_id, $user_name, $avatar_url);
@@ -4657,7 +4657,7 @@ function getUserToken($user_id,$user_name,$avatar_url){ //注册用户
 function getGroupToken($user_array,$group_id,$group_name){
     $appKey = '82hegw5u8y3bx';
     $appSecret= '3xiNmMC4VLWKr7';
-    include 'algorithm/server-sdk/API/rongcloud.php';
+    include_once 'algorithm/server-sdk/API/rongcloud.php';
     // 获取 Token 方法   group没有token
     $RongCloud = new RongCloud($appKey,$appSecret);;
     $result = $RongCloud->group()->create($user_array, $group_id, $group_name);
@@ -4678,7 +4678,7 @@ function hasToken($user_id){
 
 function rongCloudJoinGroup(){
     global $wpdb;
-    include 'algorithm/server-sdk/API/rongcloud.php';
+    include_once  'algorithm/server-sdk/API/rongcloud.php';
     $group_id = $_POST['group_id'];
     $user_id = get_current_user_id();
     $group_name = get_group($group_id)[0]['group_name'];
@@ -4703,7 +4703,7 @@ add_action('wp_ajax_rongCloudJoinGroup', 'rongCloudJoinGroup');
 add_action('wp_ajax_nopriv_rongCloudJoinGroup', 'rongCloudJoinGroup');
 
 function rongCloudQuitGroup(){
-    include 'algorithm/server-sdk/API/rongcloud.php';
+    include_once  'algorithm/server-sdk/API/rongcloud.php';
     $group_id = $_POST['group_id'];
     $user_id = get_current_user_id();
     $appKey = '82hegw5u8y3bx';
@@ -4723,7 +4723,7 @@ add_action('wp_ajax_nopriv_rongCloudQuitGroup', 'rongCloudQuitGroup');
 
 function rongCloudJoinGroup2($user_id,$group_id){
     global $wpdb;
-    include 'algorithm/server-sdk/API/rongcloud.php';
+    include_once  'algorithm/server-sdk/API/rongcloud.php';
     $group_name = get_group($group_id)[0]['group_name'];
     $appKey = '82hegw5u8y3bx';
     $appSecret= '3xiNmMC4VLWKr7';
@@ -4737,7 +4737,7 @@ function rongCloudJoinGroup2($user_id,$group_id){
     $result = $RongCloud->group()->join([$user_id], $group_id, $group_name);
 }
 function rongCloudQuitGroup2($user_id,$group_id){
-    include 'algorithm/server-sdk/API/rongcloud.php';
+    include_once  'algorithm/server-sdk/API/rongcloud.php';
     $appKey = '82hegw5u8y3bx';
     $appSecret= '3xiNmMC4VLWKr7';
     $RongCloud = new RongCloud($appKey,$appSecret);

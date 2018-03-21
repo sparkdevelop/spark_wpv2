@@ -6,14 +6,14 @@
  * 
  * v2.0.1
  */
-include 'SendRequest.php';
-include 'methods/User.php';
-include 'methods/Message.php';
-include 'methods/Wordfilter.php';
-include 'methods/Group.php';
-include 'methods/Chatroom.php';
-include 'methods/Push.php';
-include 'methods/SMS.php';
+include_once 'SendRequest.php';
+include_once 'methods/User.php';
+include_once 'methods/Message.php';
+include_once 'methods/Wordfilter.php';
+include_once 'methods/Group.php';
+include_once 'methods/Chatroom.php';
+include_once 'methods/Push.php';
+include_once 'methods/SMS.php';
     
 class RongCloud
 {

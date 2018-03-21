@@ -84,13 +84,10 @@
     overflow: hidden;
     /*height: 100%;*/
     box-sizing: border-box;
-    position: absolute;
     border-radius: 4px;
-
     width: 194px;
     height: 470px;
     position: fixed;
-    left: 1143px;
     bottom: 80px;
     z-index: 999;
     box-shadow: 1px 1px #f9fafb;
@@ -98,8 +95,8 @@
     box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 5px 2px;
 }
 .rongcloud-imList{
-    left: 50px;
-    right: auto;
+    left: auto;
+    right: 10px;
 }
 .rongcloud-kefuListBox .rongcloud-kefuList .rongcloud-rong-header{
     height: 36px;
@@ -1268,13 +1265,13 @@
 .rcs-chat-wrapper{
     position:fixed;
     bottom: 80px;
-    left: 670px;
+    /*left: 670px;*/
     width: 470px;
     height: 470px;
 }
 .rcs-chat-im-wrapper{
-    left: 670px;
-    right: auto;
+    left: auto;
+    right: 220px;
 }
 
 .leavemessageHref{
