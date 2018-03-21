@@ -11,6 +11,7 @@ $invitation_member = array_unique($invitation_member);
 foreach ($invitation_member as $value){
     $id = get_the_ID_by_name($value);
     invitation_join_the_group($id,$group_id);
+    rongCloudJoinGroup2($id,$group_id);
 }
 
 function invitation_join_the_group($user_id,$group_id){
@@ -32,6 +33,7 @@ function invitation_join_the_group($user_id,$group_id){
             }
             $sql_add_count = "update wp_gp set member_count = (member_count+1) WHERE ID = $group_id";
             $wpdb->get_results($sql_add_count);
+
         }elseif ($verify_type == "verify"){
             //等待验证即可,将其存入tmp表
             $sql_member = "INSERT INTO wp_gp_member_verify_tmp VALUES ('',$user_id,$group_id,'$current_time','')";

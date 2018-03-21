@@ -2069,8 +2069,7 @@ h4 {
     margin-top: 30px
 }
 
-
-.rcs-chat-im-wrapper{
+.rcs-chat-im-wrapper,.rongcloud-im-consult{
     z-index: 1
 }
 

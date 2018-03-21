@@ -116,7 +116,9 @@
 	//发送消息
 	var sendMessage = function(msg,callback){
 		var targetId = conversation.id; // 目标 Id
-		console.log("targetId"+targetId);
+
+		console.log("conversation");
+		console.log(conversation);
 		RongIMClient.getInstance().sendMessage(conversation.targetType, targetId, msg, {
             // 发送消息成功
             onSuccess: function (message) {
@@ -292,7 +294,7 @@
 		  		//用户信息处理 http://support.rongcloud.cn/kb/NjQ5
 		  		var _list = [];
 		    	for (var i = 0; i < list.length; i++) {
-		    		if (list[i].conversationType == RongIMLib.ConversationType.PRIVATE) {
+		    		if (list[i].conversationType == RongIMLib.ConversationType.GROUP) {
 		    			_list.push(list[i]);
 		    		}
 		    	}
@@ -340,7 +342,7 @@
 
 	//进入指定会话
 	var openConversation = function(conversation){
-		conversation.targetType = RongIMLib.ConversationType.PRIVATE;
+		conversation.targetType = RongIMLib.ConversationType.GROUP;
 		var chat = $(".rcs-chat-wrapper")[0];
 		var callbacks = function(list,hasMsg){
 			var data = {};
@@ -349,7 +351,7 @@
 			messageList.list = modificateMessage(list);
 
 			data.messageList = render(templates.imMessage, messageList);
-			data.targetName = '用户：'+conversation.id;
+			data.targetName = '群组：'+conversation.id;
 			data.terminal = terminal;
 			$(".rcs-chat-wrapper")[0].innerHTML = render(templates.chat, data);
 			scrollBottom();
@@ -373,7 +375,7 @@
 
 	//拉去消息记录
 	var getHisMessage = function(conversationId,timestrap,count,callbacks){
-		var conversationType = RongIMLib.ConversationType.PRIVATE; //私聊,其他会话选择相应的消息类型即可。
+		var conversationType = RongIMLib.ConversationType.GROUP; //私聊,其他会话选择相应的消息类型即可。
 		var targetId = conversationId; // 想获取自己和谁的历史消息，targetId 赋值为对方的 Id。
 		// timestrap默认传 null，若从头开始获取历史消息，请赋值为 0 ,timestrap = 0;
 		// count每次获取的历史消息条数，范围 0-20 条，可以多次获取。
@@ -644,9 +646,6 @@
 		            case RongIMLib.ConnectionStatus.NETWORK_UNAVAILABLE:
 		              	console.log('网络不可用');
 		                break;
-			        case RongIMLib.ConnectionStatus.DISCONNECTED:
-	                	console.log('断开连接');
-		                break;
 	                case 4:
 	                	console.log('token无效');
 		                break;
@@ -666,7 +665,7 @@
 			    	return;
 			    }
 	            console.log(message);
-	            if (message.conversationType == RongIMLib.ConversationType.PRIVATE) {
+	            if (message.conversationType == RongIMLib.ConversationType.GROUP) {
 	            	if (message.targetId == conversation.id) {
 	            		updateMessage(message);
 	            		clearUnreadCount(conversation.id);
@@ -770,14 +769,17 @@
 
 		var msg = new RongIMLib.TextMessage(content);
 
-		var conversationType = RongIMLib.ConversationType.PRIVATE; // 私聊
-		var targetId = 22;
+		// var conversationType = RongIMLib.ConversationType.PRIVATE; // 私聊
+		// var targetId = 22;
+		var conversationType = RongIMLib.ConversationType.GROUP; //群聊
+		var targetId = 21;
 		instance.sendMessage(conversationType, targetId, msg, {
 	        onSuccess: function (message) {
 	        	console.log(message);
 	        },
 	        onError: function (errorCode,message) {
-				console.log(errorCode+message);
+				console.log(errorCode);
+				console.log(message)
 			}
 	    });
 	}
@@ -785,6 +787,7 @@
 	//im组件初始化
 	var init = function(config){
 		RCS.config = config;
+		console.log(config);
 		config.isIM = true;
 		var callbacks = {
 			getInstance: function(instance){
@@ -800,7 +803,7 @@
 				createButton(config);
 
 				//发送一条消息，为了确保有会话，实际使用时请删除
-				sendTextMessage(instance);
+				//sendTextMessage(instance);
 			},
 			getCurrentUser: function(userId){
 				showInfo(userId);
