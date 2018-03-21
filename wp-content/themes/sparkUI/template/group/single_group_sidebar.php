@@ -51,7 +51,7 @@
                 appKey: appKey,
                 token: token,
                 target: document.getElementById('rcs-app'),
-                showConversitionList: true,
+                //showConversitionList: true,
                 templates: {
                     button: '<div class="rongcloud-consult rongcloud-im-consult">'+
                             '   <button onclick="RCS.showCommon()"><span class="rongcloud-im-icon">进入群聊</span></button>'+
@@ -86,20 +86,7 @@
                 }
             });
         })()
-
-
     </script>
-
-
-
-
-
-
-
-
-
-
-
 
 <?php
     if($group['task_permission'] == 'all'){
