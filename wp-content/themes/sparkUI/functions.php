@@ -4744,6 +4744,50 @@ function rongCloudQuitGroup2($user_id,$group_id){
     $result = $RongCloud->group()->quit([$user_id], $group_id);
 }
 
+function get_template_params(){
+    $targetId =$_POST['targetId'];
+    $targetType = $_POST['targetType'];
+    $result = array();
+    if ($targetType=='user'){
+        $userName = get_the_author_meta('user_login', $targetId);
+        $result['userName'] = $userName;
+    }else {
+        $group_name = get_group($targetId)[0]['group_name'];
+        $result['groupName'] = $group_name;
+    }
+    $result_json = json_encode($result);
+    echo $result_json;
+    die();
+}
+add_action('wp_ajax_get_template_params', 'get_template_params');
+add_action('wp_ajax_nopriv_get_template_params', 'get_template_params');
+
+function get_current_group_id(){
+    //获取群组名用
+    $result = [];
+    $targetId =$_POST['targetId'];
+    $group_name = get_group($targetId)[0]['group_name'];
+    $result['groupName'] = $group_name;
+
+    $current_url = curPageURL();
+    $result['groupId'] = $current_url;
+//    $url_array=parse_url($current_url);
+//    $query_parse=explode("&",$url_array['query']);
+//    foreach( $query_parse as $v){
+//        $q=explode("=",$v);
+//        if ($q[0]=='id')
+//            $result['groupId'] = $q[1];
+//    }
+    $result_json = json_encode($result);
+    echo $result_json;
+    die();
+}
+add_action('wp_ajax_get_current_group_id', 'get_current_group_id');
+add_action('wp_ajax_nopriv_get_current_group_id', 'get_current_group_id');
+
+
+
+
 
 
 
