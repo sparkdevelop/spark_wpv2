@@ -6,7 +6,7 @@
         <div>
             <div class="rongcloud-Message-header"><img class="rongcloud-img rongcloud-Message-avatar rongcloud-avatar" src="http://7xo1cb.com1.z0.glb.clouddn.com/rongcloudkefu2.png" alt="">
                 <div class="rongcloud-Message-author rongcloud-clearfix">
-                  <a class="rongcloud-author">{%if(this.list[index].messageDirection != 1){%} {%'用户：'+this.list[index].targetId%} {%}else{%} {%'我'%} {%}%}</a>
+                  <a class="rongcloud-author">{%if(this.list[index].messageDirection != 1){%} {%this.list[index].senderUserName%} {%}else{%} {%'我'%} {%}%}</a>
                 </div>
             </div>
         </div>

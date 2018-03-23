@@ -51,14 +51,14 @@
                 appKey: appKey,
                 token: token,
                 target: document.getElementById('rcs-app'),
-                //showConversitionList: true,
+                showConversitionList: true,
                 templates: {
                     button: '<div class="rongcloud-consult rongcloud-im-consult">'+
                             '   <button onclick="RCS.showCommon()"><span class="rongcloud-im-icon">进入群聊</span></button>'+
                             '</div>'+
-                            '<div class="customer-service" style="display: none;"></div>'    //"templates/button.html",
-//
-//                     button:"im/templates/button.html",
+                            '<div class="customer-service" style="display: none;"></div>' ,   //"templates/button.html",
+
+                     //button:"im/templates/button.html",
 //                     chat: "im/templates/chat.html",
 //                     closebefore: 'im/templates/closebefore.html',
 //                     conversation: 'im/templates/conversation.html',
@@ -82,6 +82,9 @@
                         productId: "123",
                         referrer: "10001",
                         define: "" // 自定义信息
+                    },
+                    groupInfo:{
+                        groupId : <?=$group_id?>
                     }
                 }
             });
