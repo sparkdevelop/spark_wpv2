@@ -26,7 +26,7 @@
     <script src="<?php bloginfo("template_url")?>/template/group/im/emoji.js"></script>
     <script src="<?php bloginfo("template_url")?>/template/group/im/im.js"></script>
     <div id="rcs-app"></div>
-    <script>
+    <!--<script>
         /*
          具体使用时：
          1：切换到自己的 key 和 token
@@ -44,7 +44,7 @@
             var appKey = "82hegw5u8y3bx";
             var token = localStorage.getItem("rctoken"); //获取a的值
             if (token == null){
-                token = '<?=saveToken(get_current_user_id())?>';
+                token = '<?/*=saveToken(get_current_user_id())*/?>';
                 localStorage.setItem("rctoken","gA9grfnhT4LnOVvuVRcK4pHrBPVEyM3UzgxIS2/6eJug9uAII/MGIXDGHAw1YIhGABxVJJsHAbn7T588cFsjIA==");
             }
             RCS.init({
@@ -84,12 +84,12 @@
                         define: "" // 自定义信息
                     },
                     groupInfo:{
-                        groupId : <?=$group_id?>
+                        groupId : <?/*=$group_id*/?>
                     }
                 }
             });
         })()
-    </script>
+    </script>-->
 
 <?php
     if($group['task_permission'] == 'all'){
