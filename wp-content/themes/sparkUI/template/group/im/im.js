@@ -253,21 +253,17 @@
         var data = {
             "showConversitionList": true
         }
-
         var callback = function (list) {
             var groupId = config.extraInfo.groupInfo.groupId;
             var obj = {};
             obj.list = list;
-
-            console.log("obj:");
-            console.log(obj);
-            obj.list.forEach(function (value) {
-                if (value.targetId == groupId){
+            for(var j =0;j<obj.list.length;j++){
+                if (obj.list[j].targetId == groupId){
                     data.conversationList = render(templates.conversation, obj);
                     $(".customer-service")[0].innerHTML = render(templates.imMain, data);
-                    return false;
+                    break;
                 }
-            })
+            }
         }
         getConversationList(callback);
     }
@@ -470,8 +466,6 @@
     //消息修饰，2条消息之间相差6000毫秒，显示消息发送时间
     var modificateMessage = function (list) {
         var listTemp = JSON.parse(JSON.stringify(list));
-        console.log("listTemp: ");
-        console.log(listTemp);
         var _list = [];
         for (var i = 0; i < listTemp.length; i++) {
             //====written by cherie=====
@@ -779,8 +773,6 @@
 
     //创建button
     var createButton = function (config) {
-        console.log("config:");
-        console.log(config);
         config.target.innerHTML = render(templates.button);
         createIMConversation(config);
         addListener(config);
@@ -842,15 +834,7 @@
     var sendTextMessage = function (instance) {
         var content = {
             content: [
-                "这是一条测试各种字符的消息",
-                "阿拉伯语：الشرق الأوسط ",
-                "希伯来语：המזרח התיכון",
-                "希腊字母： π，α，β, ",
-                "数字单位部分字符 如：× ",
-                "拉丁文所有字符 如：Ο Ρ σ Ï Æ ",
-                "拼音所有字符 如： ě ì ň ",
-                "英文音标部分字符 如 ： ə ʃ ",
-                "俄文部分字符 如 ：ш ; ⊇ â Œ Š ™ "
+                "hello"
             ].join(",")
         };
 
@@ -859,7 +843,8 @@
         // var conversationType = RongIMLib.ConversationType.PRIVATE; // 私聊
         // var targetId = 22;
         var conversationType = RongIMLib.ConversationType.GROUP; //群聊
-        var targetId = 21;
+
+        var targetId = config.extraInfo.groupInfo.groupId;
         instance.sendMessage(conversationType, targetId, msg, {
             onSuccess: function (message) {
                 console.log(message);
@@ -889,6 +874,24 @@
                 createButton(config);
 
                 //发送一条消息，为了确保有会话，实际使用时请删除
+                var content = {
+                    content: []
+                };
+                var msg = new RongIMLib.TextMessage(content);
+                // var conversationType = RongIMLib.ConversationType.PRIVATE; // 私聊
+                // var targetId = 22;
+                var conversationType = RongIMLib.ConversationType.GROUP; //群聊
+
+                var targetId = config.extraInfo.groupInfo.groupId;
+                instance.sendMessage(conversationType, targetId, msg, {
+                    onSuccess: function (message) {
+                        console.log(message);
+                    },
+                    onError: function (errorCode, message) {
+                        console.log(errorCode);
+                        console.log(message)
+                    }
+                });
                 //sendTextMessage(instance);
             },
             getCurrentUser: function (userId) {
