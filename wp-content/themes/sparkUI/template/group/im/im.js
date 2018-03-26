@@ -11,7 +11,7 @@
     var $ = utils.$;
     var terminal;
     var supportNot = false;//页面是否支持notification
-    var ajax_url = "http://www.oursparkspace.cn//wp-admin/admin-ajax.php";
+    var ajax_url = "http://www.oursparkspace.cn/wp-admin/admin-ajax.php";
 
     //加载模板
     var getTemplates = function (callback) {
