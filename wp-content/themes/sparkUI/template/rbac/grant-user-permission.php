@@ -15,7 +15,7 @@ $admin_url = admin_url('admin-ajax.php');
 <h4>用户基本信息</h4>
 <div class="divline"></div>
 <div class="<?= $tab ?>-search-box">
-    <input type="text" class="form-control <?= $tab ?>-text" id="<?= $tab ?>-user-input" placeholder="请输入用户名称/ID">
+    <input type="text" class="form-control <?= $tab ?>-text" id="<?= $tab ?>-user-input" placeholder="请输入用户名称">
     <button class="btn btn-green" onclick="addToChosen('<?= $tab ?>','user','<?= $admin_url ?>')">查询</button>
 </div>
 <div id="autocomplete-user" style="display: none">
@@ -25,19 +25,16 @@ $admin_url = admin_url('admin-ajax.php');
     <table id="user-choose-table-border" class="table table-bordered table-hover">
         <thead>
         <tr>
-            <th colspan="2">已选择用户</th>
+            <th colspan="3">已选择用户</th>
         </tr>
         </thead>
-        <tbody>
-        <tr style="display: none;">
-            <td></td>
-        </tr>
+        <tbody id="user_tbody">
         </tbody>
     </table>
     <table id="user-info-table-border" class="table table-bordered table-hover">
         <thead>
         <tr>
-            <th colspan="2">用户信息</th>
+            <th colspan="3">用户信息</th>
         </tr>
         </thead>
         <tbody>
@@ -49,14 +46,14 @@ $admin_url = admin_url('admin-ajax.php');
             <td>用户ID</td>
             <td></td>
         </tr>
-        <tr>
-            <td>学校</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>性别</td>
-            <td></td>
-        </tr>
+<!--        <tr>-->
+<!--            <td>学校</td>-->
+<!--            <td></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>性别</td>-->
+<!--            <td></td>-->
+<!--        </tr>-->
         <tr>
             <td>注册时间</td>
             <td></td>
@@ -76,7 +73,7 @@ $admin_url = admin_url('admin-ajax.php');
 <h4>为用户配置权限</h4>
 <div class="divline"></div>
 <div class="<?= $tab ?>-search-box">
-    <input type="text" class="form-control <?= $tab ?>-text" id="<?= $tab ?>-permission-input" placeholder="请输入权限名称/ID">
+    <input type="text" class="form-control <?= $tab ?>-text" id="<?= $tab ?>-permission-input" placeholder="请输入权限名称">
     <button class="btn btn-green" onclick="addToChosen('<?= $tab ?>','permission','<?= $admin_url ?>')">查询</button>
 </div>
 <div id="autocomplete-permission" style="display: none">
@@ -86,13 +83,10 @@ $admin_url = admin_url('admin-ajax.php');
     <table id="permission-choose-table-border" class="table table-bordered table-hover">
         <thead>
         <tr>
-            <th colspan="2">已选择权限</th>
+            <th colspan="3">已选择权限</th>
         </tr>
         </thead>
-        <tbody>
-        <tr style="display: none">
-            <td></td>
-        </tr>
+        <tbody id="permission_tbody">
         </tbody>
     </table>
     <table id="permission-info-table-border" class="table table-bordered table-hover">
@@ -107,11 +101,15 @@ $admin_url = admin_url('admin-ajax.php');
             <td></td>
         </tr>
         <tr>
-            <td>权限创建时间</td>
+            <td>权限ID</td>
             <td></td>
         </tr>
         <tr>
             <td>权限关联角色</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>权限创建时间</td>
             <td></td>
         </tr>
         <tr>
@@ -123,7 +121,7 @@ $admin_url = admin_url('admin-ajax.php');
         </tbody>
     </table>
 </div>
-<button class="btn btn-orange">
+<button class="btn btn-orange" onclick="grantUPConfirm('<?= $admin_url ?>')">
     确认赋予权限
 </button>
 
@@ -168,4 +166,40 @@ $admin_url = admin_url('admin-ajax.php');
             })
         })
     });
+    function saveChecked(td) {
+        var id = [];
+        //td是很多td组成的,其中需要的是#hidden_id的数据组成数组
+        for (var j = 0; j < td[0].length; j++) {
+            var loc = td[0][j];
+            id.push($(loc).children('#hidden_id').text());
+        }
+        return id;
+    }
+    function grantUPConfirm(url) {
+        var td_user = [];
+        var td_pms = [];
+        td_user.push($('#user_tbody .warning'));
+        td_pms.push($('#permission_tbody .warning'));
+        var user_id = saveChecked(td_user).toString();
+        var pms_id = saveChecked(td_pms).toString();
+        var data = {
+            action: 'grant_up_confirm',
+            user_id: user_id,
+            permission_id: pms_id
+        }
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            dataType: "text",
+            success: function (response) {
+                //console.log(response);
+                layer.msg('配置成功', {time: 2000, icon: 1});
+                location.reload();
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    }
 </script>

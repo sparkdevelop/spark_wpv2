@@ -921,7 +921,7 @@
     text-align: right;
     white-space: nowrap;
 }
-.rongcloud-layer-body .rongcloud-form-item textarea,input[type=text] {
+.rongcloud-layer-body .rongcloud-form-item textarea {
     width: 200px;
 }
 .rongcloud-layer-body .rongcloud-form-item textarea {

@@ -66,7 +66,8 @@
 <?php wp_footer();
 $userId=get_current_user_id();
 ?>
-
+<?php wp_enqueue_script("jquery");//加载jquery?>
+<?php wp_head(); //加载js?>
 <script src="<?php bloginfo('stylesheet_directory')?>/javascripts/main.js"></script>
 
 <script>

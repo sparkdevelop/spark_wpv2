@@ -1,6 +1,9 @@
-<?php ?>
+<?php
+$tab = isset($_GET['tab']) && !empty($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'gup';
+$admin_url = admin_url('admin-ajax.php');
+?>
 <style>
-    #rl-text {
+    #rl-role-input {
         width: 50%;
         display: inline;
     }
@@ -36,13 +39,14 @@
 <h4>角色列表</h4>
 <div class="divline"></div>
 <div id="rl-search-box">
-    <input type="text" id="rl-text" class="form-control" placeholder="请输入角色名称/ID">
-    <button class="btn btn-green">搜索</button>
-    <button class="btn btn-green" onclick="window.open('<?=site_url().get_page_address('create_role')?>')">新建角色</button>
+    <input type="text" id="<?=$tab ?>-role-input" class="form-control <?= $tab ?>-text" placeholder="请输入角色名称/ID">
+    <button class="btn btn-green" onclick="addToChosenList('<?= $tab ?>','role','<?= $admin_url ?>')">搜索</button>
+    <button class="btn btn-green" onclick="new_role()">新建角色</button>
+</div>
+<div id="autocomplete-role" style="display: none">
+    <ul class="list-group"></ul>
 </div>
 <div id="rl-table" style="margin-top: 30px">
-
-<!--    <div id="task-pro-complete-table" class="table-responsive">-->
         <table id="rl-table-border" class="table table-bordered table-hover">
             <thead>
             <tr>
@@ -56,25 +60,44 @@
             </thead>
             <tbody>
             <tr>
-                <td>北邮大一</td>
-                <td>001</td>
-                <td>
-                    <button class="btn-green" style="margin-left: 0px">查看</button>
-                </td>
-                <td>2017-01-01</td>
-                <td>北邮的大一新生</td>
-                <td>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-edit"></span>
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </a>
-                </td>
             </tr>
             </tbody>
         </table>
-<!--    </div>-->
 </div>
 
+<script>
+    $(function () {   //模糊查询
+        var tab = '<?=$tab?>';
+        $("#<?=$tab?>-role-input").keyup(function () {
+            var word = $(this).val();
+            var data = {
+                action: 'rbac_autocomplete',
+                part: 'role',
+                word: word
+            };
+            $.ajax({
+                type: 'post',
+                url: '<?=admin_url('admin-ajax.php')?>',
+                data: data,
+                dataType: 'text',
+                success: function (response) {
+                    var part = 'role';
+                    autoComplete(response.trim(), tab, part);
+                }
+            })
+        });
+    });
 
+    function new_role(){
+        layer.open({
+            type: 2,
+            title: "新建角色",
+            content: '<?=site_url().get_page_address('create_role')?>',
+            area: ['60%','66%'],
+            closeBtn:1,
+            shadeClose:true,
+            shade:0.5,
+            end:function () {}
+        })
+    }
+</script>

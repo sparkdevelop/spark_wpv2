@@ -434,7 +434,7 @@
         getHisMessage(conversation.id, 0, parseInt(count), callbacks);
     }
 
-    //拉去消息记录
+    //拉取消息记录
     var getHisMessage = function (conversationId, timestrap, count, callbacks) {
         var conversationType = RongIMLib.ConversationType.GROUP; //私聊,其他会话选择相应的消息类型即可。
         var targetId = conversationId; // 想获取自己和谁的历史消息，targetId 赋值为对方的 Id。
@@ -442,8 +442,13 @@
         // count每次获取的历史消息条数，范围 0-20 条，可以多次获取。
         RongIMLib.RongIMClient.getInstance().getHistoryMessages(conversationType, targetId, timestrap, count, {
             onSuccess: function (list, hasMsg) {
-                conversation.messageContent = list.concat(conversation.messageContent);
-                callbacks(list, hasMsg);
+                console.log("conversation");
+                console.log(conversation);
+                if(conversation.messageContent != []){
+                    conversation.messageContent = list.concat(conversation.messageContent);
+                    callbacks(list, hasMsg);
+                }
+
             },
             onError: function (error) {
                 console.log("GetHistoryMessages, errorcode:" + error);
