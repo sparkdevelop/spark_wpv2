@@ -11,7 +11,7 @@
     var $ = utils.$;
     var terminal;
     var supportNot = false;//页面是否支持notification
-    var ajax_url = "http://localhost/wordpress/wp-admin/admin-ajax.php";
+    var ajax_url = "http://www.oursparkspace.cn/wp-admin/admin-ajax.php";
 
     //加载模板
     var getTemplates = function (callback) {
@@ -482,7 +482,7 @@
             jQuery.ajax({
                 async:false,   //重要!!否组ajax中的赋值不能被保存到外层
                 type: "POST",
-                url: 'http://localhost/wordpress/wp-admin/admin-ajax.php',
+                url: 'http://www.oursparkspace.cn/wp-admin/admin-ajax.php',
                 data: ajax_data,
                 dataType: "json",
                 success: function (response) {
