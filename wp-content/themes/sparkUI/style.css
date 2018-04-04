@@ -1953,8 +1953,16 @@ h4 {
 .gur-search-box {
     margin-top: 30px;
 }
+.gup-search-box input,
+.grp-search-box input,
+.gur-search-box input {
+    width: 50%;
+    display: inline;
+}
 
-.gup-text, .grp-text, .gur-text {
+.gup-text,
+.grp-text,
+.gur-text {
     width: 50%;
     display: inline;
 }

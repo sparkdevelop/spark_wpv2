@@ -6,22 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); filemtime( get_stylesheet_directory() . '/style.css'); ?>"
-          type="text/css" media="screen, projection"/>
-    <link rel="stylesheet" type="text/css" media="screen, projection" href="<?php bloginfo('stylesheet_directory')?>/css/mobile.css" />
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <link href="<?php bloginfo('stylesheet_directory')?>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<!--    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
-<!--    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>-->
-    <link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo('stylesheet_directory')?>/datetimepicker/css/bootstrap-datetimepicker.min.css" />
-    <!--    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.js"></script>-->
-<!--    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-    <link rel="stylesheet" href="<?php bloginfo("template_url")?>/template/group/im/im.css">
+    <link rel="stylesheet" type="text/css" media="screen, projection"
+          href="<?php bloginfo('stylesheet_url'); filemtime( get_stylesheet_directory() . '/style.css'); ?>" />
+    <link rel="stylesheet" type="text/css" media="screen, projection"
+          href="<?php bloginfo('stylesheet_directory')?>/css/mobile.css" />
+    <link rel="stylesheet"
+          href="<?php bloginfo('stylesheet_directory')?>/css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="screen"
+          href="<?php bloginfo('stylesheet_directory')?>/datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet"
+          href="<?php bloginfo("stylesheet_directory")?>/template/group/im/im.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
     <meta charset="UTF-8">
     <title>火花空间</title>
 <!--    --><?php //wp_enqueue_style('sparkUI',get_stylesheet_uri());//加载jquery?>
-    <?php wp_enqueue_script("jquery");//加载jquery?>
-    <?php wp_head(); //加载js?>
+    <?php //wp_enqueue_script("jquery");//加载jquery?>
+    <?php //wp_head(); //加载js?>
     <?php $url_this = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"]; ?>
 
     <?php

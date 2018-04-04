@@ -767,7 +767,7 @@ function addToChosen(tab,type,url) {
         data: data,
         dataType: 'text',
         success: function (response) {
-            if (response.trim() == 1) {  // 如果没有
+            if (response.trim() == false) {  // 如果没有
                 if (type == 'permission') {
                     layer.msg("无此权限", {time: 2000, icon: 2})
                 }else if(type == 'user'){
@@ -778,7 +778,9 @@ function addToChosen(tab,type,url) {
             }
             else {
                 //step1:执行逻辑是先加入一行,包括一个多选框和一个数据
-                var tr = '<tr><td>' + name + '</td></tr>';
+                var tr = '<tr class="warning" >' +'<td id="hidden_id" style="display:none">' + response.trim() + '</td>'+
+                                 '<td>' + name + '</td>' +
+                         '</tr>';
                 $('#' + type + '-choose-table-border tbody:last').append(tr);    //添加数据
                 var $tbr = $('#' + type + '-choose-table-border tbody tr:last');
                 var $checkItemTd = $('<td><input type="checkbox" name="checkItem" checked/></td>');   //添加复选框
@@ -806,7 +808,7 @@ function addClickEvent(choose_table_id,type,show_table_id,url) {
     $(choose_table_id+' tbody tr td').bind('click', function () {
         var name = this.innerText;
         var data = {
-            action: 'rbac_get_info',
+            action: 'rbac_get_table_info',
             part: type,
             word: name
         };
@@ -823,5 +825,59 @@ function addClickEvent(choose_table_id,type,show_table_id,url) {
                 }
             }
         })
+    })
+}
+
+function addToChosenList(tab,type,url) {
+    var input_id = '#'+tab+'-'+type+'-input';
+    var name = $(input_id).val();
+    var data = {
+        action: 'rbac_hasItem',
+        part:type,
+        word: name
+    };
+    $.ajax({
+        type: 'post',
+        url: url,
+        data: data,
+        dataType: 'text',
+        success: function (response) {
+            if (response.trim() == 1) {  // 如果没有
+                if (type == 'permission') {
+                    layer.msg("无此权限", {time: 2000, icon: 2})
+                }else if(type == 'user'){
+                    layer.msg("无此用户", {time: 2000, icon: 2})
+                }else{
+                    layer.msg("无此角色", {time: 2000, icon: 2})
+                }
+            }
+            else {
+                //step1:在表头下面加入新的一行
+                var data = {
+                    action: 'rbac_get_info',
+                    part: type,
+                    word: name
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: data,
+                    dataType: 'json',
+                    success: function (res) {
+                        var id = "#"+tab+"-table-border";
+                        var info = $(id+' thead tr th');
+                        for (var i=0;i<info.length-1;i++){
+                            var td = '<td>' + res[i] + '</td>';
+                            $(id+' tbody tr:last').append(td);
+                        }
+                        var append = '<td>'+
+                            '<a href="#"><span class="glyphicon glyphicon-edit"></span></a>'+
+                            '<a href="#"><span class="glyphicon glyphicon-trash"></span></a>'+
+                            '</td>';
+                        $(id+' tbody tr:last').append(append);
+                    }
+                })
+            }
+        }
     })
 }

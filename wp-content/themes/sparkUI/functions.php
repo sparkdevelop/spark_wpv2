@@ -1272,7 +1272,7 @@ function writePWQA($post_id, $post_type, $related_id, $related_post_type)
         //add notice type3
         $noticeuser_id = get_post($post_id)->post_author;
         $notice_type = 3;
-        $current_time = date('Y-m-d H:i:s',time() + 8 * 3600);
+        $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
         $sql_add_notice = "INSERT INTO wp_notification VALUES ('',$noticeuser_id,$notice_type,'$related_id',0,'$current_time')";
         $wpdb->get_results($sql_add_notice);
     }
@@ -1871,11 +1871,12 @@ function addUrl($jsonString)
 }
 
 //侧边栏路径生成
-function wiki_path_select($name){
+function wiki_path_select($name)
+{
     $file_name = "example";
     $file_url = "wp-content/themes/sparkUI/algorithm/" . $file_name . ".json";
     $jsonString = file_get_contents($file_url);
-    $jsonString = json_decode($jsonString,true);
+    $jsonString = json_decode($jsonString, true);
 
     $nodes = array();
     $links = array();
@@ -1891,8 +1892,8 @@ function wiki_path_select($name){
             array_push($nodes, array("name" => $value["source"]));
         }
     }
-    $path_part_result -> nodes = $nodes;
-    $path_part_result -> links = $links;
+    $path_part_result->nodes = $nodes;
+    $path_part_result->links = $links;
 
     $path_part_result = json_encode($path_part_result);
     $path_part_result = addUrl($path_part_result);
@@ -2749,11 +2750,11 @@ function join_the_group()
 
                     $sql_has_notice = "SELECT ID FROM wp_gp_notice WHERE user_id = $admin_id and group_id = $group_id
                         and notice_type = 1 and notice_content = '$user_id'";
-                    $col =  $wpdb->query($sql_has_notice);
-                    if($col==0){
+                    $col = $wpdb->query($sql_has_notice);
+                    if ($col == 0) {
                         $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,1,'$user_id',0,'$current_time')";
                         $wpdb->get_results($sql_add_notice);
-                    }else{
+                    } else {
                         $sql_update_notice = "update wp_gp_notice set modified_time = '$current_time',notice_status = 0 
                                     WHERE user_id = $admin_id and group_id = $group_id and notice_type = 1 and notice_content = '$user_id'";
                         $wpdb->get_results($sql_update_notice);
@@ -2770,11 +2771,11 @@ function join_the_group()
                     $sql_has_notice = "SELECT ID FROM wp_gp_notice WHERE user_id = $admin_id and group_id = $group_id
                         and notice_type = 1 and notice_content = '$user_id'";
 
-                    $col =  $wpdb->query($sql_has_notice);
-                    if($col==0){
+                    $col = $wpdb->query($sql_has_notice);
+                    if ($col == 0) {
                         $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,1,'$user_id',0,'$current_time')";
                         $wpdb->get_results($sql_add_notice);
-                    }else{
+                    } else {
                         $sql_update_notice = "update wp_gp_notice set modified_time = '$current_time',notice_status = 0 
                                     WHERE user_id = $admin_id and group_id = $group_id and notice_type = 1 and notice_content = '$user_id'";
                         $wpdb->get_results($sql_update_notice);
@@ -2785,17 +2786,15 @@ function join_the_group()
             $sql_add_count = "update wp_gp set member_count = (member_count+1) WHERE ID = $group_id";
             $wpdb->get_results($sql_add_count);
 
-            rongCloudJoinGroup2($user_id,$group_id);
+            rongCloudJoinGroup2($user_id, $group_id);
             $response = "freejoin";
-        }
-        elseif ($verify_type == "verify") {
+        } elseif ($verify_type == "verify") {
             //等待验证即可,将其存入tmp表
             $sql_member = "INSERT INTO wp_gp_member_verify_tmp VALUES ('',$user_id,$group_id,'$current_time','')";
             $wpdb->get_results($sql_member);
 
             $response = "verify";
-        }
-        else {
+        } else {
             //先弹出框框,填写好字段,然后将字段值存入tmp表
 //            //==============notice================
 //            foreach ($admin_id_arr as $admin) {
@@ -2837,18 +2836,18 @@ function quit_the_group()
         $sql_cut_count = "update wp_gp set member_count = (member_count-1) WHERE ID = $group_id";
         $wpdb->get_results($sql_cut_count);
 
-        rongCloudQuitGroup2($user_id,$group_id);
+        rongCloudQuitGroup2($user_id, $group_id);
         //==============notice================
         foreach ($admin_id_arr as $admin) {
             $admin_id = $admin['user_id'];
             //判断是否有这个通知
             $sql_has_notice = "SELECT ID FROM wp_gp_notice WHERE user_id = $admin_id and group_id = $group_id
                         and notice_type = 2 and notice_content = '$user_id'";
-            $col =  $wpdb->query($sql_has_notice);
-            if($col==0){
+            $col = $wpdb->query($sql_has_notice);
+            if ($col == 0) {
                 $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$admin_id,$group_id,2,'$user_id',0,'$current_time')";
                 $wpdb->get_results($sql_add_notice);
-            }else{
+            } else {
                 $sql_update_notice = "update wp_gp_notice set modified_time = '$current_time',notice_status = 0 
                                     WHERE user_id = $admin_id and group_id = $group_id and notice_type = 2 and notice_content = '$user_id'";
                 $wpdb->get_results($sql_update_notice);
@@ -2957,6 +2956,7 @@ function verify_pass()
 //    }
     exit();
 }
+
 add_action('wp_ajax_verify_pass', 'verify_pass');
 add_action('wp_ajax_nopriv_verify_pass', 'verify_pass');
 
@@ -2977,6 +2977,7 @@ function verify_ignore()
     }
     exit();
 }
+
 add_action('wp_ajax_verify_ignore', 'verify_ignore');
 add_action('wp_ajax_nopriv_verify_ignore', 'verify_ignore');
 
@@ -3006,7 +3007,7 @@ function verify_pass_process($user_id, $group_id)
     $sql_delete_tmp = "delete from wp_gp_member_verify_tmp WHERE user_id = $user_id and group_id = $group_id";
     $wpdb->get_results($sql_delete_tmp);
 
-    rongCloudJoinGroup2($user_id,$group_id);
+    rongCloudJoinGroup2($user_id, $group_id);
 }
 
 function verify_ignore_process($user_id, $group_id)
@@ -3045,7 +3046,7 @@ function get_member_info($group_id)
         $arr_tmp = array();
         //返回的数组格式[id,用户名,验证字段切分,身份]
         array_push($arr_tmp, $value['user_id']);
-        $user_name = get_the_author_meta('user_login',$value['user_id']);
+        $user_name = get_the_author_meta('user_login', $value['user_id']);
         array_push($arr_tmp, $user_name);
         $verifyInfo = explode(',', $value['verify_info']);
         $len = sizeof(get_verify_field($group_id, 'group'));
@@ -3084,15 +3085,15 @@ function changeIndentity()
     //notice
     $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
     $notice_content = get_current_user_id();
-    foreach($user_id as $value){
+    foreach ($user_id as $value) {
         //多次变更只显示最后一次
         $sql_has_notice = "SELECT ID FROM wp_gp_notice WHERE user_id = $value and group_id = $group_id
                         and notice_type = 6 ";
-        $col =  $wpdb->query($sql_has_notice);
-        if($col==0){
+        $col = $wpdb->query($sql_has_notice);
+        if ($col == 0) {
             $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$value,$group_id,6,'$notice_content',0,'$current_time')";
             $wpdb->get_results($sql_add_notice);
-        }else{
+        } else {
             $sql_update_notice = "update wp_gp_notice set notice_content = '$notice_content',modified_time = '$current_time',notice_status = 0 
                                   WHERE user_id = $value and group_id = $group_id
                                   and notice_type = 6 ";
@@ -3101,10 +3102,12 @@ function changeIndentity()
     }
     exit();
 }
+
 add_action('wp_ajax_changeIndentity', 'changeIndentity');
 add_action('wp_ajax_nopriv_changeIndentity', 'changeIndentity');
 
-function get_member_identity($group_id,$user_id){
+function get_member_identity($group_id, $user_id)
+{
     global $wpdb;
     $sql = "SELECT indentity FROM wp_gp_member WHERE group_id = $group_id and user_id = $user_id";
     $result = $wpdb->get_results($sql)[0]->indentity;
@@ -3132,7 +3135,7 @@ function kick_out_the_group()
                 $wpdb->get_results($sql_member);
                 $sql_cut_count = "update wp_gp set member_count = (member_count-1) WHERE ID = $group_id";
                 $wpdb->get_results($sql_cut_count);
-                rongCloudQuitGroup2($user_id[$i],$group_id);
+                rongCloudQuitGroup2($user_id[$i], $group_id);
             }
 
             $response = "success";
@@ -3140,7 +3143,7 @@ function kick_out_the_group()
             //notice
             $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
             $notice_content = get_current_user_id();
-            foreach($user_id as $value){
+            foreach ($user_id as $value) {
                 $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$value,$group_id,7,'$notice_content',0,'$current_time')";
                 $wpdb->get_results($sql_add_notice);
             }
@@ -3151,6 +3154,7 @@ function kick_out_the_group()
     echo $response;
     die();
 }
+
 add_action('wp_ajax_kick_out_the_group', 'kick_out_the_group');
 add_action('wp_ajax_nopriv_kick_out_the_group', 'kick_out_the_group');
 
@@ -3411,7 +3415,7 @@ function get_gp_notification($group_id = null)
 
             //作者、身份、组名、任务名
             //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->task_author);
-            $single_task['task_author'] = get_the_author_meta('user_login',$item->task_author);
+            $single_task['task_author'] = get_the_author_meta('user_login', $item->task_author);
             //$task_author_info[0]->user_login;
 
             $task_author_iden_info = $wpdb->get_results("select * from wp_gp_member where user_id=" . $item->task_author . " and group_id=" . $item->belong_to);
@@ -3443,7 +3447,7 @@ function get_gp_notification($group_id = null)
             $single_task = array();
 
             //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->user_id);
-            $single_task['task_author'] = get_the_author_meta('user_login',$item->user_id);
+            $single_task['task_author'] = get_the_author_meta('user_login', $item->user_id);
 
             //$task_author_info[0]->user_login;
 
@@ -3465,7 +3469,7 @@ function get_gp_notification($group_id = null)
             $single_task = array();
 
             //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->group_author);
-            $single_task['task_author'] = get_the_author_meta('user_login',$item->group_author);
+            $single_task['task_author'] = get_the_author_meta('user_login', $item->group_author);
             //$task_author_info[0]->user_login;
 
             $single_task['group_name'] = $item->group_name;
@@ -3485,7 +3489,7 @@ function get_gp_notification($group_id = null)
             $single_task = array();
 
             //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->user_id);
-            $single_task['task_author'] = get_the_author_meta('user_login',$item->user_id);
+            $single_task['task_author'] = get_the_author_meta('user_login', $item->user_id);
             //$task_author_info[0]->user_login;
 
             $group_task_info = $wpdb->get_results("select * from wp_gp_task where ID=" . $item->task_id);
@@ -3516,7 +3520,7 @@ function get_gp_notification($group_id = null)
             $single_task = array();
 
             //作者、身份、组名、任务名
-            $single_task['task_author'] = get_the_author_meta('user_login',$item->task_author);
+            $single_task['task_author'] = get_the_author_meta('user_login', $item->task_author);
             $task_author_iden_info = $wpdb->get_results("select * from wp_gp_member where user_id=" . $item->task_author . " and group_id=" . $item->belong_to);
             $task_author_iden = $task_author_iden_info[0]->indentity;
             if (strcmp($task_author_iden, "member") == 0) {
@@ -3555,7 +3559,7 @@ function get_gp_notification($group_id = null)
             $single_task = array();
 
             //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->user_id);
-            $single_task['task_author'] = get_the_author_meta('user_login',$item->user_id);
+            $single_task['task_author'] = get_the_author_meta('user_login', $item->user_id);
 
             //$task_author_info[0]->user_login;
 
@@ -3599,7 +3603,7 @@ function get_gp_notification($group_id = null)
             $single_task = array();
 
             //$task_author_info = $wpdb->get_results("select * from $wpdb->users where ID=".$item->user_id);
-            $single_task['task_author'] = get_the_author_meta('user_login',$item->user_id);
+            $single_task['task_author'] = get_the_author_meta('user_login', $item->user_id);
             //$task_author_info[0]->user_login;
 
             $group_task_info = $wpdb->get_results("select * from wp_gp_task where ID=" . $item->task_id);
@@ -3680,9 +3684,9 @@ function checkUpdateUserName()
         } else {   //用户存在且是本组成员,判断是否分组
             if (!is_ungroup($id, $group_id, $task_id)) {  //如果不是未分组的,即已经分组了
                 //判断是否是当前小组的
-                if(!in_array($id,get_team_member($task_id,$team_id))){
+                if (!in_array($id, get_team_member($task_id, $team_id))) {
                     $response = 3;
-                }else{
+                } else {
                     $response = 2;
                 }
             } else {  //未分组的
@@ -3919,11 +3923,11 @@ function change_grade()
 
         $sql_has_notice = "SELECT ID FROM wp_gp_notice WHERE user_id = $notice_id and group_id = $group_id
                         and notice_type = 5 and notice_content = '$task_id'";
-        $col =  $wpdb->query($sql_has_notice);
-        if($col==0){
+        $col = $wpdb->query($sql_has_notice);
+        if ($col == 0) {
             $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$notice_id,$group_id,5,'$task_id',0,'$current_time')";
             $wpdb->get_results($sql_add_notice);
-        }else{
+        } else {
             $sql_update_notice = "update wp_gp_notice set modified_time = '$current_time',notice_status = 0 WHERE user_id = $notice_id and group_id = $group_id
                         and notice_type = 5 and notice_content = '$task_id'";
             $wpdb->get_results($sql_update_notice);
@@ -3977,6 +3981,7 @@ function change_grade_other()
     $wpdb->get_results($sql_add_notice);
     die();
 }
+
 add_action('wp_ajax_change_grade_other', 'change_grade_other');
 add_action('wp_ajax_nopriv_change_grade_other', 'change_grade_other');
 
@@ -4023,7 +4028,7 @@ function get_group_id_by_name($group_name)
 function create_budao_group($user_id)
 {
     global $wpdb;
-    $user_name = get_the_author_meta('user_login',$user_id);
+    $user_name = get_the_author_meta('user_login', $user_id);
     $group_name = "布道师" . $user_name . "的群组";
     $group_author = $user_id;
     $group_abstract = "这里为布道师" . $user_name . "的群组";
@@ -4214,7 +4219,8 @@ function delete_task()
 add_action('wp_ajax_delete_task', 'delete_task');
 add_action('wp_ajax_nopriv_delete_task', 'delete_task');
 
-function get_group_member_id($group_id){
+function get_group_member_id($group_id)
+{
     global $wpdb;
     $sql = "SELECT user_id FROM wp_gp_member WHERE group_id = $group_id";
     $result = $wpdb->get_results($sql);
@@ -4229,7 +4235,7 @@ function get_allMsg()
     global $wpdb;
     $current_user_id = get_current_user_id();
     $sql = "SELECT * FROM wp_gp_notice WHERE user_id = $current_user_id  ORDER BY notice_status,modified_time DESC";
-    $result = $wpdb->get_results($sql,'ARRAY_A');
+    $result = $wpdb->get_results($sql, 'ARRAY_A');
     return $result;
 }
 
@@ -4242,17 +4248,20 @@ function all_set_as_read()
     $wpdb->query($sql_update);
     die();
 }
+
 add_action('wp_ajax_all_set_as_read', 'all_set_as_read');
 add_action('wp_ajax_nopriv_all_set_as_read', 'all_set_as_read');
 
 //删除所有已读群消息
-function all_read_delete(){
+function all_read_delete()
+{
     global $wpdb;
     $user_id = get_current_user_id();
     $sql_update = "DELETE FROM wp_gp_notice WHERE user_id = $user_id and notice_status = 1";
     $wpdb->query($sql_update);
     die();
 }
+
 add_action('wp_ajax_all_read_delete', 'all_read_delete');
 add_action('wp_ajax_nopriv_all_read_delete', 'all_read_delete');
 
@@ -4264,8 +4273,8 @@ function set_as_read()
     $group_id = $_POST['group_id'];
     $notice_type = $_POST['notice_type'];
     $notice_content = $_POST['notice_content'];
-    $notice_content_arr = explode(',',$notice_content);
-    foreach ($notice_content_arr as $value){
+    $notice_content_arr = explode(',', $notice_content);
+    foreach ($notice_content_arr as $value) {
         $sql_update = "UPDATE wp_gp_notice SET notice_status = 1 
                    WHERE user_id = $user_id and group_id =$group_id and
                    notice_type = $notice_type and notice_content = '$value'";
@@ -4274,68 +4283,72 @@ function set_as_read()
 
     die();
 }
+
 add_action('wp_ajax_set_as_read', 'set_as_read');
 add_action('wp_ajax_nopriv_set_as_read', 'set_as_read');
 
 //有群消息通知
-function hasGPNotice($group_id = NULL){
+function hasGPNotice($group_id = NULL)
+{
     global $wpdb;
     $user_id = get_current_user_id();
-    if($group_id==null){
+    if ($group_id == null) {
         $sql = "SELECT ID FROM wp_gp_notice WHERE user_id = $user_id and notice_status = 0";
         $col = $wpdb->query($sql);
-    }else{
+    } else {
         $sql = "SELECT ID FROM wp_gp_notice WHERE user_id = $user_id and group_id = $group_id 
                 and notice_type = 3 and notice_status = 0";
         $col = $wpdb->query($sql);
     }
     if ($col != 0) { //有未读消息
         return true;
-    }else{
+    } else {
         return false;
     }
 }
 
 //合并一些群消息
-function processMsg($allMsg){
+function processMsg($allMsg)
+{
     $result = [];
-    if(!empty($allMsg)){
-        foreach($allMsg as $value){
-            if($value['notice_type'] !=1 && $value['notice_type']!=2 && $value['notice_type']!=3){
-                array_push($result,$value);   //正常处理
-            }
-            else{   //需要合并的话
-                if(!empty($result)){
+    if (!empty($allMsg)) {
+        foreach ($allMsg as $value) {
+            if ($value['notice_type'] != 1 && $value['notice_type'] != 2 && $value['notice_type'] != 3) {
+                array_push($result, $value);   //正常处理
+            } else {   //需要合并的话
+                if (!empty($result)) {
                     $flag = 0; //判断是否push的标志;
-                    foreach($result as &$tmp){
+                    foreach ($result as &$tmp) {
                         //拼接notice_content,
                         //将value['notice_content']合并到$tmp['notice_content']
-                        if($value['group_id'] == $tmp['group_id'] && $value['notice_type']==1
-                            && $value['notice_type']==$tmp['notice_type']){
-                            $tmp['notice_content'] .= ','.$value['notice_content'];
+                        if ($value['group_id'] == $tmp['group_id'] && $value['notice_type'] == 1
+                            && $value['notice_type'] == $tmp['notice_type']
+                        ) {
+                            $tmp['notice_content'] .= ',' . $value['notice_content'];
                             $flag = 1;
                             break;
-                        }else if ($value['group_id'] == $tmp['group_id'] && $value['notice_type']==2
-                            && $value['notice_type']==$tmp['notice_type']){
-                            $tmp['notice_content'] .= ','.$value['notice_content'];
+                        } else if ($value['group_id'] == $tmp['group_id'] && $value['notice_type'] == 2
+                            && $value['notice_type'] == $tmp['notice_type']
+                        ) {
+                            $tmp['notice_content'] .= ',' . $value['notice_content'];
                             $flag = 1;
                             break;
-                        }else if($value['group_id'] == $tmp['group_id'] && $value['notice_type']==3
-                            && $value['notice_type']==$tmp['notice_type']){
-                            $tmp['notice_content'] .= ','.$value['notice_content'];
+                        } else if ($value['group_id'] == $tmp['group_id'] && $value['notice_type'] == 3
+                            && $value['notice_type'] == $tmp['notice_type']
+                        ) {
+                            $tmp['notice_content'] .= ',' . $value['notice_content'];
                             $flag = 1;
                             break;
-                        }
-                        else {
+                        } else {
                             //push进result
                             continue;
                         }
                     }
-                    if($flag == 0){
-                        array_push($result,$value);   //正常处理
+                    if ($flag == 0) {
+                        array_push($result, $value);   //正常处理
                     }
-                }else{
-                    array_push($result,$value);   //正常处理
+                } else {
+                    array_push($result, $value);   //正常处理
                 }
             }
         }
@@ -4345,11 +4358,12 @@ function processMsg($allMsg){
 
 //=============私信===========
 //获取当前用户全部私信
-function get_allPrivateMsg(){
+function get_allPrivateMsg()
+{
     global $wpdb;
     $current_user_id = get_current_user_id();
     $sql = "SELECT * FROM wp_pmessage WHERE to_id = $current_user_id  ORDER BY message_status,modified_time DESC";
-    $result = $wpdb->get_results($sql,'ARRAY_A');
+    $result = $wpdb->get_results($sql, 'ARRAY_A');
     return $result;
 }
 
@@ -4362,17 +4376,20 @@ function all_message_set_as_read()
     $wpdb->query($sql_update);
     die();
 }
+
 add_action('wp_ajax_all_message_set_as_read', 'all_message_set_as_read');
 add_action('wp_ajax_nopriv_all_message_set_as_read', 'all_message_set_as_read');
 
 //删除所有已读私信
-function all_message_read_delete(){
+function all_message_read_delete()
+{
     global $wpdb;
     $user_id = get_current_user_id();
     $sql_update = "DELETE FROM wp_pmessage WHERE to_id = $user_id and message_status = 1";
     $wpdb->query($sql_update);
     die();
 }
+
 add_action('wp_ajax_all_message_read_delete', 'all_message_read_delete');
 add_action('wp_ajax_nopriv_all_message_read_delete', 'all_message_read_delete');
 
@@ -4386,11 +4403,13 @@ function message_set_as_read()
     $wpdb->query($sql_update);
     die();
 }
+
 add_action('wp_ajax_message_set_as_read', 'message_set_as_read');
 add_action('wp_ajax_nopriv_message_set_as_read', 'message_set_as_read');
 
 //有私信通知
-function hasPrivateMessage(){
+function hasPrivateMessage()
+{
     global $wpdb;
     $user_id = get_current_user_id();
     $sql = "SELECT ID FROM wp_pmessage WHERE to_id = $user_id and message_status = 0";
@@ -4398,21 +4417,24 @@ function hasPrivateMessage(){
 
     if ($col != 0) { //有未读消息
         return true;
-    }else{
+    } else {
         return false;
     }
 }
 
 //=============普通通知===========
-function get_allNotice(){
+function get_allNotice()
+{
     global $wpdb;
     $current_user_id = get_current_user_id();
     $sql = "SELECT * FROM wp_notification WHERE user_id = $current_user_id  ORDER BY notice_status,modified_time DESC";
-    $result = $wpdb->get_results($sql,'ARRAY_A');
+    $result = $wpdb->get_results($sql, 'ARRAY_A');
     return $result;
 }
+
 //删除垃圾评论
-function delete_spam_comment($comment_id){
+function delete_spam_comment($comment_id)
+{
     global $wpdb;
     $sql = "DELETE FROM wp_comments WHERE comment_ID = $comment_id";
     $wpdb->query($sql);
@@ -4420,35 +4442,39 @@ function delete_spam_comment($comment_id){
 
 //点击采纳,添加通知
 //add notice type5:
-function click_accept(){
+function click_accept()
+{
     global $wpdb;
     $answer_id = isset($_POST['ans_id']) ? $_POST['ans_id'] : '';
-    if($answer_id!=''){
+    if ($answer_id != '') {
         $qid = dwqa_get_question_from_answer_id($answer_id);
         $noticeuser_id = get_post($qid)->post_author;
-        $current_time = date('Y-m-d H:i:s',time() + 8 * 3600);
+        $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
         $notice_type = 5;
         $sql_add_notice = "INSERT INTO wp_notification VALUES ('',$noticeuser_id,$notice_type,'$answer_id',0,'$current_time')";
         $wpdb->get_results($sql_add_notice);
     }
 }
+
 add_action('wp_ajax_click_accept', 'click_accept');
 add_action('wp_ajax_nopriv_click_accept', 'click_accept');
 
 //点击赞同,添加通知
 //add notice type5:
-function click_vote(){
+function click_vote()
+{
     global $wpdb;
     $answer_id = isset($_POST['ans_id']) ? $_POST['ans_id'] : '';
-    if($answer_id!=''){
+    if ($answer_id != '') {
         $qid = dwqa_get_question_from_answer_id($answer_id);
         $noticeuser_id = get_post($qid)->post_author;
-        $current_time = date('Y-m-d H:i:s',time() + 8 * 3600);
+        $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
         $notice_type = 6;
         $sql_add_notice = "INSERT INTO wp_notification VALUES ('',$noticeuser_id,$notice_type,'$answer_id',0,'$current_time')";
         $wpdb->get_results($sql_add_notice);
     }
 }
+
 add_action('wp_ajax_click_vote', 'click_vote');
 add_action('wp_ajax_nopriv_click_vote', 'click_vote');
 
@@ -4461,17 +4487,20 @@ function all_notice_set_as_read()
     $wpdb->query($sql_update);
     die();
 }
+
 add_action('wp_ajax_all_notice_set_as_read', 'all_notice_set_as_read');
 add_action('wp_ajax_nopriv_all_notice_set_as_read', 'all_notice_set_as_read');
 
 //删除所有已读私信
-function all_notice_read_delete(){
+function all_notice_read_delete()
+{
     global $wpdb;
     $user_id = get_current_user_id();
     $sql_update = "DELETE FROM wp_notification WHERE user_id = $user_id and notice_status = 1";
     $wpdb->query($sql_update);
     die();
 }
+
 add_action('wp_ajax_all_notice_read_delete', 'all_notice_read_delete');
 add_action('wp_ajax_nopriv_all_notice_read_delete', 'all_notice_read_delete');
 
@@ -4484,11 +4513,13 @@ function notice_set_as_read()
     $wpdb->query($sql_update);
     die();
 }
+
 add_action('wp_ajax_notice_set_as_read', 'notice_set_as_read');
 add_action('wp_ajax_nopriv_notice_set_as_read', 'notice_set_as_read');
 
 //有普通通知
-function hasNotice(){
+function hasNotice()
+{
     global $wpdb;
     $user_id = get_current_user_id();
     $sql = "SELECT ID FROM wp_notification WHERE user_id = $user_id and notice_status = 0";
@@ -4496,7 +4527,7 @@ function hasNotice(){
 
     if ($col != 0) { //有未读消息
         return true;
-    }else{
+    } else {
         return false;
     }
 }
@@ -4522,18 +4553,161 @@ function multischool_table_install()
 
 
 //权限管理系统
+//建表 phpmyadmin添加内联
+function rbac_role_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "rbac_role";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          role_name text NOT NULL,
+          illustration text NOT NULL,
+          author int NOT NULL,
+          modified_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+function rbac_permission_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "rbac_permission";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          permission_name text NOT NULL,
+          illustration text NOT NULL,
+          author int NOT NULL,
+          modified_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+function rbac_ur_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "rbac_ur";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+          role_id int NOT NULL,
+          author int NOT NULL,
+          modified_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+function rbac_up_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "rbac_up";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+          permission_id int NOT NULL,
+          author int NOT NULL,
+          modified_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+function rbac_rp_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "rbac_rp";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          role_id int NOT NULL,
+          permission_id int NOT NULL,
+          author int NOT NULL,
+          modified_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
+function rbac_post_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "rbac_post";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          permission_id int NOT NULL,
+          post_id int NOT NULL,
+          author int NOT NULL,
+          modified_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
 
 //获取所有type=permission、role、user
-function rbac_get_all_items($type){
-    if($type == 'permission'){
-        $result = ['北邮','北师大','北工大','华科'];
-        return $result;
-    }elseif($type == 'user'){
-        $result = ['zhang','zhangxue','park','piaoning'];
-        return $result;
-    }else{
-        $result = ['学生','北邮','大一','大二'];
-        return $result;
+//word关键词为id或者名称
+function rbac_get_all_items($type, $word = '')
+{
+    global $wpdb;
+    if ($word == '') {  //获取所有该类的item,不推荐使用
+        if ($type == 'permission') {
+            $sql = "SELECT permission_name FROM wp_rbac_permission";
+            $pre_result = $wpdb->get_results($sql, 'ARRAY_A');
+            $result = array_column($pre_result, 'permission_name');
+            return $result;
+        } elseif ($type == 'user') {
+            $sql = "SELECT user_login FROM wp_users";
+            $pre_result = $wpdb->get_results($sql, 'ARRAY_A');
+            $result = array_column($pre_result, 'user_login');
+            return $result;
+        } else {
+            $sql = "SELECT role_name FROM wp_rbac_role";
+            $pre_result = $wpdb->get_results($sql, 'ARRAY_A');
+            $result = array_column($pre_result, 'role_name');
+            return $result;
+        }
+    } else {
+        if ($type == 'permission') {
+//            if (is_numeric($word)) {
+//                $sql = "SELECT permission_name FROM wp_rbac_permission WHERE ID = $word";
+//            } else {
+            $sql = "SELECT permission_name FROM wp_rbac_permission WHERE permission_name like '$word%'";
+//            }
+            $pre_result = $wpdb->get_results($sql, 'ARRAY_A');
+            $result = array_column($pre_result, 'permission_name');
+            return $result;
+        } elseif ($type == 'user') {
+//            if (is_numeric($word)) {
+//                $sql = "SELECT user_login FROM wp_users WHERE ID = $word";
+//            } else {
+            $sql = "SELECT user_login FROM wp_users WHERE user_login like '$word%'";
+//            }
+            $pre_result = $wpdb->get_results($sql, 'ARRAY_A');
+            $result = array_column($pre_result, 'user_login');
+            return $result;
+        } else {
+//            if (is_numeric($word)) {
+//                $sql = "SELECT role_name FROM wp_rbac_role WHERE ID = $word";
+//            } else {
+            $sql = "SELECT role_name FROM wp_rbac_role WHERE role_name like '$word%'";
+//            }
+            $pre_result = $wpdb->get_results($sql, 'ARRAY_A');
+            $result = array_column($pre_result, 'role_name');
+            return $result;
+        }
     }
 }
 
@@ -4543,7 +4717,7 @@ function rbac_autocomplete()
     //为了联想
     $type = $_POST['part'];
     $word = $_POST['word'];
-    $all_items = rbac_get_all_items($type);   //json串
+    $all_items = rbac_get_all_items($type, $word);
     $tmp = '';
     if ($word != '') {
         $pattern = "/" . $word . "/i";
@@ -4561,57 +4735,264 @@ add_action('wp_ajax_rbac_autocomplete', 'rbac_autocomplete');
 add_action('wp_ajax_nopriv_rbac_autocomplete', 'rbac_autocomplete');
 
 //判断是否有权限、用户、角色
-function rbac_hasItem(){
+function rbac_hasItem()
+{
     //为了联想
     $type = $_POST['part'];
-    $word = $_POST['word'];
-    $all_items = rbac_get_all_items($type);   //数组
-    if (in_array($word,$all_items)){echo 0;}
-    else{echo 1;}
+    $word = $_POST['word'];   //可能是ID 或名字
+//    if (is_numeric($word)) {    //是ID的话
+//        $all_items = rbac_get_all_items($type, $word);   //数组
+//        if (sizeof($all_items) != 0) {
+//            echo 0;
+//        } else {
+//            echo 1;
+//        }
+//    } else {   //是字符串的话
+        $all_items = rbac_get_all_items($type, $word);   //数组
+        if (in_array($word, $all_items)) {
+            echo get_type_id($type,$word);
+        } else {
+            echo false;
+        }
+//    }
     die();
 }
 add_action('wp_ajax_rbac_hasItem', 'rbac_hasItem');
 add_action('wp_ajax_nopriv_rbac_hasItem', 'rbac_hasItem');
 
+//根据各类型的名字输出id
+function get_type_id($type,$word){
+    global $wpdb;
+    if ($type == 'permission') {
+        $sql = "SELECT ID FROM wp_rbac_permission WHERE permission_name= '$word'";
+        $result = $wpdb->get_results($sql)[0]->ID;
+        return $result;
+    } elseif ($type == 'user') {
+        $sql = "SELECT ID FROM wp_users WHERE user_login = '$word'";
+        $result = $wpdb->get_results($sql)[0]->ID;
+        return $result;
+    } else {
+        $sql = "SELECT ID FROM wp_rbac_role WHERE role_name = '$word'";
+        $result = $wpdb->get_results($sql)[0]->ID;
+        return $result;
+    }
+}
+
+//赋予权限
+function grant_rp_confirm(){
+    global $wpdb;
+    $role_id = explode(',',$_POST['role_id']);
+    $permission_id = explode(',',$_POST['permission_id']);
+    $author = get_current_user_id();
+    $current_time = date('Y-m-d H:i:s',time()+8*3600);
+    foreach ($role_id as $r){
+        foreach ($permission_id as $p){
+            //确认有没有这个r-p对
+            $sql_c = "SELECT ID FROM wp_rbac_rp WHERE role_id=$r and pms_id = $p";
+            $col = $wpdb->query($sql_c);
+            if($col==0) {
+                $sql = "INSERT INTO wp_rbac_rp VALUES ('',$r,$p,$author,'$current_time')";
+                $wpdb->query($sql);
+            }
+        }
+    }
+    die();
+}
+add_action('wp_ajax_grant_rp_confirm', 'grant_rp_confirm');
+add_action('wp_ajax_nopriv_grant_rp_confirm', 'grant_rp_confirm');
+
+function grant_ur_confirm(){
+    global $wpdb;
+    $user_id = explode(',',$_POST['user_id']);
+    $role_id = explode(',',$_POST['role_id']);
+    $author = get_current_user_id();
+    $current_time = date('Y-m-d H:i:s',time()+8*3600);
+    foreach ($user_id as $u){
+        foreach ($role_id as $r){
+            //确认有没有这个u-r对
+            $sql_c = "SELECT ID FROM wp_rbac_ur WHERE user_id=$u and role_id = $r";
+            $col = $wpdb->query($sql_c);
+            if($col==0) {
+                $sql = "INSERT INTO wp_rbac_ur VALUES ('',$u,$r,$author,'$current_time')";
+                $wpdb->query($sql);
+            }
+        }
+    }
+    die();
+}
+add_action('wp_ajax_grant_ur_confirm', 'grant_ur_confirm');
+add_action('wp_ajax_nopriv_grant_ur_confirm', 'grant_ur_confirm');
+
+function grant_up_confirm(){
+    global $wpdb;
+    $user_id = explode(',',$_POST['user_id']);
+    $permission_id = explode(',',$_POST['permission_id']);
+    $author = get_current_user_id();
+    $current_time = date('Y-m-d H:i:s',time()+8*3600);
+    foreach ($user_id as $u){
+        foreach ($permission_id as $p){
+            //确认有没有这个u-r对
+            $sql_c = "SELECT ID FROM wp_rbac_up WHERE user_id=$u and permission_id = $p";
+            $col = $wpdb->query($sql_c);
+            if($col==0) {
+                $sql = "INSERT INTO wp_rbac_up VALUES ('',$u,$p,$author,'$current_time')";
+                $wpdb->query($sql);
+            }
+        }
+    }
+    die();
+}
+add_action('wp_ajax_grant_ur_confirm', 'grant_ur_confirm');
+add_action('wp_ajax_nopriv_grant_ur_confirm', 'grant_ur_confirm');
+
+
+
+
+
+
+//查询角色对应的权限or权限对应的角色(单表的)
+//type代表要查询的类型(如role),id是role的id
+//返回值是role对应的权限id数组
+function get_rbac_rp_relation($type,$id){
+    global $wpdb;
+    if($type=='role'){
+        $sql = "SELECT permission_id FROM wp_rbac_rp WHERE role_id = $id";
+        $preresult = $wpdb->get_results($sql,'ARRAY_A');
+        $result = array_column($preresult,'permission_id');
+        return $result;
+    }else{
+        $sql = "SELECT role_id FROM wp_rbac_rp WHERE permission_id = $id";
+        $preresult = $wpdb->get_results($sql,'ARRAY_A');
+        $result = array_column($preresult,'role_id');
+        return $result;
+    }
+}
+//查询用户对应的权限or用户对应的角色(单表的)
+//type代表要查询的类型(如role),id是user的id
+//返回值是user对应的权限角色id数组
+function get_rbac_user_relation($type,$id){
+    global $wpdb;
+    if($type=='role'){
+        $sql = "SELECT role_id FROM wp_rbac_ur WHERE user_id = $id";
+        $preresult = $wpdb->get_results($sql,'ARRAY_A');
+        $result = array_column($preresult,'role_id');
+        return $result;
+    }else{
+        $sql = "SELECT permission_id FROM wp_rbac_up WHERE user_id = $id";
+        $preresult = $wpdb->get_results($sql,'ARRAY_A');
+        $result = array_column($preresult,'permission_id');
+        return $result;
+    }
+}
+
+//获取权限或角色信息(只包括单表数据)
+function get_rbac_info($type,$id){
+    global $wpdb;
+    $sql = "SELECT * FROM wp_rbac_$type WHERE ID = $id";
+    $result = $wpdb->get_results($sql)[0];
+    return $result;
+}
+
 //获取用户、角色、权限表格中的信息
-function rbac_get_info(){
+function rbac_get_table_info()
+{
+    global $wpdb;
     $type = $_POST['part'];
     $word = $_POST['word'];
-    if($type == 'user'){
-        //有数据库有变为查询语句
-        if($word == 'piaoning'){
-            $tmp =['朴宁',10000,'北邮','男','2017-10-14','学生|管理员|北邮|','查看所有wiki|查看北邮项目'];
-        }elseif($word=='zhangxue'){
-            $tmp =['张雪',999,'北邮','女','2016-09-14','管理员|北邮|','查看所有wiki'];
-        }else{
-            $tmp = [1,2,3,4,5,6,7];
+    if ($type == 'user') {
+        //需要的信息有 name,id, 创建日期,对应角色, 对应权限
+        $sql = "SELECT ID,user_login,user_registered FROM wp_users WHERE user_login = '$word'";  //选出基本的权限信息
+        $pre_result = $wpdb->get_results($sql)[0];
+        //获取用户角色信息
+        $role_id = get_rbac_user_relation('role',$pre_result->ID);   //根据权限ID去选对应的角色
+        $role_name =[];
+        foreach ($role_id as $r){
+            $role_name[] = get_rbac_info('role',$r)->role_name;
         }
+        $role = implode(PHP_EOL,$role_name);   //角色用回车链接
+
+        //获取角色对应的权限信息
+        $permission_name =[];
+        foreach($role_id as $r){
+            $pid = get_rbac_rp_relation('role',$r);
+            foreach ($pid as $p){
+                $permission_name[] = get_rbac_info('permission',$p)->permission_name;
+            }
+        }
+        //获取用户单独的权限信息
+        $permission_id = get_rbac_user_relation('permission',$pre_result->ID);
+        foreach ($permission_id as $p){
+            $permission_name[] = get_rbac_info('permission',$p)->permission_name;
+        }
+        $permission = implode(PHP_EOL,$permission_name);
+
+        $tmp = [$pre_result->user_login,$pre_result->ID,$pre_result->user_registered, $role,$permission];
         echo json_encode($tmp);
         die();
-    }elseif ($type == 'permission'){
-        if($word == '北邮'){
-            $tmp =['北邮','2018-2-12','学生|大一','说明'];
-        }elseif($word=='北师大'){
-            $tmp =['北师大','2018-2-14','教师|大二','说明'];
-        }else{
-            $tmp = [1,2,3,4,5,6,7];
+    } elseif ($type == 'permission') {
+        //需要的信息有 name,id,说明,创建日期,对应角色,需要处理
+        $sql = "SELECT * FROM wp_rbac_permission WHERE permission_name = '$word'";  //选出基本的权限信息
+        $pre_result = $wpdb->get_results($sql)[0];
+        $role_id = get_rbac_rp_relation('permission',$pre_result->ID);   //根据权限ID去选对应的角色
+        $role_name =[];
+        foreach ($role_id as $r){
+            $role_name[] = get_rbac_info('role',$r)->role_name;
         }
+        $role = implode(PHP_EOL,$role_name);   //角色用回车链接
+        $tmp = [$pre_result->permission_name,$pre_result->ID, $role, $pre_result->modified_time, $pre_result->illustration];
         echo json_encode($tmp);
         die();
-    }else{
-        if($word == '北邮'){
-            $tmp =['北邮','2018-2-12','学生|大一'];
-        }elseif($word=='北师大'){
-            $tmp =['北师大','2018-2-14','教师|大二'];;
-        }else{
-            $tmp = [1,2,3,4,5,6,7];
+    } else {
+        //如果是角色信息
+        $sql = "SELECT * FROM wp_rbac_role WHERE role_name = '$word'";
+        $pre_result = $wpdb->get_results($sql)[0];
+        $permission_id = get_rbac_rp_relation('permission',$pre_result->ID);
+        $permission_name =[];
+        foreach ($permission_id as $p){
+            $permission_name[] = get_rbac_info('permission',$p)->permission_name;
         }
+        $permission = implode(PHP_EOL,$permission_name);
+        $tmp = [$pre_result->role_name,$pre_result->ID, $permission, $pre_result->modified_time, $pre_result->illustration];
         echo json_encode($tmp);
         die();
     }
 }
-add_action('wp_ajax_rbac_get_info', 'rbac_get_info');
-add_action('wp_ajax_nopriv_rbac_get_info', 'rbac_get_info');
+add_action('wp_ajax_rbac_get_table_info', 'rbac_get_table_info');
+add_action('wp_ajax_nopriv_rbac_get_table_info', 'rbac_get_table_info');
+
+//检查角色名或者权限名是否重复
+function check_rbac_name()
+{
+    global $wpdb;
+    $name = isset($_POST['Name']) ? $_POST['Name'] : "";
+    $type = isset($_POST['part']) ? $_POST['part'] : "role";
+    $type_name = $type . "_name";
+    if ($name != '') {
+        $sql = "SELECT ID FROM wp_rbac_$type WHERE $type_name = '$name'";
+        $col = $wpdb->query($sql);
+        if ($col == 0) {
+            $response = true;
+        } else {
+            $response = false;
+        }
+    } else {
+        $response = false;
+    }
+    echo $response;
+    exit();
+}
+add_action('wp_ajax_check_rbac_name', 'check_rbac_name');
+add_action('wp_ajax_nopriv_check_rbac_name', 'check_rbac_name');
+
+
+
+
+
+
+
+
+
+
 
 //建立token表
 function token_table_install()
@@ -4631,127 +5012,138 @@ function token_table_install()
     }
 }
 
-function getUserToken($user_id,$user_name,$avatar_url){ //注册用户
+function getUserToken($user_id, $user_name, $avatar_url)
+{ //注册用户
     global $wpdb;
     $appKey = '82hegw5u8y3bx';
-    $appSecret= '3xiNmMC4VLWKr7';
+    $appSecret = '3xiNmMC4VLWKr7';
     include_once 'algorithm/server-sdk/API/rongcloud.php';
     // 获取 Token 方法
-    $RongCloud = new RongCloud($appKey,$appSecret);;
+    $RongCloud = new RongCloud($appKey, $appSecret);;
     $result = $RongCloud->user()->getToken($user_id, $user_name, $avatar_url);
     $token_array = json_decode($result);
-    if ($token_array->code ==200){
+    if ($token_array->code == 200) {
         $sql = "select id from wp_token WHERE id = $token_array->userId and t_type = 'user'";
         $col = $wpdb->query($sql);
         $modified_time = date('Y-m-d H:i:s', time() + 8 * 3600);
-        if ($col == 0 ){   //未注册过
+        if ($col == 0) {   //未注册过
             $sql_insert = "insert into wp_token VALUES ('',$token_array->userId,'user','$token_array->token','$modified_time')";
             $wpdb->query($sql_insert);
             //            echo "user:".$token_array->userId."注册成功";
-        }else{  //已注册过,刷新
+        } else {  //已注册过,刷新
             $sql_update = "update wp_token set token = '$token_array->token',modified_time = '$modified_time' WHERE id=$token_array->userId";
             $wpdb->query($sql_update);
         }
     }
 }
-function getGroupToken($user_array,$group_id,$group_name){
+
+function getGroupToken($user_array, $group_id, $group_name)
+{
     $appKey = '82hegw5u8y3bx';
-    $appSecret= '3xiNmMC4VLWKr7';
+    $appSecret = '3xiNmMC4VLWKr7';
     include_once 'algorithm/server-sdk/API/rongcloud.php';
     // 获取 Token 方法   group没有token
-    $RongCloud = new RongCloud($appKey,$appSecret);;
+    $RongCloud = new RongCloud($appKey, $appSecret);;
     $result = $RongCloud->group()->create($user_array, $group_id, $group_name);
     $token_array = json_decode($result);
-    if ($token_array->code !=200){
-        echo "error".$token_array->code;
+    if ($token_array->code != 200) {
+        echo "error" . $token_array->code;
     }
 }
 
-function hasToken($user_id){
+function hasToken($user_id)
+{
     global $wpdb;
     $sql = "select id from wp_token WHERE id =$user_id";
     $col = $wpdb->query($sql);
-    if($col!=0) return true;
+    if ($col != 0) return true;
     else return false;
 }
 
-
-function rongCloudJoinGroup(){
+function rongCloudJoinGroup()
+{
     global $wpdb;
-    include_once  'algorithm/server-sdk/API/rongcloud.php';
+    include_once 'algorithm/server-sdk/API/rongcloud.php';
     $group_id = $_POST['group_id'];
     $user_id = get_current_user_id();
     $group_name = get_group($group_id)[0]['group_name'];
     $appKey = '82hegw5u8y3bx';
-    $appSecret= '3xiNmMC4VLWKr7';
-    $RongCloud = new RongCloud($appKey,$appSecret);
-    if(!hasToken($user_id)){
-        $avatar_url =  site_url()."/wp-content/themes/sparkUI/img/rongcloud-avatar.png";
+    $appSecret = '3xiNmMC4VLWKr7';
+    $RongCloud = new RongCloud($appKey, $appSecret);
+    if (!hasToken($user_id)) {
+        $avatar_url = site_url() . "/wp-content/themes/sparkUI/img/rongcloud-avatar.png";
         $user_name = get_the_author_meta('user_login', $user_id);
-        getUserToken($user_id,$user_name,$avatar_url);
+        getUserToken($user_id, $user_name, $avatar_url);
     }
 
     $result = $RongCloud->group()->join([$user_id], $group_id, $group_name);
     $token_array = json_decode($result);
-    if ($token_array->code !=200){
+    if ($token_array->code != 200) {
         echo "error";
     }
     echo $result;
     die();
 }
+
 add_action('wp_ajax_rongCloudJoinGroup', 'rongCloudJoinGroup');
 add_action('wp_ajax_nopriv_rongCloudJoinGroup', 'rongCloudJoinGroup');
 
-function rongCloudQuitGroup(){
-    include_once  'algorithm/server-sdk/API/rongcloud.php';
+function rongCloudQuitGroup()
+{
+    include_once 'algorithm/server-sdk/API/rongcloud.php';
     $group_id = $_POST['group_id'];
     $user_id = get_current_user_id();
     $appKey = '82hegw5u8y3bx';
-    $appSecret= '3xiNmMC4VLWKr7';
-    $RongCloud = new RongCloud($appKey,$appSecret);
+    $appSecret = '3xiNmMC4VLWKr7';
+    $RongCloud = new RongCloud($appKey, $appSecret);
     $result = $RongCloud->group()->quit([$user_id], $group_id);
     $token_array = json_decode($result);
-    if ($token_array->code !=200){
+    if ($token_array->code != 200) {
         echo "error";
     }
     echo $result;
     die();
 }
+
 add_action('wp_ajax_rongCloudQuitGroup', 'rongCloudQuitGroup');
 add_action('wp_ajax_nopriv_rongCloudQuitGroup', 'rongCloudQuitGroup');
 
 
-function rongCloudJoinGroup2($user_id,$group_id){
+function rongCloudJoinGroup2($user_id, $group_id)
+{
     global $wpdb;
-    include_once  'algorithm/server-sdk/API/rongcloud.php';
+    include_once 'algorithm/server-sdk/API/rongcloud.php';
     $group_name = get_group($group_id)[0]['group_name'];
     $appKey = '82hegw5u8y3bx';
-    $appSecret= '3xiNmMC4VLWKr7';
-    $RongCloud = new RongCloud($appKey,$appSecret);
-    if(!hasToken($user_id)){
-        $avatar_url =  site_url()."/wp-content/themes/sparkUI/img/rongcloud-avatar.png";
+    $appSecret = '3xiNmMC4VLWKr7';
+    $RongCloud = new RongCloud($appKey, $appSecret);
+    if (!hasToken($user_id)) {
+        $avatar_url = site_url() . "/wp-content/themes/sparkUI/img/rongcloud-avatar.png";
         $user_name = get_the_author_meta('user_login', $user_id);
-        getUserToken($user_id,$user_name,$avatar_url);
+        getUserToken($user_id, $user_name, $avatar_url);
     }
 
     $result = $RongCloud->group()->join([$user_id], $group_id, $group_name);
 }
-function rongCloudQuitGroup2($user_id,$group_id){
-    include_once  'algorithm/server-sdk/API/rongcloud.php';
+
+function rongCloudQuitGroup2($user_id, $group_id)
+{
+    include_once 'algorithm/server-sdk/API/rongcloud.php';
     $appKey = '82hegw5u8y3bx';
-    $appSecret= '3xiNmMC4VLWKr7';
-    $RongCloud = new RongCloud($appKey,$appSecret);
+    $appSecret = '3xiNmMC4VLWKr7';
+    $RongCloud = new RongCloud($appKey, $appSecret);
     $result = $RongCloud->group()->quit([$user_id], $group_id);
 }
 
-function get_template_params(){
-    $targetId =$_POST['targetId'];
+function get_template_params()
+{
+    $targetId = $_POST['targetId'];
     $targetType = $_POST['targetType'];
     $result = array();
-    if ($targetType=='user'){
+    if ($targetType == 'user') {
         $userName = get_the_author_meta('user_login', $targetId);
         $result['userName'] = $userName;
-    }else {
+    } else {
         $group_name = get_group($targetId)[0]['group_name'];
         $result['groupName'] = $group_name;
     }
@@ -4759,41 +5151,32 @@ function get_template_params(){
     echo $result_json;
     die();
 }
+
 add_action('wp_ajax_get_template_params', 'get_template_params');
 add_action('wp_ajax_nopriv_get_template_params', 'get_template_params');
 
-function get_current_group_id(){
-    //获取群组名用
-    $result = [];
-    $targetId =$_POST['targetId'];
-    $group_name = get_group($targetId)[0]['group_name'];
-    $result['groupName'] = $group_name;
-
-    $current_url = curPageURL();
-    $result['groupId'] = $current_url;
-//    $url_array=parse_url($current_url);
-//    $query_parse=explode("&",$url_array['query']);
-//    foreach( $query_parse as $v){
-//        $q=explode("=",$v);
-//        if ($q[0]=='id')
-//            $result['groupId'] = $q[1];
-//    }
-    $result_json = json_encode($result);
-    echo $result_json;
-    die();
-}
-add_action('wp_ajax_get_current_group_id', 'get_current_group_id');
-add_action('wp_ajax_nopriv_get_current_group_id', 'get_current_group_id');
-
-
-
-
-
-
-
-
-
-
+//function get_current_group_id(){
+//    //获取群组名用
+//    $result = [];
+//    $targetId =$_POST['targetId'];
+//    $group_name = get_group($targetId)[0]['group_name'];
+//    $result['groupName'] = $group_name;
+//
+////    $current_url = curPageURL();
+////    $result['groupId'] = $current_url;
+////    $url_array=parse_url($current_url);
+////    $query_parse=explode("&",$url_array['query']);
+////    foreach( $query_parse as $v){
+////        $q=explode("=",$v);
+////        if ($q[0]=='id')
+////            $result['groupId'] = $q[1];
+////    }
+//    $result_json = json_encode($result);
+//    echo $result_json;
+//    die();
+//}
+//add_action('wp_ajax_get_current_group_id', 'get_current_group_id');
+//add_action('wp_ajax_nopriv_get_current_group_id', 'get_current_group_id');
 
 
 //修改域名  域名要包括http
@@ -4851,15 +5234,6 @@ function wikiRecommend($id)
     }
     return $result_arr;
 }
-
-
-
-
-
-
-
-
-
 
 
 ////wiki和项目内容处理 去标签化 暂时无用

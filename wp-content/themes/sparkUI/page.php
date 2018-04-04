@@ -17,7 +17,8 @@
 <?php
     get_header();
     if(is_page('verify_form') || is_page('invitation') || is_page('private_message')
-        || is_page('ask_tiny') || is_page('join_ms') ){?>
+        || is_page('ask_tiny') || is_page('join_ms') || is_page('create_role')
+            || is_page('create_permission')){?>
         <script>
             $(document).ready(function () {
                 $('#m-header').css('display','none');

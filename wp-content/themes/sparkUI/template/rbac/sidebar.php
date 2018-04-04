@@ -22,15 +22,19 @@ $admin_url=admin_url('admin-ajax.php');
         </li>
         <li id="rl">
             <img src="<?php bloginfo("template_url")?>/img/qa.png">
-            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'rl'),remove_query_arg(array('paged','filter'))))?>">角色列表</a></span>
+            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'rl'),remove_query_arg(array('paged','filter'))))?>">角色配置</a></span>
         </li>
         <li id="pl">
             <img src="<?php bloginfo("template_url")?>/img/project.png">
-            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'pl'),remove_query_arg(array('paged','filter'))))?>">权限列表</a></span>
+            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'pl'),remove_query_arg(array('paged','filter'))))?>">权限配置</a></span>
         </li>
         <li id="search">
             <img src="<?php bloginfo("template_url")?>/img/group.png">
             <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'search'),remove_query_arg(array('paged','filter'))))?>">查看用户权限</a></span>
+        </li>
+        <li id="approve">
+            <img src="<?php bloginfo("template_url")?>/img/group.png">
+            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'approve'),remove_query_arg(array('paged','filter'))))?>">审批用户权限</a></span>
         </li>
     </ul>
 </div>

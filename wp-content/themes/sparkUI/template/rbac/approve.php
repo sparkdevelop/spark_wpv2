@@ -23,7 +23,7 @@
         display: inline-table;
     }
     #user-permission-table-border{
-        float:left;
+        float:right;
         margin-right: 20px
     }
     #user-search-table table>thead{
@@ -75,9 +75,9 @@
             <th colspan="3">用户权限信息</th>
         </tr>
         <tr>
-            <th>名称</th>
-            <th>ID</th>
-            <th>操作</th>
+            <th>权限名</th>
+            <th>权限ID</th>
+            <th>权限说明</th>
         </tr>
         </thead>
         <tbody>
@@ -85,14 +85,14 @@
             <td>北邮</td>
             <td>001</td>
             <td>
-                <button class="btn-green" style="margin-left: 0px">删除</button>
+                <button class="btn-green" style="margin-left: 0px">查看</button>
             </td>
         </tr>
         <tr>
             <td>大一</td>
             <td>002</td>
             <td>
-                <button class="btn-green" style="margin-left: 0px">删除</button>
+                <button class="btn-green" style="margin-left: 0px">查看</button>
             </td>
         </tr>
         </tbody>
