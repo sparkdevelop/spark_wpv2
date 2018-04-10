@@ -21,7 +21,6 @@ $admin_url = admin_url('admin-ajax.php');
     #rl-table-border thead{
         background-color: #f2f2f2;
     }
-
     .table>tbody>tr>td{
         vertical-align: middle;
     }
@@ -35,11 +34,13 @@ $admin_url = admin_url('admin-ajax.php');
         color: #fe642d;
         text-decoration: none;
     }
+
+
 </style>
 <h4>角色列表</h4>
 <div class="divline"></div>
 <div id="rl-search-box">
-    <input type="text" id="<?=$tab ?>-role-input" class="form-control <?= $tab ?>-text" placeholder="请输入角色名称/ID">
+    <input type="text" id="<?=$tab ?>-role-input" class="form-control <?= $tab ?>-text" placeholder="请输入角色名称">
     <button class="btn btn-green" onclick="addToChosenList('<?= $tab ?>','role','<?= $admin_url ?>')">搜索</button>
     <button class="btn btn-green" onclick="new_role()">新建角色</button>
 </div>
@@ -59,8 +60,6 @@ $admin_url = admin_url('admin-ajax.php');
             </tr>
             </thead>
             <tbody>
-            <tr>
-            </tr>
             </tbody>
         </table>
 </div>
@@ -100,4 +99,5 @@ $admin_url = admin_url('admin-ajax.php');
             end:function () {}
         })
     }
+
 </script>

@@ -12,8 +12,8 @@ function sparkspace_scripts_with_jquery()
     wp_register_script('custom-script', get_template_directory_uri() . '/bootstrap/jquery-3.2.0.min.js');
     wp_register_script('custom-script_1', get_template_directory_uri() . '/bootstrap/js/bootstrap.js', array('jquery'));
     wp_register_script('custom-script_2', get_template_directory_uri() . '/layer/layer.js', array('jquery'));
-    wp_register_script('custom-script_3', get_template_directory_uri() . '/javascripts/function.js', array('jquery'));
-    wp_register_script('custom-script_4', get_template_directory_uri() . '/javascripts/echarts.js', array('jquery'));
+    wp_register_script('custom-script_3', get_template_directory_uri() . '/javascripts/eventFunction.js', array('jquery'));
+    //wp_register_script('custom-script_4', get_template_directory_uri() . '/javascripts/echarts.js', array('jquery'));
     wp_register_script('custom-script_5', get_template_directory_uri() . '/datetimepicker/js/bootstrap-datetimepicker.js', array('jquery'));
     wp_register_script('custom-script_6', get_template_directory_uri() . '/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js');
     // For either a plugin or a theme, you can then enqueue the script:
@@ -21,7 +21,7 @@ function sparkspace_scripts_with_jquery()
     wp_enqueue_script('custom-script_1');
     wp_enqueue_script('custom-script_2');
     wp_enqueue_script('custom-script_3');
-    wp_enqueue_script('custom-script_4');
+    //wp_enqueue_script('custom-script_4');
     wp_enqueue_script('custom-script_5');
     wp_enqueue_script('custom-script_6');
 }
@@ -4684,7 +4684,7 @@ function rbac_get_all_items($type, $word = '')
 //            if (is_numeric($word)) {
 //                $sql = "SELECT permission_name FROM wp_rbac_permission WHERE ID = $word";
 //            } else {
-            $sql = "SELECT permission_name FROM wp_rbac_permission WHERE permission_name like '$word%'";
+            $sql = "SELECT permission_name FROM wp_rbac_permission WHERE permission_name like '%$word%'";
 //            }
             $pre_result = $wpdb->get_results($sql, 'ARRAY_A');
             $result = array_column($pre_result, 'permission_name');
@@ -4693,7 +4693,7 @@ function rbac_get_all_items($type, $word = '')
 //            if (is_numeric($word)) {
 //                $sql = "SELECT user_login FROM wp_users WHERE ID = $word";
 //            } else {
-            $sql = "SELECT user_login FROM wp_users WHERE user_login like '$word%'";
+            $sql = "SELECT user_login FROM wp_users WHERE user_login like '%$word%'";
 //            }
             $pre_result = $wpdb->get_results($sql, 'ARRAY_A');
             $result = array_column($pre_result, 'user_login');
@@ -4702,7 +4702,7 @@ function rbac_get_all_items($type, $word = '')
 //            if (is_numeric($word)) {
 //                $sql = "SELECT role_name FROM wp_rbac_role WHERE ID = $word";
 //            } else {
-            $sql = "SELECT role_name FROM wp_rbac_role WHERE role_name like '$word%'";
+            $sql = "SELECT role_name FROM wp_rbac_role WHERE role_name like '%$word%'";
 //            }
             $pre_result = $wpdb->get_results($sql, 'ARRAY_A');
             $result = array_column($pre_result, 'role_name');
@@ -4731,6 +4731,7 @@ function rbac_autocomplete()
     echo $tmp;
     die();
 }
+
 add_action('wp_ajax_rbac_autocomplete', 'rbac_autocomplete');
 add_action('wp_ajax_nopriv_rbac_autocomplete', 'rbac_autocomplete');
 
@@ -4748,20 +4749,21 @@ function rbac_hasItem()
 //            echo 1;
 //        }
 //    } else {   //是字符串的话
-        $all_items = rbac_get_all_items($type, $word);   //数组
-        if (in_array($word, $all_items)) {
-            echo get_type_id($type,$word);
-        } else {
-            echo false;
-        }
+    $all_items = rbac_get_all_items($type, $word);   //数组
+    if (in_array($word, $all_items)) {
+        echo get_type_id($type, $word);
+    } else {
+        echo false;
+    }
 //    }
     die();
 }
+
 add_action('wp_ajax_rbac_hasItem', 'rbac_hasItem');
 add_action('wp_ajax_nopriv_rbac_hasItem', 'rbac_hasItem');
 
 //根据各类型的名字输出id
-function get_type_id($type,$word){
+function get_type_id($type, $word){
     global $wpdb;
     if ($type == 'permission') {
         $sql = "SELECT ID FROM wp_rbac_permission WHERE permission_name= '$word'";
@@ -4779,18 +4781,19 @@ function get_type_id($type,$word){
 }
 
 //赋予权限
-function grant_rp_confirm(){
+function grant_rp_confirm()
+{
     global $wpdb;
-    $role_id = explode(',',$_POST['role_id']);
-    $permission_id = explode(',',$_POST['permission_id']);
+    $role_id = explode(',', $_POST['role_id']);
+    $permission_id = explode(',', $_POST['permission_id']);
     $author = get_current_user_id();
-    $current_time = date('Y-m-d H:i:s',time()+8*3600);
-    foreach ($role_id as $r){
-        foreach ($permission_id as $p){
+    $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+    foreach ($role_id as $r) {
+        foreach ($permission_id as $p) {
             //确认有没有这个r-p对
             $sql_c = "SELECT ID FROM wp_rbac_rp WHERE role_id=$r and pms_id = $p";
             $col = $wpdb->query($sql_c);
-            if($col==0) {
+            if ($col == 0) {
                 $sql = "INSERT INTO wp_rbac_rp VALUES ('',$r,$p,$author,'$current_time')";
                 $wpdb->query($sql);
             }
@@ -4798,21 +4801,23 @@ function grant_rp_confirm(){
     }
     die();
 }
+
 add_action('wp_ajax_grant_rp_confirm', 'grant_rp_confirm');
 add_action('wp_ajax_nopriv_grant_rp_confirm', 'grant_rp_confirm');
 
-function grant_ur_confirm(){
+function grant_ur_confirm()
+{
     global $wpdb;
-    $user_id = explode(',',$_POST['user_id']);
-    $role_id = explode(',',$_POST['role_id']);
+    $user_id = explode(',', $_POST['user_id']);
+    $role_id = explode(',', $_POST['role_id']);
     $author = get_current_user_id();
-    $current_time = date('Y-m-d H:i:s',time()+8*3600);
-    foreach ($user_id as $u){
-        foreach ($role_id as $r){
+    $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+    foreach ($user_id as $u) {
+        foreach ($role_id as $r) {
             //确认有没有这个u-r对
             $sql_c = "SELECT ID FROM wp_rbac_ur WHERE user_id=$u and role_id = $r";
             $col = $wpdb->query($sql_c);
-            if($col==0) {
+            if ($col == 0) {
                 $sql = "INSERT INTO wp_rbac_ur VALUES ('',$u,$r,$author,'$current_time')";
                 $wpdb->query($sql);
             }
@@ -4820,21 +4825,23 @@ function grant_ur_confirm(){
     }
     die();
 }
+
 add_action('wp_ajax_grant_ur_confirm', 'grant_ur_confirm');
 add_action('wp_ajax_nopriv_grant_ur_confirm', 'grant_ur_confirm');
 
-function grant_up_confirm(){
+function grant_up_confirm()
+{
     global $wpdb;
-    $user_id = explode(',',$_POST['user_id']);
-    $permission_id = explode(',',$_POST['permission_id']);
+    $user_id = explode(',', $_POST['user_id']);
+    $permission_id = explode(',', $_POST['permission_id']);
     $author = get_current_user_id();
-    $current_time = date('Y-m-d H:i:s',time()+8*3600);
-    foreach ($user_id as $u){
-        foreach ($permission_id as $p){
+    $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+    foreach ($user_id as $u) {
+        foreach ($permission_id as $p) {
             //确认有没有这个u-r对
             $sql_c = "SELECT ID FROM wp_rbac_up WHERE user_id=$u and permission_id = $p";
             $col = $wpdb->query($sql_c);
-            if($col==0) {
+            if ($col == 0) {
                 $sql = "INSERT INTO wp_rbac_up VALUES ('',$u,$p,$author,'$current_time')";
                 $wpdb->query($sql);
             }
@@ -4842,51 +4849,51 @@ function grant_up_confirm(){
     }
     die();
 }
+
 add_action('wp_ajax_grant_ur_confirm', 'grant_ur_confirm');
 add_action('wp_ajax_nopriv_grant_ur_confirm', 'grant_ur_confirm');
-
-
-
-
 
 
 //查询角色对应的权限or权限对应的角色(单表的)
 //type代表要查询的类型(如role),id是role的id
 //返回值是role对应的权限id数组
-function get_rbac_rp_relation($type,$id){
+function get_rbac_rp_relation($type, $id)
+{
     global $wpdb;
-    if($type=='role'){
+    if ($type == 'role') {
         $sql = "SELECT permission_id FROM wp_rbac_rp WHERE role_id = $id";
-        $preresult = $wpdb->get_results($sql,'ARRAY_A');
-        $result = array_column($preresult,'permission_id');
+        $preresult = $wpdb->get_results($sql, 'ARRAY_A');
+        $result = array_column($preresult, 'permission_id');
         return $result;
-    }else{
+    } else {
         $sql = "SELECT role_id FROM wp_rbac_rp WHERE permission_id = $id";
-        $preresult = $wpdb->get_results($sql,'ARRAY_A');
-        $result = array_column($preresult,'role_id');
+        $preresult = $wpdb->get_results($sql, 'ARRAY_A');
+        $result = array_column($preresult, 'role_id');
         return $result;
     }
 }
+
 //查询用户对应的权限or用户对应的角色(单表的)
 //type代表要查询的类型(如role),id是user的id
 //返回值是user对应的权限角色id数组
-function get_rbac_user_relation($type,$id){
+function get_rbac_user_relation($type, $id)
+{
     global $wpdb;
-    if($type=='role'){
+    if ($type == 'role') {
         $sql = "SELECT role_id FROM wp_rbac_ur WHERE user_id = $id";
-        $preresult = $wpdb->get_results($sql,'ARRAY_A');
-        $result = array_column($preresult,'role_id');
+        $preresult = $wpdb->get_results($sql, 'ARRAY_A');
+        $result = array_column($preresult, 'role_id');
         return $result;
-    }else{
+    } else {
         $sql = "SELECT permission_id FROM wp_rbac_up WHERE user_id = $id";
-        $preresult = $wpdb->get_results($sql,'ARRAY_A');
-        $result = array_column($preresult,'permission_id');
+        $preresult = $wpdb->get_results($sql, 'ARRAY_A');
+        $result = array_column($preresult, 'permission_id');
         return $result;
     }
 }
 
 //获取权限或角色信息(只包括单表数据)
-function get_rbac_info($type,$id){
+function get_rbac_info($type, $id){
     global $wpdb;
     $sql = "SELECT * FROM wp_rbac_$type WHERE ID = $id";
     $result = $wpdb->get_results($sql)[0];
@@ -4904,61 +4911,131 @@ function rbac_get_table_info()
         $sql = "SELECT ID,user_login,user_registered FROM wp_users WHERE user_login = '$word'";  //选出基本的权限信息
         $pre_result = $wpdb->get_results($sql)[0];
         //获取用户角色信息
-        $role_id = get_rbac_user_relation('role',$pre_result->ID);   //根据权限ID去选对应的角色
-        $role_name =[];
-        foreach ($role_id as $r){
-            $role_name[] = get_rbac_info('role',$r)->role_name;
+        $role_id = get_rbac_user_relation('role', $pre_result->ID);   //根据权限ID去选对应的角色
+        $role_name = [];
+        foreach ($role_id as $r) {
+            $role_name[] = get_rbac_info('role', $r)->role_name;
         }
-        $role = implode(PHP_EOL,$role_name);   //角色用回车链接
+        $role = implode(PHP_EOL, $role_name);   //角色用回车链接
 
         //获取角色对应的权限信息
-        $permission_name =[];
-        foreach($role_id as $r){
-            $pid = get_rbac_rp_relation('role',$r);
-            foreach ($pid as $p){
-                $permission_name[] = get_rbac_info('permission',$p)->permission_name;
+        $permission_name = [];
+        foreach ($role_id as $r) {
+            $pid = get_rbac_rp_relation('role', $r);
+            foreach ($pid as $p) {
+                $permission_name[] = get_rbac_info('permission', $p)->permission_name;
             }
         }
         //获取用户单独的权限信息
-        $permission_id = get_rbac_user_relation('permission',$pre_result->ID);
-        foreach ($permission_id as $p){
-            $permission_name[] = get_rbac_info('permission',$p)->permission_name;
+        $permission_id = get_rbac_user_relation('permission', $pre_result->ID);
+        foreach ($permission_id as $p) {
+            $permission_name[] = get_rbac_info('permission', $p)->permission_name;
         }
-        $permission = implode(PHP_EOL,$permission_name);
+        $permission = implode(PHP_EOL, $permission_name);
 
-        $tmp = [$pre_result->user_login,$pre_result->ID,$pre_result->user_registered, $role,$permission];
+        $tmp = [$pre_result->user_login, $pre_result->ID, $pre_result->user_registered, $role, $permission];
         echo json_encode($tmp);
         die();
     } elseif ($type == 'permission') {
         //需要的信息有 name,id,说明,创建日期,对应角色,需要处理
         $sql = "SELECT * FROM wp_rbac_permission WHERE permission_name = '$word'";  //选出基本的权限信息
         $pre_result = $wpdb->get_results($sql)[0];
-        $role_id = get_rbac_rp_relation('permission',$pre_result->ID);   //根据权限ID去选对应的角色
-        $role_name =[];
-        foreach ($role_id as $r){
-            $role_name[] = get_rbac_info('role',$r)->role_name;
+        $role_id = get_rbac_rp_relation('permission', $pre_result->ID);   //根据权限ID去选对应的角色
+        $role_name = [];
+        foreach ($role_id as $r) {
+            $role_name[] = get_rbac_info('role', $r)->role_name;
         }
-        $role = implode(PHP_EOL,$role_name);   //角色用回车链接
-        $tmp = [$pre_result->permission_name,$pre_result->ID, $role, $pre_result->modified_time, $pre_result->illustration];
+        $role = implode(PHP_EOL, $role_name);   //角色用回车链接
+        $tmp = [$pre_result->permission_name, $pre_result->ID, $role, $pre_result->modified_time, $pre_result->illustration];
         echo json_encode($tmp);
         die();
     } else {
         //如果是角色信息
         $sql = "SELECT * FROM wp_rbac_role WHERE role_name = '$word'";
         $pre_result = $wpdb->get_results($sql)[0];
-        $permission_id = get_rbac_rp_relation('permission',$pre_result->ID);
-        $permission_name =[];
-        foreach ($permission_id as $p){
-            $permission_name[] = get_rbac_info('permission',$p)->permission_name;
+        $permission_id = get_rbac_rp_relation('permission', $pre_result->ID);
+        $permission_name = [];
+        foreach ($permission_id as $p) {
+            $permission_name[] = get_rbac_info('permission', $p)->permission_name;
         }
-        $permission = implode(PHP_EOL,$permission_name);
-        $tmp = [$pre_result->role_name,$pre_result->ID, $permission, $pre_result->modified_time, $pre_result->illustration];
+        $permission = implode(PHP_EOL, $permission_name);
+        $tmp = [$pre_result->role_name, $pre_result->ID, $permission, $pre_result->modified_time, $pre_result->illustration];
         echo json_encode($tmp);
         die();
     }
 }
+
 add_action('wp_ajax_rbac_get_table_info', 'rbac_get_table_info');
 add_action('wp_ajax_nopriv_rbac_get_table_info', 'rbac_get_table_info');
+
+function rbac_get_list_info()
+{
+    global $wpdb;
+    $type = $_POST['part'];
+    $word = $_POST['word'];
+//    if ($type == 'user') {
+//        //需要的信息有 name,id, 创建日期,对应角色, 对应权限
+//        $sql = "SELECT ID,user_login,user_registered FROM wp_users WHERE user_login = '$word'";  //选出基本的权限信息
+//        $pre_result = $wpdb->get_results($sql)[0];
+//        //获取用户角色信息
+//        $role_id = get_rbac_user_relation('role',$pre_result->ID);   //根据权限ID去选对应的角色
+//        $role_name =[];
+//        foreach ($role_id as $r){
+//            $role_name[] = get_rbac_info('role',$r)->role_name;
+//        }
+//        $role = implode(PHP_EOL,$role_name);   //角色用回车链接
+//
+//        //获取角色对应的权限信息
+//        $permission_name =[];
+//        foreach($role_id as $r){
+//            $pid = get_rbac_rp_relation('role',$r);
+//            foreach ($pid as $p){
+//                $permission_name[] = get_rbac_info('permission',$p)->permission_name;
+//            }
+//        }
+//        //获取用户单独的权限信息
+//        $permission_id = get_rbac_user_relation('permission',$pre_result->ID);
+//        foreach ($permission_id as $p){
+//            $permission_name[] = get_rbac_info('permission',$p)->permission_name;
+//        }
+//        $permission = implode(PHP_EOL,$permission_name);
+//
+//        $tmp = [$pre_result->user_login,$pre_result->ID,$pre_result->user_registered, $role,$permission];
+//        echo json_encode($tmp);
+//        die();
+//    }
+    if ($type == 'permission') {
+        //需要的信息有 name,id,说明,创建日期,对应角色,需要处理
+        $sql = "SELECT * FROM wp_rbac_permission WHERE permission_name = '$word'";  //选出基本的权限信息
+        $pre_result = $wpdb->get_results($sql)[0];
+        $role_id = get_rbac_rp_relation('permission', $pre_result->ID);   //根据权限ID去选对应的角色
+        $role_name = [];
+        foreach ($role_id as $r) {
+            $role_name[] = get_rbac_info('role', $r)->role_name;
+        }
+        $role = implode('<br>', $role_name);   //角色用回车链接
+        $tmp = [$pre_result->permission_name, $pre_result->ID, $role, $pre_result->modified_time, $pre_result->illustration];
+        echo json_encode($tmp);
+        die();
+    } else {
+        //如果是角色信息
+        $sql = "SELECT * FROM wp_rbac_role WHERE role_name = '$word'";
+        $pre_result = $wpdb->get_results($sql)[0];
+        $permission_id = get_rbac_rp_relation('role', $pre_result->ID);
+        $permission_name = [];
+        foreach ($permission_id as $p) {
+            $permission_name[] = get_rbac_info('permission', $p)->permission_name;
+        }
+        $permission = implode('<br>', $permission_name);
+        $tmp = [$pre_result->role_name, $pre_result->ID, $permission, $pre_result->modified_time, $pre_result->illustration];
+        echo json_encode($tmp);
+        die();
+    }
+}
+
+add_action('wp_ajax_rbac_get_list_info', 'rbac_get_list_info');
+add_action('wp_ajax_nopriv_rbac_get_list_info', 'rbac_get_list_info');
+
 
 //检查角色名或者权限名是否重复
 function check_rbac_name()
@@ -4981,9 +5058,174 @@ function check_rbac_name()
     echo $response;
     exit();
 }
+
 add_action('wp_ajax_check_rbac_name', 'check_rbac_name');
 add_action('wp_ajax_nopriv_check_rbac_name', 'check_rbac_name');
 
+//角色绑定了多少用户?权限绑定了多少角色
+function layer_confirm_delete()
+{
+    global $wpdb;
+    $id = isset($_POST['id']) ? $_POST['id'] : "";
+    $type = isset($_POST['part']) ? $_POST['part'] : "role";
+    if ($type == 'role') {
+        $sql = "select ID from wp_rbac_ur WHERE role_id = $id";
+        $col = $wpdb->query($sql);
+    } else {
+        $sql = "select ID from wp_rbac_rp WHERE permission_id = $id";
+        $col = $wpdb->query($sql);
+    }
+    echo $col;
+    die();
+}
+
+add_action('wp_ajax_layer_confirm_delete', 'layer_confirm_delete');
+add_action('wp_ajax_nopriv_layer_confirm_delete', 'layer_confirm_delete');
+
+//执行删除角色或权限的操作
+function confirm_delete()
+{
+    global $wpdb;
+    $id = isset($_POST['id']) ? $_POST['id'] : "";
+    $type = isset($_POST['part']) ? $_POST['part'] : "role";
+    if ($type == 'role') {
+        //删除角色表
+        $sql_role = "DELETE from wp_rbac_role WHERE ID = $id";
+        $wpdb->query($sql_role);
+        //删除角色权限关联
+        $sql_rp = "DELETE from wp_rbac_rp WHERE role_id = $id";
+        $wpdb->query($sql_rp);
+        //删除角色用户关联
+        $sql_ur = "DELETE from wp_rbac_ur WHERE role_id = $id";
+        $wpdb->query($sql_ur);
+    }else{
+        //删除权限表
+        $sql_role = "DELETE from wp_rbac_permission WHERE ID = $id";
+        $wpdb->query($sql_role);
+        //删除角色权限关联
+        $sql_rp = "DELETE from wp_rbac_rp WHERE permission_id = $id";
+        $wpdb->query($sql_rp);
+        //删除角色用户关联
+        $sql_ur = "DELETE from wp_rbac_ur WHERE permission_id = $id";
+        $wpdb->query($sql_ur);
+    }
+    die();
+}
+add_action('wp_ajax_confirm_delete', 'confirm_delete');
+add_action('wp_ajax_nopriv_confirm_delete', 'confirm_delete');
+
+//取消编辑
+function cancel_config(){
+    global $wpdb;
+    $type = $_POST['part'];
+    $id = $_POST['id'];
+    if ($type == 'permission') {
+        //需要的信息有 name,id,说明,创建日期,对应角色,需要处理
+        $sql = "SELECT * FROM wp_rbac_permission WHERE ID = $id";  //选出基本的权限信息
+        $pre_result = $wpdb->get_results($sql)[0];
+        $role_id = get_rbac_rp_relation('permission', $id);   //根据权限ID去选对应的角色
+        $role_name = [];
+        foreach ($role_id as $r) {
+            $role_name[] = get_rbac_info('role', $r)->role_name;
+        }
+        $role = implode(PHP_EOL, $role_name);   //角色用回车链接
+        $tmp = [$pre_result->permission_name, $pre_result->ID, $role, $pre_result->modified_time, $pre_result->illustration];
+        echo json_encode($tmp);
+        die();
+    } else {
+        //如果是角色信息
+        $sql = "SELECT * FROM wp_rbac_role WHERE ID = '$id'";
+        $pre_result = $wpdb->get_results($sql)[0];
+        $permission_id = get_rbac_rp_relation('role', $id);
+        $permission_name = [];
+        foreach ($permission_id as $p) {
+            $permission_name[] = get_rbac_info('permission', $p)->permission_name;
+        }
+        $permission = implode(PHP_EOL, $permission_name);
+        $tmp = [$pre_result->role_name, $pre_result->ID, $permission, $pre_result->modified_time, $pre_result->illustration];
+        echo json_encode($tmp);
+        die();
+    }
+}
+add_action('wp_ajax_cancel_config', 'cancel_config');
+add_action('wp_ajax_nopriv_cancel_config', 'cancel_config');
+
+//保存编辑
+function save_config(){
+    global $wpdb;
+    $type = $_POST['part'];
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $ill = $_POST['ill'];
+    $current_time = date('Y-m-d H:i:s',time()+8*3600);
+    $author = get_current_user_id();
+    if ($type == 'permission') {
+        //更新信息
+        $sql_update = "UPDATE wp_rbac_permission SET permission_name = '$name',illustration='$ill',
+                      modified_time = '$current_time',author=$author WHERE ID=$id";
+        $wpdb->get_results($sql_update);
+
+        //需要的信息有 name,id,说明,创建日期,对应角色,需要处理
+        $sql = "SELECT * FROM wp_rbac_permission WHERE ID = $id";  //选出基本的权限信息
+        $pre_result = $wpdb->get_results($sql)[0];
+        $role_id = get_rbac_rp_relation('permission', $id);   //根据权限ID去选对应的角色
+        $role_name = [];
+        foreach ($role_id as $r) {
+            $role_name[] = get_rbac_info('role', $r)->role_name;
+        }
+        $role = implode(PHP_EOL, $role_name);   //角色用回车链接
+        $tmp = [$pre_result->permission_name, $pre_result->ID, $role, $pre_result->modified_time, $pre_result->illustration];
+        echo json_encode($tmp);
+        die();
+    } else {
+        //更新信息
+        $sql_update = "UPDATE wp_rbac_role SET role_name = '$name',illustration='$ill',
+                       modified_time = '$current_time',author=$author WHERE ID = $id";
+        $wpdb->get_results($sql_update);
+        //如果是角色信息
+        $sql = "SELECT * FROM wp_rbac_role WHERE ID = '$id'";
+        $pre_result = $wpdb->get_results($sql)[0];
+        $permission_id = get_rbac_rp_relation('role', $id);
+        $permission_name = [];
+        foreach ($permission_id as $p) {
+            $permission_name[] = get_rbac_info('permission', $p)->permission_name;
+        }
+        $permission = implode(PHP_EOL, $permission_name);
+        $tmp = [$pre_result->role_name, $pre_result->ID, $permission, $pre_result->modified_time, $pre_result->illustration];
+        echo json_encode($tmp);
+        die();
+    }
+}
+add_action('wp_ajax_save_config', 'save_config');
+add_action('wp_ajax_nopriv_save_config', 'save_config');
+
+//配置页
+function get_config_url(){
+    $type = $_POST['part'];
+    if ($type=='role'){
+        echo site_url().get_page_address('config_role');
+        die();
+    }else{
+        echo site_url().get_page_address('config_permission');
+        die();
+    }
+}
+add_action('wp_ajax_get_config_url', 'get_config_url');
+add_action('wp_ajax_nopriv_get_config_url', 'get_config_url');
+
+//解除关联
+function rp_disassociate(){
+    global $wpdb;
+    $rid = isset($_POST['rid']) ? $_POST['rid'] : "";
+    $pid = isset($_POST['pid']) ? $_POST['pid'] : "";
+    if($rid!='' && $pid !=''){
+        $sql = "DELETE FROM wp_rbac_rp WHERE role_id=$rid and permission_id=$pid";
+        $wpdb->get_results($sql);
+    }
+    die();
+}
+add_action('wp_ajax_rp_disassociate', 'rp_disassociate');
+add_action('wp_ajax_nopriv_rp_disassociate', 'rp_disassociate');
 
 
 
