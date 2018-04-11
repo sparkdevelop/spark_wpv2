@@ -18,6 +18,8 @@
     <link rel="stylesheet"
           href="<?php bloginfo("stylesheet_directory")?>/template/group/im/im.css">
     <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+    <script src="<?php bloginfo('template_url');?>/javascripts/function.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.0.4/echarts.js"></script>
     <meta charset="UTF-8">
     <title>火花空间</title>
 <!--    --><?php //wp_enqueue_style('sparkUI',get_stylesheet_uri());//加载jquery?>

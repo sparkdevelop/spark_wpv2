@@ -18,7 +18,7 @@
     get_header();
     if(is_page('verify_form') || is_page('invitation') || is_page('private_message')
         || is_page('ask_tiny') || is_page('join_ms') || is_page('create_role')
-            || is_page('create_permission')){?>
+            || is_page('create_permission')||is_page('config_permission')||is_page('config_role')){?>
         <script>
             $(document).ready(function () {
                 $('#m-header').css('display','none');
@@ -245,6 +245,24 @@
                         require "404.php";
                     }
                     require "template/rbac/create_permission.php";
+                }
+                elseif (is_page('config_role')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    if (!current_user_can( 'manage_options' )){
+                        require "404.php";
+                    }
+                    require "template/rbac/config_role.php";
+                }
+                elseif (is_page('config_permission')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    if (!current_user_can( 'manage_options' )){
+                        require "404.php";
+                    }
+                    require "template/rbac/config_permission.php";
                 }
                 elseif (is_page('join_ms')){
                     require "template/multi-university/join_ms.php";

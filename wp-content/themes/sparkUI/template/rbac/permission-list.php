@@ -35,6 +35,10 @@ $admin_url = admin_url('admin-ajax.php');
         color: #fe642d;
         text-decoration: none;
     }
+    .btn-link{
+        padding: 0 0;
+        margin: 0 0;
+    }
 </style>
 <h4>权限列表</h4>
 <div class="divline"></div>
