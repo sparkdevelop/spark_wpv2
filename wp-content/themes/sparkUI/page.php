@@ -131,6 +131,9 @@
                 elseif (is_page('gettoken')){
                     require "algorithm/server-sdk/API/gettoken.php";
                 }
+                elseif (is_page('gethistory')){
+                    require "algorithm/server-sdk/API/getHistory.php";
+                }
                 elseif (is_page('changedomain')){
                     require "algorithm/changedomain.php";
                 }
