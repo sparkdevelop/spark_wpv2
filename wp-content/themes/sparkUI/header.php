@@ -188,7 +188,7 @@
             <div class="m_search_box">
                 <form class="navbar-form " role="search" method="get" action="<?php echo home_url('/');//get_permalink() ?>" style="float: right;padding-left: 0px;padding-right: 0px">
                     <div class="form-group" style="position: relative">
-                        <input type="text" id="search-content" name='s' class="form-control" placeholder="Search" value="">
+                        <input type="text" id="search-content" name='s' class="form-control" placeholder="Search" value=""/>
                         <button type="submit" class="btn btn-default btn-sm" id="search-btn">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>

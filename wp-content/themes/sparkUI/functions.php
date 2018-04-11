@@ -5477,6 +5477,21 @@ function wikiRecommend($id)
     return $result_arr;
 }
 
+//是否有信息
+function hasSinfo($str){
+    $user_id = get_current_user_id();
+    $arr = get_user_meta($user_id,$str);
+    if(sizeof($arr)==0){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+
+
+
+
 
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){

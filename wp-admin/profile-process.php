@@ -17,6 +17,29 @@ $description = isset($_POST["description"]) ? $_POST["description"] : '';
 $sql = "UPDATE $wpdb->usermeta SET meta_value ='".$description."' WHERE meta_key='description' AND user_id ='".$current_user->ID."'";
 $wpdb->get_results($sql);
 
+//学校填写
+$school=isset($_POST["school_select"]) ? $_POST["school_select"] : '';
+$sno = isset($_POST["Sno"]) ? $_POST["Sno"] : '';
+//判断当前的用户写没写过学校、学号
+if ($school!=''){
+    if(hasSinfo('University')){
+        $sql = "UPDATE $wpdb->usermeta SET meta_value ='".$school."' WHERE meta_key='University' AND user_id ='".$current_user->ID."'";
+        $wpdb->get_results($sql);
+    }else{
+        $sql = "INSERT INTO $wpdb->usermeta VALUES ('',$current_user->ID,'University','$school')";
+        $wpdb->get_results($sql);
+    }
+}
+if ($sno!=''){
+    if(hasSinfo('Sno')){
+        $sql = "UPDATE $wpdb->usermeta SET meta_value ='".$sno."' WHERE meta_key='Sno' AND user_id ='".$current_user->ID."'";
+        $wpdb->get_results($sql);
+    }else{
+        $sql = "INSERT INTO $wpdb->usermeta VALUES ('',$current_user->ID,'Sno','$sno')";
+        $wpdb->get_results($sql);
+    }
+}
+
 
 $url= site_url().$page_address.'&tab=profile';
 ?>

@@ -1034,7 +1034,7 @@ h4 {
 }
 
 /*个人页面*/
-#save-btn {
+#save-btn, #save-password-btn {
     margin-left: 15px;
 }
 
