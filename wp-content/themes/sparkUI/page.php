@@ -132,7 +132,7 @@
                     require "algorithm/server-sdk/API/gettoken.php";
                 }
                 elseif (is_page('gethistory')){
-                    require "algorithm/server-sdk/API/getHistory.php";
+                    wp_redirect(esc_url(self_admin_url('SparkgetHistory.php')));
                 }
                 elseif (is_page('changedomain')){
                     require "algorithm/changedomain.php";
