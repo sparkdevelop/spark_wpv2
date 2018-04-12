@@ -901,9 +901,20 @@ $(function () {
               </div>
 
           </div>
+          <div class="row" style="    margin-top: 15px;">
+              <div  class="col-md-6" style="background-color: white;width: 47%;">
+                  <p>用户状况预测</p>
+
+              </div>
+              <div  class="col-md-6" style="background-color: white;width: 47%;margin-left: 40px;">
+                  <p>用户状况统计</p>
+
+              </div>
+
+          </div>
           </div>
 
-    </div>
+
 
 
     </body>

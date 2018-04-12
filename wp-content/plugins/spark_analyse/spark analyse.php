@@ -35,6 +35,7 @@ function plugin2()
     wp_register_script("zhytidui-script", plugins_url('js/tidui.js', __FILE__), array('jquery'));
     wp_register_script("zhystay-script", plugins_url('js/stay.js', __FILE__), array('jquery'));
     wp_register_script("zhyteamview-script", plugins_url('js/team_view.js', __FILE__), array('jquery'));
+    wp_register_script("zhyemotionview-script", plugins_url('js/emotion.js', __FILE__), array('jquery'));
 
     wp_enqueue_script("zhyjquery-script");
     wp_enqueue_script("zhyfep-script");
@@ -56,6 +57,7 @@ function plugin2()
     wp_enqueue_script("zhyexp-script");
     wp_enqueue_script("zhywor-script");
     wp_enqueue_script("zhyold-script");
+    wp_enqueue_script("zhyemotionview-script");
 
 
     wp_enqueue_style('zhyfep-style');
@@ -69,7 +71,7 @@ function plugin2()
 add_action( 'admin_enqueue_scripts', 'plugin2' );
 
     require_once('analyseview.php');
-
+require_once('group_view');
 require_once('infer.php');
 require_once('all_statistic.php');
 
@@ -77,6 +79,7 @@ require_once('all_statistic.php');
      add_action('admin_menu', 'spark_create_submenu_page1');
      add_action('admin_menu', 'spark_create_submenu_page2');
      add_action('admin_menu', 'spark_create_submenu_page3');
+     add_action('admin_menu', 'spark_create_submenu_page4');
     // add_filter('the_content','addContent');
     // add_filter('get_comment_author','authorUpperCase');
          function spark_create_menu1()
@@ -100,7 +103,7 @@ require_once('all_statistic.php');
                   '查看用户画像',
                   '查看用户画像',
                   'read',
-                  'spark_analyse-submenu-page',
+                  'spark_analyse_submenu_page',
                   'spark_settings_submenu_page' );
           //add_action('admin_enqueue_scripts', 'wpjam_normal_script');
           }
@@ -112,7 +115,7 @@ require_once('all_statistic.php');
                   '用户画像推测',
                   '用户画像推测',
                  'read',
-                 'spark_analyse-submenu-page2',
+                 'spark_analyse_submenu_page2',
                  'spark_settings_submenu_page2' );
     //add_action('admin_enqueue_scripts', 'wpjam_normal_script');
          }
@@ -124,10 +127,22 @@ require_once('all_statistic.php');
                    '系统用户统计',
                    '系统用户统计',
                    'read',
-                   'spark_analyse-submenu-page3',
+                   'spark_analyse_submenu_page3',
                    'spark_settings_submenu_page3' );
     //add_action('admin_enqueue_scripts', 'wpjam_normal_script');
          }
+         function spark_create_submenu_page4()
+         {
+
+               add_submenu_page(
+                    'spark analyse',
+                    '群组分析',
+                    '群组分析',
+                    'read',
+                    'spark_analyse_submenu_page4',
+                    'spark_settings_submenu_page4' );
+    //add_action('admin_enqueue_scripts', 'wpjam_normal_script');
+          }
 
 define('COUNT_TABLE', $wpdb->prefix . 'count_sec');
 define('COUNTD_TABLE', $wpdb->prefix . 'countdesire_sec');
