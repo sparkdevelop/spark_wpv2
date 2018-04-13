@@ -102,7 +102,7 @@ function get_method($team)
 {
     global $wpdb;
 
-    $filePath = $_SERVER["DOCUMENT_ROOT"] . "/spark_wpv2/wp-content/themes/sparkUI/algorithm/server-sdk/API/history/$team.txt";
+    $filePath = CONTENT_URL('/themes/sparkUI/algorithm/server-sdk/API/history/id/')."$team.txt";
     $str = file_get_contents($filePath);
     $str = explode(PHP_EOL, $str);    //分割为数组，每行为一个数组元素
 //    if(count($str)==0)
