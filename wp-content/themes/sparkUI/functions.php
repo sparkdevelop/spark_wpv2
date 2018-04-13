@@ -5488,7 +5488,18 @@ function hasSinfo($str){
     }
 }
 
-
+//自动登录
+function auto_login($user_login){
+    if (!is_user_logged_in()) {
+        // 获取用户id
+        $user = get_user_by('login', $user_login);
+        $user_id = $user->ID;
+        // 登录
+        wp_set_current_user($user_id, $user_login);
+        wp_set_auth_cookie($user_id);
+        do_action('wp_login', $user_login);
+    }
+}
 
 
 
