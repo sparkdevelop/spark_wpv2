@@ -40,7 +40,6 @@ if ($sno!=''){
     }
 }
 
-
 $url= site_url().$page_address.'&tab=profile';
 ?>
 <script language="javascript">
