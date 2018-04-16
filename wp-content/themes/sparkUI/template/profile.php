@@ -131,8 +131,10 @@ $admin_url = admin_url('admin-ajax.php');
             <select class="form-control" id="school_select" name="school_select">
                 <option value="" disabled selected>--请选择--</option>
                 <option value="1">北京邮电大学</option>
-                <option value="2">首都师范大学</option>
-                <option value="3">北京工商大学</option>
+                <option value="20">北京城市学院</option>
+                <option value="19">北京工商大学</option>
+                <option value="15">北京信息科技大学</option>
+                <option value="16">北京印刷学院</option>
                 <option value="0">其他</option>
             </select>
             <script>

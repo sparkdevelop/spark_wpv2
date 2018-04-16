@@ -56,7 +56,6 @@ function id_classify($filePath){
     while($c>0){
         $array=explode('"',$str[$i]);
         $id=$array[11];             //提取每句话的小组id
-        $id=$id."1";
         $myfile = fopen('../wp-content/themes/sparkUI/algorithm/server-sdk/API/history/id/'.$id.'.txt', "a") or die("Unable to open file!");   //打开id.txt
         $txt = $str[$i];
         fwrite($myfile, $txt."\r\n");          //把这句话写入id.txt文件
