@@ -1,3 +1,4 @@
+
 <?php
 require_once('group_analyse.php');
 add_action('wp_ajax_emotion_action', 'emotion_ajax');
@@ -38,7 +39,6 @@ function spark_settings_submenu_page4(){
 //    $score=$time_score[1];
 //    $a=get_method(35);
 //    $c=count($a);
-
 ?>
 <!DOCTYPE html>
 <html >
