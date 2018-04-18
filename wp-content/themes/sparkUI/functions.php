@@ -4025,6 +4025,7 @@ function get_group_id_by_name($group_name)
     return $res[0]->ID;
 }
 
+
 function create_budao_group($user_id)
 {
     global $wpdb;
@@ -5502,8 +5503,29 @@ function auto_login($user_login){
 }
 
 
+//通过学号获取用户ID
+function sno_to_id($sno){
+    global $wpdb;
+    $sql = "SELECT user_id FROM wp_usermeta WHERE meta_key ='Sno' AND meta_value =$sno";
+    $result = $wpdb->get_results($sql);
+    return $result[0]->user_id;
+}
 
+//获取最近一次登录时间
+function get_lastest_login($user_id){
+    global $wpdb;
+    $sql_id = "SELECT history_id FROM wp_simple_history_contexts WHERE `value` =$user_id AND `key` ='user_id'";
+    $result_id = $wpdb->get_results($sql_id);
+    if(sizeof($result_id) != 0){
+        $lastest_history_id = max($result_id)->history_id;
+        $sql_time ="SELECT `date` FROM `wp_simple_history` WHERE `id` =$lastest_history_id AND `message` = 'Logged in'";
+        $result_time = $wpdb->get_results($sql_time);
+        return $result_time[0]->date;
+    }else{
+        return false;
+    }
 
+}
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;
