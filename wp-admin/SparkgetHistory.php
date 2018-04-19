@@ -5,6 +5,9 @@
  * Date: 2018/4/11
  * Time: 15:14
  */
+//指定php路径，用于定时执行
+#!/opt/lampp/bin/php -q
+//auto_login('spark_admin');
 require_once( dirname( __FILE__ ) . '/admin.php' );
 function getFile($url, $save_dir = '', $filename = '', $type = 0) {
     if (trim($url) == '') {

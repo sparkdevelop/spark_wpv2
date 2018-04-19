@@ -5524,7 +5524,23 @@ function get_lastest_login($user_id){
     }else{
         return false;
     }
+}
 
+//添加或禁用上传文件类型
+add_filter('upload_mimes', 'custom_upload_mimes');
+function custom_upload_mimes ( $existing_mimes=array() ) {
+// 添加支持上传的文件类型
+    $existing_mimes['zip'] = 'application/zip';
+    $existing_mimes['rar'] = 'application/rar';
+    $existing_mimes['xmind'] = 'application/xmind';
+// 下载是禁止上传的文件类型
+    unset( $existing_mimes['exe'] );
+    unset( $existing_mimes['php'] );
+    unset( $existing_mimes['asp'] );
+    unset( $existing_mimes['bat'] );
+    unset( $existing_mimes['js'] );
+
+    return $existing_mimes;
 }
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
