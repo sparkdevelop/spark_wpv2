@@ -36,7 +36,7 @@ function spark_settings_submenu_page4(){
 //    $time_score=get_method();
 //    $time=$time_score[0];
 //    $score=$time_score[1];
-//    $a=get_method(35);
+//    get_method(35);
 //    $c=count($a);
 
 ?>

@@ -131,9 +131,9 @@ body {
 .navbar-text {
     margin: 0px;
     float: right;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 70px;
-    padding-left: 5px;
+    padding-left: 20px;
 }
 
 .navbar-text:hover, .navbar-text:focus {

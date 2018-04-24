@@ -5,7 +5,10 @@
  * Date: 2018/4/11
  * Time: 15:14
  */
-require_once( dirname( __FILE__ ) . '/admin.php' );
+//指定php路径，用于定时执行，产生Warning: curl_setopt(): CURLOPT_DNS_USE_GLOBAL_CACHE cannot be activated when thread safety is enabled in D:\xampp\htdocs\spark_wpv2\wp-content\themes\sparkUI\algorithm\server-sdk\API\SendRequest.php on line 114
+#!/opt/lampp/bin/php -q
+//require_once( dirname( __FILE__ ) . '/admin.php' );
+//下载文件
 function getFile($url, $save_dir = '', $filename = '', $type = 0) {
     if (trim($url) == '') {
         return false;
@@ -48,6 +51,7 @@ function getFile($url, $save_dir = '', $filename = '', $type = 0) {
         'file_size' => $size
     );
 }
+//根据小组id分类
 function id_classify($filePath){
     $str = file_get_contents($filePath);
     $str = explode(PHP_EOL, $str);    //分割为数组，每行为一个数组元素
@@ -56,7 +60,6 @@ function id_classify($filePath){
     while($c>0){
         $array=explode('"',$str[$i]);
         $id=$array[11];             //提取每句话的小组id
-        $id=$id."1";
         $myfile = fopen('../wp-content/themes/sparkUI/algorithm/server-sdk/API/history/id/'.$id.'.txt', "a") or die("Unable to open file!");   //打开id.txt
         $txt = $str[$i];
         fwrite($myfile, $txt."\r\n");          //把这句话写入id.txt文件
@@ -65,7 +68,22 @@ function id_classify($filePath){
         $c--;
     }
 }
-WP_Filesystem();
+//解压文件
+function unzip_file($file, $destination){
+// 实例化对象
+    $zip = new ZipArchive() ;
+//打开zip文档，如果打开失败返回提示信息
+    if ($zip->open($file) !== TRUE) {
+        die ("Could not open archive");
+    }
+//将压缩文件解压到指定的目录下
+    $zip->extractTo($destination);
+//关闭zip文档
+    $zip->close();
+    echo 'Archive extracted to directory';
+    echo "<br>";
+}
+//WP_Filesystem();定时执行不能使用WP内置函数
 include_once '../wp-content/themes/sparkUI/algorithm/server-sdk/API/rongcloud.php';
 $appKey = '82hegw5u8y3bx';
 $appSecret= '3xiNmMC4VLWKr7';
@@ -98,13 +116,13 @@ for($x=0;$x<24;$x++)
         //解压文件
         $txt_name = date("Y-m-d",strtotime("-1 day")).'-'.$hours[$x];
         $zip = '../wp-content/themes/sparkUI/algorithm/server-sdk/API/history/'.$dates.'.zip';
-        $unzip_file = unzip_file($zip,'../wp-content/themes/sparkUI/algorithm/server-sdk/API/history/txt/');
-        if ( is_wp_error( $unzip_file ) ) {
+        unzip_file($zip,'../wp-content/themes/sparkUI/algorithm/server-sdk/API/history/txt/');
+       /* if ( is_wp_error( $unzip_file ) ) {
             echo 'There was an error unzipping the file.';
         } else {
             echo 'Successfully unzipped the file!';
             echo "<br>";
-        }
+        }*/
         id_classify('../wp-content/themes/sparkUI/algorithm/server-sdk/API/history/txt/'.$txt_name);
     }
 

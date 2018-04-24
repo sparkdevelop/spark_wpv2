@@ -297,6 +297,12 @@
                         require '404.php';
                     }
                 }
+                elseif (is_page('wxlogin')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/API/wxlogin.php";
+                }
                 else{
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );

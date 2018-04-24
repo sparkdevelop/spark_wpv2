@@ -5,6 +5,7 @@
  * Date: 2018/3/19/019
  * Time: 11:11
  */
+header("Content-type: text/html; charset=utf-8");
 function cut($array){
     $c=count($array);$i=0;
     while($c>0){
@@ -16,17 +17,23 @@ function cut($array){
     return $array;
 }
 function get($array){
-    $token = '24.968984eba6476f10a1b4cb9fd5caeec0.2592000.1525831768.282335-10900177';
+    $token = '24.ff08735fbe7bec36f62dda0c316cb042.2592000.1526781357.282335-10900177';
     $url = 'https://aip.baidubce.com/rpc/2.0/nlp/v1/sentiment_classify?access_token=' . $token;
     $c=count($array);
     $i = 0;
     $a = 0;
     while ($c > 0) {
 //    echo $text[$i];
+
+        preg_match_all('/[\x{4e00}-\x{9fff}]+/u', $array[$i], $x);  //去除表情
+        $array[$i] = join("", $x[0]);
+
+
         $bodys1 = "{\"text\":\"$array[$i]\"}";
         $bodys1= @iconv('UTF-8', 'GBK', $bodys1);//转换GBK编码
         $res1 = request_post($url, $bodys1);
         $res1 = @iconv('GBK', 'UTF-8', $res1);//转换GBK编码
+//        echo $res1;
         $array1 = explode(':', $res1);
         if (count($array1) > 5) {
             $str1 = $array1[4];//positive
@@ -108,6 +115,7 @@ function get_method($team)
 //    if(count($str)==0)
 //        echo "<script>alert('无此组信息')</script>";
     $str=array_filter($str);
+
     $c=count($str);$i=0;
     while($c>0){
         if($i==0)
@@ -200,6 +208,7 @@ function get_method($team)
         }
 //    print_r($zhang1);
 //    print_r($song1);
+
         $user1[3]=get($user1_text);
         $user2[3]=get($user2_text);
         $user3[3]=get($user3_text);
@@ -262,6 +271,7 @@ function get_method($team)
 
 //    print_r($zhang1);
 //    print_r($song1);
+//        print_r($user1_text);
         $user1[3]=get($user1_text);
         $user2[3]=get($user2_text);
         $user3[3]=get($user3_text);

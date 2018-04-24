@@ -142,7 +142,7 @@
 
                         <?php } else { ?>
                             <!--                             https://codex.wordpress.org/Function_Reference/wp_login_url-->
-                            <a class="navbar-text" href="<?php echo wp_login_url($url_this); ?>">专家登录</a>
+                            <!--<a class="navbar-text" href="<?php /*auto_login('guest'); */?>">专家登录</a>-->
                             <a class="navbar-text" href="<?php echo wp_login_url($url_this); ?>">登录</a>
                             <a class="navbar-text" href="<?php echo site_url(); ?>/wp-login.php?action=register">注册</a>
                         <?php } ?>
