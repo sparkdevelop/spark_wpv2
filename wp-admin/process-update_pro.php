@@ -1,7 +1,13 @@
 <?php
 global $wpdb;
-require_once(dirname(__FILE__) . '/admin.php');
-
+require_once(dirname(__FILE__) . '/admin.php');?>
+<script>
+    var index_load;
+    $(function () {
+        index_load = layer.load();
+    })
+</script>
+<?php
 //项目名称
 $pro_name = isset($_POST["proname"]) ? $_POST["proname"] : '';
 //项目链接
@@ -40,5 +46,6 @@ foreach ($team_member as $value){
 $url= site_url().get_page_address('single_task').'&id='.$task_id;
 ?>
 <script>
+    layer.close(index_load);
     location.replace("<?=$url?>");
 </script>

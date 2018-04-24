@@ -134,7 +134,7 @@ $admin_url = admin_url('admin-ajax.php');
             <div class="form-group" style="margin-bottom: 30px">
                 <div class="col-sm-10">
                     <?php if (!is_overdue($task_id)) {
-                        echo '<input type="submit" class="btn-green" style="margin-top: 0px" id="apply-btn" value="提交任务">';
+                        echo '<input type="submit" class="btn-green" style="margin-top: 0px" id="apply-btn"  value="提交任务">';
                     } else {
                         echo '<input type="submit" class="btn-green" style="margin-top: 0px" id="apply-btn" disabled value="已截止">';
                     } ?>
@@ -391,6 +391,7 @@ $admin_url = admin_url('admin-ajax.php');
         })
     }
     function checkSubmitOther() {
+        var index = layer.load(0, {shade: [0.1, '#FFFFFF']}); //0代表加载的风格，支持0-2
         var result = [];
         for (var k = 0; k < i; k++) {
             tmp = k.toString();
@@ -480,4 +481,5 @@ $admin_url = admin_url('admin-ajax.php');
             }
         })
     }
+
 </script>

@@ -1753,10 +1753,11 @@ h4 {
     margin-top: 12px;
 }
 
-.m-group-task-btn{
+.m-group-task-btn {
     display: none;
 }
-.btn-white{
+
+.btn-white {
     width: 60px;
     height: 35px;
     float: right;
@@ -1948,21 +1949,19 @@ h4 {
 }
 
 /*权限管理系统*/
-.gup-search-box,
-.grp-search-box,
-.gur-search-box {
+.gup-search-box, .grp-search-box, .gur-search-box,
+.rl-search-box, .pl-search-box, .ul-search-box {
     margin-top: 30px;
 }
-.gup-search-box input,
-.grp-search-box input,
-.gur-search-box input {
+
+.gup-search-box input, .grp-search-box input, .gur-search-box input,
+.rl-search-box input, .pl-search-box input, .ul-search-box input {
     width: 50%;
     display: inline;
 }
 
-.gup-text,
-.grp-text,
-.gur-text {
+.gup-text, .grp-text, .gur-text,
+.rl-text, .pl-text, .ul-text {
     width: 50%;
     display: inline;
 }
@@ -1986,7 +1985,10 @@ h4 {
 /*表格文字水平居中*/
 #user-info-table table > tbody > tr > td,
 #permission-info-table table > tbody > tr > td,
-#role-info-table table > tbody > tr > td {
+#role-info-table table > tbody > tr > td ,
+#rl-table table > tbody > tr > td,
+#pl-table table > tbody > tr > td,
+#ul-table table > tbody > tr > td{
     vertical-align: middle;
 }
 
@@ -1999,7 +2001,10 @@ h4 {
 /*表头背景设置*/
 #user-info-table table > thead,
 #permission-info-table table > thead,
-#role-info-table table > thead {
+#role-info-table table > thead,
+#rl-table table > thead,
+#pl-table table > thead,
+#ul-table table > thead {
     background-color: #FF9966;
 }
 
@@ -2014,7 +2019,8 @@ h4 {
 /*相关搜索下拉框样式*/
 #autocomplete-permission,
 #autocomplete-user,
-#autocomplete-role {
+#autocomplete-role,
+#autocomplete-post {
     width: 50%;
     border: 1px solid lightgray;
     border-radius: 0 0 5px 5px;
@@ -2022,40 +2028,67 @@ h4 {
 
 #autocomplete-permission ul,
 #autocomplete-user ul,
-#autocomplete-role ul {
+#autocomplete-role ul,
+#autocomplete-post ul {
     padding: 0;
     margin: 0;
 }
 
 #autocomplete-permission ul > li,
 #autocomplete-user ul > li,
-#autocomplete-role ul > li {
+#autocomplete-role ul > li,
+#autocomplete-post ul > li {
     padding: 0;
     margin: 0;
     padding-left: 10px;
     height: 30px;
     line-height: 30px;
 }
-.btn-link{
+
+.btn-link {
     padding: 0 0;
     margin: 0 0;
+}
+
+/*单表的悬停效果*/
+#rl-table-border>tbody>tr:hover,
+#pl-table-border>tbody>tr:hover{
+    background-color: lightgoldenrodyellow;
+}
+#ul-table-border>tbody>tr:hover{
+    background-color: transparent;
+}
+/*单表的链接颜色*/
+#rl-table-border>tbody>tr>td a,
+#pl-table-border>tbody>tr>td a,
+#ul-table-border>tbody>tr>td a{
+    color: #333333;
+}
+/*单表的链接悬停效果*/
+#rl-table-border>tbody>tr>td a:focus,span:focus, a:hover,span:hover,
+#pl-table-border>tbody>tr>td a:focus,span:focus, a:hover,span:hover,
+#ul-table-border>tbody>tr>td a:focus,span:focus, a:hover,span:hover{
+    color: #fe642d;
+    text-decoration: none;
 }
 
 
 
 
 /*single_group*/
-#invitation_join_btn{
+#invitation_join_btn {
     border: 1px solid transparent;
     background-color: #1fbba6;
     color: #fff;
     border-radius: 5px;
 }
-#single-group-info{
+
+#single-group-info {
     display: inline-block;
     width: 85%;
     margin-left: 20px;
 }
+
 /*通知*/
 #notice-ava {
     display: inline-block;
@@ -2070,24 +2103,28 @@ h4 {
     -webkit-border-radius: 10px;
     margin-left: 5px;
 }
-#notice-content{
+
+#notice-content {
     display: inline-block;
-    width:92%;
+    width: 92%;
 }
-#notice-info{
+
+#notice-info {
     display: inline-block;
     margin-left: 3%
 }
-#notice-time{
+
+#notice-time {
     display: inline-block;
     float: right;
     margin-right: 5px
 }
-#notice-date{
+
+#notice-date {
     margin-top: 30px
 }
 
-.rcs-chat-im-wrapper,.rongcloud-im-consult{
+.rcs-chat-im-wrapper, .rongcloud-im-consult {
     z-index: 1
 }
 

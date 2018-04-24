@@ -201,7 +201,7 @@ function addToChosen(tab, type, url) {
             }
             else {
                 //把下拉菜单关上,输入框清空
-                $('#autocomplete-'+type).css('display','none');
+                $('#autocomplete-' + type).css('display', 'none');
                 $(input_id).val('');
                 //step1:执行逻辑是先加入一行,包括一个多选框和一个数据
                 var tr = '<tr class="warning" >' + '<td id="hidden_id" style="display:none">' + response.trim() + '</td>' +
@@ -279,7 +279,7 @@ function addToChosenList(tab, type, url) {
                 }
             }
             else {
-                $('#autocomplete-'+type).css('display','none');
+                $('#autocomplete-' + type).css('display', 'none');
                 $(input_id).val('');
                 //step1:在表头下面加入新的一行
                 var data = {
@@ -464,7 +464,7 @@ function deletePermission(tab, type, id, url) {
                 layer.open({
                     type: 2,
                     title: "配置角色",
-                    content: res+ '&id=' + id,
+                    content: res + '&id=' + id,
                     area: ['60%', '66%'],
                     closeBtn: 1,
                     shadeClose: true,
@@ -479,7 +479,7 @@ function deletePermission(tab, type, id, url) {
 }
 
 //解除role和permission关联
-function disassociate(rid,pid,url){   // 删除的是pid的权限与rid的角色的关联
+function disassociate(rid, pid, url) {   // 删除的是pid的权限与rid的角色的关联
     var data = {
         action: 'rp_disassociate',
         rid: rid,
@@ -492,12 +492,10 @@ function disassociate(rid,pid,url){   // 删除的是pid的权限与rid的角色
         dataType: 'text',
         success: function (res) {
             //删除该行
-            $('#tr_'+pid).remove()
+            $('#tr_' + pid).remove()
         }
     });
 }
-
-
 
 
 //删除角色或权限的弹框
@@ -526,7 +524,7 @@ function layerConfirmDelete(type, id, url) {
             } else {
                 layer.confirm('确认删除该权限么？该权限已绑定' + count + '个角色', {btn: ['确认', '放弃']},
                     function () {              //确认
-                        confirmDelete(type, id,url);
+                        confirmDelete(type, id, url);
                         layer.msg('删除成功', {icon: 1});
                     }, function (index) {           //放弃
                         layer.close(index);
@@ -539,7 +537,7 @@ function layerConfirmDelete(type, id, url) {
 }
 
 //执行删除操作
-function confirmDelete(type, id,url) {
+function confirmDelete(type, id, url) {
     //执行删除操作,删除一个角色就是删除角色表中的数据和角色用户表、角色权限表中的关联
     var data = {
         action: 'confirm_delete',
@@ -555,4 +553,219 @@ function confirmDelete(type, id,url) {
         }
     });
 
+}
+
+//获得用户表格
+function addToUserTable(tab, type, url) {
+    var input_id = '#' + tab + '-' + type + '-input';
+    var name = $(input_id).val();
+    var data = {
+        action: 'rbac_hasItem',
+        part: type,
+        word: name
+    };
+    $.ajax({
+        type: 'post',
+        url: url,
+        data: data,
+        dataType: 'text',
+        success: function (response) {
+            if (response.trim() == false) {  // 如果没有
+                if (type == 'permission') {
+                    layer.msg("无此权限", {time: 2000, icon: 2})
+                } else if (type == 'user') {
+                    layer.msg("无此用户", {time: 2000, icon: 2})
+                } else {
+                    layer.msg("无此角色", {time: 2000, icon: 2})
+                }
+            }
+            else {
+                $('#autocomplete-' + type).css('display', 'none');
+                $(input_id).val('');
+                //step1:在表头下面加入新的一行
+                var data = {
+                    action: 'rbac_get_user_info',
+                    part: type,
+                    word: name
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: data,
+                    dataType: 'json',
+                    success: function (res) {
+                        var id = "#" + tab + "-table-border";
+                        $(id + ' tbody').empty('');
+                        //res[0]是对应的角色ID集合
+                        //res[1]是对应的角色名称集合
+                        //res[2]每个角色对应的权限ID集合,理论上集合数和角色数相同且可以为空
+                        //res[3]每个角色对应的权限名称集合,理论上集合数和角色数相同且可以为空
+                        //res[4]用户不依赖于角色的权限id集合,一般为空
+                        //res[5]用户不依赖于角色的权限名称集合,一般为空
+                        //res[6] 用户id
+                        if (res[0] != []) {     //首先有角色
+                            for (var i = 0; i < res[0].length; i++) {
+                                //每个i对应每个角色,一个角色有几行由对应的权限条数决定
+                                var rowspan = res[2][i].length;
+                                for (var j = 0; j < res[2][i].length; j++) {   //每个j对应一行
+                                    if (j == 0) {
+                                        var tr = '<tr>' +
+                                            '<td id="hidden_id" rowspan=' + rowspan + '>' + res[0][i] + '</td>' +
+                                            '<td rowspan=' + rowspan + '>' + res[1][i] + '</td>' +
+                                            '<td id="hidden_id">' + res[2][i][j] + '</td>' +
+                                            '<td>' + res[3][i][j] + '</td>' +
+                                            '<td rowspan=' + rowspan + '>' +
+                                            '<button class="btn btn-link" onclick="userRConfirmDelete(' + '\'' + name + '\','+'\'' + res[6] + '\',' + res[0][i] + ',\'' + url + '\')">' +
+                                            '<span class="glyphicon glyphicon-trash"></span>' +
+                                            '</button>' +
+                                            '</td>' +
+                                            '</tr>';
+                                    } else {
+                                        var tr = '<tr>' +
+                                            '<td id="hidden_id">' + res[2][i][j] + '</td>' +
+                                            '<td>' + res[3][i][j] + '</td>' +
+                                            '</tr>';
+                                    }
+                                    $(id + ' tbody').append(tr);
+                                }
+                            }
+                        }
+
+                        if (res[4] != []) {
+                            for (var k = 0; k < res[4].length; k++) {
+                                var tr = '<tr>' +
+                                    '<td></td>' +
+                                    '<td id="hidden_id">' + res[4][k] + '</td>' +
+                                    '<td>' + res[5][k] + '</td>' +
+                                    '<td>' +
+                                        '<button class="btn btn-link" onclick="userPConfirmDelete(' + '\'' + name + '\','+'\'' + res[6] + '\',' + res[4][k] + ',\'' + url + '\')">' +
+                                            '<span class="glyphicon glyphicon-trash"></span>' +
+                                        '</button>' +
+                                    '</td>' +
+                                    '</tr>';
+                                $(id + ' tbody').append(tr);
+                            }
+                        }
+                    }
+                })
+            }
+        }
+    })
+}
+
+function userPConfirmDelete(user_name,user_id,permission_id,url) {
+    //删除用户权限
+    layer.confirm('确认删除该用户的权限么？', {btn: ['确认', '放弃']},
+        function () {              //确认
+            var data = {
+                action: 'rbac_user_permission_delete',
+                user_id: user_id,
+                permission_id: permission_id
+            };
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: data,
+                dataType: 'text',
+                success:function () {
+                    layer.msg('删除成功', {icon: 1});
+                    refreshUserTable(user_name,url)
+                }
+            });
+        }, function (index) {           //放弃
+            layer.close(index);
+        });
+}
+
+function userRConfirmDelete(user_name,user_id,role_id,url){
+    layer.confirm('确认删除该用户的角色么？', {btn: ['确认', '放弃']},
+        function () {              //确认
+            var data = {
+                action: 'rbac_user_role_delete',
+                user_id: user_id,
+                role_id: role_id
+            };
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: data,
+                dataType: 'text',
+                success:function () {
+                    layer.msg('删除成功', {icon: 1});
+                    refreshUserTable(user_name,url)
+                }
+            });
+        }, function (index) {           //放弃
+            layer.close(index);
+        });
+}
+
+function refreshUserTable(user_name,url){
+
+    var data = {
+        action: 'rbac_get_user_info',
+        part: 'user',
+        word: user_name
+    };
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: data,
+        dataType: 'json',
+        success: function (res) {
+            var id = "#ul-table-border";
+            $(id + ' tbody').empty('');
+
+            //res[0]是对应的角色ID集合
+            //res[1]是对应的角色名称集合
+            //res[2]每个角色对应的权限ID集合,理论上集合数和角色数相同且可以为空
+            //res[3]每个角色对应的权限名称集合,理论上集合数和角色数相同且可以为空
+            //res[4]用户不依赖于角色的权限id集合,一般为空
+            //res[5]用户不依赖于角色的权限名称集合,一般为空
+            //res[6] 用户id
+            if (res[0] != []) {     //首先有角色
+                for (var i = 0; i < res[0].length; i++) {
+                    //每个i对应每个角色,一个角色有几行由对应的权限条数决定
+                    var rowspan = res[2][i].length;
+                    for (var j = 0; j < res[2][i].length; j++) {   //每个j对应一行
+                        if (j == 0) {
+                            var tr = '<tr>' +
+                                '<td id="hidden_id" rowspan=' + rowspan + '>' + res[0][i] + '</td>' +
+                                '<td rowspan=' + rowspan + '>' + res[1][i] + '</td>' +
+                                '<td id="hidden_id">' + res[2][i][j] + '</td>' +
+                                '<td>' + res[3][i][j] + '</td>' +
+                                '<td rowspan=' + rowspan + '>' +
+                                '<button class="btn btn-link" onclick="userRConfirmDelete(' + '\'' + user_name + '\','+ '\'' + res[6] + '\',' + res[0][i] + ',\'' + url + '\')">' +
+                                '<span class="glyphicon glyphicon-trash"></span>' +
+                                '</button>' +
+                                '</td>' +
+                                '</tr>';
+                        } else {
+                            var tr = '<tr>' +
+                                '<td id="hidden_id">' + res[2][i][j] + '</td>' +
+                                '<td>' + res[3][i][j] + '</td>' +
+                                '</tr>';
+                        }
+                        $(id + ' tbody').append(tr);
+                    }
+                }
+            }
+
+            if (res[4] != []) {
+                for (var k = 0; k < res[4].length; k++) {
+                    var tr = '<tr>' +
+                        '<td></td>' +
+                        '<td id="hidden_id">' + res[4][k] + '</td>' +
+                        '<td>' + res[5][k] + '</td>' +
+                        '<td>' +
+                        '<button class="btn btn-link" onclick="userPConfirmDelete(' + '\'' + user_name + '\','+ '\'' + res[6] + '\',' + res[4][k] + ',\'' + url + '\')">' +
+                        '<span class="glyphicon glyphicon-trash"></span>' +
+                        '</button>' +
+                        '</td>' +
+                        '</tr>';
+                    $(id + ' tbody').append(tr);
+                }
+            }
+        }
+    })
 }

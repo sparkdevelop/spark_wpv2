@@ -28,9 +28,9 @@ $admin_url=admin_url('admin-ajax.php');
             <img src="<?php bloginfo("template_url")?>/img/project.png">
             <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'pl'),remove_query_arg(array('paged','filter'))))?>">权限配置</a></span>
         </li>
-        <li id="search">
+        <li id="ul">
             <img src="<?php bloginfo("template_url")?>/img/group.png">
-            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'search'),remove_query_arg(array('paged','filter'))))?>">查看用户权限</a></span>
+            <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'ul'),remove_query_arg(array('paged','filter'))))?>">查看用户权限</a></span>
         </li>
         <li id="approve">
             <img src="<?php bloginfo("template_url")?>/img/group.png">

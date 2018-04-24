@@ -22,23 +22,33 @@ $illstration = isset($_POST["pabstract"]) ? $_POST["pabstract"] : '';
 
 $create_date = isset($_POST["pcreatedate"]) ? $_POST["pcreatedate"] : '';
 
+$relative_post = isset($_POST['checkItem']) ? $_POST["checkItem"] : '';
+
+
 //处理加入方式
 //首先获取最后一个role_id;
 $sql_fun = "select ID from wp_rbac_permission ORDER BY ID DESC LIMIT 0,1";
 $result = $wpdb->get_results($sql_fun);
-$permission_id = $result[0]->ID+1;
+$permission_id = $result[0]->ID + 1;
 
 
 $sql_permission = "INSERT INTO wp_rbac_permission VALUES ($permission_id,'$permission_name',
                                               '$illstration','$author',
                                               '$create_date')";
-if($permission_name!="" && $illstration!=""){
+if ($permission_name != "" && $illstration != "") {
     $wpdb->query($sql_permission);
 }
+if(sizeof($relative_post)!=0){
+    foreach ($relative_post as $p){
+        $sql="INSERT INTO wp_rbac_post VALUES ('',$permission_id,$p,$author,'$create_date')";
+        $wpdb->query($sql);
+    }
+}
+
+
+
 ?>
 <script>
-    var index = parent.layer.getFrameIndex(window.name);
-    parent.layer.close(index);
-    parent.layer.msg("成功创建", {time: 2000, icon: 1});
+    window.close();
 </script>
 

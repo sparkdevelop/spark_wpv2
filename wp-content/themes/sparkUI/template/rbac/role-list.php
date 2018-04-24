@@ -3,43 +3,16 @@ $tab = isset($_GET['tab']) && !empty($_GET['tab']) ? sanitize_text_field($_GET['
 $admin_url = admin_url('admin-ajax.php');
 ?>
 <style>
-    #rl-role-input {
-        width: 50%;
-        display: inline;
-    }
-
-    #rl-search-box {
-        margin-top: 30px;
-    }
     .btn-green {
         margin-top: 0px;
         padding: 0 0;
         margin-left: 20px;
         margin-right: 0px;
     }
-
-    #rl-table-border thead{
-        background-color: #f2f2f2;
-    }
-    .table>tbody>tr>td{
-        vertical-align: middle;
-    }
-    .table-hover>tbody>tr:hover{
-        background-color: lightgoldenrodyellow;
-    }
-    .table>tbody>tr>td a{
-        color: #333333;
-    }
-    .table>tbody>tr>td a:focus,span:focus, a:hover,span:hover {
-        color: #fe642d;
-        text-decoration: none;
-    }
-
-
 </style>
 <h4>角色列表</h4>
 <div class="divline"></div>
-<div id="rl-search-box">
+<div class="rl-search-box">
     <input type="text" id="<?=$tab ?>-role-input" class="form-control <?= $tab ?>-text" placeholder="请输入角色名称">
     <button class="btn btn-green" onclick="addToChosenList('<?= $tab ?>','role','<?= $admin_url ?>')">搜索</button>
     <button class="btn btn-green" onclick="new_role()">新建角色</button>

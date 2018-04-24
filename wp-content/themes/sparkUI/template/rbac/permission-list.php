@@ -3,46 +3,16 @@ $tab = isset($_GET['tab']) && !empty($_GET['tab']) ? sanitize_text_field($_GET['
 $admin_url = admin_url('admin-ajax.php');
 ?>
 <style>
-    #pl-permission-input {
-        width: 50%;
-        display: inline;
-    }
-
-    #pl-search-box {
-        margin-top: 30px;
-    }
-
-    #pl-table-border thead{
-        background-color: #f2f2f2;
-    }
-
     .btn-green {
         margin-top: 0px;
         padding: 0 0;
         margin-left: 20px;
         margin-right: 0px;
     }
-    .table>tbody>tr>td{
-        vertical-align: middle;
-    }
-    .table-hover>tbody>tr:hover{
-        background-color: lightgoldenrodyellow;
-    }
-    .table>tbody>tr>td a{
-        color: #333333;
-    }
-    .table>tbody>tr>td a:focus,span:focus, a:hover,span:hover {
-        color: #fe642d;
-        text-decoration: none;
-    }
-    .btn-link{
-        padding: 0 0;
-        margin: 0 0;
-    }
 </style>
 <h4>权限列表</h4>
 <div class="divline"></div>
-<div id="pl-search-box">
+<div class="pl-search-box">
     <input type="text" id="<?=$tab ?>-permission-input" class="form-control <?=$tab ?>-text" placeholder="请输入权限名称/ID">
     <button class="btn btn-green" onclick="addToChosenList('<?= $tab ?>','permission','<?= $admin_url ?>')">搜索</button>
     <button class="btn btn-green" onclick="new_permission()">新建权限</button>
@@ -91,16 +61,17 @@ $admin_url = admin_url('admin-ajax.php');
         });
     });
     function new_permission(){
-        layer.open({
-            type: 2,
-            title: "新建权限",
-            content: '<?=site_url().get_page_address('create_permission')?>',
-            area: ['66%','66%'],
-            closeBtn:1,
-            shadeClose:true,
-            shade:0.5,
-            end:function () {}
-        })
+        window.open('<?=site_url().get_page_address('create_permission')?>');
+//        layer.open({
+//            type: 2,
+//            title: "新建权限",
+//            content: '<?//=site_url().get_page_address('create_permission')?>//',
+//            area: ['66%','66%'],
+//            closeBtn:1,
+//            shadeClose:true,
+//            shade:0.5,
+//            end:function () {}
+//        })
     }
 </script>
 

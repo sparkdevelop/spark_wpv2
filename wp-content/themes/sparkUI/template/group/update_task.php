@@ -1,5 +1,6 @@
 <script>
     function checkSubmitTask() {
+        var index = layer.load(0, {shade: [0.5, '#ffffff']}); //0代表加载的风格，支持0-2
         var tname = document.getElementById('tname');
         var tabstract = document.getElementById('tabstract');
         var tprolink = document.getElementById('tprolink');

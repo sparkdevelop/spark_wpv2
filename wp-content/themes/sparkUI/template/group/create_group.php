@@ -7,6 +7,7 @@
 
 <script>
     function checkSubmitGroup() {
+        var index = layer.load(0, {shade: [0.5, '#ffffff']}); //0代表加载的风格，支持0-2
         var gname = document.getElementById('gname');
         var gabstract = document.getElementById('gabstract');
         if (checkGroupName(gname.value) && checkFile()) {

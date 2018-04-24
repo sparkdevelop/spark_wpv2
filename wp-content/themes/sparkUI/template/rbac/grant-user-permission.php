@@ -1,7 +1,6 @@
 <?php
 $tab = isset($_GET['tab']) && !empty($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'gup';
-$admin_url = admin_url('admin-ajax.php');
-?>
+$admin_url = admin_url('admin-ajax.php'); ?>
 <style>
     .btn-green {
         margin-top: 0px;
@@ -9,7 +8,6 @@ $admin_url = admin_url('admin-ajax.php');
         margin-left: 20px;
         margin-right: 0px;
     }
-
 
 </style>
 <h4>用户基本信息</h4>
@@ -46,14 +44,6 @@ $admin_url = admin_url('admin-ajax.php');
             <td>用户ID</td>
             <td></td>
         </tr>
-<!--        <tr>-->
-<!--            <td>学校</td>-->
-<!--            <td></td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td>性别</td>-->
-<!--            <td></td>-->
-<!--        </tr>-->
         <tr>
             <td>注册时间</td>
             <td></td>
@@ -114,9 +104,7 @@ $admin_url = admin_url('admin-ajax.php');
         </tr>
         <tr>
             <td>权限说明</td>
-            <td>
-                <button class="btn-green" style="margin-left: 0px">查看</button>
-            </td>
+            <td></td>
         </tr>
         </tbody>
     </table>
@@ -186,16 +174,16 @@ $admin_url = admin_url('admin-ajax.php');
             action: 'grant_up_confirm',
             user_id: user_id,
             permission_id: pms_id
-        }
+        };
         $.ajax({
             type: "POST",
             url: url,
             data: data,
             dataType: "text",
-            success: function (response) {
-                //console.log(response);
+            success: function () {
                 layer.msg('配置成功', {time: 2000, icon: 1});
                 location.reload();
+
             },
             error: function () {
                 alert("error");

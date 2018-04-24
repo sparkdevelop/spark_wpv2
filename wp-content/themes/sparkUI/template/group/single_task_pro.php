@@ -373,6 +373,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
     }
 
     function checkSubmitPro() {
+        var index = layer.load(0, {shade: [0.5, '#ffffff']}); //0代表加载的风格，支持0-2
         var result = [];
         for (var k = 0; k < i; k++) {
             tmp = k.toString();

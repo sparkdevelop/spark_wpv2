@@ -5,9 +5,9 @@
 
 global $wpdb;
 include_once 'rongcloud.php';
-$appKey = '82hegw5u8y3bx';
-$appSecret= '3xiNmMC4VLWKr7';
-$sql_user = "select ID,user_login from wp_users ORDER BY ID ASC limit 0,10";
+$appKey = 'e0x9wycfe4h8q';
+$appSecret= 'gBasm0OQHKa';
+$sql_user = "select ID,user_login from wp_users ORDER BY ID";
 $result_user = $wpdb->get_results($sql_user);
 $avatar_url =  site_url()."/wp-content/themes/sparkUI/img/rongcloud-avatar.png";
 $RongCloud = new RongCloud($appKey,$appSecret);
