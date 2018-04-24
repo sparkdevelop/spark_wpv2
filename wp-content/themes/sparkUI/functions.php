@@ -4748,56 +4748,55 @@ add_action('wp_ajax_rbac_hasItem', 'rbac_hasItem');
 add_action('wp_ajax_nopriv_rbac_hasItem', 'rbac_hasItem');
 
 //在检索资源的时候判断是否有该post、category、tag
-function rbac_hasPost(){
+function rbac_hasPost()
+{
     global $wpdb;
     $creation = $_POST['creation'];
     $word = $_POST['word'];
-    if($creation=='name'){
+    $result=[];
+    if ($creation == 'name') {
         //选出所有post匹配当前word的post
         $sql = "SELECT ID,post_type FROM wp_posts WHERE post_title ='$word' and post_type in ('yada_wiki','post') and post_status='publish'";
         $pre_result = $wpdb->get_results($sql);
-        if(sizeof($pre_result)!=0) {
-            foreach ($pre_result as $v){
+        if (sizeof($pre_result) != 0) {
+            foreach ($pre_result as $v) {
                 $id = $v->ID;
                 $post_type = $v->post_type;
-                $tmp[]=[$id,$post_type];
+                $tmp[] = [$id, $post_type];
             }
             $result = json_encode($tmp);
-            echo $result;
-        } else{
-            echo false;
-        }
-    }else{
-        if ($creation=='cate'){
-            $sql = "SELECT t.term_id,t.name,tt.count FROM wp_term_taxonomy as tt LEFT JOIN wp_terms as t
-              ON tt.term_id=t.term_id WHERE tt.taxonomy in ('category','wiki_cats') and t.name ='$word'";
         }else{
+            $result = json_encode($result);
+        }
+        echo $result;
+    }
+    else {
+        if ($creation == 'cate') {
             $sql = "SELECT t.term_id,t.name,tt.count FROM wp_term_taxonomy as tt LEFT JOIN wp_terms as t
-              ON tt.term_id=t.term_id WHERE tt.taxonomy in ('post_tag','wiki_tags') and t.name ='$word'";
+              ON tt.term_id=t.term_id WHERE tt.taxonomy in ('category','wiki_cats') and tt.count!=0 and t.name ='$word'";
+        } else {
+            $sql = "SELECT t.term_id,t.name,tt.count FROM wp_term_taxonomy as tt LEFT JOIN wp_terms as t
+              ON tt.term_id=t.term_id WHERE tt.taxonomy in ('post_tag','wiki_tags') and tt.count!=0 and t.name ='$word'";
         }
         $pre_result = $wpdb->get_results($sql);
-        if(sizeof($pre_result)!=0){
-            foreach ($pre_result as $v){
+        if (sizeof($pre_result) != 0) {
+            foreach ($pre_result as $v) {
                 $cat_id = $v->term_id;
                 $count = $v->count;
-                if($count!=0){
-                    //有post对应这个分类,获取post
-                    $sql = "SELECT object_id FROM wp_term_relationships WHERE term_taxonomy_id=$cat_id";
-                    $mid_result = $wpdb->get_results($sql);
-                    foreach ($mid_result as $m){
-                        $id = $m->object_id;
-                        $post_type = get_post_type($id);
-                        $tmp[]=[$id,$post_type];
-                    }
-                    $result = json_encode($tmp);
-                    echo $result;
-                } else{
-                    echo false;
+                //有post对应这个分类,获取post
+                $sql = "SELECT object_id FROM wp_term_relationships WHERE term_taxonomy_id=$cat_id";
+                $mid_result = $wpdb->get_results($sql);
+                foreach ($mid_result as $m) {
+                    $id = $m->object_id;
+                    $post_type = get_post_type($id);
+                    $tmp[] = [$id, $post_type];
                 }
+                $result = json_encode($tmp);
             }
         }else{
-            echo false;
+            $result = json_encode($result);
         }
+        echo $result;
     }
     die();
 
@@ -4805,7 +4804,37 @@ function rbac_hasPost(){
 add_action('wp_ajax_rbac_hasPost', 'rbac_hasPost');
 add_action('wp_ajax_nopriv_rbac_hasPost', 'rbac_hasPost');
 
+//获取某一权限的所有post_id
+function get_permission_post($pid){
+    global $wpdb;
+    $sql = "SELECT post_id FROM wp_rbac_post WHERE permission_id=$pid";
+    $pre_result = $wpdb->get_results($sql,'ARRAY_A');
+    $result = array_column($pre_result, 'post_id');
+    return $result;
+}
 
+
+//查看权限的资源的ajax
+function rbac_get_permission_post(){
+    $pid = $_POST['permission_id'];
+    $post_ids = get_permission_post($pid);
+    $result = [];
+    if($post_ids!=[]){
+        foreach ($post_ids as $p) {
+            $post = get_post($p);
+            $post_title = $post->post_title;
+            $post_type = $post->post_type;
+            $tmp[] = [$p, $post_title, $post_type];
+        }
+        $result = json_encode($tmp);
+    }else{
+        $result = json_encode($result);
+    }
+    echo $result;
+    die();
+}
+add_action('wp_ajax_rbac_get_permission_post', 'rbac_get_permission_post');
+add_action('wp_ajax_nopriv_rbac_get_permission_post', 'rbac_get_permission_post');
 
 
 
@@ -5414,12 +5443,12 @@ function rbac_post_autocomplete()
         $tmp = json_encode($result);
     } elseif ($creation == 'cate') {
         $sql = "SELECT t.term_id,t.name,tt.count FROM wp_term_taxonomy as tt LEFT JOIN wp_terms as t
-              ON tt.term_id=t.term_id WHERE tt.taxonomy in ('category','wiki_cats') and t.name like '%$post_name%'";
+              ON tt.term_id=t.term_id WHERE tt.taxonomy in ('category','wiki_cats') and tt.count!=0 and t.name like '%$post_name%'";
         $result = $wpdb->get_results($sql);
         $tmp = json_encode($result);
     } else {
         $sql = "SELECT t.term_id,t.name,tt.count FROM wp_term_taxonomy as tt LEFT JOIN wp_terms as t
-              ON tt.term_id=t.term_id WHERE tt.taxonomy in ('post_tag','wiki_tags') and t.name like '%$post_name%'";
+              ON tt.term_id=t.term_id WHERE tt.taxonomy in ('post_tag','wiki_tags') and tt.count!=0 and t.name like '%$post_name%'";
         $result = $wpdb->get_results($sql);
         $tmp = json_encode($result);
     }
@@ -5430,6 +5459,48 @@ function rbac_post_autocomplete()
 
 add_action('wp_ajax_rbac_post_autocomplete', 'rbac_post_autocomplete');
 add_action('wp_ajax_nopriv_rbac_post_autocomplete', 'rbac_post_autocomplete');
+
+
+function rbac_delete_post(){
+    global $wpdb;
+    $pid = isset($_POST['permission_id']) ? $_POST['permission_id'] : '';
+    $delete_id = $_POST['delete_id'];
+    foreach ($delete_id as $p){
+        $sql = "DELETE FROM wp_rbac_post WHERE post_id=$p and permission_id=$pid";
+        $wpdb->get_results($sql);
+    }
+    die();
+}
+add_action('wp_ajax_rbac_delete_post', 'rbac_delete_post');
+add_action('wp_ajax_nopriv_rbac_delete_post', 'rbac_delete_post');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

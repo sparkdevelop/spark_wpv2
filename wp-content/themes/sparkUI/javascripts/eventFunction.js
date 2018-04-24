@@ -293,14 +293,29 @@ function addToChosenList(tab, type, url) {
                     data: data,
                     dataType: 'json',
                     success: function (res) {
+
                         var id = "#" + tab + "-table-border";
                         var info = $(id + ' thead tr th');
                         var tr_id = type + '_' + res[1];
                         var tr = '<tr id=' + tr_id + '>';
                         $(id + ' tbody').append(tr);
-                        for (var i = 0; i < info.length - 1; i++) {
-                            var td = '<td>' + res[i] + '</td>';
+                        if (type == 'role') {
+                            for (var i = 0; i < info.length - 1; i++) {
+                                var td = '<td>' + res[i] + '</td>';
+                                $(id + ' tbody tr:last').append(td);
+                            }
+                        }
+
+                        if (type == 'permission') {
+                            for (var i = 0; i < info.length - 2; i++) {
+                                var td = '<td>' + res[i] + '</td>';
+                                $(id + ' tbody tr:last').append(td);
+                            }
+                            var td = '<td>' +
+                                '<button class="btn btn-green" id="btn-config-' + res[1] + '" onclick="showPost('+res[1]+ ',\''+url+'\')">查看资源</button>' +
+                                '</td>';
                             $(id + ' tbody tr:last').append(td);
+                            $("button[id^='btn-config-']").css({'margin': '0 auto'});
                         }
 
                         var append = '<td>' +
@@ -308,11 +323,6 @@ function addToChosenList(tab, type, url) {
                             '<button class="btn btn-link" onclick="layerConfirmDelete(' + '\'' + type + '\',' + res[1] + ',\'' + url + '\')"><span class="glyphicon glyphicon-trash"></span></button>' +
                             '</td></tr>';
                         $(id + ' tbody tr:last').append(append);
-
-                        //添加修改按钮
-                        // $(id+' tbody tr:last')[0].childNodes[0].innerHTML +='<span class="glyphicon glyphicon-edit" onclick="editName()"></span>';
-                        // $(id+' tbody tr:last')[0].childNodes[2].innerHTML += '<span class="glyphicon glyphicon-edit" onclick="editPermission()"></span>';
-                        // $(id+' tbody tr:last')[0].childNodes[4].innerHTML += '<span class="glyphicon glyphicon-edit" onclick="editIllustration()"></span>';
 
                     }
                 })
@@ -341,12 +351,19 @@ function layerConfirmConfig(tab, type, id, url) {
     }
     if (type == 'role') {
         b[2].innerHTML = '<button class="btn btn-green" id="btn-config-' + id + '" onclick="deletePermission(' + '\'' + tab + '\',' + '\'' + type + '\',' + id + ',\'' + url + '\')">配置权限</button>';
+        $("button[id^='btn-config-']").css({'margin': '0 auto'});
+        b[5].innerHTML = '<button class="btn btn-link" onclick="saveConfig(' + '\'' + tab + '\',' + '\'' + type + '\',' + id + ',\'' + url + '\')"><span class="glyphicon glyphicon-floppy-disk"></span></button>' +
+            '<button class="btn btn-link" onclick="cancelConfig(' + '\'' + tab + '\',' + '\'' + type + '\',' + id + ',\'' + url + '\')"><span class="glyphicon glyphicon-remove-sign"></span></button>';
+
     } else {
         b[2].innerHTML = '<button class="btn btn-green" id="btn-config-' + id + '" onclick="deletePermission(' + '\'' + tab + '\',' + '\'' + type + '\',' + id + ',\'' + url + '\')">配置角色</button>';
+        b[5].innerHTML = '<button class="btn btn-green" id="btn-config-' + id + '" onclick="configPost('+id+ ',\''+url+'\')">配置资源</button>';
+        $("button[id^='btn-config-']").css({'margin': '0 auto'});
+        b[6].innerHTML = '<button class="btn btn-link" onclick="saveConfig(' + '\'' + tab + '\',' + '\'' + type + '\',' + id + ',\'' + url + '\')"><span class="glyphicon glyphicon-floppy-disk"></span></button>' +
+            '<button class="btn btn-link" onclick="cancelConfig(' + '\'' + tab + '\',' + '\'' + type + '\',' + id + ',\'' + url + '\')"><span class="glyphicon glyphicon-remove-sign"></span></button>';
+
     }
 
-    b[5].innerHTML = '<button class="btn btn-link" onclick="saveConfig(' + '\'' + tab + '\',' + '\'' + type + '\',' + id + ',\'' + url + '\')"><span class="glyphicon glyphicon-floppy-disk"></span></button>' +
-        '<button class="btn btn-link" onclick="cancelConfig(' + '\'' + tab + '\',' + '\'' + type + '\',' + id + ',\'' + url + '\')"><span class="glyphicon glyphicon-remove-sign"></span></button>';
 }
 
 //保存名称和说明的更改
@@ -376,9 +393,22 @@ function saveConfig(tab, type, id, url) {
             var tr_id = type + '_' + res[1];
             var tr = '<tr id=' + tr_id + '>';
             $(id + ' tbody').append(tr);
-            for (var i = 0; i < info.length - 1; i++) {
-                var td = '<td>' + res[i] + '</td>';
+            if (type == 'role') {
+                for (var i = 0; i < info.length - 1; i++) {
+                    var td = '<td>' + res[i] + '</td>';
+                    $(id + ' tbody tr:last').append(td);
+                }
+            }
+            if (type == 'permission') {
+                for (var i = 0; i < info.length - 2; i++) {
+                    var td = '<td>' + res[i] + '</td>';
+                    $(id + ' tbody tr:last').append(td);
+                }
+                var td = '<td>' +
+                    '<button class="btn btn-green" id="btn-config-' + res[1] + '" onclick="showPost('+res[1]+ ',\''+url+'\')">查看资源</button>' +
+                    '</td>';
                 $(id + ' tbody tr:last').append(td);
+                $("button[id^='btn-config-']").css({'margin': '0 auto'});
             }
             var append = '<td>' +
                 '<button class="btn btn-link" onclick="layerConfirmConfig(' + '\'' + tab + '\',' + '\'' + type + '\',' + res[1] + ',\'' + url + '\')"><span class="glyphicon glyphicon-edit"></span></button>' +
@@ -409,15 +439,29 @@ function cancelConfig(tab, type, id, url) {
             var tr_id = type + '_' + res[1];
             var tr = '<tr id=' + tr_id + '>';
             $(id + ' tbody').append(tr);
-            for (var i = 0; i < info.length - 1; i++) {
-                var td = '<td>' + res[i] + '</td>';
+            if (type == 'role') {
+                for (var i = 0; i < info.length - 1; i++) {
+                    var td = '<td>' + res[i] + '</td>';
+                    $(id + ' tbody tr:last').append(td);
+                }
+            }
+            if (type == 'permission') {
+                for (var i = 0; i < info.length - 2; i++) {
+                    var td = '<td>' + res[i] + '</td>';
+                    $(id + ' tbody tr:last').append(td);
+                }
+                var td = '<td>' +
+                    '<button class="btn btn-green" id="btn-config-' + res[1] + '" onclick="showPost('+res[1]+ ',\''+url+'\')">查看资源</button>' +
+                    '</td>';
                 $(id + ' tbody tr:last').append(td);
+                $("button[id^='btn-config-']").css({'margin': '0 auto'});
             }
             var append = '<td>' +
                 '<button class="btn btn-link" onclick="layerConfirmConfig(' + '\'' + tab + '\',' + '\'' + type + '\',' + res[1] + ',\'' + url + '\')"><span class="glyphicon glyphicon-edit"></span></button>' +
                 '<button class="btn btn-link" onclick="layerConfirmDelete(' + '\'' + type + '\',' + res[1] + ',\'' + url + '\')"><span class="glyphicon glyphicon-trash"></span></button>' +
                 '</td></tr>';
             $(id + ' tbody tr:last').append(append);
+            $('#show_post').css('display','none');
         }
     })
 }
@@ -615,7 +659,7 @@ function addToUserTable(tab, type, url) {
                                             '<td id="hidden_id">' + res[2][i][j] + '</td>' +
                                             '<td>' + res[3][i][j] + '</td>' +
                                             '<td rowspan=' + rowspan + '>' +
-                                            '<button class="btn btn-link" onclick="userRConfirmDelete(' + '\'' + name + '\','+'\'' + res[6] + '\',' + res[0][i] + ',\'' + url + '\')">' +
+                                            '<button class="btn btn-link" onclick="userRConfirmDelete(' + '\'' + name + '\',' + '\'' + res[6] + '\',' + res[0][i] + ',\'' + url + '\')">' +
                                             '<span class="glyphicon glyphicon-trash"></span>' +
                                             '</button>' +
                                             '</td>' +
@@ -638,9 +682,9 @@ function addToUserTable(tab, type, url) {
                                     '<td id="hidden_id">' + res[4][k] + '</td>' +
                                     '<td>' + res[5][k] + '</td>' +
                                     '<td>' +
-                                        '<button class="btn btn-link" onclick="userPConfirmDelete(' + '\'' + name + '\','+'\'' + res[6] + '\',' + res[4][k] + ',\'' + url + '\')">' +
-                                            '<span class="glyphicon glyphicon-trash"></span>' +
-                                        '</button>' +
+                                    '<button class="btn btn-link" onclick="userPConfirmDelete(' + '\'' + name + '\',' + '\'' + res[6] + '\',' + res[4][k] + ',\'' + url + '\')">' +
+                                    '<span class="glyphicon glyphicon-trash"></span>' +
+                                    '</button>' +
                                     '</td>' +
                                     '</tr>';
                                 $(id + ' tbody').append(tr);
@@ -653,7 +697,7 @@ function addToUserTable(tab, type, url) {
     })
 }
 
-function userPConfirmDelete(user_name,user_id,permission_id,url) {
+function userPConfirmDelete(user_name, user_id, permission_id, url) {
     //删除用户权限
     layer.confirm('确认删除该用户的权限么？', {btn: ['确认', '放弃']},
         function () {              //确认
@@ -667,9 +711,9 @@ function userPConfirmDelete(user_name,user_id,permission_id,url) {
                 url: url,
                 data: data,
                 dataType: 'text',
-                success:function () {
+                success: function () {
                     layer.msg('删除成功', {icon: 1});
-                    refreshUserTable(user_name,url)
+                    refreshUserTable(user_name, url)
                 }
             });
         }, function (index) {           //放弃
@@ -677,7 +721,7 @@ function userPConfirmDelete(user_name,user_id,permission_id,url) {
         });
 }
 
-function userRConfirmDelete(user_name,user_id,role_id,url){
+function userRConfirmDelete(user_name, user_id, role_id, url) {
     layer.confirm('确认删除该用户的角色么？', {btn: ['确认', '放弃']},
         function () {              //确认
             var data = {
@@ -690,9 +734,9 @@ function userRConfirmDelete(user_name,user_id,role_id,url){
                 url: url,
                 data: data,
                 dataType: 'text',
-                success:function () {
+                success: function () {
                     layer.msg('删除成功', {icon: 1});
-                    refreshUserTable(user_name,url)
+                    refreshUserTable(user_name, url)
                 }
             });
         }, function (index) {           //放弃
@@ -700,7 +744,7 @@ function userRConfirmDelete(user_name,user_id,role_id,url){
         });
 }
 
-function refreshUserTable(user_name,url){
+function refreshUserTable(user_name, url) {
 
     var data = {
         action: 'rbac_get_user_info',
@@ -735,7 +779,7 @@ function refreshUserTable(user_name,url){
                                 '<td id="hidden_id">' + res[2][i][j] + '</td>' +
                                 '<td>' + res[3][i][j] + '</td>' +
                                 '<td rowspan=' + rowspan + '>' +
-                                '<button class="btn btn-link" onclick="userRConfirmDelete(' + '\'' + user_name + '\','+ '\'' + res[6] + '\',' + res[0][i] + ',\'' + url + '\')">' +
+                                '<button class="btn btn-link" onclick="userRConfirmDelete(' + '\'' + user_name + '\',' + '\'' + res[6] + '\',' + res[0][i] + ',\'' + url + '\')">' +
                                 '<span class="glyphicon glyphicon-trash"></span>' +
                                 '</button>' +
                                 '</td>' +
@@ -758,12 +802,130 @@ function refreshUserTable(user_name,url){
                         '<td id="hidden_id">' + res[4][k] + '</td>' +
                         '<td>' + res[5][k] + '</td>' +
                         '<td>' +
-                        '<button class="btn btn-link" onclick="userPConfirmDelete(' + '\'' + user_name + '\','+ '\'' + res[6] + '\',' + res[4][k] + ',\'' + url + '\')">' +
+                        '<button class="btn btn-link" onclick="userPConfirmDelete(' + '\'' + user_name + '\',' + '\'' + res[6] + '\',' + res[4][k] + ',\'' + url + '\')">' +
                         '<span class="glyphicon glyphicon-trash"></span>' +
                         '</button>' +
                         '</td>' +
                         '</tr>';
                     $(id + ' tbody').append(tr);
+                }
+            }
+        }
+    })
+}
+
+function configPost(id,url) {
+    $('#show_post').css('display','block');
+    $('#show_post').children(2).attr('id','config_btn_'+id).css('display','block');
+    //点击弹窗,可以进行配置
+    var data = {
+        action: 'rbac_get_permission_post',
+        permission_id: id
+    };
+    $.ajax({
+        type: 'post',
+        url: url,
+        data: data,
+        dataType: 'json',
+        success: function (res) {
+            $('#post-choose-table-border tbody').empty();
+            for(var i=0;i<res.length;i++){
+                var post_id = res[i][0];
+                var post_title = res[i][1];
+                var post_type = res[i][2];
+                var tr = '<tr class="warning" >' +
+                    '<td id="hidden_id">' + post_id + '</td>' +
+                    '<td>' + post_title + '</td>' +
+                    '<td>' + post_type + '</td>' +
+                    '</tr>';
+                $('#post-choose-table-border tbody:last').append(tr);    //添加数据
+                var $tbr = $('#post-choose-table-border tbody tr:last');
+                var $checkItemTd = $('<td><input type="checkbox" name="checkItem[]" value='+post_id+' checked/></td>');   //添加复选框
+                $tbr.prepend($checkItemTd);
+                $tbr.find('input').click(function (event) {
+                    /*调整选中行的CSS样式*/
+                    $(this).parent().parent().toggleClass('warning');
+                    /*阻止向上冒泡，以防再次触发点击操作*/
+                    event.stopPropagation();
+                });
+            }
+
+        }
+    });
+}
+function showPost(id,url) {
+    $('#show_post').css('display','block');
+    $('#show_post').children(2).attr('id','config_btn_'+id).css('display','none');
+    //点击弹窗,展示列表 id是权限id
+    var data = {
+        action: 'rbac_get_permission_post',
+        permission_id: id
+    };
+    $.ajax({
+        type: 'post',
+        url: url,
+        data: data,
+        dataType: 'json',
+        success: function (res) {
+            $('#post-choose-table-border tbody').empty();
+            for(var i=0;i<res.length;i++){
+                var post_id = res[i][0];
+                var post_title = res[i][1];
+                var post_type = res[i][2];
+                var tr = '<tr class="warning" >' +
+                    '<td></td>'+
+                    '<td id="hidden_id">' + post_id + '</td>' +
+                    '<td>' + post_title + '</td>' +
+                    '<td>' + post_type + '</td>' +
+                    '</tr>';
+                $('#post-choose-table-border tbody:last').append(tr);    //添加数据
+            }
+        }
+    });
+}
+
+//添加到资源展示表
+function addToPostList(url) {
+    var creation = $("input[name='creation']:checked").val();
+    var input_id = '#postname';
+    var name = $(input_id).val();
+    var data = {
+        action: 'rbac_hasPost',
+        creation: creation,
+        word: name
+    };
+    $.ajax({
+        type: 'post',
+        url: url,
+        data: data,
+        dataType: 'json',
+        success: function (response) {
+            if(response.length==0){
+                layer.msg("无此资源", {time: 2000, icon: 2})
+            }else{
+                for(var i=0;i<response.length;i++){
+                    //获取类型
+                    var post_id = response[i][0];
+                    var post_type = response[i][1];
+                    //把下拉菜单关上,输入框清空
+                    $('#autocomplete-post').css('display', 'none');
+                    $(input_id).val('');
+                    //step1:执行逻辑是先加入一行,包括一个多选框和一个数据
+                    var tr = '<tr class="warning" >' +
+                        '<td id="hidden_id">' + post_id + '</td>' +
+                        '<td>' + name + '</td>' +
+                        '<td>' + post_type + '</td>' +
+                        '</tr>';
+                    $('#post-choose-table-border tbody:last').append(tr);    //添加数据
+                    var $tbr = $('#post-choose-table-border tbody tr:last');
+                    var $checkItemTd = $('<td><input type="checkbox" name="checkItem[]" value='+post_id+' checked/></td>');   //添加复选框
+                    $tbr.prepend($checkItemTd);
+                    $tbr.find('input').click(function (event) {
+                        /*调整选中行的CSS样式*/
+                        $(this).parent().parent().toggleClass('warning');
+                        /*阻止向上冒泡，以防再次触发点击操作*/
+                        event.stopPropagation();
+                    });
                 }
             }
         }

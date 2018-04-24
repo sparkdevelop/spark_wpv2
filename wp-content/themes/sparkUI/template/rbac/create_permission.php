@@ -41,54 +41,7 @@
             return flag_name;
         }
     }
-    function addToPostList() {
-        var creation = $("input[name='creation']:checked").val();
-        var input_id = '#postname';
-        var name = $(input_id).val();
-        var data = {
-            action: 'rbac_hasPost',
-            creation: creation,
-            word: name
-        };
-        $.ajax({
-            type: 'post',
-            url: '<?=admin_url('admin-ajax.php')?>',
-            data: data,
-            dataType: 'json',
-            success: function (response) {
-                console.log(response);
-                if(response==false){
-                    layer.msg("无此资源", {time: 2000, icon: 2})
-                }else{
-                    for(var i=0;i<response.length;i++){
-                        //获取类型
-                        var post_id = response[i][0];
-                        var post_type = response[i][1];
-                        //把下拉菜单关上,输入框清空
-                        $('#autocomplete-post').css('display', 'none');
-                        $(input_id).val('');
-                        //step1:执行逻辑是先加入一行,包括一个多选框和一个数据
-                        var tr = '<tr class="warning" >' +
-                            '<td id="hidden_id">' + post_id + '</td>' +
-                            '<td>' + name + '</td>' +
-                            '<td>' + post_type + '</td>' +
-                            '</tr>';
-                        $('#post-choose-table-border tbody:last').append(tr);    //添加数据
-                        var $tbr = $('#post-choose-table-border tbody tr:last');
-                        var $checkItemTd = $('<td><input type="checkbox" name="checkItem[]" value='+post_id+' checked/></td>');   //添加复选框
-                        $tbr.prepend($checkItemTd);
-                        $tbr.find('input').click(function (event) {
-                            /*调整选中行的CSS样式*/
-                            $(this).parent().parent().toggleClass('warning');
-                            /*阻止向上冒泡，以防再次触发点击操作*/
-                            event.stopPropagation();
-                        });
-//
-                    }
-                }
-            }
-        })
-    }
+
 
     $(function () {   //模糊查询
         $("#postname").keyup(function () {
@@ -196,7 +149,7 @@
                 <span style="color: red">*</span></label>
             <div class="col-sm-8 col-md-8 col-xs-12">
                 <input type="text" class="form-control" id='postname' placeholder="请输入资源标题/分类名称/标签名称">
-                <input type="button" class="btn btn-green" onclick="addToPostList()" value="搜索">
+                <input type="button" class="btn btn-green" onclick="addToPostList('<?=admin_url('admin-ajax.php')?>')" value="搜索">
                 <div id="autocomplete-post" style="display: none">
                     <ul class="list-group"></ul>
                 </div>
@@ -214,7 +167,7 @@
                     <table id="post-choose-table-border" class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th colspan="4">已选择资源</th>
+                            <th colspan="4" style="background-color: lightgrey;">已选择资源</th>
                         </tr>
                         <tr>
                             <th></th>

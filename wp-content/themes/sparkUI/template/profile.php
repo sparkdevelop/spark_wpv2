@@ -135,6 +135,7 @@ $admin_url = admin_url('admin-ajax.php');
                 <option value="19">北京工商大学</option>
                 <option value="15">北京信息科技大学</option>
                 <option value="16">北京印刷学院</option>
+                <option value="17">首都师范大学</option>
                 <option value="0">其他</option>
             </select>
             <script>
