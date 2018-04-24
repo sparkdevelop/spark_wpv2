@@ -41,7 +41,7 @@
         (function(){
             var storage=window.localStorage;
             storage.removeItem("rctoken");
-            var appKey = "82hegw5u8y3bx";
+            var appKey = "e0x9wycfe4h8q";
             var token = localStorage.getItem("rctoken"); //获取a的值
             if (token == null){
                 token = '<?=saveToken(get_current_user_id())?>';
