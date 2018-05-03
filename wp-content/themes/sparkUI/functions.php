@@ -5488,7 +5488,7 @@ function rbac_post_autocomplete()
 add_action('wp_ajax_rbac_post_autocomplete', 'rbac_post_autocomplete');
 add_action('wp_ajax_nopriv_rbac_post_autocomplete', 'rbac_post_autocomplete');
 
-
+//删除资源
 function rbac_delete_post()
 {
     global $wpdb;
@@ -5500,10 +5500,10 @@ function rbac_delete_post()
     }
     die();
 }
-
 add_action('wp_ajax_rbac_delete_post', 'rbac_delete_post');
 add_action('wp_ajax_nopriv_rbac_delete_post', 'rbac_delete_post');
 
+//添加资源
 function rbac_add_post()
 {
     global $wpdb;
@@ -5524,11 +5524,10 @@ function rbac_add_post()
     }
     die();
 }
-
 add_action('wp_ajax_rbac_add_post', 'rbac_add_post');
 add_action('wp_ajax_nopriv_rbac_add_post', 'rbac_add_post');
 
-
+//申请权限页面
 function apply_permission_ajax()
 {
     $post_id = $_POST['id'];
@@ -5565,7 +5564,7 @@ function apply_permission_ajax()
 add_action('wp_ajax_apply_permission_ajax', 'apply_permission_ajax');
 add_action('wp_ajax_nopriv_apply_permission_ajax', 'apply_permission_ajax');
 
-
+//获取一个资源对应的权限和角色
 function apply_permission($post_id)
 {
     global $wpdb;
@@ -5588,6 +5587,113 @@ function apply_permission($post_id)
     $result = array('permission_id' => $p_result, 'role_id' => $r_result);
     return $result;
 }
+
+//获取未处理的审核信息
+function rbac_get_apply_info(){
+    global $wpdb;
+    $sql = "SELECT * FROM wp_rbac_apply_tmp WHERE state = 0";//选出所有未操作的数据
+    $pre_result = $wpdb->get_results($sql,'ARRAY_A');
+    $map = ['权限', '角色'];
+    function a(&$v, $p)
+    {
+        $v = array_merge($v,$p);
+        return $v;
+    }
+    if($pre_result!=[]){
+        foreach ($pre_result as $r){
+            $user_name = get_the_author_meta('user_login', $r['user_id']);
+            $item_type = $map[$r['source_type']];
+            if($r['source_type']==0){
+                $item_name = get_rbac_info('permission',$r['source_id'])->permission_name;
+            }else{
+                $item_name = get_rbac_info('role',$r['source_id'])->role_name;
+            }
+            $tmp[]=array('applyer'=>$user_name,'item_name'=>$item_name,'item_type'=>$item_type);
+
+        }
+        $result = array_map('a',$pre_result, $tmp);
+    }else{
+        $result = [];
+    }
+    return $result;
+}
+
+//获取已经处理过的信息
+function rbac_get_solved_info(){
+    global $wpdb;
+    $sql = "SELECT * FROM wp_rbac_apply_tmp WHERE state IN (1,2)";//选出所有操作过的数据
+    $pre_result = $wpdb->get_results($sql,'ARRAY_A');
+    $map = ['权限', '角色'];
+    $state = ['已通过','已驳回'];
+    function a(&$v, $p)
+    {
+        $v = array_merge($v,$p);
+        return $v;
+    }
+    if($pre_result!=[]){
+        foreach ($pre_result as $r){
+            $user_name = get_the_author_meta('user_login', $r['user_id']);   //申请人姓名
+            $item_type = $map[$r['source_type']];   //申请类型
+            if($r['source_type']==0){
+                $item_name = get_rbac_info('permission',$r['source_id'])->permission_name;  //申请名称
+            }else{
+                $item_name = get_rbac_info('role',$r['source_id'])->role_name;
+            }
+            $apply_state = $state[$r['state']-1];   //申请状态
+            $manager = get_the_author_meta('user_login', $r['operator']);
+            $tmp[]=array('applyer'=>$user_name,'item_name'=>$item_name,'item_type'=>$item_type,'manager'=>$manager,'t_state'=>$apply_state);
+
+        }
+        $result = array_map('a',$pre_result, $tmp);
+    }else{
+        $result = [];
+    }
+    return $result;
+}
+
+//通过或者驳回
+function set_as_solved(){
+    global $wpdb;
+    $info = $_POST['info'];
+    $state = $_POST['state'];
+    $current_time = date('Y-m-d H:i:s',time()+8*3600);
+    $operator = get_current_user_id();
+
+    if($info!=[]){
+        //每一个td是一个大小为3数组,第一个数是user_id,
+        //第二个数是source_type,第三个数是source_id,
+        foreach ($info as $td){
+            if($state=='pass'){   //如果通过
+                //step1:更改表状态
+                $sql_pass = "UPDATE wp_rbac_apply_tmp SET state = 1,operator ='$operator',modified_time = '$current_time'
+                               WHERE user_id = $td[0] and source_type = $td[1] and source_id=$td[2]";
+                $wpdb->get_results($sql_pass);
+                //step2:更改ur或up表
+                if($td[1]==0){ //更改权限表
+                    $sql_up = "INSERT INTO wp_rbac_up VALUES ('',$td[0],$td[2],'$operator','$current_time')";
+                    $wpdb->get_results($sql_up);
+                }else{  //更改角色表
+                    $sql_ur = "INSERT INTO wp_rbac_ur VALUES ('',$td[0],$td[2],'$operator','$current_time')";
+                    $wpdb->get_results($sql_ur);
+                }
+            }else{
+                //只需要更新tmp表
+                $sql_deny = "UPDATE wp_rbac_apply_tmp SET state = 2,operator ='$operator',modified_time = '$current_time'
+                               WHERE user_id = $td[0] and source_type = $td[1] and source_id=$td[2]";
+                $wpdb->get_results($sql_deny);
+            }
+        }
+    }
+    die();
+}
+add_action('wp_ajax_set_as_solved', 'set_as_solved');
+add_action('wp_ajax_nopriv_set_as_solved', 'set_as_solved');
+
+
+
+
+
+
 
 
 //建立token表

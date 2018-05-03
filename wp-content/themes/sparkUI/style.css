@@ -744,13 +744,17 @@ h4 {
 }
 
 /*搜索页顶部标题样式,个人页面顶部标题样式*/
-#searchTab > li > a, #personalTab > li > a {
+#searchTab > li > a,
+#personalTab > li > a,
+#approveTab >li >a{
     font-size: 18px;
     color: #0f0f0f;
     font-weight: bold;
 }
 
-#searchTab > li.active > a, #personalTab > li.active > a {
+#searchTab > li.active > a,
+#personalTab > li.active > a,
+#approveTab > li.active > a{
     color: #fe642d;
 }
 

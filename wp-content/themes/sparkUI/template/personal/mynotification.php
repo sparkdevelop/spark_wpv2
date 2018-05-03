@@ -33,7 +33,6 @@ function generate_sql_structure($item_array)
 ?>
 <!--翻页-->
 <?php
-
 $type = isset($_GET['type']) ? $_GET['type'] : 'notice';
 ?>
 <ul id="personalTab" class="nav nav-pills">
