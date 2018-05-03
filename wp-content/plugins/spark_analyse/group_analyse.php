@@ -146,6 +146,149 @@ function get_method($team)
     $user_num=array_merge($user_num);
     $num=count($user_num);
     //0是num,1是time,2是text,3是score
+    if ($num==1){
+        $c=count($text);$i=0;$i1=0;$i2=0;$i3=0;$i4=0;
+        while($c>0) {
+            if ($user[$i] == $user_num[0]) {
+                $user1[0]=$user_num[0];
+                $user1[1][$i1]=$time[$i];
+                $user1[2][$i1] = $text[$i];
+                $i1++;
+            }
+            $c--;
+            $i++;
+        }
+        $user1=merge_text($user1);
+
+
+        $c=count($user1[2]);$i=0;
+        while($c>0){
+            $user1_text[$i]=$user1[2][$i];
+            $c--;
+            $i++;
+        }
+
+
+//    print_r($zhang1);
+//    print_r($song1);
+
+        $user1[3]=get($user1_text);
+
+//    print_r($song[3]);
+//    print_r($zhang[3]);
+        $user1[0]=$wpdb->get_var("SELECT user_login FROM `$wpdb->users` where ID=$user1[0]");
+
+        return $time_score=[$user1[0],$user1[1],$user1[3]];
+    }
+    if ($num==2){
+        $c=count($text);$i=0;$i1=0;$i2=0;$i3=0;$i4=0;
+        while($c>0) {
+            if ($user[$i] == $user_num[0]) {
+                $user1[0]=$user_num[0];
+                $user1[1][$i1]=$time[$i];
+                $user1[2][$i1] = $text[$i];
+                $i1++;
+            }
+            else if($user[$i] == $user_num[1]){
+                $user2[0]=$user_num[1];
+                $user2[1][$i2] = $time[$i];
+                $user2[2][$i2] = $text[$i];
+                $i2++;
+            }
+            $c--;
+            $i++;
+        }
+        $user1=merge_text($user1);
+        $user2=merge_text($user2);
+
+
+        $c=count($user1[2]);$i=0;
+        while($c>0){
+            $user1_text[$i]=$user1[2][$i];
+            $c--;
+            $i++;
+        }
+        $c=count($user2[2]);$i=0;
+        while($c>0){
+            $user2_text[$i]=$user2[2][$i];
+            $c--;
+            $i++;
+        }
+
+//    print_r($zhang1);
+//    print_r($song1);
+
+        $user1[3]=get($user1_text);
+        $user2[3]=get($user2_text);
+
+//    print_r($song[3]);
+//    print_r($zhang[3]);
+        $user1[0]=$wpdb->get_var("SELECT user_login FROM `$wpdb->users` where ID=$user1[0]");
+        $user2[0]=$wpdb->get_var("SELECT user_login FROM `$wpdb->users` where ID=$user2[0]");
+
+        return $time_score=[$user1[0],$user1[1],$user1[3],$user2[0],$user2[1],$user2[3]];
+    }
+    if ($num==3){
+        $c=count($text);$i=0;$i1=0;$i2=0;$i3=0;
+        while($c>0) {
+            if ($user[$i] == $user_num[0]) {
+                $user1[0]=$user_num[0];
+                $user1[1][$i1]=$time[$i];
+                $user1[2][$i1] = $text[$i];
+                $i1++;
+            }
+            else if($user[$i] == $user_num[1]){
+                $user2[0]=$user_num[1];
+                $user2[1][$i2] = $time[$i];
+                $user2[2][$i2] = $text[$i];
+                $i2++;
+            }
+            else if($user[$i] == $user_num[2]){
+                $user3[0]=$user_num[2];
+                $user3[1][$i3] = $time[$i];
+                $user3[2][$i3] = $text[$i];
+                $i3++;
+            }
+            $c--;
+            $i++;
+        }
+        $user1=merge_text($user1);
+        $user2=merge_text($user2);
+        $user3=merge_text($user3);
+
+
+        $c=count($user1[2]);$i=0;
+        while($c>0){
+            $user1_text[$i]=$user1[2][$i];
+            $c--;
+            $i++;
+        }
+        $c=count($user2[2]);$i=0;
+        while($c>0){
+            $user2_text[$i]=$user2[2][$i];
+            $c--;
+            $i++;
+        }
+        $c=count($user3[2]);$i=0;
+        while($c>0){
+            $user3_text[$i]=$user3[2][$i];
+            $c--;
+            $i++;
+        }
+
+//    print_r($zhang1);
+//    print_r($song1);
+//        print_r($user1_text);
+        $user1[3]=get($user1_text);
+        $user2[3]=get($user2_text);
+        $user3[3]=get($user3_text);
+//    print_r($song[3]);
+//    print_r($zhang[3]);
+        $user1[0]=$wpdb->get_var("SELECT user_login FROM `$wpdb->users` where ID=$user1[0]");
+        $user2[0]=$wpdb->get_var("SELECT user_login FROM `$wpdb->users` where ID=$user2[0]");
+        $user3[0]=$wpdb->get_var("SELECT user_login FROM `$wpdb->users` where ID=$user3[0]");
+        return $time_score=[$user1[0],$user1[1],$user1[3],$user2[0],$user2[1],$user2[3],$user3[0],$user3[1],$user3[3]];
+    }
     if ($num==4){
         $c=count($text);$i=0;$i1=0;$i2=0;$i3=0;$i4=0;
         while($c>0) {
@@ -220,67 +363,6 @@ function get_method($team)
         $user3[0]=$wpdb->get_var("SELECT user_login FROM `$wpdb->users` where ID=$user3[0]");
         $user4[0]=$wpdb->get_var("SELECT user_login FROM `$wpdb->users` where ID=$user4[0]");
         return $time_score=[$user1[0],$user1[1],$user1[3],$user2[0],$user2[1],$user2[3],$user3[0],$user3[1],$user3[3],$user4[0],$user4[1],$user4[3]];
-    }
-    if ($num==3){
-        $c=count($text);$i=0;$i1=0;$i2=0;$i3=0;
-        while($c>0) {
-            if ($user[$i] == $user_num[0]) {
-                $user1[0]=$user_num[0];
-                $user1[1][$i1]=$time[$i];
-                $user1[2][$i1] = $text[$i];
-                $i1++;
-            }
-            else if($user[$i] == $user_num[1]){
-                $user2[0]=$user_num[1];
-                $user2[1][$i2] = $time[$i];
-                $user2[2][$i2] = $text[$i];
-                $i2++;
-            }
-            else if($user[$i] == $user_num[2]){
-                $user3[0]=$user_num[2];
-                $user3[1][$i3] = $time[$i];
-                $user3[2][$i3] = $text[$i];
-                $i3++;
-            }
-            $c--;
-            $i++;
-        }
-        $user1=merge_text($user1);
-        $user2=merge_text($user2);
-        $user3=merge_text($user3);
-
-
-        $c=count($user1[2]);$i=0;
-        while($c>0){
-            $user1_text[$i]=$user1[2][$i];
-            $c--;
-            $i++;
-        }
-        $c=count($user2[2]);$i=0;
-        while($c>0){
-            $user2_text[$i]=$user2[2][$i];
-            $c--;
-            $i++;
-        }
-        $c=count($user3[2]);$i=0;
-        while($c>0){
-            $user3_text[$i]=$user3[2][$i];
-            $c--;
-            $i++;
-        }
-
-//    print_r($zhang1);
-//    print_r($song1);
-//        print_r($user1_text);
-        $user1[3]=get($user1_text);
-        $user2[3]=get($user2_text);
-        $user3[3]=get($user3_text);
-//    print_r($song[3]);
-//    print_r($zhang[3]);
-        $user1[0]=$wpdb->get_var("SELECT user_login FROM `$wpdb->users` where ID=$user1[0]");
-        $user2[0]=$wpdb->get_var("SELECT user_login FROM `$wpdb->users` where ID=$user2[0]");
-        $user3[0]=$wpdb->get_var("SELECT user_login FROM `$wpdb->users` where ID=$user3[0]");
-        return $time_score=[$user1[0],$user1[1],$user1[3],$user2[0],$user2[1],$user2[3],$user3[0],$user3[1],$user3[3]];
     }
     if ($num==5){
         $c=count($text);$i=0;$i1=0;$i2=0;$i3=0;$i4=0;$i5=0;

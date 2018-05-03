@@ -72,115 +72,16 @@ jQuery(document).ready( function($) {
 //                    j2 = parseFloat(score[ii2]);
 //                    score2.push(j2); //属性
 //                }
-                var chart2 = Highcharts.chart('container_emotion2', {
-                    chart: {
-                        type: 'spline'
-                    },
-                    title: {
-                        text: a[3]
-                    },
-                    xAxis: {
-                        categories: a[4]
-                    },
-                    yAxis: {
-                        title: {
-                            text: '分数'
-                        }
-                    },
-                    tooltip: {
-                        crosshairs: true,
-                        shared: true
-                    },
-                    plotOptions: {
-                        spline: {
-                            marker: {
-                                radius: 4,
-                                lineColor: '#666666',
-                                lineWidth: 1
-                            }
-                        }
-                    },
-                    series: [{
-                        name: '情感',
-                        marker: {
-                            symbol: 'square'
-                        },
-                        data: a[5]
-                    }]
-                });
-                //////////////////////////////////////////////////////
-
-                var chart3 = Highcharts.chart('container_emotion3', {
-                    chart: {
-                        type: 'spline'
-                    },
-                    title: {
-                        text: a[6]
-                    },
-                    xAxis: {
-                        categories: a[7]
-                    },
-                    yAxis: {
-                        title: {
-                            text: '分数'
-                        }
-                    },
-                    tooltip: {
-                        crosshairs: true,
-                        shared: true
-                    },
-                    plotOptions: {
-                        spline: {
-                            marker: {
-                                radius: 4,
-                                lineColor: '#666666',
-                                lineWidth: 1
-                            }
-                        }
-                    },
-                    series: [{
-                        name: '情感',
-                        marker: {
-                            symbol: 'square'
-                        },
-                        data: a[8]
-                    }]
-                });
-                ///////////////////////////////////////////////////////////////
-                //var time4_old =
-                //<
-                //? php echo
-                //json_encode($time);
-                //?
-                //>
-                //;
-                //var time4 = [];
-                //for (var i4 in time) {
-                //    time4.push(time[i4]); //属性
-                //}
-                //var score4_old =
-                //<
-                //? php echo
-                //json_encode($score);
-                //?
-                //>
-                //;
-                //var score4 = [];
-                //var j4;
-                //for (var ii4 in score) {
-                //    j4 = parseFloat(score[ii4]);
-                //    score4.push(j4); //属性
-                //}
-                if(a.length>9) {
-                    var chart4 = Highcharts.chart('container_emotion4', {
+                if(a.length>3) {
+                    var chart2 = Highcharts.chart('container_emotion2', {
                         chart: {
                             type: 'spline'
                         },
                         title: {
-                            text: a[9]
+                            text: a[3]
                         },
                         xAxis: {
-                            categories: a[10]
+                            categories: a[4]
                         },
                         yAxis: {
                             title: {
@@ -205,19 +106,20 @@ jQuery(document).ready( function($) {
                             marker: {
                                 symbol: 'square'
                             },
-                            data: a[11]
+                            data: a[5]
                         }]
                     });
-                    if(a.length>12) {
-                        var chart5 = Highcharts.chart('container_emotion5', {
+                    //////////////////////////////////////////////////////
+                    if (a.length > 6) {
+                        var chart3 = Highcharts.chart('container_emotion3', {
                             chart: {
                                 type: 'spline'
                             },
                             title: {
-                                text: a[12]
+                                text: a[6]
                             },
                             xAxis: {
-                                categories: a[13]
+                                categories: a[7]
                             },
                             yAxis: {
                                 title: {
@@ -242,9 +144,110 @@ jQuery(document).ready( function($) {
                                 marker: {
                                     symbol: 'square'
                                 },
-                                data: a[14]
+                                data: a[8]
                             }]
                         });
+                        ///////////////////////////////////////////////////////////////
+                        //var time4_old =
+                        //<
+                        //? php echo
+                        //json_encode($time);
+                        //?
+                        //>
+                        //;
+                        //var time4 = [];
+                        //for (var i4 in time) {
+                        //    time4.push(time[i4]); //属性
+                        //}
+                        //var score4_old =
+                        //<
+                        //? php echo
+                        //json_encode($score);
+                        //?
+                        //>
+                        //;
+                        //var score4 = [];
+                        //var j4;
+                        //for (var ii4 in score) {
+                        //    j4 = parseFloat(score[ii4]);
+                        //    score4.push(j4); //属性
+                        //}
+                        if (a.length > 9) {
+                            var chart4 = Highcharts.chart('container_emotion4', {
+                                chart: {
+                                    type: 'spline'
+                                },
+                                title: {
+                                    text: a[9]
+                                },
+                                xAxis: {
+                                    categories: a[10]
+                                },
+                                yAxis: {
+                                    title: {
+                                        text: '分数'
+                                    }
+                                },
+                                tooltip: {
+                                    crosshairs: true,
+                                    shared: true
+                                },
+                                plotOptions: {
+                                    spline: {
+                                        marker: {
+                                            radius: 4,
+                                            lineColor: '#666666',
+                                            lineWidth: 1
+                                        }
+                                    }
+                                },
+                                series: [{
+                                    name: '情感',
+                                    marker: {
+                                        symbol: 'square'
+                                    },
+                                    data: a[11]
+                                }]
+                            });
+                            if (a.length > 12) {
+                                var chart5 = Highcharts.chart('container_emotion5', {
+                                    chart: {
+                                        type: 'spline'
+                                    },
+                                    title: {
+                                        text: a[12]
+                                    },
+                                    xAxis: {
+                                        categories: a[13]
+                                    },
+                                    yAxis: {
+                                        title: {
+                                            text: '分数'
+                                        }
+                                    },
+                                    tooltip: {
+                                        crosshairs: true,
+                                        shared: true
+                                    },
+                                    plotOptions: {
+                                        spline: {
+                                            marker: {
+                                                radius: 4,
+                                                lineColor: '#666666',
+                                                lineWidth: 1
+                                            }
+                                        }
+                                    },
+                                    series: [{
+                                        name: '情感',
+                                        marker: {
+                                            symbol: 'square'
+                                        },
+                                        data: a[14]
+                                    }]
+                                });
+                            }
+                        }
                     }
                 }
             }
