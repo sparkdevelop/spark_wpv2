@@ -128,7 +128,7 @@ else{
                         $("#wiki_favorite").text(data.wikis.length);
                         $("#wiki_list").html("");
                         for(var i=0;i<data.wikis.length;i++) {
-                            $("#wiki_list").append("<p>"+"<a href=\"/?yada_wiki="+data.wikis[i].post_name+"\">"+data.wikis[i].post_title+"</a>"+"</p>");
+                            $("#wiki_list").append("<p>"+"<a href="+data.wikis[i].post_name+"\"/?yada_wiki=\">"+data.wikis[i].post_title+"</a>"+"</p>");
                             $("#wiki_list").append("<p>"+data.wikis[i].post_content.substring(0, 30)+"..."+"</p>");
                             $("#wiki_list").append("<hr>");
                         }

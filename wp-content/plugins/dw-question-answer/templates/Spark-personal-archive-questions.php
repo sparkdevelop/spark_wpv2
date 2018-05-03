@@ -3,7 +3,7 @@ $qa_filter = isset( $_GET['filter'] ) && !empty( $_GET['filter'] ) ? sanitize_te
 if($qa_filter=='my-answers') {
     $Qpost_id=get_post()->post_parent;
     ?>
-    <li class="list-group-item" style="padding: 15px 0px;">
+    <li class="list-group-item">
         <div class="qa_title">
             <a class="ask_topic" href="<?php echo get_permalink($Qpost_id);?>"><?php echo get_the_title($Qpost_id);?></a>
         </div>
@@ -26,7 +26,7 @@ if($qa_filter=='my-answers') {
                     ?>
                 </h4>
             </div>
-            <div class="qa_show" style="display: inline-block;width: 60%;padding-top:2px;">
+            <div class="qa_show" style="display: inline-block;width: 50%;padding-top:2px;">
                 <!--        获取提问者名字、提问时间-->
                 <div class="qa_time">
                     <span><?php echo date('n月j日 G:i',get_the_time('U'));?>  </span>&nbsp;&nbsp;
@@ -40,7 +40,7 @@ if($qa_filter=='my-answers') {
     </li>
 <?php }
 else{ ?>
-    <li class="list-group-item" style="padding: 15px 0px">
+    <li class="list-group-item">
         <div class="qa_title">
             <a class="ask_topic" href="<?php echo get_permalink();?>"><?php echo get_the_title();?></a>
         </div>
@@ -57,7 +57,7 @@ else{ ?>
                     ?>
                 </h4>
             </div>
-            <div class="qa_show" style="display: inline-block;width: 60%;padding-top: 2px;">
+            <div class="qa_show" style="display: inline-block;width: 50%;padding-top: 2px;">
                 <!--        获取提问者名字、提问时间-->
                 <div class="qa_time">
                     <span><?php echo date('n月j日 G:i',get_the_time('U'));?>  </span>&nbsp;&nbsp;

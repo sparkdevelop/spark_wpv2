@@ -9,10 +9,14 @@ $admin_url = admin_url('admin-ajax.php');
         margin-left: 20px;
         margin-right: 0px;
     }
-    .form-group {
+    #form-group {
         margin: 20px 0px;
         margin-bottom: 0px;
         overflow: hidden
+    }
+    #autocomplete-post {
+        width: 80%;
+        margin-top: -2px;
     }
 </style>
 <h4>权限列表</h4>
@@ -44,9 +48,9 @@ $admin_url = admin_url('admin-ajax.php');
         </tbody>
     </table>
 </div>
-<div class="col-sm-12 col-md-12 col-xs-12" id="show_post" style="display:none">
+<div class="col-sm-12 col-md-12 col-xs-12" id="show_post">
     <!--                资源展示table-->
-    <div id="post-info-table">
+    <div id="post-info-table" style="display:none">
         <table id="post-choose-table-border" class="table table-bordered table-hover">
             <thead>
             <tr>
@@ -66,16 +70,16 @@ $admin_url = admin_url('admin-ajax.php');
 
     <div style="display: none;overflow: hidden">
         <div class="col-md-2 col-sm-2 col-xs-6" id="addPost">
-            <button class="btn-green" onclick="addPost()">添加资源</button>
+            <button class="btn-green" onclick="addPost('<?=$admin_url?>')">添加资源</button>
         </div>
         <div class="col-md-2 col-sm-2 col-xs-6" id="deletePost">
-            <button class="btn-green" onclick="deletePost()">删除资源</button>
+            <button class="btn-green" onclick="deletePost('<?=$admin_url?>')">删除资源</button>
         </div>
     </div>
 
     <div id='search_post' style='display:none;'>
         <div class="divline"></div>
-        <div class="form-group">
+        <div class="form-group" id="form-group">
             <label for="creation" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">创建方式
                 <span style="color: red">*</span></label>
             <div class="col-sm-8 col-md-8 col-xs-12" style="margin-top: 7px;">
@@ -87,7 +91,7 @@ $admin_url = admin_url('admin-ajax.php');
                        style="display: inline-block;margin-left: 30px"/><span> 按标签创建</span>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="form-group">
             <label for="searchpost" class="col-sm-2 col-md-2 col-xs-12 control-label" style="float: left">检索资源
                 <span style="color: red">*</span></label>
             <div class="col-sm-10 col-md-10 col-xs-12">
@@ -172,20 +176,53 @@ $admin_url = admin_url('admin-ajax.php');
     function new_permission() {
         window.open('<?=site_url() . get_page_address('create_permission')?>');
     }
-    function addPost() {
+    //点击添加资源按钮
+    function addPost(url) {
         $('#search_post').css('display', 'block');
-        $('#post-choose-table-border tbody').empty();
-        var btn = '<button class="btn-green" onclick="appendPost()">确认添加</button>';
-        $('#addPost').innerHTML = btn
+        var btn = '<button class="btn-green" onclick="appendPost(\''+url+'\')">确认添加</button>';
+        $('#addPost').html(btn);
     }
-    function deletePost() {
+    //执行添加逻辑
+    function appendPost(url){
+        var obj = document.getElementsByName("checkItem[]");
+        var add_id= [];
+        for (var k in obj) {
+            if (obj[k].checked)
+                add_id.push(obj[k].value);
+        }
+        var node_id = $('#show_post').children().eq(1).attr('id');
+        var pid = node_id.split('_')[2];
+
+        var data = {
+            action: 'rbac_add_post',
+            permission_id:pid,
+            add_id: add_id
+        };
+        $.ajax({
+            type: 'post',
+            url: url,
+            data: data,
+            dataType: 'text',
+            success: function (response) {
+                layer.msg('添加成功',{time:2000,icon:1});
+                $('#show_post').children().eq(1).css('display','none');  //弹出按钮,在按钮点击时出现添加搜索框
+                $('#search_post').css('display','none');
+                var btn = '<button class="btn-green" onclick="addPost(\''+url+'\')">添加资源</button>';
+                $('#addPost').html(btn);
+                showPost(pid,url)
+            }
+        })
+    }
+
+    //点击删除资源按钮
+    function deletePost(url) {
         var obj = document.getElementsByName("checkItem[]");
         var delete_id= [];
         for (var k in obj) {
             if (obj[k].checked)
                 delete_id.push(obj[k].value);
         }
-        var node_id = $('#show_post').children(2).attr('id');
+        var node_id = $('#show_post').children().eq(1).attr('id');
         var pid = node_id.split('_')[2];
 
         var data = {
@@ -195,11 +232,16 @@ $admin_url = admin_url('admin-ajax.php');
         };
         $.ajax({
             type: 'post',
-            url: '<?=admin_url('admin-ajax.php')?>',
+            url: url,
             data: data,
             dataType: 'text',
             success: function () {
                 layer.msg('删除成功',{time:2000,icon:1});
+                $('#show_post').children().eq(1).css('display','none');  //弹出按钮,在按钮点击时出现添加搜索框
+                $('#search_post').css('display','none');
+                var btn = '<button class="btn-green" onclick="addPost(\''+url+'\')">添加资源</button>';
+                $('#addPost').html(btn);
+                showPost(pid,url)
             }
         })
 

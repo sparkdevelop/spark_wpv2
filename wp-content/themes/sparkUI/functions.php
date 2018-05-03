@@ -4657,6 +4657,26 @@ function rbac_post_table_install()
     }
 }
 
+function rbac_apply_tmp_table_install()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . "rbac_apply_tmp";  //获取表前缀，并设置新表的名称
+    if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
+        $sql = "CREATE TABLE " . $table_name . " (
+          ID int AUTO_INCREMENT PRIMARY KEY,
+          user_id int NOT NULL,
+          source_type int NOT NULL,
+          source_id int NOT NULL,
+          state int NOT NULL,
+          reason text NULL,
+          operator int NULL,
+          modified_time datetime NOT NULL
+          ) character set utf8";
+        require_once(ABSPATH . "wp-admin/includes/upgrade.php");  //引用wordpress的内置方法库
+        dbDelta($sql);
+    }
+}
+
 
 //获取所有type=permission、role、user
 //word关键词为id或者名称
@@ -4753,7 +4773,7 @@ function rbac_hasPost()
     global $wpdb;
     $creation = $_POST['creation'];
     $word = $_POST['word'];
-    $result=[];
+    $result = [];
     if ($creation == 'name') {
         //选出所有post匹配当前word的post
         $sql = "SELECT ID,post_type FROM wp_posts WHERE post_title ='$word' and post_type in ('yada_wiki','post') and post_status='publish'";
@@ -4761,16 +4781,17 @@ function rbac_hasPost()
         if (sizeof($pre_result) != 0) {
             foreach ($pre_result as $v) {
                 $id = $v->ID;
+                $t = get_post($id);
+                $post_title = $t->post_title;
                 $post_type = $v->post_type;
-                $tmp[] = [$id, $post_type];
+                $tmp[] = [$id, $post_title, $post_type];
             }
             $result = json_encode($tmp);
-        }else{
+        } else {
             $result = json_encode($result);
         }
         echo $result;
-    }
-    else {
+    } else {
         if ($creation == 'cate') {
             $sql = "SELECT t.term_id,t.name,tt.count FROM wp_term_taxonomy as tt LEFT JOIN wp_terms as t
               ON tt.term_id=t.term_id WHERE tt.taxonomy in ('category','wiki_cats') and tt.count!=0 and t.name ='$word'";
@@ -4787,13 +4808,15 @@ function rbac_hasPost()
                 $sql = "SELECT object_id FROM wp_term_relationships WHERE term_taxonomy_id=$cat_id";
                 $mid_result = $wpdb->get_results($sql);
                 foreach ($mid_result as $m) {
+                    $t = get_post($m->object_id);
                     $id = $m->object_id;
-                    $post_type = get_post_type($id);
-                    $tmp[] = [$id, $post_type];
+                    $post_title = $t->post_title;
+                    $post_type = $t->post_type;
+                    $tmp[] = [$id, $post_title, $post_type];
                 }
                 $result = json_encode($tmp);
             }
-        }else{
+        } else {
             $result = json_encode($result);
         }
         echo $result;
@@ -4801,25 +4824,28 @@ function rbac_hasPost()
     die();
 
 }
+
 add_action('wp_ajax_rbac_hasPost', 'rbac_hasPost');
 add_action('wp_ajax_nopriv_rbac_hasPost', 'rbac_hasPost');
 
 //获取某一权限的所有post_id
-function get_permission_post($pid){
+function get_permission_post($pid)
+{
     global $wpdb;
     $sql = "SELECT post_id FROM wp_rbac_post WHERE permission_id=$pid";
-    $pre_result = $wpdb->get_results($sql,'ARRAY_A');
+    $pre_result = $wpdb->get_results($sql, 'ARRAY_A');
     $result = array_column($pre_result, 'post_id');
     return $result;
 }
 
 
 //查看权限的资源的ajax
-function rbac_get_permission_post(){
+function rbac_get_permission_post()
+{
     $pid = $_POST['permission_id'];
     $post_ids = get_permission_post($pid);
     $result = [];
-    if($post_ids!=[]){
+    if ($post_ids != []) {
         foreach ($post_ids as $p) {
             $post = get_post($p);
             $post_title = $post->post_title;
@@ -4827,21 +4853,20 @@ function rbac_get_permission_post(){
             $tmp[] = [$p, $post_title, $post_type];
         }
         $result = json_encode($tmp);
-    }else{
+    } else {
         $result = json_encode($result);
     }
     echo $result;
     die();
 }
+
 add_action('wp_ajax_rbac_get_permission_post', 'rbac_get_permission_post');
 add_action('wp_ajax_nopriv_rbac_get_permission_post', 'rbac_get_permission_post');
 
 
-
-
-
 //根据各类型的名字输出id
-function get_type_id($type, $word){
+function get_type_id($type, $word)
+{
     global $wpdb;
     if ($type == 'permission') {
         $sql = "SELECT ID FROM wp_rbac_permission WHERE permission_name= '$word'";
@@ -4851,11 +4876,11 @@ function get_type_id($type, $word){
         $sql = "SELECT ID FROM wp_users WHERE user_login = '$word'";
         $result = $wpdb->get_results($sql)[0]->ID;
         return $result;
-    } elseif($type=='role') {
+    } elseif ($type == 'role') {
         $sql = "SELECT ID FROM wp_rbac_role WHERE role_name = '$word'";
         $result = $wpdb->get_results($sql)[0]->ID;
         return $result;
-    }else{
+    } else {
         $sql = "SELECT ID FROM wp_posts WHERE post_title = '$word'";
         $result = $wpdb->get_results($sql)[0]->ID;
         return $result;
@@ -4981,7 +5006,8 @@ function get_rbac_user_relation($type, $id)
 }
 
 //获取权限或角色信息(只包括单表数据)
-function get_rbac_info($type, $id){
+function get_rbac_info($type, $id)
+{
     global $wpdb;
     $sql = "SELECT * FROM wp_rbac_$type WHERE ID = $id";
     $result = $wpdb->get_results($sql)[0];
@@ -5204,7 +5230,8 @@ function flatten_array($arr)
 }
 
 //删除用户权限
-function rbac_user_permission_delete(){
+function rbac_user_permission_delete()
+{
     global $wpdb;
     $user_id = $_POST['user_id'];
     $permission_id = $_POST['permission_id'];
@@ -5218,7 +5245,8 @@ add_action('wp_ajax_nopriv_rbac_user_permission_delete', 'rbac_user_permission_d
 
 
 //删除用户角色
-function rbac_user_role_delete(){
+function rbac_user_role_delete()
+{
     global $wpdb;
     $user_id = $_POST['user_id'];
     $role_id = $_POST['role_id'];
@@ -5461,49 +5489,105 @@ add_action('wp_ajax_rbac_post_autocomplete', 'rbac_post_autocomplete');
 add_action('wp_ajax_nopriv_rbac_post_autocomplete', 'rbac_post_autocomplete');
 
 
-function rbac_delete_post(){
+function rbac_delete_post()
+{
     global $wpdb;
     $pid = isset($_POST['permission_id']) ? $_POST['permission_id'] : '';
     $delete_id = $_POST['delete_id'];
-    foreach ($delete_id as $p){
+    foreach ($delete_id as $p) {
         $sql = "DELETE FROM wp_rbac_post WHERE post_id=$p and permission_id=$pid";
         $wpdb->get_results($sql);
     }
     die();
 }
+
 add_action('wp_ajax_rbac_delete_post', 'rbac_delete_post');
 add_action('wp_ajax_nopriv_rbac_delete_post', 'rbac_delete_post');
 
+function rbac_add_post()
+{
+    global $wpdb;
+    $pid = isset($_POST['permission_id']) ? $_POST['permission_id'] : '';
+    $add_id = $_POST['add_id'];
+    echo $add_id;
+    foreach ($add_id as $p) {
+        $sql_pre = "SELECT ID FROM wp_rbac_post WHERE post_id=$p and permission_id=$pid";
+        echo $sql_pre;
+        $col = $wpdb->query($sql_pre);
+        if ($col == 0) {
+            $author = get_current_user_id();
+            $modified_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+            $sql = "INSERT INTO wp_rbac_post VALUES ('',$pid,$p,$author,'$modified_time')";
+            echo $sql;
+            $wpdb->get_results($sql);
+        }
+    }
+    die();
+}
+
+add_action('wp_ajax_rbac_add_post', 'rbac_add_post');
+add_action('wp_ajax_nopriv_rbac_add_post', 'rbac_add_post');
 
 
+function apply_permission_ajax()
+{
+    $post_id = $_POST['id'];
+    $r = apply_permission($post_id);  //权限和角色的id
+    //获取权限信息
+    function a(&$v, $p)
+    {
+        $v = $p;
+        return $v;
+    }
+    if ($r['permission_id'] != []) {
+        foreach ($r['permission_id'] as $pid) {
+            $p = get_rbac_info('permission', $pid);
+            $p_name = $p->permission_name;
+            $p_ill = $p->illustration;
+            $ptmp[] = [$pid, $p_name, $p_ill];
+        }
+        $r['permission_id'] = array_map('a',$r['permission_id'], $ptmp);
+    }
+    if ($r['role_id'] != []) {
+        foreach ($r['role_id'] as $rid) {
+            $t = get_rbac_info('role', $rid);
+            $r_name = $t->role_name;
+            $r_ill = $t->illustration;
+            $rtmp[] = [$rid, $r_name, $r_ill];
+        }
+        $r['role_id'] = array_map('a',$r['role_id'], $rtmp);
+    }
+    $result = json_encode($r);
+    echo $result;
+    die();
+}
+
+add_action('wp_ajax_apply_permission_ajax', 'apply_permission_ajax');
+add_action('wp_ajax_nopriv_apply_permission_ajax', 'apply_permission_ajax');
 
 
+function apply_permission($post_id)
+{
+    global $wpdb;
+    $result = [];
+    $r_result = [];
+    //选择该post—permission
+    $sql_pp = "SELECT permission_id FROM  wp_rbac_post WHERE post_id=$post_id";
+    $pre_result = $wpdb->get_results($sql_pp, 'ARRAY_A');
+    $p_result = array_column($pre_result, 'permission_id');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //选择该permission对应的role
+    if ($p_result != []) {
+        foreach ($p_result as $p) {
+            $sql_pr = "SELECT role_id FROM  wp_rbac_rp WHERE permission_id=$p";
+            $pre_result = $wpdb->get_results($sql_pr, 'ARRAY_A');
+            $tmp[] = array_column($pre_result, 'role_id');
+        }
+        $r_result = flatten_array($tmp);
+    }
+    $result = array('permission_id' => $p_result, 'role_id' => $r_result);
+    return $result;
+}
 
 
 //建立token表
@@ -5760,7 +5844,8 @@ function hasSinfo($str)
 }
 
 //自动登录
-function auto_login($user_login){
+function auto_login($user_login)
+{
     if (!is_user_logged_in()) {
         // 获取用户id
         $user = get_user_by('login', $user_login);
@@ -5773,7 +5858,8 @@ function auto_login($user_login){
 }
 
 //通过学号获取用户ID
-function sno_to_id($sno){
+function sno_to_id($sno)
+{
     global $wpdb;
     $sql = "SELECT user_id FROM wp_usermeta WHERE meta_key ='Sno' AND meta_value =$sno";
     $result = $wpdb->get_results($sql);
@@ -5781,36 +5867,39 @@ function sno_to_id($sno){
 }
 
 //获取最近一次登录时间
-function get_lastest_login($user_id){
+function get_lastest_login($user_id)
+{
     global $wpdb;
     $sql_id = "SELECT history_id FROM wp_simple_history_contexts WHERE `value` =$user_id AND `key` ='user_id'";
     $result_id = $wpdb->get_results($sql_id);
-    if(sizeof($result_id) != 0){
+    if (sizeof($result_id) != 0) {
         $lastest_history_id = max($result_id)->history_id;
-        $sql_time ="SELECT `date` FROM `wp_simple_history` WHERE `id` =$lastest_history_id AND `message` = 'Logged in'";
+        $sql_time = "SELECT `date` FROM `wp_simple_history` WHERE `id` =$lastest_history_id AND `message` = 'Logged in'";
         $result_time = $wpdb->get_results($sql_time);
         return $result_time[0]->date;
-    }else{
+    } else {
         return false;
     }
 }
 
 //添加或禁用上传文件类型
 add_filter('upload_mimes', 'custom_upload_mimes');
-function custom_upload_mimes ( $existing_mimes=array() ) {
+function custom_upload_mimes($existing_mimes = array())
+{
 // 添加支持上传的文件类型
     $existing_mimes['zip'] = 'application/zip';
     $existing_mimes['rar'] = 'application/rar';
     $existing_mimes['xmind'] = 'application/xmind';
 // 下载是禁止上传的文件类型
-    unset( $existing_mimes['exe'] );
-    unset( $existing_mimes['php'] );
-    unset( $existing_mimes['asp'] );
-    unset( $existing_mimes['bat'] );
-    unset( $existing_mimes['js'] );
+    unset($existing_mimes['exe']);
+    unset($existing_mimes['php']);
+    unset($existing_mimes['asp']);
+    unset($existing_mimes['bat']);
+    unset($existing_mimes['js']);
 
     return $existing_mimes;
 }
+
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;
