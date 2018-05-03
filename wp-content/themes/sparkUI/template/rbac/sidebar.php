@@ -39,7 +39,7 @@ $admin_url=admin_url('admin-ajax.php');
             <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'ul'),remove_query_arg(array('paged','filter'))))?>">查看用户权限</a></span>
         </li>
         <li id="ap">
-            <img src="<?php bloginfo("template_url")?>/img/group.png">
+            <img src="<?php bloginfo("template_url")?>/img/rbac/ap.png">
             <span><a href="<?php echo esc_url(add_query_arg(array('tab'=>'ap'),remove_query_arg(array('paged','filter'))))?>">审批用户权限</a></span>
         </li>
     </ul>
