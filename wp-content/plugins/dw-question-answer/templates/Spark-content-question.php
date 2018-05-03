@@ -53,7 +53,6 @@
                         <!--            答案内容 逻辑有待完善-->
                         <div class="qa_best_answer">
                             <?php echo mb_strimwidth($best_post_content, 0, 100,"...");?>
-                            <?php //echo $best_post_content; ?>
                         </div>
 
                         <span class="qa_count">赞同<?php echo dwqa_vote_count($best_ans_id);?></span>&nbsp;&nbsp;

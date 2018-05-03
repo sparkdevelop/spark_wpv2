@@ -415,6 +415,9 @@ function saveConfig(tab, type, id, url) {
                 '<button class="btn btn-link" onclick="layerConfirmDelete(' + '\'' + type + '\',' + res[1] + ',\'' + url + '\')"><span class="glyphicon glyphicon-trash"></span></button>' +
                 '</td></tr>';
             $(id + ' tbody tr:last').append(append);
+            $('#post-info-table').css('display','none');
+            $('#show_post').children().eq(1).css('display','none');
+            $('#search_post').css('display','none');
         }
     });
 }
@@ -461,7 +464,9 @@ function cancelConfig(tab, type, id, url) {
                 '<button class="btn btn-link" onclick="layerConfirmDelete(' + '\'' + type + '\',' + res[1] + ',\'' + url + '\')"><span class="glyphicon glyphicon-trash"></span></button>' +
                 '</td></tr>';
             $(id + ' tbody tr:last').append(append);
-            $('#show_post').css('display','none');
+            $('#post-info-table').css('display','none');
+            $('#show_post').children().eq(1).css('display','none');
+            $('#search_post').css('display','none');
         }
     })
 }
@@ -815,8 +820,9 @@ function refreshUserTable(user_name, url) {
 }
 
 function configPost(id,url) {
-    $('#show_post').css('display','block');
-    $('#show_post').children(2).attr('id','config_btn_'+id).css('display','block');
+    $('#post-info-table').css('display','block');  //弹出表格
+    $('#show_post').children().eq(1).attr('id','config_btn_'+id).css('display','block');  //弹出按钮,在按钮点击时出现添加搜索框
+
     //点击弹窗,可以进行配置
     var data = {
         action: 'rbac_get_permission_post',
@@ -833,14 +839,14 @@ function configPost(id,url) {
                 var post_id = res[i][0];
                 var post_title = res[i][1];
                 var post_type = res[i][2];
-                var tr = '<tr class="warning" >' +
+                var tr = '<tr>' +
                     '<td id="hidden_id">' + post_id + '</td>' +
                     '<td>' + post_title + '</td>' +
                     '<td>' + post_type + '</td>' +
                     '</tr>';
                 $('#post-choose-table-border tbody:last').append(tr);    //添加数据
                 var $tbr = $('#post-choose-table-border tbody tr:last');
-                var $checkItemTd = $('<td><input type="checkbox" name="checkItem[]" value='+post_id+' checked/></td>');   //添加复选框
+                var $checkItemTd = $('<td><input type="checkbox" name="checkItem[]" value='+post_id+' /></td>');   //添加复选框
                 $tbr.prepend($checkItemTd);
                 $tbr.find('input').click(function (event) {
                     /*调整选中行的CSS样式*/
@@ -854,8 +860,7 @@ function configPost(id,url) {
     });
 }
 function showPost(id,url) {
-    $('#show_post').css('display','block');
-    $('#show_post').children(2).attr('id','config_btn_'+id).css('display','none');
+    $('#post-info-table').css('display','block');  //仅仅弹出表格
     //点击弹窗,展示列表 id是权限id
     var data = {
         action: 'rbac_get_permission_post',
@@ -872,7 +877,7 @@ function showPost(id,url) {
                 var post_id = res[i][0];
                 var post_title = res[i][1];
                 var post_type = res[i][2];
-                var tr = '<tr class="warning" >' +
+                var tr = '<tr>' +
                     '<td></td>'+
                     '<td id="hidden_id">' + post_id + '</td>' +
                     '<td>' + post_title + '</td>' +
@@ -906,14 +911,15 @@ function addToPostList(url) {
                 for(var i=0;i<response.length;i++){
                     //获取类型
                     var post_id = response[i][0];
-                    var post_type = response[i][1];
+                    var post_title = response[i][1];
+                    var post_type = response[i][2];
                     //把下拉菜单关上,输入框清空
                     $('#autocomplete-post').css('display', 'none');
                     $(input_id).val('');
                     //step1:执行逻辑是先加入一行,包括一个多选框和一个数据
                     var tr = '<tr class="warning" >' +
                         '<td id="hidden_id">' + post_id + '</td>' +
-                        '<td>' + name + '</td>' +
+                        '<td>' + post_title + '</td>' +
                         '<td>' + post_type + '</td>' +
                         '</tr>';
                     $('#post-choose-table-border tbody:last').append(tr);    //添加数据
@@ -928,6 +934,86 @@ function addToPostList(url) {
                     });
                 }
             }
+        }
+    })
+}
+
+//申请权限
+function applyPermission(url,id) {
+    var data = {
+        action: 'apply_permission_ajax',  //用于返回该资源的信息(权限,角色)
+        id: id
+    };
+    $.ajax({
+        type: 'post',
+        url: url,
+        data: data,
+        dataType: 'json',
+        success: function (response) {
+            //显示
+            if(response.permission_id!=[]){
+                var permission_info = response.permission_id;
+                var lines = permission_info.length;
+                for (var i = 0;i<lines;i++){
+                    var pid = permission_info[i][0];
+                    var pname = permission_info[i][1];
+                    var pill = permission_info[i][2];
+                    var tr = '<tr>' +
+                        '<td>' + pname + '</td>' +
+                        '<td>' + pill + '</td>' +
+                        '</tr>';
+                    $('#apply-permission-choose-table-border tbody:last').append(tr);    //添加数据
+                    var $ptbr = $('#apply-permission-choose-table-border tbody tr:last');
+                    var $pcheckItemTd = $('<td><input type="checkbox" name="pcheckItem[]" value='+pid+' /></td>');   //添加复选框
+                    $ptbr.prepend($pcheckItemTd);
+                    $ptbr.find('input').click(function (event) {
+                        /*调整选中行的CSS样式*/
+                        $(this).parent().parent().toggleClass('warning');
+                        /*阻止向上冒泡，以防再次触发点击操作*/
+                        event.stopPropagation();
+                    });
+                }
+            }
+            if(response.role_id!=[]){
+                console.log(response.role_id);
+                var role_info = response.role_id;
+                var rlines = role_info.length;
+                for (var i = 0;i<rlines;i++){
+                    var rid = role_info[i][0];
+                    var rname = role_info[i][1];
+                    var rill = role_info[i][2];
+                    var tr = '<tr>' +
+                        '<td>' + rname + '</td>' +
+                        '<td>' + rill + '</td>' +
+                        '</tr>';
+                    $('#apply-role-choose-table-border tbody:last').append(tr);    //添加数据
+                    var $rtbr = $('#apply-role-choose-table-border tbody tr:last');
+                    var $rcheckItemTd = $('<td><input type="checkbox" name="rcheckItem[]" value='+rid+' /></td>');   //添加复选框
+                    $rtbr.prepend($rcheckItemTd);
+                    $rtbr.find('input').click(function (event) {
+                        /*调整选中行的CSS样式*/
+                        $(this).parent().parent().toggleClass('warning');
+                        /*阻止向上冒泡，以防再次触发点击操作*/
+                        event.stopPropagation();
+                    });
+                }
+            }else{
+                console.log('error');
+            }
+        }
+    });
+}
+
+function layer_apply_permission($url) {
+    layer.open({
+        type: 2,
+        title: "申请查看资源",
+        content: $url,
+        area: ['90%', '66%'],
+        closeBtn: 1,
+        shadeClose: true,
+        shade: 0.5,
+        end: function () {
         }
     })
 }

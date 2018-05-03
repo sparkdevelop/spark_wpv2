@@ -24,8 +24,11 @@ $tab = isset( $_GET['tab'] ) && !empty( $_GET['tab'] ) ? sanitize_text_field( $_
     if($tab=='pl'){    //权限列表
         require "permission-list.php";
     }
-    if($tab=='ul'){   //search
+    if($tab=='ul'){   //查看用户权限
         require "view-user-info.php";
+    }
+    if($tab=='ap'){   //审批用户权限
+        require "approve.php";
     }
     ?>
 </div>
