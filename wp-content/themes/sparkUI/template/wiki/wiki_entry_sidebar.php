@@ -312,7 +312,7 @@
                             <div style="display: inline;">
                             <?php
                             if ( has_post_thumbnail($related_pros[$i]) ) { ?>
-                                <a href="<?php the_permalink($related_pros[$i]); ?>" target="_blank"><img src="<?php the_post_thumbnail_url('30')?>" class="cover" height="50px" width="90px" /></a>
+                                <a href="<?php the_permalink($related_pros[$i]); ?>" target="_blank"><img src="<?php echo get_the_post_thumbnail_url($related_pros[$i],'30')?>" class="cover" height="50px" width="90px" /></a>
                             <?php } else {?>
                                 <a href="<?php the_permalink($related_pros[$i]); ?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" style="width: 90px;height: 50px" class="cover" /></a>
                             <?php } ?>
