@@ -923,6 +923,7 @@ if($type == 'int'){
                 <a id="submit">提交</a>
                 <a href="<?php echo esc_url(add_query_arg(array(), remove_query_arg(array('start', 'end', 'words','memberID')))); ?>">默认</a>
             </p>
+            <p style="color: #fe642d;font-size: medium"><?php echo $chosenPerson[0]?>的统计记录:</p>
             <table class="table" id="view_table">
                 <caption>浏览词条TOP10</caption>
                 <tbody>
