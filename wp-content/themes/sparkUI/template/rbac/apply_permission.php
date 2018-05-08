@@ -4,6 +4,7 @@ $admin_url = admin_url('admin-ajax.php');
 ?>
 <script>
     $(function () {
+        //获取对应这个资源的信息
         applyPermission('<?=$admin_url?>',<?=$post_id?>)
     })
 </script>

@@ -187,6 +187,16 @@ function fep_process_form_input()
         //发布成功后的提示框
         $data['success'] = true;
         $data['post_id'] = $new_post_id;
+
+        //add by cherie
+        $visibility = $_POST['post_visibility'];
+        $author=get_post($new_post_id)->post_author;
+        create_process_visibility($visibility,$new_post_id,$author);
+        $data['visibility'] = $visibility;
+        $data['author'] = $author;
+
+
+
         /*$data['message'] = sprintf(
             '<div style="font-size: 30px;display: inline-block;width: 180px"><span class="fa fa-check-circle fa-8x pull-left" style="margin-top: 5px;color: orange"></span>%s<br><br>
     <button class="btn btn-default" id="fep-continue-editing" onclick="window.location.href=\'#\'" style="float: left">%s</button>

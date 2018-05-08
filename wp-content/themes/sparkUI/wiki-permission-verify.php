@@ -1,5 +1,7 @@
 <?php
+$post_id = get_the_ID();
 $admin_url=admin_url( 'admin-ajax.php' );
+$apply_url = site_url().get_page_address('apply_permission').'&id='.$post_id;
 ?>
 <div class="container" style="margin-top: 10px;flex: 1 0 auto">
     <div class="row" style="width: 100%">
@@ -15,7 +17,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 </div>
                 <div class="readall_box">
                     <div class="read_more_mask"></div>
-                    <a class="btn btn-orange" onclick="applyPermission('<?=$admin_url?>',<?=the_ID()?>)">阅读全文</a>
+                    <a class="btn btn-orange" onclick="layer_apply_permission('<?=$apply_url?>')">阅读全文</a>
                 </div>
             <?php endwhile; ?>
             <?php else: ?>
@@ -104,7 +106,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
             </div>
         </div>
     </div>
-
+</div>
     <?php
     global $wpdb;
     $post_id = get_the_ID();

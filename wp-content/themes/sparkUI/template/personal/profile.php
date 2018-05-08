@@ -4,9 +4,9 @@ $profile_page_address = get_page_address('profile');
 $current_user = wp_get_current_user();
 $user_description = get_user_meta($current_user->ID, 'description', true);
 
-
 $Sno = hasSinfo('Sno') ? get_user_meta($current_user->ID, 'Sno', true) : '';
 $University = hasSinfo('University') ? get_user_meta($current_user->ID, 'University', true):'';
+
 
 $admin_url = admin_url('admin-ajax.php');
 ?>

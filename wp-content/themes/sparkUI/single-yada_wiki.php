@@ -7,7 +7,7 @@
  */
 get_header(); ?>
 <?php $post_id = get_the_ID();
-if(false){
+if(!user_can_view($post_id)){
     require "wiki-permission-verify.php";
 }
 else{

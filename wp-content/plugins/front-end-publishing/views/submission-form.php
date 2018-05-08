@@ -83,6 +83,37 @@ if (isset($_GET['fep_id']) && isset($_GET['fep_action']) && $_GET['fep_action'] 
         <label for="fep-tags"><?php _e('标签', 'frontend-publishing'); ?></label>
         <input type="text" name="post_tags" id="fep-tags" value="<?php echo ($post) ? $post['tags'] : ''; ?>" placeholder="多个标签用英文逗号（,）隔开">
         <input type="hidden" name="post_id" id="fep-post-id" value="<?php echo $post_id ?>"><br><br>
+            <!--        添加可见性-->
+            <div class="post_permission">
+                <p class="post_sidebar_title">谁可以看</p>
+                <input type="radio" id="shareAll" name="visibility" value="all" style="display: inline-block" checked/><span> 所有人</span>&nbsp;&nbsp;
+                <input type="radio" id="sharePart" name="visibility" value="part" style="display: inline-block;margin-left: 30px"/><span> 部分可见</span>&nbsp;&nbsp;
+                <div id="permission-addon"></div>
+            </div>
+            <!--        绑定事件-->
+            <script>
+                $(function () {
+                    showAddon();
+                    $("input[name=visibility]").on('change', function () {
+                        showAddon();
+                    });
+                    function showAddon() {
+                        switch ($("input[name=visibility]:checked").attr("id")) {   //根据id判断
+                            case "shareAll":
+                                $("#permission-addon").html("<span style='color: red;'>*</span><p style='margin: 10px 16px;display: inline-block'>所有用户可见</p>");
+                                break;
+                            case "sharePart":
+                                var html = '<div class="divline"></div>'+
+                                    '<div><input type="checkbox" name="sharePart" value="myrole" style="margin-top: 10px"/><span> 和我同一角色的</span></div>'+
+                                    '<div><input type="checkbox" name="sharePart" value="myschool"/><span> 和我同一学校的</span></div>'+
+                                    '<div><input type="checkbox" name="sharePart" value="private"/><span> 只有我可见</span></div>'   ;
+                                $("#permission-addon").html(html);
+                                break;
+                        }
+                    }
+                })
+            </script>
+
         <button type="button" id="fep-submit-post" class="active-btn" onclick="actionPublish()"><?php _e('发布', 'frontend-publishing'); ?></button>&nbsp;<button type="button" id="close" class="close_btn">取消</button>
         <img class="fep-loading-img" src="<?php echo plugins_url('static/img/ajax-loading.gif', dirname(__FILE__)); ?>"/>
         </div>
@@ -93,4 +124,5 @@ if (isset($_GET['fep_id']) && isset($_GET['fep_action']) && $_GET['fep_action'] 
     function actionPublish() {
         document.cookie = "action=publish";
     }
+
 </script>

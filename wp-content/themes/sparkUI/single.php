@@ -7,7 +7,7 @@
  */
 get_header();
 $post_id = get_the_ID();
-if(false){
+if(!user_can_view($post_id)){
     require "post-permission-verify.php";
 }
 else{

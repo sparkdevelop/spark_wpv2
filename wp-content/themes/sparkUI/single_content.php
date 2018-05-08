@@ -5,6 +5,7 @@ wp_enqueue_media();
 $current_user = wp_get_current_user();
 //获取文章作者ID、用户名
 $post_id = get_the_ID();
+
 $author_id=get_post($post_id)->post_author;
 $author_name=get_the_author_meta('user_login',$author_id);
 $release_id=get_page_id('release');

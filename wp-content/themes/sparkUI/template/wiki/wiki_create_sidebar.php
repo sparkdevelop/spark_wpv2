@@ -38,12 +38,30 @@ $admin_url = admin_url('admin-ajax.php');
             wiki_tags.push($(this).text());
         });
 
+        //设置可见性 by cherie
+        var wiki_visibility=[];
+        var visibility = $('input[name="visibility"]:checked').val();
+        if (visibility=='all'){
+            wiki_visibility.push('all')
+        }else{
+            var part = $('input[name="sharePart"]:checked');
+            if(part.length==0){
+                wiki_visibility.push('all')
+            } else{
+                part.each(function () {
+                    wiki_visibility.push($(this).val());
+                });
+            }
+        }
+
+
         var create_content = {
             action: "create_wiki_entry",
             entry_title: entry_title,
             entry_content: entry_content,
             wiki_categories: wiki_categories,
             wiki_tags: wiki_tags,
+            wiki_visibility:wiki_visibility
         };
 
         $.ajax({
@@ -53,6 +71,7 @@ $admin_url = admin_url('admin-ajax.php');
             data: create_content,
             dataType: "json",
             success: function (data) {
+                //console.log(data);
                 window.location.replace("<?php echo site_url();?>/?yada_wiki=" + data);
             },
             error: function () {
@@ -111,55 +130,31 @@ $admin_url = admin_url('admin-ajax.php');
             <p class="wiki_sidebar_title">谁可以看</p>
             <input type="radio" id="shareAll" name="visibility" value="all" style="display: inline-block" checked/><span> 所有人</span>&nbsp;&nbsp;
             <input type="radio" id="sharePart" name="visibility" value="part" style="display: inline-block;margin-left: 30px"/><span> 部分可见</span>&nbsp;&nbsp;
+            <div id="permission-addon"></div>
         </div>
 <!--        绑定事件-->
         <script>
             $(function () {
                 showAddon();
-                $("input[name=gjoin]").on('change', function () {
+                $("input[name=visibility]").on('change', function () {
                     showAddon();
                 });
                 function showAddon() {
-                    switch ($("input[name=gjoin]:checked").attr("id")) {   //根据id判断
-                        case "freejoin":
-                            $("#gjoin-addon").html("<p>注:用户自由加入,无需审核</p>");
+                    switch ($("input[name=visibility]:checked").attr("id")) {   //根据id判断
+                        case "shareAll":
+                            $("#permission-addon").html("<span style='color: red;'>*</span><p style='margin: 10px 16px;display: inline-block'>所有用户可见</p>");
                             break;
-                        case "verifyjoin":
-                            var html = '<div style="background-color: #f2f2f2;padding-top: 10px">' +
-                                '<div id="insert-text">' +
-                                '<p style="margin: 10px 20px; margin-top: 0px">设置需要用户填写的验证字段,如:真实姓名、学号,该信息将在小组内公开</p>' +
-                                '<input type="text" class="form-control" name="g-ver-info[]" id="g-ver-info" style="margin-bottom:10px;margin-left:10px;display:inline;width: 85%" placeholder="真实姓名" value="真实姓名"/>' +
-                                '<input type="text" class="form-control" name="g-ver-info[]" id="g-ver-info" style="margin-bottom:10px;margin-left:10px;display:inline;width: 85%" placeholder="学号" value="学号"/>' +
-                                '<input type="button" id="addNewFieldBtn" value="+" style="margin-left:10px;display:inline">' +
-                                '</div>' +
-                                '</div>';
-                            $("#gjoin-addon").html(html);
-                            break;
-                        case "verify":
-                            $("#gjoin-addon").html("<p>注:注册通过即可加入,无需填写验证信息</p>");
+                        case "sharePart":
+                            var html = '<div class="divline"></div>'+
+                            '<div><input type="checkbox" name="sharePart" value="myrole" style="margin-top: 10px"/><span> 和我同一角色的</span></div>'+
+                            '<div><input type="checkbox" name="sharePart" value="myschool"/><span> 和我同一学校的</span></div>'+
+                            '<div><input type="checkbox" name="sharePart" value="private"/><span> 只有我可见</span></div>'   ;
+                            $("#permission-addon").html(html);
                             break;
                     }
                 }
-
-                $(document).on('click', '#addNewFieldBtn', function () {
-                    $("#addNewFieldBtn").hide();
-                    var input = '<input type="text" class="form-control" name="g-ver-info[]" id="g-ver-info" style="margin-bottom:10px;margin-left:10px;display:inline;width: 85%" placeholder="" value=""/>' +
-                        '<input type="button" id="addNewFieldBtn" value="+" style="margin-left:10px;display:inline">';
-                    $("#insert-text").append(input);
-                })
             })
         </script>
-
-
-
-
-
-
-
-
-
-
-
 
         <div class="create_wiki_btn">
             <a class="update_wiki" onclick="actionPublish()">发布 wiki</a>
