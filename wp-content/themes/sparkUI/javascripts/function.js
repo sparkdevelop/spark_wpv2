@@ -2,8 +2,20 @@
  * Created by zhangxue on 17/5/26.
  */
 
+
+const integral_score = {
+    create_wiki: 15,  //创建wiki
+    create_project: 15,     //创建项目
+    get_grade: 5,   //获得打分
+    get_favorite: 2,    //获得收藏
+    comment: 5,     //为wiki和项目评论
+    answer_question: 15, //回答问题
+    get_vote: 1,     //获得赞同
+    unlock_source: 6
+};
+
 //个人主页和他人主页wiki收藏部分js
-function get_favorite_wiki($user_id,$admin_url) {
+function get_favorite_wiki($user_id, $admin_url) {
     var data = {
         action: "get_user_favorite_wiki",
         user_ID: $user_id,
@@ -14,25 +26,25 @@ function get_favorite_wiki($user_id,$admin_url) {
         url: $admin_url,
         data: data,
         dataType: "json",
-        success: function(data){
+        success: function (data) {
             $("#wiki_favorite").text(data.wikis.length);
-            if(data.wikis.length!=0){
+            if (data.wikis.length != 0) {
                 $("#wiki_list").html("");
-                for(var i=0;i<data.wikis.length;i++) {
-                    $("#wiki_list").append("<p>"+"<a href=\"/?yada_wiki="+data.wikis[i].post_name+"\">"+data.wikis[i].post_title+"</a>"+"</p>");
-                    $("#wiki_list").append("<p>"+data.wikis[i].post_content.substring(0, 30)+"..."+"</p>");
+                for (var i = 0; i < data.wikis.length; i++) {
+                    $("#wiki_list").append("<p>" + "<a href=\"/?yada_wiki=" + data.wikis[i].post_name + "\">" + data.wikis[i].post_title + "</a>" + "</p>");
+                    $("#wiki_list").append("<p>" + data.wikis[i].post_content.substring(0, 30) + "..." + "</p>");
                     $("#wiki_list").append("<hr>");
                 }
-            }else{
-                var html ='<div class="alert alert-info">'+
-                    '<a href="#" class="close" data-dismiss="alert">&times;</a>'+
-                    '<strong>Oops,还没有收藏!</strong>去wiki页面逛逛吧。'+
+            } else {
+                var html = '<div class="alert alert-info">' +
+                    '<a href="#" class="close" data-dismiss="alert">&times;</a>' +
+                    '<strong>Oops,还没有收藏!</strong>去wiki页面逛逛吧。' +
                     '</div>';
-                $("#wiki_list").css('margin-top',"0px");
+                $("#wiki_list").css('margin-top', "0px");
                 $("#wiki_list").html(html);
             }
         },
-        error: function() {
+        error: function () {
             alert("wiki获取失败!");
         }
     });
@@ -40,27 +52,27 @@ function get_favorite_wiki($user_id,$admin_url) {
 
 //个人主页和他人主页项目收藏部分js 改变翻页的位置css
 function pageFavorite(flag) {
-    if(flag==true) $("#page_favorite").css({"position":"absolute","bottom":"-15%","left":"40%"});
-    else $("#page_favorite").css({"text-align":"center","margin-bottom":"20px"});
+    if (flag == true) $("#page_favorite").css({"position": "absolute", "bottom": "-15%", "left": "40%"});
+    else $("#page_favorite").css({"text-align": "center", "margin-bottom": "20px"});
 }
 
 //header的选择搜索
 function selectSearchCat(value) {
-    var post_type= document.getElementById("selectPostType");
-    if(value=="wiki"){
+    var post_type = document.getElementById("selectPostType");
+    if (value == "wiki") {
         post_type.value = "yada_wiki";
-    } else if(value=="project"){
+    } else if (value == "project") {
         post_type.value = "post";
-    } else{
+    } else {
         post_type.value = "";
     }
 }
 
 //wiki和项目页面已收藏和未收藏
 function setCSS(flag) {
-    if(flag == 1){  //未收藏
+    if (flag == 1) {  //未收藏
         addFavorite();
-    }else{
+    } else {
         cancelFavorite();
     }
 }
@@ -75,16 +87,16 @@ function myKnowledgeChart_old(jsonstring) {
     var wholedata = JSON.parse(jsonstring);
     console.log(wholedata);
     wholedata.nodes.forEach(function (node) {
-        if(node.value>100){
-            node.symbolSize = node.value/15;
-        }else if(node.value<10){
-            node.symbolSize = node.value*5;
-        }else{
+        if (node.value > 100) {
+            node.symbolSize = node.value / 15;
+        } else if (node.value < 10) {
+            node.symbolSize = node.value * 5;
+        } else {
             node.symbolSize = node.value;
         }
         node.label = {
-            normal:{
-                show:true
+            normal: {
+                show: true
             }
         }
     });
@@ -140,7 +152,7 @@ function myKnowledgeChart_old(jsonstring) {
         tooltip: {},
         legend: [
             {
-                data: wholedata.categories.map(function(a) {
+                data: wholedata.categories.map(function (a) {
                     return a.name;
                 })
             }
@@ -157,7 +169,7 @@ function myKnowledgeChart_old(jsonstring) {
             smybol: 'circle',          //节点的形状'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
             data: wholedata.nodes,
             links: wholedata.links,
-            categories:wholedata.categories,
+            categories: wholedata.categories,
             force: {
                 edgeLength: 100,//连线的长度
                 repulsion: 100  //子节点之间的间距
@@ -177,7 +189,7 @@ function myKnowledgeChart_old(jsonstring) {
     });
     //myChart.setOption(option);
 
-    myChart.on('dblclick',function (params) {
+    myChart.on('dblclick', function (params) {
         var data = params.data;
         //判断节点的相关数据是否正确
         if (data != null && data != undefined) {
@@ -189,7 +201,7 @@ function myKnowledgeChart_old(jsonstring) {
     });
 }
 
-function myKnowledgeChart(id,jsonstring) {
+function myKnowledgeChart(id, jsonstring) {
     var myChart = echarts.init(document.getElementById(id));
     option = null;
     myChart.showLoading();
@@ -206,8 +218,8 @@ function myKnowledgeChart(id,jsonstring) {
         // }
         node.symbolSize = node.value;
         node.label = {
-            normal:{
-                show:true
+            normal: {
+                show: true
             }
         };
         //console.log(node);
@@ -270,7 +282,7 @@ function myKnowledgeChart(id,jsonstring) {
         tooltip: {},
         legend: [
             {
-                data: wholedata.categories.map(function(a) {
+                data: wholedata.categories.map(function (a) {
                     return a.name;
                 })
             }
@@ -287,7 +299,7 @@ function myKnowledgeChart(id,jsonstring) {
             smybol: 'circle',          //节点的形状'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
             nodes: wholedata.nodes,
             links: wholedata.links,
-            categories:wholedata.categories,
+            categories: wholedata.categories,
             force: {
                 edgeLength: 50,//连线的长度
                 repulsion: 50  //子节点之间的间距
@@ -308,7 +320,7 @@ function myKnowledgeChart(id,jsonstring) {
     //myChart.setOption(option);
 
     //双击打开链接
-    myChart.on('dblclick',function (params) {
+    myChart.on('dblclick', function (params) {
         var data = params.data;
         //判断节点的相关数据是否正确
         if (data != null && data != undefined) {
@@ -320,7 +332,7 @@ function myKnowledgeChart(id,jsonstring) {
     });
 
     //单击进行折叠
-    myChart.on('click',function (param) {
+    myChart.on('click', function (param) {
         var option = myChart.getOption();           //获取所有option
         var nodesOption = option.series[0].nodes;   //获取node中的数据
         console.log(nodesOption);
@@ -335,11 +347,11 @@ function myKnowledgeChart(id,jsonstring) {
              * */
             //如果下一级节点的状态是1,那么调用fold,反之
 
-            if(nodeStatus(linksOption,data,nodesOption)==1){
-                foldNode(linksOption,data,nodesOption);
+            if (nodeStatus(linksOption, data, nodesOption) == 1) {
+                foldNode(linksOption, data, nodesOption);
             }
-            else{
-                openNode(linksOption,data,nodesOption);
+            else {
+                openNode(linksOption, data, nodesOption);
                 //openNodeOnce(linksOption,data,nodesOption);  //只打开一层
             }
         }
@@ -348,23 +360,27 @@ function myKnowledgeChart(id,jsonstring) {
 }
 
 //判断是否是边缘节点
-function isEdgeNode(links,node,nodeoptions) {
-    for(var j in links){
-        if(links[j].source == node.id){return true;}
-        else{return false;}
+function isEdgeNode(links, node, nodeoptions) {
+    for (var j in links) {
+        if (links[j].source == node.id) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
 
 //判断下一级节点状态
-function nodeStatus(links,node,nodesOption){
-    for(var i in links){
-        if(links[i].source == node.id){
+function nodeStatus(links, node, nodesOption) {
+    for (var i in links) {
+        if (links[i].source == node.id) {
             return nodesOption[links[i].target].itemStyle.normal.opacity;
         }
     }
 }
 
-function openNode(links,node,nodesOption){  //可以考虑展开一层
+function openNode(links, node, nodesOption) {  //可以考虑展开一层
     for (var i in links) {
         if (links[i].source == node.id) {
             if (!isEdgeNode(links, nodesOption[links[i].target], nodesOption)) {
@@ -376,7 +392,7 @@ function openNode(links,node,nodesOption){  //可以考虑展开一层
     }
 }
 
-function foldNode(links,node,nodesOption) {
+function foldNode(links, node, nodesOption) {
     for (var i in links) {
         if (links[i].source == node.id) {
             if (!isEdgeNode(links, nodesOption[links[i].target], nodesOption)) {
@@ -388,7 +404,7 @@ function foldNode(links,node,nodesOption) {
     }
 }
 
-function openNodeOnce(links,node,nodesOption){  //可以考虑展开一层
+function openNodeOnce(links, node, nodesOption) {  //可以考虑展开一层
     for (var i in links) {
         if (links[i].source == node.id) {
             nodesOption[links[i].target].itemStyle.normal.opacity = 1;
@@ -398,7 +414,7 @@ function openNodeOnce(links,node,nodesOption){  //可以考虑展开一层
 }
 
 //画出项目页面的知识图谱
-function sideChart(id,jsonstring) {
+function sideChart(id, jsonstring) {
     var myChart = echarts.init(document.getElementById(id));
     option = null;
     myChart.showLoading();

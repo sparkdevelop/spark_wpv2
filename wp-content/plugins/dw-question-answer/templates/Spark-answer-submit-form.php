@@ -22,7 +22,7 @@
 <!--                <option value="private">--><?php //_e( 'Only Me &amp; Admin', 'dwqa' ) ?><!--</option>-->
 <!--            </optgroup>-->
 <!--        </select>-->
-        <input type="hidden" name="dwqa-status" value="='publish">
+        <input type="hidden" name="dwqa-status" value="publish">
         <input type="submit" name="submit-answer" class="dwqa-btn dwqa-btn-primary" value="提交回答" onclick="actionAnswer()">
         <input type="hidden" name="question_id" value="<?php the_ID(); ?>">
         <input type="hidden" name="dwqa-action" value="add-answer">
@@ -32,12 +32,6 @@
 </div>
 <script>
     function actionAnswer() {
-        var data = {
-            action: 'add_notice_type4'
-        }
-        $.ajax({
-
-        })
         document.cookie = "action=answer";
     }
 </script>

@@ -36,8 +36,8 @@ $user = wp_get_current_user();
 
 //add notice type1和2
 global $wpdb;
-$noticeuser_id = get_post($comment->comment_post_ID)->post_author;
-$current_time = date('Y-m-d H:i:s',time() + 8 * 3600);
+$noticeuser_id = get_post($comment->comment_post_ID)->post_author;    //原wiki、项目的作者$comment->comment_post_ID是原词条、项目
+$current_time = get_current_date();
 if($comment->comment_parent ==0){
     $notice_type = 1;
 }else{
@@ -46,6 +46,10 @@ if($comment->comment_parent ==0){
 $sql_add_notice = "INSERT INTO wp_notification VALUES ('',$noticeuser_id,$notice_type,'$comment->comment_ID',0,'$current_time')";
 $wpdb->get_results($sql_add_notice);
 
+
+//添加积分
+global $integral_system;
+add_user_integral($comment->user_id,$integral_system['comment']);
 
 
 /**

@@ -74,8 +74,8 @@ $admin_url = admin_url('admin-ajax.php');
                 //console.log(data);
                 window.location.replace("<?php echo site_url();?>/?yada_wiki=" + data);
             },
-            error: function () {
-                alert("wiki发布失败!");
+            error: function (e,xhr,opt) {
+                alert("Error requesting " + opt + ": " + xhr);
             }
         });
     }
@@ -95,8 +95,11 @@ $admin_url = admin_url('admin-ajax.php');
                     $("#wiki_hot_tags").append("<span onclick=\"$(this).toggleClass(\'wiki_cloud_entry_selected\');\" id=\"wiki_cloud_entry\" class=\"wiki_cloud_entry\" value=\"" + data.hot_tags[i] + "\">" + data.hot_tags[i] + "</span>");
                 }
             },
-            error: function () {
-                alert("数据加载失败!");
+            error: function (e,xhr,opt) {
+                console.log(e);
+                console.log(xhr);
+                console.log(opt);
+                alert(e+ "Error requesting " + opt + ": " + xhr);
             }
         });
 

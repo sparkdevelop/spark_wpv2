@@ -9,9 +9,13 @@
 <?php
       $post_id =$_COOKIE["post_id"];   //相关的项目或者wikiid
       $post_type = $_COOKIE["post_type"];  //相关的post类型
+      setcookie("post_id");
+      setcookie("post_type");
       $related_id = get_the_ID();
       $related_post_type = get_post_type($related_id);
-if(empty($post_id)){
+
+if($post_id=''){
+    //在tiny页面有设置cookie
     //从数据库取出
     $post_info = qaComeFrom($related_id);
     $post_id = $post_info["id"];

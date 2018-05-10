@@ -101,6 +101,7 @@ rbac_rp_table_install();
 rbac_post_table_install();
 rbac_apply_tmp_table_install();
 rbac_user_post_table_install();
+user_integral_table_install();
 get_header();
 ?>
 <script>

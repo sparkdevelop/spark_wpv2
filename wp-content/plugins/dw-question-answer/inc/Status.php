@@ -375,6 +375,10 @@ class DWQA_Status {
 		$sql_add_notice = "INSERT INTO wp_notification VALUES ('',$noticeuser_id,$notice_type,'$answer_id',0,'$current_time')";
 		$wpdb->get_results($sql_add_notice);
 		//========================================
+		//加积分
+		global $integral_system;
+		$author = get_current_user_id();
+		add_user_integral($author,$integral_system['answer_question']);
 	}
 }
 
