@@ -9,14 +9,22 @@ $admin_url = admin_url('admin-ajax.php');
         margin-left: 20px;
         margin-right: 0px;
     }
+
     #form-group {
         margin: 20px 0px;
         margin-bottom: 0px;
         overflow: hidden
     }
+
     #autocomplete-post {
         width: 80%;
         margin-top: -2px;
+    }
+    #pl-table-border>tbody>tr>td:last-child{
+        width: 9%;
+    }
+    #pl-table-border>tbody>tr>td:nth-child(4){
+        width: 20%;
     }
 </style>
 <h4>权限列表</h4>
@@ -70,10 +78,10 @@ $admin_url = admin_url('admin-ajax.php');
 
     <div style="display: none;overflow: hidden">
         <div class="col-md-2 col-sm-2 col-xs-6" id="addPost">
-            <button class="btn-green" onclick="addPost('<?=$admin_url?>')">添加资源</button>
+            <button class="btn-green" onclick="addPost('<?= $admin_url ?>')">添加资源</button>
         </div>
         <div class="col-md-2 col-sm-2 col-xs-6" id="deletePost">
-            <button class="btn-green" onclick="deletePost('<?=$admin_url?>')">删除资源</button>
+            <button class="btn-green" onclick="deletePost('<?= $admin_url ?>')">删除资源</button>
         </div>
     </div>
 
@@ -96,7 +104,8 @@ $admin_url = admin_url('admin-ajax.php');
                 <span style="color: red">*</span></label>
             <div class="col-sm-10 col-md-10 col-xs-12">
                 <input type="text" class="form-control" id='postname' placeholder="请输入资源标题/分类名称/标签名称">
-                <input type="button" class="btn btn-green" onclick="addToPostList('<?=admin_url('admin-ajax.php')?>')" value="搜索">
+                <input type="button" class="btn btn-green" onclick="addToPostList('<?= admin_url('admin-ajax.php') ?>')"
+                       value="搜索">
                 <div id="autocomplete-post" style="display: none">
                     <ul class="list-group"></ul>
                 </div>
@@ -132,7 +141,7 @@ $admin_url = admin_url('admin-ajax.php');
             var word = $(this).val();
             var data = {
                 action: 'rbac_post_autocomplete',
-                creation:creation,
+                creation: creation,
                 word: word
             };
             $.ajax({
@@ -146,7 +155,7 @@ $admin_url = admin_url('admin-ajax.php');
                     var ac_id = "#autocomplete-post";
                     if (arr.length != 0) {
                         $.each(arr, function (i, val) {
-                            if(creation=='name'){
+                            if (creation == 'name') {
                                 li += "<li class='list-group-item'>" + val.post_title + "</li>";
                             } else {
                                 li += "<li class='list-group-item'>" + val.name + "</li>";
@@ -172,6 +181,47 @@ $admin_url = admin_url('admin-ajax.php');
                 }
             })
         });
+
+        var tab = '<?=$tab?>';
+        var url = '<?=$admin_url?>';
+        var type = 'permission';
+        var data = {
+            action: 'rbac_get_list_info',
+            part: type,
+            word: ''
+        };
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: data,
+            dataType: 'json',
+            success: function (res) {
+                console.log(res);
+                for (var j = 0; j < res.length; j++) {
+                    var id = "#" + tab + "-table-border";
+                    var info = $(id + ' thead tr th');
+                    var tr_id = type + '_' + res[j][1];
+                    var tr = '<tr id=' + tr_id + '>';
+                    $(id + ' tbody').append(tr);
+                    for (var i = 0; i < info.length - 2; i++) {
+                        var td = '<td>' + res[j][i] + '</td>';
+                        $(id + ' tbody tr:last').append(td);
+                    }
+                    var td = '<td>' +
+                        '<button class="btn btn-green" id="btn-config-' + res[j][1] + '" onclick="showPost(' + res[j][1] + ',\'' + url + '\')">查看资源</button>' +
+                        '</td>';
+                    $(id + ' tbody tr:last').append(td);
+                    $("button[id^='btn-config-']").css({'margin': '0 auto'});
+
+                    var append = '<td>' +
+                        '<button class="btn btn-link" onclick="layerConfirmConfig(' + '\'' + tab + '\',' + '\'' + type + '\',' + res[j][1] + ',\'' + url + '\')"><span class="glyphicon glyphicon-edit"></span></button>' +
+                        '<button class="btn btn-link" onclick="layerConfirmDelete(' + '\'' + type + '\',' + res[j][1] + ',\'' + url + '\')"><span class="glyphicon glyphicon-trash"></span></button>' +
+                        '</td></tr>';
+                    $(id + ' tbody tr:last').append(append);
+
+                }
+            }
+        })
     });
     function new_permission() {
         window.open('<?=site_url() . get_page_address('create_permission')?>');
@@ -179,13 +229,13 @@ $admin_url = admin_url('admin-ajax.php');
     //点击添加资源按钮
     function addPost(url) {
         $('#search_post').css('display', 'block');
-        var btn = '<button class="btn-green" onclick="appendPost(\''+url+'\')">确认添加</button>';
+        var btn = '<button class="btn-green" onclick="appendPost(\'' + url + '\')">确认添加</button>';
         $('#addPost').html(btn);
     }
     //执行添加逻辑
-    function appendPost(url){
+    function appendPost(url) {
         var obj = document.getElementsByName("checkItem[]");
-        var add_id= [];
+        var add_id = [];
         for (var k in obj) {
             if (obj[k].checked)
                 add_id.push(obj[k].value);
@@ -195,7 +245,7 @@ $admin_url = admin_url('admin-ajax.php');
 
         var data = {
             action: 'rbac_add_post',
-            permission_id:pid,
+            permission_id: pid,
             add_id: add_id
         };
         $.ajax({
@@ -204,12 +254,12 @@ $admin_url = admin_url('admin-ajax.php');
             data: data,
             dataType: 'text',
             success: function (response) {
-                layer.msg('添加成功',{time:2000,icon:1});
-                $('#show_post').children().eq(1).css('display','none');  //弹出按钮,在按钮点击时出现添加搜索框
-                $('#search_post').css('display','none');
-                var btn = '<button class="btn-green" onclick="addPost(\''+url+'\')">添加资源</button>';
+                layer.msg('添加成功', {time: 2000, icon: 1});
+                $('#show_post').children().eq(1).css('display', 'none');  //弹出按钮,在按钮点击时出现添加搜索框
+                $('#search_post').css('display', 'none');
+                var btn = '<button class="btn-green" onclick="addPost(\'' + url + '\')">添加资源</button>';
                 $('#addPost').html(btn);
-                showPost(pid,url)
+                showPost(pid, url)
             }
         })
     }
@@ -217,7 +267,7 @@ $admin_url = admin_url('admin-ajax.php');
     //点击删除资源按钮
     function deletePost(url) {
         var obj = document.getElementsByName("checkItem[]");
-        var delete_id= [];
+        var delete_id = [];
         for (var k in obj) {
             if (obj[k].checked)
                 delete_id.push(obj[k].value);
@@ -227,7 +277,7 @@ $admin_url = admin_url('admin-ajax.php');
 
         var data = {
             action: 'rbac_delete_post',
-            permission_id:pid,
+            permission_id: pid,
             delete_id: delete_id
         };
         $.ajax({
@@ -236,12 +286,12 @@ $admin_url = admin_url('admin-ajax.php');
             data: data,
             dataType: 'text',
             success: function () {
-                layer.msg('删除成功',{time:2000,icon:1});
-                $('#show_post').children().eq(1).css('display','none');  //弹出按钮,在按钮点击时出现添加搜索框
-                $('#search_post').css('display','none');
-                var btn = '<button class="btn-green" onclick="addPost(\''+url+'\')">添加资源</button>';
+                layer.msg('删除成功', {time: 2000, icon: 1});
+                $('#show_post').children().eq(1).css('display', 'none');  //弹出按钮,在按钮点击时出现添加搜索框
+                $('#search_post').css('display', 'none');
+                var btn = '<button class="btn-green" onclick="addPost(\'' + url + '\')">添加资源</button>';
                 $('#addPost').html(btn);
-                showPost(pid,url)
+                showPost(pid, url)
             }
         })
 

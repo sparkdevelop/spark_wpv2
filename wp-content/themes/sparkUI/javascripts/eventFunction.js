@@ -254,6 +254,7 @@ function addClickEvent(choose_table_id, type, show_table_id, url) {
     })
 }
 
+
 //在配置角色和权限页面将数据插入表格
 function addToChosenList(tab, type, url) {
     var input_id = '#' + tab + '-' + type + '-input';
@@ -293,9 +294,11 @@ function addToChosenList(tab, type, url) {
                     data: data,
                     dataType: 'json',
                     success: function (res) {
-
+                        //清空表格
                         var id = "#" + tab + "-table-border";
                         var info = $(id + ' thead tr th');
+                        $(id + " tr").empty("");
+
                         var tr_id = type + '_' + res[1];
                         var tr = '<tr id=' + tr_id + '>';
                         $(id + ' tbody').append(tr);
@@ -305,7 +308,6 @@ function addToChosenList(tab, type, url) {
                                 $(id + ' tbody tr:last').append(td);
                             }
                         }
-
                         if (type == 'permission') {
                             for (var i = 0; i < info.length - 2; i++) {
                                 var td = '<td>' + res[i] + '</td>';
@@ -323,7 +325,6 @@ function addToChosenList(tab, type, url) {
                             '<button class="btn btn-link" onclick="layerConfirmDelete(' + '\'' + type + '\',' + res[1] + ',\'' + url + '\')"><span class="glyphicon glyphicon-trash"></span></button>' +
                             '</td></tr>';
                         $(id + ' tbody tr:last').append(append);
-
                     }
                 })
             }
@@ -859,6 +860,7 @@ function configPost(id,url) {
         }
     });
 }
+
 function showPost(id,url) {
     $('#post-info-table').css('display','block');  //仅仅弹出表格
     //点击弹窗,展示列表 id是权限id

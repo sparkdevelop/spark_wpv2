@@ -7,19 +7,18 @@
  */
 global $integral_system;
 $integral_system = array(
-    'create_wiki'=> 15,  //创建wiki
-    'create_project'=>  15,     //创建项目
-    'edit_wiki'=> 15,  //编辑wiki
-    'get_grade'=>  5,   //获得打分
-    'grade' =>  2,  //为别人打分
-    'get_favorite'=>  2,    //获得收藏
-    'comment'=>  5,     //为wiki和项目评论
-    'answer_question'=>  5, //回答问题
-    'get_vote'=>  1,     //获得赞同
-    'unlock_source'=>  6,  //解锁资源
-    'best_answer'=> 15  //回答被采纳
+    'create_wiki' => 15,  //创建wiki
+    'create_project' => 15,     //创建项目
+    'edit_wiki' => 15,  //编辑wiki
+    'get_grade' => 5,   //获得打分
+    'grade' => 2,  //为别人打分
+    'get_favorite' => 2,    //获得收藏
+    'comment' => 5,     //为wiki和项目评论
+    'answer_question' => 5, //回答问题
+    'get_vote' => 1,     //获得赞同
+    'unlock_source' => 6,  //解锁资源
+    'best_answer' => 15  //回答被采纳
 );
-
 
 
 //加载js
@@ -579,8 +578,8 @@ function update_wiki_entry()
 
     //增加积分
     global $integral_system;
-    if(get_current_user_id() != get_post($post_id)->post_author){
-        add_user_integral(get_current_user_id(),$integral_system['edit_wiki']);
+    if (get_current_user_id() != get_post($post_id)->post_author) {
+        add_user_integral(get_current_user_id(), $integral_system['edit_wiki']);
     }
 
 
@@ -873,7 +872,7 @@ function create_wiki_entry()
 
     //增加积分
     global $integral_system;
-    add_user_integral($current_user->ID,$integral_system['create_wiki']);
+    add_user_integral($current_user->ID, $integral_system['create_wiki']);
 
 
     echo json_encode($post_name);
@@ -1513,12 +1512,13 @@ function addFavorite()
         //加积分
         global $integral_system;
         $author = get_post($post_id)->post_author;
-        add_user_integral($author,$integral_system['get_favorite']);
+        add_user_integral($author, $integral_system['get_favorite']);
 
         die();
     }
 
 }
+
 add_action('wp_ajax_addFavorite', 'addFavorite');
 add_action('wp_ajax_nopriv_addFavorite', 'addFavorite');
 
@@ -1534,7 +1534,7 @@ function cancelFavorite()
     //加积分
     global $integral_system;
     $author = get_post($post_id)->post_author;
-    cut_user_integral($author,$integral_system['get_favorite']);
+    cut_user_integral($author, $integral_system['get_favorite']);
 
     die();
 }
@@ -1632,10 +1632,10 @@ function addScore()
     $wpdb->get_results($sql);
 
     //加积分
-    add_user_integral($user_id,$integral_system['grade']);
-    if($score>=3){
+    add_user_integral($user_id, $integral_system['grade']);
+    if ($score >= 3) {
         $author = get_post($post_id)->post_author;
-        add_user_integral($author,$integral_system['get_grade']);
+        add_user_integral($author, $integral_system['get_grade']);
     }
     die();
 }
@@ -4510,9 +4510,10 @@ function click_accept()
         //加积分
         global $integral_system;
         $author = get_post($answer_id)->post_author;
-        add_user_integral($author,$integral_system['best_answer']);
+        add_user_integral($author, $integral_system['best_answer']);
     }
 }
+
 add_action('wp_ajax_click_accept', 'click_accept');
 add_action('wp_ajax_nopriv_click_accept', 'click_accept');
 
@@ -4532,9 +4533,10 @@ function click_vote()
         //加积分
         global $integral_system;
         $author = get_post($answer_id)->post_author;
-        add_user_integral($author,$integral_system['get_vote']);
+        add_user_integral($author, $integral_system['get_vote']);
     }
 }
+
 add_action('wp_ajax_click_vote', 'click_vote');
 add_action('wp_ajax_nopriv_click_vote', 'click_vote');
 
@@ -5192,32 +5194,66 @@ function rbac_get_list_info()
 //        echo json_encode($tmp);
 //        die();
 //    }
-    if ($type == 'permission') {
-        //需要的信息有 name,id,说明,创建日期,对应角色,需要处理
-        $sql = "SELECT * FROM wp_rbac_permission WHERE permission_name = '$word'";  //选出基本的权限信息
-        $pre_result = $wpdb->get_results($sql)[0];
-        $role_id = get_rbac_rp_relation('permission', $pre_result->ID);   //根据权限ID去选对应的角色
-        $role_name = [];
-        foreach ($role_id as $r) {
-            $role_name[] = get_rbac_info('role', $r)->role_name;
+    if ($word == '') {
+        if ($type == 'permission') {
+            //需要的信息有 name,id,说明,创建日期,对应角色,需要处理
+            $sql = "SELECT * FROM wp_rbac_permission";  //选出所有的权限信息
+            $pre_result = $wpdb->get_results($sql);
+            foreach($pre_result as $p) {
+                $role_id = get_rbac_rp_relation('permission', $p->ID);   //根据权限ID去选对应的角色
+                $role_name = [];
+                foreach ($role_id as $r) {
+                    $role_name[] = get_rbac_info('role', $r)->role_name;
+                }
+                $role = implode('<br>', $role_name);   //角色用回车链接
+                $tmp[] = [$p->permission_name, $p->ID, $role, $p->modified_time, $p->illustration];
+            }
+            echo json_encode($tmp);
+            die();
+        } else {
+            //如果是角色信息
+            $sql = "SELECT * FROM wp_rbac_role";
+            $pre_result = $wpdb->get_results($sql);
+            foreach($pre_result as $r){
+                $permission_id = get_rbac_rp_relation('role', $r->ID);
+                $permission_name = [];
+                foreach ($permission_id as $p) {
+                    $permission_name[] = get_rbac_info('permission', $p)->permission_name;
+                }
+                $permission = implode('<br>', $permission_name);
+                $tmp[]= [$r->role_name, $r->ID, $permission, $r->modified_time, $r->illustration];
+            }
+            echo json_encode($tmp);
+            die();
         }
-        $role = implode('<br>', $role_name);   //角色用回车链接
-        $tmp = [$pre_result->permission_name, $pre_result->ID, $role, $pre_result->modified_time, $pre_result->illustration];
-        echo json_encode($tmp);
-        die();
     } else {
-        //如果是角色信息
-        $sql = "SELECT * FROM wp_rbac_role WHERE role_name = '$word'";
-        $pre_result = $wpdb->get_results($sql)[0];
-        $permission_id = get_rbac_rp_relation('role', $pre_result->ID);
-        $permission_name = [];
-        foreach ($permission_id as $p) {
-            $permission_name[] = get_rbac_info('permission', $p)->permission_name;
+        if ($type == 'permission') {
+            //需要的信息有 name,id,说明,创建日期,对应角色,需要处理
+            $sql = "SELECT * FROM wp_rbac_permission WHERE permission_name = '$word'";  //选出基本的权限信息
+            $pre_result = $wpdb->get_results($sql)[0];
+            $role_id = get_rbac_rp_relation('permission', $pre_result->ID);   //根据权限ID去选对应的角色
+            $role_name = [];
+            foreach ($role_id as $r) {
+                $role_name[] = get_rbac_info('role', $r)->role_name;
+            }
+            $role = implode('<br>', $role_name);   //角色用回车链接
+            $tmp = [$pre_result->permission_name, $pre_result->ID, $role, $pre_result->modified_time, $pre_result->illustration];
+            echo json_encode($tmp);
+            die();
+        } else {
+            //如果是角色信息
+            $sql = "SELECT * FROM wp_rbac_role WHERE role_name = '$word'";
+            $pre_result = $wpdb->get_results($sql)[0];
+            $permission_id = get_rbac_rp_relation('role', $pre_result->ID);
+            $permission_name = [];
+            foreach ($permission_id as $p) {
+                $permission_name[] = get_rbac_info('permission', $p)->permission_name;
+            }
+            $permission = implode('<br>', $permission_name);
+            $tmp = [$pre_result->role_name, $pre_result->ID, $permission, $pre_result->modified_time, $pre_result->illustration];
+            echo json_encode($tmp);
+            die();
         }
-        $permission = implode('<br>', $permission_name);
-        $tmp = [$pre_result->role_name, $pre_result->ID, $permission, $pre_result->modified_time, $pre_result->illustration];
-        echo json_encode($tmp);
-        die();
     }
 }
 
@@ -5282,7 +5318,8 @@ function rbac_get_user_all_permission($id)
 }
 
 //获取用户角色对应的权限
-function rbac_get_user_role_permission($id){
+function rbac_get_user_role_permission($id)
+{
     $role_id = get_rbac_user_relation('role', $id);
     $result = [];
     //role对应的
@@ -5861,9 +5898,11 @@ function update_user_post_table()
     }
 }
 
-function update_user_post_table_ajax(){
+function update_user_post_table_ajax()
+{
     update_user_post_table();
 }
+
 add_action('wp_ajax_update_user_post_table_ajax', 'update_user_post_table_ajax');
 add_action('wp_ajax_nopriv_update_user_post_table_ajax', 'update_user_post_table_ajax');
 
@@ -5875,17 +5914,17 @@ function user_can_view($post_id)
     $private = get_private_post($user_id);
     //两个数组取并集
     $all_source = array_merge($public, $private);
-    if (in_array($post_id, $all_source)){
+    if (in_array($post_id, $all_source)) {
         return true;
-    }else{
+    } else {
         //从用户->角色->权限->post
         $post = [];
         $permission_arr = rbac_get_user_all_permission($user_id);
-        foreach($permission_arr as $p){
+        foreach ($permission_arr as $p) {
             $post[] = get_permission_post($p);
         }
         $post = flatten_array($post);
-        return in_array($post_id,$post);
+        return in_array($post_id, $post);
     }
 }
 
@@ -5970,7 +6009,8 @@ function create_process_visibility($visibility, $post_id, $author)
 }
 
 //创建权限
-function create_permission($pname, $pauthor, $ill, $pdate, $relative_post){
+function create_permission($pname, $pauthor, $ill, $pdate, $relative_post)
+{
     global $wpdb;
 //首先获取最后一个permission_id;
     $sql_fun = "select ID from wp_rbac_permission ORDER BY ID DESC LIMIT 0,1";
@@ -5991,7 +6031,8 @@ function create_permission($pname, $pauthor, $ill, $pdate, $relative_post){
 
 //============积分系统================
 //建立用户积分表
-function user_integral_table_install(){
+function user_integral_table_install()
+{
     global $wpdb;
     $table_name = $wpdb->prefix . "user_integral";  //获取表前缀，并设置新表的名称
     if ($wpdb->get_var("show tables like $table_name") != $table_name) {  //判断表是否已存在
@@ -6006,18 +6047,20 @@ function user_integral_table_install(){
 }
 
 //初始化用户积分表
-function init_user_integral_table(){
+function init_user_integral_table()
+{
     global $wpdb;
     $sql = "select ID from wp_users";
-    $pre_result = $wpdb->get_results($sql,'ARRAY_A');
-    $result = array_column($pre_result,'ID');
-    foreach ($result as $uid){
+    $pre_result = $wpdb->get_results($sql, 'ARRAY_A');
+    $result = array_column($pre_result, 'ID');
+    foreach ($result as $uid) {
         init_user_integtal($uid);
     }
 }
 
 //新用户初始化积分
-function init_user_integtal($user_id){
+function init_user_integtal($user_id)
+{
     global $wpdb;
     $tmp = get_current_date();
     $sql_insert = "INSERT INTO wp_user_integral VALUES($user_id,100,'$tmp')";
@@ -6025,7 +6068,8 @@ function init_user_integtal($user_id){
 }
 
 //获取用户积分
-function get_user_integral($user_id){
+function get_user_integral($user_id)
+{
     global $wpdb;
     $sql = "SELECT integral FROM wp_user_integral WHERE user_id =$user_id";
     $integral = $wpdb->get_results($sql)[0]->integral;
@@ -6033,16 +6077,17 @@ function get_user_integral($user_id){
 }
 
 //添加用户积分(可批量)
-function add_user_integral($user_id,$score){
+function add_user_integral($user_id, $score)
+{
     global $wpdb;
-    if (is_array($user_id)){ //如果是数组
-        foreach ($user_id as $uid){
+    if (is_array($user_id)) { //如果是数组
+        foreach ($user_id as $uid) {
             $integral = get_user_integral($uid) + $score;
             $time = get_current_date();
             $sql = "update wp_user_integral set integral = $integral,modified_time = '$time' WHERE user_id = $uid";
             $wpdb->get_results($sql);
         }
-    }elseif (is_numeric($user_id)){
+    } elseif (is_numeric($user_id)) {
         $integral = get_user_integral($user_id) + $score;
         $time = get_current_date();
         $sql = "update wp_user_integral set integral = $integral,modified_time = '$time' WHERE user_id = $user_id";
@@ -6050,27 +6095,29 @@ function add_user_integral($user_id,$score){
     }
 }
 
-function add_user_integral_ajax(){
+function add_user_integral_ajax()
+{
     $user_id = $_POST['user_id'];
     $score = $_POST['score'];
-    add_user_integral($user_id,$score);
+    add_user_integral($user_id, $score);
 }
+
 add_action('wp_ajax_add_user_integral_ajax', 'add_user_integral_ajax');
 add_action('wp_ajax_nopriv_add_user_integral_ajax', 'add_user_integral_ajax');
 
 
-
 //减少用户积分
-function cut_user_integral($user_id,$score){
+function cut_user_integral($user_id, $score)
+{
     global $wpdb;
-    if (is_array($user_id)){ //如果是数组
-        foreach ($user_id as $uid){
+    if (is_array($user_id)) { //如果是数组
+        foreach ($user_id as $uid) {
             $integral = get_user_integral($uid) - $score;
             $time = get_current_date();
             $sql = "update wp_user_integral set integral = $integral,modified_time = '$time' WHERE user_id = $uid";
             $wpdb->get_results($sql);
         }
-    }elseif (is_numeric($user_id)){
+    } elseif (is_numeric($user_id)) {
         $integral = get_user_integral($user_id) - $score;
         $time = get_current_date();
         $sql = "update wp_user_integral set integral = $integral,modified_time = '$time' WHERE user_id = $user_id";
@@ -6078,36 +6125,38 @@ function cut_user_integral($user_id,$score){
     }
 }
 
-function cut_user_integral_ajax(){
+function cut_user_integral_ajax()
+{
     $user_id = $_POST['user_id'];
     $score = $_POST['score'];
-    add_user_integral($user_id,$score);
+    add_user_integral($user_id, $score);
 }
+
 add_action('wp_ajax_cut_user_integral_ajax', 'cut_user_integral_ajax');
 add_action('wp_ajax_nopriv_cut_user_integral_ajax', 'cut_user_integral_ajax');
 
 //积分等级转化
-function transfer_integral($score){
-    $map = ['Lv1','Lv2','Lv3','Lv4','Lv5'];
-    if($score<200){
+function transfer_integral($score)
+{
+    $map = ['Lv1', 'Lv2', 'Lv3', 'Lv4', 'Lv5'];
+    if ($score < 200) {
         return $map[0];
-    }elseif($score>=200 && $score<500){
+    } elseif ($score >= 200 && $score < 500) {
         return $map[1];
-    }elseif($score>=500 && $score<1000){
+    } elseif ($score >= 500 && $score < 1000) {
         return $map[2];
-    }elseif($score>=1000 && $score<1500){
+    } elseif ($score >= 1000 && $score < 1500) {
         return $map[3];
-    }else{
+    } else {
         return $map[4];
     }
 }
 
-function get_user_level($user_id){
+function get_user_level($user_id)
+{
     $score = get_user_integral($user_id);
     return transfer_integral($score);
 }
-
-
 
 
 //融云
@@ -6365,8 +6414,9 @@ function hasSinfo($str)
 }
 
 //获取当前时间
-function get_current_date(){
-    return date('Y-m-d H:i:s',time()+8*3600);
+function get_current_date()
+{
+    return date('Y-m-d H:i:s', time() + 8 * 3600);
 }
 
 //自动登录
