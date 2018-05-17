@@ -4,10 +4,10 @@
 //process_public_post();
 ////当前用户如果写了学校,就有该学校的角色
 ////只执行一次
-//init_user_school_role();
-//update_user_post_table();
 
-//init_user_integral_table();
+init_user_school_role();
+
+init_user_integral_table();
 
 
 /*
