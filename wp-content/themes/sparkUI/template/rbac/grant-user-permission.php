@@ -1,6 +1,7 @@
 <?php
 $tab = isset($_GET['tab']) && !empty($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'gup';
-$admin_url = admin_url('admin-ajax.php'); ?>
+$admin_url = admin_url('admin-ajax.php');
+?>
 <style>
     .btn-green {
         margin-top: 0px;

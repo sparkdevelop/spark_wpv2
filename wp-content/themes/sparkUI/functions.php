@@ -5199,7 +5199,7 @@ function rbac_get_list_info()
             //需要的信息有 name,id,说明,创建日期,对应角色,需要处理
             $sql = "SELECT * FROM wp_rbac_permission";  //选出所有的权限信息
             $pre_result = $wpdb->get_results($sql);
-            foreach($pre_result as $p) {
+            foreach ($pre_result as $p) {
                 $role_id = get_rbac_rp_relation('permission', $p->ID);   //根据权限ID去选对应的角色
                 $role_name = [];
                 foreach ($role_id as $r) {
@@ -5214,14 +5214,14 @@ function rbac_get_list_info()
             //如果是角色信息
             $sql = "SELECT * FROM wp_rbac_role";
             $pre_result = $wpdb->get_results($sql);
-            foreach($pre_result as $r){
+            foreach ($pre_result as $r) {
                 $permission_id = get_rbac_rp_relation('role', $r->ID);
                 $permission_name = [];
                 foreach ($permission_id as $p) {
                     $permission_name[] = get_rbac_info('permission', $p)->permission_name;
                 }
                 $permission = implode('<br>', $permission_name);
-                $tmp[]= [$r->role_name, $r->ID, $permission, $r->modified_time, $r->illustration];
+                $tmp[] = [$r->role_name, $r->ID, $permission, $r->modified_time, $r->illustration];
             }
             echo json_encode($tmp);
             die();
@@ -6054,18 +6054,70 @@ function init_user_integral_table()
     $pre_result = $wpdb->get_results($sql, 'ARRAY_A');
     $result = array_column($pre_result, 'ID');
     foreach ($result as $uid) {
-        init_user_integtal($uid);
+        init_user_integral($uid);
     }
 }
 
 //新用户初始化积分
-function init_user_integtal($user_id)
+function init_user_integral($user_id)
 {
     global $wpdb;
     $tmp = get_current_date();
-    $sql_insert = "INSERT INTO wp_user_integral VALUES($user_id,100,'$tmp')";
+    $score = calculate_user_integral($user_id)+100;
+    $sql_insert = "REPLACE INTO wp_user_integral VALUES($user_id,$score,'$tmp')";
     $wpdb->get_results($sql_insert);
 }
+
+//计算当前用户初始积分
+function calculate_user_integral($user_id)
+{
+    $score = 0;
+    global $wpdb;
+    global $integral_system;
+    //现有的wiki、项目的作者初始化加分
+    $sql = "SELECT ID FROM wp_posts WHERE post_author = $user_id 
+                                      and post_status = 'publish' 
+                                      and post_type IN ('yada_wiki','post')";
+    $pre_result = $wpdb->get_results($sql);
+    $score += sizeof($pre_result) * $integral_system['create_wiki'];
+
+    //别人为当前打过分
+    foreach($pre_result as $v){
+        $id = $v->ID;
+        $sql_getgrade = "SELECT score FROM wp_score WHERE score_post_id = $id";
+        $getgrade_result = $wpdb->get_results($sql_getgrade,'ARRAY_A');
+        if($getgrade_result!=[]){
+            $result = array_column($getgrade_result,'score');
+            foreach ($result as $value){
+                if ($value>=3){
+                    $score += $integral_system['get_grade'];
+                }
+            }
+        }
+    }
+
+    //为别人打过分,每条加两分
+    $sql_score = "SELECT score FROM wp_score WHERE user_id = $user_id";
+    $grade_result = $wpdb->get_results($sql_score,'ARRAY_A');
+    $score += sizeof($grade_result) * $integral_system['grade'];
+
+    //被收藏加分
+    foreach($pre_result as $v){
+        $id = $v->ID;
+        $sql_favorite = "SELECT ID FROM wp_favorite WHERE favorite_post_id = $id";
+        $favorite_result = $wpdb->get_results($sql_favorite,'ARRAY_A');
+        $score += sizeof($favorite_result) * $integral_system['get_favorite'];
+    }
+
+    //回答过别人的问题加分
+    $sql_answer = "SELECT DISTINCT post_parent FROM wp_posts WHERE post_author = $user_id 
+                                             and post_status = 'publish' 
+                                             and post_type ='dwqa-answer'";
+    $answer_result = $wpdb->get_results($sql_answer);
+    $score += sizeof($answer_result) * $integral_system['answer_question'];
+    return $score;
+}
+
 
 //获取用户积分
 function get_user_integral($user_id)
@@ -6145,7 +6197,7 @@ function transfer_integral($score)
         return $map[1];
     } elseif ($score >= 500 && $score < 1000) {
         return $map[2];
-    } elseif ($score >= 1000 && $score < 1500) {
+    } elseif ($score >= 1000 && $score < 2000) {
         return $map[3];
     } else {
         return $map[4];
