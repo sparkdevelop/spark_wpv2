@@ -542,6 +542,10 @@ if($type == 'int'){
             </p>
             <table class="table" id="view_table">
                 <caption>浏览词条TOP10</caption>
+                <thead>
+                <td style="color:#0096ff">文章标题</td>
+                <td style="color:#0096ff">浏览次数</td>
+                </thead>
                 <tbody>
                 <?php foreach ($viewTop10 as $key => $value) { ?>
                     <tr>
@@ -553,6 +557,10 @@ if($type == 'int'){
             </table>
             <table class="table" id="search_table">
                 <caption>搜索词条TOP10</caption>
+                <thead>
+                <td style="color:#0096ff">文章标题</td>
+                <td style="color:#0096ff">搜索次数</td>
+                </thead>
                 <tbody>
                 <?php foreach ($searchTop10 as $key => $value) { ?>
                     <tr>
@@ -926,6 +934,10 @@ if($type == 'int'){
 
             <table class="table" id="view_table">
                 <caption>浏览词条TOP10</caption>
+                <thead>
+                <td style="color:#0096ff">文章标题</td>
+                <td style="color:#0096ff">浏览次数</td>
+                </thead>
                 <tbody>
                 <?php foreach ($viewTop10 as $key => $value) { ?>
                     <tr>
@@ -937,6 +949,10 @@ if($type == 'int'){
             </table>
             <table class="table" id="search_table">
                 <caption>搜索词条TOP10</caption>
+                <thead>
+                <td style="color:#0096ff">文章标题</td>
+                <td style="color:#0096ff">搜索次数</td>
+                </thead>
                 <tbody>
                 <?php foreach ($searchTop10 as $key => $value) { ?>
                     <tr>
