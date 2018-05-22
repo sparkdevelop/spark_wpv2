@@ -11,7 +11,7 @@
     </style>
 
 
-    <form method="post" class="dwqa-content-edit-form" id="Spark_question_submit_form" onsubmit="return SubmitCheck();">
+    <form method="post" class="dwqa-content-edit-form" id="Spark_question_submit_form" onsubmit="return submitCheck();">
         <!--    标题栏-->
         <p class="dwqa-search">
             <?php
@@ -132,6 +132,14 @@
         <span id="alertTag"></span>
         <span><input type="button" class="btn btn-default" id="deleteTag" onclick="deleteTags()" style="display: none" value="删除标签"/></span>
         </p>
+
+        <p>
+            <label for="question-score">悬赏分:</label>
+            <input type="text" placeholder="如不悬赏,可不填写" id="offer" name= "offer" onblur="checkScore(this.value)"
+                   value="" style="width: 20%"/>
+            <span id="score-flag"></span>
+        </p>
+
         <?php if ( dwqa_current_user_can( 'post_question' ) && !is_user_logged_in() ) : ?>
             <p>
                 <label for="_dwqa_anonymous_email"><?php _e( 'Your Email', 'dwqa' ) ?></label>
@@ -160,16 +168,19 @@
 //        location.href= url ;
     }
 
-    function SubmitCheck() {
-        var question_title = document.getElementById('question-title');
-        var title_none = document.getElementById("title_none");
-
-        if(question_title.value.length==0){
-            title_none.innerHTML="<p style='color:red;margin-top:20px;margin-left: 20px'>问题标题不能为空</p>";
-            return false;
-        } else{
-            return true;
+    function submitCheck() {
+        var flag = false;
+        var qt = document.getElementById('question-title');
+        var offer = document.getElementById('offer');
+        if (qt.value.length == 0) {
+            $('#title_none').html("<p style='color:red;margin-top:20px;margin-left: 20px'>问题标题不能为空</p>");
+        } else if(!checkScore(offer.value)) {
+            alert('请修正错误');
+        }else{
+            actionAsk();
+            flag = true
         }
+        return flag;
     }
 
     function checkTagNum(value) {
@@ -200,5 +211,39 @@
         var tag = document.getElementById('Spark_question-tag');
         tag.value = "";
         tag.readOnly = false;
+    }
+
+    function checkScore(value) {
+        var flag = false;
+        //检查value是否是合理值
+        var ex = /^\d+$/;
+        if ((ex.test(value) && value!= 0) || value=='') {
+            //分值够不够
+            var data = {
+                action: "check_score",
+                offer: value,
+                user_id: '<?=get_current_user_id()?>'
+            };
+            $.ajax({
+                async:false,
+                type: 'POST',
+                url: '<?=$admin_url?>',
+                data: data,
+                success: function (response) {
+                    if (response.trim() == 0) {
+                        <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
+                        $('#score-flag').html("<img src='<?=$url?>'><span>您没有足够的积分</span>");
+                    } else {
+                        <?php $url = get_template_directory_uri() . "/img/OK.png";?>
+                        $('#score-flag').html("<img src='<?=$url?>'>");
+                        flag = true
+                    }
+                }
+            })
+        } else {
+            <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
+            $('#score-flag').html("<img src='<?=$url?>'><span>请输入合理悬赏值</span>")
+        }
+        return flag;
     }
 </script>

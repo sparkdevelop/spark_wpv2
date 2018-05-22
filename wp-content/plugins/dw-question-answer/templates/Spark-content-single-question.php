@@ -14,7 +14,7 @@
       $related_id = get_the_ID();
       $related_post_type = get_post_type($related_id);
 
-if($post_id=''){
+if($post_id==''){
     //在tiny页面有设置cookie
     //从数据库取出
     $post_info = qaComeFrom($related_id);

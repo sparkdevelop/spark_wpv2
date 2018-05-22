@@ -4506,11 +4506,14 @@ function click_accept()
         $notice_type = 5;
         $sql_add_notice = "INSERT INTO wp_notification VALUES ('',$noticeuser_id,$notice_type,'$answer_id',0,'$current_time')";
         $wpdb->get_results($sql_add_notice);
-        //加积分
+        //加回答者积分
         global $integral_system;
         $author = get_post($answer_id)->post_author;
         $score = get_question_offers($qid);
         add_user_integral($author, $score);
+        //减提问者积分
+        cut_user_integral($noticeuser_id,$score);
+
     }
 }
 
