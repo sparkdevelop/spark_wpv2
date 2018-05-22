@@ -324,7 +324,8 @@ class DWQA_Handle {
 					$is_anonymous = false;
 					if ( is_user_logged_in() ) {
 						$user_id = get_current_user_id();
-					} else {
+					}
+					else {
 						//$post_author_email = $_POST['user-email'];
 						if ( isset( $_POST['login-type'] ) && sanitize_text_field( $_POST['login-type'] ) == 'sign-in' ) {
 							$user = wp_signon( array(
@@ -410,7 +411,10 @@ class DWQA_Handle {
 						 $post_status = 'pending';
 					}
 
-					$postarr = array(
+					//add by cherie
+                    $offer = esc_html( $_POST['offer'] );
+
+                    $postarr = array(
 						'comment_status' => 'open',
 						'post_author'    => $user_id,
 						'post_content'   => $content,
@@ -420,7 +424,10 @@ class DWQA_Handle {
 						'tax_input'      => array(
 							'dwqa-question_category'    => array( $category ),
 							'dwqa-question_tag'         => explode( ',', $tags )
-						)
+						),
+
+                        //add by cherie
+                        'score'   => $offer
 					);
 
 					if ( apply_filters( 'dwqa-current-user-can-add-question', dwqa_current_user_can( 'post_question' ), $postarr ) ) {
@@ -539,6 +546,8 @@ class DWQA_Handle {
 			'post_status'    => 'pending',
 			'post_title'     => '',
 			'post_type'      => 'dwqa-question',
+            //add by cherie
+            'score'         => 0
 		) );
 
 		$new_question = wp_insert_post( $args, true );
@@ -555,6 +564,13 @@ class DWQA_Handle {
 			update_post_meta( $new_question, '_dwqa_votes', 0 );
 			update_post_meta( $new_question, '_dwqa_answers_count', 0 );
 			add_post_meta( $new_question, '_dwqa_followers', $user_id );
+
+            //add by cherie
+            //添加悬赏分
+            if (isset($args['score'])){
+                add_post_meta($new_question, '_dwqa_scores', $args['score']);
+            };
+
 			$date = get_post_field( 'post_date', $new_question );
 			// dwqa_log_last_activity_on_question( $new_question, 'Create question', $date );
 			//Call action when add question successfull

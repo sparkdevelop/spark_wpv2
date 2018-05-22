@@ -12,4 +12,5 @@ if(!user_can_view($post_id)){
 }
 else{
     require "single_content.php";
-}?>
+} ?>
+

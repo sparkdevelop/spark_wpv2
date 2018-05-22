@@ -16,8 +16,7 @@ $integral_system = array(
     'comment' => 5,     //为wiki和项目评论
     'answer_question' => 5, //回答问题
     'get_vote' => 1,     //获得赞同
-    'unlock_source' => 6,  //解锁资源
-    'best_answer' => 15  //回答被采纳
+    'unlock_source' => 6  //解锁资源
 );
 
 
@@ -4510,7 +4509,8 @@ function click_accept()
         //加积分
         global $integral_system;
         $author = get_post($answer_id)->post_author;
-        add_user_integral($author, $integral_system['best_answer']);
+        $score = get_question_offers($qid);
+        add_user_integral($author, $score);
     }
 }
 
@@ -6118,7 +6118,6 @@ function calculate_user_integral($user_id)
     return $score;
 }
 
-
 //获取用户积分
 function get_user_integral($user_id)
 {
@@ -6209,6 +6208,34 @@ function get_user_level($user_id)
     $score = get_user_integral($user_id);
     return transfer_integral($score);
 }
+
+function check_score(){
+    global $wpdb;
+    $score = $_POST['offer'];
+    $user_id = $_POST['user_id'];
+    $sql = "SELECT integral FROM wp_user_integral WHERE user_id = $user_id";
+    $result = $wpdb->get_results($sql)[0]->integral;
+    if($result > $score){
+        echo 1;
+    }else{
+        echo 0;
+    }
+    die();
+}
+add_action('wp_ajax_check_score', 'check_score');
+add_action('wp_ajax_nopriv_check_score', 'check_score');
+
+function get_question_offers($qid){
+    $score = get_post_meta($qid,'_dwqa_scores',true);
+    if($score==''){
+        $score = 0;
+    }
+    return $score;
+}
+
+
+
+
 
 
 //融云

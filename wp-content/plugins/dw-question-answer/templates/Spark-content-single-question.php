@@ -82,8 +82,20 @@ if($post_type=="post"){
     <!--提问人信息-->
     <div>
         <span style="color: gray">提问人:&nbsp;<a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.get_post()->post_author;?>" class="author_link"><?php echo get_the_author();?></a></span>
+        <?php
+        $user_level = get_user_level(get_post()->post_author);
+        $img_url = $user_level.".png";
+        ?>
+        <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px;margin-left: -20px;">
+
         <span class="m-qa-count"></span>
         <span class="time_count"><?php echo date('n月j日 G:i',get_the_time('U'));?></span>
+        <?php
+        $offers = get_question_offers(get_post()->ID);
+        if ($offers!=0){?>
+            <span class="offers"><img src="<?php bloginfo("template_url")?>/img/integral/offers.png" style="width: 20px;"><?=$offers?></span>
+        <? } ?>
+
         <span class="scan_count">浏览<?php echo dwqa_question_views_count();?></span>
         <span class="ask_count">回答<?php echo dwqa_question_answers_count();?></span>
 

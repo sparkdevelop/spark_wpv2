@@ -128,6 +128,11 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 <p>发布者：
                     <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.get_post()->post_author.'&tab=project'?>"
                        class="author_link" style="color: #5e5e5e"><?php echo get_the_author();?>
+                        <?php
+                        $user_level = get_user_level(get_post()->post_author);
+                        $img_url = $user_level.".png";
+                        ?>
+                        <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px">
                     </a>
                 </p><br>
                 <p>分类：</p>

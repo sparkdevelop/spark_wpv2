@@ -96,6 +96,11 @@ $apply_url = site_url().get_page_address('apply_permission').'&id='.$post_id;
                         <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . get_post()->post_author . '&tab=wiki' ?>"
                            class="author_link" style="color: #5e5e5e"><?php echo get_the_author(); ?>
                         </a>
+                        <?php
+                        $user_level = get_user_level(get_post()->post_author);
+                        $img_url = $user_level.".png";
+                        ?>
+                        <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px">
                     </p>
                     <p id="edit_nums"></p>
                     <p id="watch_nums"></p>
