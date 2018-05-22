@@ -334,7 +334,7 @@ if($type == 'int'){
             array_push($tagID,$in->term_id);
             array_push($tagName,$in->name);
             //$groupTag[$in->name] = $in->term_id;
-        }
+            }
 
     }
     $clearTI = array_unique($tagID);
@@ -478,13 +478,13 @@ if($type == 'int'){
     <div class="archive-nav">
         <ul id="leftTab" class="nav nav-tabs" style="float: left;height: 42px;">
             <li class="<?php echo $type == 'fre' ? 'active' : ''; ?>" id="project"><a
-                        href="<?php echo esc_url(add_query_arg(array('type' => 'fre'), remove_query_arg(array('start', 'end', 'words', 'tags','memberID','separatePage','recordStart','recordEnd','pageNum')))); ?>">词条频度</a>
+                    href="<?php echo esc_url(add_query_arg(array('type' => 'fre'), remove_query_arg(array('start', 'end', 'words', 'tags','memberID','separatePage','recordStart','recordEnd','pageNum')))); ?>">词条频度</a>
             </li>
             <li class="<?php echo $type == 'tra' ? 'active' : ''; ?>" id="project"><a
-                        href="<?php echo esc_url(add_query_arg(array('type' => 'tra'), remove_query_arg(array('start', 'end', 'words', 'tags','memberID','separatePage','recordStart','recordEnd','pageNum')))); ?>">行为轨迹</a>
+                    href="<?php echo esc_url(add_query_arg(array('type' => 'tra'), remove_query_arg(array('start', 'end', 'words', 'tags','memberID','separatePage','recordStart','recordEnd','pageNum')))); ?>">行为轨迹</a>
             </li>
             <li class="<?php echo $type == 'int' ? 'active' : ''; ?>" id="project"><a
-                        href="<?php echo esc_url(add_query_arg(array('type' => 'int'), remove_query_arg(array('start', 'end', 'words', 'tags','memberID','separatePage','recordStart','recordEnd','pageNum')))); ?>">兴趣分布</a>
+                    href="<?php echo esc_url(add_query_arg(array('type' => 'int'), remove_query_arg(array('start', 'end', 'words', 'tags','memberID','separatePage','recordStart','recordEnd','pageNum')))); ?>">兴趣分布</a>
             </li>
         </ul>
     </div>
@@ -536,17 +536,20 @@ if($type == 'int'){
                 <label class="title" for="">开始时间:</label><input type="text" class="datepicker" id="datepicker1"/>
                 <label class="title" for="">结束时间:</label><input type="text" class="datepicker" id="datepicker2"/>
             </p>
-            </p>
             <p class="button clearfix">
                 <a id="submit">提交</a>
                 <a href="<?php echo esc_url(add_query_arg(array(), remove_query_arg(array('start', 'end', 'words')))); ?>">默认</a>
             </p>
             <table class="table" id="view_table">
                 <caption>浏览词条TOP10</caption>
+                <thead>
+                <td style="color:#0096ff">文章标题</td>
+                <td style="color:#0096ff">浏览次数</td>
+                </thead>
                 <tbody>
                 <?php foreach ($viewTop10 as $key => $value) { ?>
                     <tr>
-                        <td><?php echo $value->post_title; ?></td>
+                        <td style="width:70%"><?php echo $value->post_title; ?></td>
                         <td><?php echo $value->c; ?></td>
                     </tr>
                 <?php } ?>
@@ -554,6 +557,10 @@ if($type == 'int'){
             </table>
             <table class="table" id="search_table">
                 <caption>搜索词条TOP10</caption>
+                <thead>
+                <td style="color:#0096ff">文章标题</td>
+                <td style="color:#0096ff">搜索次数</td>
+                </thead>
                 <tbody>
                 <?php foreach ($searchTop10 as $key => $value) { ?>
                     <tr>
@@ -594,7 +601,7 @@ if($type == 'int'){
                     }
 
                     if (start == null && end != null) {
-                        start = new Date(Date.parse(end) - 3600 * 1000 * 24 * 6).toLocaleDateString();
+                         start = new Date(Date.parse(end) - 3600 * 1000 * 24 * 6).toLocaleDateString();
                     } else {
                         start = start.toLocaleDateString();
                     }
@@ -685,8 +692,8 @@ if($type == 'int'){
                 var pieData = [];
                 for(var i = 0; i < view_datas.length;i++){
                     pieData.push({
-                            name:item_view[i],
-                            value:viewCount[i]
+                        name:item_view[i],
+                        value:viewCount[i]
                         }
 
                     )
@@ -918,18 +925,23 @@ if($type == 'int'){
                 <label class="title" for="">开始时间:</label><input type="text" class="datepicker" id="datepicker1"/>
                 <label class="title" for="">结束时间:</label><input type="text" class="datepicker" id="datepicker2"/>
             </p>
-            </p>
             <p class="button clearfix">
                 <a id="submit">提交</a>
                 <a href="<?php echo esc_url(add_query_arg(array(), remove_query_arg(array('start', 'end', 'words','memberID')))); ?>">默认</a>
             </p>
+
             <p style="color: #fe642d;font-size: medium"><?php echo $chosenPerson[0]?>的统计记录:</p>
+
             <table class="table" id="view_table">
                 <caption>浏览词条TOP10</caption>
+                <thead>
+                <td style="color:#0096ff">文章标题</td>
+                <td style="color:#0096ff">浏览次数</td>
+                </thead>
                 <tbody>
                 <?php foreach ($viewTop10 as $key => $value) { ?>
                     <tr>
-                        <td><?php echo $value->post_title; ?></td>
+                        <td style="width: 70%"><?php echo $value->post_title; ?></td>
                         <td><?php echo $value->c; ?></td>
                     </tr>
                 <?php } ?>
@@ -937,6 +949,10 @@ if($type == 'int'){
             </table>
             <table class="table" id="search_table">
                 <caption>搜索词条TOP10</caption>
+                <thead>
+                <td style="color:#0096ff">文章标题</td>
+                <td style="color:#0096ff">搜索次数</td>
+                </thead>
                 <tbody>
                 <?php foreach ($searchTop10 as $key => $value) { ?>
                     <tr>
@@ -1206,9 +1222,6 @@ if($type == 'int'){
 
             });
         </script>
-
-
-
     <?php }?>
     <!--   成员词频统计结束   -->
 
@@ -1367,8 +1380,8 @@ if($type == 'int'){
 
 
 
-                //下拉框
-                $(".dropdown").delegate("ul li a","click",function(){
+               //下拉框
+               $(".dropdown").delegate("ul li a","click",function(){
                     text=$(this).text();
                     memberID=$(this).attr("data-id");
                     var parent=$(this).parents(".dropdown");
@@ -1615,7 +1628,7 @@ if($type == 'int'){
                 <p style="text-align: right;">浏览次数：<?php echo $questionViewTimes[$i]?><!--&nbsp &nbsp&nbsp &nbsp最后浏览时间：--><?php /*echo $lastViewTime[$i]*/?></p>
                 <hr>
                 <?php }?><?php }?>
-                <?php if(count($questionName)==10){?>
+            <?php if(count($questionName)==10){?>
                 <?php for($i=0; $i<count($questionName)-1;$i++){?>
                 <?php $k = $i + 1;
                 $p = $pageNum+1;?>
@@ -1628,7 +1641,7 @@ if($type == 'int'){
                         <br>
                         <p style="text-align: right;">浏览次数：<?php echo $questionViewTimes[$i]?><!--&nbsp &nbsp&nbsp &nbsp最后浏览时间：--><?php /*echo $lastViewTime[$i]*/?></p>
                         <hr>
-                        <?php }?>
+           <?php }?>
         </div>
         <!-翻页->
         <div>
@@ -1725,14 +1738,14 @@ if($type == 'int'){
         <div>
             <label class="title" for="">自选标签(小组用户参与的标签):</label>
             <div id="all_tags" style="word-wrap: break-word; word-break: keep-all;">
-                <!--                --><?php
-                //                foreach ($tag_name as $key =>$i){?>
-                <!--                    <input type="checkbox" name="tags" value="--><?//=$tag_id[$key]?><!--_--><?//=$i?><!--">--><?//=$i?><!--<span class="badge">(--><?//=$tag_count[$key]?><!--)</span>-->
-                <!--                --><?php //}
-                //                ?>
+<!--                --><?php
+//                foreach ($tag_name as $key =>$i){?>
+<!--                    <input type="checkbox" name="tags" value="--><?//=$tag_id[$key]?><!--_--><?//=$i?><!--">--><?//=$i?><!--<span class="badge">(--><?//=$tag_count[$key]?><!--)</span>-->
+<!--                --><?php //}
+//                ?>
                 <?php
                 for ($i = 0; $i< count($clearTagID); $i++){?>
-                    <input type="checkbox" name="tags" value="<?=$clearTagID[$i]?>_<?=$clearTagName[$i]?>"><?=$clearTagName[$i]?>
+                <input type="checkbox" name="tags" value="<?=$clearTagID[$i]?>_<?=$clearTagName[$i]?>"><?=$clearTagName[$i]?>
                 <?php }
                 ?>
             </div>
@@ -1749,8 +1762,8 @@ if($type == 'int'){
             <div class="chart_title">项目标签</div>
             <div id="project_tag" style="width:60vw;height:30vw;right: 100px;"></div>
             <br>
-            <!--            <div class="chart_title">问答标签</div>-->
-            <!--            <div id="qa_tag" style="width:60vw;height:30vw;"></div>-->
+<!--            <div class="chart_title">问答标签</div>-->
+<!--            <div id="qa_tag" style="width:60vw;height:30vw;"></div>-->
             <div class="chart_title">浏览项目TOP10比例</div>
             <div id="pie_chart" style="width:60vw;height:30vw;right: 50px"></div>
         </div>
