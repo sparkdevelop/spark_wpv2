@@ -4513,7 +4513,6 @@ function click_accept()
         add_user_integral($author, $score);
         //减提问者积分
         cut_user_integral($noticeuser_id,$score);
-
     }
 }
 

@@ -99,5 +99,108 @@ $tab = isset($_GET['tab']) && !empty($_GET['tab']) ? sanitize_text_field($_GET['
                 老师／技术大牛：wiki板块下，可以创建自己的wiki词条，发布新学到的知识，也可以修改前人发布的wiki，完善内容。您还可以在协作板块下发布自己的的项目并指导他人学习，或是利用问答版块解疑答惑。您的努力将给他人，尤其是新生们带来巨大的帮助，可能会有意想不到的奖励哦。<br><br>
             </div>
         </div>
-    <?php } ?>
+    <?php }
+    if ($tab == 'integral'){ ?>
+        <style>
+            .table img{
+                width: 20px;
+            }
+            .table{
+                width: 80%;
+                margin: 10px auto;
+            }
+        </style>
+        <h4 style="text-align: center">积分规则</h4>
+        <div class="divline"></div>
+        <h4>1、如何获取积分</h4>
+        <div style="width: 90%;margin: 10px auto;">
+            <p style="font-weight: bolder">用户在火花空间上的以下行为可以获取积分：</p>
+            <h5>wiki部分</h5>
+            <ul>
+                <li>创建wiki词条</li>
+                <li>完善他人的wiki词条</li>
+                <li>为他人的wiki打分</li>
+                <li>用户编写的词条获得他人3分（含）以上的打分</li>
+                <li>用户编写的词条被他人收藏</li>
+                <li>在词条评论区和他人交流</li>
+            </ul>
+        </div>
+        <div style="width: 90%;margin: 10px auto;">
+            <h5>问答部分</h5>
+            <ul>
+                <li>回答问题</li>
+                <li>答案被他人赞同</li>
+                <li>答案被提问者采纳还可获得提问者的悬赏分</li>
+            </ul>
+        </div>
+        <div style="width: 90%;margin: 10px auto;">
+            <h5>项目部分</h5>
+            <ul>
+                <li>创建项目词条</li>
+                <li>为他人的项目打分</li>
+                <li>用户项目获得他人3分（含）以上的打分</li>
+                <li>用户项目被他人收藏</li>
+                <li>在项目评论区和他人交流</li>
+            </ul>
+        </div>
+        <h4>2、积分有什么用</h4>
+        <div style="width: 90%;margin: 10px auto;">
+            <ul>
+                <li>积分可用来进行提问的悬赏，让你的问题更有价值，吸引更多人来为你解答</li>
+                <li>积分可用来解锁设置了查看权限的资源，无需管理员通过，快速获取想看的资源</li>
+                <li>活动期间，积分可获取线下礼品，根据活动的内容不同可兑换多种多样的礼品</li>
+            </ul>
+        </div>
+        <h4>3、积分和等级的关系</h4>
+        <div style="text-align: center">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>分值</th>
+                    <th>等级</th>
+                    <th>图标</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>0-200</td>
+                    <td>Lv1</td>
+                    <td><img src="<?php bloginfo("template_url")?>/img/integral/Lv1.png"></td>
+                </tr>
+                <tr>
+                    <td>201-500</td>
+                    <td>Lv2</td>
+                    <td><img src="<?php bloginfo("template_url")?>/img/integral/Lv2.png"></td>
+                </tr>
+                <tr>
+                    <td>501-1000</td>
+                    <td>Lv3</td>
+                    <td><img src="<?php bloginfo("template_url")?>/img/integral/Lv3.png"></td>
+                </tr>
+                <tr>
+                    <td>1001-2000</td>
+                    <td>Lv4</td>
+                    <td><img src="<?php bloginfo("template_url")?>/img/integral/Lv4.png"></td>
+                </tr>
+                <tr>
+                    <td>2000+</td>
+                    <td>Lv5</td>
+                    <td><img src="<?php bloginfo("template_url")?>/img/integral/Lv5.png"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <? } ?>
 </div>
