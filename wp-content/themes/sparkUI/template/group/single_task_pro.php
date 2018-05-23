@@ -427,7 +427,6 @@ $group_verify_field = get_verify_field($group_id, 'group');
     }
 
     function checkUpdateUserName(name,obj) {
-        console.log(name);
         var k = saveid(obj);
         var data = {
             action: "checkUpdateUserName",
@@ -441,7 +440,6 @@ $group_verify_field = get_verify_field($group_id, 'group');
             url: '<?=$admin_url?>',
             data: data,
             success: function (response) {
-                console.log(response);
                 if (response == 0) {
                     <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
                     $('#ajax-response_' + k.toString()).html("<img src='<?=$url?>'><span>用户名错误</span>");

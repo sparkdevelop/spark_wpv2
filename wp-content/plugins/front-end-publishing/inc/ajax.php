@@ -195,6 +195,10 @@ function fep_process_form_input()
         $data['visibility'] = $visibility;
         $data['author'] = $author;
 
+        //积分
+        global $integral_system;
+        add_user_integral($author,$integral_system['create_project']);
+
 
 
         /*$data['message'] = sprintf(

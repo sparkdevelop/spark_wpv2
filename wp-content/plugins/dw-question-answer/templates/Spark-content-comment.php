@@ -18,8 +18,12 @@
             <div style="color:gray">
                 <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='. $comment->user_id;?>" class="ask-author" style="margin-left: 20px;font-weight:bold;font-size: initial">
                     <?php echo get_comment_author() ?></a>&nbsp;
-<!--                <span>回复</span>&nbsp;-->
-<!--                <a href="#" style="font-weight:bold;font-size: initial">莫里哀</a>-->
+                <?php
+                $user_level = get_user_level($comment->user_id);
+                $img_url = $user_level.".png";
+                ?>
+                <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px">
+
                 <p class="answer_date" style="margin-left: 20px;margin-top: 10px"><?php echo  human_time_diff( get_comment_time( 'U', true ) );?>前回复</p>
             </div>
             <div style="color: gray;margin-left: 20px;margin-top: 20px;font-size: 16px;">

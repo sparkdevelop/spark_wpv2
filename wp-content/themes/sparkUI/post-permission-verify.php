@@ -51,6 +51,11 @@ $apply_url = site_url().get_page_address('apply_permission').'&id='.$post_id;
                     <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . get_post()->post_author . '&tab=project' ?>"
                        class="author_link" style="color: #5e5e5e"><?php echo get_the_author(); ?>
                     </a>
+                    <?php
+                    $user_level = get_user_level(get_post()->post_author);
+                    $img_url = $user_level.".png";
+                    ?>
+                    <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px;margin-left: -20px">
                 </p><br>
                 <p>分类：</p>
                 <span id=""><?php the_category(', ') ?></span><br>

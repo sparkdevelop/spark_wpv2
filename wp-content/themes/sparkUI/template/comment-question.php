@@ -32,6 +32,12 @@ if (dwqa_question_answers_count($qa_id) != 0) {
                 <!--        获取提问者名字、提问时间-->
                 <div class="qa_time">
                     <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$author_info['id'];?>" class="author_link"><?php echo $author_info['name'];?></a>
+                    <?php
+                    $user_level = get_user_level($author_info['id']);
+                    $img_url = $user_level.".png";
+                    ?>
+                    <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px;margin-left: -20px">
+
                     <span><?php echo date('n月j日 G:i',get_the_time('U',$qa_id));?>  </span>&nbsp;&nbsp;
                     <!--            -->
                     <span>提问</span>
@@ -47,6 +53,12 @@ if (dwqa_question_answers_count($qa_id) != 0) {
                     <div class="qa_time">
                         <!--                --><?php //$user_id = get_post_field( 'post_author', get_the_ID() ) ? get_post_field( 'post_author', get_the_ID() ) : 0;?>
                         <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$best_ans_author;?>" class="author_link"><?php echo get_userdata($best_ans_author)->display_name;?></a>
+                        <?php
+                        $user_level = get_user_level($best_ans_author);
+                        $img_url = $user_level.".png";
+                        ?>
+                        <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px;margin-left: -20px">
+
                         <span><?php echo human_time_diff( get_post_time( 'U', true, $qa_id ) )."前";//human_time_diff(get_the_time('U',$best_ans_id))."前";?> </span>&nbsp;&nbsp;
                         <span>回答</span>
                     </div>
@@ -85,6 +97,12 @@ if (dwqa_question_answers_count($qa_id) != 0) {
             <div class="qa_show">
                 <div class="qa_time">
                     <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$author_info['id'];?>" class="author_link"><?php echo $author_info['name'];?></a>
+                    <?php
+                    $user_level = get_user_level($author_info['id']);
+                    $img_url = $user_level.".png";
+                    ?>
+                    <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px;margin-left: -20px">
+
                     <span><?php echo date('n月j日 G:i',get_the_time('U',$qa_id));?>  </span>&nbsp;&nbsp;
                     <span>提问</span>
                 </div>
@@ -97,6 +115,12 @@ if (dwqa_question_answers_count($qa_id) != 0) {
                     <div class="qa_time">
 <!--                        --><?php //$user_id = get_post_field( 'post_author', $qa_id ) ? get_post_field( 'post_author', $qa_id ) : 0;?>
                         <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='. $best_ans_author;?>" class="author_link"><?php echo get_userdata($best_ans_author)->display_name;?></a>
+                        <?php
+                        $user_level = get_user_level($best_ans_author);
+                        $img_url = $user_level.".png";
+                        ?>
+                        <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px;margin-left: -20px">
+
                         <span><?php echo human_time_diff(get_post_time('U',true,$best_ans_id))."前";?>  </span>&nbsp;&nbsp;
                         <span>回答</span>
                     </div>
@@ -135,6 +159,12 @@ else {?>
         <div class="qa_show">
             <div class="qa_time">
                 <a href="<?php echo site_url().get_page_address('otherpersonal').'&id='.$author_info['id'];?>" class="author_link"><?php echo $author_info['name'];?></a>
+                <?php
+                $user_level = get_user_level($author_info['id']);
+                $img_url = $user_level.".png";
+                ?>
+                <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px;margin-left: -20px">
+
                 <span><?php echo date('n月j日 G:i',get_the_time('U',$qa_id));?>  </span>&nbsp;&nbsp;
                 <span>提问</span>
             </div>

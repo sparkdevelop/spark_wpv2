@@ -366,6 +366,7 @@ class DWQA_Status {
 				}
 			}
 		}
+
 		//add notice type4:
 		global $wpdb;
 		$qid = dwqa_get_question_from_answer_id($answer_id);
@@ -379,6 +380,7 @@ class DWQA_Status {
 		global $integral_system;
 		$author = get_current_user_id();
 		add_user_integral($author,$integral_system['answer_question']);
+
 	}
 }
 

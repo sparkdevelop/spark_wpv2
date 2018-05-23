@@ -2069,9 +2069,18 @@ h4 {
     color: #333333;
 }
 /*单表的链接悬停效果*/
-#rl-table-border>tbody>tr>td a:focus,span:focus, a:hover,span:hover,
-#pl-table-border>tbody>tr>td a:focus,span:focus, a:hover,span:hover,
-#ul-table-border>tbody>tr>td a:focus,span:focus, a:hover,span:hover{
+#rl-table-border>tbody>tr>td a:focus,
+#rl-table-border>tbody>tr>td span:focus,
+#rl-table-border>tbody>tr>td a:hover,
+#rl-table-border>tbody>tr>td span:hover,
+#pl-table-border>tbody>tr>td a:focus,
+#pl-table-border>tbody>tr>td span:focus,
+#pl-table-border>tbody>tr>td a:hover,
+#pl-table-border>tbody>tr>td span:hover,
+#ul-table-border>tbody>tr>td a:focus,
+#ul-table-border>tbody>tr>td span:focus,
+#ul-table-border>tbody>tr>td a:hover,
+#ul-table-border>tbody>tr>td span:hover{
     color: #fe642d;
     text-decoration: none;
 }

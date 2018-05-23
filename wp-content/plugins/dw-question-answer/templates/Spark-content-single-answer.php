@@ -73,6 +73,12 @@ global $wpdb;
                    class="ask-author" style="margin-left: 20px;">
                     <?php echo get_the_author(); ?>
                 </a>
+                <?php
+                $user_level = get_user_level($user_id);
+                $img_url = $user_level.".png";
+                ?>
+                <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px;">
+
                 <!--												是否被采纳-->
                 <?php if (dwqa_current_user_can('edit_question', dwqa_get_question_from_answer_id())) : ?>
                     <?php $action = dwqa_is_the_best_answer() ? 'dwqa-unvote-best-answer' : 'dwqa-vote-best-answer';

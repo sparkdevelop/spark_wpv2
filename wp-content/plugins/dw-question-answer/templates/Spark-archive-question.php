@@ -61,7 +61,8 @@ foreach($tags as $key => $temp){
             <h4>问答标签：
                 <span style="color: #fe642d"><?=$term->name?></span>
             </h4>
-        <?php }elseif('dwqa-question_category' == get_query_var( 'taxonomy' )){
+        <?php }
+        elseif('dwqa-question_category' == get_query_var( 'taxonomy' )){
                     if($term->name=="hardware"){?>
                         <style>.archive-nav{margin-bottom:-8px;}</style>
                         <ul id="leftTab" class="nav nav-pills">

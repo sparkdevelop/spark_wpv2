@@ -10,7 +10,13 @@
         <div id="avatar">
             <?php echo get_avatar($user_id,100);?>
         </div>
-        <p style="font-size: large;margin-top: 20px"><?php echo get_the_author_meta('user_login',$user_id);?></p>
+        <p style="font-size: large;margin-top: 20px"><?php echo get_the_author_meta('user_login',$user_id);?>
+            <?php
+            $user_level = get_user_level($user_id);
+            $img_url = $user_level.".png";
+            ?>
+            <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px">
+        </p>
         <p style="margin-top: 10px;color: gray"><?php echo $user_description;?></p>
         <?php
         $message_url = site_url() . get_page_address("private_message") . "&ruser_id=" . $user_id ;

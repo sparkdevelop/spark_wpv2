@@ -51,7 +51,8 @@ if (!$_GET['paged']) {
                     if (1 === $comments_number) {
                         /* translators: %s: post title */
                         printf(_x('One thought on &ldquo;%s&rdquo;', 'comments title', 'twentysixteen'), get_the_title());
-                    } else {
+                    }
+                    else {
                         printf(
                         /* translators: 1: number of comments, 2: post title */
                             _nx(
@@ -128,5 +129,5 @@ if (!$_GET['paged']) {
         $("#submit").on("click", function () {
             document.cookie = "action=comment";
         })
-    })
+    });
 </script>

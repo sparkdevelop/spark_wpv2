@@ -105,7 +105,13 @@ $admin_url=admin_url('admin-ajax.php');
                 aim.val( name );
             });
         </script>
-        <p style="font-size: large;margin-top: 20px"><?php echo $current_user->data->user_login;?></p>
+        <p style="font-size: large;margin-top: 20px"><?php echo $current_user->data->user_login;?>
+            <?php
+            $user_level = get_user_level(get_current_user_id());
+            $img_url = $user_level.".png";
+            ?>
+            <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px">
+        </p>
         <p style="margin-top: 10px;color: gray"><?php echo $user_description;?></p>
     </div>
     <ul id="personal_nav" class="nav nav-pills nav-stacked">
