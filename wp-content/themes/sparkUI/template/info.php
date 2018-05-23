@@ -109,6 +109,12 @@ $tab = isset($_GET['tab']) && !empty($_GET['tab']) ? sanitize_text_field($_GET['
                 width: 80%;
                 margin: 10px auto;
             }
+            li{
+                margin: 5px auto;
+            }
+            h4{
+                margin: 20px auto;
+            }
         </style>
         <h4 style="text-align: center">积分规则</h4>
         <div class="divline"></div>
