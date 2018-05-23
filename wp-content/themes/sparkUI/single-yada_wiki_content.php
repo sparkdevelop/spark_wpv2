@@ -80,9 +80,9 @@ $admin_url=admin_url( 'admin-ajax.php' );
                     </a>
                 </div>
                 <hr>
-                <?php
-                the_content();
-                //keywordHighlight_update(); ?>
+                <div id="wiki_content">
+                    <?php the_content(); //keywordHighlight_update(); ?>
+                </div>
                 <hr>
                 <?php comments_template(); ?>
             <?php endwhile;?>
