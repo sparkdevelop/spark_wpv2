@@ -2228,3 +2228,7 @@ h4 {
     margin-top: -180px;
     text-align: center;
 }
+/*wiki内容默认字体大小*/
+#wiki_content  {
+    font-size: 11pt;
+}
