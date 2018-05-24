@@ -196,7 +196,6 @@ $admin_url = admin_url('admin-ajax.php');
             data: data,
             dataType: 'json',
             success: function (res) {
-                console.log(res);
                 for (var j = 0; j < res.length; j++) {
                     var id = "#" + tab + "-table-border";
                     var info = $(id + ' thead tr th');

@@ -11,8 +11,6 @@ require_once(dirname(__FILE__) . '/admin.php');
 $user_id = isset($_POST["applyer"]) ? $_POST["applyer"] : '';
 $choosen_pms_id_arr = isset($_POST["pcheckItem"]) ? $_POST["pcheckItem"] : [];
 $choosen_role_id_arr = isset($_POST["rcheckItem"]) ? $_POST["rcheckItem"] : [];
-print_r($choosen_pms_id_arr);
-print_r($choosen_role_id_arr);
 $state =0;
 $reason = isset($_POST["reason"]) ? $_POST["reason"] : '';
 $modified_time = isset($_POST["pcreatedate"]) ? $_POST["pcreatedate"] : '';

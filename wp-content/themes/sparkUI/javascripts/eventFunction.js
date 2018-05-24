@@ -975,9 +975,9 @@ function applyPermission(url,id) {
                         event.stopPropagation();
                     });
                 }
+                $("input[name='pcheckItem[]']").prop("checked",true);
             }
             if(response.role_id!=[]){
-                console.log(response.role_id);
                 var role_info = response.role_id;
                 var rlines = role_info.length;
                 for (var i = 0;i<rlines;i++){
