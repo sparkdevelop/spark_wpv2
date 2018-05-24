@@ -107,7 +107,7 @@ $apply_info = rbac_get_apply_info();
         td.push($('.warning'));
         var info = saveApplyChecked(td);
         var data = {
-            action: 'set_as_solved',
+            action: 'set_as_solved_ajax',
             state: state,
             info: info
         };

@@ -24,7 +24,7 @@ $apply_url = site_url().get_page_address('apply_permission').'&id='.$post_id;
                     <h2><b><?php the_title(); ?></b></h2>
                 </div>
                 <hr>
-                <div style="height: 600px;overflow: hidden">
+                <div style="height: 200px;overflow: hidden">
                     <?php the_content(); ?>
                 </div>
                 <div class="readall_box">

@@ -1042,7 +1042,7 @@ h4 {
     margin-left: 15px;
 }
 
-#save-btn:hover, #save-btn:focus {
+#save-btn:hover, #save-btn:focus, #offer-btn:hover,#offer-btn:focus {
     background-color: #fe642d;
     color: #fff;
     border: 1px solid #fe642d;

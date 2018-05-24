@@ -5617,6 +5617,11 @@ function rbac_delete_post()
     foreach ($delete_id as $p) {
         $sql = "DELETE FROM wp_rbac_post WHERE post_id=$p and permission_id=$pid";
         $wpdb->get_results($sql);
+        //如果这个资源还对应别的权限,则不用处理,如果她不对应任何权限,则回到公共资源里
+        $result = apply_permission($p)['permission_id'];
+        if (sizeof($result) == 0) {
+            update_public_post([$p],'add');
+        }
     }
     die();
 }
@@ -5630,7 +5635,6 @@ function rbac_add_post()
     global $wpdb;
     $pid = isset($_POST['permission_id']) ? $_POST['permission_id'] : '';
     $add_id = $_POST['add_id'];
-    echo $add_id;
     foreach ($add_id as $p) {
         $sql_pre = "SELECT ID FROM wp_rbac_post WHERE post_id=$p and permission_id=$pid";
         echo $sql_pre;
@@ -5639,10 +5643,10 @@ function rbac_add_post()
             $author = get_current_user_id();
             $modified_time = date('Y-m-d H:i:s', time() + 8 * 3600);
             $sql = "INSERT INTO wp_rbac_post VALUES ('',$pid,$p,$author,'$modified_time')";
-            echo $sql;
             $wpdb->get_results($sql);
         }
     }
+    update_public_post($add_id,'delete');
     die();
 }
 
@@ -5779,14 +5783,21 @@ function rbac_get_solved_info()
 }
 
 //通过或者驳回
-function set_as_solved()
+function set_as_solved_ajax()
 {
-    global $wpdb;
     $info = $_POST['info'];
     $state = $_POST['state'];
+    set_as_solved($info,$state);
+    die();
+}
+
+add_action('wp_ajax_set_as_solved_ajax', 'set_as_solved_ajax');
+add_action('wp_ajax_nopriv_set_as_solved_ajax', 'set_as_solved_ajax');
+
+function set_as_solved($info,$state){
+    global $wpdb;
     $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
     $operator = get_current_user_id();
-
     if ($info != []) {
         //每一个td是一个大小为3数组,第一个数是user_id,
         //第二个数是source_type,第三个数是source_id,
@@ -5812,11 +5823,10 @@ function set_as_solved()
             }
         }
     }
-    die();
 }
 
-add_action('wp_ajax_set_as_solved', 'set_as_solved');
-add_action('wp_ajax_nopriv_set_as_solved', 'set_as_solved');
+
+
 
 //用户可以查看资源(用户有权限)
 //单建一张表,并维护,其中,user——id= 0的是公共资源,所有用户都可见
@@ -5845,6 +5855,19 @@ function get_public_post()
     return $post_id_arr;
 }
 
+function update_public_post($post_arr,$type){
+    global $wpdb;
+    $public_post = get_public_post();  //获取公共资源数组
+    if($type=='add'){
+        $public_post = array_merge($public_post,$post_arr);
+    }
+    if($type=='delete'){
+        $public_post = array_diff($public_post,$post_arr);
+    }
+    $post_string = implode(',', $public_post);
+    $sql_update = "UPDATE wp_rbac_user_post SET post_arr ='$post_string' WHERE user_id = 0";
+    $wpdb->get_results($sql_update);
+}
 //获取用户的私有资源
 function get_private_post($user_id)
 {
@@ -5859,7 +5882,7 @@ function get_private_post($user_id)
 function update_user_post_table()
 {
     global $wpdb;
-    $sql = "SELECT ID FROM wp_users WHERE ID in (1,2,4,6,7,22)";
+    $sql = "SELECT ID FROM wp_users";
     $user_id_arr = $wpdb->get_results($sql, 'ARRAY_A');
     $user_id_arr = array_column($user_id_arr, 'ID');   //获取所有user_id
     $result = [];
@@ -6234,6 +6257,48 @@ function get_question_offers($qid){
     }
     return $score;
 }
+
+//积分解锁资源
+function offer_unlock_ajax(){
+    $permission_id = $_POST['permission_id'];
+    $result = offer_unlock($permission_id);
+    echo $result;
+    die();
+}
+add_action('wp_ajax_offer_unlock_ajax', 'offer_unlock_ajax');
+add_action('wp_ajax_nopriv_offer_unlock_ajax', 'offer_unlock_ajax');
+
+function offer_unlock($permission_id)
+{
+    global $integral_system;
+    global $wpdb;
+    //先积分操作
+    $user_id = get_current_user_id();
+    $score = sizeof($permission_id)*$integral_system['unlock_source'];
+    $user_integral = get_user_integral($user_id);
+    if($score > $user_integral){
+        return false;
+    }
+    cut_user_integral($user_id,$score);
+
+    //为用户直接赋予选择的权限
+    $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+    $all_permission = rbac_get_user_all_permission($user_id);
+    foreach ($permission_id as $p) {
+        if (in_array($p, $all_permission)) {
+            break;
+        }
+        //确认有没有这个u-p对
+        $sql_c = "SELECT ID FROM wp_rbac_up WHERE user_id=$user_id and permission_id = $p";
+        $col = $wpdb->query($sql_c);
+        if ($col == 0) {
+            $sql = "INSERT INTO wp_rbac_up VALUES ('',$user_id,$p,$user_id,'$current_time')";
+            $wpdb->query($sql);
+        }
+    }
+    return true;
+}
+
 
 
 

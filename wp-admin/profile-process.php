@@ -25,14 +25,19 @@ $sno = isset($_POST["Sno"]) ? $_POST["Sno"] : '';
 if ($school!=''){
     //角色和学校相对应
     $modified_time = date('Y-m-d H:i:s',time()+8*3600);
-    //取出新学校名称
+    //取出填写的学校名称
     $sname = $wpdb->get_results("select uvs_name from wp_ms WHERE ID = $school")[0]->uvs_name;
+    //取出学校对应的角色名称
     $role_id = $wpdb->get_results("SELECT ID from wp_rbac_role WHERE role_name = '$sname'")[0]->ID;
-    if(hasSinfo('University')){
-        //取出旧学校的角色id
+
+    if(hasSinfo('University')){  //如果该同学已经填写过学校了
+        //取出旧学校的id
         $old_sid = get_user_meta($current_user->ID, 'University', true);
+        //取出旧学校的名称
         $old_sname = $wpdb->get_results("select uvs_name from wp_ms WHERE ID = $old_sid")[0]->uvs_name;
+        //取出旧学校的角色id
         $old_role_id = $wpdb->get_results("SELECT ID from wp_rbac_role WHERE role_name = '$old_sname'")[0]->ID;
+        //更新meta
         $sql = "UPDATE $wpdb->usermeta SET meta_value =$school WHERE meta_key='University' AND user_id =$current_user->ID";
         $wpdb->get_results($sql);
         //更新角色
