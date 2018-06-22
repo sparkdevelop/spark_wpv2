@@ -1,0 +1,38 @@
+.gift{
+    background-color:rgb(100,201,202); display: inline-block;width: 250px;height: 150px
+}
+.gift1{
+    background-color:rgb(100,201,202); display: inline-block;width: 100px;height: 150px
+}
+.user{
+    background-color:rgb(255,106,100); display: inline-block;width: 250px;height: 150px
+}
+.last_up{
+    background-color:rgb(100,201,202); display: inline-block;width: 100px;height: 100px
+
+}
+.last_active{
+    background-color:rgb(255,103,90); display: inline-block;width: 100px;height: 100px;
+    margin-left: 10px;
+}
+.month_active{
+    background-color:rgb(249,217,61); display: inline-block;width: 100px;height: 100px;
+    margin-left: 10px;
+}
+.total_num{
+    background-color:rgb(76,197,245); display: inline-block;width: 100px;height: 100px;
+    margin-left: 10px;
+}
+.butn{
+    width: 97px;
+    height: 36px;
+    border: 0px;
+    background-color: white;
+}
+.clicking{
+    background-color: rgb(60,81,87);
+    color:white;
+}
+
+
+

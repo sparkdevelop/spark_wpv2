@@ -1,0 +1,106 @@
+{
+  "nodes": [
+    {
+      "category": 0,
+      "name": "\u7535\u5b50",
+      "value": 25
+    },
+    {
+      "category": 0,
+      "name": "\u5355\u7247\u673a",
+      "value": 13
+    },
+    {
+      "category": 0,
+      "name": "\u7535\u8def\u4eff\u771f",
+      "value": 13
+    },
+    {
+      "category": 0,
+      "name": "\u5fae\u673a\u539f\u7406",
+      "value": 13
+    },
+    {
+      "category": 0,
+      "name": "\u7535\u8def\u5206\u6790",
+      "value": 13
+    },
+    {
+      "category": 0,
+      "name": "\u6a21\u62df\u7535\u8def",
+      "value": 13
+    },
+    {
+      "category": 0,
+      "name": "\u6570\u5b57\u7535\u8def",
+      "value": 13
+    },
+    {
+      "category": 0,
+      "name": "\u5d4c\u5165\u5f0f\u7cfb\u7edf",
+      "value": 13
+    },
+    {
+      "category": 0,
+      "name": "\u901a\u4fe1\u7535\u5b50\u7535\u8def",
+      "value": 13
+    },
+    {
+      "category": 0,
+      "name": "\u7269\u8054\u7f51",
+      "value": 13
+    }
+  ],
+  "links": [
+    {
+      "source": 0,
+      "target": 1
+    },
+    {
+      "source": 0,
+      "target": 2
+    },
+    {
+      "source": 0,
+      "target": 3
+    },
+    {
+      "source": 0,
+      "target": 4
+    },
+    {
+      "source": 0,
+      "target": 5
+    },
+    {
+      "source": 0,
+      "target": 6
+    },
+    {
+      "source": 0,
+      "target": 7
+    },
+    {
+      "source": 0,
+      "target": 8
+    },
+    {
+      "source": 0,
+      "target": 9
+    }
+  ],
+  "categories": [
+    {
+      "name": "\u7535\u5b50"
+    },
+    {
+      "name": "\u901a\u4fe1"
+    },
+    {
+      "name": "\u8ba1\u7b97\u673a"
+    },
+    {
+      "name": "\u4eba\u5de5\u667a\u80fd"
+    }
+  ]
+}

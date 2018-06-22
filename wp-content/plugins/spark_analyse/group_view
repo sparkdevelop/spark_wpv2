@@ -1,0 +1,90 @@
+<?php
+require_once('group_analyse.php');
+add_action('wp_ajax_emotion_action', 'emotion_ajax');
+function emotion_ajax()
+{
+    $team = isset($_POST['group_number']) ? $_POST['group_number'] : null;
+    $time_score = get_method($team);
+//    $time0 = $time_score[0];
+//    $score0 = $time_score[1];
+//    $time1 = $time_score[2];
+//    $score1 = $time_score[3];
+//    if (is_array($time1)) {
+//    $time1 = implode(",", $time1);
+//    $score1 = implode(",", $score1);
+//    }
+//    else {
+//        $time1 = $time1 . ",";
+//        $score1 = $score1 . ",";
+//    }
+//    if (is_array($time0)) {
+//        $time0 = implode(",", $time0);
+//        $score0 = implode(",", $score0);
+//    }
+//    else {
+//        $time0 = $time0 . ",";
+//        $score0 = $score0 . ",";
+//    }
+//    $result="$time0 a $score0 a $time1 a $score1";
+//    $arr=array(1,2,3,4);
+    $str=json_encode($time_score);
+    echo $str;
+    die();
+}
+function spark_settings_submenu_page4(){
+//
+//    $time_score=get_method();
+//    $time=$time_score[0];
+//    $score=$time_score[1];
+//    get_method(35);
+//    $c=count($a);
+
+?>
+<!DOCTYPE html>
+<html >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>群组分析</title>
+    <script type="text/javascript">
+
+    </script>
+
+</head>
+
+<body style=" background-color: #f1f2f7; ">
+<label for="id">请输入小组id：</label><input id="group_number" name="group_number" type="text" /><button id="button_group">查询</button><label id="emotion_buff"></label>
+<div class="container">
+    <p style="font-size: 18px;    margin: 8px;">情感分析</p>
+    <div class="row">
+
+            <div id="container_emotion1" style="min-width:400px;height:400px"></div>
+
+    </div>
+    <div class="row">
+
+        <div id="container_emotion2" style="min-width:400px;height:400px"></div>
+
+    </div>
+    <div class="row">
+
+        <div id="container_emotion3" style="min-width:400px;height:400px"></div>
+
+    </div>
+
+    <div class="row">
+
+        <div id="container_emotion4" style="min-width:400px;height:400px"></div>
+
+    </div>
+    <div class="row">
+
+        <div id="container_emotion5" style="min-width:400px;height:400px"></div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+<?php
+}

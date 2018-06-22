@@ -1,0 +1,86 @@
+{
+  "nodes": [
+    {
+      "category": 4,
+      "name": "导论实验课",
+      "value": 25
+    },
+    {
+      "category": 4,
+      "name": "导论课设计理念",
+      "value": 13
+    },
+    {
+      "category": 4,
+      "name": "mCookie入门",
+      "value": 13
+    },
+    {
+      "category": 4,
+      "name": "微机基础实验",
+      "value": 13
+    },
+    {
+      "category": 4,
+      "name": "电路基础实验",
+      "value": 13
+    },
+    {
+      "category": 4,
+      "name": "网络基础实验",
+      "value": 13
+    },
+    {
+      "category": 4,
+      "name": "复杂工程进阶实验",
+      "value": 13
+    }
+  ],
+  "links": [
+    {
+      "source": 0,
+      "target": 1
+    },
+    {
+      "source": 0,
+      "target": 2
+    },
+    {
+      "source": 0,
+      "target": 3
+    },
+    {
+      "source": 0,
+      "target": 4
+    },
+    {
+      "source": 0,
+      "target": 5
+    },
+    {
+      "source": 0,
+      "target": 6
+    },
+    {
+      "source": 0,
+      "target": 7
+    }
+  ],
+  "categories": [
+    {
+      "name": "\u7535\u5b50"
+    },
+    {
+      "name": "\u901a\u4fe1"
+    },
+    {
+      "name": "\u8ba1\u7b97\u673a"
+    },
+    {
+      "name": "\u4eba\u5de5\u667a\u80fd"
+    },
+    {
+      "name": "项目指导"
+    }
+  ]
+}
