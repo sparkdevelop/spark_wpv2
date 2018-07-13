@@ -95,7 +95,7 @@
                             ?>
                             <div class="dropdown btn-group" >
                                 <button type="button" id="user-portrait" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    <?php echo get_avatar($current_user->ID,30,'');?>
+                                    <?php echo get_avatar($current_user->ID,30,'',false, array('scheme' => 'https'));?>
                                     <?
                                     if(hasGPNotice() || hasPrivateMessage() || hasNotice()){?>
                                         <i id="red-point"></i>
