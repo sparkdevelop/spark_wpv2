@@ -92,7 +92,7 @@ $admin_url=admin_url('admin-ajax.php');
                 //form.target = '_blank';
                 //form.method = 'POS T';
                 //document.body.appendChild(form);
-                //form.submit();         
+                //form.submit();
             },
             error: function() {
                 alert("wiki发布失败!");

@@ -1,4 +1,4 @@
-http://140.143.10.156/<?php
+<?php
 /**
  * Created by PhpStorm.
  * User: zhangxue
@@ -7,4 +7,5 @@ http://140.143.10.156/<?php
  */
 
 
-changeDomain('http://140.143.10.156/','http://oursparkspace.cn/');
+changeDomain('http://oursparkspace.cn','http://140.143.10.156/');
+
