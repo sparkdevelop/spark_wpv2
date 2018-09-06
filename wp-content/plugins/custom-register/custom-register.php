@@ -90,6 +90,7 @@ add_filter('retrieve_password_message', reset_password_message, null, 2);
 /* 修改注册表单 */
 function ludou_show_password_field() {
 	define('LCR_PLUGIN_URL', plugin_dir_url( __FILE__ ));
+	$ip = $_SERVER['REMOTE_ADDR'];
 ?>
 <style type="text/css">
 <!--
@@ -104,8 +105,67 @@ function ludou_show_password_field() {
 #user_role option {
 	padding: 2px;
 }
+.captcha_button {
+    height: 40px;
+    background-color: #f0ad4e;
+    -moz-box-shadow: 5px 5px 5px #ffd8cc;
+    box-shadow: 5px 5px 5px #ffd8cc;
+    text-align: center;
+    font-size: medium;
+    margin: 10px 0 15px 0;
+    border-radius: 5px;
+}
+.captcha_button > a, .captcha_button > a:hover {
+    display: block;
+    height: 100%;
+    line-height: 48px;
+    width: 100%;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
 -->
 </style>
+    <script>
+        window.callback = function(res){
+            //console.log(res);
+            // res（未通过验证）= {ret: 1, ticket: null}
+            // res（验证成功） = {ret: 0, ticket: "String", randstr: "String"}
+            if(res.ret === 0){
+                //alert(res.ticket);  // 票据
+                //alert("<?php echo $ip?>");
+                var data = {
+                    action: "captcha_ticket_verify",
+                    aid: "2064745456",
+                    AppSecretKey:"0gYKXqR_JlcD_v9YtKyF97w**",
+                    Ticket:res.ticket,
+                    Randstr:res.randstr,
+                    UserIP:"<?php echo $ip?>"
+                };
+                jQuery.ajax({
+                    type: "POST",
+                    url:"<?=admin_url('admin-ajax.php');?>",//你的请求程序页面
+                    data: data,//请求需要发送的处理数据
+                    dataType: 'json',
+                    success: function (msg) {
+                        var judge = "1";
+                       if(msg.response === judge){
+                            jQuery("#captcha").val(msg.err_msg);
+                        }else{
+                           alert("验证失败");
+                       }
+                     /*console.log(msg);
+                     console.log(typeof msg);
+                     console.log(typeof msg.response);
+                     console.log(msg.err_msg);*/
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+            }
+        }
+    </script>
 <!--<p>
 	<label for="user_nick">昵称<br/>
 		<input id="user_nick" class="input" type="text" size="25" value="<?php /*echo empty($_POST['user_nick']) ? '':$_POST['user_nick']; */?>" name="user_nick" />
@@ -130,30 +190,39 @@ function ludou_show_password_field() {
 	</label>
 	<br />
 </p>-->
-<p>
+<!--<p>
 	<label for="CAPTCHA">验证码:<br />
 		<input id="CAPTCHA" style="width:110px;*float:left;" class="input" type="text" size="10" value="" name="captcha_code" />
-		看不清？<a href="javascript:void(0)" onclick="document.getElementById('captcha_img').src='<?php echo constant("LCR_PLUGIN_URL"); ?>/captcha/captcha.php?'+Math.random();document.getElementById('CAPTCHA').focus();return false;">点击更换</a>
+		看不清？<a href="javascript:void(0)" onclick="document.getElementById('captcha_img').src='<?php /*echo constant("LCR_PLUGIN_URL"); */?>/captcha/captcha.php?'+Math.random();document.getElementById('CAPTCHA').focus();return false;">点击更换</a>
 	</label>
 </p>
 <p>
 	<label>
-	<img id="captcha_img" src="<?php echo constant("LCR_PLUGIN_URL"); ?>/captcha/captcha.php" title="看不清?点击更换" alt="看不清?点击更换" onclick="document.getElementById('captcha_img').src='<?php echo constant("LCR_PLUGIN_URL"); ?>/captcha/captcha.php?'+Math.random();document.getElementById('CAPTCHA').focus();return false;" />
+	<img id="captcha_img" src="<?php /*echo constant("LCR_PLUGIN_URL"); */?>/captcha/captcha.php" title="看不清?点击更换" alt="看不清?点击更换" onclick="document.getElementById('captcha_img').src='<?php /*echo constant("LCR_PLUGIN_URL"); */?>/captcha/captcha.php?'+Math.random();document.getElementById('CAPTCHA').focus();return false;" />
 	</label>
-</p>
+</p>-->
+<input id="captcha" name="captcha_code" style="display: none" value="">
+        <div class="captcha_button"><a id="TencentCaptcha"
+                data-appid="2064745456"
+                data-cbfn="callback"
+            >点击验证</a></div>
+
 <?php
 }
 
 /* 处理表单提交的数据 */
 function ludou_check_fields($login, $email, $errors) {
-	if(empty($_POST['captcha_code'])
+	/*if(empty($_POST['captcha_code'])
 		|| empty($_SESSION['ludou_lcr_secretword'])
 		|| (trim(strtolower($_POST['captcha_code'])) != $_SESSION['ludou_lcr_secretword'])
 		) {
 		$errors->add('captcha_spam', "<strong>错误</strong>：验证码不正确");
 	}
-	unset($_SESSION['ludou_lcr_secretword']);
-	
+	unset($_SESSION['ludou_lcr_secretword']);*/
+    if (!isset($_POST['captcha_code']) || trim($_POST['captcha_code']) == '' ||trim($_POST['captcha_code']) != 'OK')
+        $errors->add('captcha_need', "<strong>错误</strong>：请进行验证");
+
+
 /*	if (!isset($_POST['user_nick']) || trim($_POST['user_nick']) == '')
 	  $errors->add('user_nick', "<strong>错误</strong>：昵称必须填写");*/
 	  

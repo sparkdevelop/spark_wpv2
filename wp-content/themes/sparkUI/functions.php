@@ -6622,6 +6622,79 @@ function custom_upload_mimes($existing_mimes = array())
     return $existing_mimes;
 }
 
+
+/**
+验证码ticket验证
+ */
+function captcha_ticket_verify(){
+    $url = "https://ssl.captcha.qq.com/ticket/verify";
+    $params = array(
+        "aid" => $_POST['aid'],
+        "AppSecretKey" => $_POST['AppSecretKey'],
+        "Ticket" => $_POST['Ticket'],
+        "Randstr" => $_POST['Randstr'],
+        "UserIP" => $_POST['UserIP']
+    );
+    $paramstring = http_build_query($params);
+    $content = txcurl($url,$paramstring);
+    $result = json_decode($content,true);
+    if($result){
+        if($result['response'] == 1){
+           echo  json_encode($result);
+        }else{
+            echo "Deny";
+        }
+    }else{
+        echo "请求失败";
+    }
+    die();
+}
+
+
+add_action('wp_ajax_captcha_ticket_verify', 'captcha_ticket_verify');
+add_action('wp_ajax_nopriv_captcha_ticket_verify', 'captcha_ticket_verify');
+
+/**
+ * 请求接口返回内容
+ * @param  string $url [请求的URL地址]
+ * @param  string $params [请求的参数]
+ * @param  int $ipost [是否采用POST形式]
+ * @return  string
+ */
+function txcurl($url,$params=false,$ispost=0){
+    $httpInfo = array();
+    $ch = curl_init();
+
+    curl_setopt( $ch, CURLOPT_HTTP_VERSION , CURL_HTTP_VERSION_1_1 );
+    curl_setopt( $ch, CURLOPT_USERAGENT , 'JuheData' );
+    curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT , 60 );
+    curl_setopt( $ch, CURLOPT_TIMEOUT , 60);
+    curl_setopt( $ch, CURLOPT_RETURNTRANSFER , true );
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    if( $ispost )
+    {
+        curl_setopt( $ch , CURLOPT_POST , true );
+        curl_setopt( $ch , CURLOPT_POSTFIELDS , $params );
+        curl_setopt( $ch , CURLOPT_URL , $url );
+    }
+    else
+    {
+        if($params){
+            curl_setopt( $ch , CURLOPT_URL , $url.'?'.$params );
+        }else{
+            curl_setopt( $ch , CURLOPT_URL , $url);
+        }
+    }
+    $response = curl_exec( $ch );
+    if ($response === FALSE) {
+        //echo "cURL Error: " . curl_error($ch);
+        return false;
+    }
+    $httpCode = curl_getinfo( $ch , CURLINFO_HTTP_CODE );
+    $httpInfo = array_merge( $httpInfo , curl_getinfo( $ch ) );
+    curl_close( $ch );
+    return $response;
+}
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;
