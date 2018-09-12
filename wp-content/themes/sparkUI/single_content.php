@@ -259,62 +259,11 @@ $admin_url=admin_url( 'admin-ajax.php' );
             <script>
                 //sideChart('sidechart','<?php //$projsonString?>');
             </script>
-
-            <div class="related_questions">
-                <div class="sidebar_list_header">
-                    <p>相似项目</p>
-                </div>
-                <div style="height: 2px;background-color: lightgray"></div>
-                <ul class="list-group" style="padding-left: 0px; ">
-                    <?php related_project() ?>
-                </ul>
-            </div>
-
-            <div class="related_wikis">
-                <div class="sidebar_list_header">
-                    <p>相关知识</p>
-                    <a id="sidebar_list_link" onclick="show_more_wiki()">更多</a>
-                </div>
-                <!--分割线-->
-                <div style="height: 2px;background-color: lightgray"></div>
-                <div class="related_wiki" id="related_wiki">
-                    <ul style="padding-left: 0px; ">
-                        <?php
-                        //控制条数
-                        if(sizeof($related_wiki)<5){$length = sizeof($related_wiki);}
-                        else{$length = 5;}
-                        for($i=0;$i<$length;$i++){ ?>
-                            <li class="list-group-item">
-                                <a href="<?php echo get_permalink($related_wiki[$i]["wiki_id"]);?>" class="question-title">
-                                    <?php echo get_the_title($related_wiki[$i]["wiki_id"]);?>
-                                </a>
-                            </li>
-                        <?php } ?>
-                    </ul>
-                </div>
-
-                <div class="more_related_wiki" id="more_related_wiki" style="display: none">
-                    <ul style="padding-left: 0px">
-                        <?php
-                        //控制条数
-                        if(sizeof($related_wiki)>=15){$length = 15;}
-                        else{$length = sizeof($related_wiki);}
-
-                        for($i=0;$i<$length;$i++){ ?>
-                            <li class="list-group-item">
-                                <a href="<?php echo get_permalink($related_wiki[$i]["wiki_id"]);?>" class="question-title" id="more_wiki">
-                                    <?php echo get_the_title($related_wiki[$i]["wiki_id"]);?>
-                                </a>
-                            </li>
-                        <?php } ?>
-                    </ul>
-                </div>
-            </div>
-
             <!--专利-->
             <div class="related_wikis">
                 <div class="sidebar_list_header">
                     <p>相关专利</p>
+                    <a href="http://www.sipo.gov.cn/zhfwpt/zlsqzn/zlsqspcxjs/zlsqsplc/" target="_blank" style="margin-left: 10px;font-size: small;color: darkgray;font-weight:normal">专利申请流程</a>
                     <a id="sidebar_list_link" onclick="show_more_patent()">更多</a>
                 </div>
                 <!--分割线-->
@@ -390,6 +339,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
             <div class="related_wikis">
                 <div class="sidebar_list_header">
                     <p>相关论文</p>
+                    <a href="https://www.zhihu.com/question/34903516/answer/68547441" target="_blank" style="margin-left: 10px;font-size: 12px;color: darkgray;font-weight: normal">论文撰写教程</a>
                     <a id="sidebar_list_link" onclick="show_more_paper()">更多</a>
                 </div>
                 <!--分割线-->
@@ -465,6 +415,57 @@ $admin_url=admin_url( 'admin-ajax.php' );
                     </ul>
                 </div>
             </div>
+            <div class="related_questions">
+                <div class="sidebar_list_header">
+                    <p>相似项目</p>
+                </div>
+                <div style="height: 2px;background-color: lightgray"></div>
+                <ul class="list-group" style="padding-left: 0px; ">
+                    <?php related_project() ?>
+                </ul>
+            </div>
+
+            <div class="related_wikis">
+                <div class="sidebar_list_header">
+                    <p>相关知识</p>
+                    <a id="sidebar_list_link" onclick="show_more_wiki()">更多</a>
+                </div>
+                <!--分割线-->
+                <div style="height: 2px;background-color: lightgray"></div>
+                <div class="related_wiki" id="related_wiki">
+                    <ul style="padding-left: 0px; ">
+                        <?php
+                        //控制条数
+                        if(sizeof($related_wiki)<5){$length = sizeof($related_wiki);}
+                        else{$length = 5;}
+                        for($i=0;$i<$length;$i++){ ?>
+                            <li class="list-group-item">
+                                <a href="<?php echo get_permalink($related_wiki[$i]["wiki_id"]);?>" class="question-title">
+                                    <?php echo get_the_title($related_wiki[$i]["wiki_id"]);?>
+                                </a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+
+                <div class="more_related_wiki" id="more_related_wiki" style="display: none">
+                    <ul style="padding-left: 0px">
+                        <?php
+                        //控制条数
+                        if(sizeof($related_wiki)>=15){$length = 15;}
+                        else{$length = sizeof($related_wiki);}
+
+                        for($i=0;$i<$length;$i++){ ?>
+                            <li class="list-group-item">
+                                <a href="<?php echo get_permalink($related_wiki[$i]["wiki_id"]);?>" class="question-title" id="more_wiki">
+                                    <?php echo get_the_title($related_wiki[$i]["wiki_id"]);?>
+                                </a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+            </div>
+
         </div>
         <?php //get_sidebar();?>
     </div>
