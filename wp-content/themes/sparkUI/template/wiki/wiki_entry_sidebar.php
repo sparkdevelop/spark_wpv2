@@ -242,6 +242,18 @@ $_SESSION["entry_mulu"] = $entry_titles;
         <div class="related_wiki" id="related_patent">
             <ul style="padding-left: 0px">
                 <li class="list-group-item">
+                    <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU02014070200000000203688114628OADV01792B&patentType=patent2&patentLib=&_sessionID=EZDwMF5XCThYdrEp" target="_blank" class="question-title">
+                        自动气象观测系统 </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="http://www.so.iptrm.com/app/authorization?isNewWindow=yes&pid=PIDCNB02017051700000000103942115S08FGGU016475&patentType=patent2&patentLib=&_sessionID=YR8TSskFYd6pyjpf" target="_blank" class="question-title">
+                        一种基于气象观测数据的可吸入颗粒物浓度估算方法 </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU02011050400000000201819114519VBHC0141F7&patentType=patent2&patentLib=&_sessionID=sR6we7Q33z8PsZFF" target="_blank" class="question-title">
+                        公路气象站系统 </a>
+                </li>
+                <li class="list-group-item">
                     <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU0201205160000000020222011451O0GB40161FA&patentType=patent2&patentLib=&_sessionID=chKDQf7SfX6tpKKE" target="_blank" class="question-title">
                         LED节能灯 </a>
                 </li>
@@ -253,19 +265,23 @@ $_SESSION["entry_mulu"] = $entry_titles;
                     <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNA02013091100000000103297114904BLGA012F19&patentType=patent2&patentLib=&_sessionID=dcGXfmXQRi78p3yz" target="_blank" class="question-title">
                         蓝牙-WIFI网关 </a>
                 </li>
-                <li class="list-group-item">
-                    <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU02010051900000000201476114515M9ES0152CA&patentType=patent2&patentLib=&_sessionID=H5P5dKxS5wQwSttb" target="_blank" class="question-title">
-                        称重传感器 </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNA0201808070000000010837612890ELDPF013368&patentType=patent2&patentLib=&_sessionID=JhKY2fkjT8cZEdGr" target="_blank" class="question-title">
-                        一种基于Arduino的阵列语音采集系统及采集方法 </a>
-                </li>
             </ul>
         </div>
 
         <div class="more_related_wiki" id="more_related_patent" style="display: none">
             <ul style="padding-left: 0px; ">
+                <li class="list-group-item">
+                    <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU02014070200000000203688114628OADV01792B&patentType=patent2&patentLib=&_sessionID=EZDwMF5XCThYdrEp" target="_blank" class="question-title">
+                        自动气象观测系统 </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="http://www.so.iptrm.com/app/authorization?isNewWindow=yes&pid=PIDCNB02017051700000000103942115S08FGGU016475&patentType=patent2&patentLib=&_sessionID=YR8TSskFYd6pyjpf" target="_blank" class="question-title">
+                        一种基于气象观测数据的可吸入颗粒物浓度估算方法 </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU02011050400000000201819114519VBHC0141F7&patentType=patent2&patentLib=&_sessionID=sR6we7Q33z8PsZFF" target="_blank" class="question-title">
+                        公路气象站系统 </a>
+                </li>
                 <li class="list-group-item">
                     <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU0201205160000000020222011451O0GB40161FA&patentType=patent2&patentLib=&_sessionID=chKDQf7SfX6tpKKE" target="_blank" class="question-title">
                         LED节能灯 </a>
@@ -318,6 +334,18 @@ $_SESSION["entry_mulu"] = $entry_titles;
         <div class="related_wiki" id="related_paper">
             <ul style="padding-left: 0px">
                 <li class="list-group-item">
+                    <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%286511d201fec9664c33a63d5c80f172bd%29&filter=sc_long_sign&sc_ks_para=q%3D%E4%B8%AD%E5%9B%BD%E5%8C%BA%E5%9F%9F%E8%87%AA%E5%8A%A8%E6%B0%94%E8%B1%A1%E7%AB%99%E8%BF%90%E8%A1%8C%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F%E5%BB%BA%E8%AE%BE&sc_us=9577558459288850597&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
+                        中国区域自动气象站运行监控系统建设 </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%281f7993a9b43d9a898ebcb9212265c508%29&filter=sc_long_sign&sc_ks_para=q%3D%E5%9F%BA%E4%BA%8E%E6%97%A0%E7%BA%BF%E4%BC%A0%E6%84%9F%E5%99%A8%E7%BD%91%E7%BB%9C%E7%9A%84%E5%BA%94%E6%80%A5%E6%B0%94%E8%B1%A1%E8%A7%82%E6%B5%8B%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1&sc_us=10547582628123977144&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
+                        基于无线传感器网络的应急气象观测系统设计 </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%28f79a61fea0c2a04fbcddf2808834d4c4%29&filter=sc_long_sign&sc_ks_para=q%3D%E5%9F%BA%E4%BA%8E%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF%E6%B0%94%E8%B1%A1%E7%9B%91%E6%B5%8B%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%9A%84%E6%B5%93%E9%9B%BE%E9%A2%84%E6%8A%A5%E6%8C%87%E6%A0%87&sc_us=6486927265351682660&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
+                        基于高速公路气象监测数据分析的浓雾预报指标 </a>
+                </li>
+                <li class="list-group-item">
                     <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%2872066344866dd32f60931e031ec15b22%29&filter=sc_long_sign&sc_ks_para=q%3DHeat%20and%20fluid%20flow%20in%20high-power%20LED%20packaging%20and%20applications&sc_us=10168108634810893133&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
                         Heat and fluid flow in high-power LED packaging and applications </a>
                 </li>
@@ -329,19 +357,23 @@ $_SESSION["entry_mulu"] = $entry_titles;
                     <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%281c1b3c89d3741208870d5b4a1a14e80d%29&filter=sc_long_sign&sc_ks_para=q%3DZigBee%E4%B8%8E%E8%93%9D%E7%89%99%E7%9A%84%E5%88%86%E6%9E%90%E4%B8%8E%E6%AF%94%E8%BE%83&sc_us=2045037250759201464&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
                         ZigBee与蓝牙的分析与比较 </a>
                 </li>
-                <li class="list-group-item">
-                    <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%28fabd26129ed1be4df2634dbbfd7813aa%29&filter=sc_long_sign&sc_ks_para=q%3DArduino%3A%20a%20low-cost%20multipurpose%20lab%20equipment.&sc_us=1963658631356660655&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
-                        Arduino: a low-cost multipurpose lab equipment </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%28355b2339b20c396239f8d8abe737e5f8%29&filter=sc_long_sign&sc_ks_para=q%3D%E5%9F%BA%E4%BA%8E%E7%BA%A2%E5%A4%96%E4%BC%A0%E6%84%9F%E5%99%A8%E7%9A%84%E6%99%BA%E8%83%BD%E6%95%99%E5%AE%A4%E7%85%A7%E6%98%8E%E6%8E%A7%E5%88%B6&sc_us=4489042973294239552&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
-                        基于红外传感器的智能教室照明控制 </a>
-                </li>
             </ul>
         </div>
 
         <div class="more_related_wiki" id="more_related_paper" style="display: none">
             <ul style="padding-left: 0px; ">
+                <li class="list-group-item">
+                    <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%286511d201fec9664c33a63d5c80f172bd%29&filter=sc_long_sign&sc_ks_para=q%3D%E4%B8%AD%E5%9B%BD%E5%8C%BA%E5%9F%9F%E8%87%AA%E5%8A%A8%E6%B0%94%E8%B1%A1%E7%AB%99%E8%BF%90%E8%A1%8C%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F%E5%BB%BA%E8%AE%BE&sc_us=9577558459288850597&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
+                        中国区域自动气象站运行监控系统建设 </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%281f7993a9b43d9a898ebcb9212265c508%29&filter=sc_long_sign&sc_ks_para=q%3D%E5%9F%BA%E4%BA%8E%E6%97%A0%E7%BA%BF%E4%BC%A0%E6%84%9F%E5%99%A8%E7%BD%91%E7%BB%9C%E7%9A%84%E5%BA%94%E6%80%A5%E6%B0%94%E8%B1%A1%E8%A7%82%E6%B5%8B%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1&sc_us=10547582628123977144&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
+                        基于无线传感器网络的应急气象观测系统设计 </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%28f79a61fea0c2a04fbcddf2808834d4c4%29&filter=sc_long_sign&sc_ks_para=q%3D%E5%9F%BA%E4%BA%8E%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF%E6%B0%94%E8%B1%A1%E7%9B%91%E6%B5%8B%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%9A%84%E6%B5%93%E9%9B%BE%E9%A2%84%E6%8A%A5%E6%8C%87%E6%A0%87&sc_us=6486927265351682660&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
+                        基于高速公路气象监测数据分析的浓雾预报指标 </a>
+                </li>
                 <li class="list-group-item">
                     <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%2872066344866dd32f60931e031ec15b22%29&filter=sc_long_sign&sc_ks_para=q%3DHeat%20and%20fluid%20flow%20in%20high-power%20LED%20packaging%20and%20applications&sc_us=10168108634810893133&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
                         Heat and fluid flow in high-power LED packaging and applications </a>
