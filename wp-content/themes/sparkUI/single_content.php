@@ -271,6 +271,18 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 <div class="related_wiki" id="related_patent">
                     <ul style="padding-left: 0px">
                         <li class="list-group-item">
+                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU02014070200000000203688114628OADV01792B&patentType=patent2&patentLib=&_sessionID=EZDwMF5XCThYdrEp" target="_blank" class="question-title">
+                                自动气象观测系统 </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://www.so.iptrm.com/app/authorization?isNewWindow=yes&pid=PIDCNB02017051700000000103942115S08FGGU016475&patentType=patent2&patentLib=&_sessionID=YR8TSskFYd6pyjpf" target="_blank" class="question-title">
+                                一种基于气象观测数据的可吸入颗粒物浓度估算方法 </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU02011050400000000201819114519VBHC0141F7&patentType=patent2&patentLib=&_sessionID=sR6we7Q33z8PsZFF" target="_blank" class="question-title">
+                                公路气象站系统 </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU0201205160000000020222011451O0GB40161FA&patentType=patent2&patentLib=&_sessionID=chKDQf7SfX6tpKKE" target="_blank" class="question-title">
                                 LED节能灯 </a>
                         </li>
@@ -295,6 +307,18 @@ $admin_url=admin_url( 'admin-ajax.php' );
 
                 <div class="more_related_wiki" id="more_related_patent" style="display: none">
                     <ul style="padding-left: 0px; ">
+                        <li class="list-group-item">
+                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU02014070200000000203688114628OADV01792B&patentType=patent2&patentLib=&_sessionID=EZDwMF5XCThYdrEp" target="_blank" class="question-title">
+                                自动气象观测系统 </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://www.so.iptrm.com/app/authorization?isNewWindow=yes&pid=PIDCNB02017051700000000103942115S08FGGU016475&patentType=patent2&patentLib=&_sessionID=YR8TSskFYd6pyjpf" target="_blank" class="question-title">
+                                一种基于气象观测数据的可吸入颗粒物浓度估算方法 </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU02011050400000000201819114519VBHC0141F7&patentType=patent2&patentLib=&_sessionID=sR6we7Q33z8PsZFF" target="_blank" class="question-title">
+                                公路气象站系统 </a>
+                        </li>
                         <li class="list-group-item">
                             <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU0201205160000000020222011451O0GB40161FA&patentType=patent2&patentLib=&_sessionID=chKDQf7SfX6tpKKE" target="_blank" class="question-title">
                                 LED节能灯 </a>
