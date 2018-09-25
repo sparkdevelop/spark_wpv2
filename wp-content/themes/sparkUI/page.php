@@ -159,6 +159,12 @@
                     }
                     require "../../plugins/spark_analyse/spark analyse.php";
                 }
+                elseif (is_page('weixin_url')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "url.php";
+                }
                 elseif (is_page('otherpersonal')){
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );
