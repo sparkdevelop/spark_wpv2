@@ -5313,8 +5313,7 @@ function rbac_get_user_all_permission($id)
     //permission对应的
     $permission_id = get_rbac_user_relation('permission', $id);
     if (!empty($permission_id)) {
-        $result[] = $permission_id;
-        $result = flatten_array($result);
+        $result = array_merge($result,$permission_id);
     }
     return $result;
 }
@@ -5980,12 +5979,10 @@ function user_can_view($post_id)
         //从用户->角色->权限->post
         $post = [];
         $permission_arr = rbac_get_user_all_permission($user_id);
-        print_r($permission_arr);
         foreach ($permission_arr as $p) {
             $post[] = get_permission_post($p);
         }
         $post = flatten_array($post);
-        print_r($post);
         return in_array($post_id, $post);
     }
 }
