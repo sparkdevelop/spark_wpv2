@@ -45,7 +45,7 @@ if(sizeof($relative_post)!=0){
     }
 
     //更改公共资源??公共资源是最小集合
-    update_public_post($relative_post);
+    update_public_post($relative_post,'delete');
 }
 
 

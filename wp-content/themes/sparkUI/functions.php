@@ -6695,6 +6695,16 @@ function txcurl($url,$params=false,$ispost=0){
     curl_close( $ch );
     return $response;
 }
+/**
+ *
+ * @param  int $post_id [postID]
+ * @param  string $keyword [关键词]
+ */
+function addPostKeyword($post_id,$keyword){
+    global $wpdb;
+    $sql = "INSERT INTO wp_post_keywords VALUES ('',$post_id,'$keyword','','','','')";
+    $wpdb->get_results($sql);
+}
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;
