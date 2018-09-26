@@ -343,6 +343,72 @@
                             }
                         });
                     }
+                },
+                {
+                    text: '智惠乡村项目模板',
+                    onclick: function () {
+                        editor.windowManager.open({
+                            title: '智惠乡村项目模板',
+                            width: 400, //    对话框宽度
+                            height: 350, //    对话框高度
+                            body:[
+                                {
+                                    type   : 'container',
+                                    name   : '智惠乡村项目模板',
+                                    html  : '<p style="font-size:15px;">目标<br/><br/>原理<br/><br/>创意阐述<br/><br/>技术实现<br/><br/>项目演示<br/><br/>团队介绍<br/><br/>团队故事<br/><br/><p>'
+                                }
+                            ],
+
+                            onsubmit: function () {
+                                editor.insertContent(
+                                    '<h2><strong>目标</strong></h2>' +
+                                    '<p class="p1"><span class="s1">总述项目想要解决的问题、实现的效果。</span></p>' +
+                                    '<h2><strong>原理</strong></h2>' +
+                                    '<ul class="ul1">' +
+                                    '<li class="li1"><span class="s2">灵感来源（可选）</span></li>'+
+                                    '<li class="li1"><span class="s2">思维导图</span></li>'+
+                                    '<li class="li1"><span class="s2">目标人群（为谁设计的？）</span></li>'+
+                                    '<li class="li1"><span class="s2">具体解决方案</span></li>'+
+                                    '</ul>'+
+                                    '<h2><strong>技术实现</strong></h2>' +
+                                    '<p class="p1"><span class="s1">阐述项目的实现形式与实际研发需求。</span></p>'+
+                                    '<h2><strong>项目演示</strong></h2>'+
+                                    '<p class="p1"><span class="s1">通过“添加媒体”上传PPT</span></p>'+
+                                    '<h2 class="p1"><strong>团队介绍</strong></h2>' +
+                                    '<table style="height: 180px; border-color: #d8d8d8; background-color: #f9f9f9; width: 454px;" border="1" cellspacing="0" cellpadding="5px">'+
+                                    '<tbody>'+
+                                    '<tr style="height: 24px;">'+
+                                    '<td style="width: 112px; height: 24px;">姓名</td>'+
+                                    '<td style="width: 234px; height: 24px;">团队分工</td>'+
+                                    '</tr>'+
+                                    '<tr style="height: 96px;">'+
+                                    '<td style="width: 112px; height: 96px;">张科科</td>'+
+                                    '<td style="width: 234px; height: 96px;">'+
+                                    '<p class="p1"><span class="s1">（均为示例，可修改）</span></p>'+
+                                    '<p class="p1"><span class="s1">队长，组织协调进度</span></p>'+
+                                    '</td>'+
+                                    '<tr>'+
+                                    '<tr style="height: 14.0625px;">'+
+                                    '<td style="width: 112px; height: 14.0625px;">王蛋蛋</td>'+
+                                    '<td style="width: 234px; height: 14.0625px;"><span class="s1">技术担当，资源协调</span></td>'+
+                                    '</tr>'+
+                                    '<tr style="height: 24px;">'+
+                                    '<td style="width: 112px; height: 24px;">李华华</td>'+
+                                    '<td style="width: 234px; height: 24px;">ppt制作</td>'+
+                                    '</tr>'+
+                                    '<tr style="height: 24px;">'+
+                                    '<td style="width: 112px; height: 24px;">韩梅梅</td>'+
+                                    '<td style="width: 234px; height: 24px;">海报制作，文档撰写</td>'+
+                                    '</tr>'+
+                                    '</tbody>'+
+                                    '</table>'+
+                                    '<h2><strong>团队故事</strong></h2>'+
+                                    '团队联系方式：邮箱、QQ、电话等；'+
+                                    '团队合作过程中发生的趣事、攻克的难关。'
+                                );
+                            }
+                        });
+                    }
                 }
             ]
         });

@@ -52,7 +52,19 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="col-md-4 col-sm-4 col-xs-4 wiki_category_item">
+                    <div class="row">
+                        <div class="col-md-3 m-wiki-index-icon">
+                            <img src="<?php bloginfo("template_url")?>/img/wiki/火花图标设计-16.png" class="wiki-index-icon">
+                        </div>
+                        <div class="col-md-9 m-wiki-index">
+                            <a class="wiki-index-title" href="<?php echo site_url()?>/?yada_wiki=1536736055">创+腾讯</a>
+                            <div class="wiki-index-info">
+                                <span>微信小程序</span><span> · </span><span><?php echo $watch_nums[47378]; ?>次学习</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-4 col-sm-4 col-xs-4 wiki_category_item">
                     <div class="row">
                         <div class="col-md-3 m-wiki-index-icon">
@@ -80,19 +92,6 @@
                         </div>
                     </div>
                 </div>
-                <!--<div class="col-md-4 col-sm-4 col-xs-4 wiki_category_item">
-                    <div class="row">
-                        <div class="col-md-3 m-wiki-index-icon">
-                            <img src="<?php /*bloginfo("template_url")*/?>/img/wiki/火花图标设计-16.png" class="wiki-index-icon">
-                        </div>
-                        <div class="col-md-9 m-wiki-index">
-                            <a class="wiki-index-title" href="<?php /*echo site_url()*/?>/?yada_wiki=1509528922-2">腾讯云</a>
-                            <div class="wiki-index-info">
-                                <span>入门</span><span> · </span><span><?php /*echo $watch_nums[235]; */?>次学习</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
             </div>
         </div>
         <div class="wiki_category">
