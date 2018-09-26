@@ -42,4 +42,4 @@ mysqli_close($con);
 
 //$wpdb->insert( $wpdb->prefix .'chain_log', array('url'=>$url, 'time' => $time, 'user_id' => $id));
 
-header("location: http://$url");  // http://localhost/wordpress/?page_id=15103
+header("location: $url");  // http://localhost/wordpress/?page_id=15106
