@@ -132,7 +132,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
                         $user_level = get_user_level(get_post()->post_author);
                         $img_url = $user_level.".png";
                         ?>
-                        <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px;margin-left: -20px">
+                        <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px">
                     </a>
                 </p><br>
                 <p>分类：</p>

@@ -46,21 +46,19 @@ $sql = "INSERT INTO wp_gp_task VALUES ($task_id,'$task_name',$task_author,$belon
                                           '$task_content','publish','$task_type',
                                           '$create_date','$deadline',0)";
 
-if ($task_name != "" && $task_content != "" && $task_author != "" && $belong_to != "" &&
+if ($task_name != "" && $task_author != "" && $belong_to != "" &&
     $task_type != "" && $create_date != "" && $deadline != "") {
     $wpdb->query($sql);
-}
-
-//notice
-$member = get_group_member_id($belong_to);
-foreach ($member as $value) {
-    $notice_id = $value->user_id;   //被通知人ID
-    $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$notice_id,$belong_to,4,'$task_id',0,'$create_date')";
-    $wpdb->get_results($sql_add_notice);
-}
-
-$url= site_url().get_page_address('single_task').'&id='.$task_id;
-?>
-<script>
-    location.replace("<?=$url?>");
-</script>
+    //notice
+    $member = get_group_member_id($belong_to);
+    foreach ($member as $value) {
+        $notice_id = $value->user_id;   //被通知人ID
+        $sql_add_notice = "INSERT INTO wp_gp_notice VALUES ('',$notice_id,$belong_to,4,'$task_id',0,'$create_date')";
+        $wpdb->get_results($sql_add_notice);
+    }
+    $url= site_url().get_page_address('single_task').'&id='.$task_id;
+    ?>
+    <script>
+        location.replace("<?=$url?>");
+    </script>
+<?php } ?>
