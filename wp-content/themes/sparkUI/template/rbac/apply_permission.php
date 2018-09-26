@@ -1,6 +1,10 @@
 <?php
 $post_id = $_GET['id'];
 $admin_url = admin_url('admin-ajax.php');
+//print_r(apply_permission($post_id));
+$arr = apply_permission($post_id);
+$role = $arr['role_id'][0];
+//echo $role;
 ?>
 <div class="col-md-12 col-sm-12 col-xs-12" id="col9">
     <h4 class="index_title">申请权限</h4>
@@ -91,6 +95,13 @@ $admin_url = admin_url('admin-ajax.php');
                     <span>6积分/权限解锁</span>
                 </button>
             </div>
+            <?php if($role == 1){?>
+            <div class="col-sm-offset-2 col-sm-2">
+                <button  class="btn btn-default"  name="offer-btn" type="button" id="offer-btn" onclick="addprofile()">
+                    填写北邮学生信息解锁
+                </button>
+            </div>
+            <?php }?>
         </div>
     </form>
 </div>
@@ -98,6 +109,7 @@ $admin_url = admin_url('admin-ajax.php');
     $(function () {
         //获取对应这个资源的信息
         applyPermission('<?=$admin_url?>',<?=$post_id?>)
+
     });
     function offerUnlock(){
         var permission_id = [];
@@ -124,5 +136,10 @@ $admin_url = admin_url('admin-ajax.php');
                 }
             }
         })
+    }
+  function addprofile(){
+       // var index = parent.layer.getFrameIndex(window.name);
+        //parent.layer.close(index);
+        parent.location.href="<?php echo site_url() . get_page_address("personal") . '&tab=profile' ?>";
     }
 </script>
