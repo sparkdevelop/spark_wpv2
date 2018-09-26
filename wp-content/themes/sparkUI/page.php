@@ -138,9 +138,6 @@
                 elseif (is_page('changedomain')){
                     require "algorithm/changedomain.php";
                 }
-                elseif (is_page('addkeywords')){
-                    require "algorithm/jieba/cmd/demo_extract_tags.php";
-                }
                 elseif (is_page('autowiki')){
                     require "template/wiki/wiki_uploads/upload.php";
                 }
@@ -162,11 +159,17 @@
                     }
                     require "../../plugins/spark_analyse/spark analyse.php";
                 }
-                elseif (is_page('weixin_url')){
+                elseif (is_page('wailian_url')){
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );
                     }
                     require "url.php";
+                }
+                elseif (is_page('daima_url')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "url_daima.php";
                 }
                 elseif (is_page('otherpersonal')){
                     if (!is_user_logged_in()) {

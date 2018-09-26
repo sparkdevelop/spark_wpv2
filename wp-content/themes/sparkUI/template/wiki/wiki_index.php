@@ -27,7 +27,7 @@
 </style>
 <?php
     global $wpdb;
-    $post_ids = "(235, 444, 448, 164, 169, 213, 243, 455, 458, 462, 465, 468, 160, 471)";
+    $post_ids = "(235, 444, 448, 164, 169, 213, 243, 455, 458, 462, 465, 468, 160, 471,47378)";
     $watchs_result = $wpdb->get_results("select meta_value, meta_id, post_id from $wpdb->postmeta where meta_key=\"count\" and post_id in ".$post_ids);
     $watch_nums = array();
     foreach ($watchs_result as $item) {
