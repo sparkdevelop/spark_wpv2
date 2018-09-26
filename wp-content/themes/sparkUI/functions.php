@@ -5314,8 +5314,8 @@ function rbac_get_user_all_permission($id)
     $permission_id = get_rbac_user_relation('permission', $id);
     if (!empty($permission_id)) {
         $result[] = $permission_id;
+        $result = flatten_array($result);
     }
-    $result = flatten_array($result);
     return $result;
 }
 
@@ -5608,7 +5608,8 @@ function rbac_post_autocomplete()
 add_action('wp_ajax_rbac_post_autocomplete', 'rbac_post_autocomplete');
 add_action('wp_ajax_nopriv_rbac_post_autocomplete', 'rbac_post_autocomplete');
 
-//删除资源
+//删除资源, 如果资源不对应其他权限，则将其放回公共资源，否则不变
+//对于用户-资源表, 刷新。
 function rbac_delete_post()
 {
     global $wpdb;
@@ -5629,7 +5630,7 @@ function rbac_delete_post()
 add_action('wp_ajax_rbac_delete_post', 'rbac_delete_post');
 add_action('wp_ajax_nopriv_rbac_delete_post', 'rbac_delete_post');
 
-//添加资源
+//添加资源, 一旦资源有了权限，就将其从公共资源删除，对于用户资源表，刷新
 function rbac_add_post()
 {
     global $wpdb;
@@ -5855,6 +5856,7 @@ function get_public_post()
     return $post_id_arr;
 }
 
+//更新公共资源
 function update_public_post($post_arr,$type){
     global $wpdb;
     $public_post = get_public_post();  //获取公共资源数组
@@ -5931,24 +5933,59 @@ function update_user_post_table_ajax()
 add_action('wp_ajax_update_user_post_table_ajax', 'update_user_post_table_ajax');
 add_action('wp_ajax_nopriv_update_user_post_table_ajax', 'update_user_post_table_ajax');
 
+//更新某一用户的资源信息，即更新某一用户的user_post表
+function update_user_post($user_id){
+    global $wpdb;
+    // 取出所有角色对应的资源
+    $role_id_arr = get_rbac_user_relation('role',$user_id);
+    $result = [];
+    foreach ($role_id_arr as $role_id){
+        $post = get_role_post($role_id);
+        $result = array_merge($result,$post);
+    }
+    $post_arr = explode(',',$result);
+    // 更新或插入user_post表
+    $sql = "SELECT $user_id FROM wp_rbac_user_post where user_id=$user_id";
+    $col = $wpdb->query($sql);
+    if($col==0){
+        $sql_insert = "INSERT INTO wp_rbac_user_post VALUES('',$user_id,'$post_arr')";
+        $wpdb->query($sql_insert);
+    }else{
+        $sql_update = "UPDATE wp_rbac_user_post SET post_arr = '$post_arr' where user_id=$user_id";
+        $wpdb->query($sql_update);
+    }
+}
+
+//获取某一角色对应的资源
+function get_role_post($role_id){
+    $perimisson_id_arr = get_rbac_rp_relation('role',$rold_id);
+    $result = [];
+    foreach ($permission_id_arr as $pid){
+        $tmp = get_permission_post($pid);
+        $result = array_merge($result,$tmp);
+    }
+    return $result;
+}
 
 function user_can_view($post_id)
 {
     $user_id = get_current_user_id();
     $public = get_public_post();
-    $private = get_private_post($user_id);
+    //$private = get_private_post($user_id);
     //两个数组取并集
-    $all_source = array_merge($public, $private);
-    if (in_array($post_id, $all_source)) {
+    //$all_source = array_merge($public, $private);
+    if (in_array($post_id, $public)) {
         return true;
     } else {
         //从用户->角色->权限->post
         $post = [];
         $permission_arr = rbac_get_user_all_permission($user_id);
+        print_r($permission_arr);
         foreach ($permission_arr as $p) {
             $post[] = get_permission_post($p);
         }
         $post = flatten_array($post);
+        print_r($post);
         return in_array($post_id, $post);
     }
 }
