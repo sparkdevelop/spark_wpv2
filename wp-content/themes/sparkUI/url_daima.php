@@ -6,9 +6,9 @@
  * Time: 11:26
  */
 
-require_once( "D:/wamp/www/wordpress/wp-blog-header.php");
-require_once( "D:/wamp/www/wordpress/wp-load.php");
-require_once( "D:/wamp/www/wordpress/wp-config.php");
+//require_once( "D:/wamp/www/wordpress/wp-blog-header.php");
+//require_once( "D:/wamp/www/wordpress/wp-load.php");
+//require_once( "D:/wamp/www/wordpress/wp-config.php");
 global $wpdb;
 
 $url = $_GET['url'];
