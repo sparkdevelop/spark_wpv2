@@ -1019,3 +1019,17 @@ function layer_apply_permission($url) {
         }
     })
 }
+
+function apply_permission_bupt($url) {
+    layer.open({
+        type: 1,
+        title: "此资源只对北邮开放",
+        content: $('#apply_permission_prompt'),
+        area: ['400px', ''],
+        shadeClose: true,
+        btn:['前往个人页面','取消'],
+        yes: function () {
+            parent.location.href=$url;
+        }
+    })
+}

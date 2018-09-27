@@ -1,7 +1,10 @@
 <?php
 $post_id = get_the_ID();
+$arr = apply_permission($post_id);
+$role = $arr['role_id'][0];
 $admin_url=admin_url( 'admin-ajax.php' );
 $apply_url = site_url().get_page_address('apply_permission').'&id='.$post_id;
+$personal_url =  site_url() . get_page_address('personal') . '&tab=profile';
 ?>
 <div class="container" style="margin-top: 10px;flex: 1 0 auto">
     <div class="row" style="width: 100%">
@@ -17,7 +20,12 @@ $apply_url = site_url().get_page_address('apply_permission').'&id='.$post_id;
                 </div>
                 <div class="readall_box">
                     <div class="read_more_mask"></div>
+
+                <?php if($role == 1){?>
+                    <a class="btn btn-orange" onclick="apply_permission_bupt('<?=$personal_url ?>')" >阅读全文</a>
+                <?php }else {?>
                     <a class="btn btn-orange" onclick="layer_apply_permission('<?=$apply_url?>')">阅读全文</a>
+                    <?php }?>
                 </div>
             <?php endwhile; ?>
             <?php else: ?>
@@ -111,6 +119,9 @@ $apply_url = site_url().get_page_address('apply_permission').'&id='.$post_id;
             </div>
         </div>
     </div>
+</div>
+<div id="apply_permission_prompt" style="display: none">
+    <p style="padding: 20px">请前往个人主页完善个人信息（学校、学号），即可查看此资源</p>
 </div>
     <?php
     global $wpdb;
