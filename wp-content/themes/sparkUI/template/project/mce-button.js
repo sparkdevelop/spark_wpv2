@@ -345,6 +345,42 @@
                     }
                 },
                 {
+                    text: 'QA模板',
+                    onclick: function() {
+                        editor.windowManager.open( {
+                            title: 'QA模板',
+                            width: 400, //    对话框宽度
+                            height: 350, //    对话框高度
+                            body:[
+                                {
+                                    type   : 'container',
+                                    name   : 'QA模板',
+                                    html  :  '<p style="font-size:15px;">问题描述<br/><br/>解决方案<br/><br/>原理性理解<br/><br/>探索故事<br/><br/><p>'
+                                }
+                            ],
+                            onsubmit: function(  ) {
+                                editor.insertContent(
+                                    '<h2></h2>' +
+                                    '<h2><strong>问题描述（Q）</strong></h2>' +
+                                    '阐述所遇到的问题。运用文字、截图等等，将问题描述得尽量清楚。' +
+                                    '<h2><strong>解决方案（A）</strong></h2>' +
+                                    '阐述自己如何解决的问题。讲解清楚步骤。和上面一样，要求图文并茂。' +
+                                    '<h2><strong>原理性理解</strong></h2>' +
+                                    '如果有的话，对遇到的问题进行一些分析，将问题所涉及到的知识背景进行一些表述和介绍。' +
+                                    '<h2><strong>探索故事</strong></h2>' +
+                                    '在导论课中，同学会遇到很多新知识新问题。分享一些调试方法、学习方法的心得体会，或许会对其他同学也产生很多的启发。'+
+                                    '<hr>'+
+                                    '<p>提交方法：</p>'+
+                                    '编写完QA以后，将QA的网页链接（即URL）发给机器人，不需要报学号姓名等等其他的文字信息。'+
+                                    '&nbsp;'+
+                                    '&nbsp;'+
+                                    '&nbsp;'
+                                );
+                            }
+                        });
+                    }
+                },
+                {
                     text: '智惠乡村项目模板',
                     onclick: function () {
                         editor.windowManager.open({
