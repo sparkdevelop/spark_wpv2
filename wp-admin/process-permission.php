@@ -22,7 +22,7 @@ $illstration = isset($_POST["pabstract"]) ? $_POST["pabstract"] : '';
 
 $create_date = isset($_POST["pcreatedate"]) ? $_POST["pcreatedate"] : '';
 
-$relative_post = isset($_POST['checkItem']) ? $_POST["checkItem"] : '';
+$relative_post = isset($_POST['checkItem']) ? $_POST["checkItem"] : [];
 
 
 //处理加入方式

@@ -5835,11 +5835,19 @@ function set_as_solved($info,$state){
 function process_public_post()
 {
     global $wpdb;
-    //先处理公共资源
+    //先处理公共资源，选取所有资源
     $sql_post = "SELECT ID FROM wp_posts WHERE post_status = 'publish' and post_type IN ('yada_wiki','post') ";
-    $post_id_arr = $wpdb->get_results($sql_post, 'ARRAY_A');
-    $post_id_arr = array_column($post_id_arr, 'ID');
+    $all_post_id_arr = $wpdb->get_results($sql_post, 'ARRAY_A');
+    $all_post_id_arr = array_column($all_post_id_arr, 'ID');
+    //删除已经私有化的资源
+    $sql_private = "SELECT DISTINCT post_id FROM wp_rbac_post";
+    $private_post_id_arr = $wpdb->get_results($sql_private, 'ARRAY_A');
+    $private_post_id_arr = array_column($private_post_id_arr, 'post_id');
+    //相减
+    $post_id_arr = array_diff($all_post_id_arr,$private_post_id_arr);
+    //插入数据库
     $post_string = implode(',', $post_id_arr);
+    print_r($post_string);
     $sql_insert = "INSERT INTO wp_rbac_user_post VALUES('',0,'$post_string')";
     $wpdb->get_results($sql_insert);
 }
