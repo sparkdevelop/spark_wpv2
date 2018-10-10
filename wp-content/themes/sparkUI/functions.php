@@ -6747,6 +6747,53 @@ function addPostKeyword($post_id,$keyword){
     $sql = "INSERT INTO wp_post_keywords VALUES ('',$post_id,'$keyword','','','','')";
     $wpdb->get_results($sql);
 }
+
+/**
+ *判断是否为导论课内容和编辑角色
+ * @param  int $role_id [权限ID]
+ * @param  array $role_arr [用户权限数组]
+ * @param  int $post_id [文章ID]
+ * @param  array $permission_posts [权限资源数组]
+ */
+function judge_daolunke($role_id,$role_arr,$post_id,$permission_posts ){
+    if (in_array($post_id, $permission_posts)){
+        if (in_array($role_id, $role_arr)){
+            return false;
+        }else{
+            return true;
+        }
+    }else{
+        return false;
+    }
+}
+
+function apply_role_daolunke(){
+    global $wpdb;
+    $user_id = isset($_POST["applyer"]) ? $_POST["applyer"] : '';
+    $rid = isset($_POST["rcheckItem"]) ? $_POST["rcheckItem"] : '';
+    $state =0;
+    $reason = isset($_POST["reason"]) ? $_POST["reason"] : '';
+    $modified_time = isset($_POST["pcreatedate"]) ? $_POST["pcreatedate"] : '';
+    $operator = '';
+    if($rid){
+        $sql_check = "SELECT user_id FROM wp_rbac_apply_tmp WHERE user_id=$user_id and source_type=1 and source_id=$rid and state IN (0,2) ";
+        $col = $wpdb->query($sql_check);
+        if($col==0){
+            $sql_rinsert = "INSERT INTO wp_rbac_apply_tmp VALUES ('',$user_id,1,$rid,0,'$reason','$operator','$modified_time')";
+            $res = $wpdb->get_results($sql_rinsert);
+        }else{
+            $sql_rupdate ="UPDATE wp_rbac_apply_tmp SET state = 0,reason='$reason',operator='',modified_time = '$modified_time' WHERE user_id=$user_id and source_type=1 and source_id=$rid";
+            $res = $wpdb->get_results($sql_rupdate);
+        }
+        echo "success";
+    }else{
+        echo "fail";
+    }
+    die();
+}
+
+add_action('wp_ajax_apply_role_daolunke', 'apply_role_daolunke');
+add_action('wp_ajax_nopriv_apply_role_daolunke', 'apply_role_daolunke');
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;

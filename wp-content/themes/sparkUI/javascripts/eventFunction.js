@@ -1033,3 +1033,44 @@ function apply_permission_bupt($url) {
         }
     })
 }
+
+
+function apply_role_daolunke($user_id,$role_id,$modified_time,$url) {
+    layer.open({
+        type: 1,
+        title: "申请导论课编辑权限",
+        content: $('#apply_permission_prompt'),
+        area: ['400px', ''],
+        shadeClose: true,
+        btn:['申请编辑权限','取消'],
+        yes: function () {
+            var data = {
+                action:"apply_role_daolunke",
+                reason: $('#dlk_reason').val(),
+                applyer: $user_id,
+                rcheckItem: $role_id,
+                pcreatedate: $modified_time
+            };
+            $.ajax({
+                type: "post",
+                url: $url,
+                data: data,
+                //dataType: 'json',
+                error:function(msg,type,err){ //处理出错的信息
+                   // console.log(data);
+                    //console.log(type);
+                    //console.log(err);
+                    layer.alert("出错了，请重试！",{
+                        title: '提示框',
+                        icon:0
+                    });
+                },
+                success:function(msg){  //处理正确时的信息
+                    layer.closeAll();
+                    $('#dlk_reason').val('');
+                    layer.msg("已申请,等待管理员审核", {time: 2000, icon: 1});
+                }
+            });
+        }
+    })
+}
