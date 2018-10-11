@@ -22,8 +22,7 @@ $illstration = isset($_POST["pabstract"]) ? $_POST["pabstract"] : '';
 
 $create_date = isset($_POST["pcreatedate"]) ? $_POST["pcreatedate"] : '';
 
-$relative_post = isset($_POST['checkItem']) ? $_POST["checkItem"] : '';
-
+$relative_post = isset($_POST['checkItem']) ? $_POST["checkItem"] : [];
 
 //处理加入方式
 //首先获取最后一个role_id;
@@ -43,14 +42,11 @@ if(sizeof($relative_post)!=0){
         $sql="INSERT INTO wp_rbac_post VALUES ('',$permission_id,$p,$author,'$create_date')";
         $wpdb->query($sql);
     }
-
     //更改公共资源??公共资源是最小集合
     update_public_post($relative_post,'delete');
 }
-
-
 ?>
 <script>
-    window.close();
+   window.close();
 </script>
 

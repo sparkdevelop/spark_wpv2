@@ -15,8 +15,6 @@ foreach($result_user as $value){
     getUserToken($value->ID,$value->user_login,$avatar_url);
 }
 
-
-
 //创建群组
 $sql_group = "select ID,group_name from wp_gp ORDER BY ID ASC";   //选择所有的组
 $result_group = $wpdb->get_results($sql_group);

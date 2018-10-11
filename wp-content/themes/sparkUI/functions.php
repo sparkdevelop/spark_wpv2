@@ -5825,9 +5825,6 @@ function set_as_solved($info,$state){
     }
 }
 
-
-
-
 //用户可以查看资源(用户有权限)
 //单建一张表,并维护,其中,user——id= 0的是公共资源,所有用户都可见
 //如果发上来的资源是所有人可见的,那就加入到这里面
@@ -5835,11 +5832,19 @@ function set_as_solved($info,$state){
 function process_public_post()
 {
     global $wpdb;
-    //先处理公共资源
+    //先处理公共资源，选取所有资源
     $sql_post = "SELECT ID FROM wp_posts WHERE post_status = 'publish' and post_type IN ('yada_wiki','post') ";
-    $post_id_arr = $wpdb->get_results($sql_post, 'ARRAY_A');
-    $post_id_arr = array_column($post_id_arr, 'ID');
+    $all_post_id_arr = $wpdb->get_results($sql_post, 'ARRAY_A');
+    $all_post_id_arr = array_column($all_post_id_arr, 'ID');
+    //删除已经私有化的资源
+    $sql_private = "SELECT DISTINCT post_id FROM wp_rbac_post";
+    $private_post_id_arr = $wpdb->get_results($sql_private, 'ARRAY_A');
+    $private_post_id_arr = array_column($private_post_id_arr, 'post_id');
+    //相减
+    $post_id_arr = array_diff($all_post_id_arr,$private_post_id_arr);
+    //插入数据库
     $post_string = implode(',', $post_id_arr);
+    print_r($post_string);
     $sql_insert = "INSERT INTO wp_rbac_user_post VALUES('',0,'$post_string')";
     $wpdb->get_results($sql_insert);
 }
@@ -6014,7 +6019,7 @@ function create_process_visibility($visibility, $post_id, $author)
         $arr = get_public_post();
         $arr[] = $post_id;
         $post_string = implode(',', $arr);
-        $sql_insert = "UPDATE  wp_rbac_user_post SET post_arr = '$post_string' WHERE user_id =0";
+        $sql_insert = "UPDATE wp_rbac_user_post SET post_arr = '$post_string' WHERE user_id =0";
         $wpdb->get_results($sql_insert);
     } else {
         /* 最终落地到权限上
@@ -6332,8 +6337,6 @@ function offer_unlock($permission_id)
     }
     return true;
 }
-
-
 
 
 

@@ -123,30 +123,30 @@ $tab = isset($_GET['tab']) && !empty($_GET['tab']) ? sanitize_text_field($_GET['
             <p style="font-weight: bolder">用户在火花空间上的以下行为可以获取积分：</p>
             <h5>wiki部分</h5>
             <ul>
-                <li>创建wiki词条</li>
-                <li>完善他人的wiki词条</li>
-                <li>为他人的wiki打分</li>
-                <li>用户编写的词条获得他人3分（含）以上的打分</li>
-                <li>用户编写的词条被他人收藏</li>
-                <li>在词条评论区和他人交流</li>
+                <li>创建wiki词条(15分)</li>
+                <li>完善他人的wiki词条(15分)</li>
+                <li>为他人的wiki打分(2分)</li>
+                <li>用户编写的词条获得他人3分（含）以上的打分(5分)</li>
+                <li>用户编写的词条被他人收藏(2分)</li>
+                <li>在词条评论区和他人交流(5分)</li>
             </ul>
         </div>
         <div style="width: 90%;margin: 10px auto;">
             <h5>问答部分</h5>
             <ul>
-                <li>回答问题</li>
-                <li>答案被他人赞同</li>
+                <li>回答问题(5分)</li>
+                <li>答案被他人赞同(1分)</li>
                 <li>答案被提问者采纳还可获得提问者的悬赏分</li>
             </ul>
         </div>
         <div style="width: 90%;margin: 10px auto;">
             <h5>项目部分</h5>
             <ul>
-                <li>创建项目词条</li>
-                <li>为他人的项目打分</li>
-                <li>用户项目获得他人3分（含）以上的打分</li>
-                <li>用户项目被他人收藏</li>
-                <li>在项目评论区和他人交流</li>
+                <li>创建项目词条(15分)</li>
+                <li>为他人的项目打分(2分)</li>
+                <li>用户项目获得他人3分（含）以上的打分(5分)</li>
+                <li>用户项目被他人收藏(2分)</li>
+                <li>在项目评论区和他人交流(5分)</li>
             </ul>
         </div>
         <h4>2、积分有什么用</h4>
