@@ -2232,3 +2232,14 @@ h4 {
 #wiki_content  {
     font-size: 11pt;
 }
+.bottom-button {
+    position: fixed;
+    bottom: 0;
+    right: 210px;
+    z-index: 9;
+}
+.bottom-button a{
+    color: white;
+    text-decoration:none;
+    font-size: 16px;
+}
