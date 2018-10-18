@@ -1,14 +1,15 @@
 <?php
 GLOBAL $wpdb;
 $id = $_REQUEST['wiki_id'];
-
-$sql = $wpdb->prepare("select * from $wpdb->posts where post_parent = %s", $id);
+$sql = $wpdb->prepare("select * from $wpdb->posts where post_parent = %s and post_type = 'revision' order by post_date desc", $id);
 $revisions = $wpdb->get_results($sql);
 $count = count($revisions);
 $title =  get_the_title($id);
 ?>
+
 <div class="table-responsive">
     <h2><a href="<?php echo get_permalink($id);?>"><?php echo $title ;?></a>的历史版本</h2>
+    <span >共被编辑<?php echo $count;?>次</span>
     <table class="table">
         <thead>
         <tr>

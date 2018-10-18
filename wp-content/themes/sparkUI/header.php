@@ -81,10 +81,9 @@
 <!--                                    <a href="--><?php //the_permalink(20548); ?><!--">多校</a>-->
                                     <a href="<?php the_permalink(get_the_ID_by_title('认知工委会')); ?>">多校</a>
                                 </li>
-                                <li class="page_item page-item-20548">
-                                    <!--                                    <a href="--><?php //the_permalink(20548); ?><!--">多校</a>-->
+                               <!-- <li class="page_item page-item-20548">
                                     <a style="color: #fe642d" href="http://sice.owvlab.net/openlab/jsj">网络虚拟仿真实验平台</a>
-                                </li>
+                                </li>-->
                             </ul>
                         </div>
                         <!--登录注册用户头像-->

@@ -119,7 +119,9 @@ $admin_url=admin_url( 'admin-ajax.php' );
         <li><a href="<?php echo get_permalink( get_page_by_title( '创建wiki' )); ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
     </ul>
 </div>
-
+<div class="bottom-button" id="faq-button">
+    <button  type="button" class="btn btn-warning  btn-lg" data-toggle="tooltip" title="看看大家遇到的问题和解决方法"><a href="https://www.oursparkspace.cn/?yada_wiki=1539591196"  target="_blank">精品FAQ</a></button>
+</div>
 <?php
 global $wpdb;
 $post_id = get_the_ID();
@@ -147,6 +149,7 @@ $_SESSION['wiki_tags'] = $wiki_tags;
 
 <?php get_footer(); ?>
 <script>
+    $(function () { $("[data-toggle='tooltip']").tooltip({}); });
     function addLayer() {
         layer.open({
             type : 2,
