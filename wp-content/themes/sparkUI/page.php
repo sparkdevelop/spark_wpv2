@@ -15,6 +15,10 @@
 ?>
 
 <?php
+if(is_page('wxlogin')){
+    require "template/API/wxlogin.php";
+    return;
+}
     get_header();
     if(is_page('verify_form') || is_page('invitation') || is_page('private_message')
         || is_page('ask_tiny') || is_page('join_ms') || is_page('create_role')
@@ -317,9 +321,6 @@
                     }
                 }
                 elseif (is_page('wxlogin')){
-                    if (!is_user_logged_in()) {
-                        wp_redirect( home_url().'/wp-login.php' );
-                    }
                     require "template/API/wxlogin.php";
                 }
                 else{

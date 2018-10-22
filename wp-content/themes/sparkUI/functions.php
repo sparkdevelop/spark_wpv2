@@ -6794,6 +6794,13 @@ function apply_role_daolunke(){
 
 add_action('wp_ajax_apply_role_daolunke', 'apply_role_daolunke');
 add_action('wp_ajax_nopriv_apply_role_daolunke', 'apply_role_daolunke');
+
+function get_student_goal(){
+    global $wpdb;
+    $sql = "select stu_number,name,category1,category2 from student_goal";
+    $res = $wpdb->get_results($sql);
+    return $res;
+}
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;
