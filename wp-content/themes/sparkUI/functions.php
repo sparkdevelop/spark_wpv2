@@ -6801,6 +6801,22 @@ function get_student_goal(){
     $res = $wpdb->get_results($sql);
     return $res;
 }
+
+//获取相关专利
+function RelatedPatents($post_id){
+    global $wpdb;
+    $sql = "select patent_title,patent_url from wp_post_keywords where post_id =$post_id";
+    $res = $wpdb->get_results($sql);
+    return $res;
+}
+
+//获取相关论文
+function RelatedPapers($post_id){
+    global $wpdb;
+    $sql = "select paper_title,paper_url from wp_post_keywords where post_id =$post_id";
+    $res = $wpdb->get_results($sql);
+    return $res;
+}
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;

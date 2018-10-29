@@ -260,185 +260,61 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 //sideChart('sidechart','<?php //$projsonString?>');
             </script>
             <!--专利-->
-            <div class="related_wikis">
-                <div class="sidebar_list_header">
-                    <p>相关专利</p>
-                    <a href="http://www.sipo.gov.cn/zhfwpt/zlsqzn/zlsqspcxjs/zlsqsplc/" target="_blank" style="margin-left: 10px;font-size: small;color: darkgray;font-weight:normal">专利申请流程</a>
-                    <a id="sidebar_list_link" onclick="show_more_patent()">更多</a>
+            <?php
+            $related_patents  = RelatedPatents($post_id);
+            //var_dump($related_patents);
+            if($related_patents){ ?>
+                <div class="related_wikis">
+                    <div class="sidebar_list_header">
+                        <p>相关专利</p>
+                        <a href="http://www.sipo.gov.cn/zhfwpt/zlsqzn/zlsqspcxjs/zlsqsplc/" target="_blank"
+                           style="margin-left: 10px;font-size: small;color: darkgray;font-weight:normal">专利申请流程</a>
+                    </div>
+                    <!--分割线-->
+                    <div style="height: 2px;background-color: lightgray"></div>
+                    <div class="related_wiki" id="related_patent">
+                        <ul style="padding-left: 0px">
+                            <?php foreach ($related_patents as $res){
+                                if(strcmp($res->patent_url,'None')!=0){?>
+                                    <li class="list-group-item">
+                                        <a href="<?php echo $res->patent_url?>"
+                                           target="_blank" class="question-title">
+                                            <?php echo $res->patent_title?> </a>
+                                    </li>
+                                <?php }
+                            }?>
+                        </ul>
+                    </div>
                 </div>
-                <!--分割线-->
-                <div style="height: 2px;background-color: lightgray"></div>
-                <div class="related_wiki" id="related_patent">
-                    <ul style="padding-left: 0px">
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU02014070200000000203688114628OADV01792B&patentType=patent2&patentLib=&_sessionID=EZDwMF5XCThYdrEp" target="_blank" class="question-title">
-                                自动气象观测系统 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/authorization?isNewWindow=yes&pid=PIDCNB02017051700000000103942115S08FGGU016475&patentType=patent2&patentLib=&_sessionID=YR8TSskFYd6pyjpf" target="_blank" class="question-title">
-                                一种基于气象观测数据的可吸入颗粒物浓度估算方法 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU02011050400000000201819114519VBHC0141F7&patentType=patent2&patentLib=&_sessionID=sR6we7Q33z8PsZFF" target="_blank" class="question-title">
-                                公路气象站系统 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU0201205160000000020222011451O0GB40161FA&patentType=patent2&patentLib=&_sessionID=chKDQf7SfX6tpKKE" target="_blank" class="question-title">
-                                LED节能灯 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNA02018051100000000108028125E0AIQKM014E62&patentType=patent2&patentLib=&_sessionID=QbPbaaDWHwGjQH33" target="_blank" class="question-title">
-                                红外LED </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNA02013091100000000103297114904BLGA012F19&patentType=patent2&patentLib=&_sessionID=dcGXfmXQRi78p3yz" target="_blank" class="question-title">
-                                蓝牙-WIFI网关 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU02010051900000000201476114515M9ES0152CA&patentType=patent2&patentLib=&_sessionID=H5P5dKxS5wQwSttb" target="_blank" class="question-title">
-                                称重传感器 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNA0201808070000000010837612890ELDPF013368&patentType=patent2&patentLib=&_sessionID=JhKY2fkjT8cZEdGr" target="_blank" class="question-title">
-                                一种基于Arduino的阵列语音采集系统及采集方法 </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="more_related_wiki" id="more_related_patent" style="display: none">
-                    <ul style="padding-left: 0px; ">
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU02014070200000000203688114628OADV01792B&patentType=patent2&patentLib=&_sessionID=EZDwMF5XCThYdrEp" target="_blank" class="question-title">
-                                自动气象观测系统 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/authorization?isNewWindow=yes&pid=PIDCNB02017051700000000103942115S08FGGU016475&patentType=patent2&patentLib=&_sessionID=YR8TSskFYd6pyjpf" target="_blank" class="question-title">
-                                一种基于气象观测数据的可吸入颗粒物浓度估算方法 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU02011050400000000201819114519VBHC0141F7&patentType=patent2&patentLib=&_sessionID=sR6we7Q33z8PsZFF" target="_blank" class="question-title">
-                                公路气象站系统 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU0201205160000000020222011451O0GB40161FA&patentType=patent2&patentLib=&_sessionID=chKDQf7SfX6tpKKE" target="_blank" class="question-title">
-                                LED节能灯 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNA02018051100000000108028125E0AIQKM014E62&patentType=patent2&patentLib=&_sessionID=QbPbaaDWHwGjQH33" target="_blank" class="question-title">
-                                红外LED </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNA02013091100000000103297114904BLGA012F19&patentType=patent2&patentLib=&_sessionID=dcGXfmXQRi78p3yz" target="_blank" class="question-title">
-                                蓝牙-WIFI网关 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNU02010051900000000201476114515M9ES0152CA&patentType=patent2&patentLib=&_sessionID=H5P5dKxS5wQwSttb" target="_blank" class="question-title">
-                                称重传感器 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNA0201808070000000010837612890ELDPF013368&patentType=patent2&patentLib=&_sessionID=JhKY2fkjT8cZEdGr" target="_blank" class="question-title">
-                                一种基于Arduino的阵列语音采集系统及采集方法 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDCNA0201808310000000010846412930AH818017F98&patentType=patent2&patentLib=&_sessionID=RibAReQWRxZbGbCz" class="question-title"
-                               target="_blank" id="more_wiki">
-                                一种樱桃种植用灌溉光照调节装置 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDUSA1201708170000002017023611AJ26TB7K0118B7&patentType=patent2&patentLib=&_sessionID=33xhBpFeWDZfcs4G" class="question-title" target="_blank" id="more_patent">
-                                WIFI TRANSACTIONS </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/patentdetail?isNewWindow=yes&pid=PIDUSA12018062100000020180176126T2DPIRK010FDE&patentType=patent2&patentLib=&_sessionID=awzbfyQEMhYQaFAZ" class="question-title" target="_blank" id="more_patent">
-                                TCP Bufferbloat Resolution </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://www.so.iptrm.com/app/authorization?isNewWindow=yes&pid=PIDUSB22017032800000000009609117C04BM250124A1&patentType=patent2&patentLib=&_sessionID=NTCBE8sJbXj7a4fX" class="question-title" target="_blank" id="more_patent">
-                                HTTP proxy </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <?php }?>
             <!--论文-->
-            <div class="related_wikis">
-                <div class="sidebar_list_header">
-                    <p>相关论文</p>
-                    <a href="https://www.zhihu.com/question/34903516/answer/68547441" target="_blank" style="margin-left: 10px;font-size: 12px;color: darkgray;font-weight: normal">论文撰写教程</a>
-                    <a id="sidebar_list_link" onclick="show_more_paper()">更多</a>
+            <?php
+            $related_papers  = RelatedPapers($post_id);
+            //var_dump($related_patents);
+            if($related_papers){ ?>
+                <div class="related_wikis">
+                    <div class="sidebar_list_header">
+                        <p>相关论文</p>
+                        <a href="https://www.zhihu.com/question/34903516/answer/68547441" target="_blank" style="margin-left: 10px;font-size: 12px;color: darkgray;font-weight: normal">论文撰写教程</a>
+                    </div>
+                    <!--分割线-->
+                    <div style="height: 2px;background-color: lightgray"></div>
+                    <div class="related_wiki" id="related_paper">
+                        <ul style="padding-left: 0px">
+                            <?php foreach ($related_papers as $res){
+                                if(strcmp($res->paper_url,'None')!=0){?>
+                                    <li class="list-group-item">
+                                        <a href="<?php echo $res->paper_url?>"
+                                           target="_blank" class="question-title">
+                                            <?php echo $res->paper_title?> </a>
+                                    </li>
+                                <?php }
+                            }?>
+                        </ul>
+                    </div>
                 </div>
-                <!--分割线-->
-                <div style="height: 2px;background-color: lightgray"></div>
-                <div class="related_wiki" id="related_paper">
-                    <ul style="padding-left: 0px">
-                        <li class="list-group-item">
-                            <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%2872066344866dd32f60931e031ec15b22%29&filter=sc_long_sign&sc_ks_para=q%3DHeat%20and%20fluid%20flow%20in%20high-power%20LED%20packaging%20and%20applications&sc_us=10168108634810893133&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
-                                Heat and fluid flow in high-power LED packaging and applications </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%28a5cf762686afd0a6cfe0fb0b6ba88bd2%29&filter=sc_long_sign&sc_ks_para=q%3D%E5%9F%BA%E4%BA%8E%E6%9E%9C%E8%9D%87%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E7%9A%84%E4%B8%89%E7%BB%B4LED%E5%85%89%E6%BA%90%E9%98%B5%E5%88%97%E4%BC%98%E5%8C%96%E8%AE%BE%E8%AE%A1&sc_us=8359613791293871464&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
-                                基于果蝇优化算法的三维LED光源阵列优化设计 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%281c1b3c89d3741208870d5b4a1a14e80d%29&filter=sc_long_sign&sc_ks_para=q%3DZigBee%E4%B8%8E%E8%93%9D%E7%89%99%E7%9A%84%E5%88%86%E6%9E%90%E4%B8%8E%E6%AF%94%E8%BE%83&sc_us=2045037250759201464&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
-                                ZigBee与蓝牙的分析与比较 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%28fabd26129ed1be4df2634dbbfd7813aa%29&filter=sc_long_sign&sc_ks_para=q%3DArduino%3A%20a%20low-cost%20multipurpose%20lab%20equipment.&sc_us=1963658631356660655&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
-                                Arduino: a low-cost multipurpose lab equipment </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%28355b2339b20c396239f8d8abe737e5f8%29&filter=sc_long_sign&sc_ks_para=q%3D%E5%9F%BA%E4%BA%8E%E7%BA%A2%E5%A4%96%E4%BC%A0%E6%84%9F%E5%99%A8%E7%9A%84%E6%99%BA%E8%83%BD%E6%95%99%E5%AE%A4%E7%85%A7%E6%98%8E%E6%8E%A7%E5%88%B6&sc_us=4489042973294239552&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
-                                基于红外传感器的智能教室照明控制 </a>
-                        </li>
-                    </ul>
-                </div>
+            <?php }?>
 
-                <div class="more_related_wiki" id="more_related_paper" style="display: none">
-                    <ul style="padding-left: 0px; ">
-                        <li class="list-group-item">
-                            <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%2872066344866dd32f60931e031ec15b22%29&filter=sc_long_sign&sc_ks_para=q%3DHeat%20and%20fluid%20flow%20in%20high-power%20LED%20packaging%20and%20applications&sc_us=10168108634810893133&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
-                                Heat and fluid flow in high-power LED packaging and applications </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%28a5cf762686afd0a6cfe0fb0b6ba88bd2%29&filter=sc_long_sign&sc_ks_para=q%3D%E5%9F%BA%E4%BA%8E%E6%9E%9C%E8%9D%87%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E7%9A%84%E4%B8%89%E7%BB%B4LED%E5%85%89%E6%BA%90%E9%98%B5%E5%88%97%E4%BC%98%E5%8C%96%E8%AE%BE%E8%AE%A1&sc_us=8359613791293871464&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
-                                基于果蝇优化算法的三维LED光源阵列优化设计 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%281c1b3c89d3741208870d5b4a1a14e80d%29&filter=sc_long_sign&sc_ks_para=q%3DZigBee%E4%B8%8E%E8%93%9D%E7%89%99%E7%9A%84%E5%88%86%E6%9E%90%E4%B8%8E%E6%AF%94%E8%BE%83&sc_us=2045037250759201464&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
-                                ZigBee与蓝牙的分析与比较 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%28fabd26129ed1be4df2634dbbfd7813aa%29&filter=sc_long_sign&sc_ks_para=q%3DArduino%3A%20a%20low-cost%20multipurpose%20lab%20equipment.&sc_us=1963658631356660655&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
-                                Arduino: a low-cost multipurpose lab equipment </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%28355b2339b20c396239f8d8abe737e5f8%29&filter=sc_long_sign&sc_ks_para=q%3D%E5%9F%BA%E4%BA%8E%E7%BA%A2%E5%A4%96%E4%BC%A0%E6%84%9F%E5%99%A8%E7%9A%84%E6%99%BA%E8%83%BD%E6%95%99%E5%AE%A4%E7%85%A7%E6%98%8E%E6%8E%A7%E5%88%B6&sc_us=4489042973294239552&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" target="_blank" class="question-title">
-                                基于红外传感器的智能教室照明控制 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%28caec31e757e12b1e9ce257bd9df7971c%29&filter=sc_long_sign&sc_ks_para=q%3DExploring%20mobile%2FWiFi%20handover%20with%20multipath%20TCP&sc_us=10274875248912255968&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" class="question-title"
-                               target="_blank" id="more_wiki">
-                                Exploring mobile/WiFi handover with multipath TCP </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%28b859962ca7d0c2a79ba10b29927163e0%29&filter=sc_long_sign&sc_ks_para=q%3DTCP%20Extensions%20for%20Multipath%20Operation%20with%20Multiple%20Addresses&sc_us=3632409001235107039&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" class="question-title" target="_blank" id="more_patent">
-                                TCP Extensions for Multipath Operation with Multiple Addresses </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%281ef14ce097037b249bd6542fb8ce844f%29&filter=sc_long_sign&sc_ks_para=q%3D%E5%9F%BA%E4%BA%8EHTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%9C%B0%E8%B4%A8%E7%81%BE%E5%AE%B3%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1&sc_us=11390142739195011222&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" class="question-title" target="_blank" id="more_patent">
-                                基于HTTP协议的地质灾害数据传输系统设计 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%28099ddd3d36d0e04fed41a56fbccb30bb%29&filter=sc_long_sign&sc_ks_para=q%3DSpring%20MVC%E6%A1%86%E6%9E%B6%E5%BC%80%E5%8F%91WEB%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%8E%A2%E7%B4%A2%E4%B8%8E%E7%A0%94%E7%A9%B6&sc_us=11406744225561867708&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" class="question-title" target="_blank" id="more_patent">
-                                Spring MVC框架开发WEB应用程序的探索与研究 </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://xueshu.baidu.com/s?wd=paperuri%3A%2887a172a1410051f641bc5fe6140d703d%29&filter=sc_long_sign&sc_ks_para=q%3D%E8%93%9D%E7%89%99%E6%A8%A1%E5%9D%97%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0&sc_us=11743206145125558581&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8" class="question-title" target="_blank" id="more_patent">
-                                蓝牙模块串口通信的设计与实现 </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
             <div class="related_questions">
                 <div class="sidebar_list_header">
                     <p>相似项目</p>
