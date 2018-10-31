@@ -267,7 +267,8 @@ $apply_url = admin_url('admin-ajax.php');
                <?php foreach ($related_patents as $res){
                    if(strcmp($res->patent_url,'None')!=0){?>
                        <li class="list-group-item">
-                           <a href="<?php echo $res->patent_url?>"
+
+                           <a href="<?php echo  site_url().get_page_address('daima_url').'&url='.urlencode($res->patent_url).'&page=patent' ?>"
                               target="_blank" class="question-title">
                                <?php echo $res->patent_title?> </a>
                        </li>
@@ -296,7 +297,7 @@ $apply_url = admin_url('admin-ajax.php');
                     <?php foreach ($related_papers as $res){
                         if(strcmp($res->paper_url,'None')!=0){?>
                             <li class="list-group-item">
-                                <a href="<?php echo $res->paper_url?>"
+                                <a href="<?php echo site_url().get_page_address('daima_url').'&url='.urlencode($res->paper_url).'&page=paper'?>"
                                    target="_blank" class="question-title">
                                     <?php echo $res->paper_title?> </a>
                             </li>

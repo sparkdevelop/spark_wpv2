@@ -6817,6 +6817,19 @@ function RelatedPapers($post_id){
     $res = $wpdb->get_results($sql);
     return $res;
 }
+
+//判断用户是否已经选择是否学会了
+function hasLearn($user_id, $post_id)
+{
+    global $wpdb;
+    $sql = "SELECT * FROM wp_learn WHERE user_id=$user_id AND post_id = $post_id";
+    $col = $wpdb->query($sql);
+    if ($col == 0) { //未选择
+        return "false";
+    } else {
+        return "true";
+    }
+}
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;
