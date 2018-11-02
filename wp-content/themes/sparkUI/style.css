@@ -2331,4 +2331,110 @@ h4 {
     background: #e99;
 }
 
-/*aaaa*/
+/*wiki学会了没学会*/
+#web_header_like_area {
+    margin: 20px auto;
+}
+.like-area-wrapper{
+    display: table;
+    height: 40px;
+    color: #FFF;
+    line-height: 2;
+    cursor: pointer;
+    margin: auto;
+}
+.count-like-wrapper{
+    border: 1px solid #DFDFDF;
+    width: auto;
+    height: 30px;
+    overflow: hidden;
+    float: left;
+    background-color: #F6F6F6;
+    margin-right: 10px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.count-like-block{
+    border-color: #dfdfdf;
+    height: 30px;
+    box-sizing: border-box;
+    border-right: 1px solid #e7e7e7;
+    min-width: 30px;
+    cursor: default;
+    position: relative;
+    float: left;
+    text-align: center;
+    color: #BDBDBD;
+    line-height: 20px;
+}
+.count-like-inner{
+    padding: 4px;
+    width: auto;
+    min-width: 30px;
+}
+.like-block{
+    padding: 4px 0;
+    text-align: center;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 64px;
+}
+.count-like{
+    line-height: 1;
+    color: orange;
+    font-size: 13px;
+}
+.rate-like-block{
+    width: 90px;
+    height: 30px;
+    position: relative;
+    float: left;
+    text-align: center;
+    color: #BDBDBD;
+    line-height: 20px;
+}
+.rate-like-icon{
+    padding-top: 4px;
+    display: block;
+    width: 17px;
+    height: 17px;
+    margin-top: 3px;
+    padding-right: 5px;
+    float: left;
+    size: 135px 31px;
+    position:absolute;left:16px;top:1px;
+}
+.like-words{
+    color: #FFA500;
+    float: right;
+}
+.dislike-words{
+    color: black;
+    float: right;
+}
+.rate-normal-block {
+    border: 1px solid #DFDFDF;
+    width: 90px;
+    height: 30px;
+    background-color: #F6F6F6;
+    border-radius: 2px;
+    color: #888;
+    position: relative;
+    float: left;
+    text-align: center;
+    line-height: 20px;
+}
+.rate-normal-icon{
+    padding-top: 4px;
+    display: block;
+    width: 21px;
+    height: 20px;
+    margin-top: 3px;
+    padding-right: 5px;
+    float: left;
+    position:absolute;left:12px;top:0px;
+}
+
+
+
