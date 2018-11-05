@@ -1,96 +1,10 @@
 <?php
 $admin_url=admin_url( 'admin-ajax.php' );
+$user_id = get_current_user_id();
+$post_id = get_the_ID();
+$hasLearn = hasLearn($user_id, $post_id);
+$num = learned_num($post_id);
 ?>
-<script>
-    function setCSS(flag) {
-        if(flag == 1){  //未收藏
-            addFavorite();
-        }else{
-            cancelFavorite(flag);
-        }
-    }
-    function addFavorite() {
-        var data={
-            action:'addFavorite',
-            userID:'<?=$current_user->ID?>',
-            postID:'<?=$post_id?>'
-        };
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $admin_url;?>",
-            data: data,
-            success: function(){
-                layer.msg('收藏成功',{time:2000,icon:1});  //layer.msg(content, {options}, end) - 提示框
-                var html = "<a onclick=\"setCSS(0)\" class=\"btn btn-default\" id=\"btn-add-favorite\">"+
-                    "<span class=\"glyphicon glyphicon-star\"></span>已收藏"+"</a>";
-                $("#addFavorite").html(html);
-//                $("#btn-add-favorite").css({"color":"white",
-//                    "background-color": "#fe642d",
-//                    "border-color": "transparent"});
-            },
-            error:function () {
-                alert("收藏失败");
-            }
-        });
-    }
-    function cancelFavorite() {
-        var data={
-            action:'cancelFavorite',
-            userID:'<?=$current_user->ID?>',
-            postID:'<?=$post_id?>'
-        };
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $admin_url;?>",
-            data: data,
-            success: function(){
-                layer.msg('已取消',{time:2000,icon:1});  //layer.msg(content, {options}, end) - 提示框
-                var html = "<a onclick=\"setCSS(1)\" class=\"btn btn-default\" id=\"btn-add-favorite\">"+
-                    "<span class=\"glyphicon glyphicon-star-empty\"></span>收藏"+"</a>";
-                $("#addFavorite").html(html);
-                //更改样式
-//                $("#btn-add-favorite").css({ "color":"#fe642d",
-//                    "background-color": "transparent",
-//                    "border-color": "#fe642d"});
-            },
-            error:function () {
-                alert("error");
-            }
-        });
-    }
-function like(like_flag){
-    var num = document.getElementById("like_count");
-    var background = document.getElementById("rate-button");
-    var like_button = document.getElementById("like");
-    var dislike = document.getElementById("dislike-button");
-    var dislike_character = document.getElementById("dislike");
-    var like_pic = document.getElementById("like_pic");
-    var dislike_pic = document.getElementById("dislike_pic");
-    
-    if(like_flag==0){
-        num.innerHTML = parseInt(num.innerHTML) + 1;
-        background.style.backgroundColor = "orange";
-        num.style.color = "white";
-        like_button.style.color = "white";
-        dislike.style.backgroundColor = "#F6F6F6";
-        dislike_character.style.color = "black";
-        like_pic.src = "<?php bloginfo('template_url') ?>/img/good-white.png";
-        dislike_pic.src = "<?php bloginfo('template_url') ?>/img/sad-black.png";
-    }
-    else{
-        dislike_pic.src = "<?php bloginfo('template_url') ?>/img/sad-white.png";
-        background.style.backgroundColor = "#F6F6F6";
-        num.style.color = "orange";
-        like_button.style.color = "orange";
-        dislike.style.backgroundColor = "#8a8a8a";
-        dislike_character.style.color = "white";
-        like_pic.src = "<?php bloginfo('template_url') ?>/img/good-orange.png";
-    }
-    
-}
-
-
-</script>
 <div class="container" style="margin-top: 10px;flex: 1 0 auto">
     <div class="row" style="width: 100%">
         <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
@@ -117,31 +31,31 @@ function like(like_flag){
                 </div>
                 <hr>
 
-<!--                <div class="like-area-wrapper" id="web_header_like_area">-->
+                <div class="like-area-wrapper" id="web_header_like_area">
                     <!-- 喜欢的 wrapper -->
-<!--                    <div class="count-like-wrapper rate-button" id="rate-button">-->
+                    <div class="count-like-wrapper rate-button" id="rate-button">
                         <!-- 计数的 block -->
-                       <!-- <div class="count-like-block web-count-like-block" id="count-button">
+                        <div class="count-like-block web-count-like-block" id="count-button">
                             <div class="like-block count-like-inner">
-                                <span class="count-like" id="like_count">0</span>
-                            </div>
-                        </div>-->
-                        <!-- 喜欢的 block -->
-                        <!--<div class="rate-like-block web-rate-like-block">
-                            <div class="like-block">
-                                <img class="rate-like-icon" src="<?php /*bloginfo("template_url") */?>/img/good-orange.png" id="like_pic"/>
-                                <span class="like-words" onclick="like(0)" id="like">学会了</span>
+                                <span class="count-like" id="like_count"><?= $num;?></span>
                             </div>
                         </div>
-                    </div>-->
-                    <!-- 一般般的 block -->
-                   <!-- <div class="rate-normal-block web-rate-normal-block rate-button" id="dislike-button">
-                        <div class="like-block" >
-                            <img class="rate-normal-icon" src="<?php /*bloginfo("template_url") */?>/img/sad-black.png" id="dislike_pic"/>
-                            <span class="dislike-words" onclick="like(1)" id="dislike">没学会</span>
+                        <!-- 喜欢的 block -->
+                        <div class="rate-like-block web-rate-like-block">
+                            <div class="like-block">
+                                <img class="rate-like-icon" src="<?php bloginfo("template_url") ?>/img/good-orange.png" id="like_pic"/>
+                                <span class="like-words"  id="like">学会了</span>
+                            </div>
                         </div>
                     </div>
-                </div>-->
+                    <!-- 一般般的 block -->
+                    <div class="rate-normal-block web-rate-normal-block rate-button" id="dislike-button">
+                        <div class="like-block" >
+                            <img class="rate-normal-icon" src="<?php bloginfo("template_url") ?>/img/sad-black.png" id="dislike_pic"/>
+                            <span class="dislike-words"  id="dislike">没学会</span>
+                        </div>
+                    </div>
+                </div>
             
 
                 <?php comments_template(); ?>
@@ -210,6 +124,40 @@ $_SESSION['wiki_tags'] = $wiki_tags;
 <?php get_footer(); ?>
 <script>
     $(function () { $("[data-toggle='tooltip']").tooltip({}); });
+    $(function () {
+        var num = document.getElementById("like_count");
+        var background = document.getElementById("rate-button");
+        var like_button = document.getElementById("like");
+        var like_span = $("#like");
+        var dislike = document.getElementById("dislike-button");
+        var dislike_character = document.getElementById("dislike");
+        var dislike_span = $("#dislike");
+        var like_pic = document.getElementById("like_pic");
+        var dislike_pic = document.getElementById("dislike_pic");
+        var learned = <?=$hasLearn?>;
+        switch (learned){
+            case 0:
+                background.style.backgroundColor = "orange";
+                num.style.color = "white";
+                like_button.style.color = "white";
+                like_pic.src = "<?php bloginfo('template_url') ?>/img/good-white.png";
+                dislike_span.attr("onclick","like(1);");
+                background.style.cursor = "default";
+                break;
+            case 1:
+                dislike.style.backgroundColor = "#8a8a8a";
+                dislike_character.style.color = "white";
+                dislike_pic.src = "<?php bloginfo('template_url') ?>/img/sad-white.png";
+                like_span.attr("onclick","like(0);");
+                dislike.style.cursor = "default";
+                break;
+            case 2:
+                like_span.attr("onclick","like(0);");
+                dislike_span.attr("onclick","like(1);");
+                break;
+        }
+
+    });
     function addLayer() {
         layer.open({
             type : 2,
@@ -224,4 +172,128 @@ $_SESSION['wiki_tags'] = $wiki_tags;
             }
         });
     }
+    function setCSS(flag) {
+        if(flag == 1){  //未收藏
+            addFavorite();
+        }else{
+            cancelFavorite(flag);
+        }
+    }
+    function addFavorite() {
+        var data={
+            action:'addFavorite',
+            userID:'<?=$current_user->ID?>',
+            postID:'<?=$post_id?>'
+        };
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $admin_url;?>",
+            data: data,
+            success: function(){
+                layer.msg('收藏成功',{time:2000,icon:1});  //layer.msg(content, {options}, end) - 提示框
+                var html = "<a onclick=\"setCSS(0)\" class=\"btn btn-default\" id=\"btn-add-favorite\">"+
+                    "<span class=\"glyphicon glyphicon-star\"></span>已收藏"+"</a>";
+                $("#addFavorite").html(html);
+//                $("#btn-add-favorite").css({"color":"white",
+//                    "background-color": "#fe642d",
+//                    "border-color": "transparent"});
+            },
+            error:function () {
+                alert("收藏失败");
+            }
+        });
+    }
+    function cancelFavorite() {
+        var data={
+            action:'cancelFavorite',
+            userID:'<?=$current_user->ID?>',
+            postID:'<?=$post_id?>'
+        };
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $admin_url;?>",
+            data: data,
+            success: function(){
+                layer.msg('已取消',{time:2000,icon:1});  //layer.msg(content, {options}, end) - 提示框
+                var html = "<a onclick=\"setCSS(1)\" class=\"btn btn-default\" id=\"btn-add-favorite\">"+
+                    "<span class=\"glyphicon glyphicon-star-empty\"></span>收藏"+"</a>";
+                $("#addFavorite").html(html);
+                //更改样式
+//                $("#btn-add-favorite").css({ "color":"#fe642d",
+//                    "background-color": "transparent",
+//                    "border-color": "#fe642d"});
+            },
+            error:function () {
+                alert("error");
+            }
+        });
+    }
+    function like(like_flag){
+        var num = document.getElementById("like_count");
+        var background = document.getElementById("rate-button");
+        var like_button = document.getElementById("like");
+        var dislike = document.getElementById("dislike-button");
+        var dislike_character = document.getElementById("dislike");
+        var like_pic = document.getElementById("like_pic");
+        var dislike_pic = document.getElementById("dislike_pic");
+        var data={
+            action:'addLearn',
+            user_id:'<?=$user_id?>',
+            post_id:'<?=$post_id?>',
+            learned:like_flag
+        };
+        if(like_flag==0){
+            $.ajax({
+                type: "POST",
+                url: "<?php echo $admin_url;?>",
+                data: data,
+                success: function(res){
+                    console.log(res);
+                    num.innerHTML = parseInt(num.innerHTML) + 1;
+                    background.style.backgroundColor = "orange";
+                    num.style.color = "white";
+                    like_button.style.color = "white";
+                    dislike.style.backgroundColor = "#F6F6F6";
+                    dislike_character.style.color = "black";
+                    like_pic.src = "<?php bloginfo('template_url') ?>/img/good-white.png";
+                    dislike_pic.src = "<?php bloginfo('template_url') ?>/img/sad-black.png";
+                    $("#like").removeAttr('onclick');
+                    $("#dislike").attr("onclick","like(1);");
+                    background.style.cursor = "default";
+                    dislike.style.cursor = "pointer";
+                },
+                error:function () {
+                    layer.msg('选择失败，请重试',{time:2000,icon:1});
+                }
+            });
+        }
+        else{
+            $.ajax({
+                type: "POST",
+                url: "<?php echo $admin_url;?>",
+                data: data,
+                success: function(){
+                    if(background.style.backgroundColor == "orange"){
+                        num.innerHTML = parseInt(num.innerHTML) - 1;
+                    }
+                    dislike_pic.src = "<?php bloginfo('template_url') ?>/img/sad-white.png";
+                    background.style.backgroundColor = "#F6F6F6";
+                    num.style.color = "orange";
+                    like_button.style.color = "orange";
+                    dislike.style.backgroundColor = "#8a8a8a";
+                    dislike_character.style.color = "white";
+                    like_pic.src = "<?php bloginfo('template_url') ?>/img/good-orange.png";
+                    $("#dislike").removeAttr('onclick');
+                    $("#like").attr("onclick","like(0);");
+                    dislike.style.cursor = "default";
+                    background.style.cursor = "pointer";
+                },
+                error:function () {
+                    layer.msg('选择失败，请重试',{time:2000,icon:1});
+                }
+            });
+        }
+
+    }
+
 </script>
