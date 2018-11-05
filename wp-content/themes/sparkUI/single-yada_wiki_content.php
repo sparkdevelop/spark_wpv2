@@ -71,20 +71,20 @@ function like(like_flag){
         num.innerHTML = parseInt(num.innerHTML) + 1;
         background.style.backgroundColor = "orange";
         num.style.color = "white";
-        like_button.style.color = "white"
+        like_button.style.color = "white";
         dislike.style.backgroundColor = "#F6F6F6";
         dislike_character.style.color = "black";
-        like_pic.src = "http://localhost/spark_wpv2/wp-content/themes/sparkUI/img/good-white.png";
-        dislike_pic.src = "http://localhost/spark_wpv2/wp-content/themes/sparkUI/img/sad-black.png";
+        like_pic.src = "<?php bloginfo('template_url') ?>/img/good-white.png";
+        dislike_pic.src = "<?php bloginfo('template_url') ?>/img/sad-black.png";
     }
     else{
-        dislike_pic.src = "http://localhost/spark_wpv2/wp-content/themes/sparkUI/img/sad-white.png";
+        dislike_pic.src = "<?php bloginfo('template_url') ?>/img/sad-white.png";
         background.style.backgroundColor = "#F6F6F6";
         num.style.color = "orange";
-        like_button.style.color = "orange"
+        like_button.style.color = "orange";
         dislike.style.backgroundColor = "#8a8a8a";
         dislike_character.style.color = "white";
-        like_pic.src = "http://localhost/spark_wpv2/wp-content/themes/sparkUI/img/good-orange.png";
+        like_pic.src = "<?php bloginfo('template_url') ?>/img/good-orange.png";
     }
     
 }
@@ -117,31 +117,31 @@ function like(like_flag){
                 </div>
                 <hr>
 
-                <div class="like-area-wrapper" id="web_header_like_area">
+<!--                <div class="like-area-wrapper" id="web_header_like_area">-->
                     <!-- 喜欢的 wrapper -->
-                    <div class="count-like-wrapper rate-button" id="rate-button">
+<!--                    <div class="count-like-wrapper rate-button" id="rate-button">-->
                         <!-- 计数的 block -->
-                        <div class="count-like-block web-count-like-block" id="count-button">
+                       <!-- <div class="count-like-block web-count-like-block" id="count-button">
                             <div class="like-block count-like-inner">
                                 <span class="count-like" id="like_count">0</span>
                             </div>
-                        </div>
+                        </div>-->
                         <!-- 喜欢的 block -->
-                        <div class="rate-like-block web-rate-like-block">
+                        <!--<div class="rate-like-block web-rate-like-block">
                             <div class="like-block">
-                                <img class="rate-like-icon" src="http://localhost/spark_wpv2/wp-content/themes/sparkUI/img/good-orange.png") id="like_pic"></img>
+                                <img class="rate-like-icon" src="<?php /*bloginfo("template_url") */?>/img/good-orange.png" id="like_pic"/>
                                 <span class="like-words" onclick="like(0)" id="like">学会了</span>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <!-- 一般般的 block -->
-                    <div class="rate-normal-block web-rate-normal-block rate-button" id="dislike-button">
+                   <!-- <div class="rate-normal-block web-rate-normal-block rate-button" id="dislike-button">
                         <div class="like-block" >
-                            <img class="rate-normal-icon" src="http://localhost/spark_wpv2/wp-content/themes/sparkUI/img/sad-black.png" id="dislike_pic"></img>
+                            <img class="rate-normal-icon" src="<?php /*bloginfo("template_url") */?>/img/sad-black.png" id="dislike_pic"/>
                             <span class="dislike-words" onclick="like(1)" id="dislike">没学会</span>
                         </div>
                     </div>
-                </div>
+                </div>-->
             
 
                 <?php comments_template(); ?>
