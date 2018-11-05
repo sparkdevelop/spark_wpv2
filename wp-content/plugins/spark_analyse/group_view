@@ -1,34 +1,23 @@
 <?php
 require_once('group_analyse.php');
-add_action('wp_ajax_emotion_action', 'emotion_ajax');
-function emotion_ajax()
+add_action('wp_ajax_group_action', 'user_low_ajax');
+function user_low_ajax()
 {
     $team = isset($_POST['group_number']) ? $_POST['group_number'] : null;
-    $time_score = get_method($team);
-//    $time0 = $time_score[0];
-//    $score0 = $time_score[1];
-//    $time1 = $time_score[2];
-//    $score1 = $time_score[3];
-//    if (is_array($time1)) {
-//    $time1 = implode(",", $time1);
-//    $score1 = implode(",", $score1);
-//    }
-//    else {
-//        $time1 = $time1 . ",";
-//        $score1 = $score1 . ",";
-//    }
-//    if (is_array($time0)) {
-//        $time0 = implode(",", $time0);
-//        $score0 = implode(",", $score0);
-//    }
-//    else {
-//        $time0 = $time0 . ",";
-//        $score0 = $score0 . ",";
-//    }
-//    $result="$time0 a $score0 a $time1 a $score1";
-//    $arr=array(1,2,3,4);
-    $str=json_encode($time_score);
-    echo $str;
+    $user_low=group_low($team);
+    $his=group_his($team);
+    $user_low=json_encode($user_low,JSON_UNESCAPED_UNICODE);
+    $teamtotal=$his[0];
+    $histotal=$his[1];
+    $history_user0=$his[2];
+    $history_user1=$his[3];
+    $history_user2=$his[4];
+    $history_user3=$his[5];
+    $user0=json_encode($his[6],JSON_UNESCAPED_UNICODE);
+    $user1=json_encode($his[7],JSON_UNESCAPED_UNICODE);
+    $user2=json_encode($his[8],JSON_UNESCAPED_UNICODE);
+    $user3=json_encode($his[9],JSON_UNESCAPED_UNICODE);
+    echo "$user_low $teamtotal $histotal $history_user0 $history_user1 $history_user2 $history_user3 $user0 $user1 $user2 $user3";
     die();
 }
 function spark_settings_submenu_page4(){
@@ -52,35 +41,68 @@ function spark_settings_submenu_page4(){
 </head>
 
 <body style=" background-color: #f1f2f7; ">
-<label for="id">请输入小组id：</label><input id="group_number" name="group_number" type="text" /><button id="button_group">查询</button><label id="emotion_buff"></label>
+<p style="font-size: 28px;    margin: 8px;">小组统计</p>
+<p style="font-size: 18px;    margin: 8px;">目前成绩较差的小组共有：<?php $c=group_bad();     $c=array_count_values($c);echo $a=count($c); ?></p>
+<p style="font-size: 18px;    margin: 8px;">分布最多的班级是：
+    <?php $c=group_bad(); $value=array_values($c);
+           $c=count($value);$m=0;
+          while($c>0){
+              $class1=explode("-",$value[$m]);
+              $class[$m]=$class1[0];
+              $m++;$c--;
+          }
+           $class=array_count_values($class);
+           arsort($class);
+           $key=array_keys($class);
+           echo $key[0]."班 ";echo $key[1]."班 ";echo $key[2]."班 ";
+          ?></p>
+<p style="font-size: 18px;    margin: 8px;">其中小组内有四人平均成绩低于4分的有：
+    <?php $group=group_analysis(); $key=array_keys($group);$value=array_values($group);
+    $c=count($group);$m=0;
+    while($c>0){
+        if($value[$m]==4)
+            echo $key[$m].'组'.'     ';
+        $m++;
+        $c--;
+    }
+?></p>
+<p style="font-size: 18px;    margin: 8px;">其中小组内有三人平均成绩低于4分的有：
+    <?php $group=group_analysis(); $key=array_keys($group);$value=array_values($group);
+    $c=count($group);$m=0;
+    while($c>0){
+        if($value[$m]==3)
+            echo $key[$m].'组'.'     ';
+        $m++;
+        $c--;
+    }
+    ?></p>
+<p style="font-size: 18px;    margin: 8px;">其中小组内有二人平均成绩低于4分的有：
+    <?php $group=group_analysis(); $key=array_keys($group);$value=array_values($group);
+    $c=count($group);$m=0;
+    while($c>0){
+        if($value[$m]==2)
+            echo $key[$m].'组'.'     ';
+        $m++;
+        $c--;
+    }
+    ?></p>
+<p style="font-size: 18px;    margin: 8px;">其中小组内有一人平均成绩低于4分的有：
+    <?php $group=group_analysis(); $key=array_keys($group);$value=array_values($group);
+    $c=count($group);$m=0;
+    while($c>0){
+        if($value[$m]==1)
+            echo $key[$m].'组'.'     ';
+        $m++;
+        $c--;
+    }
+    ?></p>
+<label for="id">详细查看，请仿照"06-3"输入小组id：</label><input id="group_number" name="group_number" type="text" /><button id="group_buff">查询</button><label id="group_buff"></label>
+<div id="group_Info"></div>
+<div id="is_user_low"></div>    <div id="user_low"></div>
 <div class="container">
-    <p style="font-size: 18px;    margin: 8px;">情感分析</p>
-    <div class="row">
+    <div id="container_team"></div>
 
-            <div id="container_emotion1" style="min-width:400px;height:400px"></div>
 
-    </div>
-    <div class="row">
-
-        <div id="container_emotion2" style="min-width:400px;height:400px"></div>
-
-    </div>
-    <div class="row">
-
-        <div id="container_emotion3" style="min-width:400px;height:400px"></div>
-
-    </div>
-
-    <div class="row">
-
-        <div id="container_emotion4" style="min-width:400px;height:400px"></div>
-
-    </div>
-    <div class="row">
-
-        <div id="container_emotion5" style="min-width:400px;height:400px"></div>
-
-    </div>
 
 </div>
 
