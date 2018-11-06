@@ -6789,6 +6789,75 @@ function apply_role_daolunke(){
 
 add_action('wp_ajax_apply_role_daolunke', 'apply_role_daolunke');
 add_action('wp_ajax_nopriv_apply_role_daolunke', 'apply_role_daolunke');
+
+function get_student_goal(){
+    global $wpdb;
+    $sql = "select stu_number,name,category1,category2 from student_goal";
+    $res = $wpdb->get_results($sql);
+    return $res;
+}
+
+//获取相关专利
+function RelatedPatents($post_id){
+    global $wpdb;
+    $sql = "select patent_title,patent_url from wp_post_keywords where post_id =$post_id";
+    $res = $wpdb->get_results($sql);
+    return $res;
+}
+
+//获取相关论文
+function RelatedPapers($post_id){
+    global $wpdb;
+    $sql = "select paper_title,paper_url from wp_post_keywords where post_id =$post_id";
+    $res = $wpdb->get_results($sql);
+    return $res;
+}
+
+//判断用户是否已经选择是否学会了
+function hasLearn($user_id, $post_id)
+{
+    global $wpdb;
+    $sql = "SELECT * FROM wp_learn WHERE user_id=$user_id AND post_id = $post_id";
+    $res = $wpdb->get_results($sql);
+    if ($res) { //选择过
+      return $res[0]->learned ;
+    } else {
+        return "2";
+    }
+}
+
+function learned_num($post_id){
+    global $wpdb;
+    $sql = "SELECT COUNT(*) as num FROM wp_learn WHERE post_id = $post_id and learned =0";
+    $res = $wpdb->get_results($sql);
+    return $res[0]->num;
+}
+
+function addLearn(){
+    global $wpdb;
+    $user_id = isset($_POST["user_id"]) ? $_POST["user_id"] : '';
+    $post_id = isset($_POST["post_id"]) ? $_POST["post_id"] : '';
+    $learned = isset($_POST["learned"]) ? $_POST["learned"] : '';
+    $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+    if($user_id && $post_id){
+        $sql_check = "SELECT * FROM wp_learn WHERE user_id=$user_id AND post_id = $post_id";
+        $col = $wpdb->query($sql_check);
+        if($col==0){
+            $sql_insert = "INSERT INTO wp_learn VALUES ('',$user_id,$post_id,$learned,'$current_time')";
+            $res = $wpdb->get_results($sql_insert);
+        }else{
+            $sql_update ="UPDATE wp_learn SET learned = $learned,learn_time='$current_time' WHERE user_id=$user_id and post_id=$post_id";
+            $res = $wpdb->get_results($sql_update);
+        }
+        echo "success";
+    }else{
+        echo $user_id.$post_id.$learned;
+    }
+    die();
+}
+
+add_action('wp_ajax_addLearn', 'addLearn');
+add_action('wp_ajax_nopriv_addLearn', 'addLearn');
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;
