@@ -105,8 +105,10 @@ if (!$_GET['paged']) {
                     <style>
                         #message-li-<?=$i?> {
                             background-color: #fafbe9;
-                            margin-top: 11px;
                             padding-bottom: 0px;
+                        }
+                        #message-li-0 {    
+                            margin-top: 11px;
                         }
                     </style>
                 <?php }
@@ -114,8 +116,10 @@ if (!$_GET['paged']) {
                     <style>
                         #message-li-<?=$i?> {
                             background-color: transparent;
-                            margin-top: 11px;
                             padding-bottom: 0px;
+                        }
+                        #message-li-0 {    
+                            margin-top: 11px;
                         }
                     </style>
                 <?php }

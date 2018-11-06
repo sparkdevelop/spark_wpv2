@@ -19,4 +19,4 @@ $id= get_current_user_id();
 $do=$wpdb->insert( 'chain_log', array('url'=>$url, 'time' => $time,'user_id' => $id,'page' => $page ) );
 
 
-header("location: http://$url");
+header("location: $url");

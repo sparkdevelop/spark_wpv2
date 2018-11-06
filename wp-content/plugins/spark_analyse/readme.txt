@@ -1,7 +1,7 @@
-fenciÎÄ¼þ¼ÐÊÇÓÃÀ´Ö´ÐÐ·Ö´Ê³ÌÐòµÄ£¬½«»áÔÚmodel_drawing.phpÀï±»µ÷ÓÃ¡£
-model_drawing.phpÊÇÓÃÀ´ÊµÏÖ·Ö´ÊµÄ£¬Ô¤¼ÆÔÚËã·¨¸ïÐÂºó»á±»µ÷ÓÃ£¬ÔÝÊ±¸éÖÃ¡£
-spark analyseÊÇÖ÷³ÌÐò£¬ÊµÏÖ´´½¨²Ëµ¥µÄ×÷ÓÃ¡£
-²Ëµ¥·ÖÎªÁ½²¿·Ö£¬Ò»²¿·ÖÃûÎªÊý¾Ý·ÖÎö£¬ÊÇÓÃÀ´¼ÇÂ¼ËùÒª²éÑ¯ÓÃ»§µÄÓÃ»§Ãû£¬
-ÁíÒ»²¿·ÖÃûÎª£º²é¿´ÓÃ»§»­Ïñ£¬ÊÇÓÃÀ´½«ÓÃ»§»­Ïñ¿ÉÊÓ»¯¡£
-analyseview.php£ºÓÃ»§»­Ïñ¿ÉÊÓ»¯µÄ¾ßÌå´úÂë
-timechart:µ÷ÓÃÊý¾Ý¿â³ÌÐò£¬ÎªanalyseviewÌá¹©Êý¾Ý²ÎÊý¡£
+fenciï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ð·Ö´Ê³ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½model_drawing.phpï¿½ï±»ï¿½ï¿½ï¿½Ã¡ï¿½
+model_drawing.phpï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½Ö·Ö´ÊµÄ£ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ã·¨ï¿½ï¿½ï¿½Âºï¿½á±»ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã¡ï¿½
+spark analyseï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½Ö´ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¡ï¿½
+ï¿½Ëµï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½Ö£ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Ý·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Òªï¿½ï¿½Ñ¯ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½é¿´ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó»ï¿½ï¿½ï¿½
+analyseview.phpï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó»ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+timechart:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½Îªanalyseviewï¿½á¹©ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½ï¿½ï¿½

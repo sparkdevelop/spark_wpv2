@@ -11,7 +11,7 @@
     var $ = utils.$;
     var terminal;
     var supportNot = false;//页面是否支持notification
-    var ajax_url = "http://localhost/wordpress/wp-admin/admin-ajax.php";
+    var ajax_url = "https://www.oursparkspace.cn/wp-admin/admin-ajax.php";
 
     //加载模板
     var getTemplates = function (callback) {
@@ -122,12 +122,12 @@
             // 发送消息成功
             onSuccess: function (message) {
                 //message 为发送的消息对象并且包含服务器返回的消息唯一Id和发送消息时间戳
-                console.log("Send successfully");
+                //console.log("Send successfully");
                 callback && callback();
                 if (!callback) {
                     updateConversationList();
                     updateMessage(message);
-                    console.log(message);
+                    //console.log(message);
                 }
             },
             onError: function (errorCode, message) {
@@ -689,12 +689,12 @@
             var config = {
                 navi: navi
             };
-            console.log("私有云");
+            //console.log("私有云");
             console.log(params);
             RongIMLib.RongIMClient.init(appKey, null, config);
         } else {
             //公有云
-            console.log("公有云");
+           // console.log("公有云");
             console.log(params);
             RongIMLib.RongIMClient.init(appKey);
         }
@@ -704,7 +704,7 @@
         // 连接状态监听器
         RongIMClient.setConnectionStatusListener({
             onChanged: function (status) {
-                console.log(status);
+               // console.log(status);
                 var connectDom = $('.rcs-connect-status')[0];
                 if (connectDom) {
                     connectDom.style.display = 'block';
@@ -745,7 +745,7 @@
             // 接收到的消息
             onReceived: function (message) {
                 // 判断消息类型
-                console.log("新消息: " + message.targetId);
+               // console.log("新消息: " + message.targetId);
                 if (message.offLineMessage) {
                     return;
                 }
@@ -764,10 +764,10 @@
         RongIMClient.connect(token, {
             onSuccess: function (userId) {
                 callbacks.getCurrentUser && callbacks.getCurrentUser(userId);
-                console.log("链接成功，用户id：" + userId);
+               // console.log("链接成功，用户id：" + userId);
             },
             onTokenIncorrect: function () {
-                console.log('token无效');
+              //  console.log('token无效');
             },
             onError: function (errorCode) {
                 console.log("=============================================");

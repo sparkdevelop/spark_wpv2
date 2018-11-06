@@ -40,9 +40,16 @@ if ($school!=''){
         //更新meta
         $sql = "UPDATE $wpdb->usermeta SET meta_value =$school WHERE meta_key='University' AND user_id =$current_user->ID";
         $wpdb->get_results($sql);
-        //更新角色
-        $sql_ur = "UPDATE wp_rbac_ur SET role_id=$role_id,modified_time ='$modified_time' WHERE user_id = $current_user->ID and role_id = $old_role_id";
-        $wpdb->get_results($sql_ur);
+        //判断是否已拥有角色
+        $ur_had = $wpdb->get_results("SELECT * from  wp_rbac_ur WHERE user_id = $current_user->ID and role_id = $old_role_id");
+        if($ur_had){
+            //更新角色
+            $sql_ur = "UPDATE wp_rbac_ur SET role_id=$role_id,modified_time ='$modified_time' WHERE user_id = $current_user->ID and role_id = $old_role_id";
+            $res_ur = $wpdb->get_results($sql_ur);  
+        }else{
+            $sql_ur = "INSERT INTO wp_rbac_ur VALUES ('',$current_user->ID,$role_id,$current_user->ID,'$modified_time')";
+            $wpdb->get_results($sql_ur);
+        }
     }else{
         $sql = "INSERT INTO $wpdb->usermeta VALUES ('',$current_user->ID,'University','$school')";
         $wpdb->get_results($sql);
