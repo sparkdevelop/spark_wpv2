@@ -445,6 +445,136 @@
                             }
                         });
                     }
+                },
+                {
+                    text: '项目旅程记录模版',
+                    onclick: function () {
+                        editor.windowManager.open({
+                            title: '项目旅程记录模版',
+                            width: 400, //    对话框宽度
+                            height: 350, //    对话框高度
+                            body:[
+                                {
+                                    type   : 'container',
+                                    name   : '项目旅程记录模版',
+                                    html  : '<p style="font-size:15px;">项目目标<br/><br/>小组分工计划<br/><br/>本周进度<br/><br/>小组讨论情况<br/><br/>存在问题/解决方案<br/><br/>本周项目经验总结<br/><br/>项目旅程记录提交方式<br/><br/><p>'
+                                }
+                            ],
+
+                            onsubmit: function () {
+                                editor.insertContent(
+                                    '<h2>项目旅程记录模版</h2>' +
+                                    '<h2><strong>一、项目目标</strong></h2>' +
+                                    '<span style="color: #ff0000;">项目灵感来源，项目的应用领域，解决的问题</span>' +
+                                    '&nbsp;' +
+                                    '<h2>二、小组分工计划</h2>'+
+                                    '<p><span style="color: #ff0000;">每名组员计划负责内容，</span>比如：</p>'+
+                                    '<p>张三：xxxxxx</p>'+
+                                    '<p>李四：xxxxxx</p>'+
+                                    '&nbsp;'+
+                                    '<h2><strong>三、本周进度</strong></h2>' +
+                                    '<p><span style="color: #ff0000;">完成内容占最终目标的百分比及是否达到预期；</span></p>'+
+                                    '<p><span style="color: #ff0000;">实际个人贡献（<span style="font-size: 14pt;"><em><u>数字1-5</u></em></span>对应贡献程度，贡献越多数字越大）。</span></p>'+
+                                    '<p>比如：'+
+                                    '<p><span style="font-size: 14pt;"><strong>2018/11/1</strong></span></p>' +
+                                    '<p>本周完成内容占最终完成目标30%，完成本周目标/未完成本周目标；</p>'+
+                                    '<p>张三实际贡献：完成某个页面，<span style="color: #0000ff;"><strong>贡献度为3</strong></span></p>'+
+                                    '<p>李四实际贡献：xxxxx</p>'+
+                                    '&nbsp;'+
+                                    '<p><span style="font-size: 14pt;"><strong>2018/11/8</strong></span></p>'+
+                                    '<p>本周完成内容占最终完成目标50%，完成本周目标/未完成本周目标；</p>'+
+                                    '<p>张三实际贡献：xxxxx</p>'+
+                                    '<p>李四实际贡献：xxxxx</p>'+
+                                    '<p>…</p>'+
+                                    '<h2><strong>四、参考资料</strong></h2>'+
+                                    '<p><span style="color: #ff0000;">完成项目时，参考了哪些学习资料（标题+链接+学习内容），<strong><em><span style="font-size: 14pt;"><u>每个人</u></span></em></strong>均需写出自己的</span>。比如：</p>'+
+                                    '&nbsp;'+
+                                    '<p><span style="font-size: 14pt;"><strong>2018/11/1</strong></span></p>'+
+                                    '<p>张三：参考了火花空间上的xxx，链接，学习了点击按钮变色，并成功运用到自己的项目中…</p>'+
+                                    '<p>李四：xxx</p>'+
+                                    '&nbsp;'+
+                                    '<p><span style="font-size: 14pt;"><strong>2018/11/8</strong></span></p>'+
+                                    '<p>张三：xxx</p>'+
+                                    '<p>…</p>'+
+                                    '<h2>五、小组讨论情况</h2>'+
+                                    '<p><span style="color: #ff0000;">讨论方式（线上/线下），讨论内容，参与人数，每次讨论时长</span>。比如：</p>'+
+                                    '<p><span style="font-size: 14pt;"><strong>2018/11/1</strong></span></p>'+
+                                    '<p>通过线上qq群，讨论了xxxxx，得出xxx结论，实际参与人数x人，讨论时长一小时；</p>'+
+                                    '&nbsp;'+
+                                    '<p><span style="font-size: 14pt;"><strong>2018/11/8</strong></span></p>'+
+                                    '<p>通过线下在教室面对面交流，讨论了xxxxx，得出xxx结论，实际参与人数x人，讨论时长两小时；</p>'+
+                                    '&nbsp;'+
+                                    '<h2>六、存在问题/解决方案</h2>'+
+                                    '<p><span style="color: #ff0000;"><strong><em><span style="font-size: 14pt;"><u>每名组员</u></span></em></strong>写出自己遇到的问题以及是如何解决的</span>，比如：</p>'+
+                                    '<p><span style="font-size: 14pt;"><strong>2018/11/2</strong></span></p>'+
+                                    '<p>张三：</p>'+
+                                    '<p>问题一：</p>'+
+                                    '<p>解决方案一：</p>'+
+                                    '<p>问题二：</p>'+
+                                    '<p>解决方案二：</p>'+
+                                    '&nbsp;'+
+                                    '<p>李四：</p>'+
+                                    '<p>问题一：</p>'+
+                                    '<p>解决方案一：</p>'+
+                                    '<p><span style="font-size: 14pt;"><strong>2018/11/8</strong></span></p>'+
+                                    '<p>张三：</p>'+
+                                    '<p>问题三：</p>'+
+                                    '<p>解决方案三：</p>'+
+                                    '&nbsp;'+
+                                    '<p>李四：</p>'+
+                                    '<p>问题二：</p>'+
+                                    '<p>解决方案二：</p>'+
+                                    '<p>…</p>'+
+                                    '<h2>七、对应代码</h2></p>'+
+                                    '<p><span style="color: #ff0000;">需要<strong><em><span style="font-size: 14pt;"><u>每名组员</u></span></em></strong>将自己完成的代码张贴过来，若不是代码，也需将自己的完成内容展示出来</span>。比如：</p>'+
+                                    '<p><span style="font-size: 14pt;"><strong>2018/11/8</strong></span></p>'+
+                                    '<p>张三：xxxx</p>'+
+                                    '<p>李四：xxxx</p>'+
+                                    '&nbsp;'+
+                                    '<p><span style="font-size: 14pt;"><strong>2018/11/16</strong></span></p>'+
+                                    '<p>张三：xxxx</p>'+
+                                    '<p>李四：xxxx</p>'+
+                                    '<h2>八、本周项目经验总结</h2>'+
+                                    '<p><span style="color: #ff0000;">本周反思（技术上的，团队合作上的…），下周计划等，除了小组整体的情况，<strong><em><span style="font-size: 14pt;"><u>每名组员</u></span></em></strong>均需填写自己的体会。</span>比如：</p>'+
+                                    '<p>本周，我们组整体怎么怎么样，其中：</p>'+
+                                    '<p>张三：…</p>'+
+                                    '<p>李四：…</p>'+
+                                    '&nbsp;'+
+                                    '<hr/>'+
+                                    '<h2>项目旅程记录提交方式</h2></p>'+
+                                    '<p><strong>Step 1.</strong> 打开火花空间wiki页面，点击右侧“创建wiki”</p>'+
+                                    '<img class="alignnone size-medium wp-image-60267" src="https://www.oursparkspace.cn/wp-content/uploads/2018/11/图片-1-800x379.png" alt="" width="800" height="379" />'+
+                                    '<p><strong>Step 2.</strong> 将新创建的词条标题写为“组号 项目名称 项目旅程记录”（项目名称须与之前的项目词条标题一致）</p>'+
+                                    '<p><strong>Step 3.</strong> 按照<span style="color: #ff0000;"><strong>给定模版（项目旅程记录模版）</strong></span>编写该词条，即项目旅程记录。</p>'+
+                                    '<p><strong>Step 4.</strong> 点击“发布wiki”</p>'+
+                                    '<p><strong>Step 5.</strong> “本周进度”“本周项目总结”周三之前更新一次即可，其余几点需要<span style="color: #ff0000; font-size: 14pt;"><strong>每名组员随时更新</strong></span>自己的内容，“项目目标”“小组计划分工”可以不变，<span style="color: #ff0000; font-size: 18pt;"><strong>注意：所有更新均需<u>注明日期（如</u></strong><strong><u>2018/11/1</u></strong><strong><u>）</u></strong></span>。比如（更多详细内容见“项目旅程记录模版”）：</p>'+
+                                    '<p>X组 xxxxx项目 项目旅程记录</p>'+
+                                    '<p>一、项目目标</p>'+
+                                    '<p>二、小组计划分工</p>'+
+                                    '<p>三、本周进度</p>'+
+                                    '<p><span style="color: #0000ff;">四、参考资料</span></p>'+
+                                    '<p><span style="color: #0000ff;"><strong>2018/11/1</strong></span></p>'+
+                                    '<p><span style="color: #0000ff;">张三：xxx</span></p>'+
+                                    '<p><span style="color: #0000ff;">李四：xxx</span></p>'+
+                                    '<p><span style="color: #0000ff;">…</span></p>'+
+                                    '&nbsp;'+
+                                    '<p><span style="color: #0000ff;"><strong>2018/11/3</strong></span></p>'+
+                                    '<p><span style="color: #0000ff;">张三：xxx</span></p>'+
+                                    '<p><span style="color: #0000ff;">李四：xxx</span></p>'+
+                                    '<p><span style="color: #0000ff;">…</span></p>'+
+                                    '<p>五、讨论情况</p>'+
+                                    '<p>六、存在问题/解决方案</p>'+
+                                    '<p>七、对应代码</p>'+
+                                    '<p>八、本周项目经验总结</p>'+
+                                    '&nbsp;'+
+                                    '<p>wiki的更新通过在Step 1-4 中创建的wiki上进行编辑（点击下图中右侧的“编辑wiki”按钮）</p>'+
+                                    '<img class="alignnone size-medium wp-image-60268" src="https://www.oursparkspace.cn/wp-content/uploads/2018/11/图片-2-800x379.png" alt="" width="800" height="379" />'+
+                                    '&nbsp;'+
+                                    '<p><span style="font-size: 14pt; color: #ff0000;"><strong>Tips: 因为我们非常看重各小组协作学习的情况，所以请各小组<span style="font-size: 18pt;"><em><u>每位同学</u></em></span>一定要<span style="font-size: 18pt;"><em><u>随时且及时</u></em></span>在wiki上更新保存自己的增量，不能全由一位同学代写！各小组对本组项目旅程记录wiki的编辑情况（编辑次数，内容等）将是评分很重要的一部分！！！！！</strong></span></p>'
+                                );
+                            }
+                        });
+                    }
                 }
             ]
         });
