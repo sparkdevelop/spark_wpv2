@@ -5,12 +5,12 @@
  * Date: 2018/10/10/010
  * Time: 10:29
  */
-ini_set("memory_limit","-1");
-set_time_limit(0);
+//ini_set("memory_limit","-1");
+//set_time_limit(0);
 global $wpdb;
-$total=$wpdb->get_var("select count(*) from `wp_user_history`");
-$begin=$total-200000;
-$user = $wpdb->get_results("SELECT `name`,`spark_id`,`stu_number` FROM `students` ");
+//$total=$wpdb->get_var("select count(*) from `wp_user_history`");
+//$begin=$total-200000;
+//$user = $wpdb->get_results("SELECT `name`,`spark_id`,`stu_number` FROM `students` ");
 $m=0;
 foreach ($user as $a) {
     $userid[$m] = $a->spark_id;
@@ -21,7 +21,7 @@ foreach ($user as $a) {
 
 $c=count($userid);
 //取两个数据表history 和 chain_log中的数据
-$user = $wpdb->get_results("SELECT user_id,ID,action_post_id FROM `wp_user_history` where ID>$begin");
+//$user = $wpdb->get_results("SELECT user_id,ID,action_post_id FROM `wp_user_history` where ID>$begin");
 $m=0;
 foreach ($user as $a) {
     $user_history_id[$m] = $a->user_id;
