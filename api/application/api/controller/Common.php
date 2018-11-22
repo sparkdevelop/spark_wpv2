@@ -26,6 +26,7 @@ class Common extends Controller
             'keywords' => array(
                 'token' => 'require',
                 'start_time' => 'require',
+                'end_time' => 'require',
             ),
         ),
     );
