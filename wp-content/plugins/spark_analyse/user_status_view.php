@@ -12,7 +12,7 @@
 //    $score=$time_score[1];
 //    get_method(35);
 //    $c=count($a);
-require_once('user_status.php');
+//require_once('user_status.php');
 function spark_settings_submenu_page5(){
 ?>
     <!DOCTYPE html>
