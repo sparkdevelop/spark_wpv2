@@ -4,7 +4,6 @@ class User extends Common {
     public function test(){
         $data = $this->params;
         $keywords = array();
-        $keywords = array_select($db_res);
         $test = "success";
         $db_res = db('wp_users')
             ->field('user_login')
