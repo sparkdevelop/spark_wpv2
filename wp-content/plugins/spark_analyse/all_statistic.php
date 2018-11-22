@@ -415,33 +415,36 @@ $team=team();
         <title>用户统计</title>
        <script>
            $(function () {
-               var text = "<?php lowtime()?>";
-               var data = text.split(" ")
-                   .reduce(function (arr, word) {
-                       var obj = arr.find(function (obj) {
-                           return obj.name === word;
-                       });
-                       if (obj) {
-                           obj.weight += 1;
-                       } else {
-                           obj = {
-                               name: word,
-                               weight: 1
-                           };
-                           arr.push(obj);
-                       }
-                       return arr;
-                   }, []);
-               var chart_low = new Highcharts.Chart('container_low', {
-                   series: [{
-                       type: 'wordcloud',
-                       data: data
-                   }],
-                   title: {
-                       text: '用户云图'
-                   }
-               });
+               //用户云图
+//               var text = "<?php //lowtime()?>//";
+//               var data = text.split(" ")
+//                   .reduce(function (arr, word) {
+//                       var obj = arr.find(function (obj) {
+//                           return obj.name === word;
+//                       });
+//                       if (obj) {
+//                           obj.weight += 1;
+//                       } else {
+//                           obj = {
+//                               name: word,
+//                               weight: 1
+//                           };
+//                           arr.push(obj);
+//                       }
+//                       return arr;
+//                   }, []);
+//               var chart_low = new Highcharts.Chart('container_low', {
+//                   series: [{
+//                       type: 'wordcloud',
+//                       data: data
+//                   }],
+//                   title: {
+//                       text: '用户云图'
+//                   }
+//               });
 
+
+                //学习进度
                $('#container_process').highcharts({
                    chart: {
                        type: 'bar'
@@ -531,32 +534,32 @@ $team=team();
                            data: [0,0,0,0,<?php echo $viewper[34]?>]
                        }]
                });
-               var text_que = "<?php team_question()?>";
-               var data_que = text_que.split(" ")
-                   .reduce(function (arr, word) {
-                       var obj_que = arr.find(function (obj) {
-                           return obj.name === word;
-                       });
-                       if (obj_que) {
-                           obj_que.weight += 1;
-                       } else {
-                           obj_que = {
-                               name: word,
-                               weight: 1
-                           };
-                           arr.push(obj_que);
-                       }
-                       return arr;
-                   }, []);
-               var chart_question = new Highcharts.Chart('container_question', {
-                   series: [{
-                       type: 'wordcloud',
-                       data: data_que
-                   }],
-                   title: {
-                       text: '小组云图'
-                   }
-               });
+//               var text_que = "<?php //team_question()?>//";
+//               var data_que = text_que.split(" ")
+//                   .reduce(function (arr, word) {
+//                       var obj_que = arr.find(function (obj) {
+//                           return obj.name === word;
+//                       });
+//                       if (obj_que) {
+//                           obj_que.weight += 1;
+//                       } else {
+//                           obj_que = {
+//                               name: word,
+//                               weight: 1
+//                           };
+//                           arr.push(obj_que);
+//                       }
+//                       return arr;
+//                   }, []);
+//               var chart_question = new Highcharts.Chart('container_question', {
+//                   series: [{
+//                       type: 'wordcloud',
+//                       data: data_que
+//                   }],
+//                   title: {
+//                       text: '小组云图'
+//                   }
+//               });
            })
        </script>
 
@@ -566,96 +569,7 @@ $team=team();
 
    <div class="container">
        <p style="font-size: 18px;    margin: 8px;">系统统计</p>
-       <div class="row">
-           <div class="col-md-6" style="background-color: white;width: 47%">
-               <p style="margin-top: 20px; margin-left: 10px;">全网活跃统计(有待开发)</p>
-               <table class="table ">
-                   <tr>
-                       <th>总计</th>
-<!--                       <th>浏览</th>-->
-                       <th>创建编辑</th>
-                       <th>提问</th>
-                       <th>回答</th>
-                   </tr>
-                   <tr>
-                       <td>第一名</td>
-<!--                       <td>--><?php //echo $vusername0?><!--</td>-->
-<!--                       <td>--><?php //echo $cusername0?><!--</td>-->
-<!--                       <td>--><?php //echo $qusername0?><!--</td>-->
-<!--                       <td>--><?php //echo $ausername0?><!--</td>-->
-                       <td>spark_admin</td>
-                       <td>spark_admin</td>
-                       <td>spark_admin</td>
-                   </tr>
-                   <tr>
-                       <td>第二名</td>
-<!--                       <td>--><?php //echo $vusername1?><!--</td>-->
-<!--                       <td>--><?php //echo $cusername1?><!--</td>-->
-<!--                       <td>--><?php //echo $qusername1?><!--</td>-->
-<!--                       <td>--><?php //echo $ausername1?><!--</td>-->
-                       <td>Test1</td>
-                       <td>Test1</td>
-                       <td>Test1</td>
-                   </tr>
-                   <tr>
-                       <td>第三名</td>
-<!--                       <td>--><?php //echo $vusername2?><!--</td>-->
-<!--                       <td>--><?php //echo $cusername2?><!--</td>-->
-<!--                       <td>--><?php //echo $qusername2?><!--</td>-->
-<!--                       <td>--><?php //echo $ausername2?><!--</td>-->
-                       <td>Cherie</td>
-                       <td>Cherie</td>
-                       <td>Cherie</td>
-                   </tr>
-               </table>
-               </div>
-           <div class="col-md-6" style="background-color: white;width: 47%">
-               <p style="margin-top: 20px; margin-left: 10px;">近期三天活跃统计(有待开发)</p>
-               <table class="table ">
-                   <tr>
-                       <th>总计</th>
-                       <th>浏览</th>
-                       <th>创建编辑</th>
-                       <th>提问</th>
-                       <th>回答</th>
-                   </tr>
-                   <tr>
-                       <td>第一名</td>
-<!--                       <td>--><?php //echo $vusername3?><!--</td>-->
-<!--                       <td>--><?php //echo $cusername3?><!--</td>-->
-<!--                       <td>--><?php //echo $qusername3?><!--</td>-->
-<!--                       <td>--><?php //echo $ausername3?><!--</td>-->
-                       <td>zyl</td>
-                       <td>zyl</td>
-                       <td>zyl</td>
-                       <td>zyl</td>
-                   </tr>
-                   <tr>
-                       <td>第二名</td>
-<!--                       <td>--><?php //echo $vusername4?><!--</td>-->
-<!--                       <td>--><?php //echo $cusername4?><!--</td>-->
-<!--                       <td>--><?php //echo $qusername4?><!--</td>-->
-<!--                       <td>--><?php //echo $ausername4?><!--</td>-->
-                       <td>YANSHUAI</td>
-                       <td>YANSHUAI</td>
-                       <td>YANSHUAI</td>
-                       <td>YANSHUAI</td>
-                   </tr>
-                   <tr>
-                       <td>第三名</td>
-<!--                       <td>--><?php //echo $vusername5?><!--</td>-->
-<!--                       <td>--><?php //echo $cusername5?><!--</td>-->
-<!--                       <td>--><?php //echo $qusername5?><!--</td>-->
-<!--                       <td>--><?php //echo $ausername5?><!--</td>-->
-                       <td>haoyi</td>
-                       <td>haoyi</td>
-                       <td>haoyi</td>
-                       <td>haoyi</td>
 
-                   </tr>
-               </table>
-           </div>
-           </div>
        <div class="row">
            <label for="start2">起始日期：</label><input id="start2" name="start2" type="date" />
            <label for="id">用户id：</label><input id="number" name="text" multiple="multiple"type="text" />
@@ -671,31 +585,27 @@ $team=team();
            <div id="container_view" style="min-width:400px;height:400px;"></div>
        </div>
        <div class="row">
-           <div class="col-md-6" style="background-color: white;width: 47%">
-           <p>成长性用户</p>
-               <div id="container_low"></div>
-           </div>
-           <div class="col-md-6" style="background-color: white;width: 47%">
+
                <p>学习进度</p>
                <div id="container_process"></div>
-           </div>
+
        </div>
-       <div class="row" style="    margin-top: 15px;">
-           <div class="col-md-6" style="background-color: white;width: 47%">
-               <p style="font-size: 18px;    margin: 8px;">群组分析</p>
-               <p>目前完成最多的组是：第<?php echo $team[0]?>组，他们的题目是：<?php echo $team[1]?></p>
-               <p>目前完成最少的组是：第<?php echo $team[2]?>组，他们的题目是：<?php echo $team[3]?></p>
-               <p>估测存在问题的小组（小组内最少浏览量还不足小组内最多浏览量的五分之一）</p>
-               <p>总共有：<?php $a=team_question_sta(); echo $a[0]?>个组，有问题的组有：<?php echo $a[1]?>个</p>
-               <div id="container_question"></div>
-           </div>
-           <div class="col-md-6" style="background-color: white;width: 47%">
-              <label for="id">小组id：</label><input id="team_number" name="text" multiple="multiple"type="text" />
-               <p id="team_info">请输入小组id,查询小组成员的浏览量变化</p>
-               <button id="button_team">查询</button>
-               <div id="container_team" ></div>
-           </div>
-       </div>
+<!--       <div class="row" style="    margin-top: 15px;">-->
+<!--           <div class="col-md-6" style="background-color: white;width: 47%">-->
+<!--               <p style="font-size: 18px;    margin: 8px;">群组分析</p>-->
+<!--               <p>目前完成最多的组是：第--><?php //echo $team[0]?><!--组，他们的题目是：--><?php //echo $team[1]?><!--</p>-->
+<!--               <p>目前完成最少的组是：第--><?php //echo $team[2]?><!--组，他们的题目是：--><?php //echo $team[3]?><!--</p>-->
+<!--               <p>估测存在问题的小组（小组内最少浏览量还不足小组内最多浏览量的五分之一）</p>-->
+<!--               <p>总共有：--><?php //$a=team_question_sta(); echo $a[0]?><!--个组，有问题的组有：--><?php //echo $a[1]?><!--个</p>-->
+<!--               <div id="container_question"></div>-->
+<!--           </div>-->
+<!--           <div class="col-md-6" style="background-color: white;width: 47%">-->
+<!--              <label for="id">小组id：</label><input id="team_number" name="text" multiple="multiple"type="text" />-->
+<!--               <p id="team_info">请输入小组id,查询小组成员的浏览量变化</p>-->
+<!--               <button id="button_team">查询</button>-->
+<!--               <div id="container_team" ></div>-->
+<!--           </div>-->
+<!--       </div>-->
        </div>
 
    </body>

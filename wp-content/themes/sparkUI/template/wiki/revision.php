@@ -38,22 +38,33 @@ $origin_title =get_the_title($wiki_id);
 </div>
 <script>
     function restore_revision() {
-        var data = {
-            action: "restore_post_revision",
-            revision_id: <?php echo $revision_id;?>
-        };
-        $.ajax({
-            type: "POST",
-            url:"<?php echo $admin_url;?>",//你的请求程序页面
-            //async:false,//同步：意思是当有返回值以后才会进行后面的js程序。
-            data: data,//请求需要发送的处理数据
-            //dataType: "text",
-            success: function () {
-                    window.location.href = "<?php echo get_permalink( $wiki_id ) ;?>";
-            },
-            error: function () {
-                alert("error");
+        layer.open({
+            type: 1,
+            title: "确定要恢复到此版本吗？",
+            content: "",
+            area: ['400px', ''],
+            shadeClose: true,
+            btn:['确定','取消'],
+            yes: function () {
+                var data = {
+                    action: "restore_post_revision",
+                    revision_id: <?php echo $revision_id;?>
+                };
+                $.ajax({
+                    type: "POST",
+                    url:"<?php echo $admin_url;?>",//你的请求程序页面
+                    //async:false,//同步：意思是当有返回值以后才会进行后面的js程序。
+                    data: data,//请求需要发送的处理数据
+                    //dataType: "text",
+                    success: function () {
+                        window.location.href = "<?php echo get_permalink( $wiki_id ) ;?>";
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
             }
-        });
+        })
+
     }
 </script>

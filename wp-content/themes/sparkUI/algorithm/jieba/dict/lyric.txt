@@ -1,0 +1,374 @@
+<h2><strong><img class="alignnone size-medium wp-image-20268" src="http://otiyysjsb.bkt.clouddn.com/18-1-3/41419120.jpg" alt="" width="800" height="123" /></strong></h2>
+<h2>目标</h2>
+<div>
+<div></div>
+<div>本项目为典型的端到端系统，采用硬件-服务器-客户端的模式以采集-整理-展示数据。我们通过本系统的搭建以期<strong>解决代驾服务有效分配的问题</strong>，降低<strong>代驾司机与顾客之间的空间和时间错位</strong>。</div>
+<div></div>
+<div>以下为本目标的<strong>解构</strong>和详细说明：</div>
+<h3>背景</h3>
+<div>在中国的酒桌文化影响下，日间与夜间的应酬饮酒总是难以避免。自驾车普及以降，酒驾乃至醉驾已成为交通事故中最重要也是最致命的组成部分。而代驾服务很好地方便了应酬人士，帮助他们规避了生命危险。</div>
+&nbsp;
+<div>然而在实际过程中，我们发现存在以下两个问题：</div>
+&nbsp;
+<ul>
+ 	<li>客人等待代驾服务的时间<strong>通常过长</strong></li>
+ 	<li>代驾司机<strong>大部分时间花在通勤</strong>（即到酒店为顾客提供代价服务）上，乃至出现了夜班公交上都是代驾司机的社会现象</li>
+</ul>
+&nbsp;
+<div>这个问题有以下的恶劣影响：</div>
+&nbsp;
+<ul>
+ 	<li>长期的间隔时间使双方均产生焦躁感</li>
+ 	<li>代驾司机远距离通勤给市政交通带来<strong>巨大负担</strong></li>
+ 	<li>代驾司机广泛使用的电动滑板车对自身和行人都产生了<strong>巨大的交通风险</strong></li>
+</ul>
+&nbsp;
+<div>这些问题的产生实际上来源于<strong>代驾司机与顾客之间的空间和时间错位</strong>。</div>
+<div>为解决这个供需时间空间错位问题，我们开发了<strong>泛用型酒精浓度地理位置映射数据可视化系统</strong>，通过对代驾需求的预测，<strong>提前合理分配代驾司机的区位</strong>以缓解该问题。</div>
+&nbsp;
+<h3>实现原理的矩阵</h3>
+&nbsp;
+<div>1. 通过Arduino上的GPS-北斗模块和精密酒精浓度传感器收集数据</div>
+<div>2. 后台通过数据库存储返回的数据</div>
+<div>3. 当累积到一定的数据量（将酒精浓度的大量数据转换成饮酒人员数量）后可以利用GIS系统和数据可视化对未来的代驾需求做出分析</div>
+<div>4. 通过最优解算法和代驾人员的位置推荐最佳的等待地点</div>
+&nbsp;
+<h3>功能实现</h3>
+&nbsp;
+<div>因时间紧凑，故本系统仅实现DEMO框架。技术栈如下：</div>
+&nbsp;
+<ul>
+ 	<li>Tableau数据可视化</li>
+ 	<li>腾讯云和微信小程序</li>
+ 	<li>泛arduino技术</li>
+ 	<li>GPS及北斗定位系统</li>
+ 	<li>高精度气体酒精浓度传感器</li>
+ 	<li>GIS系统</li>
+</ul>
+</div>
+<h2><strong>原理</strong></h2>
+<ul>
+ 	<li>酒精传感器     GPS模块</li>
+ 	<li>|                        /</li>
+ 	<li>|                      /</li>
+ 	<li>模拟信号   TTL串口通信</li>
+ 	<li>|                 /</li>
+ 	<li>mcookic</li>
+ 	<li>|</li>
+ 	<li>|</li>
+ 	<li>数据</li>
+ 	<li>|</li>
+ 	<li>wifi模块</li>
+ 	<li>|</li>
+ 	<li>服务器 ———数据库</li>
+ 	<li>|</li>
+ 	<li>客户端</li>
+</ul>
+<img src="http://otiyysjsb.bkt.clouddn.com/18-1-3/76569736.jpg" alt="1" width="400" />
+<img src="http://otiyysjsb.bkt.clouddn.com/18-1-3/4407514.jpg" alt="2" width="400" />
+<img src="http://otiyysjsb.bkt.clouddn.com/18-1-4/75264566.jpg" alt="3" width="800" />
+<h2><strong>设备及</strong><strong>硬件组装</strong></h2>
+<table style="height: 158px;width: 460px;border-color: #d8d8d8;background-color: #f9f9f9" border="1px" cellspacing="0" cellpadding="5px">
+<tbody>
+<tr>
+<td style="width: 225px"><strong>模块</strong></td>
+<td style="width: 57px;text-align: center"><strong>数量</strong></td>
+<td style="width: 171px"><strong>功能</strong></td>
+</tr>
+<tr>
+<td style="width: 225px">mCookie-Core+</td>
+<td style="width: 57px;text-align: center">1</td>
+<td style="width: 171px">核心板</td>
+</tr>
+<tr>
+<td style="width: 225px">mCookie-Hub</td>
+<td style="width: 57px;text-align: center">1</td>
+<td style="width: 171px">传感器转接板</td>
+</tr>
+<tr>
+<td style="width: 225px">wifi</td>
+<td style="width: 57px;text-align: center">1</td>
+<td style="width: 171px">传感器转接板</td>
+</tr>
+<tr>
+<td style="width: 225px">GPS模块</td>
+<td style="width: 57px;text-align: center">1</td>
+<td style="width: 171px">获取地理位置和时间</td>
+</tr>
+<tr>
+<td style="width: 225px">酒精传感器</td>
+<td style="width: 57px;text-align: center">1</td>
+<td style="width: 171px">获取当前的酒精浓度</td>
+</tr>
+</tbody>
+</table>
+<img src="http://otiyysjsb.bkt.clouddn.com/18-1-4/48217627.jpg" alt="" width="400" />
+<img src="http://otiyysjsb.bkt.clouddn.com/18-1-4/3651384.jpg" alt="" width="400" />
+<img src="http://otiyysjsb.bkt.clouddn.com/18-1-4/96452291.jpg" alt="" width="800" />
+<h2><strong>功能实现及核心代码</strong></h2>
+<img src="http://otiyysjsb.bkt.clouddn.com/18-1-3/90832102.jpg" alt="" width="800" />
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+本项目代码可在GitHub上浏览：<strong><a href="https://github.com/xiaokeji/GIS-Alcohol-concentration-detection">GIS-Alcohol-concentration-detection</a></strong>
+<pre class="language-markup"><code>git clone https://github.com/xiaokeji/GIS-Alcohol-concentration-detection.git</code></pre>
+&nbsp;
+<h3>主代码</h3>
+<pre class="language-cpp"><code>#define SSID ""
+#define PASSWORD ""
+#define HOST_NAME ""
+#define DEVICEID "9626789"
+//#define DEVICEID    "12292901"//new
+#define PROJECTID "91258"
+#define HOST_PORT (80)
+String apiKey = "";
+static const uint8_t stateLEDPin = 4;
+char buf[10];
+int start = 0;
+int end = 0;
+SoftwareSerial mySerial(4, 5); // RX, TX//......................
+Ethanol pmSensor(&amp;mySerial);      //使用软串口（2，3）//......................
+String mCottenData;
+String jsonToSend;
+String postString;
+String redString;
+
+#define INTERVAL_sensor 2000
+unsigned long sensorlastTime = millis();
+
+int m;
+float tempOLED, humiOLED, gasOLED, redOLED, pmOLED;
+float sensor_tem, sensor_hum;
+//ESP8266 wifi(Serial1);
+SoftwareSerial mwifi(2, 3);
+ESP8266 wifi(&amp;EspSerial);</code></pre>
+由于使用了GPS模块和WiFi模块，所以我们定义了两个软串口来辅助我们进行数据交换。
+<pre class="language-javascript"><code>var fakeData = [];
+    for (var i = 0; i &lt; 10000; i++) {
+        fakeData.push([Math.random() * 2048, Math.random() * 900, Math.floor(Math.random() * 600)]);
+    }
+
+
+    var z = WebGLCanvas.render({
+        width:1024,
+        height:100,
+        radius: 18,
+        max: 800,
+        min: 100,
+        filter: 12
+    }, fakeData);
+    for (var i = 0; i &lt; z.length; i++) {
+        document.body.appendChild(z[i]);
+    };</code></pre>
+引入了<a href="https://github.com/wshxbqq/WebGL-HeatMap">WebGL-HeatMap</a>来辅助进行热力图的绘制。
+
+同时我们还采用了时下流行的技术栈做后端服务器
+<blockquote><em>vue2 + vuex + vue-router + webpack + ES6/7 + less + element-ui</em>
+
+来自开源项目：vue2-manage</blockquote>
+给予node.js 运行在服务器上。
+
+为了节约开销，我们选择在本地做debug工作，故没有线上的dome，尽请谅解。
+<pre class="language-javascript"><code>import echarts from 'echarts/lib/echarts';
+    // 引入柱状图
+    import 'echarts/lib/chart/bar';
+    import 'echarts/lib/chart/line';
+    import 'echarts/lib/component/title';
+    import 'echarts/lib/component/legend';
+    import 'echarts/lib/component/toolbox';
+    import 'echarts/lib/component/markPoint';
+    import 'echarts/lib/component/tooltip';
+    export default {
+        mounted(){
+            this.myChart = echarts.init(document.getElementById('line1'));
+            this.initData();
+        },
+        props: ['sevenDate', 'sevenDay'],
+        methods: {
+            initData(){
+                const colors = ['#5793f3', '#675bba', '#d14a61'];
+                const option = {
+                    color: colors,
+                    title: {
+                        text: '走势图',
+                        subtext: ''
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data:['高浓度', '中浓度', '低浓度']
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            dataZoom: {
+                                yAxisIndex: 'none'
+                            },
+                            dataView: {readOnly: false},
+                            magicType: {type: ['bar', 'line']},
+                            restore: {},
+                        }
+                    },
+                    xAxis:  {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: this.sevenDay
+                    },
+                    yAxis: [
+                        {
+                          type: 'value',
+                          name: '酒精含量',
+                          min: 0,
+                          max: 200,
+                          position: 'left',
+                          axisLine: {
+                              lineStyle: {
+                                  color: '#999'
+                              }
+                          },
+                          axisLabel: {
+                              formatter: '{value}'
+                          }
+                        },
+                        {
+                          type: 'value',
+                          name: '湿度',
+                          min: 0,
+                          max: 200,
+                          position: 'right',
+                          axisLine: {
+                              lineStyle: {
+                                  color: '#999'
+                              }
+                          },
+                          axisLabel: {
+                              formatter: '{value}'
+                          }
+                        },
+                    ],
+                    series: [
+                        {
+                            name:'高浓度',
+                            type:'line',
+                            data:this.sevenDate[0],
+                            yAxisIndex: 1,
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: '最大值'},
+                                    {type: 'min', name: '最小值'}
+                                ]
+                            },
+                        },
+                        {
+                            name:'中浓度',
+                            type:'line',
+                            data:this.sevenDate[1],
+                            yAxisIndex: 1,
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: '最大值'},
+                                    {type: 'min', name: '最小值'}
+                                ]
+                            },
+                        },
+                        {
+                            name:'低浓度',
+                            type:'line',
+                            data:this.sevenDate[2],
+                            yAxisIndex: 1,
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: '最大值'},
+                                    {type: 'min', name: '最小值'}
+                                ]
+                            },
+                        }
+                    ]
+              };
+                this.myChart.setOption(option);
+            }
+        },
+        watch: {
+            sevenDate: function (){
+                this.initData()
+            },
+            sevenDay: function (){
+                this.initData()
+            }
+        }
+    }</code></pre>
+PS：依托于Vue的js之强大，我们基本和无聊的CSS和HTML说Goodbye了。
+
+&nbsp;
+<h2><strong>项目演示</strong></h2>
+本项目的视频演示已上传在YouTube，敬请查阅：
+
+<a href="https://youtu.be/gNI8LycXvl8">GIS-Alcohol-concentration-detection-video on YouTube</a>
+<h2><strong>团队分工与进度</strong></h2>
+<table style="height: 265px;border-color: #d8d8d8;background-color: #f9f9f9;width: 661px" border="1" cellspacing="0" cellpadding="5px">
+<tbody>
+<tr>
+<td style="width: 112px">姓名</td>
+<td style="width: 233.6px">团队分工</td>
+<td style="width: 233.6px">联系邮箱</td>
+<td style="width: 132.8px">贡献度</td>
+</tr>
+<tr>
+<td style="width: 112px">曾家龙</td>
+<td style="width: 233.6px">技术担当，资源协调</td>
+<td style="width: 233.6px">tsangkalung@bupt.edu.cn</td>
+<td style="width: 132.8px">20%</td>
+</tr>
+<tr>
+<td style="width: 112px">苏江涛</td>
+<td style="width: 233.6px">海报制作，文档撰写</td>
+<td style="width: 233.6px"><!--StartFragment -->
+<div>sjt@bupt.edu.cn</div></td>
+<td style="width: 132.8px">20%</td>
+</tr>
+<tr>
+<td style="width: 112px">常征</td>
+<td style="width: 233.6px">程序调试，bug消灭者</td>
+<td style="width: 233.6px"><!--StartFragment -->
+<div>
+
+<!--StartFragment -->
+<div>439612180@bupt.edu.cn</div>
+</div></td>
+<td style="width: 132.8px">20%</td>
+</tr>
+<tr>
+<td style="width: 112px">徐文祺</td>
+<td style="width: 233.6px">硬件设计，创意思路</td>
+<td style="width: 233.6px">chuimankei@bupt.edu.cn</td>
+<td style="width: 132.8px">20%</td>
+</tr>
+<tr>
+<td style="width: 112px">梁潇</td>
+<td style="width: 233.6px">救火队员，解决任何问题</td>
+<td style="width: 233.6px">liangxiao@bupt.edu.cn</td>
+<td style="width: 132.8px">20%</td>
+</tr>
+</tbody>
+</table>
+&nbsp;
+<h2><strong>团队故事</strong></h2>
+<!--StartFragment -->
+<div>我们团队的项目是泛用型酒精浓度地理位置映射数据可视化系统。自中国驾车普及以降，酒驾乃至醉驾已成为交通事故中最重要也是最致命的组成部分，然而供需时间空间错位问题常让代驾司机和顾客囿于通勤距离和时间带来的苦楚。通过对代驾需求地点的预测，本项目有助于解决这个时间空间错位问题，优化代驾服务的体验。</div>
+<div></div>
+<div>我们最初的项目本是“冥想训练”，然而快递公司却久久不能把元器件送到。我们只得线下购买元器件，遂去了好几趟中关村，却没有达到目的。但采购的归途中，在北京的深夜巴士里，我们看到无数疲惫的拿着电动滑板车的代驾司机——他们在为生计苦苦奔波，这让我们热泪盈眶。我们也不由得思考：<strong>他们为什么要花这么多时间精力在通勤上？能不能拉近他们与顾客的空间距离？能不能让他们轻松一些？</strong></div>
+<div></div>
+<div>所以，我们开始了这个项目，以解决代驾司机的时间空间错位问题。我们团队的构成如下：曾老师（曾家龙）是我们的技术担当，协调资源，无所不能；梁潇是“救火队员”，各种Debug不在话下，乃幕后黑手；常征主要调试程序，检查错误；徐文祺主打硬件设计，提供了很多创意思路；而我（苏江涛）主要负责海报制作，文档撰写，文案编辑。我们各负其责，团结一致，共同达成了这一目标。</div>
+<div></div>
+<div>我们有着许多奇思妙想，我们志存高远，我们渴望展示芳华，而导论实验课给我们提供了这么一个机会，让我们去尝试，去实践，在看到自己不足的同时，慢慢成长。我们在实现的过程中，不仅学到了技术知识，更多的是团队合作，对梦想的坚持。在很多次失败后，抱怨后，依旧能够站起来，依旧向前。</div>
+<div></div>
+<div>同时忝列学子的我们给出一些微薄的建议：我们期望导论实验在验收的时候能更严格，更公平公正，让每个人的价值得以充分体现出来。</div>
+<div></div>
+<div>世界很大，我们走在路上。</div>
+<div></div>
+<div><img src="http://otiyysjsb.bkt.clouddn.com/18-1-4/97609838.jpg" alt="" width="900" /></div>

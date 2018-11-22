@@ -1,7 +1,7 @@
 <?php
 //执行将所有公共资源写入数据库操作
 //只执行一次
-//process_public_post();
+process_public_post();
 
 //当前用户如果写了学校,就有该学校的角色
 //只执行一次

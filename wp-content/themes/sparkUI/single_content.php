@@ -132,7 +132,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
                         $user_level = get_user_level(get_post()->post_author);
                         $img_url = $user_level.".png";
                         ?>
-                        <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px;margin-left: -20px">
+                        <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px">
                     </a>
                 </p><br>
                 <p>分类：</p>
@@ -259,6 +259,61 @@ $admin_url=admin_url( 'admin-ajax.php' );
             <script>
                 //sideChart('sidechart','<?php //$projsonString?>');
             </script>
+            <!--专利-->
+            <?php
+            $related_patents  = RelatedPatents($post_id);
+            //var_dump($related_patents);
+            if($related_patents){ ?>
+                <div class="related_wikis">
+                    <div class="sidebar_list_header">
+                        <p>相关专利</p>
+                        <a href="http://www.sipo.gov.cn/zhfwpt/zlsqzn/zlsqspcxjs/zlsqsplc/" target="_blank"
+                           style="margin-left: 10px;font-size: small;color: darkgray;font-weight:normal">专利申请流程</a>
+                    </div>
+                    <!--分割线-->
+                    <div style="height: 2px;background-color: lightgray"></div>
+                    <div class="related_wiki" id="related_patent">
+                        <ul style="padding-left: 0px">
+                            <?php foreach ($related_patents as $res){
+                                if(strcmp($res->patent_url,'None')!=0){?>
+                                    <li class="list-group-item">
+                                        <a href="<?php echo site_url().get_page_address('daima_url').'&url='.urlencode($res->patent_url).'&page=patent' ?>"
+                                           target="_blank" class="question-title">
+                                            <?php echo $res->patent_title?> </a>
+                                    </li>
+                                <?php }
+                            }?>
+                        </ul>
+                    </div>
+                </div>
+            <?php }?>
+            <!--论文-->
+            <?php
+            $related_papers  = RelatedPapers($post_id);
+            //var_dump($related_patents);
+            if($related_papers){ ?>
+                <div class="related_wikis">
+                    <div class="sidebar_list_header">
+                        <p>相关论文</p>
+                        <a href="https://www.zhihu.com/question/34903516/answer/68547441" target="_blank" style="margin-left: 10px;font-size: 12px;color: darkgray;font-weight: normal">论文撰写教程</a>
+                    </div>
+                    <!--分割线-->
+                    <div style="height: 2px;background-color: lightgray"></div>
+                    <div class="related_wiki" id="related_paper">
+                        <ul style="padding-left: 0px">
+                            <?php foreach ($related_papers as $res){
+                                if(strcmp($res->paper_url,'None')!=0){?>
+                                    <li class="list-group-item">
+                                        <a href="<?php echo site_url().get_page_address('daima_url').'&url='.urlencode($res->paper_url).'&page=paper'?>"
+                                           target="_blank" class="question-title">
+                                            <?php echo $res->paper_title?> </a>
+                                    </li>
+                                <?php }
+                            }?>
+                        </ul>
+                    </div>
+                </div>
+            <?php }?>
 
             <div class="related_questions">
                 <div class="sidebar_list_header">
@@ -310,6 +365,7 @@ $admin_url=admin_url( 'admin-ajax.php' );
                     </ul>
                 </div>
             </div>
+
         </div>
         <?php //get_sidebar();?>
     </div>
@@ -368,6 +424,35 @@ $admin_url=admin_url( 'admin-ajax.php' );
             more_related_wiki.style.display="block";
         }
         flag=!flag;
+    }
+
+    var flag1 = false;
+
+    function show_more_patent() {
+        var related_patent = document.getElementById('related_patent');
+        var more_related_patent = document.getElementById('more_related_patent');
+        if (flag1) {
+            related_patent.style.display = "block";
+            more_related_patent.style.display = "none";
+        } else {
+            related_patent.style.display = "none";
+            more_related_patent.style.display = "block";
+        }
+        flag1 = !flag1;
+    }
+    var flag2 = false;
+
+    function show_more_paper() {
+        var related_paper = document.getElementById('related_paper');
+        var more_related_paper = document.getElementById('more_related_paper');
+        if (flag2) {
+            related_paper.style.display = "block";
+            more_related_paper.style.display = "none";
+        } else {
+            related_paper.style.display = "none";
+            more_related_paper.style.display = "block";
+        }
+        flag2 = !flag2;
     }
     function addLayer() {
         layer.open({

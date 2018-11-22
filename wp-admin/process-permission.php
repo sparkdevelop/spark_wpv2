@@ -22,7 +22,7 @@ $illstration = isset($_POST["pabstract"]) ? $_POST["pabstract"] : '';
 
 $create_date = isset($_POST["pcreatedate"]) ? $_POST["pcreatedate"] : '';
 
-$relative_post = isset($_POST['checkItem']) ? $_POST["checkItem"] : '';
+$relative_post = isset($_POST['checkItem']) ? $_POST["checkItem"] : [];
 
 
 //处理加入方式
@@ -45,7 +45,7 @@ if(sizeof($relative_post)!=0){
     }
 
     //更改公共资源??公共资源是最小集合
-    update_public_post($relative_post);
+    update_public_post($relative_post,'delete');
 }
 
 

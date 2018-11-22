@@ -15,6 +15,10 @@
 ?>
 
 <?php
+if(is_page('wxlogin')){
+    require "template/API/wxlogin.php";
+    return;
+}
     get_header();
     if(is_page('verify_form') || is_page('invitation') || is_page('private_message')
         || is_page('ask_tiny') || is_page('join_ms') || is_page('create_role')
@@ -68,6 +72,12 @@
                 }
                 require "template/wiki/revision.php";
                 }
+            elseif (is_page("compare_revision")) {
+                if (!is_user_logged_in()) {
+                    wp_redirect( home_url().'/wp-login.php' );
+                }
+                require "template/wiki/compare_revision.php";
+            }
                 elseif (is_page("qa") ) {//显示问答内容 参数为pageID 如何自动获取??
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );
@@ -158,6 +168,18 @@
                         wp_redirect( home_url().'/wp-login.php' );
                     }
                     require "../../plugins/spark_analyse/spark analyse.php";
+                }
+                elseif (is_page('wailian_url')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "url.php";
+                }
+                elseif (is_page('daima_url')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "url_daima.php";
                 }
                 elseif (is_page('otherpersonal')){
                     if (!is_user_logged_in()) {
@@ -305,9 +327,6 @@
                     }
                 }
                 elseif (is_page('wxlogin')){
-                    if (!is_user_logged_in()) {
-                        wp_redirect( home_url().'/wp-login.php' );
-                    }
                     require "template/API/wxlogin.php";
                 }
                 else{

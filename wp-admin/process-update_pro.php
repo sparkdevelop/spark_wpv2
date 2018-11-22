@@ -46,6 +46,6 @@ foreach ($team_member as $value){
 $url= site_url().get_page_address('single_task').'&id='.$task_id;
 ?>
 <script>
-    layer.close(index_load);
+    //layer.close(index_load);
     location.replace("<?=$url?>");
 </script>

@@ -5313,9 +5313,8 @@ function rbac_get_user_all_permission($id)
     //permission对应的
     $permission_id = get_rbac_user_relation('permission', $id);
     if (!empty($permission_id)) {
-        $result[] = $permission_id;
+        $result = array_merge($result,$permission_id);
     }
-    $result = flatten_array($result);
     return $result;
 }
 
@@ -5608,7 +5607,8 @@ function rbac_post_autocomplete()
 add_action('wp_ajax_rbac_post_autocomplete', 'rbac_post_autocomplete');
 add_action('wp_ajax_nopriv_rbac_post_autocomplete', 'rbac_post_autocomplete');
 
-//删除资源
+//删除资源, 如果资源不对应其他权限，则将其放回公共资源，否则不变
+//对于用户-资源表, 刷新。
 function rbac_delete_post()
 {
     global $wpdb;
@@ -5629,7 +5629,7 @@ function rbac_delete_post()
 add_action('wp_ajax_rbac_delete_post', 'rbac_delete_post');
 add_action('wp_ajax_nopriv_rbac_delete_post', 'rbac_delete_post');
 
-//添加资源
+//添加资源, 一旦资源有了权限，就将其从公共资源删除，对于用户资源表，刷新
 function rbac_add_post()
 {
     global $wpdb;
@@ -5835,11 +5835,19 @@ function set_as_solved($info,$state){
 function process_public_post()
 {
     global $wpdb;
-    //先处理公共资源
+    //先处理公共资源，选取所有资源
     $sql_post = "SELECT ID FROM wp_posts WHERE post_status = 'publish' and post_type IN ('yada_wiki','post') ";
-    $post_id_arr = $wpdb->get_results($sql_post, 'ARRAY_A');
-    $post_id_arr = array_column($post_id_arr, 'ID');
+    $all_post_id_arr = $wpdb->get_results($sql_post, 'ARRAY_A');
+    $all_post_id_arr = array_column($all_post_id_arr, 'ID');
+    //删除已经私有化的资源
+    $sql_private = "SELECT DISTINCT post_id FROM wp_rbac_post";
+    $private_post_id_arr = $wpdb->get_results($sql_private, 'ARRAY_A');
+    $private_post_id_arr = array_column($private_post_id_arr, 'post_id');
+    //相减
+    $post_id_arr = array_diff($all_post_id_arr,$private_post_id_arr);
+    //插入数据库
     $post_string = implode(',', $post_id_arr);
+    print_r($post_string);
     $sql_insert = "INSERT INTO wp_rbac_user_post VALUES('',0,'$post_string')";
     $wpdb->get_results($sql_insert);
 }
@@ -5855,6 +5863,7 @@ function get_public_post()
     return $post_id_arr;
 }
 
+//更新公共资源
 function update_public_post($post_arr,$type){
     global $wpdb;
     $public_post = get_public_post();  //获取公共资源数组
@@ -5931,15 +5940,48 @@ function update_user_post_table_ajax()
 add_action('wp_ajax_update_user_post_table_ajax', 'update_user_post_table_ajax');
 add_action('wp_ajax_nopriv_update_user_post_table_ajax', 'update_user_post_table_ajax');
 
+//更新某一用户的资源信息，即更新某一用户的user_post表
+function update_user_post($user_id){
+    global $wpdb;
+    // 取出所有角色对应的资源
+    $role_id_arr = get_rbac_user_relation('role',$user_id);
+    $result = [];
+    foreach ($role_id_arr as $role_id){
+        $post = get_role_post($role_id);
+        $result = array_merge($result,$post);
+    }
+    $post_arr = explode(',',$result);
+    // 更新或插入user_post表
+    $sql = "SELECT $user_id FROM wp_rbac_user_post where user_id=$user_id";
+    $col = $wpdb->query($sql);
+    if($col==0){
+        $sql_insert = "INSERT INTO wp_rbac_user_post VALUES('',$user_id,'$post_arr')";
+        $wpdb->query($sql_insert);
+    }else{
+        $sql_update = "UPDATE wp_rbac_user_post SET post_arr = '$post_arr' where user_id=$user_id";
+        $wpdb->query($sql_update);
+    }
+}
+
+//获取某一角色对应的资源
+function get_role_post($role_id){
+    $perimisson_id_arr = get_rbac_rp_relation('role',$rold_id);
+    $result = [];
+    foreach ($permission_id_arr as $pid){
+        $tmp = get_permission_post($pid);
+        $result = array_merge($result,$tmp);
+    }
+    return $result;
+}
 
 function user_can_view($post_id)
 {
     $user_id = get_current_user_id();
     $public = get_public_post();
-    $private = get_private_post($user_id);
+    //$private = get_private_post($user_id);
     //两个数组取并集
-    $all_source = array_merge($public, $private);
-    if (in_array($post_id, $all_source)) {
+    //$all_source = array_merge($public, $private);
+    if (in_array($post_id, $public)) {
         return true;
     } else {
         //从用户->角色->权限->post
@@ -6622,6 +6664,205 @@ function custom_upload_mimes($existing_mimes = array())
     return $existing_mimes;
 }
 
+
+/**
+验证码ticket验证
+ */
+function captcha_ticket_verify(){
+    $url = "https://ssl.captcha.qq.com/ticket/verify";
+    $params = array(
+        "aid" => $_POST['aid'],
+        "AppSecretKey" => $_POST['AppSecretKey'],
+        "Ticket" => $_POST['Ticket'],
+        "Randstr" => $_POST['Randstr'],
+        "UserIP" => $_POST['UserIP']
+    );
+    $paramstring = http_build_query($params);
+    $content = txcurl($url,$paramstring);
+    $result = json_decode($content,true);
+    if($result){
+        if($result['response'] == 1){
+           echo  json_encode($result);
+        }else{
+            echo "Deny";
+        }
+    }else{
+        echo "请求失败";
+    }
+    die();
+}
+
+
+add_action('wp_ajax_captcha_ticket_verify', 'captcha_ticket_verify');
+add_action('wp_ajax_nopriv_captcha_ticket_verify', 'captcha_ticket_verify');
+
+/**
+ * 请求接口返回内容
+ * @param  string $url [请求的URL地址]
+ * @param  string $params [请求的参数]
+ * @param  int $ipost [是否采用POST形式]
+ * @return  string
+ */
+function txcurl($url,$params=false,$ispost=0){
+    $httpInfo = array();
+    $ch = curl_init();
+
+    curl_setopt( $ch, CURLOPT_HTTP_VERSION , CURL_HTTP_VERSION_1_1 );
+    curl_setopt( $ch, CURLOPT_USERAGENT , 'JuheData' );
+    curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT , 60 );
+    curl_setopt( $ch, CURLOPT_TIMEOUT , 60);
+    curl_setopt( $ch, CURLOPT_RETURNTRANSFER , true );
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    if( $ispost )
+    {
+        curl_setopt( $ch , CURLOPT_POST , true );
+        curl_setopt( $ch , CURLOPT_POSTFIELDS , $params );
+        curl_setopt( $ch , CURLOPT_URL , $url );
+    }
+    else
+    {
+        if($params){
+            curl_setopt( $ch , CURLOPT_URL , $url.'?'.$params );
+        }else{
+            curl_setopt( $ch , CURLOPT_URL , $url);
+        }
+    }
+    $response = curl_exec( $ch );
+    if ($response === FALSE) {
+        //echo "cURL Error: " . curl_error($ch);
+        return false;
+    }
+    $httpCode = curl_getinfo( $ch , CURLINFO_HTTP_CODE );
+    $httpInfo = array_merge( $httpInfo , curl_getinfo( $ch ) );
+    curl_close( $ch );
+    return $response;
+}
+/**
+ *
+ * @param  int $post_id [postID]
+ * @param  string $keyword [关键词]
+ */
+function addPostKeyword($post_id,$keyword){
+    global $wpdb;
+    $sql = "INSERT INTO wp_post_keywords VALUES ('',$post_id,'$keyword','','','','')";
+    $wpdb->get_results($sql);
+}
+
+/**
+ *判断是否为导论课内容和编辑角色
+ * @param  int $role_id [权限ID]
+ * @param  array $role_arr [用户权限数组]
+ * @param  int $post_id [文章ID]
+ * @param  array $permission_posts [权限资源数组]
+ */
+function judge_daolunke($role_id,$role_arr,$post_id,$permission_posts ){
+    if (in_array($post_id, $permission_posts)){
+        if (in_array($role_id, $role_arr)){
+            return false;
+        }else{
+            return true;
+        }
+    }else{
+        return false;
+    }
+}
+
+function apply_role_daolunke(){
+    global $wpdb;
+    $user_id = isset($_POST["applyer"]) ? $_POST["applyer"] : '';
+    $rid = isset($_POST["rcheckItem"]) ? $_POST["rcheckItem"] : '';
+    $state =0;
+    $reason = isset($_POST["reason"]) ? $_POST["reason"] : '';
+    $modified_time = isset($_POST["pcreatedate"]) ? $_POST["pcreatedate"] : '';
+    $operator = '';
+    if($rid){
+        $sql_check = "SELECT user_id FROM wp_rbac_apply_tmp WHERE user_id=$user_id and source_type=1 and source_id=$rid and state IN (0,2) ";
+        $col = $wpdb->query($sql_check);
+        if($col==0){
+            $sql_rinsert = "INSERT INTO wp_rbac_apply_tmp VALUES ('',$user_id,1,$rid,0,'$reason','$operator','$modified_time')";
+            $res = $wpdb->get_results($sql_rinsert);
+        }else{
+            $sql_rupdate ="UPDATE wp_rbac_apply_tmp SET state = 0,reason='$reason',operator='',modified_time = '$modified_time' WHERE user_id=$user_id and source_type=1 and source_id=$rid";
+            $res = $wpdb->get_results($sql_rupdate);
+        }
+        echo "success";
+    }else{
+        echo "fail";
+    }
+    die();
+}
+
+add_action('wp_ajax_apply_role_daolunke', 'apply_role_daolunke');
+add_action('wp_ajax_nopriv_apply_role_daolunke', 'apply_role_daolunke');
+
+function get_student_goal(){
+    global $wpdb;
+    $sql = "select stu_number,name,category1,category2 from student_goal";
+    $res = $wpdb->get_results($sql);
+    return $res;
+}
+
+//获取相关专利
+function RelatedPatents($post_id){
+    global $wpdb;
+    $sql = "select patent_title,patent_url from wp_post_keywords where post_id =$post_id";
+    $res = $wpdb->get_results($sql);
+    return $res;
+}
+
+//获取相关论文
+function RelatedPapers($post_id){
+    global $wpdb;
+    $sql = "select paper_title,paper_url from wp_post_keywords where post_id =$post_id";
+    $res = $wpdb->get_results($sql);
+    return $res;
+}
+
+//判断用户是否已经选择是否学会了
+function hasLearn($user_id, $post_id)
+{
+    global $wpdb;
+    $sql = "SELECT * FROM wp_learn WHERE user_id=$user_id AND post_id = $post_id";
+    $res = $wpdb->get_results($sql);
+    if ($res) { //选择过
+      return $res[0]->learned ;
+    } else {
+        return "2";
+    }
+}
+
+function learned_num($post_id){
+    global $wpdb;
+    $sql = "SELECT COUNT(*) as num FROM wp_learn WHERE post_id = $post_id and learned =0";
+    $res = $wpdb->get_results($sql);
+    return $res[0]->num;
+}
+
+function addLearn(){
+    global $wpdb;
+    $user_id = isset($_POST["user_id"]) ? $_POST["user_id"] : '';
+    $post_id = isset($_POST["post_id"]) ? $_POST["post_id"] : '';
+    $learned = isset($_POST["learned"]) ? $_POST["learned"] : '';
+    $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+    if($user_id && $post_id){
+        $sql_check = "SELECT * FROM wp_learn WHERE user_id=$user_id AND post_id = $post_id";
+        $col = $wpdb->query($sql_check);
+        if($col==0){
+            $sql_insert = "INSERT INTO wp_learn VALUES ('',$user_id,$post_id,$learned,'$current_time')";
+            $res = $wpdb->get_results($sql_insert);
+        }else{
+            $sql_update ="UPDATE wp_learn SET learned = $learned,learn_time='$current_time' WHERE user_id=$user_id and post_id=$post_id";
+            $res = $wpdb->get_results($sql_update);
+        }
+        echo "success";
+    }else{
+        echo $user_id.$post_id.$learned;
+    }
+    die();
+}
+
+add_action('wp_ajax_addLearn', 'addLearn');
+add_action('wp_ajax_nopriv_addLearn', 'addLearn');
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;

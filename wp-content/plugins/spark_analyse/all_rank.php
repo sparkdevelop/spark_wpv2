@@ -41,376 +41,379 @@ $c=count($userlist);
 //$username=("$username1,$username2,$username3");
 //    return $username;
 //}
-function create(){
-    global $wpdb;
-//    $user = $wpdb->get_results("SELECT ID FROM `$wpdb->users` order by `ID`");
+
+
+//  统计全网活跃用户与近期活跃用户的函数
+//function create(){
+//    global $wpdb;
+////    $user = $wpdb->get_results("SELECT ID FROM `$wpdb->users` order by `ID`");
+////    $m=0;
+////    foreach ($user as $a) {
+////        $userlist[$m] = $a->ID;
+////        $m++;
+////    }
+//////    print_r($userlist);
+//    global  $userlist;
+//    $c=count($userlist);
 //    $m=0;
-//    foreach ($user as $a) {
-//        $userlist[$m] = $a->ID;
+//    $num=array(0);
+//    while($c>0){
+//        $num[$m]=$wpdb->get_var("SELECT COUNT(*) FROM `wp_posts` where post_author='$userlist[$m]' and post_type='post' or post_type='revision'");
+//        $id[$m]=$userlist[$m];
+//        $m++;
+//        $c--;
+//    }
+////    print_r($num);
+////    print_r($id);
+//    $pos=array_search(max($num),$num);
+////    echo $id[$pos];
+//    $username1=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//    unset($num[$pos]);
+//    $pos=array_search(max($num),$num);
+////    echo $id[$pos];
+//    $username2=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//
+//    unset($num[$pos]);
+//    $pos=array_search(max($num),$num);
+////    echo $id[$pos];
+//    $username3=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//    $username=("$username1,$username2,$username3");
+//    return $username;
+//}
+//function question(){
+//    global $wpdb;
+////    $user = $wpdb->get_results("SELECT ID FROM `$wpdb->users` order by `ID`");
+////    $m=0;
+////    foreach ($user as $a) {
+////        $userlist[$m] = $a->ID;
+////        $m++;
+////    }
+//   global $userlist;
+//    $c=count($userlist);
+//    $m=0;
+//    while($c>0){
+//        $num[$m]=$wpdb->get_var("SELECT COUNT(*) FROM `wp_posts` where post_author='$userlist[$m]' and post_type='dwqa-question'");
+//        $id[$m]=$userlist[$m];
+//        $m++;
+//        $c--;
+//    }
+////    print_r($num);
+////    print_r($id);
+//    $pos=array_search(max($num),$num);
+////    echo $id[$pos];
+//    $username1=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//
+//    unset($num[$pos]);
+//    $pos=array_search(max($num),$num);
+//
+//    $username2=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//
+//    unset($num[$pos]);
+//    $pos=array_search(max($num),$num);
+//    $username3=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//    $username=("$username1,$username2,$username3");
+//    return $username;
+//}
+//function answer(){
+//    global $wpdb;
+////    $user = $wpdb->get_results("SELECT ID FROM `$wpdb->users` order by `ID`");
+////    $m=0;
+////    foreach ($user as $a) {
+////        $userlist[$m] = $a->ID;
+////        $m++;
+////    }
+//    global $userlist;
+//    $c=count($userlist);
+//    $m=0;
+//    while($c>0){
+//        $num[$m]=$wpdb->get_var("SELECT COUNT(*) FROM `wp_posts` where post_author='$userlist[$m]' and post_type='dwqa-answer'");
+//        $id[$m]=$userlist[$m];
+//        $m++;
+//        $c--;
+//    }
+////    print_r($num);
+////    print_r($id);
+//    $pos=array_search(max($num),$num);
+////    echo $id[$pos];
+//    $username1=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//    unset($num[$pos]);
+//    $pos=array_search(max($num),$num);
+//
+//    $username2=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//    unset($num[$pos]);
+//    $pos=array_search(max($num),$num);
+//    $username3=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//    $username=("$username1,$username2,$username3");
+//    return $username;
+//}
+//function active_before_3(){
+//    global $wpdb;
+//    $m=0;
+//    global $userlist;
+//    $c=count($userlist);
+//    $now=time();
+//    $time = strtotime('-2 day', $now);
+//    $beginTime = date('Y-m-d 00:00:00', $time);
+////    echo $beginTime;
+//    $timelis = $wpdb->get_results("SELECT action_time,ID FROM `wp_user_history` order by `ID`");
+//    $m=0;
+//    foreach ($timelis as $a) {
+//        $timelist[$m] = $a->action_time;
+//        $time_ID_list[$m]=$a->ID;
 //        $m++;
 //    }
-////    print_r($userlist);
-    global  $userlist;
-    $c=count($userlist);
-    $m=0;
-    $num=array(0);
-    while($c>0){
-        $num[$m]=$wpdb->get_var("SELECT COUNT(*) FROM `wp_posts` where post_author='$userlist[$m]' and post_type='post' or post_type='revision'");
-        $id[$m]=$userlist[$m];
-        $m++;
-        $c--;
-    }
-//    print_r($num);
-//    print_r($id);
-    $pos=array_search(max($num),$num);
-//    echo $id[$pos];
-    $username1=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-    unset($num[$pos]);
-    $pos=array_search(max($num),$num);
-//    echo $id[$pos];
-    $username2=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-
-    unset($num[$pos]);
-    $pos=array_search(max($num),$num);
-//    echo $id[$pos];
-    $username3=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-    $username=("$username1,$username2,$username3");
-    return $username;
-}
-function question(){
-    global $wpdb;
-//    $user = $wpdb->get_results("SELECT ID FROM `$wpdb->users` order by `ID`");
+//    $c=count($timelis);
 //    $m=0;
-//    foreach ($user as $a) {
-//        $userlist[$m] = $a->ID;
+//    while($c>0){
+//        if(strtotime($timelist[$m])>strtotime($beginTime)){
+//            $a = $time_ID_list[$m];
+//            break;
+//         }
+//        $m++;
+//        $c--;
+//    }
+////    echo $a ;
+//    $m=0;
+//    $c=count($userlist);
+//    while($c>0){
+//        $num[$m]=$wpdb->get_var("SELECT COUNT(*) FROM `wp_user_history` where user_id='$userlist[$m]' and ID>'$a'");
+//        $id[$m]=$userlist[$m];
+//        $m++;
+//        $c--;
+//    }
+////    print_r($num);
+////    print_r($id);
+//    $pos=array_search(max($num),$num);
+////    echo $id[$pos];
+//    $username1=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//    unset($num[$pos]);
+//    $pos=array_search(max($num),$num);
+//
+//    $username2=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//    unset($num[$pos]);
+//    $pos=array_search(max($num),$num);
+//    $username3=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//    $username=("$username1,$username2,$username3");
+//    return $username;
+//}
+//function create_before(){
+//    global $wpdb;
+//    $m=0;
+//    global $userlist;
+//    $c=count($userlist);
+//    $now=time();
+//    $time = strtotime('-2 day', $now);
+//    $beginTime = date('Y-m-d 00:00:00', $time);
+////    echo $beginTime;
+//    $postlis = $wpdb->get_results("SELECT post_date,ID FROM `wp_posts` order by `ID`");
+//    $m=0;
+//    foreach ($postlis as $a) {
+//        $postlist[$m] = $a->post_date;
+//        $post_ID_list[$m]=$a->ID;
 //        $m++;
 //    }
-   global $userlist;
-    $c=count($userlist);
-    $m=0;
-    while($c>0){
-        $num[$m]=$wpdb->get_var("SELECT COUNT(*) FROM `wp_posts` where post_author='$userlist[$m]' and post_type='dwqa-question'");
-        $id[$m]=$userlist[$m];
-        $m++;
-        $c--;
-    }
-//    print_r($num);
-//    print_r($id);
-    $pos=array_search(max($num),$num);
-//    echo $id[$pos];
-    $username1=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-
-    unset($num[$pos]);
-    $pos=array_search(max($num),$num);
-
-    $username2=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-
-    unset($num[$pos]);
-    $pos=array_search(max($num),$num);
-    $username3=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-    $username=("$username1,$username2,$username3");
-    return $username;
-}
-function answer(){
-    global $wpdb;
-//    $user = $wpdb->get_results("SELECT ID FROM `$wpdb->users` order by `ID`");
+//    $c=count($postlist);
 //    $m=0;
-//    foreach ($user as $a) {
-//        $userlist[$m] = $a->ID;
+//    while($c>0){
+//        if(strtotime($postlist[$m])>strtotime($beginTime)){
+//            $a = $post_ID_list[$m];
+//            break;
+//        }
+//        $m++;
+//        $c--;
+//    }
+////    echo $a ;
+//    $m=0;
+//    $c=count($userlist);
+//    while($c>0){
+//        $num[$m]=0;//防止没有人在三天内创建的情况
+////         @$num[$m] = $wpdb->get_var("SELECT COUNT(*) FROM `wp_posts` where post_author='$userlist[$m]' and ID>'$a' and post_type='post' or post_type='revision'");
+//
+//        $id[$m]=$userlist[$m];
+//        $m++;
+//        $c--;
+//    }
+////    print_r($num);
+////    print_r($id);
+//    $pos=array_search(max($num),$num);
+////    echo $id[$pos];
+//    $username1=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//    unset($num[$pos]);
+//    $pos=array_search(max($num),$num);
+//
+//    $username2=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//    unset($num[$pos]);
+//    $pos=array_search(max($num),$num);
+//    $username3=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//    $username=("$username1,$username2,$username3");
+//    return $username;
+//}
+//function question_before(){
+//    global $wpdb;
+//    $now=time();
+//    $time = strtotime('-2 day', $now);
+//    $beginTime = date('Y-m-d 00:00:00', $time);
+////    echo $beginTime;
+//    $postlis = $wpdb->get_results("SELECT post_date,ID FROM `wp_posts` order by `ID`");
+//    $m=0;
+//    foreach ($postlis as $a) {
+//        $postlist[$m] = $a->post_date;
+//        $post_ID_list[$m]=$a->ID;
 //        $m++;
 //    }
-    global $userlist;
-    $c=count($userlist);
-    $m=0;
-    while($c>0){
-        $num[$m]=$wpdb->get_var("SELECT COUNT(*) FROM `wp_posts` where post_author='$userlist[$m]' and post_type='dwqa-answer'");
-        $id[$m]=$userlist[$m];
-        $m++;
-        $c--;
-    }
-//    print_r($num);
-//    print_r($id);
-    $pos=array_search(max($num),$num);
-//    echo $id[$pos];
-    $username1=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-    unset($num[$pos]);
-    $pos=array_search(max($num),$num);
-
-    $username2=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-    unset($num[$pos]);
-    $pos=array_search(max($num),$num);
-    $username3=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-    $username=("$username1,$username2,$username3");
-    return $username;
-}
-function active_before_3(){
-    global $wpdb;
-    $m=0;
-    global $userlist;
-    $c=count($userlist);
-    $now=time();
-    $time = strtotime('-2 day', $now);
-    $beginTime = date('Y-m-d 00:00:00', $time);
-//    echo $beginTime;
-    $timelis = $wpdb->get_results("SELECT action_time,ID FROM `wp_user_history` order by `ID`");
-    $m=0;
-    foreach ($timelis as $a) {
-        $timelist[$m] = $a->action_time;
-        $time_ID_list[$m]=$a->ID;
-        $m++;
-    }
-    $c=count($timelis);
-    $m=0;
-    while($c>0){
-        if(strtotime($timelist[$m])>strtotime($beginTime)){
-            $a = $time_ID_list[$m];
-            break;
-         }
-        $m++;
-        $c--;
-    }
-//    echo $a ;
-    $m=0;
-    $c=count($userlist);
-    while($c>0){
-        $num[$m]=$wpdb->get_var("SELECT COUNT(*) FROM `wp_user_history` where user_id='$userlist[$m]' and ID>'$a'");
-        $id[$m]=$userlist[$m];
-        $m++;
-        $c--;
-    }
-//    print_r($num);
-//    print_r($id);
-    $pos=array_search(max($num),$num);
-//    echo $id[$pos];
-    $username1=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-    unset($num[$pos]);
-    $pos=array_search(max($num),$num);
-
-    $username2=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-    unset($num[$pos]);
-    $pos=array_search(max($num),$num);
-    $username3=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-    $username=("$username1,$username2,$username3");
-    return $username;
-}
-function create_before(){
-    global $wpdb;
-    $m=0;
-    global $userlist;
-    $c=count($userlist);
-    $now=time();
-    $time = strtotime('-2 day', $now);
-    $beginTime = date('Y-m-d 00:00:00', $time);
-//    echo $beginTime;
-    $postlis = $wpdb->get_results("SELECT post_date,ID FROM `wp_posts` order by `ID`");
-    $m=0;
-    foreach ($postlis as $a) {
-        $postlist[$m] = $a->post_date;
-        $post_ID_list[$m]=$a->ID;
-        $m++;
-    }
-    $c=count($postlist);
-    $m=0;
-    while($c>0){
-        if(strtotime($postlist[$m])>strtotime($beginTime)){
-            $a = $post_ID_list[$m];
-            break;
-        }
-        $m++;
-        $c--;
-    }
-//    echo $a ;
-    $m=0;
-    $c=count($userlist);
-    while($c>0){
-        $num[$m]=0;//防止没有人在三天内创建的情况
-//         @$num[$m] = $wpdb->get_var("SELECT COUNT(*) FROM `wp_posts` where post_author='$userlist[$m]' and ID>'$a' and post_type='post' or post_type='revision'");
-
-        $id[$m]=$userlist[$m];
-        $m++;
-        $c--;
-    }
-//    print_r($num);
-//    print_r($id);
-    $pos=array_search(max($num),$num);
-//    echo $id[$pos];
-    $username1=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-    unset($num[$pos]);
-    $pos=array_search(max($num),$num);
-
-    $username2=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-    unset($num[$pos]);
-    $pos=array_search(max($num),$num);
-    $username3=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-    $username=("$username1,$username2,$username3");
-    return $username;
-}
-function question_before(){
-    global $wpdb;
-    $now=time();
-    $time = strtotime('-2 day', $now);
-    $beginTime = date('Y-m-d 00:00:00', $time);
-//    echo $beginTime;
-    $postlis = $wpdb->get_results("SELECT post_date,ID FROM `wp_posts` order by `ID`");
-    $m=0;
-    foreach ($postlis as $a) {
-        $postlist[$m] = $a->post_date;
-        $post_ID_list[$m]=$a->ID;
-        $m++;
-    }
-    $c=count($postlist);
-    $m=0;
-    while($c>0){
-        if(strtotime($postlist[$m])>strtotime($beginTime)){
-            $a = $post_ID_list[$m];
-            break;
-        }
-        $m++;
-        $c--;
-    }
-
-    global $userlist;
-    $c=count($userlist);
-    $m=0;
-    while($c>0){
-        $num[$m]=0;//防止没有人在三天内创建的情况
-     //   $num[$m]=$wpdb->get_var("SELECT COUNT(*) FROM `wp_posts` where post_author='$userlist[$m]' and post_type='dwqa-question' and ID>'$a'");
-        $id[$m]=$userlist[$m];
-        $m++;
-        $c--;
-    }
-//    print_r($num);
-//    print_r($id);
-    $pos=array_search(max($num),$num);
-//    echo $id[$pos];
-    $username1=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-
-    unset($num[$pos]);
-    $pos=array_search(max($num),$num);
-
-    $username2=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-
-    unset($num[$pos]);
-    $pos=array_search(max($num),$num);
-    $username3=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-    $username=("$username1,$username2,$username3");
-    return $username;
-}
-function answer_before(){
-    global $wpdb;
-//    $user = $wpdb->get_results("SELECT ID FROM `$wpdb->users` order by `ID`");
+//    $c=count($postlist);
 //    $m=0;
-//    foreach ($user as $a) {
-//        $userlist[$m] = $a->ID;
+//    while($c>0){
+//        if(strtotime($postlist[$m])>strtotime($beginTime)){
+//            $a = $post_ID_list[$m];
+//            break;
+//        }
+//        $m++;
+//        $c--;
+//    }
+//
+//    global $userlist;
+//    $c=count($userlist);
+//    $m=0;
+//    while($c>0){
+//        $num[$m]=0;//防止没有人在三天内创建的情况
+//     //   $num[$m]=$wpdb->get_var("SELECT COUNT(*) FROM `wp_posts` where post_author='$userlist[$m]' and post_type='dwqa-question' and ID>'$a'");
+//        $id[$m]=$userlist[$m];
+//        $m++;
+//        $c--;
+//    }
+////    print_r($num);
+////    print_r($id);
+//    $pos=array_search(max($num),$num);
+////    echo $id[$pos];
+//    $username1=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//
+//    unset($num[$pos]);
+//    $pos=array_search(max($num),$num);
+//
+//    $username2=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//
+//    unset($num[$pos]);
+//    $pos=array_search(max($num),$num);
+//    $username3=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//    $username=("$username1,$username2,$username3");
+//    return $username;
+//}
+//function answer_before(){
+//    global $wpdb;
+////    $user = $wpdb->get_results("SELECT ID FROM `$wpdb->users` order by `ID`");
+////    $m=0;
+////    foreach ($user as $a) {
+////        $userlist[$m] = $a->ID;
+////        $m++;
+////    }
+//    $now=time();
+//    $time = strtotime('-2 day', $now);
+//    $beginTime = date('Y-m-d 00:00:00', $time);
+////    echo $beginTime;
+//    $postlis = $wpdb->get_results("SELECT post_date,ID FROM `wp_posts` order by `ID`");
+//    $m=0;
+//    foreach ($postlis as $a) {
+//        $postlist[$m] = $a->post_date;
+//        $post_ID_list[$m]=$a->ID;
 //        $m++;
 //    }
-    $now=time();
-    $time = strtotime('-2 day', $now);
-    $beginTime = date('Y-m-d 00:00:00', $time);
-//    echo $beginTime;
-    $postlis = $wpdb->get_results("SELECT post_date,ID FROM `wp_posts` order by `ID`");
-    $m=0;
-    foreach ($postlis as $a) {
-        $postlist[$m] = $a->post_date;
-        $post_ID_list[$m]=$a->ID;
-        $m++;
-    }
-    $c=count($postlist);
-    $m=0;
-    while($c>0){
-        if(strtotime($postlist[$m])>strtotime($beginTime)){
-            $a = $post_ID_list[$m];
-            break;
-        }
-        $m++;
-        $c--;
-    }
-    global $userlist;
-    $c=count($userlist);
-    $m=0;
-    while($c>0){
-        $num[$m]=0;//防止没有人在三天内创建的情况
-     //   $num[$m]=$wpdb->get_var("SELECT COUNT(*) FROM `wp_posts` where post_author='$userlist[$m]' and post_type='dwqa-answer' and ID>'$a'");
-        $id[$m]=$userlist[$m];
-        $m++;
-        $c--;
-    }
-//    print_r($num);
-//    print_r($id);
-    $pos=array_search(max($num),$num);
-//    echo $id[$pos];
-    $username1=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-    unset($num[$pos]);
-    $pos=array_search(max($num),$num);
-
-    $username2=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-    unset($num[$pos]);
-    $pos=array_search(max($num),$num);
-    $username3=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
-    $username=("$username1,$username2,$username3");
-    return $username;
-}
-function stay_page(){
-    global $wpdb;
-//    $c = get_option('spark_search_user_copy_right');
-    $n = 0;
-    $p = 0;
-    //需要更改匹配线上服务器
-    $viewart = $wpdb->get_results("SELECT action_post_id FROM `wp_user_history` where  `action_post_type`!='page' and `action_post_id`!='0'");
-    foreach ($viewart as $a) {
-        $viewart[$n] = $a->action_post_id;
-        $n++;
-    }
-    $infor = $wpdb->get_results("SELECT action_post_id,ID,action_time FROM `wp_user_history` order by ID");
-
-    foreach ($infor as $a) {
-        $IDinfor[$p] = $a->ID;
-        $timeinfor[$p] = $a->action_time;
-        $viewall[$p] = $a->action_post_id;
-        $p++;
-    }
-    $m = 0;
-    $result = array();
-    $c = count($viewall);
-    while ($c > 0) {
-        if (in_array($viewall[$m], $viewart)) {
-            $stay = strtotime($timeinfor[$m + 1]) - strtotime($timeinfor[$m]);
-            if ($stay > 3600)
-                $stay = 0;
-            $result[$viewall[$m]] += $stay;
-        }
-        $m++;
-        $c--;
-    }
-    arsort($result);
-    $num_val = array_values($result);
-    $num_key = array_keys($result);
-    $idcount1 = $num_val[0];
-    $idcount2 = $num_val[1];
-    $idcount3 = $num_val[2];
-    $idcount4 = $num_val[3];
-    $idcount5 = $num_val[4];
-    $idcount6 = $num_val[5];
-    $idcount7 = $num_val[6];
-    $id1 = $num_key[0];
-    $id2 = $num_key[1];
-    $id3 = $num_key[2];
-    $id4 = $num_key[3];
-    $id5 = $num_key[4];
-    $id6 = $num_key[5];
-    $id7 = $num_key[6];
-//        $idname1 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id1'");
-//        $idname2 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id2'");
-//        $idname3 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id3'");
-//        $idname4 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id4'");
-//        $idname5 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id5'");
-//        $idname6 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id6'");
-//        $idname7 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id7'");
-
-    $resulttime = "$idcount1 $idcount2 $idcount3 $idcount4 $idcount5 $idcount6 $idcount7 $id1 $id2 $id3 $id4 $id5 $id6 $id7";
-
-    return $resulttime;
-}
+//    $c=count($postlist);
+//    $m=0;
+//    while($c>0){
+//        if(strtotime($postlist[$m])>strtotime($beginTime)){
+//            $a = $post_ID_list[$m];
+//            break;
+//        }
+//        $m++;
+//        $c--;
+//    }
+//    global $userlist;
+//    $c=count($userlist);
+//    $m=0;
+//    while($c>0){
+//        $num[$m]=0;//防止没有人在三天内创建的情况
+//     //   $num[$m]=$wpdb->get_var("SELECT COUNT(*) FROM `wp_posts` where post_author='$userlist[$m]' and post_type='dwqa-answer' and ID>'$a'");
+//        $id[$m]=$userlist[$m];
+//        $m++;
+//        $c--;
+//    }
+////    print_r($num);
+////    print_r($id);
+//    $pos=array_search(max($num),$num);
+////    echo $id[$pos];
+//    $username1=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//    unset($num[$pos]);
+//    $pos=array_search(max($num),$num);
+//
+//    $username2=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//    unset($num[$pos]);
+//    $pos=array_search(max($num),$num);
+//    $username3=$wpdb->get_var("SELECT user_login FROM `wp_users` where ID='$id[$pos]'");
+//    $username=("$username1,$username2,$username3");
+//    return $username;
+//}
+//function stay_page(){
+//    global $wpdb;
+////    $c = get_option('spark_search_user_copy_right');
+//    $n = 0;
+//    $p = 0;
+//    //需要更改匹配线上服务器
+//    $viewart = $wpdb->get_results("SELECT action_post_id FROM `wp_user_history` where  `action_post_type`!='page' and `action_post_id`!='0'");
+//    foreach ($viewart as $a) {
+//        $viewart[$n] = $a->action_post_id;
+//        $n++;
+//    }
+//    $infor = $wpdb->get_results("SELECT action_post_id,ID,action_time FROM `wp_user_history` order by ID");
+//
+//    foreach ($infor as $a) {
+//        $IDinfor[$p] = $a->ID;
+//        $timeinfor[$p] = $a->action_time;
+//        $viewall[$p] = $a->action_post_id;
+//        $p++;
+//    }
+//    $m = 0;
+//    $result = array();
+//    $c = count($viewall);
+//    while ($c > 0) {
+//        if (in_array($viewall[$m], $viewart)) {
+//            $stay = strtotime($timeinfor[$m + 1]) - strtotime($timeinfor[$m]);
+//            if ($stay > 3600)
+//                $stay = 0;
+//            $result[$viewall[$m]] += $stay;
+//        }
+//        $m++;
+//        $c--;
+//    }
+//    arsort($result);
+//    $num_val = array_values($result);
+//    $num_key = array_keys($result);
+//    $idcount1 = $num_val[0];
+//    $idcount2 = $num_val[1];
+//    $idcount3 = $num_val[2];
+//    $idcount4 = $num_val[3];
+//    $idcount5 = $num_val[4];
+//    $idcount6 = $num_val[5];
+//    $idcount7 = $num_val[6];
+//    $id1 = $num_key[0];
+//    $id2 = $num_key[1];
+//    $id3 = $num_key[2];
+//    $id4 = $num_key[3];
+//    $id5 = $num_key[4];
+//    $id6 = $num_key[5];
+//    $id7 = $num_key[6];
+////        $idname1 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id1'");
+////        $idname2 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id2'");
+////        $idname3 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id3'");
+////        $idname4 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id4'");
+////        $idname5 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id5'");
+////        $idname6 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id6'");
+////        $idname7 = $wpdb->get_var("SELECT post_title FROM `wp_posts` where ID='$id7'");
+//
+//    $resulttime = "$idcount1 $idcount2 $idcount3 $idcount4 $idcount5 $idcount6 $idcount7 $id1 $id2 $id3 $id4 $id5 $id6 $id7";
+//
+//    return $resulttime;
+//}
 function lowtime()
 {
     global $wpdb;

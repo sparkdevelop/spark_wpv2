@@ -7,4 +7,4 @@
  */
 
 
-changeDomain('http://oursparkspace.cn','http://112.74.62.56');
+changeDomain('http://140.143.10.156/','http://oursparkspace.cn');

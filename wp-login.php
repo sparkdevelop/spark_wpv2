@@ -70,7 +70,7 @@ function login_header( $title = 'Log In', $message = '', $wp_error = '' ) {
 	<?php
 
 	wp_enqueue_style( 'login' );
-
+    wp_enqueue_script('TCaptcha','https://ssl.captcha.qq.com/TCaptcha.js');
 	/*
 	 * Remove all stored post data on logging out.
 	 * This could be added by add_action('login_head'...) like wp_shake_js(),
