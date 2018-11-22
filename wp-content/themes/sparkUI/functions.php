@@ -6244,7 +6244,7 @@ function cut_user_integral_ajax()
 {
     $user_id = $_POST['user_id'];
     $score = $_POST['score'];
-    add_user_integral($user_id, $score);
+    cut_user_integral($user_id, $score);
 }
 
 add_action('wp_ajax_cut_user_integral_ajax', 'cut_user_integral_ajax');
@@ -6660,8 +6660,7 @@ function custom_upload_mimes($existing_mimes = array())
 }
 
 
-/**
-验证码ticket验证
+/**验证码ticket验证
  */
 function captcha_ticket_verify(){
     $url = "https://ssl.captcha.qq.com/ticket/verify";

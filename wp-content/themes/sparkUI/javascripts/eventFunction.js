@@ -297,7 +297,7 @@ function addToChosenList(tab, type, url) {
                         //清空表格
                         var id = "#" + tab + "-table-border";
                         var info = $(id + ' thead tr th');
-                        $(id + " tr").empty("");
+                        $(id + " tbody").empty("");
 
                         var tr_id = type + '_' + res[1];
                         var tr = '<tr id=' + tr_id + '>';

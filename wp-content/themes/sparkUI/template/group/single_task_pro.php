@@ -149,7 +149,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
                         <div style="display: inline">
                             <input type="text" class="form-control" name="team_member[]" id="team_member"
                                    style="margin-left: 0px;margin-right: 5px"
-                                   placeholder="请填写本组成员火花用户名(请注意填写后不可更改!!)" value="" onblur="checkUserName(this.value,this)" />
+                                   placeholder="请填写本组成员火花用户名" value="" onblur="checkUserName(this.value,this)" />
                             <div id="ajax-response_0" style="display: inline;margin-left: 10px"></div>
                         </div>
                         <div id="addField" style="display:inline;margin-top: 7px;margin-left: -4px"></div>
@@ -208,7 +208,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
                                     <td style="display: none"><?= $team[$i][0] ?></td>
                                     <td><?= $team[$i][1] ?> </td>
                                     <?php for ($j = 2; $j < sizeof($team[$i]) - 2; $j++) { ?>
-                                        <td><?= $team[$i][$j] ?></td>
+                                            <td><?= $team[$i][$j] ?></td>
                                     <?php } ?>
                                     <?php list($pro_name, $pro_link) = split(',', $team[$i]['apply_content']);
                                     ?>
@@ -391,6 +391,7 @@ $group_verify_field = get_verify_field($group_id, 'group');
         if ($.inArray(1, result) == -1 && checkLength(tname.value, 'checkTaskNamebox')) {
             return true;
         } else {
+            layer.close();
             layer.alert("请修正错误");
             return false;
         }

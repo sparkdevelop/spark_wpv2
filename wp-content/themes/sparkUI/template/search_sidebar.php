@@ -18,7 +18,9 @@ foreach ($rows_day_keyword_obj as $keyword){
 }
 //===========选出所有keyword的总repeat_count,并将其对应===========
 foreach ($rows_day_keyword_arr as $key => $temp){
-    $rows_day_counts=$wpdb->get_results("SELECT SUM(repeat_count) as repeat_count FROM ". SS_TABLE . " WHERE keywords='".$temp."'");
+    $sql_rows_day = "SELECT SUM(repeat_count) as repeat_count FROM ". SS_TABLE." WHERE keywords='$temp' and STR_TO_DATE(`query_date`,'%Y%m%d') BETWEEN '$from_day' AND '$to'";
+    $rows_day_counts=$wpdb->get_results($sql_rows_day);
+    // $rows_day_counts=$wpdb->get_results("SELECT SUM(repeat_count) as repeat_count FROM ". SS_TABLE . " WHERE keywords='".$temp."'");
     $rows_day[]=array('keyword'=>$temp,'repeat_count'=>$rows_day_counts[0]->repeat_count);
 }
 //===========对rows_day中的repeat_count排序,选出10个即可。========
@@ -37,7 +39,9 @@ foreach ($rows_week_keyword_obj as $keyword){
 }
 //===========选出所有keyword的总repeat_count,并将其对应===========
 foreach ($rows_week_keyword_arr as $key => $temp){
-    $rows_week_counts=$wpdb->get_results("SELECT SUM(repeat_count) as repeat_count FROM ". SS_TABLE . " WHERE keywords='".$temp."'");
+    $sql_rows_week = "SELECT SUM(repeat_count) as repeat_count FROM ". SS_TABLE." WHERE keywords='$temp' and STR_TO_DATE(`query_date`,'%Y%m%d') BETWEEN '$from_week' AND '$to'";
+    $rows_week_counts=$wpdb->get_results($sql_rows_week);
+    // $rows_week_counts=$wpdb->get_results("SELECT SUM(repeat_count) as repeat_count FROM ". SS_TABLE . " WHERE keywords='".$temp."'");
     $rows_week[]=array('keyword'=>$temp,'repeat_count'=>$rows_week_counts[0]->repeat_count);
 }
 //===========对rows_day中的repeat_count排序,选出10个即可。========
@@ -61,7 +65,7 @@ array_multisort($arr_sort_week['repeat_count'],SORT_DESC,$rows_week);
             </ul>
         </div>
         <!--分割线-->
-        <div class="sidebar_divline"></div><!--下面的是列表
+        <div class="sidebar_divline"></div><!--下面的是列表!-->
 
         <!--列表内容 需要填写的都用php提取出来就行-->
         <div id="askerTabContent" class="tab-content">
