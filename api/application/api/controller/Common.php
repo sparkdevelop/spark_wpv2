@@ -25,6 +25,7 @@ class Common extends Controller
         'Post' => array(
             'keywords' => array(
                 'token' => 'require',
+                'start_time' => 'require',
                 'post_id' => 'require',
             ),
         ),
