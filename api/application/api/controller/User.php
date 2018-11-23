@@ -3,13 +3,12 @@ namespace app\api\controller;
 class User extends Common {
     public function test(){
         $data = $this->params;
-        $keywords = array();
         $test = "success";
-        $db_res = db('wp_users')
+        /*$db_res = db('wp_users')
             ->field('user_login')
             ->where('id', $data['id'])
-            ->find();
-        $this->return_msg(200, '成功!', $db_res);
+            ->find();*/
+        $this->return_msg(200, '成功!', $test);
     }
 
     public function user(){
