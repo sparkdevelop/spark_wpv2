@@ -372,61 +372,6 @@ $group_verify_field = get_verify_field($group_id, 'group');
         })
     }
 
-    function checkSubmitPro() {
-        var index = layer.load(0, {shade: [0.5, '#ffffff']}); //0代表加载的风格，支持0-2
-        var result = [];
-        for (var k = 0; k < i; k++) {
-            tmp = k.toString();
-            var ajax_id = 'ajax-response_' + tmp;
-            var ajax = document.getElementById(ajax_id);
-            var tmp = $(ajax).find('img').attr('src');
-            <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
-            if (tmp != '<?=$url?>') {
-                result.push(0);
-            } else {
-                result.push(1);
-            }
-        }
-        var tname = document.getElementById('prolink');
-        if ($.inArray(1, result) == -1 && checkLength(tname.value, 'checkTaskNamebox')) {
-            return true;
-        } else {
-            layer.close();
-            layer.alert("请修正错误");
-            return false;
-        }
-//        var ajax = document.getElementById('ajax-response');
-//        var tmp = $(ajax).find('img').attr('src');
-//        <?php //$url = get_template_directory_uri() . "/img/ERROR.png";?>
-//        if ( && tmp != '<?//=$url?>//') {
-//            return true;
-//        } else {
-//            layer.alert("请修正错误");
-//            return false;
-//        }
-    }
-
-    function change_grade(grade, team_id) {
-        var data = {
-            action: "change_grade",
-            grade: grade,
-            task_id: '<?=$task_id?>',
-            group_id: '<?=$group_id?>',
-            team_id: team_id
-        };
-        $.ajax({
-            data: data,
-            type: "POST",
-            url: '<?=$admin_url?>',
-            success: function (response) {
-                layer.msg("审核成功", {time: 2000, icon: 1});
-            },
-            error: function () {
-                layer.msg("操作失败", {time: 2000, icon: 2});
-            }
-        })
-    }
-
     function checkUpdateUserName(name,obj) {
         var k = saveid(obj);
         var data = {
@@ -459,6 +404,27 @@ $group_verify_field = get_verify_field($group_id, 'group');
         })
     }
 
+    function change_grade(grade, team_id) {
+        var data = {
+            action: "change_grade",
+            grade: grade,
+            task_id: '<?=$task_id?>',
+            group_id: '<?=$group_id?>',
+            team_id: team_id
+        };
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: '<?=$admin_url?>',
+            success: function (response) {
+                layer.msg("审核成功", {time: 2000, icon: 1});
+            },
+            error: function () {
+                layer.msg("操作失败", {time: 2000, icon: 2});
+            }
+        })
+    }
+
     var update_i =<?=sizeof(get_team_member($task_id))-1?>;
     function updateFieldBtn() {
         update_i = update_i+1;
@@ -470,6 +436,32 @@ $group_verify_field = get_verify_field($group_id, 'group');
             '</div>' +
             '</div>';
         $("#addField").append(input);
+    }
+
+    function checkSubmitPro() {
+        var index = layer.load(0, {shade: [0.5, '#ffffff']}); //0代表加载的风格，支持0-2
+        var result = [];
+        for (var k = 0; k <= update_i; k++) {
+            tmp = k.toString();
+            var ajax_id = 'ajax-response_' + tmp;
+            var ajax = document.getElementById(ajax_id);
+            var tmp = $(ajax).find('img').attr('src');
+            <?php $url = get_template_directory_uri() . "/img/ERROR.png";?>
+            if (tmp != '<?=$url?>') {
+                result.push(0);
+            } else {
+                result.push(1);
+            }
+        }
+        var tname = document.getElementById('prolink');
+        if ($.inArray(1, result) == -1 && checkLength(tname.value, 'checkTaskNamebox')) {
+            layer.close(index);
+            return true;
+        } else {
+            layer.close(index);
+            layer.alert("请修正错误");
+            return false;
+        }
     }
 
 </script>

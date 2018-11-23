@@ -1,7 +1,8 @@
 <?php
 global $wpdb;
-require_once(dirname(__FILE__) . '/admin.php');
+require_once(dirname(__FILE__) . '/admin.php');?>
 
+<?php
 //项目名称
 $pro_name = isset($_POST["proname"]) ? $_POST["proname"] : '';
 //项目链接
@@ -25,6 +26,7 @@ $result = $wpdb->get_results($sql_fun);
 $team_id = $result[0]->team_id + 1;
 
 //step1,2
+$team_member = array_unique($team_member);
 foreach ($team_member as $value) {
     $id = get_the_ID_by_name($value);
     $time = date('Y-m-d H:i:s', time() + 8 * 3600);

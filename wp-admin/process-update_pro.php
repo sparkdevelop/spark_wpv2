@@ -1,12 +1,8 @@
 <?php
 global $wpdb;
-require_once(dirname(__FILE__) . '/admin.php');?>
-<script>
-    var index_load;
-    $(function () {
-        index_load = layer.load();
-    })
-</script>
+require_once(dirname(__FILE__) . '/admin.php');
+?>
+
 <?php
 //项目名称
 $pro_name = isset($_POST["proname"]) ? $_POST["proname"] : '';
@@ -30,6 +26,7 @@ if($team_id != '' && $task_id != ''){
 
 //再更新内容。
 //在把member传过来的时候已经检查过是否在member表中或者是否组队了
+$team_member = array_unique($team_member);
 foreach ($team_member as $value){
     $id = get_the_ID_by_name($value);
     $time = date('Y-m-d H:i:s', time() + 8 * 3600);
@@ -46,6 +43,5 @@ foreach ($team_member as $value){
 $url= site_url().get_page_address('single_task').'&id='.$task_id;
 ?>
 <script>
-    //layer.close(index_load);
     location.replace("<?=$url?>");
 </script>

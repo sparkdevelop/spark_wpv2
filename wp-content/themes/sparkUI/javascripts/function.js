@@ -216,7 +216,7 @@ function myKnowledgeChart(id, jsonstring) {
         // }else{
         //     node.symbolSize = node.value;
         // }
-        node.symbolSize = node.value;
+        //node.symbolSize = 45;
         node.label = {
             normal: {
                 show: true
