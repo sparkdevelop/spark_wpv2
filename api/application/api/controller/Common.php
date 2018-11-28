@@ -21,6 +21,20 @@ class Common extends Controller
                 'token' =>'require',
                 'user_id' =>'require',
             ),
+            'posts_count' => array(
+                'token' =>'require',
+                'user_id' =>'require',
+                'start_time' => 'require',
+            ),
+            'points' => array(
+                'token' =>'require',
+                'user_id' =>'require',
+            ),
+            'posts_browse' => array(
+                'token' =>'require',
+                'user_id' =>'require',
+                'start_time' => 'require',
+            )
         ),
         'Post' => array(
             'keywords' => array(
