@@ -6857,6 +6857,30 @@ function addLearn(){
 
 add_action('wp_ajax_addLearn', 'addLearn');
 add_action('wp_ajax_nopriv_addLearn', 'addLearn');
+
+/*获取tagID
+* @param  string $tag [标签名]
+* */
+function get_tag_id($tag){
+    global $wpdb;
+    $sql = "SELECT term_id FROM wp_terms WHERE name = '$tag'";
+    $res = $wpdb->get_results($sql);
+    return $res[0]->term_id;
+}
+
+/*获取tag下的文章ID
+* @param  int $tag [标签ID]
+* */
+function get_post_by_tag($tag){
+    global $wpdb;
+    $sql = "SELECT object_id FROM wp_term_relationships WHERE term_taxonomy_id = $tag";
+    $res = $wpdb->get_results($sql);
+    $arr = array();
+    foreach ($res as $row){
+        $arr[] = $row->object_id;
+    }
+    return $arr;
+}
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;
