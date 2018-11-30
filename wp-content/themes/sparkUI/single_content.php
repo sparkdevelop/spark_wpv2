@@ -87,8 +87,8 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 </div>
                 <hr>
                 <?php
-                //the_content();
-                keywordHighlight_update();
+                the_content();
+                //keywordHighlight_update();
                 ?><hr>
                 <?php comments_template(); ?>
             <?php endwhile;?>

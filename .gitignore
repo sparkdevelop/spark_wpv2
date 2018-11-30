@@ -33,5 +33,11 @@ out/
 /friends
 /wp-content/plugins/wechat-social-login/logs/*.log
 #过滤某个具体文件
+<<<<<<< HEAD
 #wp-config.php
 wp-config.php
+=======
+wp-config.php
+/api/application/database.php
+
+>>>>>>> 9fe2999c607851f6483d2deb4d96b9c65a2d43d1
