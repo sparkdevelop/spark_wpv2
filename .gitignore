@@ -35,4 +35,5 @@ out/
 /wp-content/plugins/wechat-social-login/logs/*.log
 #过滤某个具体文件
 wp-config.php
+/api/application/database.php
 
