@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * WordPress基础配置文件。
  *
@@ -32,7 +32,7 @@ define('DB_USER', 'root');
 
 //define('DB_PASSWORD', '');
 //define('DB_PASSWORD', '19950715');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'spark123456');
 
 /** MySQL主机 */
 define('DB_HOST', 'localhost');
