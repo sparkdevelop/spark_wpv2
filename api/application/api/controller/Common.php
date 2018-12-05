@@ -21,12 +21,29 @@ class Common extends Controller
                 'token' =>'require',
                 'user_id' =>'require',
             ),
+            'get_register_time' => array(
+                'token' =>'require',
+              //  'user_id' =>'require',
+              //  'start_time' => 'require',
+               // 'end_time' => 'require',
+            ),
+            'get_user_post_ids' => array(
+                'token' => 'require',
+                //  'user_id' =>'require',
+                //  'start_time' => 'require',
+                // 'end_time' => 'require',
+            ),'get_online_info' => array(
+                'token' => 'require',
+                //  'user_id' =>'require',
+                //  'start_time' => 'require',
+                // 'end_time' => 'require',
+            ),
         ),
         'Post' => array(
             'keywords' => array(
                 'token' => 'require',
                 'start_time' => 'require',
-                'end_time' => 'require',
+              //  'end_time' => 'require',
             ),
         ),
     );
