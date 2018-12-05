@@ -31,7 +31,7 @@ out/
 /wp-content/uploads/2018/
 /wp-content/themes/sparkUI/algorithm/server-sdk/API/history/
 /friends
-/wp-content/plugins/wechat-social-login/logs/*.log
+/wp-content/plugins/wechat-social-login/logs/
 #过滤某个具体文件
 <<<<<<< HEAD
 #wp-config.php

@@ -21,6 +21,24 @@ class Common extends Controller
                 'token' =>'require',
                 'user_id' =>'require',
             ),
+            'get_register_time' => array(
+                'token' =>'require',
+              //  'user_id' =>'require',
+              //  'start_time' => 'require',
+               // 'end_time' => 'require',
+            ),
+            'get_user_post_ids' => array(
+                'token' => 'require',
+                //  'user_id' =>'require',
+                //  'start_time' => 'require',
+                // 'end_time' => 'require',
+            ),
+            'get_online_info' => array(
+                'token' => 'require',
+                //  'user_id' =>'require',
+                //  'start_time' => 'require',
+                // 'end_time' => 'require',
+            ),
             'posts_count' => array(
                 'token' =>'require',
                 'user_id' =>'require',
@@ -40,6 +58,7 @@ class Common extends Controller
             'keywords' => array(
                 'token' => 'require',
                 'start_time' => 'require',
+              //  'end_time' => 'require',
             ),
         ),
     );
