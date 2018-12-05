@@ -32,12 +32,27 @@ class Common extends Controller
                 //  'user_id' =>'require',
                 //  'start_time' => 'require',
                 // 'end_time' => 'require',
-            ),'get_online_info' => array(
+            ),
+            'get_online_info' => array(
                 'token' => 'require',
                 //  'user_id' =>'require',
                 //  'start_time' => 'require',
                 // 'end_time' => 'require',
             ),
+            'posts_count' => array(
+                'token' =>'require',
+                'user_id' =>'require',
+                'start_time' => 'require',
+            ),
+            'points' => array(
+                'token' =>'require',
+                'user_id' =>'require',
+            ),
+            'posts_browse' => array(
+                'token' =>'require',
+                'user_id' =>'require',
+                'start_time' => 'require',
+            )
         ),
         'Post' => array(
             'keywords' => array(
