@@ -36,7 +36,7 @@
                 $top_wiki_id = array();
                 array_push($top_wiki_id,get_the_ID_by_title('导论实验课'));
                 array_push($top_wiki_id,get_the_ID_by_title('开放平台'));
-                array_push($top_wiki_id,get_the_ID_by_title('炫彩LED灯'));
+                array_push($top_wiki_id,get_the_ID_by_title('封装后Color_LED库的使用'));
                 array_push($top_wiki_id,get_the_ID_by_title('串口通信'));
                 array_push($top_wiki_id,get_the_ID_by_title('自动控制路灯'));
                 array_push($top_wiki_id,get_the_ID_by_title('中国5g联创进校园'));
