@@ -5066,11 +5066,15 @@ function get_rbac_rp_relation($type, $id)
 //查询用户对应的权限or用户对应的角色(单表的)
 //type代表要查询的类型(如role),id是user的id
 //返回值是user对应的权限角色id数组
-function get_rbac_user_relation($type, $id)
+function get_rbac_user_relation($type, $id, $includes = true)
 {
     global $wpdb;
     if ($type == 'role') {
-        $sql = "SELECT role_id FROM wp_rbac_ur WHERE user_id = $id";
+        if($includes){
+            $sql = "SELECT role_id FROM wp_rbac_ur WHERE user_id = $id";
+        }else{
+            $sql = "SELECT role_id FROM wp_rbac_ur WHERE user_id = $id and author !=-1";   
+        }    
         $preresult = $wpdb->get_results($sql, 'ARRAY_A');
         $result = array_column($preresult, 'role_id');
         return $result;
@@ -5637,7 +5641,6 @@ function rbac_add_post()
     $add_id = $_POST['add_id'];
     foreach ($add_id as $p) {
         $sql_pre = "SELECT ID FROM wp_rbac_post WHERE post_id=$p and permission_id=$pid";
-        echo $sql_pre;
         $col = $wpdb->query($sql_pre);
         if ($col == 0) {
             $author = get_current_user_id();
@@ -6504,6 +6507,13 @@ function get_template_params()
 add_action('wp_ajax_get_template_params', 'get_template_params');
 add_action('wp_ajax_nopriv_get_template_params', 'get_template_params');
 
+
+
+
+
+
+
+
 //function get_current_group_id(){
 //    //获取群组名用
 //    $result = [];
@@ -6527,29 +6537,210 @@ add_action('wp_ajax_nopriv_get_template_params', 'get_template_params');
 //add_action('wp_ajax_get_current_group_id', 'get_current_group_id');
 //add_action('wp_ajax_nopriv_get_current_group_id', 'get_current_group_id');
 
-
-//修改域名  域名要包括http
-function changeDomain($old_domain, $new_domain)
+//add by Cherie
+//推荐资源
+function postRecommend($user_id){
+    global $wpdb;
+    $file_url = "wp-content/themes/sparkUI/algorithm/user_recommend.json";
+    $jsonString = file_get_contents($file_url);
+    $jsonArr = json_decode($jsonString, true);
+    if ($jsonArr[$user_id] !=''){
+        $res_posts = $jsonArr[$user_id];
+        $res_posts = ltrim($res_posts,"[");
+        $res_posts = rtrim($res_posts,"]");
+        $res_posts = explode(',',$res_posts);
+    }else{
+        $pop_posts = [];
+        $new_posts = [];
+        # 取新资源
+        $sql_new = "SELECT ID from wp_posts WHERE post_type = 'yada_wiki' and post_status='publish' ORDER BY post_date DESC LIMIT 10";
+        $results = $wpdb->get_results($sql_new,'ARRAY_A');
+        foreach($results as $value){
+            array_push($new_posts,$value['ID']);
+        }
+        $sql_pop = "select post_id from wp_postmeta where post_id not in (
+			          select action_post_id from wp_user_history where action_post_type = 'yada_wiki' and user_id = $user_id ) 
+			          and meta_key = 'count' order by cast(meta_value as DECIMAL)desc limit 20";
+        $results = $wpdb->get_results($sql_pop,'ARRAY_A');
+        foreach($results as $value){
+            array_push($pop_posts,$value['post_id']);
+        }
+        $res_posts = array_merge($new_posts,$pop_posts); # 新资源和浏览量高的没看过资源
+    }
+    return $res_posts;
+}
+//角色画像关联
+function persona_role_associate()
 {
     global $wpdb;
-//usermeta表中meta_key  meta_value 变更
-//post表中post_content变更
-    $sql_meta = "select * from $wpdb->usermeta WHERE meta_key='simple_local_avatar'";
-    $results = $wpdb->get_results($sql_meta);
-    foreach ($results as $key => $value) {
-        $new_value = str_replace($old_domain, $new_domain, $value->meta_value);
-        $sql_update = "update $wpdb->usermeta set meta_value='$new_value' WHERE meta_key='simple_local_avatar' and umeta_id = $value->umeta_id";
-        $wpdb->get_results($sql_update);
+    $file_url = "wp-content/themes/sparkUI/algorithm/persona.json";
+    $jsonString = file_get_contents($file_url);
+    $jsonArr = json_decode($jsonString, true);
+    //去除原自动生成角色
+    $sql_delete = "SELECT ID FROM wp_rbac_role WHERE author = -1";
+    $role_ids = $wpdb->get_results($sql_delete);
+    foreach($role_ids as $role_id){
+        delete_role($role_id->ID);
     }
-    $sql_post = "select ID, post_content from $wpdb->posts ORDER BY 'ID' ASC";
-    $results_post = $wpdb->get_results($sql_post);
-    foreach ($results_post as $key => $value) {
-        $new_value = addslashes(str_replace($old_domain, $new_domain, $value->post_content));
-        $sql_update = "update $wpdb->posts set post_content ='$new_value' WHERE ID = $value->ID";
-        $wpdb->get_results($sql_update);
+    //新建角色,分三类
+    $role_count = get_role_count($jsonArr, 'tag');
+    //积极度
+    for($i=0;$i<$role_count['active'];$i++){
+        $role_name = "积极度：".(string)$i;
+        $abstract = "本角色是由画像算法自动生成";
+        $author = -1;
+        new_role($role_name,$abstract,$author);
     }
-    echo "<h4>已将域名由" . $old_domain . "变更为" . $new_domain . "</h4>";
+    //兴趣点
+    for($i=0;$i<$role_count['interested'];$i++){
+        $role_name = "兴趣点：".(string)$i;
+        $abstract = "本角色是由画像算法自动生成";
+        $author = -1;
+        new_role($role_name,$abstract,$author);
+    }
+    //擅长领域
+    for($i=0;$i<$role_count['good_at'];$i++){
+        $role_name = "擅长点：".(string)$i;
+        $abstract = "本角色是由画像算法自动生成";
+        $author = -1;
+        new_role($role_name,$abstract,$author);
+    }
+    //关联用户-角色
+    foreach ($jsonArr as $user) {
+        $user_id = $user['user_id'];
+        $tags = explode(',',$user['tag']);
+        //积极度
+        $role_name =  "积极度：".$tags[0];
+        $role_id = get_type_id('role', $role_name);
+        auto_ur_associate($user_id,$role_id);
+        //兴趣点
+        $role_name =  "兴趣点：".$tags[1];
+        $role_id = get_type_id('role', $role_name);
+        auto_ur_associate($user_id,$role_id);
+        //擅长点
+        $role_name =  "擅长点：".$tags[2];
+        $role_id = get_type_id('role', $role_name);
+        auto_ur_associate($user_id,$role_id);
+    }
+    echo "关联成功";
 }
+
+//json某一字段去重
+function get_role_count($jsonArray, $key){
+    for($i = 1; $i < sizeof($jsonArray); $i++){
+        $tags = explode(',',$jsonArray[$i][$key]);
+        $active_tag[] = $tags[0];
+        $interested_tag[] = $tags[1];
+        $good_at_tag[] = $tags[2];
+    }
+    $result = array('active'=>sizeof(array_unique($active_tag)),
+                    'interested'=>sizeof(array_unique($interested_tag)),
+                    'good_at'=>sizeof(array_unique($good_at_tag))
+    );
+    return $result;
+}
+
+//删除角色
+function delete_role($id)
+{
+    global $wpdb;
+    //删除角色表
+    $sql_role = "DELETE from wp_rbac_role WHERE ID = $id";
+    $wpdb->query($sql_role);
+    //删除角色权限关联
+    $sql_rp = "DELETE from wp_rbac_rp WHERE role_id = $id";
+    $wpdb->query($sql_rp);
+    //删除角色用户关联
+    $sql_ur = "DELETE from wp_rbac_ur WHERE role_id = $id";
+    $wpdb->query($sql_ur);
+}
+
+//新建角色
+function new_role($role_name,$abstract,$author)
+{
+    global $wpdb;
+    $create_date = date('Y-m-d H:i:s', time() + 8 * 3600);
+    $sql_fun = "select ID from wp_rbac_role ORDER BY ID DESC LIMIT 0,1";
+    $result = $wpdb->get_results($sql_fun);
+    $role_id = $result[0]->ID+1;
+
+    $sql_role = "INSERT INTO wp_rbac_role VALUES ($role_id,'$role_name',
+                                              '$abstract',$author,
+                                              '$create_date')";
+    $wpdb->query($sql_role);
+}
+
+//用户和角色关联
+function auto_ur_associate($user_id,$role_id){
+    global $wpdb;
+    $author = -1;
+    $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+    //确认有没有这个u-r对
+    $sql_c = "SELECT ID FROM wp_rbac_ur WHERE user_id=$user_id and role_id = $role_id";
+    $col = $wpdb->query($sql_c);
+    if ($col == 0) {
+        $sql = "INSERT INTO wp_rbac_ur VALUES ('',$user_id,$role_id,$author,'$current_time')";
+        $wpdb->query($sql);
+   }
+}
+
+//推荐可能的用户(所有的)
+function userRecommend($user_id){
+    global $wpdb;
+    $ret = [];
+    $sql = "Select user_id from wp_rbac_ur where role_id in 
+            (select role_id from wp_rbac_ur where author = -1 and user_id=$user_id)";
+    $results = $wpdb->get_results($sql);
+    if(sizeof($results)>=5){        //如果有足够的推荐人选
+        foreach ($results as $result) {
+            array_push($ret, $result->user_id);
+        }
+        return $ret;
+    }else{  //初始用户或没有画像的用户
+        $sql_active = "select user_id from wp_user_integral order by integral desc limit 10,50";
+        $active_user_ids = $wpdb->get_results($sql_active);
+        foreach ($active_user_ids as $id) {
+            array_push($ret, $id->user_id);
+        }
+        return $ret;
+    } 
+}
+
+//换一批
+function get_random_recommend_user_ajax(){
+    $user_id = get_current_user_id();
+    $user_recommend = userRecommend($user_id);
+    $user_random_recommend = array_rand($user_recommend,5);//返回index而不是元素
+    foreach($user_random_recommend as $index){
+        $user_name = get_user_by('ID',$user_recommend[$index])->display_name;
+        $avatar = get_avatar($user_recommend[$index],30,'');
+        $user_url = site_url().get_page_address('otherpersonal').'&id='.$user_recommend[$index].'&tab=wiki ';
+        $ret[] = [$user_recommend[$index], $user_name, $avatar, $user_url];
+    }
+    echo json_encode($ret);;
+    exit();
+}
+add_action('wp_ajax_get_random_recommend_user_ajax', 'get_random_recommend_user_ajax');
+add_action('wp_ajax_nopriv_get_random_recommend_user_ajax', 'get_random_recommend_user_ajax');
+
+function get_random_recommend_post_ajax()
+{
+    // $user_id = get_current_user_id();
+    $user_id = 1665;
+    $post_recommend = postRecommend($user_id);
+    $post_random_recommend = array_rand($post_recommend, 5);
+    foreach ($post_random_recommend as $index) {
+        $post_url = get_permalink($post_recommend[$index]);
+        $post_title = get_the_title($post_recommend[$index]);
+        $view_count = getWikiViews($post_recommend[$index]);
+        $result[] = [$post_url, $post_title, $view_count];
+    }
+    echo json_encode($result);
+    exit();
+}
+add_action('wp_ajax_get_random_recommend_post_ajax', 'get_random_recommend_post_ajax');
+add_action('wp_ajax_nopriv_get_random_recommend_post_ajax', 'get_random_recommend_post_ajax');
+
 
 //温故
 function wikiReview($id)
@@ -6685,8 +6876,6 @@ function captcha_ticket_verify(){
     }
     die();
 }
-
-
 add_action('wp_ajax_captcha_ticket_verify', 'captcha_ticket_verify');
 add_action('wp_ajax_nopriv_captcha_ticket_verify', 'captcha_ticket_verify');
 
@@ -6881,6 +7070,34 @@ function get_post_by_tag($tag){
     }
     return $arr;
 }
+
+//修改域名  域名要包括http
+function changeDomain($old_domain, $new_domain)
+{
+    global $wpdb;
+//usermeta表中meta_key  meta_value 变更
+//post表中post_content变更
+    $sql_meta = "select * from $wpdb->usermeta WHERE meta_key='simple_local_avatar'";
+    $results = $wpdb->get_results($sql_meta);
+    foreach ($results as $key => $value) {
+        $new_value = str_replace($old_domain, $new_domain, $value->meta_value);
+        $sql_update = "update $wpdb->usermeta set meta_value='$new_value' WHERE meta_key='simple_local_avatar' and umeta_id = $value->umeta_id";
+        $wpdb->get_results($sql_update);
+    }
+    $sql_post = "select ID, post_content from $wpdb->posts ORDER BY 'ID' ASC";
+    $results_post = $wpdb->get_results($sql_post);
+    foreach ($results_post as $key => $value) {
+        $new_value = addslashes(str_replace($old_domain, $new_domain, $value->post_content));
+        $sql_update = "update $wpdb->posts set post_content ='$new_value' WHERE ID = $value->ID";
+        $wpdb->get_results($sql_update);
+    }
+    echo "<h4>已将域名由" . $old_domain . "变更为" . $new_domain . "</h4>";
+}
+
+
+
+
+
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;

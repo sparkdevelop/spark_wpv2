@@ -25,6 +25,114 @@ $permission_posts = get_permission_post($permission_id);
 $modified_time = date("Y-m-d H:i:s", time() + 8 * 3600);
 $apply_url = admin_url('admin-ajax.php');
 ?>
+<script>
+    var flag = false;
+
+    function show_more_pros() {
+        var related_pros = document.getElementById('related_pros');
+        var more_related_pros = document.getElementById('more_related_pros');
+        if (flag) {
+            related_pros.style.display = "block";
+            more_related_pros.style.display = "none";
+        } else {
+            related_pros.style.display = "none";
+            more_related_pros.style.display = "block";
+        }
+        flag = !flag;
+    }
+
+    var flag1 = false;
+
+    function show_more_patent() {
+        var related_patent = document.getElementById('related_patent');
+        var more_related_patent = document.getElementById('more_related_patent');
+        if (flag1) {
+            related_patent.style.display = "block";
+            more_related_patent.style.display = "none";
+        } else {
+            related_patent.style.display = "none";
+            more_related_patent.style.display = "block";
+        }
+        flag1 = !flag1;
+    }
+
+    var flag2 = false;
+
+    function show_more_paper() {
+        var related_paper = document.getElementById('related_paper');
+        var more_related_paper = document.getElementById('more_related_paper');
+        if (flag2) {
+            related_paper.style.display = "block";
+            more_related_paper.style.display = "none";
+        } else {
+            related_paper.style.display = "none";
+            more_related_paper.style.display = "block";
+        }
+        flag2 = !flag2;
+    }
+
+    function changeUser(){
+        var data = {
+            action: 'get_random_recommend_user_ajax'
+        };
+        $.ajax({
+            type: "POST",
+            url: "<?=$apply_url?>",
+            data: data,
+            dataType:'json',
+            success: function (response) {
+                var html = '';
+                for (var p = 0; p < response.length; p++) {
+                    var user_id = response[p][0];
+                    var user_name = response[p][1];
+                    var avatar = response[p][2];
+                    var user_url = response[p][3];
+                    html += "<div style='margin-top: 10px'>"+
+                                "<div style='width: 100%'>"+ avatar +
+                                      "<a href="+ user_url + " style='width:70px;word-wrap:break-word;margin-bottom:0px'> "+ user_name +
+                                      " </a>"+
+                                "</div>"+
+                            "</div>";
+                }
+                $("#latestJoin").html(html);
+            },
+            error:function (err) {
+                console.log(err)
+            }
+        });
+    }
+
+    function changePost(){
+        var data = {
+            action: 'get_random_recommend_post_ajax',
+        };
+        $.ajax({
+            type: "POST",
+            url: "<?=$apply_url?>",
+            data: data,
+            dataType:"json",
+            success: function (res) {
+                var html = '';
+                for (var i = 0; i < res.length; i++) {
+                    var post_url = res[i][0];
+                    var post_title = res[i][1];
+                    var view_count = res[i][2];
+                    html += "<li class='list-group-item' style='padding:0;margin-top:10px'>"+
+                                "<div style='display:inline-block;width:65%'>"+
+                                    "<a href=" + post_url +" class='question-title' style='word-wrap: break-word'>"+ post_title + "</a>"+
+                                "</div>"+
+                                "<span style='margin-bottom:0px;float:right;width:30%'>浏览:"+ view_count + "</span>"+
+                            "</li>";
+                }
+                $("#smart_recommend").html(html);
+            },
+            error:function (err) {
+                console.log(err)
+            }
+        });
+    }
+</script>
+
 <div class="wiki_sidebar_wrap">
     <div class="row wiki-handle">
         <div class="edit-wiki">
@@ -279,7 +387,6 @@ $apply_url = admin_url('admin-ajax.php');
     </div>
     <?php }?>
 
-
     <!--论文-->
     <?php
     $related_papers  = RelatedPapers($post_id);
@@ -307,6 +414,7 @@ $apply_url = admin_url('admin-ajax.php');
             </div>
         </div>
     <?php }?>
+
     <!--相关项目-->
     <?php
     $related_pros = wikiRelatedPro(get_the_ID());
@@ -390,6 +498,77 @@ $apply_url = admin_url('admin-ajax.php');
         </div>
     <?php } ?>
 
+    <!--可能感兴趣的人-->   
+    <?php
+    $user_recommend = userRecommend($current_user->ID);
+    $random_recommend = array_rand($user_recommend,5);
+    $ret = [];
+    foreach($random_recommend as $index){
+        array_push($ret,$user_recommend[$index]);
+    };
+    if(sizeof($ret)!=0){?>
+        <div class="user_recommends">
+            <div class="sidebar_list_header">
+                <p>可能感兴趣的人</p>
+                <span><a onclick="changeUser()" style="cursor: pointer">换一批</a></span>
+            </div>
+            <!--分割线-->
+            <div style="height: 2px;background-color: lightgray"></div>
+            <p style="font-size:12px">进入他的主页查看他发布的资源，还可以发私信哦</p>
+            <div id="latestJoin">
+            <?php 
+            for ($j = 0; $j < sizeof($ret); $j++) { ?>
+                <div style="margin-top: 10px">
+                    <div style="width: 100%">
+                        <?php echo get_avatar($ret[$j], 30, ''); ?>
+                        <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $random_recommend[$j] . '&tab=wiki' ?>"
+                           style="width: 70px;word-wrap: break-word;margin-bottom: 0px">
+                            <?php $user_name = get_user_by('ID',$ret[$j])->display_name;
+                            echo $user_name; ?>
+                        </a>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        </div>
+    <?} ?>        
+
+    <!--可能感兴趣的资源-->   
+    <?php
+    $post_recommend = postRecommend($current_user->ID);
+    $post_random_recommend = array_rand($post_recommend,5);
+    $post_ret = [];
+    foreach($post_random_recommend as $index){
+        array_push($post_ret,$post_recommend[$index]);
+    };
+    if(sizeof($post_ret)!=0){?>
+        <div class="post_recommends">
+            <div class="sidebar_list_header">
+                <p>可能感兴趣的内容</p>
+                <span><a onclick="changePost()" style="cursor: pointer">换一批</a></span>
+            </div>
+            <!--分割线-->
+            <div style="height: 2px;background-color: lightgray"></div>
+            <div class="wiki_recommend" id="wiki_recommend">
+                <ul style="padding-left: 0px" id="smart_recommend">
+                    <?php
+                    for ($i = 0; $i < sizeof($post_ret); $i++) { ?>
+                        <li class="list-group-item" style="padding:0;margin-top:10px">
+                            <div style="display:inline-block;width:65%">
+                                <a href="<?php echo get_permalink($post_ret[$i]); ?>" class="question-title" style="word-wrap: break-word">
+                                    <?php echo get_the_title($post_ret[$i]); ?>
+                                </a>
+                            </div>
+                            <span style="margin-bottom:0px;float:right;width:30%">浏览:<?=getWikiViews($post_ret[$i])?></span>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+            <div id="random_post"></div>
+        </div>
+    <?} ?>        
+
+
     <!--知新-->
     <?php
     $wiki_recommend = wikiRecommend($current_user->ID);
@@ -441,50 +620,4 @@ $apply_url = admin_url('admin-ajax.php');
     ?>
 
 </div>
-<script>
-    var flag = false;
 
-    function show_more_pros() {
-        var related_pros = document.getElementById('related_pros');
-        var more_related_pros = document.getElementById('more_related_pros');
-        if (flag) {
-            related_pros.style.display = "block";
-            more_related_pros.style.display = "none";
-        } else {
-            related_pros.style.display = "none";
-            more_related_pros.style.display = "block";
-        }
-        flag = !flag;
-    }
-
-    var flag1 = false;
-
-    function show_more_patent() {
-        var related_patent = document.getElementById('related_patent');
-        var more_related_patent = document.getElementById('more_related_patent');
-        if (flag1) {
-            related_patent.style.display = "block";
-            more_related_patent.style.display = "none";
-        } else {
-            related_patent.style.display = "none";
-            more_related_patent.style.display = "block";
-        }
-        flag1 = !flag1;
-    }
-
-    var flag2 = false;
-
-    function show_more_paper() {
-        var related_paper = document.getElementById('related_paper');
-        var more_related_paper = document.getElementById('more_related_paper');
-        if (flag2) {
-            related_paper.style.display = "block";
-            more_related_paper.style.display = "none";
-        } else {
-            related_paper.style.display = "none";
-            more_related_paper.style.display = "block";
-        }
-        flag2 = !flag2;
-    }
-
-</script>
