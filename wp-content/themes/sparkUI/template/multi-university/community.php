@@ -3,6 +3,8 @@ global $wpdb;
 $sql = "select post_id,uvs_short from wp_ms WHERE ID IN (1,15,16,17,19,20,21)";
 $result = $wpdb->get_results($sql);
 $url = site_url().get_page_address('join_ms');
+$url_experiment = get_permalink(get_the_ID_by_title('精简版端到端实验'));
+$experiment_2019 = get_permalink(get_the_ID_by_title('2019多校燎原计划——腾讯云AI+小程序'));
 ?>
 <style>
     .school-entry-class img {
@@ -43,8 +45,7 @@ $url = site_url().get_page_address('join_ms');
         ?>
         <button class="btn btn-green" style="display: inline;height:33px;margin:0 20px;vertical-align: bottom" onclick="join_ms()">加入</button>
     <? }
-    $url_experiment = get_permalink(get_the_ID_by_title('精简版端到端实验'));
-    $experiment_2019 = get_permalink(get_the_ID_by_title('2019多校燎原计划——腾讯云AI+小程序'));
+
     ?>
 
     <ul class="list-group">
