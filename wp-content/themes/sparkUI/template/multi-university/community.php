@@ -1,6 +1,6 @@
 <?php
 global $wpdb;
-$sql = "select post_id,uvs_short from wp_ms WHERE ID IN (1,15,16,17,19,20)";
+$sql = "select post_id,uvs_short from wp_ms WHERE ID IN (1,15,16,17,19,20,21)";
 $result = $wpdb->get_results($sql);
 $url = site_url().get_page_address('join_ms');
 ?>
@@ -39,8 +39,12 @@ $url = site_url().get_page_address('join_ms');
         <button class="btn btn-green" style="display: inline;height:33px;margin:0 20px;vertical-align: bottom" onclick="join_ms()">加入</button>
     <? }
     $url_experiment = get_permalink(get_the_ID_by_title('精简版端到端实验'));
+    $experiment_2019 = get_permalink(get_the_ID_by_title('2019多校燎原计划——腾讯云AI+小程序'));
     ?>
-    <a style="display: block;font-size: 20px;margin: 20px 0px;cursor: pointer" onclick="window.open('<?=$url_experiment?>')">精简版端到端实验</a>
+    <span style="display: block;margin: 20px 0">
+        <a style="display: inline;font-size: 20px;margin: 20px 0px;cursor: pointer" onclick="window.open('<?=$url_experiment?>')">2018精简版端到端实验</a>
+        <a style="display: inline;font-size: 20px;margin: 20px 20px;cursor: pointer" onclick="window.open('<?=$experiment_2019?>')">2019多校燎原计划</a>
+    </span>
     <ul class="list-group">
         <?php
         $size = sizeof($result);
