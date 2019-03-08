@@ -33,8 +33,8 @@ $url = site_url().get_page_address('join_ms');
 <div id="community_index">
     <h3 style="display:inline;margin-top: 10px">燎原计划</h3>
     <span style="display: block;margin: 20px 20px">
-        <a style="display: inline;font-size: 18px;margin: 20px 0px;cursor: pointer" onclick="window.open('<?=$url_experiment?>')">2018精简版端到端实验</a>
-        <a style="display: inline;font-size: 18px;margin: 20px 20px;cursor: pointer" onclick="window.open('<?=$experiment_2019?>')">2019多校燎原计划</a>
+        <a style="display: inline;font-size: 18px;margin: 20px 0px;cursor: pointer" onclick="window.open('<?=$experiment_2019?>')">2019多校燎原计划</a>
+        <a style="display: inline;font-size: 18px;margin: 20px 20px;cursor: pointer" onclick="window.open('<?=$url_experiment?>')">2018精简版端到端实验</a>
     </span>
     <h3 style="display:inline;margin-top: 10px">入驻高校</h3>
     <?php
@@ -61,7 +61,7 @@ $url = site_url().get_page_address('join_ms');
             <?php } ?>
             <li class="list-group-item col-md-3 col-sm-3 col-xs-6 school-entry-class" id="school-entry-<?=$i?>">
                 <img src="<?=bloginfo('template_url')."/img/univerisity-logo/".strtoupper($result[$i]->uvs_short).".png"?>"
-                onclick="window.open('<?php the_permalink($result[$i]->post_id)?>')" style="pcursor: pointer;padding:5px;">
+                onclick="window.open('<?php the_permalink($result[$i]->post_id)?>')" style="cursor: pointer;padding:5px;">
             </li>
         <?php } ?>
         <style>
