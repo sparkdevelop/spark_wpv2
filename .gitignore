@@ -29,6 +29,7 @@ out/
 #过滤整个文件夹
 /wp-content/uploads/2017/
 /wp-content/uploads/2018/
+/wp-content/uploads/2019/
 /wp-content/themes/sparkUI/algorithm/server-sdk/API/history/
 /friends
 /wp-content/plugins/wechat-social-login/logs/
