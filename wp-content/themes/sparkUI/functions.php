@@ -1334,6 +1334,7 @@ function qaComeFrom($qa_id)
     global $wpdb;
     $post_id = $wpdb->get_var($wpdb->prepare("SELECT * FROM wp_relation WHERE related_id=$qa_id;", ""), 1, 0);
     $post_type = $wpdb->get_var($wpdb->prepare("SELECT * FROM wp_relation WHERE related_id=$qa_id;", ""), 2, 0);
+    $related_post_type = $wpdb->get_var($wpdb->prepare("SELECT * FROM wp_relation WHERE related_id=$qa_id;", ""), 4, 0);
     $related_info = array('id' => $post_id, 'post_type' => $post_type,'related_post_type' => $related_post_type);
     return $related_info;
 }
