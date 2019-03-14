@@ -198,10 +198,11 @@ $_SESSION['wiki_tags'] = $wiki_tags;
             type : 2,
             title: "经验分享", //不显示title   //'layer iframe',
             content: '<?php echo site_url().get_page_address('qa_create')."&post_id=".$current_page_id."&type=".$current_page_type;?>', //iframe的url
-            area: ['70%', '80%'],
+            area: ['80%', '100%'],
             closeBtn:1,            //是0为不显示叉叉 可选1,2
             shadeClose: true,    //点击其他shade区域关闭窗口
             shade: 0.5,   //透明度
+            maxmin: true,
             end: function () {
                 location.reload();
             }

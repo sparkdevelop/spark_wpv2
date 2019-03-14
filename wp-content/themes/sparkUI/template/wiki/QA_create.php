@@ -25,7 +25,7 @@ $admin_url = admin_url('admin-ajax.php');
         <div id="ffff">
             <input type="text" name="wiki_entry_title" class="wiki_entry_title" placeholder="输入词条标题">
             <?php
-            wp_editor("", 'wiki_content_editor', $settings = array('textarea_name' => 'post_content', 'textarea_rows' => 25,'teeny'=>true));
+            wp_editor("", 'wiki_content_editor', $settings = array('textarea_name' => 'post_content', 'textarea_rows' => 25));
             ?>
         </div>
     </div>
