@@ -11,6 +11,15 @@ $author_name=get_the_author_meta('user_login',$author_id);
 $release_id=get_page_id('release');
 //相关知识
 $related_wiki = showProWiki(get_the_ID());
+
+$related_info = qaComeFrom($post_id);
+if($related_info['post_type']=="post"){
+    $post_from = "项目";
+}elseif($related_info['post_type']=="yada_wiki"){
+    $post_from = "wiki";
+}else{
+    $post_from="";
+}
 ?>
 <?php
 //获取当前用户用户名
@@ -72,6 +81,17 @@ $admin_url=admin_url( 'admin-ajax.php' );
                 <!--    文章内容-->
                 <div style="display:inline-block;">
                     <h2><b><?php the_title(); ?></b></h2>
+                    <!--来自项目or wiki-->
+                    <?php
+                    if($related_info['post_type'] != ""){?>
+                        <div id="question_from" style="display:block;">
+                <span>来自<?php echo $post_from?>:
+                    <a href ="<?php echo get_permalink($related_info['id']);?>" target="_blank">
+                        <?php echo get_the_title($related_info['id']);?>
+                    </a>
+                </span>
+                        </div>
+                    <?php } ?>
                 </div>
                 <?php if( !ifFavorite($current_user->ID,$post_id) ){ //未收藏
                     $flag = 1;
@@ -386,10 +406,12 @@ $admin_url=admin_url( 'admin-ajax.php' );
             <li data-placement="left" data-toggle="tooltip" data-original-title="不懂就问">
                 <a onclick="addLayer()" id="ask_link">提问</a>
             </li>
+            <li data-placement="left" data-toggle="tooltip" data-original-title="经验分享"><a onclick="addLayer2()" id="ask_link">分享</a></li>
         <?php }else{ ?>
             <li data-placement="left" data-toggle="tooltip" data-original-title="不懂就问">
                 <a href="<?php echo wp_login_url( get_permalink() ); ?>">提问</a>
             </li>
+            <li data-placement="left" data-toggle="tooltip" data-original-title="经验分享"><a href="<?php echo wp_login_url( get_permalink() ); ?>">分享</a></li>
         <?php } ?>
 
     </ul>
@@ -459,6 +481,20 @@ $admin_url=admin_url( 'admin-ajax.php' );
             type : 2,
             title: "提问", //不显示title   //'layer iframe',
             content: '<?php echo site_url().get_page_address('ask_tiny')."&post_id=".$current_page_id."&type=".$current_page_type;?>', //iframe的url
+            area: ['70%', '80%'],
+            closeBtn:1,            //是0为不显示叉叉 可选1,2
+            shadeClose: true,    //点击其他shade区域关闭窗口
+            shade: 0.5,   //透明度
+            end: function () {
+                location.reload();
+            }
+        });
+    }
+    function addLayer2() {
+        layer.open({
+            type : 2,
+            title: "经验分享", //不显示title   //'layer iframe',
+            content: '<?php echo site_url().get_page_address('qa_create')."&post_id=".$current_page_id."&type=".$current_page_type;?>', //iframe的url
             area: ['70%', '80%'],
             closeBtn:1,            //是0为不显示叉叉 可选1,2
             shadeClose: true,    //点击其他shade区域关闭窗口
