@@ -869,6 +869,11 @@ function create_wiki_entry()
     $visibility = $_POST['wiki_visibility'];
     create_process_visibility($visibility, $last_insert_ID, $current_user->ID);
 
+    //QA添加到relation
+    if(isset($_POST['is_qa'])){
+        writeFAQ($_POST['current_id'], $_POST['current_type'], $last_insert_ID, 'qa');
+    };
+
     //增加积分
     global $integral_system;
     add_user_integral($current_user->ID, $integral_system['create_wiki']);
@@ -1310,6 +1315,19 @@ function writePWQA($post_id, $post_type, $related_id, $related_post_type)
     }
 }
 
+//写入pro-->FAQ wiki->FAQ 关系
+function writeFAQ($post_id, $post_type, $related_id, $related_post_type)
+{
+    global $wpdb;
+    $sql_1 = "SELECT * FROM wp_relation WHERE post_id=$post_id AND related_id=$related_id";
+    $col = $wpdb->query($sql_1); //返回的结果有几行
+    if ($col === 0) {  //如果没有这个pro<->wiki对
+        $sql_2 = "INSERT INTO wp_relation VALUES ('',$post_id,'$post_type',$related_id,'$related_post_type')";
+        $wpdb->get_results($sql_2);
+
+    }
+}
+
 //在qa页面展示来自项目or wiki 返回来自哪个post的info
 function qaComeFrom($qa_id)
 {
@@ -1334,7 +1352,19 @@ function pwRelatedQA($pro_id)
     }
     return $qa_id;
 }
-
+//返回此项目对用的所有FAQ  -->在项目和wiki页面的comment中显示QA
+function RelatedFAQ($pro_id)
+{
+    global $wpdb;
+    $qa_id = array();
+    $sql = "SELECT * FROM wp_relation WHERE post_id=$pro_id AND related_post_type='qa'";
+    $result = $wpdb->get_results($sql);
+    foreach ($result as $key => $value) {
+        $related_id[] = $value->related_id;
+        array_push($qa_id, $related_id[$key]);
+    }
+    return $qa_id;
+}
 //获取问题的作者id和name,为wiki和project评论中的问题服务(pwRelatedQA())
 function Spark_get_author($qa_id)
 {
