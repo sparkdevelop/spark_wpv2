@@ -6918,6 +6918,29 @@ function get_post_by_tag($tag){
     }
     return $arr;
 }
+
+function restore_code_submit(){
+    global $wpdb;
+    $user_id = isset($_POST["user_id"]) ? $_POST["user_id"] : '';
+    $submit_time = isset($_POST["submit_time"]) ? $_POST["submit_time"] : '';
+    $code = isset($_POST["submit_code"]) ? $_POST["submit_code"] : '';
+    if($code != ''){
+        $submit_code = addslashes($code);
+    } else{
+        $submit_code = "";
+    }
+    if($user_id && $submit_time){
+        $sql_insert = "INSERT INTO code_submit_history VALUES ('',$user_id,'$submit_code','$submit_time')";
+        $res = $wpdb->get_results($sql_insert);
+        echo "success";
+    }else{
+        echo "failed";
+    }
+    die();
+}
+
+add_action('wp_ajax_restore_code_submit', 'restore_code_submit');
+add_action('wp_ajax_nopriv_restore_code_submit', 'restore_code_submit');
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;
