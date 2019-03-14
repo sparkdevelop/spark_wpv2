@@ -22,7 +22,7 @@ if($related_info['post_type']=="post"){
                     <h2><b><?php the_title(); ?></b></h2>
                     <!--来自项目or wiki-->
                     <?php
-                    if($related_info['post_type'] != ""){?>
+                    if($related_info['post_type'] != "" &&$related_info['related_post_type'] =='qa'){?>
                         <div id="question_from" style="display:block;">
                 <span>来自<?php echo $post_from?>:
                     <a href ="<?php echo get_permalink($related_info['id']);?>" target="_blank">
