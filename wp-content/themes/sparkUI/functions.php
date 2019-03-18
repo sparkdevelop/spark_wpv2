@@ -6975,9 +6975,6 @@ function add_chain_log(){
 add_action('wp_ajax_add_chain_log', 'add_chain_log');
 add_action('wp_ajax_nopriv_add_chain_log', 'add_chain_log');
 
-function date_now(){
-    return date("Y-m-d H:i:s",time()+8*3600);
-}
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;

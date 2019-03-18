@@ -92,7 +92,7 @@ $admin_url = admin_url('admin-ajax.php');
     function chain_log(url,page) {
         var user_id = '<?php echo $userId;?>';
         var click_time = getCurrentDate();
-        console.log(click_time);
+        //console.log(click_time);
         var data = {
             action: "add_chain_log",
             user_id : user_id,
