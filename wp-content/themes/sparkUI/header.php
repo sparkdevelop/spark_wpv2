@@ -45,6 +45,7 @@
         $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id);
 
     }
+    $admin_url = admin_url('admin-ajax.php');
     ?>
 
     <?php
@@ -57,7 +58,7 @@
     setcookie("page_id");
     setcookie("action");
     $_SESSION['timestamp']=date("Y-m-d H:i:s",time()+8*3600);
-    writeUserTrack();
+    $last_id = writeUserTrack();
     //?>
 
 </head>
@@ -289,3 +290,49 @@
         </div>
     </div>
     <?php } ?>
+<script>
+
+        window.onbeforeunload = function(){
+            getLeavetime();
+        };
+        function getLeavetime() {
+            var leave_time = getCurrentDate();
+            //console.log(leave_time);
+            var data = {
+                action: "add_leave_time",
+                history_id : '<?php echo $last_id;?>',
+                leave_time : leave_time
+            };
+            $.ajax({
+                type: "POST",
+                url:"<?php echo $admin_url;?>",//你的请求程序页面
+                //async:false,//同步：意思是当有返回值以后才会进行后面的js程序。
+                data: data,//请求需要发送的处理数据
+                dataType: "json",
+                success: function (msg) {
+                    //console.log(msg);
+                },
+                error: function (msg) {
+                    //console.log(msg);
+                }
+            });
+        }
+        function getCurrentDate() {
+            var now = new Date();
+            var year = now.getFullYear(); //得到年份
+            var month = now.getMonth();//得到月份
+            var date = now.getDate();//得到日期
+            var hour = now.getHours();//得到小时
+            var minu = now.getMinutes();//得到分钟
+            var sec = now.getSeconds();//得到秒
+            month = month + 1;
+            if (month < 10) month = "0" + month;
+            if (date < 10) date = "0" + date;
+            if (hour < 10) hour = "0" + hour;
+            if (minu < 10) minu = "0" + minu;
+            if (sec < 10) sec = "0" + sec;
+            var time = "";
+            time = year + "-" + month + "-" + date+ " " + hour + ":" + minu + ":" + sec;
+            return time;
+        }
+</script>
