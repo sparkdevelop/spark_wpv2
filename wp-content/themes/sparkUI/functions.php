@@ -6941,6 +6941,22 @@ function restore_code_submit(){
 
 add_action('wp_ajax_restore_code_submit', 'restore_code_submit');
 add_action('wp_ajax_nopriv_restore_code_submit', 'restore_code_submit');
+
+function add_chain_log(){
+    global $wpdb;
+    $user_id = isset($_POST["user_id"]) ? $_POST["user_id"] : '';
+    $time = isset($_POST["click_time"]) ? $_POST["click_time"] : '';
+    $url = isset($_POST["url"]) ? $_POST["url"] : '';
+    $page = isset($_POST["page"]) ? $_POST["page"] : '';
+
+    $sql_insert = "INSERT INTO chain_log VALUES ('','$url','$time',$user_id,'$page')";
+    $res = $wpdb->get_results($sql_insert);
+
+    die();
+}
+
+add_action('wp_ajax_add_chain_log', 'add_chain_log');
+add_action('wp_ajax_nopriv_add_chain_log', 'add_chain_log');
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;

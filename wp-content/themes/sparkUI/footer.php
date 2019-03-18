@@ -65,11 +65,57 @@
 
 <?php wp_footer();
 $userId=get_current_user_id();
+$admin_url = admin_url('admin-ajax.php');
+date_default_timezone_set("Asia/Shanghai");
+$time = date("Y-m-d H:i:s");
 ?>
 
 <script src="<?php bloginfo('stylesheet_directory')?>/javascripts/main.js"></script>
 
 <script>
+    $(document).ready(function(){
+        var all_a = $("a");
+        host_url=window.location.host;
+        for (var i = 0; i < all_a.length; i++) {
+            if(all_a[i].href){
+                var domain = all_a[i].href.split("/"); //以“/”进行分割
+                if (domain[2] !== host_url) {
+                    console.log(all_a[i].href);
+                    all_a[i].target = "_blank";
+                    all_a.eq(i).click(function () {
+                        chain_log(this.href,this.text)
+                    });
+                }
+            }
+
+        }
+
+    });
+    function chain_log(url,page) {
+        var user_id = '<?php echo $userId;?>';
+        var click_time = '<?php echo $time;?>';
+        var data = {
+            action: "add_chain_log",
+            user_id : user_id,
+            click_time : click_time,
+            url : url,
+            page : page
+        };
+        $.ajax({
+            type: "POST",
+            url:"<?php echo $admin_url;?>",//你的请求程序页面
+            //async:false,//同步：意思是当有返回值以后才会进行后面的js程序。
+            data: data,//请求需要发送的处理数据
+            dataType: "json",
+            success: function (msg) {
+                 //alert("success");
+            },
+            error: function () {
+                // alert("error");
+            }
+        });
+
+    }
     //google Analyze
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
