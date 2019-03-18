@@ -1504,11 +1504,28 @@ function writeUserTrack()
     $timestamp = $_SESSION['timestamp'];
     session_destroy();
     if ($user_id != 0) {
-        $sql = "INSERT INTO wp_user_history VALUES ('',$user_id,'$user_action',$post_id,'$post_type','$timestamp')";
+        $sql = "INSERT INTO wp_user_history VALUES ('',$user_id,'$user_action',$post_id,'$post_type','$timestamp',null)";
         $wpdb->get_results($sql);
+        return $wpdb->insert_id;
     }
 }
 
+//写入用户离开页面时间
+function add_leave_time()
+{
+   global $wpdb;
+    $history_id = isset($_POST["history_id"]) ? $_POST["history_id"] : '';
+    $leave_time = isset($_POST["leave_time"]) ? $_POST["leave_time"] : '';
+    if ($history_id) {
+        $sql = "UPDATE wp_user_history SET leave_time='$leave_time' WHERE ID = $history_id";
+        $wpdb->get_results($sql);
+    }
+    //echo json_encode("success");
+    die();
+}
+
+add_action('wp_ajax_add_leave_time', 'add_leave_time');
+add_action('wp_ajax_nopriv_add_leave_time', 'add_leave_time');
 
 //建立用户收藏表
 function favorite_table_install()
@@ -6932,7 +6949,7 @@ function restore_code_submit(){
     if($user_id && $submit_time){
         $sql_insert = "INSERT INTO code_submit_history VALUES ('',$user_id,'$submit_code','$submit_time')";
         $res = $wpdb->get_results($sql_insert);
-        echo "success";
+        //echo "success";
     }else{
         echo "failed";
     }
@@ -6957,6 +6974,7 @@ function add_chain_log(){
 
 add_action('wp_ajax_add_chain_log', 'add_chain_log');
 add_action('wp_ajax_nopriv_add_chain_log', 'add_chain_log');
+
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;
