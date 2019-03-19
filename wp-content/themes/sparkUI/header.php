@@ -291,9 +291,19 @@
     </div>
     <?php } ?>
 <script>
-
-        window.onbeforeunload = function(){
-            getLeavetime();
+        
+        window.onbeforeunload = window.onbeforeunload || function(e){
+            var data = {
+                action: "add_leave_time",
+                history_id : '<?php echo $last_id;?>'
+            };
+            $.ajax({
+                type: "POST",
+                url:"<?php echo $admin_url;?>",//你的请求程序页面
+                async:false,//同步：意思是当有返回值以后才会进行后面的js程序。
+                data: data,//请求需要发送的处理数据
+                dataType: "json"
+            });
         };
         function getLeavetime() {
             //var leave_time = getCurrentDate();
@@ -306,15 +316,9 @@
             $.ajax({
                 type: "POST",
                 url:"<?php echo $admin_url;?>",//你的请求程序页面
-                //async:false,//同步：意思是当有返回值以后才会进行后面的js程序。
+                async:false,//同步：意思是当有返回值以后才会进行后面的js程序。
                 data: data,//请求需要发送的处理数据
-                dataType: "json",
-                success: function (msg) {
-                    //console.log(msg);
-                },
-                error: function (msg) {
-                    //console.log(msg);
-                }
+                dataType: "json"
             });
         }
         function getCurrentDate() {
