@@ -296,12 +296,12 @@
             getLeavetime();
         };
         function getLeavetime() {
-            var leave_time = getCurrentDate();
+            //var leave_time = getCurrentDate();
             //console.log(leave_time);
             var data = {
                 action: "add_leave_time",
-                history_id : '<?php echo $last_id;?>',
-                leave_time : leave_time
+                history_id : '<?php echo $last_id;?>'
+                //leave_time : leave_time
             };
             $.ajax({
                 type: "POST",

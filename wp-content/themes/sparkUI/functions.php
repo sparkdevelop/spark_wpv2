@@ -1515,7 +1515,8 @@ function add_leave_time()
 {
    global $wpdb;
     $history_id = isset($_POST["history_id"]) ? $_POST["history_id"] : '';
-    $leave_time = isset($_POST["leave_time"]) ? $_POST["leave_time"] : '';
+    //$leave_time = isset($_POST["leave_time"]) ? $_POST["leave_time"] : '';
+    $leave_time = date("Y-m-d H:i:s",time()+8*3600);
     if ($history_id) {
         $sql = "UPDATE wp_user_history SET leave_time='$leave_time' WHERE ID = $history_id";
         $wpdb->get_results($sql);
