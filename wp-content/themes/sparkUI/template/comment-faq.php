@@ -27,9 +27,9 @@ $author_info =Spark_get_author($faq_id);
         </div>
         <div>
             <?php
-            $post = get_post($faq_id);
-            $post_content = strip_tags($post->post_content);
-            echo mb_strimwidth($post_content, 0, 100,"...");?>
+            $faq = get_post($faq_id);
+            $faq_content = strip_tags($faq->post_content);
+            echo mb_strimwidth($faq_content, 0, 100,"...");?>
         </div>
     </div>
     <div style="height: 1px;background-color: #dcdcdc;margin-top: 20px"></div>

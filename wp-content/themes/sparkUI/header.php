@@ -291,7 +291,7 @@
     </div>
     <?php } ?>
 <script>
-        
+
         window.onbeforeunload = window.onbeforeunload || function(e){
             var data = {
                 action: "add_leave_time",

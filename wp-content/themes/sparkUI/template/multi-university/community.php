@@ -1,6 +1,6 @@
 <?php
 global $wpdb;
-$sql = "select post_id,uvs_short from wp_ms WHERE ID IN (1,15,16,17,19,20,21)";
+$sql = "select post_id,uvs_short from wp_ms WHERE ID IN (1,15,16,17,19,21)";
 $result = $wpdb->get_results($sql);
 $url = site_url().get_page_address('join_ms');
 $url_experiment = get_permalink(get_the_ID_by_title('精简版端到端实验'));
@@ -38,6 +38,10 @@ $experiment_2019 = get_permalink(get_the_ID_by_title('2019多校燎原计划—�
         <a style="display: inline;font-size: 18px;margin: 20px 0px;cursor: pointer" onclick="window.open('<?=$experiment_2019?>')">2019多校燎原计划</a>
         <a style="display: inline;font-size: 18px;margin: 20px 20px;cursor: pointer" onclick="window.open('<?=$url_experiment?>')">2018精简版端到端实验</a>
     </span>
+    <h3 style="display:inline;margin-top: 10px">学习资源</h3>
+    <span style="display: block;margin: 20px 20px">
+        <a style="display: inline;font-size: 18px;margin: 20px 0px;" href="<?php echo site_url()?>/?yada_wiki=1536736055" target="_blank">创+腾讯</a>
+    </span>
     <h3 style="display:inline;margin-top: 10px">入驻高校</h3>
     <?php
     if(current_user_can( 'manage_options' )){
@@ -60,7 +64,7 @@ $experiment_2019 = get_permalink(get_the_ID_by_title('2019多校燎原计划—�
                     }
                 </style>
             <?php } ?>
-            <li class="list-group-item col-md-3 col-sm-3 col-xs-6 school-entry-class" id="school-entry-<?=$i?>">
+            <li class="list-group-item col-md-4 col-sm-4 col-xs-6 school-entry-class" id="school-entry-<?=$i?>">
                 <img src="<?=bloginfo('template_url')."/img/univerisity-logo/".strtoupper($result[$i]->uvs_short).".png"?>"
                 onclick="window.open('<?php the_permalink($result[$i]->post_id)?>')" style="cursor: pointer;padding:5px;">
             </li>
