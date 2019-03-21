@@ -52,14 +52,16 @@
     .front-icon {
         width: 85%;
     }
-    .container_1{
-        margin:50px 0 0 0;
+
+    .container_1 {
+        margin: 50px 0 0 0;
     }
 
     .col-md-4 .col-sm-4 .col-xs-4 {
         display: inline-block;
     }
-    #wiki_list_link{
+
+    #wiki_list_link {
         float: right;
         display: inline-block;
         font-size: 15px;
@@ -67,7 +69,8 @@
         height: 28px;
         line-height: 28px;
     }
-    .wiki_list_header p{
+
+    .wiki_list_header p {
         display: inline-block;
     }
 </style>
@@ -152,9 +155,51 @@ get_header();
 </div>
 
 <div class="container">
+    <div class="wiki_list col-md-12 col-sm-12 col-xs-12" style="display: inline-block;margin: 50px 0 50px 0;">
+        <div class="wiki_list_header">
+            <p style="font-size: 20px">多校合作</p>
+            <a id="wiki_list_link" href="<?php echo site_url() . get_page_address('community'); ?>">更多内容>></a>
+        </div>
+        <!--分割线-->
+        <div class="divline" style="margin-top: 0px"></div>
+        <ul class="list-group" style="margin-bottom: 0;">
+            <li class="list-group-item col-md-4 col-sm-4 col-xs-12">
+                <div style="display: inline-block; vertical-align: baseline;">
+                    <a href="<?php echo get_permalink(get_the_ID_by_title('2019多校燎原计划——腾讯云AI+小程序'));?>" style="color: #fe642d;">
+                        <span >【燎原计划】</span>2019多校燎原计划
+                    </a>
+                </div>
+            </li>
+            <li class="list-group-item col-md-4 col-sm-4 col-xs-12">
+                <div style="display: inline-block; vertical-align: baseline;">
+                    <a href="<?php echo get_permalink(get_the_ID_by_title('精简版端到端实验'));?>" style="color: #4e4e4e;">
+                        <span>【燎原计划】</span>2018精简版端到端实验
+                    </a>
+                </div>
+            </li>
+            <li class="list-group-item col-md-4 col-sm-4 col-xs-12">
+                <div style="display: inline-block; vertical-align: baseline;">
+                    <a href="<?php echo get_permalink(get_the_ID_by_title('创+腾讯'));?>" style="color: #4e4e4e;">
+                        <span>【学习资源】</span>创+腾讯
+                    </a>
+                </div>
+            </li>
+            <li class="list-group-item col-md-12 col-sm-12 col-xs-12" style="text-align: center;margin-top: 20px">
+                <div style="display: inline-block;">
+                        <span style="color: gray;margin: 10px auto">合作伙伴</span>
+                </div>
+            </li>
+            <img style="width: 100%;margin-top: 10px"
+                 src="<?php bloginfo("template_url") ?>/img/univerisity-logo/community.png"/>
+        </ul>
+
+
+    </div>
+
     <div class="container_1" id="front-page_1" style="display: table">
         <div class="col-md-4 col-sm-4 col-xs-12">
-            <div id="front-img"><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/wiki_icon.png"/></div>
+            <div id="front-img"><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/wiki_icon.png"/>
+            </div>
         </div>
         <div class="wiki_list col-md-8 col-sm-8 col-xs-12" style="display: inline-block">
             <div class="wiki_list_header">
@@ -165,23 +210,24 @@ get_header();
             <div class="divline" style="margin-top: 0px"></div>
             <!--推荐列表-->
             <?php
-            $wiki_item = array([235,'导论实验课', getWikiViews(235)],
-                [239,'Unit1：开源硬件与Web编程入门', getWikiViews(239)],
-                [1191,'Unit2：计算机和微机实验', getWikiViews(1191)],
-                [540,'Unit3：电路基础实验', getWikiViews(540)],
-                [1202,'Unit4：网络基础实验', getWikiViews(1202)],
-                [979,'Unit5: 复杂工程进阶实验', getWikiViews(979)],
-                [13476,'Unit6: 工程认知与创新素质培养', getWikiViews(13476)]
+            $wiki_item = array([235, '导论实验课', getWikiViews(235)],
+                [239, 'Unit1：开源硬件与Web编程入门', getWikiViews(239)],
+                [1191, 'Unit2：计算机和微机实验', getWikiViews(1191)],
+                [540, 'Unit3：电路基础实验', getWikiViews(540)],
+                [1202, 'Unit4：网络基础实验', getWikiViews(1202)],
+                [979, 'Unit5: 复杂工程进阶实验', getWikiViews(979)],
+                [13476, 'Unit6: 工程认知与创新素质培养', getWikiViews(13476)]
             )
             ?>
             <ul class="list-group" style="margin-bottom: 0px">
                 <?php
-                foreach ($wiki_item as $key => $value){?>
+                foreach ($wiki_item as $key => $value) {
+                    ?>
                     <li class="list-group-item">
                         <div style="display: inline-block; vertical-align: baseline;">
                             <a href="<?php the_permalink($value[0]); ?>" style="color: #4e4e4e;">
-                                <span style="color: #fe642d">【导论实验课】</span><?=$value[1]?>
-                                <? if ($key==4){?>
+                                <span style="color: #fe642d">【导论实验课】</span><?= $value[1] ?>
+                                <? if ($key == 4) { ?>
                                     <span>
                                         &nbsp;->&nbsp;<a href="http://sice.owvlab.net/openlab/jsj">网络虚拟仿真实验平台入口</a>
                                     </span>
@@ -190,7 +236,7 @@ get_header();
                             <!--传浏览量-->
                         </div>
                         <div style="display: inline-block;float: right; margin-right: 30px;">
-                            <?=$value[2]?>次
+                            <?= $value[2] ?>次
                         </div>
                     </li>
                 <?php }
@@ -211,25 +257,26 @@ get_header();
             <div class="divline" style="margin-top: 0px"></div>
             <!--推荐列表-->
             <?php
-            $qa_item = array([236,'关于程序上传和代码出错的一些总结',dwqa_question_views_count(236)],
-                [492,'→→→→→→→网络工程实验←←←←←←不信你们看不见',dwqa_question_views_count(492)],
-                [3603,'【反馈】火花空间&通信导论课反馈帖',dwqa_question_views_count(3603)],
-                [477,'[集合贴]导论课反馈汇总(无法解决的问题都来这里吧)',dwqa_question_views_count(477)],
-                [473,'[集合贴]【必看】导论课实验问题汇总（更新舵机电机问题）',dwqa_question_views_count(473)],
-                [5296,'关于微信小程序后台服务器的搭建',dwqa_question_views_count(5296)])
+            $qa_item = array([236, '关于程序上传和代码出错的一些总结', dwqa_question_views_count(236)],
+                [492, '→→→→→→→网络工程实验←←←←←←不信你们看不见', dwqa_question_views_count(492)],
+                [3603, '【反馈】火花空间&通信导论课反馈帖', dwqa_question_views_count(3603)],
+                [477, '[集合贴]导论课反馈汇总(无法解决的问题都来这里吧)', dwqa_question_views_count(477)],
+                [473, '[集合贴]【必看】导论课实验问题汇总（更新舵机电机问题）', dwqa_question_views_count(473)],
+                [5296, '关于微信小程序后台服务器的搭建', dwqa_question_views_count(5296)])
             ?>
             <ul class="list-group" style="margin-bottom: 0px">
                 <?php
-                foreach ($qa_item as $value){?>
+                foreach ($qa_item as $value) {
+                    ?>
                     <li class="list-group-item">
                         <div style="display: inline-block; vertical-align: baseline;">
                             <a href="<?php the_permalink($value[0]); ?>" style="color: #4e4e4e;">
-                                <?=$value[1]?>
+                                <?= $value[1] ?>
                             </a>
                             <!--传浏览量-->
                         </div>
                         <div style="display: inline-block;float: right; margin-right: 30px;">
-                            <?=$value[2]?>次
+                            <?= $value[2] ?>次
                         </div>
                     </li>
                 <?php }
@@ -239,36 +286,38 @@ get_header();
     </div>
     <div class="container_3" id="front-page_3" style="padding: 50px 0 50px 0;display: table">
         <div class="col-md-4 col-sm-4 col-xs-12">
-            <div id="front-img"><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/project_icon.png"/></div>
+            <div id="front-img"><img class="front-icon" src="<?php bloginfo("template_url") ?>/img/project_icon.png"/>
+            </div>
         </div>
         <div class="wiki_list col-md-8 col-sm-8 col-xs-12" style="display: inline-block">
             <div class="wiki_list_header">
                 <p style="font-size: 20px">热门项目</p>
-                <a id="wiki_list_link" href="<?php echo get_the_permalink( get_page_by_title( '项目' )); ?>">更多项目>></a>
+                <a id="wiki_list_link" href="<?php echo get_the_permalink(get_page_by_title('项目')); ?>">更多项目>></a>
             </div>
             <!--分割线-->
             <div class="divline" style="margin-top: 0px"></div>
             <!--推荐列表-->
             <?php
-            $pro_item = array([248,'猫·车 —— 一种新型的逗猫方式',getProjectViews(248)],
-                [5,'手语翻译手套',getProjectViews(5)],
-                [1270,'自动倒桩入库小车',getProjectViews(1270)],
-                [258,'小学期创新课开放项目',getProjectViews(258)],
-                [265,'2016年导论课线上创新作品展',getProjectViews(265)],
-                [271,'2016年导论课创新作品汇报展',getProjectViews(271)])
+            $pro_item = array([248, '猫·车 —— 一种新型的逗猫方式', getProjectViews(248)],
+                [5, '手语翻译手套', getProjectViews(5)],
+                [1270, '自动倒桩入库小车', getProjectViews(1270)],
+                [258, '小学期创新课开放项目', getProjectViews(258)],
+                [265, '2016年导论课线上创新作品展', getProjectViews(265)],
+                [271, '2016年导论课创新作品汇报展', getProjectViews(271)])
             ?>
             <ul class="list-group" style="margin-bottom: 0px">
                 <?php
-                foreach ($pro_item as $value){?>
+                foreach ($pro_item as $value) {
+                    ?>
                     <li class="list-group-item">
                         <div style="display: inline-block; vertical-align: baseline;">
                             <a href="<?php the_permalink($value[0]); ?>" style="color: #4e4e4e;">
-                                <?=$value[1]?>
+                                <?= $value[1] ?>
                             </a>
                         </div>
                         <!--传浏览量-->
                         <div style="display: inline-block;float: right; margin-right: 30px;">
-                            <?=$value[2]?>次
+                            <?= $value[2] ?>次
                         </div>
                     </li>
                 <?php }
