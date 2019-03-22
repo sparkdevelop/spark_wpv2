@@ -2,7 +2,7 @@
 $faq_id = $related_faq_id[$i];
 $author_info =Spark_get_author($faq_id);
 ?>
-<div style="margin-top: 20px;">
+<div id="faq_<?php echo $i;?>" style="margin-top: 20px;">
     <!--    获取提问者头像-->
     <div style="display: inline-block;vertical-align: top;margin-top: 0px">
         <?php echo get_avatar($author_info['id'],48,'');?>
@@ -33,5 +33,6 @@ $author_info =Spark_get_author($faq_id);
         </div>
     </div>
     <div style="height: 1px;background-color: #dcdcdc;margin-top: 20px"></div>
+    </div>
 </div>
 

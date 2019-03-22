@@ -326,6 +326,18 @@ if(is_page('wxlogin')){
                     }
                     require "template/onlineEditor/online_editor.php";
                 }
+                elseif (is_page('test_classify')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/test/test_classify.php";
+                }
+                elseif (is_page('upload_chapter')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/test/upload_chapter.php";
+                }
                 elseif (is_page('single_task')){
                     $id = $_GET['id'];
                     $group_id = get_task_group($id);

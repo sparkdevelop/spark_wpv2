@@ -27,22 +27,7 @@ if (!$_GET['paged']) {
         })
     </script>
 <?php } ?>
- <?php   if (!$_GET['fpaged']) {
-    $faq_current_page = 1;
-    } else {
-    $faq_page_num = $_GET['fpaged'];
-    $faq_current_page = $faq_page_num; ?>
-    <script>
-        $(function () {
-            $("#commentTab").removeClass("active");
-            $("#project_comment").removeClass("in active");
-            $("#faqTab").addClass("active");
-            $("#related_FAQ").addClass("in active");
-            $("#qaTab").removeClass("active");
-            $("#related_QA").removeClass("in active");
-        })
-    </script>
-<?php } ?>
+
 
 <ul id="leftTab" class="nav nav-pills">
     <li class="active" id="commentTab"><a href="#project_comment" data-toggle="tab" onclick="backToComment()">评论</a>
@@ -160,21 +145,6 @@ if (!$_GET['paged']) {
                 </div>
             <?php } ?>
         </ul>
-        <?php
-        if ($faq_total_page > 1) {
-            ?>
-            <div id="page_comment_qa" style="text-align:center;margin-bottom: 20px">
-                <!--翻页-->
-                <?php if ($faq_current_page == 1) { ?>
-                    <a href="<?php echo add_query_arg(array('paged' => $faq_current_page + 1)) . '#FAQ_related' ?>">下一页&nbsp;&raquo;</a>
-                <?php } elseif ($faq_current_page == $faq_total_page) { ?>
-                    <a href="<?php echo add_query_arg(array('paged' => $faq_current_page - 1)) . '#FAQ_related' ?>">&laquo;&nbsp;上一页</a>
-                <?php } else { ?>
-                    <a href="<?php echo add_query_arg(array('paged' => $faq_current_page - 1)) . '#FAQ_related' ?>">&laquo;&nbsp;上一页&nbsp;</a>
-                    <a href="<?php echo add_query_arg(array('paged' => $faq_current_page + 1)) . '#FAQ_related' ?>">&nbsp;下一页&nbsp;&raquo;</a>
-                <?php } ?>
-            </div>
-        <?php } ?>
 
     </div>
 </div><!-- .comments-area -->

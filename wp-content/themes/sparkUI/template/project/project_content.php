@@ -53,7 +53,7 @@ $project= new WP_Query($query);
                         <div class="thumbnail" id="project-div-fluid">
                             <?php
                             if ( has_post_thumbnail() ) { ?>
-                                <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php the_post_thumbnail_url('thumbnail')?>" class="cover" /></a>
+                                <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php the_post_thumbnail_url('thumbnail')?>" class="cover" style="max-height: 142px;"/></a>
                             <?php } else {?>
                                 <a href="<?php the_permalink(); ?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/thumbnail.png" alt="封面" class="cover" /></a>
 
