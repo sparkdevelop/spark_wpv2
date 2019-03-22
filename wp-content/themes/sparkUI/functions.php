@@ -6976,6 +6976,71 @@ function add_chain_log(){
 add_action('wp_ajax_add_chain_log', 'add_chain_log');
 add_action('wp_ajax_nopriv_add_chain_log', 'add_chain_log');
 
+
+//获取test章节
+function get_chapter($chapter,$level){
+    global $wpdb;
+    if($level){
+        $sql = "SELECT * FROM wp_test_chapter WHERE chapter = '$chapter' AND level = '$level'";
+        $res = $wpdb->get_results($sql);
+        if(isset($res)){
+            return $res[0]->link;
+        }else{
+            return null;
+        }
+    }else{
+        $sql = "SELECT * FROM wp_test_chapter WHERE chapter = '$chapter'";
+        $res = $wpdb->get_results($sql);
+        if(isset($res)){
+            return $res[0]->link;
+        }else{
+            return null;
+        }
+    }
+}
+
+//获取用户测试级别
+function user_test_level($id){
+    global $wpdb;
+    //获取现存级别和各级别用户
+    $sql_levels = "SELECT DISTINCT level FROM wp_test_level";
+    $res_levels = $wpdb->get_results($sql_levels);
+    foreach ($res_levels as $row){
+        $level = $row->level;
+        $sql_level = "SELECT user FROM wp_test_level WHERE level = '$level'";
+        $res_level = $wpdb->get_results($sql_level);
+        $user = $res_level[0]->user;
+        if(isset($user)){
+            $user_arr = explode(",",$user);
+            if(in_array($id,$user_arr)){
+                return $level;
+            }else{
+                return null;
+            }
+        }
+    }
+}
+
+//分配测试级别
+function user_classify($user_id){
+    global $wpdb;
+    //获取现存级别和各级别用户
+    $sql = "SELECT * FROM wp_test_level ORDER BY total ASC";
+    $res = $wpdb->get_results($sql);
+    $id = $res[0]->id;
+    $user = $res[0]->user;
+    $total = $res[0]->total;
+    $total_new = $total+1;
+    if(isset($user)){
+        $str = $user.','.$user_id;
+    }else{
+        $str = $user_id;
+    }
+    $sql_update = "UPDATE wp_test_level SET user = '$str',total = '$total_new' WHERE id = '$id'";
+    $res_update = $wpdb->get_results($sql_update);
+    return $res[0]->level;
+}
+
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;
