@@ -7014,11 +7014,10 @@ function user_test_level($id){
             $user_arr = explode(",",$user);
             if(in_array($id,$user_arr)){
                 return $level;
-            }else{
-                return null;
             }
         }
     }
+    return null;
 }
 
 //分配测试级别
