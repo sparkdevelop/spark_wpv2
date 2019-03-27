@@ -37,10 +37,14 @@ $experiment_2019 = get_permalink(get_the_ID_by_title('2019多校燎原计划—�
     <span style="display: block;margin: 20px 20px">
         <a style="display: inline;font-size: 18px;margin: 20px 0px;cursor: pointer" onclick="window.open('<?=$experiment_2019?>')">2019多校燎原计划</a>
         <a style="display: inline;font-size: 18px;margin: 20px 20px;cursor: pointer" onclick="window.open('<?=$url_experiment?>')">2018精简版端到端实验</a>
+        <a style="display: inline;font-size: 18px;margin: 20px 0px;cursor: pointer" onclick="window.open('<?=$experiment_2019?>')">2019多校燎原计划</a>
     </span>
     <h3 style="display:inline;margin-top: 10px">学习资源</h3>
     <span style="display: block;margin: 20px 20px">
         <a style="display: inline;font-size: 18px;margin: 20px 0px;" href="<?php echo site_url()?>/?yada_wiki=1536736055" target="_blank">创+腾讯</a>
+    </span>
+    <span style="display: block;margin: 20px 20px;font-size: 18px;">
+        教学安排请参照：<a style="display: inline;font-size: 18px;margin: 20px 0px;" href="<?php echo site_url()?>/?yada_wiki=1553656828" target="_blank">2019多校协作燎原计划学习安排</a>
     </span>
     <h3 style="display:inline;margin-top: 10px">入驻高校</h3>
     <?php
