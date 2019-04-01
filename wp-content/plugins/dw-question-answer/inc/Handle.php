@@ -570,7 +570,17 @@ class DWQA_Handle {
             if (isset($args['score'])){
                 add_post_meta($new_question, '_dwqa_scores', $args['score']);
             };
-
+            //add notice type7 （7为新定义的通知类型，）
+            $new_question_id = $new_question;
+            $role_id = get_type_id('role', '助教');
+            $noticed_user_id = get_rbac_users('role',$role_id);   //被通知人，改为获取‘助教角色’返回的用户id数组
+            $notice_type = 7;
+            $current_time = date('Y-m-d H:i:s', time() + 8 * 3600);
+            global $wpdb;
+            foreach($noticed_user_id as $value) {
+                $sql_add_notice = "INSERT INTO wp_notification VALUES ('',$value,$notice_type,'$new_question_id',0,'$current_time')";
+                $wpdb->get_results($sql_add_notice);
+            }
 			$date = get_post_field( 'post_date', $new_question );
 			// dwqa_log_last_activity_on_question( $new_question, 'Create question', $date );
 			//Call action when add question successfull

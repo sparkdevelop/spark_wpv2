@@ -5130,6 +5130,26 @@ function get_rbac_user_relation($type, $id)
         return $result;
     }
 }
+/**获取权限或角色对应的用户组
+ * @param  string $type [角色role/权限permission]
+ * @param  int $id [角色或权限对应ID]
+ * @return array [用户ID]
+**/
+function get_rbac_users($type, $id)
+{
+    global $wpdb;
+    if ($type == 'role') {
+        $sql = "SELECT user_id FROM wp_rbac_ur WHERE role_id = $id";
+        $preresult = $wpdb->get_results($sql, 'ARRAY_A');
+        $result = array_column($preresult, 'user_id');
+        return $result;
+    } else {
+        $sql = "SELECT user_id FROM wp_rbac_up WHERE permission_id = $id";
+        $preresult = $wpdb->get_results($sql, 'ARRAY_A');
+        $result = array_column($preresult, 'user_id');
+        return $result;
+    }
+}
 
 //获取权限或角色信息(只包括单表数据)
 function get_rbac_info($type, $id)
