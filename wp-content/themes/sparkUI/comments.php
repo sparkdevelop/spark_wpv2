@@ -30,10 +30,9 @@ if (!$_GET['paged']) {
 
 
 <ul id="leftTab" class="nav nav-pills">
-    <li class="active" id="commentTab"><a href="#project_comment" data-toggle="tab" onclick="backToComment()">评论</a>
-    </li>
-    <li id="qaTab"><a href="#related_QA" data-toggle="tab" id="QA_related">相关问答(<?= $length ?>)</a></li>
+    <li class="active" id="qaTab"><a href="#related_QA" data-toggle="tab" id="QA_related">相关问答(<?= $length ?>)</a></li>
     <li id="faqTab"><a href="#related_FAQ" data-toggle="tab" id="FAQ_related">相关经验(<?= $faq_length ?>)</a></li>
+    <li id="commentTab"><a href="#project_comment" data-toggle="tab" onclick="backToComment()">评论</a></li>
 </ul>
 <?php
 // 如果没有问题就不显示问答tab了
@@ -43,7 +42,7 @@ if (!$_GET['paged']) {
 <!--    </script>-->
 <?php //} ?>
 <div id="leftTabContent" class="tab-content">
-    <div class="tab-pane fade in active" id="project_comment" style="margin-top: 65px">
+    <div class="tab-pane fade" id="project_comment" style="margin-top: 65px">
         <div class="divline"></div>
         <div id="comments" class="comments-area">
             <?php
@@ -99,7 +98,7 @@ if (!$_GET['paged']) {
             <?php endif; ?>
         </div>
     </div>
-    <div class="tab-pane fade" id="related_QA">
+    <div class="tab-pane fade in active" id="related_QA">
         <ul class="list-group" style="margin-bottom:0px;margin-top: 65px;border-top: 1px solid lightgray">
             <?php
             if ($length != 0) {

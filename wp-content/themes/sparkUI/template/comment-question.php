@@ -25,7 +25,7 @@ if (dwqa_question_answers_count($qa_id) != 0) {
     if (get_post_meta($qa_id, '_dwqa_status', true) == 'open'||get_post_meta($qa_id, '_dwqa_status', true) == 'answered') {?>
         <li class="list-group-item" style="padding: 15px 0px">
             <!--    获取提问者头像-->
-            <div style="display: inline-block;vertical-align: top;margin-top: 0px">
+            <div class="comment-avatar">
                 <?php echo get_avatar($author_info['id'],48,'');?>
             </div>
             <div class="qa_show">
@@ -91,7 +91,7 @@ if (dwqa_question_answers_count($qa_id) != 0) {
     }
     elseif (get_post_meta($qa_id, '_dwqa_status', true) == 'resolved' || get_post_meta($qa_id, '_dwqa_status', true) == 'close') {?>
         <li class="list-group-item" style="padding: 15px 0px">
-            <div style="display: inline-block;vertical-align: top;margin-top: 0px">
+            <div class="comment-avatar">
                 <?php echo get_avatar($author_info['id'],48,'');?>
             </div>
             <div class="qa_show">
@@ -153,7 +153,7 @@ if (dwqa_question_answers_count($qa_id) != 0) {
 }
 else {?>
     <li class="list-group-item" style="padding: 15px 0px">
-        <div style="display: inline-block;vertical-align: top;margin-top: 0px">
+        <div class="comment-avatar">
             <?php echo get_avatar($author_info['id'],48,'');?>
         </div>
         <div class="qa_show">
