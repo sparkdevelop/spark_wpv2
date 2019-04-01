@@ -16,9 +16,9 @@ if (!$_GET['paged']) {
     function all_notice_read_delete() {
         layer.confirm('确定删除所有已读通知?', {
             icon: 3,
-            resize:false,
-            move:false,
-            title:false,
+            resize: false,
+            move: false,
+            title: false,
             btnAlign: 'c',
             btn: ['确认', '取消'],
             btn2: function (index) {   //取消的回调
@@ -65,10 +65,10 @@ if (!$_GET['paged']) {
         });
     }
 
-    function notice_set_as_read(redirect_url,id) {
+    function notice_set_as_read(redirect_url, id) {
         var data = {
             action: 'notice_set_as_read',
-            id : id
+            id: id
         };
         $.ajax({
             type: "POST",
@@ -109,8 +109,7 @@ if (!$_GET['paged']) {
                             padding-bottom: 0px;
                         }
                     </style>
-                <?php }
-                else { ?>
+                <?php } else { ?>
                     <style>
                         #message-li-<?=$i?> {
                             background-color: transparent;
@@ -125,11 +124,11 @@ if (!$_GET['paged']) {
                         //有人给我评论
                         $comment_info = get_comment($allMsg[$i]['notice_content']);
                         //是否是垃圾信息
-                        if($comment_info->comment_approved=='spam'){
+                        if ($comment_info->comment_approved == 'spam') {
                             delete_spam_comment($comment_info->comment_post_ID);
                             ?>
                             <style>
-                                #message-li-<?= $i ?>{
+                                #message-li-<?= $i ?> {
                                     display: none;
                                 }
                             </style>
@@ -143,7 +142,7 @@ if (!$_GET['paged']) {
                         $comment_date = $comment_info->comment_date; //日期
                         ?>
                         <div id="notice-ava">
-                            <?php echo  get_avatar($comment_author_id,40)?>
+                            <?php echo get_avatar($comment_author_id, 40) ?>
                         </div>
                         <div id="notice-content">
                             <div id="notice-info">
@@ -155,7 +154,8 @@ if (!$_GET['paged']) {
                                 } else {
                                     echo "<span>&nbsp;<span style=\"font-weight: bolder\">评论</span>了您的项目</span>";
                                 } ?>
-                                <span><a onclick="notice_set_as_read('<?= $parent_post_link ?>',<?=$allMsg[$i]['ID']?>)" style="color:#169bd5;cursor: pointer"><?= $parent_post_title ?></a></span>
+                                <span><a onclick="notice_set_as_read('<?= $parent_post_link ?>',<?= $allMsg[$i]['ID'] ?>)"
+                                         style="color:#169bd5;cursor: pointer"><?= $parent_post_title ?></a></span>
                                 <div style="margin-top: 5px"><?= $comment_content ?></div>
                             </div>
                             <div id="notice-time">
@@ -168,8 +168,7 @@ if (!$_GET['paged']) {
                                 <div id="notice-date"><?= $comment_date ?></div>
                             </div>
                         </div>
-                    <?php }
-                    else if ($allMsg[$i]['notice_type'] == 2) {
+                    <?php } else if ($allMsg[$i]['notice_type'] == 2) {
                         //在词条中回复
                         $comment_info = get_comment($allMsg[$i]['notice_content']);
                         $comment_author_id = get_the_ID_by_name($comment_info->comment_author);
@@ -181,7 +180,7 @@ if (!$_GET['paged']) {
                         $comment_date = $comment_info->comment_date;
                         ?>
                         <div id="notice-ava">
-                            <?php echo  get_avatar($comment_author_id,40)?>
+                            <?php echo get_avatar($comment_author_id, 40) ?>
                         </div>
                         <div id="notice-content">
                             <div id="notice-info">
@@ -193,7 +192,8 @@ if (!$_GET['paged']) {
                                 } else {
                                     echo "<span>&nbsp;在项目</span>";
                                 } ?>
-                                <span><a onclick="notice_set_as_read('<?= $parent_post_link ?>',<?=$allMsg[$i]['ID']?>)" style="color:#169bd5;cursor: pointer"><?= $parent_post_title ?></a></span>
+                                <span><a onclick="notice_set_as_read('<?= $parent_post_link ?>',<?= $allMsg[$i]['ID'] ?>)"
+                                         style="color:#169bd5;cursor: pointer"><?= $parent_post_title ?></a></span>
                                 <span>中<span style="font-weight: bolder">回复</span>了你</span>
                                 <div style="margin-top: 5px"><?= $comment_content ?></div>
                             </div>
@@ -207,15 +207,14 @@ if (!$_GET['paged']) {
                                 <div id="notice-date"><?= $comment_date ?></div>
                             </div>
                         </div>
-                    <?php }
-                    else if ($allMsg[$i]['notice_type'] == 3){
+                    <?php } else if ($allMsg[$i]['notice_type'] == 3) {
                         //在wiki或项目中提问
                         $question_info = get_post($allMsg[$i]['notice_content']);
                         $question_title = get_the_title($allMsg[$i]['notice_content']);
                         $question_link = get_permalink($allMsg[$i]['notice_content']);
 
                         $ask_author_id = $question_info->post_author;  //提问人ID
-                        $ask_author_name = get_the_author_meta('user_login',$ask_author_id);
+                        $ask_author_name = get_the_author_meta('user_login', $ask_author_id);
 
                         $parent_post_info = qaComeFrom($allMsg[$i]['notice_content']);
                         $parent_post_title = get_the_title($parent_post_info['id']);
@@ -225,7 +224,7 @@ if (!$_GET['paged']) {
                         $ask_date = $allMsg[$i]['modified_time'];
                         ?>
                         <div id="notice-ava">
-                            <?php echo  get_avatar($ask_author_id,40)?>
+                            <?php echo get_avatar($ask_author_id, 40) ?>
                         </div>
                         <div id="notice-content">
                             <div id="notice-info">
@@ -237,10 +236,12 @@ if (!$_GET['paged']) {
                                 } else {
                                     echo "<span>&nbsp;在项目</span>";
                                 } ?>
-                                <span><a onclick="notice_set_as_read('<?= $parent_post_link ?>',<?=$allMsg[$i]['ID']?>)" style="color:#169bd5;cursor: pointer"><?= $parent_post_title ?></a></span>
+                                <span><a onclick="notice_set_as_read('<?= $parent_post_link ?>',<?= $allMsg[$i]['ID'] ?>)"
+                                         style="color:#169bd5;cursor: pointer"><?= $parent_post_title ?></a></span>
                                 <span>中向你<span style="font-weight: bolder">提问</span></span>
                                 <div style="margin-top: 5px">
-                                    <a onclick="notice_set_as_read('<?=$question_link?>',<?=$allMsg[$i]['ID']?>)" style="color: #169bd5;cursor: pointer"><?= $question_title ?></a>
+                                    <a onclick="notice_set_as_read('<?= $question_link ?>',<?= $allMsg[$i]['ID'] ?>)"
+                                       style="color: #169bd5;cursor: pointer"><?= $question_title ?></a>
                                 </div>
                             </div>
                             <div id="notice-time">
@@ -253,27 +254,27 @@ if (!$_GET['paged']) {
                                 <div id="notice-date"><?= $ask_date ?></div>
                             </div>
                         </div>
-                    <?php }
-                    else if ($allMsg[$i]['notice_type'] == 4) {
+                    <?php } else if ($allMsg[$i]['notice_type'] == 4) {
                         $ans_info = get_post($allMsg[$i]['notice_content']);
 
                         $ans_author_id = $ans_info->post_author;  //回答人ID
-                        $ans_author_name = get_the_author_meta('user_login',$ans_author_id); //回答人姓名
+                        $ans_author_name = get_the_author_meta('user_login', $ans_author_id); //回答人姓名
 
                         $parent_post_title = get_the_title($ans_info->post_parent);  //问题名称
                         $parent_post_link = get_permalink($ans_info->post_parent);   //问题链接
 
                         $ans_content = $ans_info->post_content;
-                        $ans_date = $ans_info->post_date;?>
+                        $ans_date = $ans_info->post_date; ?>
                         <div id="notice-ava">
-                            <?php echo  get_avatar($ans_author_id,40)?>
+                            <?php echo get_avatar($ans_author_id, 40) ?>
                         </div>
                         <div id="notice-content">
                             <div id="notice-info">
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $ans_author_id; ?>"
                                    style="color: #169bd5"><?= $ans_author_name ?></a>
                                 <span>&nbsp;<span style="font-weight: bolder">回答</span>了您的问题</span>
-                                <span><a onclick="notice_set_as_read('<?= $parent_post_link ?>',<?=$allMsg[$i]['ID']?>)" style="color:#169bd5;cursor: pointer"><?= $parent_post_title ?></a></span>
+                                <span><a onclick="notice_set_as_read('<?= $parent_post_link ?>',<?= $allMsg[$i]['ID'] ?>)"
+                                         style="color:#169bd5;cursor: pointer"><?= $parent_post_title ?></a></span>
                                 <div style="margin-top: 5px"><?= $ans_content ?></div>
                             </div>
                             <div id="notice-time">
@@ -281,12 +282,11 @@ if (!$_GET['paged']) {
                                 <div id="notice-date"><?= $ans_date ?></div>
                             </div>
                         </div>
-                    <?php }
-                    else if ($allMsg[$i]['notice_type'] == 5) {
+                    <?php } else if ($allMsg[$i]['notice_type'] == 5) {
                         $ans_info = get_post($allMsg[$i]['notice_content']);
 
                         $ans_author_id = $ans_info->post_author;  //回答人ID
-                        $ans_author_name = get_the_author_meta('user_login',$ans_author_id); //回答人姓名
+                        $ans_author_name = get_the_author_meta('user_login', $ans_author_id); //回答人姓名
 
                         $parent_post_title = get_the_title($ans_info->post_parent);  //问题名称
                         $parent_post_link = get_permalink($ans_info->post_parent);   //问题链接
@@ -297,14 +297,15 @@ if (!$_GET['paged']) {
 
                         ?>
                         <div id="notice-ava">
-                            <?php echo  get_avatar($question_author_id,40)?>
+                            <?php echo get_avatar($question_author_id, 40) ?>
                         </div>
                         <div id="notice-content">
                             <div id="notice-info">
                                 <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $question_author_id; ?>"
                                    style="color: #169bd5"><?= $question_author ?></a>
                                 <span>&nbsp;在问题</span>
-                                <a onclick="notice_set_as_read('<?= $parent_post_link ?>',<?=$allMsg[$i]['ID']?>)" style="color:#169bd5;cursor: pointer"><?= $parent_post_title ?></a>
+                                <a onclick="notice_set_as_read('<?= $parent_post_link ?>',<?= $allMsg[$i]['ID'] ?>)"
+                                   style="color:#169bd5;cursor: pointer"><?= $parent_post_title ?></a>
                                 <span>中<span style="font-weight: bolder">采纳</span>了您的答案</span>
                                 <div style="margin-top: 5px">
                                     <span class="label label-default" id="btn-solved">已采纳</span>
@@ -316,8 +317,7 @@ if (!$_GET['paged']) {
                                 <div id="notice-date"><?= $ans_date ?></div>
                             </div>
                         </div>
-                    <?php }
-                    else if ($allMsg[$i]['notice_type'] == 6) {
+                    <?php } else if ($allMsg[$i]['notice_type'] == 6) {
                         $ans_info = get_post($allMsg[$i]['notice_content']);
                         $parent_post_title = get_the_title($ans_info->post_parent);  //问题名称
                         $parent_post_link = get_permalink($ans_info->post_parent);   //问题链接
@@ -330,13 +330,40 @@ if (!$_GET['paged']) {
                         <div id="notice-content">
                             <div id="notice-info">
                                 <span>有人在问题</span>
-                                <a onclick="notice_set_as_read('<?= $parent_post_link ?>',<?=$allMsg[$i]['ID']?>)" style="color:#169bd5;cursor: pointer"><?= $parent_post_title ?></a>
+                                <a onclick="notice_set_as_read('<?= $parent_post_link ?>',<?= $allMsg[$i]['ID'] ?>)"
+                                   style="color:#169bd5;cursor: pointer"><?= $parent_post_title ?></a>
                                 <span>中<span style="font-weight: bolder">赞同了</span>您的答案</span>
                                 <div style="margin-top: 5px"><?= $ans_content ?></div>
                             </div>
                             <div id="notice-time">
                                 <div class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">问答</div>
                                 <div id="notice-date"><?= $ans_date ?></div>
+                            </div>
+                        </div>
+                    <?php } else if ($allMsg[$i]['notice_type'] == 7) {//在问答模块中提问，助教能够收到
+                        $question_info = get_post($allMsg[$i]['notice_content']);
+                        $question_title = get_the_title($allMsg[$i]['notice_content']);
+                        $question_link = get_permalink($allMsg[$i]['notice_content']);
+                        $ask_author_id = $question_info->post_author;  //提问人ID
+                        $ask_author_name = get_the_author_meta('user_login', $ask_author_id);
+                        $ask_date = $allMsg[$i]['modified_time'];
+                        ?>
+                        <div id="notice-ava">
+                            <?php echo get_avatar($ask_author_id, 40) ?>
+                        </div>
+                        <div id="notice-content">
+                            <div id="notice-info">
+                                <a href="<?php echo site_url() . get_page_address('otherpersonal') . '&id=' . $ask_author_id; ?>"
+                                   style="color: #169bd5"><?= $ask_author_name ?></a>
+                                <span>&nbsp;在问答模块中提出了问题</span>
+                                <span><a onclick="notice_set_as_read('<?= $question_link ?>',<?= $allMsg[$i]['ID'] ?>)"
+                                         style="color:#169bd5;cursor: pointer"><?= $question_title ?></a></span>
+                                <span>希望得到你的回答</span>
+
+                            </div>
+                            <div id="notice-time">
+                                <div class="badge" id="my_group_badge" style="float: inherit;margin-top: 0px">问答</div>
+                                <div id="notice-date"><?= $ask_date ?></div>
                             </div>
                         </div>
                     <?php } ?>
