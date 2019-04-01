@@ -7040,6 +7040,21 @@ function user_classify($user_id){
     return $res[0]->level;
 }
 
+add_action( 'wp_login', 'wp_info_check' );
+
+function wp_info_check($login) {
+    $user = get_user_by('login',$login);
+    $user_id = $user->ID;
+    $arr_sno = get_user_meta($user_id, 'Sno');
+    $arr_university = get_user_meta($user_id, 'University');
+    if (sizeof($arr_sno) == 0 || sizeof($arr_university) == 0) {
+        setcookie('showtips','1');
+    } else {
+        setcookie('showtips','0');
+    }
+}
+
+
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;

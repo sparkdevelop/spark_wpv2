@@ -1,4 +1,3 @@
-<?php //session_start(); ?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -39,7 +38,10 @@
     $student_management_id =get_page_id('student_management');
     $page_group_id =get_page_id('group');
     $page_rbac_id = get_page_id('rbac');
-    if (current_user_can( 'manage_options' )){
+    $user_id = get_current_user_id();
+    $role_arr = get_rbac_user_relation('role', $user_id);
+    $role_id = get_type_id('role', '管理员');
+    if (current_user_can( 'manage_options' )||in_array($role_id,$role_arr)){
         $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id,$page_rbac_id);
     }else{
         $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id);
@@ -127,7 +129,6 @@
                                     </li>
                                 </ul>
                             </div>
-
 <!--                            <script>-->
 <!--                                $(document).ready(function(){-->
 <!--                                    $(document).off('click.bs.dropdown.data-api');-->
@@ -305,38 +306,43 @@
                 dataType: "json"
             });
         };
-        function getLeavetime() {
-            //var leave_time = getCurrentDate();
-            //console.log(leave_time);
-            var data = {
-                action: "add_leave_time",
-                history_id : '<?php echo $last_id;?>'
-                //leave_time : leave_time
-            };
-            $.ajax({
-                type: "POST",
-                url:"<?php echo $admin_url;?>",//你的请求程序页面
-                async:false,//同步：意思是当有返回值以后才会进行后面的js程序。
-                data: data,//请求需要发送的处理数据
-                dataType: "json"
-            });
+
+        function getCookie(c_name)
+        {
+            if (document.cookie.length>0)
+            {
+                c_start=document.cookie.indexOf(c_name + "=");
+                if (c_start!=-1)
+                {
+                    c_start=c_start + c_name.length+1;
+                    c_end=document.cookie.indexOf(";",c_start);
+                    if (c_end==-1) c_end=document.cookie.length;
+                    return unescape(document.cookie.substring(c_start,c_end))
+                }
+            }
+            return "0"
         }
-        function getCurrentDate() {
-            var now = new Date();
-            var year = now.getFullYear(); //得到年份
-            var month = now.getMonth();//得到月份
-            var date = now.getDate();//得到日期
-            var hour = now.getHours();//得到小时
-            var minu = now.getMinutes();//得到分钟
-            var sec = now.getSeconds();//得到秒
-            month = month + 1;
-            if (month < 10) month = "0" + month;
-            if (date < 10) date = "0" + date;
-            if (hour < 10) hour = "0" + hour;
-            if (minu < 10) minu = "0" + minu;
-            if (sec < 10) sec = "0" + sec;
-            var time = "";
-            time = year + "-" + month + "-" + date+ " " + hour + ":" + minu + ":" + sec;
-            return time;
-        }
+        //服务端发送是否显示tip
+        var showTips = getCookie('showtips');
+        //客户端判断是否显示tip
+        var usershowtip = getCookie('usershowtip');
+
+
+        $(document).ready(function(){
+            //console.log(document.cookie);
+            if(parseInt(showTips) === 1 && parseInt(usershowtip)===0){
+                //tips
+                layer.tips("<span style='color:red'>请前往个人主页完善学校和学号信息</span>", '#user-portrait', {
+                    tips: [3, '#F0F0F0'],
+                    area:['200px','50px'],
+                    closeBtn:1,
+                    time : 0,
+                    cancel : function () {
+                        document.cookie = "usershowtip=1";
+                    }
+                });
+            }
+
+        });
+
 </script>
