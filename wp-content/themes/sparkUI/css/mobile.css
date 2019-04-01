@@ -628,4 +628,10 @@
         width: 80%;
         float: right;
     }
+    .comment-avatar{
+        display: none;
+    }
+    #faq-button{
+        display: none;
+    }
 }

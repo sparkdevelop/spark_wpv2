@@ -140,6 +140,24 @@ $admin_url = admin_url('admin-ajax.php');
         </div>
     </div>
 </div>
+<div class="m-create-wiki-box">
+    <div class="list-group mulu">
+        <p class="wiki_sidebar_title">经验分类</p>
+        <?php
+        foreach ($wiki_all_categorys as $category_term_id => $category_name) {
+            ?>
+            <a href="#" class="list-group-item mulu_item"><input name="wiki_category" type="checkbox"
+                                                                 value="<?php echo $category_term_id; ?>">&nbsp;&nbsp;&nbsp;<?php echo $category_name; ?>
+            </a>
+            <?php
+        }
+        ?>
+    </div>
+
+    <div class="create_wiki_btn">
+        <a class="update_wiki" onclick="actionPublish()">分享经验</a>
+    </div>
+</div>
 <script>
     function actionPublish() {
         document.cookie = "action=publish";

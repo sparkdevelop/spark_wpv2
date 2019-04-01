@@ -4,7 +4,7 @@ $author_info =Spark_get_author($faq_id);
 ?>
 <div id="faq_<?php echo $i;?>" style="margin-top: 20px;">
     <!--    获取提问者头像-->
-    <div style="display: inline-block;vertical-align: top;margin-top: 0px">
+    <div class="comment-avatar">
         <?php echo get_avatar($author_info['id'],48,'');?>
     </div>
     <div class="qa_show">

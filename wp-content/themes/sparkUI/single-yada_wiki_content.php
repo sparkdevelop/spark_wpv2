@@ -110,8 +110,8 @@ if($related_info['post_type']=="post"){
 </div>
 <div class="side-tool" id="m-side-tool-project">
     <ul>
-        <li><a href="<?php echo get_permalink( get_page_by_title( '编辑wiki' )); ?>&post_id=<?php echo $post->ID ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-        <li><a href="<?php echo get_permalink( get_page_by_title( '创建wiki' )); ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+        <li><a onclick="addLayer()" id="ask_link"><i class="fa fa-question" aria-hidden="true"></i></a></li>
+        <li><a onclick="addLayer2()" id="ask_link"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
     </ul>
 </div>
 <div class="bottom-button" id="faq-button">
