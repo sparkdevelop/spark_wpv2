@@ -94,7 +94,7 @@ if($related_info['post_type']=="post"){
 <div class="side-tool" id="side-tool-project">
     <ul>
         <li data-placement="left" data-toggle="tooltip" data-original-title="回到顶部"><a href="#" class="">顶部</a></li>
-        <li data-placement="left" data-toggle="tooltip" data-original-title="点赞吐槽"><a href="#comments" class="">评论</a></li>
+        <li data-placement="left" data-toggle="tooltip" data-original-title="点赞吐槽"><a  href="#project_comment" class="" onclick="comments()">评论</a></li>
         <?php
         $current_page_id = get_the_ID();
         $current_page_type = get_post_type(get_the_ID());?>
@@ -330,6 +330,13 @@ $_SESSION['wiki_tags'] = $wiki_tags;
             });
         }
 
+    }
+
+    function comments() {
+        $("#related_QA").removeClass("in active");
+        $("#qaTab").removeClass("active");
+        $("#project_comment").addClass("in active");
+        $("#commentTab").addClass("active");
     }
 
 </script>
