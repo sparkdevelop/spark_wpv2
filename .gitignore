@@ -2,7 +2,7 @@ gen-external-apklibs/
 
 # Ant
 local.properties
-
+*~
 # Maven
 target/
 release.properties
