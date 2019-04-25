@@ -112,7 +112,8 @@ $admin_url=admin_url('admin-ajax.php');
             ?>
             <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px">
         </p>
-        <p style="margin-top: 10px;color: gray"><?php echo $user_description;?></p>
+        <p style="margin-top: 10px;color: gray">ID: <?php echo get_current_user_id();?></p>
+        <p style="color: gray;width: 100%;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;"><?php echo $user_description;?></p>
     </div>
     <ul id="personal_nav" class="nav nav-pills nav-stacked">
         <li id="notification">

@@ -869,6 +869,11 @@ function create_wiki_entry()
     $visibility = $_POST['wiki_visibility'];
     create_process_visibility($visibility, $last_insert_ID, $current_user->ID);
 
+    //QA添加到relation
+    if(isset($_POST['is_qa'])){
+        writeFAQ($_POST['current_id'], $_POST['current_type'], $last_insert_ID, 'qa');
+    };
+
     //增加积分
     global $integral_system;
     add_user_integral($current_user->ID, $integral_system['create_wiki']);
@@ -1310,13 +1315,27 @@ function writePWQA($post_id, $post_type, $related_id, $related_post_type)
     }
 }
 
+//写入pro-->FAQ wiki->FAQ 关系
+function writeFAQ($post_id, $post_type, $related_id, $related_post_type)
+{
+    global $wpdb;
+    $sql_1 = "SELECT * FROM wp_relation WHERE post_id=$post_id AND related_id=$related_id";
+    $col = $wpdb->query($sql_1); //返回的结果有几行
+    if ($col === 0) {  //如果没有这个pro<->wiki对
+        $sql_2 = "INSERT INTO wp_relation VALUES ('',$post_id,'$post_type',$related_id,'$related_post_type')";
+        $wpdb->get_results($sql_2);
+
+    }
+}
+
 //在qa页面展示来自项目or wiki 返回来自哪个post的info
 function qaComeFrom($qa_id)
 {
     global $wpdb;
     $post_id = $wpdb->get_var($wpdb->prepare("SELECT * FROM wp_relation WHERE related_id=$qa_id;", ""), 1, 0);
     $post_type = $wpdb->get_var($wpdb->prepare("SELECT * FROM wp_relation WHERE related_id=$qa_id;", ""), 2, 0);
-    $related_info = array('id' => $post_id, 'post_type' => $post_type);
+    $related_post_type = $wpdb->get_var($wpdb->prepare("SELECT * FROM wp_relation WHERE related_id=$qa_id;", ""), 4, 0);
+    $related_info = array('id' => $post_id, 'post_type' => $post_type,'related_post_type' => $related_post_type);
     return $related_info;
 }
 
@@ -1334,7 +1353,19 @@ function pwRelatedQA($pro_id)
     }
     return $qa_id;
 }
-
+//返回此项目对用的所有FAQ  -->在项目和wiki页面的comment中显示QA
+function RelatedFAQ($pro_id)
+{
+    global $wpdb;
+    $qa_id = array();
+    $sql = "SELECT * FROM wp_relation WHERE post_id=$pro_id AND related_post_type='qa'";
+    $result = $wpdb->get_results($sql);
+    foreach ($result as $key => $value) {
+        $related_id[] = $value->related_id;
+        array_push($qa_id, $related_id[$key]);
+    }
+    return $qa_id;
+}
 //获取问题的作者id和name,为wiki和project评论中的问题服务(pwRelatedQA())
 function Spark_get_author($qa_id)
 {
@@ -1473,11 +1504,29 @@ function writeUserTrack()
     $timestamp = $_SESSION['timestamp'];
     session_destroy();
     if ($user_id != 0) {
-        $sql = "INSERT INTO wp_user_history VALUES ('',$user_id,'$user_action',$post_id,'$post_type','$timestamp')";
+        $sql = "INSERT INTO wp_user_history VALUES ('',$user_id,'$user_action',$post_id,'$post_type','$timestamp',null)";
         $wpdb->get_results($sql);
+        return $wpdb->insert_id;
     }
 }
 
+//写入用户离开页面时间
+function add_leave_time()
+{
+   global $wpdb;
+    $history_id = isset($_POST["history_id"]) ? $_POST["history_id"] : '';
+    //$leave_time = isset($_POST["leave_time"]) ? $_POST["leave_time"] : '';
+    $leave_time = date("Y-m-d H:i:s",time()+8*3600);
+    if ($history_id) {
+        $sql = "UPDATE wp_user_history SET leave_time='$leave_time' WHERE ID = $history_id";
+        $wpdb->get_results($sql);
+    }
+    //echo json_encode("success");
+    die();
+}
+
+add_action('wp_ajax_add_leave_time', 'add_leave_time');
+add_action('wp_ajax_nopriv_add_leave_time', 'add_leave_time');
 
 //建立用户收藏表
 function favorite_table_install()
@@ -5081,6 +5130,26 @@ function get_rbac_user_relation($type, $id)
         return $result;
     }
 }
+/**获取权限或角色对应的用户组
+ * @param  string $type [角色role/权限permission]
+ * @param  int $id [角色或权限对应ID]
+ * @return array [用户ID]
+**/
+function get_rbac_users($type, $id)
+{
+    global $wpdb;
+    if ($type == 'role') {
+        $sql = "SELECT user_id FROM wp_rbac_ur WHERE role_id = $id";
+        $preresult = $wpdb->get_results($sql, 'ARRAY_A');
+        $result = array_column($preresult, 'user_id');
+        return $result;
+    } else {
+        $sql = "SELECT user_id FROM wp_rbac_up WHERE permission_id = $id";
+        $preresult = $wpdb->get_results($sql, 'ARRAY_A');
+        $result = array_column($preresult, 'user_id');
+        return $result;
+    }
+}
 
 //获取权限或角色信息(只包括单表数据)
 function get_rbac_info($type, $id)
@@ -6887,6 +6956,125 @@ function get_post_by_tag($tag){
     }
     return $arr;
 }
+
+function restore_code_submit(){
+    global $wpdb;
+    $user_id = isset($_POST["user_id"]) ? $_POST["user_id"] : '';
+    $submit_time = isset($_POST["submit_time"]) ? $_POST["submit_time"] : '';
+    $code = isset($_POST["submit_code"]) ? $_POST["submit_code"] : '';
+    if($code != ''){
+        $submit_code = addslashes($code);
+    } else{
+        $submit_code = "";
+    }
+    if($user_id && $submit_time){
+        $sql_insert = "INSERT INTO code_submit_history VALUES ('',$user_id,'$submit_code','$submit_time')";
+        $res = $wpdb->get_results($sql_insert);
+        //echo "success";
+    }else{
+        echo "failed";
+    }
+    die();
+}
+
+add_action('wp_ajax_restore_code_submit', 'restore_code_submit');
+add_action('wp_ajax_nopriv_restore_code_submit', 'restore_code_submit');
+
+function add_chain_log(){
+    global $wpdb;
+    $user_id = isset($_POST["user_id"]) ? $_POST["user_id"] : '';
+    $time = isset($_POST["click_time"]) ? $_POST["click_time"] : '';
+    $url = isset($_POST["url"]) ? $_POST["url"] : '';
+    $page = isset($_POST["page"]) ? $_POST["page"] : '';
+
+    $sql_insert = "INSERT INTO chain_log VALUES ('','$url','$time',$user_id,'$page')";
+    $res = $wpdb->get_results($sql_insert);
+
+    die();
+}
+
+add_action('wp_ajax_add_chain_log', 'add_chain_log');
+add_action('wp_ajax_nopriv_add_chain_log', 'add_chain_log');
+
+
+//获取test章节
+function get_chapter($chapter,$level){
+    global $wpdb;
+    if($level){
+        $sql = "SELECT * FROM wp_test_chapter WHERE chapter = '$chapter' AND level = '$level'";
+        $res = $wpdb->get_results($sql);
+        if(isset($res)){
+            return $res[0]->link;
+        }else{
+            return null;
+        }
+    }else{
+        $sql = "SELECT * FROM wp_test_chapter WHERE chapter = '$chapter'";
+        $res = $wpdb->get_results($sql);
+        if(isset($res)){
+            return $res[0]->link;
+        }else{
+            return null;
+        }
+    }
+}
+
+//获取用户测试级别
+function user_test_level($id){
+    global $wpdb;
+    //获取现存级别和各级别用户
+    $sql_levels = "SELECT DISTINCT level FROM wp_test_level";
+    $res_levels = $wpdb->get_results($sql_levels);
+    foreach ($res_levels as $row){
+        $level = $row->level;
+        $sql_level = "SELECT user FROM wp_test_level WHERE level = '$level'";
+        $res_level = $wpdb->get_results($sql_level);
+        $user = $res_level[0]->user;
+        if(isset($user)){
+            $user_arr = explode(",",$user);
+            if(in_array($id,$user_arr)){
+                return $level;
+            }
+        }
+    }
+    return null;
+}
+
+//分配测试级别
+function user_classify($user_id){
+    global $wpdb;
+    //获取现存级别和各级别用户
+    $sql = "SELECT * FROM wp_test_level ORDER BY total ASC";
+    $res = $wpdb->get_results($sql);
+    $id = $res[0]->id;
+    $user = $res[0]->user;
+    $total = $res[0]->total;
+    $total_new = $total+1;
+    if(isset($user)){
+        $str = $user.','.$user_id;
+    }else{
+        $str = $user_id;
+    }
+    $sql_update = "UPDATE wp_test_level SET user = '$str',total = '$total_new' WHERE id = '$id'";
+    $res_update = $wpdb->get_results($sql_update);
+    return $res[0]->level;
+}
+
+add_action( 'wp_login', 'wp_info_check' );
+
+function wp_info_check($login) {
+    $user = get_user_by('login',$login);
+    $user_id = $user->ID;
+    $arr_sno = get_user_meta($user_id, 'Sno');
+    $arr_university = get_user_meta($user_id, 'University');
+    if (sizeof($arr_sno) == 0 || sizeof($arr_university) == 0) {
+        setcookie('showtips','1');
+    } else {
+        setcookie('showtips','0');
+    }
+}
+
+
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){
 //    global $wpdb;

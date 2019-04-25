@@ -1,4 +1,3 @@
-<?php //session_start(); ?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -39,12 +38,16 @@
     $student_management_id =get_page_id('student_management');
     $page_group_id =get_page_id('group');
     $page_rbac_id = get_page_id('rbac');
-    if (current_user_can( 'manage_options' )){
+    $user_id = get_current_user_id();
+    $role_arr = get_rbac_user_relation('role', $user_id);
+    $role_id = get_type_id('role', '管理员');
+    if (current_user_can( 'manage_options' )||in_array($role_id,$role_arr)){
         $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id,$page_rbac_id);
     }else{
         $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id);
 
     }
+    $admin_url = admin_url('admin-ajax.php');
     ?>
 
     <?php
@@ -57,7 +60,7 @@
     setcookie("page_id");
     setcookie("action");
     $_SESSION['timestamp']=date("Y-m-d H:i:s",time()+8*3600);
-    writeUserTrack();
+    $last_id = writeUserTrack();
     //?>
 
 </head>
@@ -126,7 +129,6 @@
                                     </li>
                                 </ul>
                             </div>
-
 <!--                            <script>-->
 <!--                                $(document).ready(function(){-->
 <!--                                    $(document).off('click.bs.dropdown.data-api');-->
@@ -289,3 +291,58 @@
         </div>
     </div>
     <?php } ?>
+<script>
+
+        window.onbeforeunload = window.onbeforeunload || function(e){
+            var data = {
+                action: "add_leave_time",
+                history_id : '<?php echo $last_id;?>'
+            };
+            $.ajax({
+                type: "POST",
+                url:"<?php echo $admin_url;?>",//你的请求程序页面
+                async:false,//同步：意思是当有返回值以后才会进行后面的js程序。
+                data: data,//请求需要发送的处理数据
+                dataType: "json"
+            });
+        };
+
+        function getCookie(c_name)
+        {
+            if (document.cookie.length>0)
+            {
+                c_start=document.cookie.indexOf(c_name + "=");
+                if (c_start!=-1)
+                {
+                    c_start=c_start + c_name.length+1;
+                    c_end=document.cookie.indexOf(";",c_start);
+                    if (c_end==-1) c_end=document.cookie.length;
+                    return unescape(document.cookie.substring(c_start,c_end))
+                }
+            }
+            return "0"
+        }
+        //服务端发送是否显示tip
+        var showTips = getCookie('showtips');
+        //客户端判断是否显示tip
+        var usershowtip = getCookie('usershowtip');
+
+
+        $(document).ready(function(){
+            //console.log(document.cookie);
+            if(parseInt(showTips) === 1 && parseInt(usershowtip)===0){
+                //tips
+                layer.tips("<span style='color:red'>请前往个人主页完善学校和学号信息</span>", '#user-portrait', {
+                    tips: [3, '#F0F0F0'],
+                    area:['200px','50px'],
+                    closeBtn:1,
+                    time : 0,
+                    cancel : function () {
+                        document.cookie = "usershowtip=1";
+                    }
+                });
+            }
+
+        });
+
+</script>

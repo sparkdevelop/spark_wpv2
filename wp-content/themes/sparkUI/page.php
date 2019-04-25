@@ -6,12 +6,9 @@
  * page.php也是和sidebar一样是默认模板, 包含各个页面内容不同的分类
  *
  */
-
-//$page_wiki_id = get_page_id('wiki');
-//$page_qa_id = get_page_id('qa');
-//$page_project_id =get_page_id('project');
-//$page_ask_id = get_page_id('ask');
-//$page_personal_id = get_page_id('personal');
+$user_id = get_current_user_id();
+$role_arr = get_rbac_user_relation('role', $user_id);
+$role_id = get_type_id('role', '管理员');
 ?>
 
 <?php
@@ -23,7 +20,7 @@ if(is_page('wxlogin')){
     if(is_page('verify_form') || is_page('invitation') || is_page('private_message')
         || is_page('ask_tiny') || is_page('join_ms') || is_page('create_role')
             || is_page('create_permission')||is_page('config_permission')||is_page('config_role')
-            ||is_page('apply_permission')){?>
+            ||is_page('apply_permission')||is_page('qa_create')){?>
         <script>
             $(document).ready(function () {
                 $('#m-header').css('display','none');
@@ -60,6 +57,12 @@ if(is_page('wxlogin')){
                     }
                     require "template/wiki/wiki_create.php";
                 }
+            elseif (is_page("qa_create")) {
+                if (!is_user_logged_in()) {
+                    wp_redirect( home_url().'/wp-login.php' );
+                }
+                require "template/wiki/QA_create.php";
+            }
                 elseif (is_page("wiki_revisions")) {
                 if (!is_user_logged_in()) {
                     wp_redirect( home_url().'/wp-login.php' );
@@ -246,7 +249,7 @@ if(is_page('wxlogin')){
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );
                     }
-                    if (!current_user_can( 'manage_options' )){
+                    if (!current_user_can( 'manage_options' )&&!in_array($role_id,$role_arr)){
                         require "404.php";
                     }
                     require "template/rbac/index.php";
@@ -255,7 +258,7 @@ if(is_page('wxlogin')){
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );
                     }
-                    if (!current_user_can( 'manage_options' )){
+                    if (!current_user_can( 'manage_options' )&&!in_array($role_id,$role_arr)){
                         require "404.php";
                     }
                     require "template/rbac/create_role.php";
@@ -264,7 +267,7 @@ if(is_page('wxlogin')){
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );
                     }
-                    if (!current_user_can( 'manage_options' )){
+                    if (!current_user_can( 'manage_options' )&&!in_array($role_id,$role_arr)){
                         require "404.php";
                     }
                     require "template/rbac/create_permission.php";
@@ -273,7 +276,7 @@ if(is_page('wxlogin')){
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );
                     }
-                    if (!current_user_can( 'manage_options' )){
+                    if (!current_user_can( 'manage_options' )&&!in_array($role_id,$role_arr)){
                         require "404.php";
                     }
                     require "template/rbac/config_role.php";
@@ -282,7 +285,7 @@ if(is_page('wxlogin')){
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );
                     }
-                    if (!current_user_can( 'manage_options' )){
+                    if (!current_user_can( 'manage_options' )&&!in_array($role_id,$role_arr)){
                         require "404.php";
                     }
                     require "template/rbac/config_permission.php";
@@ -313,6 +316,24 @@ if(is_page('wxlogin')){
                         wp_redirect( home_url().'/wp-login.php' );
                     }
                     require "template/multi-university/community.php";
+                }
+                elseif (is_page('online_editor')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/onlineEditor/online_editor.php";
+                }
+                elseif (is_page('test_classify')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/test/test_classify.php";
+                }
+                elseif (is_page('upload_chapter')){
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/test/upload_chapter.php";
                 }
                 elseif (is_page('single_task')){
                     $id = $_GET['id'];

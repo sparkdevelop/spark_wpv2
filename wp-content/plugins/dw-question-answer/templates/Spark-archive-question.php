@@ -194,7 +194,7 @@ foreach($tags as $key => $temp){
         <div class="sidebar_divline"></div>
         <!--列表内容 需要填写的都用php提取出来就行-->
         <div id="helperTabContent" class="tab-content">
-            <div class="tab-pane fade in active" id="helperday">
+            <div class="tab-pane fade" id="helperday">
                 <ul class="list-group">
                     <?php
                     $from_day=strtotime("-1 day")+8*3600;
@@ -214,7 +214,7 @@ foreach($tags as $key => $temp){
                     ?>
                 </ul>
             </div>
-            <div class="tab-pane fade" id="helpermonth">
+            <div class="tab-pane fade in active" id="helpermonth">
                 <ul class="list-group">
                     <?php
                     $from_week=strtotime("-1 week")+8*3600;
