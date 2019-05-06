@@ -611,7 +611,7 @@ function dwqa_comment_form( $args = array(), $post_id = null ) {
                     row2.url=null;
                     row3.otherid=<?php echo $user_id;?>;
                     row3.othercontent=$("#"+ans_id).text();
-
+                    row4.source="sparkspace";
                     row4.userinfo=row1;
                     row4.scene=row2;
                     row4.otheruserinfo=row3
