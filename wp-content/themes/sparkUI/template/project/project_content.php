@@ -60,7 +60,7 @@ $project= new WP_Query($query);
                             <?php } ?>
                             <div style="height: 1px;background-color: lightgray"></div>
                             <div class="caption">
-                                <div class="project-title"><a href="<?php the_permalink(); ?>" target="_blank"><?php the_title(); ?></a></div>
+                                <div class="project-title"><a href="<?php the_permalink(); ?>" onclick="jilu1()" target="_blank"><?php the_title(); ?></a></div>
                                 <div class="project-info">
                                     <span class="fa fa-user-o pull-left">&nbsp;<?php the_author(); ?></span><span class="fa fa-bookmark-o pull-right" id="project-category-info" > <?php the_category(', ') ?></span><span class="fa fa-eye pull-right" id="m-project-views" > <?php echo getProjectViews(get_the_ID()); ?></span><br>
                                     <span class="fa fa-clock-o pull-left"> <?php echo date('n月j日 G:i',get_the_time('U'));?> </span><span class="fa fa-comments-o pull-right" > <?php comments_popup_link('0 ', '1 ', '% ', '', '评论已关闭'); ?></span><span class="fa fa-eye pull-right" id="web-project-views" > <?php echo getProjectViews(get_the_ID()); ?></span><br>
@@ -86,3 +86,55 @@ $project= new WP_Query($query);
         <li><a href="<?php echo get_the_permalink(get_page_by_title('发布项目')) ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
     </ul>
 </div>
+<script>
+    function jilu1() {
+        var json = [];
+        var row1 = {};
+        var row2 = {};
+        var row3 = {};
+        var row4 = {};
+        row1.userid=  <?php echo $current_user->ID;?>;
+        row1.username="<?php echo $current_user->data->user_login;?>";
+        row1.usersno="<?php echo get_user_meta( $current_user->ID, 'Sno');?>";
+        row1.university="<?php echo get_user_meta( $current_user->ID, 'University');?>";
+        row2.content = null;
+        row2.activity="scan";
+        row2.time=getNowFormatDate();
+        row2.url="<?php the_permalink(); ?>";
+        row3.otherid=null;
+        row3.othercontent=null;
+        row4.source="sparkspace";
+        row4.userinfo=row1;
+        row4.scene=row2;
+        row4.otheruserinfo=row3
+
+        // row1.likenum="";//被点赞数
+        // row1.likename="";  //点赞项目名称
+
+        json.push(row4);
+
+
+        alert(JSON.stringify(json));
+    }
+    function getNowFormatDate() {//获取当前时间
+
+        var date = new Date();
+
+        var seperator1 = "-";
+
+        var seperator2 = ":";
+
+        var month = date.getMonth() + 1<10? "0"+(date.getMonth() + 1):date.getMonth() + 1;
+
+        var strDate = date.getDate()<10? "0" + date.getDate():date.getDate();
+
+        var currentdate = date.getFullYear() + seperator1  + month  + seperator1  + strDate
+
+            + " "  + date.getHours()  + seperator2  + date.getMinutes()
+
+            + seperator2 + date.getSeconds();
+
+        return currentdate;
+
+    }
+</script>

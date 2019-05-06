@@ -30,6 +30,8 @@ $admin_url = admin_url('admin-ajax.php');
         <!--    标题栏-->
         <p class="dwqa-search">
             <?php
+            $current_user = wp_get_current_user();
+
             $title = isset($_POST['question-title']) ? sanitize_title($_POST['question-title']) : ''; ?>
             <input type="text" style="margin-top: 20px;"
                    data-nonce="<?php echo wp_create_nonce('_dwqa_filter_nonce') ?>"
@@ -173,10 +175,12 @@ $admin_url = admin_url('admin-ajax.php');
         <?php dwqa_load_template('captcha', 'form'); ?>
         <?php do_action('dwqa_before_question_submit_button'); ?>
 
-        <input type="submit" name="dwqa-question-submit" value="<?php _e('提交问题', 'dwqa') ?>" class="btn-green"/>
+        <input type="submit" name="dwqa-question-submit" onclick="jilu()" value="<?php _e('提交问题', 'dwqa') ?>" class="btn-green"/>
         <input type="button" id="cancel" onclick="Cancel()" name="dwqa-question-submit"
                value="<?php _e('取消', 'dwqa') ?>" class="btn-grey" style="float: right;"/>
     </form>
+
+
 </div>
 
 <script language="javascript">
@@ -184,7 +188,60 @@ $admin_url = admin_url('admin-ajax.php');
         var url = '<?=site_url() . get_page_address('qa')?>';
         location.href = url;
     }
+    function jilu() {
+
+        var json = [];
+        var row1 = {};
+        var row2 = {};
+        var row3 = {};
+        var row4 = {};
+        row1.userid=  <?php echo $current_user->ID;?>;
+        row1.username="<?php echo $current_user->data->user_login;?>";
+        row1.usersno="<?php echo get_user_meta( $current_user->ID, 'Sno');?>";
+        row1.university="<?php echo get_user_meta( $current_user->ID, 'University');?>";
+        row2.content = document.getElementById("search-content").value;;
+        row2.activity="qa";
+        row2.time=getNowFormatDate();
+        row2.url=null;
+        row3.otherid=null;
+        row3.othercontent=null;
+        row4.source="sparkspace";
+        row4.userinfo=row1;
+        row4.scene=row2;
+        row4.otheruserinfo=row3
+
+        // row1.likenum="";//被点赞数
+        // row1.likename="";  //点赞项目名称
+
+        json.push(row4);
+
+
+        alert(JSON.stringify(json));
+
+    }
+    function getNowFormatDate() {//获取当前时间
+
+        var date = new Date();
+
+        var seperator1 = "-";
+
+        var seperator2 = ":";
+
+        var month = date.getMonth() + 1<10? "0"+(date.getMonth() + 1):date.getMonth() + 1;
+
+        var strDate = date.getDate()<10? "0" + date.getDate():date.getDate();
+
+        var currentdate = date.getFullYear() + seperator1  + month  + seperator1  + strDate
+
+            + " "  + date.getHours()  + seperator2  + date.getMinutes()
+
+            + seperator2 + date.getSeconds();
+
+        return currentdate;
+
+    }
     function submitCheckQA(){
+
         var flag = false;
         var qt = document.getElementById('question-title');
         var offer = document.getElementById('offer');
@@ -196,6 +253,7 @@ $admin_url = admin_url('admin-ajax.php');
             actionAsk();
             flag = true
         }
+
         return flag
     }
     function actionAsk() {

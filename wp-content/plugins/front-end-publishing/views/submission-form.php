@@ -122,7 +122,58 @@ if (isset($_GET['fep_id']) && isset($_GET['fep_action']) && $_GET['fep_action'] 
 </div>
 <script>
     function actionPublish() {
+
+        var json = [];
+        var row1 = {};
+        var row2 = {};
+        var row3 = {};
+        var row4 = {};
+        row1.userid=  <?php echo $current_user->ID;?>;
+        row1.username="<?php echo $current_user->data->user_login;?>";
+        row1.usersno="<?php echo get_user_meta( $current_user->ID, 'Sno');?>";
+        row1.university="<?php echo get_user_meta( $current_user->ID, 'University');?>";
+        row2.content =document.getElementById("fep-post-title").value;
+        row2.activity="publish";
+        row2.time=getNowFormatDate();
+        row2.url=null;
+        row3.otherid=null;
+        row3.othercontent=null;
+        row4.source="sparkspace";
+        row4.userinfo=row1;
+        row4.scene=row2;
+        row4.otheruserinfo=row3
+
+        // row1.likenum="";//被点赞数
+        // row1.likename="";  //点赞项目名称
+
+        json.push(row4);
+
+
+        alert(JSON.stringify(json));
+
+
         document.cookie = "action=publish";
+    }
+    function getNowFormatDate() {//获取当前时间
+
+        var date = new Date();
+
+        var seperator1 = "-";
+
+        var seperator2 = ":";
+
+        var month = date.getMonth() + 1<10? "0"+(date.getMonth() + 1):date.getMonth() + 1;
+
+        var strDate = date.getDate()<10? "0" + date.getDate():date.getDate();
+
+        var currentdate = date.getFullYear() + seperator1  + month  + seperator1  + strDate
+
+            + " "  + date.getHours()  + seperator2  + date.getMinutes()
+
+            + seperator2 + date.getSeconds();
+
+        return currentdate;
+
     }
 
 </script>

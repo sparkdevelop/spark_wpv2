@@ -456,12 +456,13 @@ function dwqa_comment_form( $args = array(), $post_id = null ) {
 	 * @param array $fields The default comment fields.
 	 */
 	$fields = apply_filters( 'comment_form_default_fields', $fields );
+    $ans_id = get_the_ID();
 	$defaults = array(
 		'fields'               => $fields,
 		'comment_field'        => '',
 		'must_log_in'          => '<p class="must-log-in">' . sprintf( __( 'You must be <a href="%s">logged in</a> to post a comment.','dwqa' ), wp_login_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) ) ) . '</p>',
-		'logged_in_as'         => '<p class="comment-form-comment"><textarea id="comment" name="comment" placeholder="Comment" rows="2" aria-required="true"></textarea></p>',
-		'comment_notes_before' => '<p class="comment-form-comment"><textarea id="comment" name="comment" placeholder="Comment" rows="2" aria-required="true"></textarea></p>',
+		'logged_in_as'         => '<p class="comment-form-comment"><textarea id="comment" name="comment" placeholder="Comment" rows="3" aria-required="true"></textarea></p>',
+		'comment_notes_before' => '<p class="comment-form-comment"><textarea id="comment1" name="comment" placeholder="Comment" rows="3" aria-required="true"></textarea></p>',
 		'comment_notes_after'  => '<p class="form-allowed-tags">' . sprintf( __( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s','dwqa' ), ' <code>' . allowed_tags() . '</code>' ) . '</p>',
 		'id_form'              => 'commentform',
 		'id_submit'            => 'submit',
@@ -575,9 +576,77 @@ function dwqa_comment_form( $args = array(), $post_id = null ) {
 			 * @param string $args['comment_field'] The content of the comment textarea field.
 			 */
 			echo apply_filters( 'comment_form_field_comment', $args['comment_field'] );
-			?>
-			<input name="comment-submit" type="submit" id="<?php echo esc_attr( $args['id_submit'] ); ?>" value="<?php echo esc_attr( $args['label_submit'] ); ?>" class="dwqa-btn dwqa-btn-primary" />
-			<?php comment_id_fields( $post_id ); ?>
+            $current_user = wp_get_current_user();
+            $user_id = get_post_field('post_author', get_the_ID()) ? get_post_field('post_author', get_the_ID()) : 0;
+            $ans_id = get_the_ID();
+            ?>
+			<input name="comment-submit" type="submit" onclick="jilu3(<?=$ans_id?>)" id="<?php echo esc_attr( $args['id_submit'] ); ?>" value="<?php echo esc_attr( $args['label_submit'] ); ?>" class="dwqa-btn dwqa-btn-primary" />
+			<script>
+                function jilu3(ans_id) {////////////修改
+
+
+
+
+                    var json = [];
+                    var row1 = {};
+                    var row2 = {};
+                    var row3 = {};
+                    var row4 = {};
+                    row1.userid=  <?php echo $current_user->ID;?>;
+                    row1.username="<?php echo $current_user->data->user_login;?>";
+                    row1.usersno="<?php echo get_user_meta( $current_user->ID, 'Sno');?>";
+                    row1.university="<?php echo get_user_meta( $current_user->ID, 'University');?>";
+                   $("textarea").each(function(){
+                       if($(this).val()) {
+                           row2.content = $(this).val();
+                           console.log("test1111"+$(this).val());
+                       }else{
+
+                       }
+                       console.log("test"+$(this).val());
+                    });
+
+                    row2.activity="reply";
+                    row2.time=getNowFormatDate();
+                    row2.url=null;
+                    row3.otherid=<?php echo $user_id;?>;
+                    row3.othercontent=$("#"+ans_id).text();
+
+                    row4.userinfo=row1;
+                    row4.scene=row2;
+                    row4.otheruserinfo=row3
+                    row4.source="sparkspace";
+                    // row1.likenum="";//被点赞数
+                    // row1.likename="";  //点赞项目名称
+
+                    json.push(row4);
+
+
+                    alert(JSON.stringify(json));
+                }
+                function getNowFormatDate() {//获取当前时间
+
+                    var date = new Date();
+
+                    var seperator1 = "-";
+
+                    var seperator2 = ":";
+
+                    var month = date.getMonth() + 1<10? "0"+(date.getMonth() + 1):date.getMonth() + 1;
+
+                    var strDate = date.getDate()<10? "0" + date.getDate():date.getDate();
+
+                    var currentdate = date.getFullYear() + seperator1  + month  + seperator1  + strDate
+
+                        + " "  + date.getHours()  + seperator2  + date.getMinutes()
+
+                        + seperator2 + date.getSeconds();
+
+                    return currentdate;
+
+                }
+            </script>
+                <?php comment_id_fields( $post_id ); ?>
 			<?php
 			/**
 			 * Fires at the bottom of the comment form, inside the closing </form> tag.

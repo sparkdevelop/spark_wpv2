@@ -9,6 +9,8 @@
 ?>
 <?php //do_action( 'dwqa_before_single_question_content' );
 global $wpdb;
+$current_user = wp_get_current_user();
+
 
 ?>
 <!--本段注释放开以后可以收起回复框,但下面留白原因未知-->
@@ -39,26 +41,14 @@ global $wpdb;
             },
         });
     }
-    function click_vote($ans_id) {
-        var data = {
-            action: 'click_vote',
-            ans_id: $ans_id
-        };
-        $.ajax({
-            type: "POST",
-            url: '<?=admin_url('admin-ajax.php')?>',
-            data: data,
-            dataType: "text",
-            success: function () {
-            },
-        });
-    }
+
 </script>
 <div class="<?php echo dwqa_post_class() ?>" style="padding: 15px 0px">
 
     <?php $user_id = get_post_field('post_author', get_the_ID()) ? get_post_field('post_author', get_the_ID()) : 0;
     $sql = "SELECT comment_count from $wpdb->posts WHERE ID=" . get_the_ID();
     $comment_count = $wpdb->get_var($sql);
+
     ?>
     <!--									头像-->
     <div style="display: inline-block;vertical-align: top;margin-left: 30px">
@@ -104,12 +94,13 @@ global $wpdb;
             <p class="ask_date"
                style="margin-left: 20px;"><?php echo human_time_diff(get_post_time('U', true)) . "前回答"; ?></p>
         </div>
+        <?php $ans_id = get_the_ID(); ?>
         <!--										答案内容-->
-        <div style="color: gray;margin-left: 20px;font-size: 16px;"><?php the_content(); ?></div>
+        <div style="color: gray;margin-left: 20px;font-size: 16px;" id="<?= $ans_id; ?>"><?php the_content(); ?></div>
 
         <!--										回复和点赞按钮链接-->
         <span class="answer-comment" style="margin-left: 0px;float: right;">
-            <?php $ans_id = get_the_ID(); ?>
+
             <button class="btn btn-default" style="border: 0px;padding-top: 0px;color:gray;outline: none;"
                     onclick="answer_reply(<?= $ans_id; ?>)">回复<?php echo $comment_count; ?></button>
         </span>
@@ -133,3 +124,72 @@ global $wpdb;
         </div>
     </div>
 </div>
+<script>
+    function click_vote(ans_id) {
+
+
+
+        var json = [];
+        var row1 = {};
+        var row2 = {};
+        var row3 = {};
+        var row4 = {};
+        row1.userid=  <?php echo $current_user->ID;?>;
+        row1.username="<?php echo $current_user->data->user_login;?>";
+        row1.usersno="<?php echo get_user_meta( $current_user->ID, 'Sno');?>";
+        row1.university="<?php echo get_user_meta( $current_user->ID, 'University');?>";
+        row2.content =null;
+        row2.activity="like";
+        row2.time=getNowFormatDate();
+        row2.url=null;
+        row3.otherid=<?php echo $user_id;?>;;
+        row3.othercontent= $("#"+ans_id).text();//点赞项目名称;;
+        row4.source="sparkspace";
+        row4.userinfo=row1;
+        row4.scene=row2;
+        row4.otheruserinfo=row3
+
+        // row1.likenum="";//被点赞数
+        // row1.likename="";  //点赞项目名称
+
+        json.push(row4);
+
+
+
+        alert(JSON.stringify(json));
+        var data = {
+            action: 'click_vote',
+            ans_id: ans_id
+        };
+        $.ajax({
+            type: "POST",
+            url: '<?=admin_url('admin-ajax.php')?>',
+            data: data,
+            dataType: "text",
+            success: function () {
+            },
+        });
+    }
+
+    function getNowFormatDate() {//获取当前时间
+
+        var date = new Date();
+
+        var seperator1 = "-";
+
+        var seperator2 = ":";
+
+        var month = date.getMonth() + 1<10? "0"+(date.getMonth() + 1):date.getMonth() + 1;
+
+        var strDate = date.getDate()<10? "0" + date.getDate():date.getDate();
+
+        var currentdate = date.getFullYear() + seperator1  + month  + seperator1  + strDate
+
+            + " "  + date.getHours()  + seperator2  + date.getMinutes()
+
+            + seperator2 + date.getSeconds();
+
+        return currentdate;
+
+    }
+</script>
