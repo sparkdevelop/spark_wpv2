@@ -31,6 +31,37 @@ $experiment_2019 = get_permalink(get_the_ID_by_title('2019多校燎原计划—�
             end:function () {}
         })
     }
+    /*function post_data() {
+        var data = {
+            action: "curl_post_https",//后台请求函数
+            //需要上传的数据
+            token:"9751aa692c85b529e2ed9f1895201812",
+            source:"sparkspace",
+            userid:"1",
+            username:"火花",
+            usersno:"2016729037",
+            university:"BUPT北邮",
+            content:"aaaa啊啊啊啊啊啊啊",
+            activity:"qa",
+            time:"2018-09-27 08:13:57",
+            url:"www.google.com",
+            otherid:"2",
+            othername:"zyl",
+            othercontent:"112e4dded"
+        };
+        $.ajax({
+            type: "POST",
+            url:"<?=admin_url('admin-ajax.php');?>",//你的请求程序页面
+            data: data,//请求需要发送的处理数据
+            dataType: "json",
+            success: function () {
+
+            },
+            error: function () {
+               console.log("error");
+            }
+        });
+    }*/
 </script>
 <div id="community_index">
     <h3 style="display:inline;margin-top: 10px">燎原计划</h3>
