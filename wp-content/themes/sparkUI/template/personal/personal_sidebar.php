@@ -110,7 +110,7 @@ $admin_url=admin_url('admin-ajax.php');
             $user_level = get_user_level(get_current_user_id());
             $img_url = $user_level.".png";
             ?>
-            <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px">
+            <a href="<?php echo site_url().get_page_address('info').'&tab=integral'?>"><img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px"></a>
         </p>
         <p style="margin-top: 10px;color: gray">ID: <?php echo get_current_user_id();?></p>
         <p style="color: gray;width: 100%;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;"><?php echo $user_description;?></p>
