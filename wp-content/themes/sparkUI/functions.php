@@ -7075,7 +7075,7 @@ function wp_info_check($login) {
 }
 
 /* PHP CURL HTTPS POST */
-function curl_post_https(){ // 模拟提交数据函数
+/*function curl_post_https(){ // 模拟提交数据函数
     $data = [
             'token'=>isset($_POST["token"]) ? $_POST["token"] : '',
         'source'=>isset($_POST["source"]) ? $_POST["source"] : '',
@@ -7112,7 +7112,7 @@ function curl_post_https(){ // 模拟提交数据函数
 }
 
 add_action('wp_ajax_curl_post_https', 'curl_post_https');
-add_action('wp_ajax_nopriv_curl_post_https', 'curl_post_https');
+add_action('wp_ajax_nopriv_curl_post_https', 'curl_post_https');*/
 
 ////wiki和项目内容处理 去标签化 暂时无用
 //function removeHTMLLabel($post_id){

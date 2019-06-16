@@ -31,7 +31,7 @@ $experiment_2019 = get_permalink(get_the_ID_by_title('2019多校燎原计划—�
             end:function () {}
         })
     }
-    function post_data() {
+    /*function post_data() {
         var data = {
             action: "curl_post_https",//后台请求函数
             //需要上传的数据
@@ -61,7 +61,7 @@ $experiment_2019 = get_permalink(get_the_ID_by_title('2019多校燎原计划—�
                console.log("error");
             }
         });
-    }
+    }*/
 </script>
 <div id="community_index">
     <h3 style="display:inline;margin-top: 10px">燎原计划</h3>
