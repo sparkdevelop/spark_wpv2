@@ -18,20 +18,6 @@
         display: inherit;
     }
 
-    /*.head-box{*/
-    /*background: #f0f0f0;*/
-    /*width: 100%;*/
-    /*height:520px;*/
-    /*}*/
-    /*.head-box .banner-background{*/
-    /*position: absolute;*/
-    /*height: 520px;*/
-    /*width: 100%;*/
-    /*background-position: 55% 0;*/
-    /*background-repeat: no-repeat;*/
-    /*background-size: cover;*/
-    /*transition: opacity 200ms ease-in-out;*/
-    /*}*/
     .features-title {
         color: #333;
         text-decoration: none;
@@ -73,10 +59,111 @@
     .wiki_list_header p {
         display: inline-block;
     }
-</style>
+    .login_title {
+        color: #000;
+        font-size: 19px;
+        text-align: center;
+        margin-top: 20px;
+    }
 
+    .login_item {
+        margin: 30px 20px;
+        position: relative;
+        border: 1px solid #c9c9c9;
+        border-radius: 3px;
+        box-sizing: border-box;
+    }
+    .ipt {
+        width: 100%;
+        padding: 0 20px;
+        height: 47px;
+        line-height: 47px;
+        border: none;
+        background: none;
+    }
+</style>
+<script>
+    var flag
+</script>
 <?php
 $_COOKIE["page_id"] = 0;
+//解析URL参数
+function parseUrlParam($query)
+{
+    $queryArr = explode('&', $query);
+    $params = array();
+    if ($queryArr[0] !== '') {
+        foreach ($queryArr as $param) {
+            list($name, $value) = explode('=', $param);
+            $params[urldecode($name)] = urldecode($value);
+        }
+    }
+    return $params;
+}
+
+//设置URL参数数组
+function setUrlParams($cparams, $url = '')
+{
+    $parse_url = $url === '' ? parse_url($_SERVER["REQUEST_URI"]) : parse_url($url);
+    $query = isset($parse_url['query']) ? $parse_url['query'] : '';
+    $params = parseUrlParam($query);
+    foreach ($cparams as $key => $value) {
+        $params[$key] = $value;
+    }
+    return $parse_url['path'] . '?' . http_build_query($params);
+}
+
+//获取URL参数
+function getUrlParam($cparam, $url = '')
+{
+    $parse_url = $url === '' ? parse_url($_SERVER["REQUEST_URI"]) : parse_url($url);
+    $query = isset($parse_url['query']) ? $parse_url['query'] : '';
+    $params = parseUrlParam($query);
+    return isset($params[$cparam]) ? $params[$cparam] : '';
+}
+
+$token = getUrlParam('token', '');
+if ($token) {
+    //验证token Header,signature
+
+    if ($token === '111') {//验证token成功，解密用户信息
+        $user_login = 'rylan1';//示例
+        $display_name = 'rylan1';//示例
+
+        //根据解析到的用户信息。检测用户是否已经存在
+        $user = get_user_by('login', $user_login);
+        if ($user) {//若已经注册，获取用户ID和用户名，设置当前用户，跳转到wiki页面
+            $user_id = $user->ID;
+            wp_set_current_user($user_id, $user_login);
+            wp_set_auth_cookie($user_id);
+            do_action('wp_login', $user_login);
+            wp_redirect(get_permalink(get_the_ID_by_title('导论实验课')));
+        } else {//注册新用户
+            $register_time = date("Y-m-d H:i:s");
+            $email = uniqid() . '@example.com';//随机生成不重复的邮箱
+            $user_data = array(
+                'ID' => 0,    //(int) User ID. If supplied, the user will be updated.
+                'user_pass' => '123456',   //(string) The plain-text user password.
+                'user_login' => $user_login,   //(string) The user's login username.
+                'user_url' => '',   //(string) The user URL.
+                'user_email' => $email,   //(string) The user email address.
+                'display_name' => $display_name,   //(string) The user's display name. Default is the user's username.
+                'user_registered' => $register_time,   //(string) Date the user registered. Format is 'Y-m-d H:i:s'.
+                'role' => 'author',   //(string) User's role.
+            );
+            $user_id = wp_insert_user($user_data);
+            wp_set_current_user($user_id, $user_login);
+            wp_set_auth_cookie($user_id);
+            do_action('wp_login', $user_login);
+            wp_redirect(get_permalink(get_the_ID_by_title('导论实验课')));
+        }
+    } else { //验证token失败，弹出实验空间登录入口
+        echo "<script> flag = 1;</script>";
+    }
+
+}
+
+
 //relation_table_install();
 //user_history_table_install();
 //favorite_table_install();
@@ -165,28 +252,29 @@ get_header();
         <ul class="list-group" style="margin-bottom: 0;">
             <li class="list-group-item col-md-4 col-sm-4 col-xs-12">
                 <div style="display: inline-block; vertical-align: baseline;">
-                    <a href="<?php echo get_permalink(get_the_ID_by_title('2019多校燎原计划——腾讯云AI+小程序'));?>" style="color: #fe642d;">
-                        <span >【燎原计划】</span>2019多校燎原计划
+                    <a href="<?php echo get_permalink(get_the_ID_by_title('2019多校燎原计划——腾讯云AI+小程序')); ?>"
+                       style="color: #fe642d;">
+                        <span>【燎原计划】</span>2019多校燎原计划
                     </a>
                 </div>
             </li>
             <li class="list-group-item col-md-4 col-sm-4 col-xs-12">
                 <div style="display: inline-block; vertical-align: baseline;">
-                    <a href="<?php echo get_permalink(get_the_ID_by_title('精简版端到端实验'));?>" style="color: #4e4e4e;">
+                    <a href="<?php echo get_permalink(get_the_ID_by_title('精简版端到端实验')); ?>" style="color: #4e4e4e;">
                         <span>【燎原计划】</span>2018精简版端到端实验
                     </a>
                 </div>
             </li>
             <li class="list-group-item col-md-4 col-sm-4 col-xs-12">
                 <div style="display: inline-block; vertical-align: baseline;">
-                    <a href="<?php echo get_permalink(get_the_ID_by_title('创+腾讯'));?>" style="color: #4e4e4e;">
+                    <a href="<?php echo get_permalink(get_the_ID_by_title('创+腾讯')); ?>" style="color: #4e4e4e;">
                         <span>【学习资源】</span>创+腾讯
                     </a>
                 </div>
             </li>
             <li class="list-group-item col-md-12 col-sm-12 col-xs-12" style="text-align: center;margin-top: 20px">
                 <div style="display: inline-block;">
-                        <span style="color: gray;margin: 10px auto">合作伙伴</span>
+                    <span style="color: gray;margin: 10px auto">合作伙伴</span>
                 </div>
             </li>
             <img style="width: 100%;margin-top: 10px"
@@ -327,4 +415,70 @@ get_header();
     </div>
 </div>
 <div style="clear:both;"></div>
+<!--修改密码样式-->
+<div id="login_ilab" style="display:none">
+    <div class="login_title">国家虚拟仿真实验教学项目共享平台-登录</div>
+    <form class="login_form" id="loginForm">
+        <div class="login_item">
+            <input class="ipt" id="username" type="text"  name="phone" placeholder="手机号/用户名/邮箱">
+        </div>
+        <div class="login_item">
+            <input class="ipt" id="password" type="password"  name="password" placeholder="密码" >
+        </div>
+    </form>
+</div>
 <?php get_footer(); ?>
+<script>
+    $(document).ready(function () {
+        if (flag === 1) {
+            layer.open({
+                   type: 1,
+                   title:false,
+                   area: ['500px','320px'],
+                   shadeClose: true,
+                   content: $('#login_ilab'),
+                   btn:['立即登录'],
+                   yes:function(index, layero){
+                       var username = $("#username").val();
+                       var password = $("#password").val();
+                       if ($("#username").val()==""){
+                           layer.alert('用户名不能为空!',{
+                               title: '提示框',
+                               icon:0
+
+                           });
+                           return false;
+                       }
+                       if ($("#password").val()==""){
+                           layer.alert('原码不能为空!',{
+                               title: '提示框',
+                               icon:0
+
+                           });
+                           return false;
+                       }
+                       else{
+                           //发送到实验平台验证，并检测用户是否存在，未完成
+                           var data = {
+                               action: "login_ilib",
+                               username: $("#username").val(),
+                               password: $("#password").val()
+                           };
+                           $.ajax({
+                               type: "POST",
+                               url:"<?php echo admin_url('admin-ajax.php');?>",//你的请求程序页面
+                               data: data,//请求需要发送的处理数据
+                               dataType: "json",
+                               error: function () {
+                                   layer.alert("出错了，请重试！",{
+                                       title: '提示框',
+                                       icon:0
+                                   });
+                               }
+                            });
+                        }
+                    }
+                });
+        }
+    })
+</script>

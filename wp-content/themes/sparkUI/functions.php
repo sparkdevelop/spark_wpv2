@@ -7074,6 +7074,14 @@ function wp_info_check($login) {
     }
 }
 
+function login_ilab(){
+    $url = "http://202.205.145.156:8017/sys/api/user/validate";
+    $username = isset($_POST["username"]) ? $_POST["username"] : '';
+    $password = isset($_POST["password"]) ? $_POST["password"] : '';
+}
+
+add_action('wp_ajax_login_ilab', 'login_ilab');
+add_action('wp_ajax_nopriv_login_ilab', 'login_ilab');
 /* PHP CURL HTTPS POST */
 /*function curl_post_https(){ // 模拟提交数据函数
     $data = [
