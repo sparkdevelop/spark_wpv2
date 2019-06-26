@@ -1550,8 +1550,9 @@ function add_leave_time()
                 'timeUsed' => $timeUsed,
                 'score' => $score
             );
-            $sql = "INSERT INTO test VALUES ('','$username','$status','$startDate','$endDate','$timeUsed','$score','$action_time')";
+            $sql = "INSERT INTO test VALUES ('','$username','$status','$startDate','$endDate','$timeUsed','$score','$action_time','')";
             $wpdb->get_results($sql);
+            $data['test_id'] = $wpdb->insert_id;
             //上传实验结果到实验空间
             upload_to_ilab($data);
         }
@@ -7280,13 +7281,17 @@ function upload_to_ilab($data){
     $scorearray['uploaddata']['attachmentId']='';
     $scorejson=json_encode($scorearray);
     $httpurl="http://lai1.club:9000/getXJWT";
-    $scoretoken=http_request($httpurl,$scorejson);
+    $scoretoken=httpRequest($httpurl,$scorejson);
     $tokendata['token']=$scoretoken;
     $tokenjson=json_encode($tokendata);
     $tokenjson=array(urlencode($tokenjson));
     //$httpurl='http://202.205.145.156:8017/project/log/upload?xjwt='.urlencode($scoretoken);
     $httpurl='http://ilab-x.com/project/log/upload?xjwt='.urlencode($scoretoken);
     $reqstr=curl_request($httpurl,$tokenjson);
+    global $wpdb;
+    $id = $data['test_id'];
+    $sql ="UPDATE test SET res = '$reqstr' WHERE id=$id";
+    $wpdb->get_results($sql);
 }
 /* PHP CURL HTTPS POST */
 /*function curl_post_https(){ // 模拟提交数据函数
