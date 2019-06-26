@@ -1529,8 +1529,8 @@ function add_leave_time()
         $source =$current_user->user_url;
         if($source =='http://ilab-x.com' && $page_id ==235){
             $username= $current_user->user_login;//ilab带来的用户名，就是上面的$reqstr['un'];
-            $startDate=strtotime($action_time)*1000;//strtotime比实际快2小时
-            $endDate=strtotime($leave_time)*1000;
+            $startDate=strtotime($action_time)*1000-28800000;//线上strtotime比实际快8小时
+            $endDate=strtotime($leave_time)*1000-28800000;
             $timeUsed=ceil(($endDate-$startDate)/60000);
             if($timeUsed < 2){
                 $status=2;//完成状态
