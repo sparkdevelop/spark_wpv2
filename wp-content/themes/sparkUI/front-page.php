@@ -123,40 +123,22 @@ function getUrlParam($cparam, $url = '')
 }
 
 $token = getUrlParam('token', '');
+
 if ($token) {
+    $token = urlencode($token);
     //验证token Header,signature
-
-    if ($token === '111') {//验证token成功，解密用户信息
-        $user_login = 'rylan1';//示例
-        $display_name = 'rylan1';//示例
-
-        //根据解析到的用户信息。检测用户是否已经存在
-        $user = get_user_by('login', $user_login);
-        if ($user) {//若已经注册，获取用户ID和用户名，设置当前用户，跳转到wiki页面
-            $user_id = $user->ID;
-            wp_set_current_user($user_id, $user_login);
-            wp_set_auth_cookie($user_id);
-            do_action('wp_login', $user_login);
-            wp_redirect(get_permalink(get_the_ID_by_title('导论实验课')));
-        } else {//注册新用户
-            $register_time = date("Y-m-d H:i:s");
-            $email = uniqid() . '@example.com';//随机生成不重复的邮箱
-            $user_data = array(
-                'ID' => 0,    //(int) User ID. If supplied, the user will be updated.
-                'user_pass' => '123456',   //(string) The plain-text user password.
-                'user_login' => $user_login,   //(string) The user's login username.
-                'user_url' => '',   //(string) The user URL.
-                'user_email' => $email,   //(string) The user email address.
-                'display_name' => $display_name,   //(string) The user's display name. Default is the user's username.
-                'user_registered' => $register_time,   //(string) Date the user registered. Format is 'Y-m-d H:i:s'.
-                'role' => 'author',   //(string) User's role.
-            );
-            $user_id = wp_insert_user($user_data);
-            wp_set_current_user($user_id, $user_login);
-            wp_set_auth_cookie($user_id);
-            do_action('wp_login', $user_login);
-            wp_redirect(get_permalink(get_the_ID_by_title('导论实验课')));
-        }
+    $tokendata['secret']="e4yy5e";//实验的secret;
+    $tokendata['aesKey']="0iqI26CNM4RmZMN1zlJiQhRu7R7a8f3R9hKImwC3oZ0=";//实验的aesKey;
+    $tokendata['token']=urldecode($token);
+    $tokenjson=json_encode($tokendata);
+    $httpurl="http://lai1.club:9000/getUserInfo";
+    $reqstr=httpRequest($httpurl,$tokenjson);
+    $reqstr=json_decode($reqstr);
+    if ($reqstr->id||$reqstr->un||$reqstr->dis) {//验证token成功，解密用户信息
+        $user_login = $reqstr->un;
+        $display_name = $reqstr->dis;
+        ilab_login($user_login,$display_name);
+        wp_redirect(get_permalink(get_the_ID_by_title('导论实验课')));
     } else { //验证token失败，弹出实验空间登录入口
         echo "<script> flag = 1;</script>";
     }
@@ -450,7 +432,7 @@ get_header();
                            return false;
                        }
                        if ($("#password").val()==""){
-                           layer.alert('原码不能为空!',{
+                           layer.alert('密码不能为空!',{
                                title: '提示框',
                                icon:0
 
@@ -460,15 +442,26 @@ get_header();
                        else{
                            //发送到实验平台验证，并检测用户是否存在，未完成
                            var data = {
-                               action: "login_ilib",
-                               username: $("#username").val(),
-                               password: $("#password").val()
+                               action: "login_ilab",
+                               username: username,
+                               password: password
                            };
                            $.ajax({
                                type: "POST",
                                url:"<?php echo admin_url('admin-ajax.php');?>",//你的请求程序页面
                                data: data,//请求需要发送的处理数据
                                dataType: "json",
+                               success: function(msg) {
+                                   console.log(msg);
+                                   if(msg.code ==0){
+                                       window.location.href = "<?php echo get_permalink(get_the_ID_by_title('导论实验课')) ;?>";
+                                   }else{
+                                       layer.alert("用户名或密码错误！",{
+                                           title: '提示框',
+                                           icon:0
+                                       });
+                                   }
+                               },
                                error: function () {
                                    layer.alert("出错了，请重试！",{
                                        title: '提示框',
@@ -479,6 +472,8 @@ get_header();
                         }
                     }
                 });
+            layer.msg('登录信息失效，请重新登录');
         }
+
     })
 </script>

@@ -304,7 +304,9 @@
         window.onbeforeunload = window.onbeforeunload || function(e){
             var data = {
                 action: "add_leave_time",
-                history_id : '<?php echo $last_id;?>'
+                action_time: '<?php echo date("Y-m-d H:i:s",time()+8*3600)?>',
+                history_id : '<?php echo $last_id;?>',
+                page_id : '<?php echo get_the_ID()?>'
             };
             $.ajax({
                 type: "POST",
