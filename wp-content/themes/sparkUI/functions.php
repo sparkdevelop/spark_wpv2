@@ -1552,9 +1552,8 @@ function add_leave_time()
             );
             $sql = "INSERT INTO test VALUES ('','$username','$status','$startDate','$endDate','$timeUsed','$score','$action_time')";
             $wpdb->get_results($sql);
-
-
-            //upload_to_ilab($data);
+            //上传实验结果到实验空间
+            upload_to_ilab($data);
         }
     }
     die();
