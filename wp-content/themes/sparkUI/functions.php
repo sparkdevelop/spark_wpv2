@@ -7109,7 +7109,8 @@ function wp_info_check($login) {
 }
 
 function login_ilab(){
-    $url = "http://202.205.145.156:8017/sys/api/user/validate";
+    //$url = "http://202.205.145.156:8017/sys/api/user/validate";
+    $url = "http://ilab-x.com/sys/api/user/validate";
     $username = isset($_POST["username"]) ? $_POST["username"] : '';
     $pas = isset($_POST["password"]) ? $_POST["password"] : '';
     $nonce = generate_nonce();
@@ -7189,7 +7190,8 @@ function ilab_login($user_login,$display_name){
         $tokendata['token']=$statetoken;
         $tokenjson=json_encode($tokendata);
         $tokenjson=array(urlencode($tokenjson));
-        $httpurl_state = "http://202.205.145.156:8017/third/api/test/result/upload?xjwt=".urlencode($statetoken);
+        //$httpurl_state = "http://202.205.145.156:8017/third/api/test/result/upload?xjwt=".urlencode($statetoken);
+        $httpurl_state = "http://ilab-x.com/third/api/test/result/upload?xjwt=".urlencode($statetoken);
         $reqstr=curl_request($httpurl_state,$tokenjson);
         //注册新用户
         $register_time = date("Y-m-d H:i:s",time() + 8*3600);
@@ -7282,7 +7284,8 @@ function upload_to_ilab($data){
     $tokendata['token']=$scoretoken;
     $tokenjson=json_encode($tokendata);
     $tokenjson=array(urlencode($tokenjson));
-    $httpurl='http://202.205.145.156:8017/project/log/upload?xjwt='.urlencode($scoretoken);
+    //$httpurl='http://202.205.145.156:8017/project/log/upload?xjwt='.urlencode($scoretoken);
+    $httpurl='http://ilab-x.com/project/log/upload?xjwt='.urlencode($scoretoken);
     $reqstr=curl_request($httpurl,$tokenjson);
 }
 /* PHP CURL HTTPS POST */
