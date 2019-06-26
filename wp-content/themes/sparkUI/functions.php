@@ -1513,15 +1513,50 @@ function writeUserTrack()
 //写入用户离开页面时间
 function add_leave_time()
 {
-   global $wpdb;
+    global $wpdb;
     $history_id = isset($_POST["history_id"]) ? $_POST["history_id"] : '';
-    //$leave_time = isset($_POST["leave_time"]) ? $_POST["leave_time"] : '';
+    $page_id = isset($_POST["page_id"]) ? $_POST["page_id"] : '';
+    $action_time = isset($_POST["action_time"]) ? $_POST["action_time"] : '';
     $leave_time = date("Y-m-d H:i:s",time()+8*3600);
     if ($history_id) {
         $sql = "UPDATE wp_user_history SET leave_time='$leave_time' WHERE ID = $history_id";
         $wpdb->get_results($sql);
     }
     //echo json_encode("success");
+    //判断用户是否来自ilab实验空间
+    if(is_user_logged_in()) {
+        $current_user = wp_get_current_user();
+        $source =$current_user->user_url;
+        if($source =='http://ilab-x.com' && $page_id ==235){
+            $username= $current_user->user_login;//ilab带来的用户名，就是上面的$reqstr['un'];
+            $startDate=strtotime($action_time)*1000;//strtotime比实际快2小时
+            $endDate=strtotime($leave_time)*1000;
+            $timeUsed=ceil(($endDate-$startDate)/60000);
+            if($timeUsed < 2){
+                $status=2;//完成状态
+                $score=rand(20,60);
+            }elseif ($timeUsed >=2 && $timeUsed < 5){
+                $status=1;//完成状态
+                $score=rand(60,80);
+            }else{
+                $status=1;//完成状态
+                $score=rand(80,100);
+            }
+            $data = array(
+                'username' => $username,
+                'status' => $status,
+                'startDate' => $startDate,
+                'endDate' => $endDate,
+                'timeUsed' => $timeUsed,
+                'score' => $score
+            );
+            $sql = "INSERT INTO test VALUES ('','$username','$status','$startDate','$endDate','$timeUsed','$score','$action_time')";
+            $wpdb->get_results($sql);
+
+
+            //upload_to_ilab($data);
+        }
+    }
     die();
 }
 
@@ -7074,6 +7109,183 @@ function wp_info_check($login) {
     }
 }
 
+function login_ilab(){
+    $url = "http://202.205.145.156:8017/sys/api/user/validate";
+    $username = isset($_POST["username"]) ? $_POST["username"] : '';
+    $pas = isset($_POST["password"]) ? $_POST["password"] : '';
+    $nonce = generate_nonce();
+    $cnonce = generate_nonce();
+    $password = strtoupper(sha256($nonce.strtoupper(sha256($pas)).$cnonce));
+    $params = array(
+        'username' => $username,
+        'password' => $password,
+        'nonce' => $nonce,
+        'cnonce' => $cnonce
+    );
+    $paramString = http_build_query($params);
+    $content = txcurl($url,$paramString,false);
+    $result = json_decode($content,true);
+    if($result){
+        if($result['code'] ==0){
+            ilab_login($result['username'],$result['name']);
+        }
+        echo json_encode($result);
+    }else{
+        echo "请求失败";
+    }
+    die();
+}
+
+add_action('wp_ajax_login_ilab', 'login_ilab');
+add_action('wp_ajax_nopriv_login_ilab', 'login_ilab');
+
+function generate_nonce( $length = 16 ) {
+    // 密码字符集，可任意添加你需要的字符
+    $chars = "0123456789ABCDEF";
+    $password = "";
+
+    for ( $i = 0; $i < $length; $i++ )
+    {
+        // 这里提供两种字符获取方式
+        // 第一种是使用 substr 截取$chars中的任意一位字符；
+        // 第二种是取字符数组 $chars 的任意元素
+        // $password .= substr($chars, mt_rand(0, strlen($chars) – 1), 1);
+        $password .= $chars[ mt_rand(0, strlen($chars) - 1) ];
+    }
+    return $password;
+}
+
+
+function sha256($data, $rawOutput=false){
+    if(!is_scalar($data)){
+        return false;
+    }
+    $data = (string)$data;
+    $rawOutput = !!$rawOutput;
+    return hash('sha256', $data, $rawOutput);
+}
+
+function ilab_login($user_login,$display_name){
+    //根据解析到的用户信息。检测用户是否已经存在
+    $user = get_user_by('login', $user_login);
+    if ($user) {//若已经注册，获取用户ID和用户名，设置当前用户，跳转到wiki页面
+        $user_id = $user->ID;
+        wp_set_current_user($user_id, $user_login);
+        wp_set_auth_cookie($user_id);
+        do_action('wp_login', $user_login);
+
+    } else {
+        //--------------------状态回传-----------------
+        $statearray['tokenRequest']['secret']= "e4yy5e";//实验的secret;
+        $statearray['tokenRequest']['aesKey']="0iqI26CNM4RmZMN1zlJiQhRu7R7a8f3R9hKImwC3oZ0=";//实验的aesKey;
+        $statearray['tokenRequest']['issuerId']= "100012";//实验的issuerId;
+
+        $statearray['uploaddata']['username']= $user_login;//ilab带来的用户名，就是上面的$reqstr['un'];
+        $statearray['uploaddata']['issuerId']= "100012";//实验的issuerId;
+        $statejson=json_encode($statearray);
+        $httpurl="http://lai1.club:9000/getXJWT";
+
+        $statetoken = httpRequest($httpurl,$statejson);
+
+        $tokendata['token']=$statetoken;
+        $tokenjson=json_encode($tokendata);
+        $tokenjson=array(urlencode($tokenjson));
+        $httpurl_state = "http://202.205.145.156:8017/third/api/test/result/upload?xjwt=".urlencode($statetoken);
+        $reqstr=curl_request($httpurl_state,$tokenjson);
+        //注册新用户
+        $register_time = date("Y-m-d H:i:s",time() + 8*3600);
+        $email = uniqid() . '@example.com';//随机生成不重复的邮箱
+        $user_data = array(
+            'ID' => 0,    //(int) User ID. If supplied, the user will be updated.
+            'user_pass' => '123456',   //(string) The plain-text user password.
+            'user_login' => $user_login,   //(string) The user's login username.
+            'user_url' => 'ilab-x.com',   //(string) The user URL.
+            'user_email' => $email,   //(string) The user email address.
+            'display_name' => $display_name,   //(string) The user's display name. Default is the user's username.
+            'user_registered' => $register_time,   //(string) Date the user registered. Format is 'Y-m-d H:i:s'.
+            'role' => 'author',   //(string) User's role.
+        );
+        $user_id = wp_insert_user($user_data);
+        wp_set_current_user($user_id, $user_login);
+        wp_set_auth_cookie($user_id);
+        do_action('wp_login', $user_login);
+    }
+}
+
+function curl_request($url,$post='',$cookie='', $returnCookie=0){
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)');
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($curl, CURLOPT_AUTOREFERER, 1);
+    curl_setopt($curl, CURLOPT_REFERER, $url);
+    if($post) {
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($post));
+    }
+    if($cookie) {
+        curl_setopt($curl, CURLOPT_COOKIE, $cookie);
+    }
+    curl_setopt($curl, CURLOPT_HEADER, $returnCookie);
+    curl_setopt($curl, CURLOPT_TIMEOUT, 10);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    $data = curl_exec($curl);
+    if (curl_errno($curl)) {
+        return curl_error($curl);
+    }
+    curl_close($curl);
+    if($returnCookie){
+        list($header, $body) = explode("\r\n\r\n", $data, 2);
+        preg_match_all("/Set\-Cookie:([^;]*);/", $header, $matches);
+        $info['cookie']  = substr($matches[1][0], 1);
+        $info['content'] = $body;
+        return $info;
+    }else{
+        return $data;
+    }
+}
+function httpRequest($url,$data){
+    $curl=curl_init();
+    curl_setopt($curl,CURLOPT_URL,$url);
+    curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,FALSE);
+    curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,FALSE);
+    curl_setopt($curl,CURLOPT_HTTPHEADER,array('Content-Type:application/json;charset=utf-8'));
+
+    if(!empty($data)){
+        curl_setopt($curl,CURLOPT_POST,1);
+        curl_setopt($curl,CURLOPT_POSTFIELDS,$data);
+    }
+    curl_setopt($curl,CURLOPT_RETURNTRANSFER,TRUE);
+    $output=curl_exec($curl);
+    curl_close($curl);
+    return $output;
+}
+//向实验平台上传数据
+function upload_to_ilab($data){
+    //-------------------成绩回传部分----------------------//
+    $scorearray['tokenRequest']['secret']= "e4yy5e";//实验的secret;
+    $scorearray['tokenRequest']['aesKey']="0iqI26CNM4RmZMN1zlJiQhRu7R7a8f3R9hKImwC3oZ0=";//实验的aesKey;
+    $scorearray['tokenRequest']['issuerId']= "100012";//实验的issuerId;
+
+    $scorearray['uploaddata']['username']= $data['username'];//ilab带来的用户名，就是上面的$reqstr['un'];
+    $scorearray['uploaddata']['projectTitle']= "面向新生的工程认知及创新素质培养虚拟仿真实验";//实验的全称;
+    $scorearray['uploaddata']['childProjectTitle']= "";//实验的子模块。没有就空着;
+    $scorearray['uploaddata']['status']=$data['status'];//完成状态
+    $scorearray['uploaddata']['score']=$data['score'];//实验成绩;
+    $scorearray['uploaddata']['startDate']=$data['startDate'];
+    $scorearray['uploaddata']['endDate']=$data['endDate'];
+    $scorearray['uploaddata']['timeUsed']=$data['timeUsed'];
+    $scorearray['uploaddata']['issuerId']= "100012";//实验的issuerId;
+    $scorearray['uploaddata']['attachmentId']='';
+    $scorejson=json_encode($scorearray);
+    $httpurl="http://lai1.club:9000/getXJWT";
+    $scoretoken=http_request($httpurl,$scorejson);
+    $tokendata['token']=$scoretoken;
+    $tokenjson=json_encode($tokendata);
+    $tokenjson=array(urlencode($tokenjson));
+    $httpurl='http://202.205.145.156:8017/project/log/upload?xjwt='.urlencode($scoretoken);
+    $reqstr=curl_request($httpurl,$tokenjson);
+}
 /* PHP CURL HTTPS POST */
 /*function curl_post_https(){ // 模拟提交数据函数
     $data = [
