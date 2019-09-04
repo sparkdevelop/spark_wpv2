@@ -45,6 +45,12 @@ if(is_page('wxlogin')){
                     }
                     require "template/wiki/wiki_index.php";
                 }
+                elseif (is_page("grow")) {
+                    if (!is_user_logged_in()) {
+                        wp_redirect( home_url().'/wp-login.php' );
+                    }
+                    require "template/grow/grow_index.php";
+                }
                 elseif (is_page("编辑wiki")) {
                     if (!is_user_logged_in()) {
                         wp_redirect( home_url().'/wp-login.php' );
