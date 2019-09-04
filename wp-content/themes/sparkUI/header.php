@@ -236,6 +236,10 @@
                         <img src="<?php bloginfo("template_url") ?>/img/group.png">
                         <a href="<?php echo get_the_permalink(get_page_by_title('协作')); ?>">协作</a>
                     </li>
+                    <li>
+                        <img src="<?php bloginfo("template_url") ?>/img/profile.png">
+                        <a href="<?php echo get_the_permalink(get_page_by_title('认知工委会')); ?>">多校</a>
+                    </li>
                 </ul>
             </div>
             <div class="m-left-personal-nav" id="m-left-personal-nav">
@@ -289,6 +293,10 @@
                         <img src="<?php bloginfo("template_url") ?>/img/project.png">
                         <a href="<?php echo get_the_permalink(get_page_by_title('项目')); ?>">项目</a>
                     </li>
+                    <li>
+                        <img src="<?php bloginfo("template_url") ?>/img/profile.png">
+                        <a href="<?php echo get_the_permalink(get_page_by_title('认知工委会')); ?>">多校</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -299,7 +307,9 @@
         window.onbeforeunload = window.onbeforeunload || function(e){
             var data = {
                 action: "add_leave_time",
-                history_id : '<?php echo $last_id;?>'
+                action_time: '<?php echo date("Y-m-d H:i:s",time()+8*3600)?>',
+                history_id : '<?php echo $last_id;?>',
+                page_id : '<?php echo get_the_ID()?>'
             };
             $.ajax({
                 type: "POST",

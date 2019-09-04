@@ -15,7 +15,7 @@
             $user_level = get_user_level($user_id);
             $img_url = $user_level.".png";
             ?>
-            <img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px">
+            <a href="<?php echo site_url().get_page_address('info').'&tab=integral'?>"><img src="<?php bloginfo("template_url")?>/img/integral/<?=$img_url?>" style="width: 20px"></a>
         </p>
         <p style="margin-top: 10px;color: gray"><?php echo $user_description;?></p>
         <?php

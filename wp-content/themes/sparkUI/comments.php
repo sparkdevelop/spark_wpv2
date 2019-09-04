@@ -22,7 +22,7 @@ if (!$_GET['paged']) {
 <ul id="leftTab" class="nav nav-pills">
     <li class="active" id="qaTab"><a href="#related_QA" data-toggle="tab" id="QA_related">相关问答(<?= $length ?>)</a></li>
     <li id="faqTab"><a href="#related_FAQ" data-toggle="tab" id="FAQ_related">相关经验(<?= $faq_length ?>)</a></li>
-    <li id="commentTab"><a href="#project_comment" data-toggle="tab" >评论</a></li>
+    <li id="commentTab"><a href="#project_comment" data-toggle="tab" >评论(<?= get_comments_number()?>)</a></li>
 </ul>
 <?php
 // 如果没有问题就不显示问答tab了
