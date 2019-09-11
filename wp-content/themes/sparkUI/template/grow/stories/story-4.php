@@ -199,7 +199,7 @@
 <h3>关于团队</h3><br/>
 <div class="box1">
 	
-	<p class="answer"><span class="name">庞徐：</span></p>
+	<p class="answer"><span class="name">庞旭：</span></p>
 	<p class="answer">合作嘛，就是一个人想玩，然后带动其他人一块玩。想带动大家的积极性，自己首先就要有很高的热情。然后在制作的时候，根据每个人的长处分配合适的任务，就这么简单。</p>
 	<p><br/></p></div>
 	<p><br/></p>
