@@ -50,7 +50,7 @@
 
 
 <img onclick="window.open('https://www.oursparkspace.cn/?yada_wiki=导论课设计理念');" onmouseover="$(this).css('opacity',0.5);" onmouseout="$(this).css('opacity',1);" src="<?php bloginfo("template_url") ?>/img/grow/shejilinian.png" style="cursor:pointer;width: 900px;height: 300px;">
-<img src="<?php bloginfo("template_url") ?>/img/grow/xuexibaodian.png" style="margin-left:27px;width: 204px;height: 300px;">
+<img onclick="window.open('<?=site_url().get_page_address('preparing_page') ?>');" src="<?php bloginfo("template_url") ?>/img/grow/xuexibaodian.png" style="margin-left:27px;width: 204px;height: 300px;">
 
 
 <!--导论课故事  部分-->
@@ -117,11 +117,11 @@
 <div class="row">
     <?php $title_idx = ['一','二','三','四','五','六'];
     $links = ['https://www.oursparkspace.cn/?yada_wiki=1539591196',
-        '',
+        'https://www.oursparkspace.cn/?yada_wiki=1568188996',
         'https://www.oursparkspace.cn/?yada_wiki=1540515851',
         'https://www.oursparkspace.cn/?yada_wiki=1540976613',
         'https://www.oursparkspace.cn/?yada_wiki=1541509887',
-        'https://mp.weixin.qq.com/s/bmlBzYDIEp7Ztit-N2L9eg'];
+        'https://www.oursparkspace.cn/?page_id=71970&param=4'];
 
     for($idx=0; $idx < 6;$idx++){ ?>
         <div onclick="if(<?=$idx ?> != 1) window.open('<?=$links[$idx] ?>');" class="col-md-3 col-sm-3 stages-content">
