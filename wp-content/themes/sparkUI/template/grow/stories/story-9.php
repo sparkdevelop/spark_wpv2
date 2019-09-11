@@ -31,8 +31,9 @@
 		text-indent: 2em;
 	}
 	.xinzhi {
-		background-image: url(<?php bloginfo("template_url") ?>/img/grow/stories/xinzhi/信纸2.jpg);
-		padding: 10px;
+        background: top;
+        background-image: url(<?php bloginfo("template_url") ?>/img/grow/stories/xinzhi/信纸3.jpg);
+        padding: 10px;
 		background-attachment: fixed;
 	}
 	.xinzhi p {

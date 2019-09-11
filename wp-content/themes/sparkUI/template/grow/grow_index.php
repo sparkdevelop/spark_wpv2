@@ -71,13 +71,10 @@
         '助教故事——伊甸',
         '【鱼家】——冯昕澳',
         '【盲点】——刘辰尧',
-        '【盲点】——井一诺'];
-    $stories_authors = ['红领巾','红领巾','红领巾','红领巾','红领巾','红领巾','红领巾','红领巾','红领巾'];
-    $stories_dates = ['2018-05-23','2018-06-07','2018-05-15','2018-05-14','2018-06-07','2018-06-07','2018-06-07','2018-06-11','2018-06-09'];
-    /*$stories_links = ['https://mp.weixin.qq.com/s/QSPqIujb37GRdYc4gplttg',
-        'https://mp.weixin.qq.com/s/qnByRCtap43fL7wcMj1WDg',
-        'https://mp.weixin.qq.com/s/_62nSF3-cNVLo0Cy-K_8ig',
-        'https://mp.weixin.qq.com/s/bmlBzYDIEp7Ztit-N2L9eg'];*/
+        '【盲点】——井一诺',
+        '超可爱的整蛊狗团队故事'];
+    $stories_authors = ['红领巾','红领巾','红领巾','红领巾','红领巾','红领巾','红领巾','红领巾','红领巾','红领巾'];
+    $stories_dates = ['2018-05-23','2018-06-07','2018-05-15','2018-05-14','2018-06-07','2018-06-07','2018-06-07','2018-06-11','2018-06-09','2017-12-25'];
 
     $stories_links = site_url().get_page_address('grow_stories_content');
 

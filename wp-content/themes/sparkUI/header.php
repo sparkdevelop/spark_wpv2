@@ -84,7 +84,7 @@
 <!--                                    <a href="--><?php //the_permalink(20548); ?><!--">多校</a>-->
                                     <a href="<?php the_permalink(get_the_ID_by_title('认知工委会')); ?>">多校</a>
                                 </li>
-                                <li class="page_item page-item-63074">
+                                <li class="page_item page-item-71944">
                                     <a href="<?php the_permalink(get_the_ID_by_title('成长')); ?>">成长</a>
                                 </li>
                                <!--<li class="page_item page-item-20548">
