@@ -124,7 +124,7 @@
         'https://www.oursparkspace.cn/?page_id=71970&param=4'];
 
     for($idx=0; $idx < 6;$idx++){ ?>
-        <div onclick="if(<?=$idx ?> != 1) window.open('<?=$links[$idx] ?>');" class="col-md-3 col-sm-3 stages-content">
+        <div onclick="window.open('<?=$links[$idx] ?>');" class="col-md-3 col-sm-3 stages-content">
             <img style="width: 68px;height: 68px;float: left;" src="<?php bloginfo("template_url") ?>/img/grow/stage<?=$idx+1?>.png">
 
             <p style="margin-left: 30px;">第<?=$title_idx[$idx]?>阶段</p>
