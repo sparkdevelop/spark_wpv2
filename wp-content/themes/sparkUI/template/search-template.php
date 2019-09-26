@@ -5,42 +5,53 @@ $search_word = isset($_GET['s'])&&!empty($_GET['s'])&&!ctype_space($_GET['s']) ?
 if($search_word==''){
   wp_redirect(home_url());
 }
+
+
+//暂时屏蔽北邮关键词
+if(strstr($search_word , '北邮') != false || strstr($search_word , '北京邮电大学') != false){
+    $wiki_found = $QA_found = $project_found = $all_found = 0;
+    $posts = null;
+}
+else {
+
+
 //=====获取搜索到的条目数
 //所有结果
-$query = array(
-    's' => $search_word,
-    'post_status' => 'publish',
-    'post_type' => array('yada_wiki', 'dwqa-question', 'post')
-);
-$result = new WP_Query($query);
-$all_found = $result->found_posts;
+    $query = array(
+        's' => $search_word,
+        'post_status' => 'publish',
+        'post_type' => array('yada_wiki', 'dwqa-question', 'post')
+    );
+    $result = new WP_Query($query);
+    $all_found = $result->found_posts;
 
 //wiki结果
-$query = array(
-    's' => $search_word,
-    'post_status' => 'publish',
-    'post_type' => 'yada_wiki'
-);
-$result = new WP_Query($query);
-$wiki_found = $result->found_posts;
+    $query = array(
+        's' => $search_word,
+        'post_status' => 'publish',
+        'post_type' => 'yada_wiki'
+    );
+    $result = new WP_Query($query);
+    $wiki_found = $result->found_posts;
 
 //项目结果
-$query = array(
-    's' => $search_word,
-    'post_status' => 'publish',
-    'post_type' => 'post'
-);
-$result = new WP_Query($query);
-$project_found = $result->found_posts;
+    $query = array(
+        's' => $search_word,
+        'post_status' => 'publish',
+        'post_type' => 'post'
+    );
+    $result = new WP_Query($query);
+    $project_found = $result->found_posts;
 
 //问答结果
-$query = array(
-    's' => $search_word,
-    'post_status' => 'publish',
-    'post_type' => 'dwqa-question'
-);
-$result = new WP_Query($query);
-$QA_found = $result->found_posts;
+    $query = array(
+        's' => $search_word,
+        'post_status' => 'publish',
+        'post_type' => 'dwqa-question'
+    );
+    $result = new WP_Query($query);
+    $QA_found = $result->found_posts;
+
 
 //标签结果
 //$arg = array('search'=>get_search_query());
@@ -68,26 +79,29 @@ $page_text = dwqa_is_front_page() ? 'page' : 'paged';
 $page = get_query_var($page_text) ? get_query_var($page_text) : 1;
 
 
-if ($post_type == 'yada_wiki') {    //根据自身情况更改
-    $query_string = $query_string . '&posts_per_page=10' . '&post_type=' . $post_type;
-    $posts = query_posts($query_string);
-} elseif ($post_type == 'post') {  //根据自身情况更改
-    $query_string = $query_string . '&posts_per_page=10' . '&post_type=' . $post_type;
-    $posts = query_posts($query_string);
-} elseif ($post_type == 'qa') {
-    $query_string = $query_string . '&posts_per_page=10' . '&post_type=dwqa-question';
-    $posts = query_posts($query_string);
-} else {
-    $query_string = $query_string . '&posts_per_page=-1';
-    $posts = query_posts($query_string);
+    if ($post_type == 'yada_wiki') {    //根据自身情况更改
+        $query_string = $query_string . '&posts_per_page=10' . '&post_type=' . $post_type;
+        $posts = query_posts($query_string);
+    } elseif ($post_type == 'post') {  //根据自身情况更改
+        $query_string = $query_string . '&posts_per_page=10' . '&post_type=' . $post_type;
+        $posts = query_posts($query_string);
+    } elseif ($post_type == 'qa') {
+        $query_string = $query_string . '&posts_per_page=10' . '&post_type=dwqa-question';
+        $posts = query_posts($query_string);
+    } else {
+        $query_string = $query_string . '&posts_per_page=-1';
+        $posts = query_posts($query_string);
+    }
+
+
+    $args = array(
+        'base' => add_query_arg($page_text, '%#%', $current_url),
+        'format' => '',
+        'current' => $page,
+        'show_all' => false,
+    );
+    $paginate = paginate_links($args);
 }
-$args = array(
-    'base' => add_query_arg($page_text, '%#%', $current_url),
-    'format' => '',
-    'current' => $page,
-    'show_all' => false,
-);
-$paginate = paginate_links($args);
 ?>
 <style>
     #search_more_link{
