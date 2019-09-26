@@ -151,5 +151,13 @@ $admin_url = admin_url('admin-ajax.php');
 
 </script>
 
+
+<!--暂时屏蔽北邮关键词-->
+<script>
+    var s= document.body.innerHTML;
+    s=s.replace('北邮','B校');
+    s=s.replace('北京邮电大学','B校');
+    document.body.innerHTML=s;
+</script>
 </body>
 </html>
