@@ -1502,9 +1502,10 @@ function writeUserTrack()
     $user_action = $_SESSION['action'];
     $user_id = $_SESSION['user_id'];
     $timestamp = $_SESSION['timestamp'];
+    $ip = $_SESSION['user_ip'];
     session_destroy();
     if ($user_id != 0) {
-        $sql = "INSERT INTO wp_user_history VALUES ('',$user_id,'$user_action',$post_id,'$post_type','$timestamp',null)";
+        $sql = "INSERT INTO wp_user_history VALUES ('',$user_id,'$user_action',$post_id,'$post_type','$timestamp',null,'$ip')";
         $wpdb->get_results($sql);
         return $wpdb->insert_id;
     }
@@ -7292,6 +7293,27 @@ function upload_to_ilab($data){
     $id = $data['test_id'];
     $sql ="UPDATE test SET res = '$reqstr' WHERE id=$id";
     $wpdb->get_results($sql);
+}
+
+
+//获取客户端真实IP
+function getRealIp()
+{
+    $ip=false;
+    if(!empty($_SERVER["HTTP_CLIENT_IP"])){
+        $ip = $_SERVER["HTTP_CLIENT_IP"];
+    }
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ips = explode (", ", $_SERVER['HTTP_X_FORWARDED_FOR']);
+        if ($ip) { array_unshift($ips, $ip); $ip = FALSE; }
+        for ($i = 0; $i < count($ips); $i++) {
+            if (!eregi ("^(10│172.16│192.168).", $ips[$i])) {
+                $ip = $ips[$i];
+                break;
+            }
+        }
+    }
+    return ($ip ? $ip : $_SERVER['REMOTE_ADDR']);
 }
 /* PHP CURL HTTPS POST */
 /*function curl_post_https(){ // 模拟提交数据函数

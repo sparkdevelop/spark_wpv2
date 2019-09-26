@@ -60,6 +60,7 @@
     setcookie("page_id");
     setcookie("action");
     $_SESSION['timestamp']=date("Y-m-d H:i:s",time()+8*3600);
+    $_SESSION['user_ip'] = getRealIp();
     $last_id = writeUserTrack();
     //?>
 
