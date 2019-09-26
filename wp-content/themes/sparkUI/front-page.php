@@ -224,13 +224,13 @@ get_header();
 </div>
 
 <div class="container">
-    <div class="wiki_list col-md-12 col-sm-12 col-xs-12" style="display: inline-block;margin: 50px 0 50px 0;">
+    <!--<div class="wiki_list col-md-12 col-sm-12 col-xs-12" style="display: inline-block;margin: 50px 0 50px 0;">
         <div class="wiki_list_header">
             <p style="font-size: 20px">多校合作</p>
-            <a id="wiki_list_link" href="<?php echo site_url() . get_page_address('community'); ?>">更多内容>></a>
+            <a id="wiki_list_link" href="<?php //echo site_url() . get_page_address('community'); ?>">更多内容>></a>
         </div>
         <!--分割线-->
-        <div class="divline" style="margin-top: 0px"></div>
+        <!--<div class="divline" style="margin-top: 0px"></div>
         <ul class="list-group" style="margin-bottom: 0;">
             <li class="list-group-item col-md-4 col-sm-4 col-xs-12">
                 <div style="display: inline-block; vertical-align: baseline;">
@@ -242,14 +242,14 @@ get_header();
             </li>
             <li class="list-group-item col-md-4 col-sm-4 col-xs-12">
                 <div style="display: inline-block; vertical-align: baseline;">
-                    <a href="<?php echo get_permalink(get_the_ID_by_title('精简版端到端实验')); ?>" style="color: #4e4e4e;">
+                    <a href="<?php //echo get_permalink(get_the_ID_by_title('精简版端到端实验')); ?>" style="color: #4e4e4e;">
                         <span>【燎原计划】</span>2018精简版端到端实验
                     </a>
                 </div>
             </li>
             <li class="list-group-item col-md-4 col-sm-4 col-xs-12">
                 <div style="display: inline-block; vertical-align: baseline;">
-                    <a href="<?php echo get_permalink(get_the_ID_by_title('创+腾讯')); ?>" style="color: #4e4e4e;">
+                    <a href="<?php //echo get_permalink(get_the_ID_by_title('创+腾讯')); ?>" style="color: #4e4e4e;">
                         <span>【学习资源】</span>创+腾讯
                     </a>
                 </div>
@@ -260,11 +260,11 @@ get_header();
                 </div>
             </li>
             <img style="width: 100%;margin-top: 10px"
-                 src="<?php bloginfo("template_url") ?>/img/univerisity-logo/community.png"/>
+                 src="<?php //bloginfo("template_url") ?>/img/univerisity-logo/community.png"/>
         </ul>
 
 
-    </div>
+    </div>-->
 
     <div class="container_1" id="front-page_1" style="display: table">
         <div class="col-md-4 col-sm-4 col-xs-12">
