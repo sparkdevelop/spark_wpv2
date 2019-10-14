@@ -281,12 +281,12 @@ get_header();
             <!--推荐列表-->
             <?php
             $wiki_item = array([235, '导论实验课', getWikiViews(235)],
-                [239, 'Unit1：开源硬件与Web编程入门', getWikiViews(239)],
-                [1191, 'Unit2：计算机和微机实验', getWikiViews(1191)],
-                [540, 'Unit3：电路基础实验', getWikiViews(540)],
-                [1202, 'Unit4：网络基础实验', getWikiViews(1202)],
-                [979, 'Unit5: 复杂工程进阶实验', getWikiViews(979)],
-                [13476, 'Unit6: 工程认知与创新素质培养', getWikiViews(13476)]
+                [981, '导论课设计理念', getWikiViews(981)],
+                [50935, '学长学姐出品~第一单元FAQ', getWikiViews(50935)],
+                [71976, '学长学姐出品~第二单元FAQ', getWikiViews(71976)],
+                [53821, '学长学姐出品~第三单元FAQ', getWikiViews(53821)],
+                [56574, '学长学姐出品~第四单元FAQ', getWikiViews(56574)],
+                [71970, '导论课结束了，有些想说一说的（18级）', 65]
             )
             ?>
             <ul class="list-group" style="margin-bottom: 0px">
@@ -296,17 +296,26 @@ get_header();
                     <li class="list-group-item">
                         <div style="display: inline-block; vertical-align: baseline;">
                             <a href="<?php the_permalink($value[0]); ?>" style="color: #4e4e4e;">
-                                <span style="color: #fe642d">【导论实验课】</span><?= $value[1] ?>
-                                <? if ($key == 4) { ?>
-                                    <span>
-                                        &nbsp;->&nbsp;<a href="http://sice.owvlab.net/openlab/jsj">网络虚拟仿真实验平台入口</a>
-                                    </span>
+                            <? if ($key == 0) { ?>
+                                    <span style="color: #fe642d">【导论实验课】</span><?= $value[1] ?>
+                                <?php } ?>
+                                <? if ($key == 1) { ?>
+                                    <span style="color: #fe642d">【导论实验课】</span><?= $value[1] ?>
+                                <?php } ?>
+                                <? if ($key == 2||$key == 3||$key == 4||$key == 5) { ?>
+                                    <span style="color: #fe642d">【精品FAQ】</span><?= $value[1] ?>
+                                <?php } ?>
+                                <? if ($key == 6) { ?>
+                                    <span style="color: #fe642d">【成长】</span><?= $value[1] ?>
                                 <?php } ?>
                             </a>
                             <!--传浏览量-->
                         </div>
                         <div style="display: inline-block;float: right; margin-right: 30px;">
-                            <?= $value[2] ?>次
+                            <?php if($value[2]==0){  
+                                echo '981';
+                            } else{ echo $value[2];
+                            }?>次
                         </div>
                     </li>
                 <?php }
