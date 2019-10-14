@@ -60,6 +60,7 @@
     setcookie("page_id");
     setcookie("action");
     $_SESSION['timestamp']=date("Y-m-d H:i:s",time()+8*3600);
+    $_SESSION['user_ip'] = getRealIp();
     $last_id = writeUserTrack();
     //?>
 
@@ -80,10 +81,11 @@
                                 //列出用户添加的页面 不列出Home页//问题是如何加特效?
                                 wp_list_pages(array('include'=> $page_all_id,'title_li' => '','depth'=>1));//,'exclude' => 38
                                 ?>
+                                <!--
                                 <li class="page_item page-item-20548">
 <!--                                    <a href="--><?php //the_permalink(20548); ?><!--">多校</a>-->
-                                    <a href="<?php the_permalink(get_the_ID_by_title('认知工委会')); ?>">多校</a>
-                                </li>
+                                <!--    <a href="<?php //the_permalink(get_the_ID_by_title('认知工委会')); ?>">多校</a>
+                                </li>-->
                                 <li class="page_item page-item-71944">
                                     <a href="<?php the_permalink(get_the_ID_by_title('成长')); ?>">成长</a>
                                 </li>
