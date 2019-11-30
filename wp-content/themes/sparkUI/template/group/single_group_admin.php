@@ -55,9 +55,9 @@
                     <? } ?>
                 </a>
             </li>
-            <li class="<?php echo $tab == 'analyze' ? 'active' : ''; ?>">
-                <a href="<?php echo esc_url(add_query_arg(array('tab' => 'analyze'), remove_query_arg(array('paged')))); ?>">统计信息</a>
-            </li>
+<!--            <li class="--><?php //echo $tab == 'analyze' ? 'active' : ''; ?><!--">-->
+<!--                <a href="--><?php //echo esc_url(add_query_arg(array('tab' => 'analyze'), remove_query_arg(array('paged')))); ?><!--">统计信息</a>-->
+<!--            </li>-->
         </ul>
         <?php
         $tab = isset($_GET['tab']) && !empty($_GET['tab']) ? $_GET['tab'] : 'task';
@@ -68,7 +68,8 @@
         }elseif($tab=='manage'){
             require 'group_manage.php';
         }else{
-            require get_stylesheet_directory().'/template/student_management/management.php';
+            return;
+            //require get_stylesheet_directory().'/template/student_management/management.php';
             //require get_stylesheet_directory().'/template/student_management/alert.php';
         }
         ?>

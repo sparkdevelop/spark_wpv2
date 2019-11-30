@@ -286,7 +286,6 @@ get_header();
                 [71976, '学长学姐出品~第二单元FAQ', getWikiViews(71976)],
                 [53821, '学长学姐出品~第三单元FAQ', getWikiViews(53821)],
                 [56574, '学长学姐出品~第四单元FAQ', getWikiViews(56574)],
-                [71970, '导论课结束了，有些想说一说的（18级）', 65]
             )
             ?>
             <ul class="list-group" style="margin-bottom: 0px">
@@ -305,9 +304,6 @@ get_header();
                                 <? if ($key == 2||$key == 3||$key == 4||$key == 5) { ?>
                                     <span style="color: #fe642d">【精品FAQ】</span><?= $value[1] ?>
                                 <?php } ?>
-                                <? if ($key == 6) { ?>
-                                    <span style="color: #fe642d">【成长】</span><?= $value[1] ?>
-                                <?php } ?>
                             </a>
                             <!--传浏览量-->
                         </div>
@@ -317,9 +313,18 @@ get_header();
                             } else{ echo $value[2];
                             }?>次
                         </div>
+                        
                     </li>
                 <?php }
                 ?>
+                <!--首页成长Wiki-->
+                <li class="list-group-item"> 
+                <div style="display: inline-block; vertical-align: baseline;">
+                <a href="https://www.oursparkspace.cn/?page_id=71970&param=7" style="color: #4e4e4e; text-decoration:none" > <span style="color: #fe642d">【成长】</span>导论课结束了，有些想说一说的（18级）</a>
+                </div>
+                <div style="display: inline-block;float: right; margin-right: 30px;">65次
+                </div>
+                </li>
             </ul>
         </div>
     </div>
