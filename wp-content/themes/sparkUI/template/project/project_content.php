@@ -8,21 +8,58 @@ $orderby=get_query_var('orderby')? get_query_var('orderby') : 'meta_value_num';
 $category_name=get_query_var('category_name')? get_query_var('category_name') : 'project';
 $meta_key=get_query_var('meta_key')? get_query_var('meta_key') : 'project_views';
 $paged=get_query_var('paged')? get_query_var('paged') : '1';
-$query = array(
-    'post_type'	=> 'post',
-    'posts_per_page' => 12,
-    'paged' => $paged,
-    'order' =>'DESC',
-    'category_name'=>$category_name,
-    'orderby' =>$orderby,
-    'meta_key' => $meta_key
-);
+$date = get_query_var('date')? get_query_var('date') : '0';
+if ($date === '0') {
+    $query = array(
+        'post_type'	=> 'post',
+        'posts_per_page' => 12,
+        'paged' => $paged,
+        'order' =>'DESC',
+        'category_name'=>$category_name,
+        'orderby' =>$orderby,
+        'meta_key' => $meta_key,
+    );
+} else {
+    $query = array(
+        'post_type'	=> 'post',
+        'posts_per_page' => 12,
+        'paged' => $paged,
+        'order' =>'DESC',
+        'category_name'=>$category_name,
+        'orderby' =>$orderby,
+        'meta_key' => $meta_key,
+        'date_query' => array(
+            array(
+                'after' => array(
+                    'year' => $date,
+                    'month' => 6
+                ),
+                'inclusive' => true
+            ),
+            array(
+                'before' => array(
+                    'year' => $date+1,
+                    'month' => 6
+                ),
+                'inclusive' => true
+            )
+        )
+    );
+}
+
 $project= new WP_Query($query);
 ?>
 <script>
     window.onload=function(){
-        var li=document.getElementById("<?=$category_name?>");
+        var li;
+        var date = <?=$date?>;
         var li_default= document.getElementById("project");
+        if ( date === 0){
+            li = document.getElementById("<?=$category_name?>");
+        } else {
+            li = document.getElementById("<?=$date?>");
+        }
+
         li_default.className = "";
         li.className="active";
     }
@@ -30,9 +67,11 @@ $project= new WP_Query($query);
 <div class="col-md-9 col-sm-9 col-xs-12" id="col9">
     <div class="archive-nav">
         <ul id="leftTab" class="nav nav-pills" style="float: left;height: 42px;">
-            <li class="active" id="project"><a href="<?php echo esc_url(remove_query_arg(array('paged','category_name')))?>" >所有</a></li>
-            <li id="hardware"><a href="<?php echo esc_url(add_query_arg(array('category_name'=>'hardware','paged'=>'1')))?>" >开源硬件</a></li>
-            <li id="web"><a href="<?php echo esc_url(add_query_arg(array('category_name'=>'web','paged'=>'1')))?>" >web开发</a></li>
+            <li class="active" id="project"><a href="<?php echo esc_url(remove_query_arg(array('paged','category_name','date')))?>" >所有</a></li>
+            <li id="2019"><a href="<?php echo esc_url(remove_query_arg(array('paged','category_name'), add_query_arg(array('date' => '2019'))))?>" >2019级</a></li>
+            <li id="2018"><a href="<?php echo esc_url(remove_query_arg(array('paged','category_name'),add_query_arg(array('date' => '2018'))))?>" >2018级</a></li>
+            <li id="hardware"><a href="<?php echo esc_url(remove_query_arg(array('date'),add_query_arg(array('category_name'=>'hardware','paged'=>'1'))))?>" >开源硬件</a></li>
+            <li id="web"><a href="<?php echo esc_url(remove_query_arg(array('date'),add_query_arg(array('category_name'=>'web','paged'=>'1'))))?>" >web开发</a></li>
         </ul>
     </div>
     <ul id="rightTab" class="nav nav-pills" style="float: right;height: 42px">
