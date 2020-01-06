@@ -27,6 +27,7 @@ out/
 # gitignore
 .gitignore
 #过滤整个文件夹
+/wp-content/uploads/
 /wp-content/uploads/2017/
 /wp-content/uploads/2018/
 /wp-content/uploads/2019/

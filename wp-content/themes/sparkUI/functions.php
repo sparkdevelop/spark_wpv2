@@ -7315,6 +7315,11 @@ function getRealIp()
     }
     return ($ip ? $ip : $_SERVER['REMOTE_ADDR']);
 }
+function add_query_vars_filter( $vars ){
+    $vars[] = "date";
+    return $vars;
+}
+add_filter( 'query_vars', 'add_query_vars_filter' );
 /* PHP CURL HTTPS POST */
 /*function curl_post_https(){ // 模拟提交数据函数
     $data = [
