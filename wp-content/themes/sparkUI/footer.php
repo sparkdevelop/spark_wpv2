@@ -56,8 +56,8 @@
         <div class="divline"></div>
         <div class="row">
             <div class="copyright">
-                    <span>Copyright © 2017 <a href="<?php echo site_url(); ?>" target="_blank">火花空间</a>. All Rights Reserved. </span>
-                    <span>京ICP备17043230号-1</span>
+                    <span>Copyright © 2017-2020 <a href="<?php echo site_url(); ?>" target="_blank">火花空间</a>. All Rights Reserved. </span>
+                    <span><a href="http://www.beian.miit.gov.cn/" target="_blank">京ICP备17043230号-1</a></span>
             </div>
         </div>
     </div>
