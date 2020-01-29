@@ -24,8 +24,8 @@
 <!--    --><?php //wp_enqueue_style('sparkUI',get_stylesheet_uri());//加载jquery?>
     <?php wp_enqueue_script("jquery");//加载jquery?>
     <?php wp_head(); //加载js?>
-    <?php $url_this = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"]; ?>
-
+<!--    --><?php //$url_this = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"]; ?>
+    <?php $url_this = home_url(); ?>
     <?php
     //控制导航栏显示哪几个page
     global $budao_official;
