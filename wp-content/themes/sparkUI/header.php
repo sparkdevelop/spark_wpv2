@@ -89,6 +89,9 @@
                                 <li class="page_item page-item-71944">
                                     <a href="<?php the_permalink(get_the_ID_by_title('成长')); ?>">成长</a>
                                 </li>
+                                <li class="page_item page-item-20548">
+                                    <a  href="http://sice.owvlab.net/openlab/jsj">网络虚拟仿真实验平台</a>
+                                </li>
                                <!--<li class="page_item page-item-20548">
                                     <a style="color: #fe642d" href="<?php /*the_permalink(get_the_ID_by_title('火星派'));*/?>">火星派</a>
                                 </li>-->
