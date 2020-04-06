@@ -61,6 +61,11 @@ class Common extends Controller
               //  'end_time' => 'require',
             ),
         ),
+        'Statement' => array(
+            'index' => array(
+
+            )
+        )
     );
 
     protected function _initialize()
@@ -139,7 +144,7 @@ class Common extends Controller
         /*********** 验证参数并返回错误  ***********/
         $this->validater = new Validate($rule);
         if (!$this->validater->check($arr)) {
-            $this->return_msg(400, $this->validater->getError());
+            $this->return_msg(1002, $this->validater->getError());
         }
         /*********** 如果正常,通过验证  ***********/
         return $arr;
