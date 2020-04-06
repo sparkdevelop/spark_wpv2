@@ -36,7 +36,8 @@ class Statement extends Common
             //获取请求参数
             $data = array(
                 'user_id' => 1,
-                'start_time' => '2017-01-01'
+                'start_time' => '2017-01-01',
+                'end_time' => '2020-01-01'
             );
             if($data['end_time']){
                 $db_res = db('wp_posts')
