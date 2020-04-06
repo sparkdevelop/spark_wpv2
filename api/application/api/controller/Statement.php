@@ -20,16 +20,16 @@ class Statement extends Common
             $data = array(
                 'user_id' => 1
             );
-
+            $this->return_msg(200,'查询成功！',$db_res);
             //var_dump($data['user_id']);
-            $db_res = db('wp_user_integral')->field('integral')->where('user_id',$data['user_id'])->find();
-            if($db_res){
-                $db_res['user_id']=$data['user_id'];
-
-                $this->return_msg(200,'查询成功！',$db_res);
-            }else{
-                $this->return_msg(400,'查询失败！');
-            }
+//            $db_res = db('wp_user_integral')->field('integral')->where('user_id',$data['user_id'])->find();
+//            if($db_res){
+//                $db_res['user_id']=$data['user_id'];
+//
+//                $this->return_msg(200,'查询成功！',$db_res);
+//            }else{
+//                $this->return_msg(400,'查询失败！');
+//            }
         }
         // 是否为 POST 请求
         if (Request::instance()->isPost()) {
