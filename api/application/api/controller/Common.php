@@ -63,7 +63,7 @@ class Common extends Controller
         ),
         'Statement' => array(
             'index' => array(
-
+                'token' => 'require',
             )
         )
     );
@@ -73,8 +73,8 @@ class Common extends Controller
         parent::_initialize();
         $this->request = Request::instance();
         // $this->check_time($this->request->only(['time']));
-        // $this->check_token($this->request->param());
-//        $this->params = $this->check_params($this->request->param(true));
+         $this->check_token($this->request->param());
+        $this->params = $this->check_params($this->request->param(true));
     }
 
     /**
