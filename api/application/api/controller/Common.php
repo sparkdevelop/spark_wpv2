@@ -62,8 +62,17 @@ class Common extends Controller
             ),
         ),
         'Statement' => array(
-            'index' => array(
+            'application' => array(
                 'token' => 'require',
+                'actor' => 'require',
+                'verb' => 'require',
+                'object' => 'require',
+                'timestamp' => 'require',
+                'authority' => 'require'
+            ),
+            'user' => array(
+                'token' => 'require',
+                'authority' => 'require'
             )
         )
     );
