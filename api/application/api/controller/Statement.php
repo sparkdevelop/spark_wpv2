@@ -12,61 +12,61 @@ use think\Request;
 
 class Statement extends Common
 {
-    public function index()
+    public function user()
     {
         // 是否为 GET 请求
         if (Request::instance()->isGet()) {
             //获取请求参数
-            $data = array(
-                'user_id' => 1
+            $data = $this->params;
+            $this->check_token($data);
+            $where = array(
+                "authority" => ['=', $data['authority']]
             );
+            if (isset($data['since']) && !isset($data['until'])) {
+                $since = (int)$data['since'];
+                $where['timestamp'] = ['>', $since];
+            }
+            if (isset($data['until']) && !isset($data['since'])) {
+                $until = (int)$data['until'];
+                $where['timestamp'] = ['<', $until];
+            }
+            if (isset($data['until']) && isset($data['since'])) {
+                $since = (int)$data['since'];
+                $until = (int)$data['until'];
+                $where['timestamp'] = [['>', $since], ['<', $until]];
+            }
+            if (isset($data['verb'])) {
+                $where['verb'] = ['=', $data['verb']];
+            }
 
-            //var_dump($data['user_id']);
-            $db_res = db('wp_user_integral')->field('integral')->where('user_id',$data['user_id'])->find();
-            if($db_res){
-                $db_res['user_id']=$data['user_id'];
+            $page = isset($data['page']) ? (int)$data['page'] : 0;
+            $offsetNum = $page * 10;
 
-                $this->return_msg(200,'查询成功！',$db_res);
-            }else{
-                $this->return_msg(400,'查询失败！');
+            $db_res = db('standard_history')
+                ->where($where)
+                ->limit($offsetNum,10)->select();
+            if (!$db_res) {
+                $this->return_msg(400, '获取数据失败!');
+            } else {
+                $this->return_msg(200, '获取数据成功!', $db_res);
             }
         }
+    }
+
+    public function  application()
+    {
         // 是否为 POST 请求
         if (Request::instance()->isPost()) {
             //获取请求参数
-            $data = array(
-                'user_id' => 1,
-                'start_time' => '2017-01-01',
-                'end_time' => '2020-01-01'
-            );
-            if($data['end_time']){
-                $db_res = db('wp_posts')
-                    ->field('ID')
-                    ->where('post_date','between time',[$data['start_time'],$data['end_time']])
-                    ->where('post_status','=','publish')
-                    ->where('post_type','in',['post','yada_wiki'])
-                    ->where('post_author',$data['user_id'])
-                    ->count();
-            }else{
-                $db_res = db('wp_posts')
-                    ->field('ID')
-                    ->whereTime('post_date', '>=', $data['start_time'])
-                    ->where('post_status','=','publish')
-                    ->where('post_type','in',['post','yada_wiki'])
-                    ->where('post_author',$data['user_id'])
-                    ->count();
-            }
-
-            if($db_res){
-                $post_res['user_id'] = $data['user_id'];
-                $post_res['publish_count'] = $db_res;
-
-                $this->return_msg(200,'查询成功！',$post_res);
-            }else{
-                $this->return_msg(400,'查询失败！');
+            $data = $this->params;
+            $this->check_token($data);
+//            $data['timestamp'] = (int)$data['timestamp'];
+            $res = db('standard_history')->insert($data);
+            if (!$res) {
+                $this->return_msg(400, '上传数据失败!');
+            } else {
+                $this->return_msg(200, '上传数据成功!');
             }
         }
-
-
     }
 }
