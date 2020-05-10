@@ -39,16 +39,30 @@ class Statement extends Common
                 $where['verb'] = ['=', $data['verb']];
             }
 
-            $page = isset($data['page']) ? (int)$data['page'] : 0;
-            $offsetNum = $page * 10;
+            $page = isset($data['page']) && (int)$data['page'] > 0 ? (int)$data['page'] : 1;
+            $offsetNum = ($page - 1) * 100;
 
             $db_res = db('standard_history')
                 ->where($where)
-                ->limit($offsetNum,10)->select();
+                ->limit($offsetNum,100)->select();
+
             if (!$db_res) {
                 $this->return_msg(400, '获取数据失败!');
             } else {
-                $this->return_msg(200, '获取数据成功!', $db_res);
+                $result = array();
+                foreach ($db_res as $key => $val) {
+                    $temp = array(
+                        'actor' => json_decode($val['actor']),
+                        'verb' => $val['verb'],
+                        'object' => json_decode($val['object']),
+                        'result' => json_decode($val['result']),
+                        'context' => json_decode($val['context']),
+                        'authority' => $val['authority'],
+                        'timestamp' => $val['timestamp'],
+                    );
+                    array_push($result, $temp);
+                }
+                $this->return_msg(200, '获取数据成功!', $result);
             }
         }
     }

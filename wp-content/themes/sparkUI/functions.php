@@ -695,7 +695,40 @@ function update_wiki_entry()
         }
     }
 
+    //添加编辑wiki历史记录
+    $post = get_post($post_id);
+    $school_info = get_school_info($current_user->ID);
+    $sno = $school_info['sno'];
+    $sname = $school_info['sname'];
 
+    $statement['actor'] = json_encode(array(
+        'objectType' => 'Agent',
+        'name' => $current_user->user_login,
+        'member_info' => array(
+            'user_id' => $current_user->ID,
+            'sno' => $sno,
+            'university' => $sname
+        )
+    ));
+    $statement['verb'] = 'edit';
+    $post_author_name = get_user_by('ID', $post->post_author)->user_login;
+    $statement['object'] = json_encode(array(
+        'objectType' => 'Activity',
+        'type' => $post->post_type,
+        'definition' => array(
+            'title' => $post->post_title,
+            'post_id' => $post->ID,
+            'author' => $post_author_name,
+            'identifier' => get_permalink($post_id)
+        )
+    ));
+    $statement['context'] = json_encode(array(
+        'ip' => getRealIp()
+    ));
+    $statement['timestamp'] = time() + 8*3600;
+    $statement['authority'] = 'sparkspace';
+
+    $wpdb->insert('standard_history', $statement);
     echo json_encode("success!");
     die();
 }
@@ -878,7 +911,38 @@ function create_wiki_entry()
     global $integral_system;
     add_user_integral($current_user->ID, $integral_system['create_wiki']);
 
+    //添加发布wiki历史记录
+    $post = get_post($last_insert_ID);
+    $school_info = get_school_info($current_user->ID);
+    $sno = $school_info['sno'];
+    $sname = $school_info['sname'];
 
+    $statement['actor'] = json_encode(array(
+        'objectType' => 'Agent',
+        'name' => $current_user->user_login,
+        'member_info' => array(
+            'user_id' => $current_user->ID,
+            'sno' => $sno,
+            'university' => $sname
+        )
+    ));
+    $statement['verb'] = 'publish';
+    $statement['object'] = json_encode(array(
+        'objectType' => 'Activity',
+        'type' => $post->post_type,
+        'definition' => array(
+            'title' => $post->post_title,
+            'post_id' => $post->ID,
+            'identifier' => get_permalink($last_insert_ID)
+        )
+    ));
+    $statement['context'] = json_encode(array(
+        'ip' => getRealIp()
+    ));
+    $statement['timestamp'] = time() + 8*3600;
+    $statement['authority'] = 'sparkspace';
+
+    $wpdb->insert('standard_history', $statement);
     echo json_encode($post_name);
     die();
 
@@ -1220,6 +1284,146 @@ function my_login_redirect($redirect_to, $request)
 }
 
 add_filter('login_redirect', 'my_login_redirect', 10, 3);
+
+//根据用户ID获取学号和学校名称
+function get_school_info($user_id) {
+    global $wpdb;
+    $arr_sno = get_user_meta($user_id, 'Sno');
+    $sno = sizeof($arr_sno) == 0 ? '' : $arr_sno[0];
+    $arr_university = get_user_meta($user_id, 'University');
+    if (sizeof($arr_university) == 0) {
+        $sname = '';
+    } else {
+        $school_id = $arr_university[0];
+        $sname = $wpdb->get_results("select uvs_name from wp_ms WHERE ID = $school_id")[0]->uvs_name;
+    }
+    return array(
+        'sno' => $sno,
+        'sname' => $sname
+    );
+}
+//登陆行为记录
+function insert_login_history($user_login, $user) {
+    global $wpdb;
+    $school_info = get_school_info($user->ID);
+    $sno = $school_info['sno'];
+    $sname = $school_info['sname'];
+
+    $statement = array();
+    $statement['actor'] = json_encode(array(
+        'objectType' => 'Agent',
+        'name' => $user_login,
+        'member_info' => array(
+            'user_id' => $user->ID,
+            'sno' => $sno,
+            'university' => $sname
+        )
+    ));
+    $statement['verb'] = 'login';
+    $statement['object'] = json_encode(array(
+        'objectType' => 'Activity',
+        'type' => 'link',
+        'definition' => array(
+            'title' => '火花空间',
+            'identifier' => get_bloginfo('url')
+        )
+    ));
+    $statement['context'] = json_encode(array(
+        'ip' => getRealIp()
+    ));
+    $statement['timestamp'] = time() + 8*3600;
+    $statement['authority'] = 'sparkspace';
+
+    $wpdb->insert('standard_history', $statement);
+}
+
+add_action('wp_login', 'insert_login_history', 10, 2);
+
+// 搜索行为记录
+function insert_search_history() {
+    if (strpos($_SERVER['PHP_SELF'], 'wp-admin') == false) {//PHP_SELF 域名后面的部分 如果含有wp-admin则说明是后台配置页面
+        if (!empty($_GET['s'])) {//查询到内容
+            $keyword = trim($_GET['s']);
+            global $wpdb;
+            if (is_user_logged_in()) {
+                $current_user = wp_get_current_user();
+                $school_info = get_school_info($current_user->ID);
+                $sno = $school_info['sno'];
+                $sname = $school_info['sname'];
+
+                $statement['actor'] = json_encode(array(
+                    'objectType' => 'Agent',
+                    'name' => $current_user->user_login,
+                    'member_info' => array(
+                        'user_id' => $current_user->ID,
+                        'sno' => $sno,
+                        'university' => $sname
+                    )
+                ));
+                $statement['verb'] = 'search';
+                $statement['object'] = json_encode(array(
+                    'objectType' => 'Activity',
+                    'type' => 'keyword',
+                    'definition' => array(
+                        'title' => $keyword,
+                        'identifier' => get_bloginfo('url').'/?s='.$keyword
+                    )
+                ));
+                $statement['context'] = json_encode(array(
+                    'ip' => getRealIp()
+                ));
+                $statement['timestamp'] = time() + 8*3600;
+                $statement['authority'] = 'sparkspace';
+
+                $wpdb->insert('standard_history', $statement);
+            }
+        }
+    }
+}
+
+add_action('wp_loaded', 'insert_search_history');
+
+//发布、编辑项目行为记录
+function insert_publish_history($post_id) {
+    global $wpdb;
+    $post = get_post($post_id);
+    $current_user = wp_get_current_user();
+    $school_info = get_school_info($current_user->ID);
+    $sno = $school_info['sno'];
+    $sname = $school_info['sname'];
+
+    $statement['actor'] = json_encode(array(
+        'objectType' => 'Agent',
+        'name' => $current_user->user_login,
+        'member_info' => array(
+            'user_id' => $current_user->ID,
+            'sno' => $sno,
+            'university' => $sname
+        )
+    ));
+    $statement['verb'] = strtotime($post->post_date) < strtotime($post->post_modified) ? 'edit' : 'publish';
+    $post_author_name = get_user_by('ID', $post->post_author)->user_login;
+    $statement['object'] = json_encode(array(
+        'objectType' => 'Activity',
+        'type' => $post->post_type,
+        'definition' => array(
+            'title' => $post->post_title,
+            'post_id' => $post->ID,
+            'author' => $post_author_name,
+            'identifier' => $post->guid
+        )
+    ));
+    $statement['context'] = json_encode(array(
+        'ip' => getRealIp()
+    ));
+    $statement['timestamp'] = time() + 8*3600;
+    $statement['authority'] = 'sparkspace';
+
+    $wpdb->insert('standard_history', $statement);
+}
+
+add_action( 'publish_post', 'insert_publish_history' );
+
 // 在编辑器中启用字体和字体大小选择
 if (!function_exists('wpex_mce_buttons')) {
     function wpex_mce_buttons($buttons)
@@ -1505,6 +1709,41 @@ function writeUserTrack()
     $ip = $_SESSION['user_ip'];
     session_destroy();
     if ($user_id != 0) {
+        $post = get_post($post_id);
+        $current_user = wp_get_current_user();
+        $school_info = get_school_info($current_user->ID);
+        $sno = $school_info['sno'];
+        $sname = $school_info['sname'];
+
+        $statement['actor'] = json_encode(array(
+            'objectType' => 'Agent',
+            'name' => $current_user->user_login,
+            'member_info' => array(
+                'user_id' => $current_user->ID,
+                'sno' => $sno,
+                'university' => $sname
+            )
+        ));
+        $statement['verb'] = 'read';
+        $post_author_name = get_user_by('ID', $post->post_author)->user_login;
+        $statement['object'] = json_encode(array(
+            'objectType' => 'Activity',
+            'type' => $post_type,
+            'definition' => array(
+                'title' => $post->post_title,
+                'post_id' => $post_id,
+                'author' => $post_author_name,
+                'identifier' => get_permalink($post_id)
+            )
+        ));
+        $statement['context'] = json_encode(array(
+            'ip' => getRealIp()
+        ));
+        $statement['timestamp'] = time() + 8*3600;
+        $statement['authority'] = 'sparkspace';
+
+        $wpdb->insert('standard_history', $statement);
+
         $sql = "INSERT INTO wp_user_history VALUES ('',$user_id,'$user_action',$post_id,'$post_type','$timestamp',null,'$ip')";
         $wpdb->get_results($sql);
         return $wpdb->insert_id;
