@@ -306,6 +306,33 @@ function ludou_register_extra_fields($user_id, $password = "", $meta = array())
         $sql = "INSERT INTO $wpdb->usermeta VALUES ('',$user_id,'Sno','$sno')";
         $wpdb->get_results($sql);
     }
+    // 注册行为记录
+    $statement = array();
+    $statement['actor'] = json_encode(array(
+        'objectType' => 'Agent',
+        'name' => $_POST['user_login'],
+        'member_info' => array(
+            'user_id' => $user_id,
+            'sno' => $sno,
+            'university' => isset($sname) ? $sname : ''
+        )
+    ));
+    $statement['verb'] = 'register';
+    $statement['object'] = json_encode(array(
+        'objectType' => 'Activity',
+        'type' => 'link',
+        'definition' => array(
+            'title' => '火花空间',
+            'identifier' => get_bloginfo('url')
+        )
+    ));
+    $statement['context'] = json_encode(array(
+        'ip' => getRealIp()
+    ));
+    $statement['timestamp'] = time() + 8*3600;
+    $statement['authority'] = 'sparkspace';
+
+    $wpdb->insert('standard_history', $statement);
 }
 
 function remove_default_password_nag()
