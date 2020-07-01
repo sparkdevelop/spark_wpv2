@@ -41,9 +41,8 @@
                 <div class="col-md-2 col-sm-2 col-xs-12" class="foot-link" id="friend-link">
                     <p>友情链接</p>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="https://www.microduino.cn/">Microduino官网</a></li>
-                        <li class="list-group-item"><a href="http://115.28.144.64/library/Home/Index/share.html">器材借还</a></li>
-                        <li class="list-group-item"><a href="https://www.moothread.com/">慕知网</a></li>
+                        <li class="list-group-item"><a href="https://www.ourspark.org/">涅槃之路</a></li>
+                        <li class="list-group-item"><a href="http://sparkdesignbox.cn/">设计工具箱</a></li>
                     </ul>
                 </div>
                 <div class="clearfix visible-xs"></div>
