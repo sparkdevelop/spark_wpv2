@@ -52,10 +52,52 @@
 <img onclick="window.open('https://www.oursparkspace.cn/?yada_wiki=导论课设计理念');" onmouseover="$(this).css('opacity',0.5);" onmouseout="$(this).css('opacity',1);" src="<?php bloginfo("template_url") ?>/img/grow/shejilinian.png" style="cursor:pointer;width: 900px;height: 300px;">
 <img onclick="window.open('<?=site_url().get_page_address('preparing_page') ?>');" src="<?php bloginfo("template_url") ?>/img/grow/xuexibaodian.png" style="margin-left:27px;width: 204px;height: 300px;">
 
+<!-- 成长型思维介绍 -->
+<span class="subtitle-span"></span>
+<p class="subtitle-text">成长型思维</p>
+
+<p class="subtitle-sub">了解成长型思维，激发你的无限潜能</p>
+
+<div class="row" >
+    <div onclick="window.open('https://oursparkspace.cn/?page_id=89295')" class="col-md-3 col-sm-3 stories-content">
+        <img style="width: 228px;height: 130px;" src="<?php bloginfo("template_url") ?>/img/grow/introduce.jpg">
+        <p style="height: 40px;">这两种思维模式，你了解吗</p>
+
+        <p  class="stories-content-sub">作者：红领巾</p>
+        <!--<p style="float: right;" class="stories-content-sub">阅读量：XX</p>-->
+        <p style="clear:both;" class="stories-content-sub">发布于 2020-06-30</p>
+    </div>
+    <div onclick="window.open('http://oursparkspace.cn/?page_id=89403')" class="col-md-3 col-sm-3 stories-content">
+        <img style="width: 228px;height: 130px;" src="<?php bloginfo("template_url") ?>/img/grow/ceshi.jpeg">
+        <p style="height: 40px;">快来测测自己的思维模式吧！</p>
+
+        <p  class="stories-content-sub">作者：红领巾</p>
+        <!--<p style="float: right;" class="stories-content-sub">阅读量：XX</p>-->
+        <p style="clear:both;" class="stories-content-sub">发布于 2020-06-30</p>
+    </div>
+    <div onclick="window.open(' http://oursparkspace.cn/?page_id=89382')" class="col-md-3 col-sm-3 stories-content">
+        <img style="width: 228px;height: 130px;" src="<?php bloginfo("template_url") ?>/img/grow/brain.jpg">
+        <p style="height: 40px;">大脑如同肌肉，也会成长！</p>
+
+        <p  class="stories-content-sub">作者：红领巾</p>
+        <!--<p style="float: right;" class="stories-content-sub">阅读量：XX</p>-->
+        <p style="clear:both;" class="stories-content-sub">发布于 2020-06-30</p>
+    </div>
+    <div onclick="window.open(' http://oursparkspace.cn/?page_id=89397 ')" class="col-md-3 col-sm-3 stories-content">
+        <img style="width: 228px;height: 130px;" src="<?php bloginfo("template_url") ?>/img/grow/method.jpeg">
+        <p style="height: 40px;">成长型思维可以培养吗？</p>
+
+        <p  class="stories-content-sub">作者：红领巾</p>
+        <!--<p style="float: right;" class="stories-content-sub">阅读量：XX</p>-->
+        <p style="clear:both;" class="stories-content-sub">发布于 2020-06-30</p>
+    </div>
+
+</div>
 
 <!--导论课故事  部分-->
 <span class="subtitle-span"></span>
-<p class="subtitle-text">导论课和我不得不说的故事</p>
+<p class="subtitle-text">成长案例展示</p>
+
 
 <a id="get-more-stories" onclick="getMoreContents('hidden-stories')" style="float: right;font-size: 11px;margin-top: 47px;"> 查看更多 &gt;</a>
 
@@ -107,12 +149,20 @@
 
 </div>
 
+<p class="subtitle-sub"  style="margin-top:20px;">成长感悟</p>
+<div class="row">
+<div onclick="window.open(' http://oursparkspace.cn/?page_id=89418');" class="col-md-3 col-sm-3 stages-content">
+    <img style="width: 68px;height: 68px;float: left;" src="<?php bloginfo("template_url") ?>/img/grow/ganwu.jpg">
+    <p style="margin-left: 30px;">内蒙古师范大学课程感悟（一）</p>
+</div>
+<div onclick="window.open(' http://oursparkspace.cn/?page_id=89425');" class="col-md-3 col-sm-3 stages-content">
+    <img style="width: 68px;height: 68px;float: left;" src="<?php bloginfo("template_url") ?>/img/grow/ganwu.jpg">
+    <p style="margin-left: 30px;">内蒙古师范大学课程感悟（二）</p>
+</div>
+</div>
 
 <!--踩坑经历  部分-->
-<span class="subtitle-span"></span>
-<p class="subtitle-text">那些年，让学长学姐们怀疑人生的踩坑经历</p>
-<p class="subtitle-sub">道路千万条，看完不踩坑</p>
-
+<p class="subtitle-sub" style="margin-top:20px;">那些年，让学长学姐们怀疑人生的踩坑经历</p>
 
 <div class="row">
     <?php $title_idx = ['一','二','三','四','五','六'];
@@ -133,6 +183,17 @@
     <?php }?>
 </div>
 
+<!--偕成长  部分-->
+<span class="subtitle-span"></span>
+<p class="subtitle-text">“偕成长”小程序</p>
+<p class="subtitle-sub">通往成长型思维的道路是一段旅程，不是一个宣言</p>
+<div class="row">
+<div class="col-md-6 col-sm-6" style="width: 547px;height: 250px;background-color: #EEEEEE;margin-left: 21px;display: flex;align-items: center;">
+<div style="margin-left: 25px;margin-top: 10px;">成长型思维的培养需要科学系统的方法，“偕成长”小程序可以帮助更多人采用成长型思维，
+而非固定型思维，过上注重学习与成长的生活。扫描右侧二维码进行体验吧~培养自己的成长型思维~</div>
+<img style="width: 200px;height: 200px;margin-left: 25px;" src="<?php bloginfo("template_url") ?>/img/grow/logo.jpg">
+</div>
+</div>
 
 <!--火花HIGH LIGHT  部分-->
 <span class="subtitle-span"></span>
