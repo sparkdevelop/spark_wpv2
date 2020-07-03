@@ -42,7 +42,8 @@
                     <p>友情链接</p>
                     <ul class="list-group">
                         <li class="list-group-item"><a href="https://www.ourspark.org/">涅槃之路</a></li>
-                        <li class="list-group-item"><a href="http://sparkdesignbox.cn/">设计工具箱</a></li>
+                        <li class="list-group-item"><a href="http://internet.welishi.cn/">互联网简史</a></li>
+                        <li class="list-group-item"><a href="http://invention.welishi.cn/">发明简史</a></li>
                     </ul>
                 </div>
                 <div class="clearfix visible-xs"></div>
