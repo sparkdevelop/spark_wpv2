@@ -7727,9 +7727,7 @@ add_action('wp_ajax_nopriv_curl_post_https', 'curl_post_https');*/
 //获取微测试的测试问卷链接
 function get_test_questionaire($post_id,$user_id) {
     global $wpdb;
-    $sql="SELECT question_url FROM wp_class_group AS a
-    JOIN wp_questionaire as b
-    ON a.group_id = b.group_id
+    $sql="SELECT url FROM wp_questionaire 
     WHERE user_id ='$user_id'AND post_id = '$post_id'";
     $results=$wpdb->get_results($sql);
     return $results;

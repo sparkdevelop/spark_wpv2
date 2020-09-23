@@ -276,8 +276,8 @@ $_SESSION['wiki_tags'] = $wiki_tags;
             url: "<?php echo $admin_url; ?>",
             data: data,
             success: function() {
-                layer.msg('收藏成功', {
-                    time: 2000,
+                layer.msg('"头像-个人主页-我的收藏"查看', {
+                    time: 3000,
                     icon: 1
                 }); //layer.msg(content, {options}, end) - 提示框
                 var html = "<a onclick=\"setCSS(0)\" >" +
