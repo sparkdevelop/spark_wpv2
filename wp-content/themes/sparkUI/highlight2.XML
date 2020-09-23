@@ -4,9 +4,9 @@
             <NAME>蓝牙</NAME>
         </ITEM>
     </ENTITY>
-    <ENTITY> 
-        <ITEM> 
-            <NAME> 手语</NAME> 
-        </ITEM> 
+    <ENTITY>
+        <ITEM>
+            <NAME>手语</NAME>
+        </ITEM>
     </ENTITY>
 </ENTITYLINK>
