@@ -1,35 +1,32 @@
 <?php $current_user = wp_get_current_user();
       $user_description = get_user_meta($current_user->ID,'description',true);
 ?>
+
+
+    
 <?php
 $admin_url=admin_url('admin-ajax.php');
 ?>
-<!--<script type="text/javascript">
-
-    function get_notice() {
-        var get_contents = {
-            action: "get_notice",
-        };
-        $.ajax({
-            type: "POST",
-            url: "<?php /*echo $admin_url;*/?>",
-            data: get_contents,
-            dataType: "json",
-            beforeSend: function () {
-            },
-            success: function(data){
-                alert(data.new_comments.length);
-            },
-            error: function() {
-                alert("消息提醒 获取失败!");
-            }
-        });
-    }
-
+<script type="text/javascript">
     $(function(){
-        get_notice();
+        $("#favorite span").bind("click",function(){
+            <?php
+            //埋数据点
+            session_start();
+            $_SESSION['post_id']=isset($_COOKIE['page_id']) ? $_COOKIE['page_id'] : get_the_ID();
+            $_SESSION['post_type']=get_post_type($_SESSION['post_id']);
+            $_SESSION['user_id']=get_current_user_id();
+            $_SESSION['action']=isset($_COOKIE['action']) ? $_COOKIE['action'] : 'browse';
+            setcookie("page_id");
+            setcookie("action");
+            $_SESSION['timestamp']=date("Y-m-d H:i:s",time()+8*3600);
+            $_SESSION['user_ip'] = getRealIp();
+            writeCollectAction()
+    // $last_id = writeUserTrack();
+    //?>
+        })
     });
-</script>-->
+</script>
 
 <div class="col-md-3 col-sm-3 col-xs-3 right" id="col3">
     <div id="user-profile">
