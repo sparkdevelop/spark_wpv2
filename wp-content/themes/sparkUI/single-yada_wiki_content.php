@@ -14,7 +14,7 @@ if ($related_info['post_type'] == "post") {
     $post_from = "";
 }
 
-if(!$url_result[0]->{'question_url'}) {
+if(!$url_result[0]->{'url'}) {
     $display_flag='none';
 } else {
     $display_flag = 'block';
@@ -144,7 +144,7 @@ if(!$url_result[0]->{'question_url'}) {
 <!-- 微测试按钮 -->
 <div style="position:fixed;right:315px;bottom:0;z-index:9;display:<?php echo $display_flag?>">
     <button class="btn btn-warning btn-lg" data-toggle="tooltip" title="测试一下你的学习成果吧">
-    <a style="text-decoration: none;color:white" href="<?php echo $url_result[0]->{'question_url'};?>">导学问卷</a></button>
+    <a style="text-decoration: none;color:white" href="<?php echo $url_result[0]->{'url'};?>">导学问卷</a></button>
 </div>
 
 <!-- 记笔记 -->
@@ -430,7 +430,6 @@ $_SESSION['wiki_tags'] = $wiki_tags;
         data: data,
         success:function(res){
          var data = JSON.parse(res);
-         console.log(data);
          $("#notesBook ul").empty();
          for(var i=0; i<data.results.length;i++) {
             var str = '<li>'+data.results[i].notes_content +'<button name="'+data.results[i].notes_id+'" class = "glyphicon glyphicon-remove"></button></li>';
@@ -468,7 +467,6 @@ $_SESSION['wiki_tags'] = $wiki_tags;
 
    //根据id删除笔记
    function deleteNotes(id) {
-       console.log(id)
        var data = {
             action: 'delete_notes',
             notesID:id

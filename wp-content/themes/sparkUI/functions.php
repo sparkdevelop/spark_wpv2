@@ -7769,8 +7769,17 @@ function insert_notes() {
     $user_id = $_POST['userID'];
     $post_id = $_POST['postID'];
     $notes_content = $_POST['postContent'];
+    
     $sql = "INSERT INTO wp_notes (user_id, post_id, notes_content, notes_time) VALUES ('$user_id', '$post_id','$notes_content', '$date')";
     $wpdb ->get_results($sql);
+    
+    backup($user_id, $post_id,$notes_content, $date);
+}
+//备份所有插入操作
+function backup($user_id, $post_id,$notes_content, $date) {
+    global $wpdb;
+    $sql2 = "INSERT INTO wp_notes_backup (user_id, post_id, notes_content, notes_time) VALUES ('$user_id', '$post_id','$notes_content', '$date')";
+    $wpdb ->get_results($sql2);
 }
 add_action('wp_ajax_insert_notes', 'insert_notes');
 add_action('wp_ajax_nopriv_insert_notes', 'insert_notes');
