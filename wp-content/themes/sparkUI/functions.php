@@ -7792,4 +7792,58 @@ function update_notes($notes_id, $notes_content) {
     $results = $wpdb -> get_results($sql);
     return $results;
 }
+
+//收藏行为记录
+function writeCollectAction() {
+    
+    global $wpdb;
+    $post_id = $_SESSION['post_id'];
+    $post_type = $_SESSION['post_type'];
+    $user_action = $_SESSION['action'];
+    $user_id = $_SESSION['user_id'];
+    $timestamp = $_SESSION['timestamp'];
+    $ip = $_SESSION['user_ip'];
+    session_destroy();
+    if ($user_id != 0) {
+        $post = get_post($post_id);
+        $current_user = wp_get_current_user();
+        $school_info = get_school_info($current_user->ID);
+        $sno = $school_info['sno'];
+        $sname = $school_info['sname'];
+
+        $statement['actor'] = json_encode(array(
+            'objectType' => 'Agent',
+            'name' => $current_user->user_login,
+            'member_info' => array(
+                'user_id' => $current_user->ID,
+                'sno' => $sno,
+                'university' => $sname
+            )
+        ));
+        $statement['verb'] = 'click-collect';
+        $post_author_name = get_user_by('ID', $post->post_author)->user_login;
+        $statement['object'] = json_encode(array(
+            'objectType' => 'Activity',
+            'type' => $post_type,
+            'definition' => array(
+                'title' => $post->post_title,
+                'post_id' => $post_id,
+                'author' => $post_author_name,
+                'identifier' => get_permalink($post_id)
+            )
+        ));
+        $statement['context'] = json_encode(array(
+            'ip' => getRealIp()
+        ));
+        $statement['timestamp'] = time() + 8*3600;
+        $statement['authority'] = 'sparkspace';
+
+        $wpdb->insert('standard_history', $statement);
+
+        $sql = "INSERT INTO wp_user_history VALUES ('',$user_id,'$user_action',$post_id,'$post_type','$timestamp',null,'$ip')";
+        $wpdb->get_results($sql);
+        return $wpdb->insert_id;
+    }
+}
+
 ?>
