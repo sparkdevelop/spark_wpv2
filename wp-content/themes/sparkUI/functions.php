@@ -7724,4 +7724,65 @@ add_action('wp_ajax_nopriv_curl_post_https', 'curl_post_https');*/
 //    $wpdb->get_results($sql_insert);
 //}
 
+//获取微测试的测试问卷链接
+function get_test_questionaire($post_id,$user_id) {
+    global $wpdb;
+    $sql="SELECT question_url FROM wp_class_group AS a
+    JOIN wp_questionaire as b
+    ON a.group_id = b.group_id
+    WHERE user_id ='$user_id'AND post_id = '$post_id'";
+    $results=$wpdb->get_results($sql);
+    return $results;
+}
+
+
+//记笔记功能
+//查询已有笔记
+function get_notes() {
+    global $wpdb;
+    $user_id = $_POST['userID'];
+    $post_id = $_POST['postID'];
+    // var_dump($user_id,$post_id);
+    $sql="SELECT notes_id, notes_content FROM wp_notes WHERE user_id = '$user_id' AND post_id = '$post_id'";
+    $query = $wpdb -> get_results($sql);
+    $result= json_encode(array('results'=>$query));
+    echo $result;
+    die();
+    
+}
+add_action('wp_ajax_get_notes', 'get_notes');
+add_action('wp_ajax_nopriv_get_notes', 'get_notes');
+
+//根据nodes_id删除笔记
+function delete_notes() {
+    global $wpdb;
+    $notes_id = $_POST['notesID'];
+    $sql = "DELETE FROM wp_notes WHERE notes_id = '$notes_id' ";
+    $wpdb -> get_results($sql);
+}
+
+add_action('wp_ajax_delete_notes', 'delete_notes');
+add_action('wp_ajax_nopriv_delete_notes', 'delete_notes');
+
+//插入笔记
+function insert_notes() {
+    global $wpdb;
+    $date = date("Y-m-d h:m:s");
+    $user_id = $_POST['userID'];
+    $post_id = $_POST['postID'];
+    $notes_content = $_POST['postContent'];
+    $sql = "INSERT INTO wp_notes (user_id, post_id, notes_content, notes_time) VALUES ('$user_id', '$post_id','$notes_content', '$date')";
+    $wpdb ->get_results($sql);
+}
+add_action('wp_ajax_insert_notes', 'insert_notes');
+add_action('wp_ajax_nopriv_insert_notes', 'insert_notes');
+
+//更新笔记
+function update_notes($notes_id, $notes_content) {
+    global  $wpdb;
+    $date = date("Y-m-d h:m:s");
+    $sql = "UPDATE wp_notes SET notes_content = '$notes_content',notes_date = '$date' WHERE notes_id = '$notes_id'";
+    $results = $wpdb -> get_results($sql);
+    return $results;
+}
 ?>

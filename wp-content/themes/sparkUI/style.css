@@ -1481,18 +1481,9 @@ h4 {
 
 /*收藏css*/
 #btn-add-favorite {
-    font-size: 18px;
     color: #fe642d;
     background-color: transparent;
     border-color: transparent;
-}
-
-#addFavorite {
-    display: inline-block;
-    float: right;
-    height: 78px;
-    line-height: 78px;
-    margin-right: 25px;
 }
 
 /*没有项目或收藏的提示框样式*/
@@ -1503,7 +1494,11 @@ h4 {
     right: 20px;
     color: lightgrey;
 }
-
+#addFavorite .glyphicon {
+    margin-right: 0;
+    line-height: 18px;
+    font-size: large;
+}
 #close-icon:hover {
     color: #fe642d;
     cursor: pointer;
@@ -2450,4 +2445,59 @@ h4 {
     margin-top: 0
 }
 
+.test-button{
+    width:300px;
+    height:auto;
+    position:fixed;
+    left:100px;
+    bottom:50px;
+    z-index:9  
+}
 
+/* 记笔记 */
+
+#makeNotes {
+    position: fixed; 
+    bottom: 0;
+    right: 427px;
+    z-index: 9;
+    display: inline-block;
+}
+#notesBook {
+    position: fixed;
+    height: 300px;
+    width: 243px;
+    bottom: 40px;
+    right: 265px;
+    color: #090000;
+    opacity: 75%;
+    z-index: 9;
+    overflow:auto;
+    display: none;
+}
+#notesBook .notes-data-input {
+    border: 0;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+#notes_header {
+    position: relative;
+    text-align: center;
+}
+#notesBook ul button {
+    background-color: rgba(0,0,0,0);
+    margin: 2px;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+#closeNotes {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0);
+    margin: 2px;
+    padding: 0;
+    border: none;
+    outline: none;
+}
