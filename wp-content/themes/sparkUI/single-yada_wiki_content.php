@@ -142,9 +142,8 @@ if(!$url_result[0]->{'url'}) {
     <button type="button" class="btn btn-warning  btn-lg" data-toggle="tooltip" title="看看大家遇到的问题和解决方法"><a href="https://www.oursparkspace.cn/?yada_wiki=1539591196" target="_blank">精品FAQ</a></button>
 </div>
 <!-- 微测试按钮 -->
-<div style="position:fixed;right:315px;bottom:0;z-index:9;display:<?php echo $display_flag?>">
-    <button class="btn btn-warning btn-lg" data-toggle="tooltip" title="测试一下你的学习成果吧">
-    <a style="text-decoration: none;color:white" href="<?php echo $url_result[0]->{'url'};?>">导学问卷</a></button>
+<div id="question_btn"style="z-index:9;display:<?php echo $display_flag?>">
+    <a style="text-decoration: none;color:white" href="<?php echo $url_result[0]->{'url'};?>">导学问卷</a>
 </div>
 
 <!-- 记笔记 -->
@@ -404,6 +403,9 @@ $_SESSION['wiki_tags'] = $wiki_tags;
     
     // 记笔记
    $(function(){
+    $("#question_btn").click(function() {
+        $("#question_btn").hide();
+    })
     $("#makeNotes").click(function() {
         $("#notesBook").toggle();
     })
