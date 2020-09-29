@@ -7846,4 +7846,15 @@ function writeCollectAction() {
     }
 }
 
+//定向渲染试点班入口
+function sample_class($post_id,$user_id) {
+    global $wpdb;
+    if($post_id = 235) {
+        $sql = "SELECT * FROM wp_sample_class WHERE user_id = '$user_id'";
+        $result = $wpdb ->get_results($sql);
+        if(!$result) return;
+        return "<a href='https://www.oursparkspace.cn/?yada_wiki=1600865896' target ='_blank' id = 'isClass'>【试点班专属教程】</a>";
+    } else return;
+}
+
 ?>

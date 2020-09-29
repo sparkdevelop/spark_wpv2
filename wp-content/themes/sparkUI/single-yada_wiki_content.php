@@ -6,6 +6,9 @@ $hasLearn = hasLearn($user_id, $post_id);
 $num = learned_num($post_id);
 $related_info = qaComeFrom($post_id);
 $url_result = get_test_questionaire($post_id,$user_id);
+
+$isClass = sample_class($post_id,$user_id);
+
 if ($related_info['post_type'] == "post") {
     $post_from = "项目";
 } elseif ($related_info['post_type'] == "yada_wiki") {
@@ -53,6 +56,9 @@ if(!$url_result[0]->{'url'}) {
                             <?php echo $avalue; ?>
                         </a>
                     </div> -->
+                    <div><?php 
+                        echo $isClass
+                    ?></div>
                     <hr>
                     <div id="wiki_content">
                         <?php the_content(); //keywordHighlight_update(); 
