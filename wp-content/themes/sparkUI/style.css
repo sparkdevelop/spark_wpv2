@@ -2518,3 +2518,13 @@ h4 {
     font-size: 50px;
     color: seashell;
 } 
+#isClass {
+    font-size: 22px;
+    font-weight: bold;
+    color:indigo;
+    position: relative;
+    left: 540px;
+    top: 270px;
+    z-index: 8;
+}
+    
