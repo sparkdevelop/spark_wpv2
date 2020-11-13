@@ -109,6 +109,147 @@
                     }
                 },
                 {
+                    text: '创新项目模版（新）',
+                    onclick: function () {
+                        editor.windowManager.open({
+                            title: '创新项目模版（新）',
+                            width: 400, //    对话框宽度
+                            height: 400, //    对话框高度
+                            body:[
+                                {
+                                    type   : 'container',
+                                    name   : '创新项目模版（新）',
+                                    html  : '<p style="font-size:15px;">简介<br/><br/>创意过程<br/><br/>用户分析<br/><br/>场景分析<br/><br/>系统功能拆解<br/><br/>功能实现<br/><br/>项目演示<br/><br/>团队介绍<br/><br/>团队故事<br/><p>'
+                                }
+                            ],
+
+                            onsubmit: function () {
+                                editor.insertContent(
+                                    '<h2>简介</h2>'+
+                                    '<span style="color: #ff0000;">一句话show出你们的小程序。总述小程序想要解决的问题、实现的效果。</span>' +
+                                    '<h2>创意过程</h2>'+
+                                    '<ul>'+
+                                    '<li>疯狂八分钟：<span style="color: #ff0000;">（请罗列小组所有成员的创意点）</span></li>' +
+                                    '<li>四象限法：<span style="color: #ff0000;">（请添加小组的四象限图，拍照或截图。为了保证图片能被正常查看，请务必通过上方工具栏左上角的“添加媒体”来插入图片。请保证图片清晰哦）</span></li>' +
+                                    '</ul>' +
+                                    '<h2>用户分析</h2>' +
+                                    '<ul>' +
+                                    '<li>目标用户：<span style="color: #ff0000;">（请文字描述）</span></li>' +
+                                    '<li>用户画像：<span style="color: #ff0000;">（请添加用户画像图片。为了保证图片能被正常查看，请务必通过上方工具栏左上角的“添加媒体”来插入图片。请保证图片清晰哦）</span></li>' +
+                                    '<li>痛点——需求点：根据用户特点的分析，归纳一下目标用户的痛点和相对应的需求。</li>' +
+                                    '</ul>' +
+                                    '<table style="border-color: #616161; width: 814px;" border="1px">' +
+                                    '<tbody>' +
+                                    '<tr>' +
+                                    '<td style="width: 404.6875px;">' +
+                                    '<p style="text-align: center;">痛点</p>' +
+                                    '</td>' +
+                                    '<td style="width: 400.3125px;">' +
+                                    '<p style="text-align: center;">需求点</p>' +
+                                    '</td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                    '<td style="width: 404.6875px;"></td>'+
+                                    '<td style="width: 400.3125px;"></td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                    '<td style="width: 404.6875px;"></td>'+
+                                    '<td style="width: 400.3125px;"></td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                    '<td style="width: 404.6875px;"></td>'+
+                                    '<td style="width: 400.3125px;"></td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                    '<td style="width: 404.6875px;"></td>'+
+                                    '<td style="width: 400.3125px;"></td>'+
+                                    '</tr>'+
+                                    '</tbody>'+
+                                    '</table>'+
+                                    '&nbsp;'+
+                                    '<h2>场景分析</h2>'+
+                                    '目标用户的使用路径可能是这样的：'+
+                                    '<span style="color: #ff0000;">（请添加用户旅程图图片。为了保证图片能被正常查看，请务必通过上方工具栏左上角的“添加媒体”来插入图片。请保证图片清晰哦）</span>'+
+                                    '&nbsp;'+
+                                    '<h2>系统功能拆解</h2>'+
+                                    '请根据组件认知与系统功能拆解，完成小组创意小程序的核心功能实现的技术分析：'+
+                                    '<table style="border-color: #5e5e5e; width: 803px;" border="1px">'+
+                                    '<tbody>'+
+                                    '<tr>'+
+                                    '<td style="width: 395.140625px;">'+
+                                    '<p style="text-align: center;">小程序核心功能</p>'+
+                                    '</td>'+
+                                    '<td style="width: 396.859375px;">'+
+                                    '<p style="text-align: center;">技术模块</p>'+
+                                    '</td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                    '<td style="width: 395.140625px; text-align: center;"><span style="color: #ff0000;"> 功能1</span></td>'+
+                                    '<td style="width: 396.859375px; text-align: center;"><span style="color: #ff0000;"> 功能1对应的组件</span></td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                    '<td style="width: 395.140625px; text-align: center;"><span style="color: #ff0000;"> 功能2</span></td>'+
+                                    '<td style="width: 396.859375px; text-align: center;"><span style="color: #ff0000;"> 功能2对应的组件</span></td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                    '<td style="width: 395.140625px;"></td>'+
+                                    '<td style="width: 396.859375px;"></td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                    '<td style="width: 395.140625px;"></td>'+
+                                    '<td style="width: 396.859375px;"></td>'+
+                                    '</tr>'+
+                                    '</tbody>'+
+                                    '</table>'+
+                                    '<strong> </strong>'+
+                                    '<h2>功能实现</h2>'+
+                                    '<span style="color: #ff0000;">解读每个功能模块的实现过程，并讲解一下重要部分的代码。</span>'+
+                                    '&nbsp;'+
+                                    '<h2>项目演示</h2>'+
+                                    '<span style="color: #ff0000;">通过“添加媒体”上传PPT</span>'+
+                                    '&nbsp;'+
+                                    '<h2><strong>团队介绍</strong></h2>'+
+                                    '<table style="height: 180px; border-color: #616161; width: 454px;" border="1px" width="454">'+
+                                    '<tbody>'+
+                                    '<tr>'+
+                                    '<td style="width: 142.15625px; text-align: center;">姓名</td>'+
+                                    '<td style="width: 295.859375px; text-align: center;">团队分工</td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                    '<td style="width: 142.15625px; text-align: center;">张科科</td>'+
+                                    '<td style="width: 295.859375px; text-align: center;"><span style="color: #ff0000;">（均为示例，可修改）</span>'+
+                                    '<span style="color: #ff0000;">队长，组织协调进度</span></td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                    '<td style="width: 142.15625px; text-align: center;">王蛋蛋</td>'+
+                                    '<td style="width: 295.859375px; text-align: center;"><span style="color: #ff0000;">技术担当，资源协调</span></td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                    '<td style="width: 142.15625px; text-align: center;">李华华</td>'+
+                                    '<td style="width: 295.859375px; text-align: center;"><span style="color: #ff0000;">ppt制作</span></td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                    '<td style="width: 142.15625px; text-align: center;">韩梅梅</td>'+
+                                    '<td style="width: 295.859375px; text-align: center;">'+
+                                    '<p style="text-align: center;"><span style="color: #ff0000;">海报制作，文档撰写</span></p>'+
+                                    '</td>'+
+                                    '</tr>'+
+                                    '</tbody>'+
+                                    '</table>'+
+                                    '&nbsp;'+
+                                    '<h2>团队故事</h2>'+
+                                    '<span style="color: #ff0000;">团队合作过程中发生的趣事、攻克的难关等。</span>'+
+                                    '&nbsp;'+
+                                    '<h2><strong>参考资料</strong></h2>'+
+                                    '<span style="color: #ff0000;">完成项目时，参考了哪些学习资料？请附上链接，相信你提供的资源能为其他初学者带来很大的帮助！</span>'+
+                                    '&nbsp;'+
+                                    '&nbsp;'
+                                );
+                            }
+                        });
+                    }
+                },
+                {
                     text: '硬件项目',
                     onclick: function () {
                         editor.windowManager.open({
