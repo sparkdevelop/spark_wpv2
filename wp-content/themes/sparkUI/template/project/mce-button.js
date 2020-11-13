@@ -126,7 +126,7 @@
                             onsubmit: function () {
                                 editor.insertContent(
                                     '<h2>简介</h2>'+
-                                    '<span style="color: #ff0000;">一句话show出你们的小程序。总述小程序想要解决的问题、实现的效果。</span>' +
+                                    '<span style="color: #ff0000;">一句话show出你们的项目。总述项目想要解决的问题、实现的效果。</span>' +
                                     '<h2>创意过程</h2>'+
                                     '<ul>'+
                                     '<li>疯狂八分钟：<span style="color: #ff0000;">（请罗列小组所有成员的创意点）</span></li>' +
