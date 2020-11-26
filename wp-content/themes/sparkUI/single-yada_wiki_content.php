@@ -5,7 +5,7 @@ $post_id = get_the_ID();
 $hasLearn = hasLearn($user_id, $post_id);
 $num = learned_num($post_id);
 $related_info = qaComeFrom($post_id);
-$url_result = get_test_questionaire($post_id,$user_id);
+// $url_result = get_test_questionaire($post_id,$user_id);
 
 $isClass = sample_class($post_id,$user_id);
 
@@ -147,13 +147,14 @@ if(!$url_result[0]->{'url'}) {
 <div class="bottom-button" id="faq-button">
     <button type="button" class="btn btn-warning  btn-lg" data-toggle="tooltip" title="看看大家遇到的问题和解决方法"><a href="https://www.oursparkspace.cn/?yada_wiki=1539591196" target="_blank">精品FAQ</a></button>
 </div>
-<!-- 微测试按钮 -->
+
+<!-- 微测试按钮
 <div id="question_btn"style="z-index:9;display:<?php echo $display_flag?>">
     <a style="text-decoration: none;color:white" href="<?php echo $url_result[0]->{'url'};?>">导学问卷</a>
-</div>
+</div> -->
 
 <!-- 记笔记 -->
-<div id="makeNotes"><button class="btn btn-success btn-lg" data-toggle="tooltip" title="记录你的心得体会" onclick="getNotes()">记笔记</button></div>
+<!-- <div id="makeNotes"><button class="btn btn-success btn-lg" data-toggle="tooltip" title="记录你的心得体会" onclick="getNotes()">记笔记</button></div>
 
 <div class="alert alert-success" id="notesBook" role="alert">
     <div id="notes_header"><strong style="text-align: center;">笔记本</strong></div>
@@ -161,7 +162,7 @@ if(!$url_result[0]->{'url'}) {
     <input type="text" class="notes-data-input" placeholder="记录你的想法">
     <button id="writeNotes" class="glyphicon glyphicon-pencil" onclick="writeNotes()"></button>
     <ul></ul>
-</div>
+</div> -->
 
 
 <?php
@@ -408,85 +409,85 @@ $_SESSION['wiki_tags'] = $wiki_tags;
     }
     
     // 记笔记
-   $(function(){
-    $("#question_btn").click(function() {
-        $("#question_btn").hide();
-    })
-    $("#makeNotes").click(function() {
-        $("#notesBook").toggle();
-    })
-    $("#closeNotes").click(function() {
-        $("#notesBook").hide();
-    })
-    $(".notes-data-input").bind('keypress',function(event){
-        if(event.keyCode == "13") {
-            writeNotes()
-        }
-    })
-   })
+//    $(function(){
+//     $("#question_btn").click(function() {
+//         $("#question_btn").hide();
+//     })
+//     $("#makeNotes").click(function() {
+//         $("#notesBook").toggle();
+//     })
+//     $("#closeNotes").click(function() {
+//         $("#notesBook").hide();
+//     })
+//     $(".notes-data-input").bind('keypress',function(event){
+//         if(event.keyCode == "13") {
+//             writeNotes()
+//         }
+//     })
+//    })
 
    //查询笔记
-   function getNotes() {
-    var data = {
-            action: 'get_notes',
-            userID: '<?= $current_user->ID ?>',
-            postID: '<?= $post_id ?>'
-        };
-    $.ajax({
-        type: "POST",
-        url: "<?php echo $admin_url; ?>",
-        data: data,
-        success:function(res){
-         var data = JSON.parse(res);
-         $("#notesBook ul").empty();
-         for(var i=0; i<data.results.length;i++) {
-            var str = '<li>'+data.results[i].notes_content +'<button name="'+data.results[i].notes_id+'" class = "glyphicon glyphicon-remove"></button></li>';
-            $("#notesBook ul").append(str);
-         }
-         $("#notesBook ul button").bind('click',function(){
-             var notes_id = $(this).attr('name');
-             deleteNotes(notes_id);
-         })
-        }
-    })
-   }
+//    function getNotes() {
+//     var data = {
+//             action: 'get_notes',
+//             userID: '<?= $current_user->ID ?>',
+//             postID: '<?= $post_id ?>'
+//         };
+//     $.ajax({
+//         type: "POST",
+//         url: "<?php echo $admin_url; ?>",
+//         data: data,
+//         success:function(res){
+//          var data = JSON.parse(res);
+//          $("#notesBook ul").empty();
+//          for(var i=0; i<data.results.length;i++) {
+//             var str = '<li>'+data.results[i].notes_content +'<button name="'+data.results[i].notes_id+'" class = "glyphicon glyphicon-remove"></button></li>';
+//             $("#notesBook ul").append(str);
+//          }
+//          $("#notesBook ul button").bind('click',function(){
+//              var notes_id = $(this).attr('name');
+//              deleteNotes(notes_id);
+//          })
+//         }
+//     })
+//    }
 
-   //记录笔记
-   function writeNotes() {
-       let input_data = $("#notesBook .notes-data-input").val();
-      if(input_data!='') {
-        $("#notesBook .notes-data-input").val("");
-       let data = {
-            action: 'insert_notes',
-            userID: '<?= $current_user->ID ?>',
-            postID: '<?= $post_id ?>',
-            postContent:input_data
-       };
-       $.ajax({
-        type: "POST",
-        url: "<?php echo $admin_url; ?>",
-        data: data,
-        success:function(){
-            getNotes()
-        }
-       })
-      }
-   }
+//    //记录笔记
+//    function writeNotes() {
+//        let input_data = $("#notesBook .notes-data-input").val();
+//       if(input_data!='') {
+//         $("#notesBook .notes-data-input").val("");
+//        let data = {
+//             action: 'insert_notes',
+//             userID: '<?= $current_user->ID ?>',
+//             postID: '<?= $post_id ?>',
+//             postContent:input_data
+//        };
+//        $.ajax({
+//         type: "POST",
+//         url: "<?php echo $admin_url; ?>",
+//         data: data,
+//         success:function(){
+//             getNotes()
+//         }
+//        })
+//       }
+//    }
 
-   //根据id删除笔记
-   function deleteNotes(id) {
-       var data = {
-            action: 'delete_notes',
-            notesID:id
-       }
-       $.ajax({
-        type: "POST",
-        url: "<?php echo $admin_url; ?>",
-        data: data,
-        success:function(){
-            getNotes()
-        }
-       })
-   }
+//    //根据id删除笔记
+//    function deleteNotes(id) {
+//        var data = {
+//             action: 'delete_notes',
+//             notesID:id
+//        }
+//        $.ajax({
+//         type: "POST",
+//         url: "<?php echo $admin_url; ?>",
+//         data: data,
+//         success:function(){
+//             getNotes()
+//         }
+//        })
+//    }
 
 </script>

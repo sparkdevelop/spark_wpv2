@@ -2502,7 +2502,7 @@ h4 {
     outline: none;
 }
 
-#question_btn {
+/* #question_btn {
     position: fixed;
     left: 45%;
     top: 75px;
@@ -2517,7 +2517,7 @@ h4 {
     text-decoration: none;
     font-size: 50px;
     color: seashell;
-} 
+}  */
 #isClass {
     font-size: 22px;
     font-weight: bold;
