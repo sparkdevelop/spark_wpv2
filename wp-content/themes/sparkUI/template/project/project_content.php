@@ -68,6 +68,7 @@ $project= new WP_Query($query);
     <div class="archive-nav">
         <ul id="leftTab" class="nav nav-pills" style="float: left;height: 42px;">
             <li class="active" id="project"><a href="<?php echo esc_url(remove_query_arg(array('paged','category_name','date')))?>" >所有</a></li>
+            <li id="2020"><a href="<?php echo esc_url(remove_query_arg(array('paged','category_name'), add_query_arg(array('date' => '2020'))))?>" >2020级</a></li>
             <li id="2019"><a href="<?php echo esc_url(remove_query_arg(array('paged','category_name'), add_query_arg(array('date' => '2019'))))?>" >2019级</a></li>
             <li id="2018"><a href="<?php echo esc_url(remove_query_arg(array('paged','category_name'),add_query_arg(array('date' => '2018'))))?>" >2018级</a></li>
             <li id="hardware"><a href="<?php echo esc_url(remove_query_arg(array('date'),add_query_arg(array('category_name'=>'hardware','paged'=>'1'))))?>" >开源硬件</a></li>
