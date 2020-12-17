@@ -167,7 +167,8 @@
 <!--                                    <option value="wiki">搜wiki</option>-->
 <!--                                    <option value="project">搜项目</option>-->
 <!--                                </select>-->
-                                <input type="text" id="search-content" name='s' class="form-control" placeholder="Search" value="">
+<!-- 隐藏输入框 -->
+                                <!-- <input type="text" id="search-content" name='s' class="form-control" placeholder="Search" value=""> -->
 <!--                                <input type="hidden" name="post_status" value="publish">-->
 <!--                                <input type="hidden" name="post_type" id="selectPostType" value="all"/>-->
                                 <button type="submit" class="btn btn-default btn-sm" id="search-btn">
@@ -233,14 +234,14 @@
                         <img src="<?php bloginfo("template_url") ?>/img/qa.png">
                         <a href="<?php echo site_url() . get_page_address('qa'); ?>">问答</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <img src="<?php bloginfo("template_url") ?>/img/project.png">
                         <a href="<?php echo get_the_permalink(get_page_by_title('项目')); ?>">项目</a>
-                    </li>
-                    <li>
+                    </li> -->
+                    <!-- <li>
                         <img src="<?php bloginfo("template_url") ?>/img/group.png">
                         <a href="<?php echo get_the_permalink(get_page_by_title('协作')); ?>">协作</a>
-                    </li>
+                    </li> -->
                     <li>
                         <img src="<?php bloginfo("template_url") ?>/img/profile.png">
                         <a href="<?php echo get_the_permalink(get_page_by_title('认知工委会')); ?>">多校</a>
