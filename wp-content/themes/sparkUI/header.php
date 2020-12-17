@@ -42,9 +42,11 @@
     $role_arr = get_rbac_user_relation('role', $user_id);
     $role_id = get_type_id('role', '管理员');
     if (current_user_can( 'manage_options' )||in_array($role_id,$role_arr)){
-        $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id,$page_rbac_id);
+        // $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id,$page_rbac_id);
+        $page_all_id=array($page_wiki_id,$page_qa_id,$page_rbac_id);
     }else{
-        $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id);
+        // $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id);
+        $page_all_id=array($page_wiki_id,$page_qa_id);
 
     }
     $admin_url = admin_url('admin-ajax.php');
@@ -157,26 +159,20 @@
                         <?php } ?>
                     </div>
                     <div class="clearfix visible-xs"></div>
-                    <div class="col-md-3 col-sm-3 col-xs-3" id="col3">
+                    <!-- 隐藏输入框 -->
+                    <!-- <div class="col-md-3 col-sm-3 col-xs-3" id="col3">
                         <form class="navbar-form " role="search" method="get" action="<?php echo home_url('/');//get_permalink() ?>" style="float: right;padding-left: 0px;padding-right: 0px">
                             <div class="form-group" style="position: relative">
-<!--                                <select class="form-control" id="search_select"-->
-<!--                                        onchange="selectSearchCat(this.value);">-->
-<!--                                    <option value="all">搜全部</option>-->
-<!--                                    <option value="qa">搜问答</option>-->
-<!--                                    <option value="wiki">搜wiki</option>-->
-<!--                                    <option value="project">搜项目</option>-->
-<!--                                </select>-->
-<!-- 隐藏输入框 -->
-                                <!-- <input type="text" id="search-content" name='s' class="form-control" placeholder="Search" value=""> -->
-<!--                                <input type="hidden" name="post_status" value="publish">-->
-<!--                                <input type="hidden" name="post_type" id="selectPostType" value="all"/>-->
-                                <button type="submit" class="btn btn-default btn-sm" id="search-btn">
+
+
+                                <input type="text" id="search-content" name='s' class="form-control" placeholder="Search" value=""> 
+                               
+                                 <button type="submit" class="btn btn-default btn-sm" id="search-btn">
                                     <span class="glyphicon glyphicon-search"></span>
-                                </button>
+                                </button> 
                             </div>
                         </form>
-                    </div>
+                    </div> -->
                     <div class="clearfix visible-xs"></div>
             </nav>
         </div>
@@ -295,10 +291,10 @@
                         <img src="<?php bloginfo("template_url") ?>/img/qa.png">
                         <a href="<?php echo site_url() . get_page_address('qa'); ?>">问答</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <img src="<?php bloginfo("template_url") ?>/img/project.png">
                         <a href="<?php echo get_the_permalink(get_page_by_title('项目')); ?>">项目</a>
-                    </li>
+                    </li> -->
                     <li>
                         <img src="<?php bloginfo("template_url") ?>/img/profile.png">
                         <a href="<?php echo get_the_permalink(get_page_by_title('认知工委会')); ?>">多校</a>
