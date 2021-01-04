@@ -42,11 +42,11 @@
     $role_arr = get_rbac_user_relation('role', $user_id);
     $role_id = get_type_id('role', '管理员');
     if (current_user_can( 'manage_options' )||in_array($role_id,$role_arr)){
-        // $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id,$page_rbac_id);
-        $page_all_id=array($page_wiki_id,$page_qa_id,$page_rbac_id);
+        $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id,$page_rbac_id);
+        // $page_all_id=array($page_wiki_id,$page_qa_id,$page_rbac_id);
     }else{
-        // $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id);
-        $page_all_id=array($page_wiki_id,$page_qa_id);
+        $page_all_id=array($page_wiki_id,$page_qa_id,$page_project_id,$page_group_id);
+        // $page_all_id=array($page_wiki_id,$page_qa_id);
 
     }
     $admin_url = admin_url('admin-ajax.php');
@@ -160,7 +160,7 @@
                     </div>
                     <div class="clearfix visible-xs"></div>
                     <!-- 隐藏输入框 -->
-                    <!-- <div class="col-md-3 col-sm-3 col-xs-3" id="col3">
+                    <div class="col-md-3 col-sm-3 col-xs-3" id="col3">
                         <form class="navbar-form " role="search" method="get" action="<?php echo home_url('/');//get_permalink() ?>" style="float: right;padding-left: 0px;padding-right: 0px">
                             <div class="form-group" style="position: relative">
 
@@ -172,7 +172,7 @@
                                 </button> 
                             </div>
                         </form>
-                    </div> -->
+                    </div>
                     <div class="clearfix visible-xs"></div>
             </nav>
         </div>
